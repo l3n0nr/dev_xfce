@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.91.7.18.4 #
+# versão do script: 0.0.92.7.18.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -208,6 +208,7 @@
 #   [+] Gnome System Monitor
 #   [+] Nautilus
 #   [+] Wireshark
+#   [+] Ubuntu Desktop
 #
 ################################################################################	
 # Reinicialização
@@ -843,6 +844,14 @@ wireshark()
     echo ""
     echo "Deseja instalar o Wireshark? (s/n)"
     read -p "??" wireshark
+}
+
+ubuntudesktop()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Ubuntu Desktop? (s/n)"
+    read -p "??" ubuntudesktop
 }
 
 ################################################################################
@@ -1793,6 +1802,11 @@ install_yes()
                     apt install wireshark* -y
             fi
             
+            if [[ $ubuntudesktop == "s" ]]; then
+                    #instalando o ubuntudesktop
+                    apt install ubuntu-desktop* -y
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2119,6 +2133,10 @@ install_no()
         echo "Wireshark"
     fi
     
+    if [[ $ubuntudesktop == "n" ]]; then
+        echo "Ubuntu Desktop"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2266,6 +2284,7 @@ auto_config_ubuntu()
                     numixicon
                     plank                    
                     nautilus
+                    ubuntudesktop
                     ;;
                     
                 #outros programas
