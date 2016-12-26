@@ -1,0 +1,1 @@
+Localização: $HOME/.local/share/xfpanel-switch
