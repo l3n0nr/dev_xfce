@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.92.7.18.4 #
+# versão do script: 0.0.93.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -82,7 +82,6 @@
 #               PgAdminIII
 #               Gnome system tools
 #               Samba
-#               Gnome-disk-utility
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço.
 #		-Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.)
@@ -209,6 +208,7 @@
 #   [+] Nautilus
 #   [+] Wireshark
 #   [+] Ubuntu Desktop
+#   [+] Gnome-disk-utility
 #
 ################################################################################	
 # Reinicialização
@@ -852,6 +852,14 @@ ubuntudesktop()
     echo ""
     echo "Deseja instalar o Ubuntu Desktop? (s/n)"
     read -p "??" ubuntudesktop
+}
+
+gnomediskutility()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Gnome System Utility? (s/n)"
+    read -p "??" gnomediskutility
 }
 
 ################################################################################
@@ -1807,6 +1815,11 @@ install_yes()
                     apt install ubuntu-desktop* -y
             fi
             
+            if [[ $gnomediskutility == "s" ]]; then
+                    #instalando o gnomediskutility
+                    apt install gnome-disk-utility* -y
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2137,6 +2150,10 @@ install_no()
         echo "Ubuntu Desktop"
     fi
     
+    if [[ $gnomediskutility == "n" ]]; then
+        echo "Gnome System Utility"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2309,6 +2326,7 @@ auto_config_ubuntu()
                     stellarium            
                     virtualbox
                     wireshark
+                    gnomediskutility
                     ;;
                     
                 #voltando ao menu anterior        
