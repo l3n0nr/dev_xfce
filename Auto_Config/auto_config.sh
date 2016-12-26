@@ -29,10 +29,10 @@
 #        fonte: <http://sejalivre.org/instalando-o-tor-browser-no-ubuntu-e-linux-mint/>
 #
 # por Dionatan Simioni
-# 	fonte: <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
-# 	fonte: <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
-# 	fonte: <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
-# 	fonte: <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
+# 	 fonte: <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
+#    	 fonte: <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
+# 	 fonte: <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+# 	 fonte: <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
 ################################################################################
 #
 ####################
