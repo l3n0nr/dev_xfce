@@ -1,3 +1,4 @@
+
 ==================================================================
 Usados
 ==================================================================
@@ -16,7 +17,7 @@ Usados
 	Texmaker
 	Mousepad
 	
-#Graficos
+#Gráficos
 	Sweet Home 3D
 	Gimp
 	
@@ -53,6 +54,5 @@ Testados, não usados
 ==================================================================
 	-Atom - Alto consumo de memória RAM;
 	-Nemo - Falta de integração com interface XFCE; 
-	-Plank/Dock - barra transparente sobre os menus, dificultando a visualização das janelas;
 	-Parole - incompatibilidade determinadas extensoes de arquivos;
 	-Synapse - super legal e produtivo, porém começar a travar e demorar para abrir quando o uso da memória está elevado, causando assim stress.
