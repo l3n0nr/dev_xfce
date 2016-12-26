@@ -1,1 +1,1 @@
-# dev_xfce
+Repositório para personalização da interface XFCE no Linux, com todos os programas e configurações usadas.

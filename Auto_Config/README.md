@@ -1,0 +1,1 @@
+Script usado para automatizar configurações, instalações de programas no Linux.
