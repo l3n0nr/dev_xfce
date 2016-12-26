@@ -1,0 +1,41 @@
+#####
+Área de trabalho - Fedora 22 Spin Xfce 4.12
+
+Barra superior de forma minimalista contendo os seguintes plugins:
+
+Menu Whisker, Locais, Botões de Janela(onde mostra as janelas de forma detalhadada da area de trabalho selecionada), Mostrar Area de Trabalho, Atualização Meteorologica, Area de notificação, Plug-in de gerenciador de energia, lançador do Terminal, Relógio e o Pulse Audio. 
+
+---------------
+Configurações
+
+Modo:Horizontal
+Tamanho da linha: 18 pixels
+---------------
+
+#####
+
+#####
+Barra lateral, contém os seguintes plugins:
+
+Alternador de espaço de trabalho, Botões de Janela(onde mostra todas as janelas disponiveis de forma simplifica, com a aparencia de botoes), Relogio(na forma de um relogio analogico), DateTime(usando está configuração "%a, %d/%m, %b"), Plug-in de sensores, Monitor de Carga de Sistema(Processador, Memória RAM e SWAP), Botões de Ação e Novamente o Monitor de Carga do Sistema(para mostrar o tempo que o computador está ligado).
+
+---------------
+Configurações
+
+Modo: Deskbar
+Ocultamente automático ativado;
+Tamanho da linha: 45 pixels
+Numero de linhas: 3
+Comprimento: 98
+---------------
+#####
+
+
+Link's interessantes: 
+
+-Guia pos-instalação Fedora 22: <http://www.vivaolinux.com.br/dica/Guia-pos-instalacao-do-Fedora-22-Xfce-Spin>;
+-Guia pos-instalação Fedora 21: <http://www.vivaolinux.com.br/dica/Guia-pos-instalacao-do-Fedora-21-Xfce-Spin>;
+-Download Fedora 22 Spin Xfce: <https://spins.fedoraproject.org/xfce/>
+-Plugins Thunar: <http://goodies.xfce.org/projects/thunar-plugins/start>
+-Plugins Xfce: <http://goodies.xfce.org/projects/panel-plugins/start>
+

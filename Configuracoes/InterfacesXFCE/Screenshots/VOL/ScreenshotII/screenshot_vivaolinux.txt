@@ -1,0 +1,54 @@
+##############################
+Informações complementares:
+###
+Barra superior de forma minimalista contendo os seguintes plugins:
+
+Menu Whisker, Botões de Janela(onde mostra as janelas de forma detalhadada da area de trabalho selecionada, tamanho personalizado(.gtkrc-2.0)), Separador, Mostrar Area de Trabalho, Locais, Lançador(para guardar os arquivos que estariam na area de trabalho), Clipman, Area de notificação,Relógio(formato personalizado: %d %B, %H:%M:%S) , Plug-in de gerenciador de energia, Plugin Indicador e o Pulse Audio.
+
+---------------
+Configurações
+
+Tamanho da linha: 24 pixels
+---------------
+#####
+Barra lateral, contém os seguintes plugins:
+
+Alternador de espaço de trabalho, Botões de Janela(onde mostra todas as janelas disponiveis de forma simplifica, com a aparencia de botoes), Separador, Relogio(na forma de um relogio analogico), Lançadores, Monitor de Rede, Atualização Meteorológica, Monitor de Carga de Sistema(Processador, Memória RAM e SWAP), Plug-in de sensores, Botões de Ação e Novamente o Monitor de Carga do Sistema(para mostrar o tempo que o computador está ligado - uptime).
+
+---------------
+Configurações
+
+Modo: Deskbar
+Ocultamente automático ativado;
+Tamanho da linha: 30 pixels
+Numero de linhas: 4
+Comprimento: 97
+---------------
+
+##############################
+
+Arquivo '.gtkrc-2.0'
+#####
+Utilizado para alterar o tamanho do botão, segue abaixo o código do meu
+
+#####
+style "xfce-tasklist-style"
+{
+
+# The maximum length of a button before the label ellipsizes.
+# When this value is set to -1 the button will expand to the
+# entire available space.
+XfceTasklist::max-button-length = 120 # pixels. or whatever size you like
+
+}
+class "XfceTasklist" style "xfce-tasklist-style" 
+#####
+
+Basta criar o arquivo '.gtkrc-2.0' e colocar na pasta home do usuário e reiniciar a máquina.
+##############################
+
+Link's interessantes
+
+-Wallpaper: <https://alpha.wallhaven.cc/wallpaper/290785>
+-Plugins Thunar: <http://goodies.xfce.org/projects/thunar-plugins/start>
+-Plugins Xfce: <http://goodies.xfce.org/projects/panel-plugins/start>
