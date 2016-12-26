@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.90.7.18.4 #
+# versão do script: 0.0.91.7.18.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -1778,6 +1778,12 @@ install_yes()
             fi
                     
             if [[ $nautilus == "s" ]]; then
+                    #adicionando ppa
+                    add-apt-repository ppa:gnome3-team/gnome3 -y
+                    
+                    #atualizando lista repositorio
+                    apt update
+            
                     #instalando o nautilus
                     apt install nautilus* -y            
             fi
