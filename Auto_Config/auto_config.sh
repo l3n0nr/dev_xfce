@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.93.7.17.4 #
+# versão do script: 0.0.94.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -1163,7 +1163,8 @@ install_yes()
             fi
     
     ######INSTALANDO PROGRAMAS
-            if [[ $firefox == "s" ]] || if[[ $todos == "s" ]]; then
+            if [[ $firefox == "s" ]]; then
+                #|| if[[ $todos == "s" ]]
                             clear
                     echo "Firefox, "
 
@@ -1410,8 +1411,17 @@ install_yes()
             fi
 
             if [[ $git == "s" ]]; then
+                    #baixando o git kraken
+                    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O gitkraken.deb
+                    
+                    #instalando git kraken
+                    dpkg -i gitkraken.deb
+            
                     #instalando o git
-                    apt install git-core git* gitg* -y
+                    apt install git-core git* gitg* -y                                    
+                    
+                    #removendo arquivo baixado
+                    rm -r gitkraken.deb
             fi
 
             if [[ $lmsensors == "s" ]]; then
@@ -2216,15 +2226,16 @@ auto_config_ubuntu()
             #######VERIFICAR
             echo "Digite 0 para instalar todos os programas das categorias,"
             echo "Ou digite 1, para entrar nas categorias"
-            echo "Digite 1 para entrar na área de Jogos,"
-            echo "Digite 2 para entrar na área de Multimidia, "
-            echo "Digite 3 para entrar na área de Escritório," 
-            echo "Digite 4 para entrar na área de Internet," 
-            echo "Digite 5 para entrar na área de Desenvolvimento,"
-            echo "Digite 6 para entrar na área de Gráficos,"
-            echo "Digite 7 para entrar na área de Personalização do sistema,"
-            echo "Digite V para voltar ao menu anterior"
-            echo "Digite X para sair do script;"
+            echo "Digite 1, para entrar na área de Jogos,"
+            echo "Digite 2, para entrar na área de Multimidia, "
+            echo "Digite 3, para entrar na área de Escritório," 
+            echo "Digite 4, para entrar na área de Internet," 
+            echo "Digite 5, para entrar na área de Desenvolvimento,"
+            echo "Digite 6, para entrar na área de Gráficos,"
+            echo "Digite 7, para entrar na área de Personalização do sistema,"
+            echo "Digite 8, para entrar na área de outros programas,"
+            echo "Digite V, para voltar ao menu anterior"
+            echo "Digite X, para sair do script;"
             echo "----------------------------------------" 
             read -n1 -p "Ação:" categoria
             clear
