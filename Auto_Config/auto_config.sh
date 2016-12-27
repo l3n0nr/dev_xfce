@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.94.7.17.4 #
+# versão do script: 0.0.95.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -819,7 +819,7 @@ plank()
     clear
     echo ""
     echo "Deseja instalar o Plank Dock? (s/n)"
-    read -p "??"plank
+    read -p "??" plank
 }
 
 gnomesystemmonitor()
