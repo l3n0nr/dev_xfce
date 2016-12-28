@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.94.7.17.4 #
+# versão do script: 0.0.95.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -209,6 +209,7 @@
 #   [+] Wireshark
 #   [+] Ubuntu Desktop
 #   [+] Gnome-disk-utility
+#   [+] Smartgit
 #
 ################################################################################	
 # Reinicialização
@@ -862,6 +863,14 @@ gnomediskutility()
     read -p "??" gnomediskutility
 }
 
+smartgit()
+{
+    clear   
+    echo ""
+    echo "Deseja instalar o Smart Git? (s/n)"
+    read -p "??" smartgit
+}
+
 ################################################################################
 ######REINICIANDO
 reinicia()
@@ -1410,18 +1419,9 @@ install_yes()
                     apt install rar* -y
             fi
 
-            if [[ $git == "s" ]]; then
-                    #baixando o git kraken
-                    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O gitkraken.deb
-                    
-                    #instalando git kraken
-                    dpkg -i gitkraken.deb
-            
+            if [[ $git == "s" ]]; then                    
                     #instalando o git
-                    apt install git-core git* gitg* -y                                    
-                    
-                    #removendo arquivo baixado
-                    rm -r gitkraken.deb
+                    apt install git-core git* gitg* -y                                                        
             fi
 
             if [[ $lmsensors == "s" ]]; then
@@ -1830,6 +1830,17 @@ install_yes()
                     apt install gnome-disk-utility* -y
             fi
             
+            if [[ $smartgit == "s" ]]; then
+                    #adicionando repositorio
+                    add-apt-repository ppa:eugenesan/ppa -y
+
+                    #atualizando lista pacotes
+                    apt-get update
+
+                    #instalando smartgit
+                    apt-get install smartgit smartgithg* -y
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2164,6 +2175,10 @@ install_no()
         echo "Gnome System Utility"
     fi
     
+    if [[ $smartgit == "n" ]]; then
+        echo "Smart Git"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2338,6 +2353,7 @@ auto_config_ubuntu()
                     virtualbox
                     wireshark
                     gnomediskutility
+                    smartgit
                     ;;
                     
                 #voltando ao menu anterior        
