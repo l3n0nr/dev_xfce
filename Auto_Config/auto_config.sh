@@ -871,6 +871,14 @@ smartgit()
     read -p "??" smartgit
 }
 
+gitkraken()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Git Kraken? (s/n)"
+    read -p "??" gitkraken
+}
+
 ################################################################################
 ######REINICIANDO
 reinicia()
@@ -1841,6 +1849,17 @@ install_yes()
                     apt-get install smartgit smartgithg* -y
             fi
             
+            if [[ $gitkraken == "s" ]]; then
+                    #baixando o git kraken
+                    wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O gitkraken.deb
+
+                    #instalando git kraken
+                    dpkg -i gitkraken.deb
+
+                    #removendo arquivo baixado
+                    rm -r gitkraken.deb
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2179,6 +2198,10 @@ install_no()
         echo "Smart Git"
     fi
     
+    if [[ $gitkraken == "n" ]]; then
+        echo "Git Kraken"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2354,6 +2377,7 @@ auto_config_ubuntu()
                     wireshark
                     gnomediskutility
                     smartgit
+                    gitkraken
                     ;;
                     
                 #voltando ao menu anterior        
