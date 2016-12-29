@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.97.7.17.4 #
+# versão do script: 0.0.98.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -211,6 +211,7 @@
 #   [+] Gnome-disk-utility
 #   [+] Smartgit
 #   [+] Git Kraken
+#   [+] Chkrootkit
 #
 ################################################################################	
 # Reinicialização
@@ -878,6 +879,14 @@ gitkraken()
     echo ""
     echo "Deseja instalar o Git Kraken? (s/n)"
     read -p "??" gitkraken
+}
+
+chkrootkit()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Chkrootkit? (s/n)"
+    read -p "??" chkrootkit    
 }
 
 ################################################################################
@@ -1872,6 +1881,11 @@ install_yes()
                     rm -r gitkraken.deb
             fi
             
+            if [[ $chkrootkit == "s" ]]; then
+                    #instalando o chkrootkit
+                    apt install chkrootkit* -y
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2214,6 +2228,10 @@ install_no()
         echo "Git Kraken"
     fi
     
+    if [[ $chkrootkit == "n" ]]; then
+        echo "Chkrootkit"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2390,6 +2408,7 @@ auto_config_ubuntu()
                     gnomediskutility
                     smartgit
                     gitkraken
+                    chkrootkit
                     ;;
                     
                 #voltando ao menu anterior        
