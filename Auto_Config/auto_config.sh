@@ -210,6 +210,7 @@
 #   [+] Ubuntu Desktop
 #   [+] Gnome-disk-utility
 #   [+] Smartgit
+#   [+] Git Kraken
 #
 ################################################################################	
 # Reinicialização
