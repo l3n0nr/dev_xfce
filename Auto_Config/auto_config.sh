@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.95.7.17.4 #
+# versão do script: 0.0.97.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -821,7 +821,7 @@ plank()
     clear
     echo ""
     echo "Deseja instalar o Plank Dock? (s/n)"
-    read -p "??"plank
+    read -p "??" plank
 }
 
 gnomesystemmonitor()
@@ -1340,19 +1340,30 @@ install_yes()
 
             #instalando o flux
             if [[ $flux == "s" ]]; then
-                    clear
-                    echo "Instalando o Flux"
-                    echo "----------------------------------------------------------------------"
-                    #instalando dependencias
-                    apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1 -y
+#                     #instalando via arquivo
+#                     clear
+#                     echo "Instalando o Flux"
+#                     echo "----------------------------------------------------------------------"
+#                     #instalando dependencias
+#                     apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1 -y
+# 
+#                     #realizando download do flux
+#                     cd /tmp && git clone "https://github.com/xflux-gui/xflux-gui.git" && cd xflux-gui &&
+# 
+#                     #executando instalacao
+#                     sudo python download-xflux.py &&
+#                     sudo python setup.py install &&
+#                     sudo python setup.py install --user
 
-                    #realizando download do flux
-                    cd /tmp && git clone "https://github.com/xflux-gui/xflux-gui.git" && cd xflux-gui &&
-
-                    #executando instalacao
-                    sudo python download-xflux.py &&
-                    sudo python setup.py install &&
-                    sudo python setup.py install --user
+                    #instalando via ppa
+                    #adicionando repositorio
+                    add-apt-repository ppa:nathan-renniewaldock/flux -y
+                    
+                    #atualizando lista pacotes
+                    apt update
+                    
+                    #instalando flux
+                    apt install fluxgui* -y
             fi
 
             #instalando o nodejs
