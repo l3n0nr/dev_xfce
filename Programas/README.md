@@ -2,6 +2,7 @@
 ==================================================================
 Usados
 ==================================================================
+
 #Desenvolvimento
 	Kate: Interface de programação Padrão;
 	Xampp: Utilizado como Servidor Back-end;
