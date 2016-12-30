@@ -52,7 +52,7 @@ Usados
 	F.lux: (buscar definição)
 
 ==================================================================
-Testados, não usados
+Testados, não recomendados
 ==================================================================
 	-Atom - Alto consumo de memória RAM;
 	-Nemo - Falta de integração com interface XFCE; 
