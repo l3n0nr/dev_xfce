@@ -212,6 +212,7 @@
 #   [+] Smartgit
 #   [+] Git Kraken
 #   [+] Chkrootkit
+#   [+] Vivacious
 #
 ################################################################################	
 # Reinicialização
@@ -888,6 +889,14 @@ chkrootkit()
     echo ""
     echo "Deseja instalar o Chkrootkit? (s/n)"
     read -p "??" chkrootkit    
+}
+
+vivacious()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Vivacious? (s/n)"
+    read -p "??" vivacious
 }
 
 ################################################################################
@@ -1887,6 +1896,20 @@ install_yes()
                     apt install chkrootkit* -y
             fi
             
+            if [[ $vivacious == "s" ]]; then
+                #adicionando ppa
+                add-apt-repository ppa:ravefinity-project/ppa -y
+
+                #atualizando lista pacotes
+                apt-get update
+
+                #instalando vivacious
+                apt-get install vivacious-colors* -y
+                apt-get install vivacious-folder-colors-addon* -y
+                apt-get install vivacious-colors-gtk-dark* -y
+                apt-get install vivacious-colors-gtk-light* -y
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2233,6 +2256,10 @@ install_no()
         echo "Chkrootkit"
     fi
     
+    if [[ $vivacious == "n" ]]; then
+        echo "Vivacious"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2383,7 +2410,8 @@ auto_config_ubuntu()
                     plank                    
                     nautilus
                     ubuntudesktop
-                    ;;
+                    vivacious
+                    ;;                    
                     
                 #outros programas
                 8) echo 
