@@ -353,6 +353,7 @@ arquivosinuteis()
 
 ################################################################################
 ######INSTALANDO PROGRAMAS
+
 todos()
 {
     clear
@@ -2409,6 +2410,59 @@ auto_config_ubuntu()
                     smartgit
                     gitkraken
                     chkrootkit
+                    ;;
+                    
+                #programas padroes    
+                9) echo    
+                    #desenvolvimento
+                        kate
+                        xampp
+                        java
+                        netbeans
+                    
+                    #internet
+                        firefox
+                        tor
+                    
+                    #escritorio
+                        libreoffice
+                        texmaker
+                        mousepad
+                    
+                    #graficos
+                        sweethome3d
+                        gimp
+                        inkscape
+                    
+                    #jogos
+                        wine
+                        playonlinux
+                        dolphin
+                        steam
+                        visualgameboyadvanced
+                    
+                    #multimidia
+                        cheese
+                        spotify
+                        vlc
+                        clementine
+                    
+                    #personalização
+                        mac
+                        codecs
+                        xfce
+                        plank
+                        gnomesystemmonitor
+                        nautilus
+                    
+                    #outros
+                        ntp
+                        tlp
+                        rar
+                        git 
+                        stellarium
+                        virtualbox
+                        flux
                     ;;
                     
                 #voltando ao menu anterior        
