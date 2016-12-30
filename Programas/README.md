@@ -24,7 +24,7 @@ Usados
 	Inkscape: Trabalho com Vetores;
 	
 #Jogos
-	Wine/Play on Linux: Usado para emulador aplicativos da Microsoft;
+	Wine/Play on Linux: Usado para emulador aplicativos ".exe";
 	Dolphin: Usado da Emular jogos antigos;
 	Steam: Jogos para Linux;
 	Visual Gameboy Advanced: Usado para emulador jogos do Gameboy;
@@ -38,7 +38,7 @@ Usados
 #Personalização
 	Mac: Tema de personalização;
 	Codecs: Pacotes para execução de mídias;
-	Xfce:Plugin's para a interface;
+	Xfce: Plugin's para a interface;
 	Plank: Menu de Aplicativos;
 	Gnome System Monitor: Acompanhamento do sistema;
 	Nautilus: Gerenciador de Arquivos;
@@ -47,10 +47,10 @@ Usados
 	Ntp: Ajuste da hora;
 	Tlp: Redução do consumo de bateria;
 	Rar: Extração de arquivos compactados;
-	Git: Ferramenta de gerencia de repositórios;
-	Stellarium: (buscar definição)
+	Git: Ferramenta de gerência de repositórios;
+	Stellarium: Visualizador do planetário;
 	Virtualbox: Máquina virtual de SO;
-	F.lux: (buscar definição)
+	F.lux: Controlador da cor da tela;
 
 ==================================================================
 Testados, não recomendados
