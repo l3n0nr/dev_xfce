@@ -51,7 +51,7 @@
 #################################################################################
 #
 ##################################
-# versão do script: 0.0.98.7.17.4 #
+# versão do script: 0.0.100.7.17.4 #
 ##################################
 #
 # legenda: a.b.c.d.e.f
@@ -2289,12 +2289,12 @@ auto_config_ubuntu()
             
     #instalando programas	
     4) echo
-            echo "Categorias"
+            echo "Categorias"            
             #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-            echo "----------------------------------------"
+            echo "---------------------------------------------------------"
             #######VERIFICAR
             echo "Digite 0 para instalar todos os programas das categorias,"
-            echo "Ou digite 1, para entrar nas categorias"
+            echo "---------------------------------------------------------"
             echo "Digite 1, para entrar na área de Jogos,"
             echo "Digite 2, para entrar na área de Multimidia, "
             echo "Digite 3, para entrar na área de Escritório," 
@@ -2303,9 +2303,10 @@ auto_config_ubuntu()
             echo "Digite 6, para entrar na área de Gráficos,"
             echo "Digite 7, para entrar na área de Personalização do sistema,"
             echo "Digite 8, para entrar na área de outros programas,"
-            echo "Digite V, para voltar ao menu anterior"
+            echo "Digite 9, para instalar os programas padrões;"
+            echo "---------------------------------------------------------"
             echo "Digite X, para sair do script;"
-            echo "----------------------------------------" 
+            echo "---------------------------------------------------------"
             read -n1 -p "Ação:" categoria
             clear
             case $categoria in
