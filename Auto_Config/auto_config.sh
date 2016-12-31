@@ -41,7 +41,7 @@
 ####################
 #
 # por lenonr(Lenon Ricardo) 
-# 	contato: <lenonrmsouza@gmail.com>
+#       contato: <lenonrmsouza@gmail.com>
 #
 #################################################################################
 #										#
@@ -99,131 +99,125 @@
 #	-Fedora
 #
 ################################################################################
-#
+################################################################################
 # FUNCOES
 # Atualização
-#	[+] Update
-#		[+] Update-Grud
-#	[+] Upgrade
-#	[+] Kernel 
-#		[+] Remove antigos
-#		[+] Atualiza novo
-#
+# # [+] Update
+# #     [+] Update-Grud
+# # [+] Upgrade
+# # [+] Kernel 
+# #     [+] Remove antigos
+# #     [+] Atualiza novo
 ################################################################################
 # CorrigindoErros
-#	[+] Swap
-#	[+] Prelink, Preload, Deborphan
-#	[+] Pacotes com problemas
-#
+# # [+] Swap
+# # [+] Prelink, Preload, Deborphan
+# # [+] Pacotes com problemas
 ################################################################################
 # Limpeza
-#	[+] Lixeira
-#	[+] Firefox
-#		[+] Cache
-#		[+] Cookies
-#
-#	[+] Excluindo pacotes antigos
-#	[+] Excluindo pacotes orfaõs
-#	[+] Removendo arquivos temporários
-# 	[+] Arquivos obsoletos
-#	[+] Kernel's antigos
-#	[+] Removendo arquivos (.bak, ~, tmp) pasta Home
-#	[+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
-#
+# # [+] Lixeira
+# # [+] Firefox
+# #     [+] Cache
+# #     [+] Cookies
+# # [+] Excluindo pacotes antigos
+# # [+] Excluindo pacotes orfaõs
+# # [+] Removendo arquivos temporários
+# # [+] Arquivos obsoletos
+# # [+] Kernel's antigos
+# # [+] Removendo arquivos (.bak, ~, tmp) pasta Home
+# # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
 ################################################################################
 # Instalação
-#   [+] Todos
-#   [+] Firefox
-#   [+] Steam
-#   [+] Xampp
-#   [+] Spofity
-#   [+] Icones/Temas Mac
-#   [+] Codec's
-#   [+] Gimp
-#   [+] XFCE
-#   [+] Java 8
-#   [+] Redshift
-#   [+] Flux
-#   [+] NodeJS
-#   [+] Atom
-#   [+] Libreoffice
-#   [-] Netbeans
-#   	VERIFICAR, INSTALAR TAMBEM JDK
-#	
-#   [+] Vlc
-#   [+] Clementine
-#   [+] Gparted
-#   [+] Tlp
-#   [+] Rar
-#   [+] Git
-#   [+] Lm-sensors
-#   [+] Stellarium
-#   [+] Texmaker
-#   [+] Gnome-terminal
-#   [+] Reaver
-#   [+] Tor
-#        VERIFICAR ARQUITETURA PARA INSTALAR
-#   [+] Android Studio
-#	VERIFICAR, INSTALAR TAMBEM JDK	
-#
-#   [+] NTP
-#   [+] Hollywood
-#   [+] Synaptic	
-#   [+] Dolphin
-#   [+] Virtualbox
-#   [+] Brackets
-#   [+] Citra
-#   [-] DeSmuME 
-#   	ENCONTRAR FORMA DE INSTALAÇÃO AUTOMÁTICA
-#   [-] GBA - Gameboyadvanced
-#   [+] Mesa - ppa
-#   [-] Mutate
-#   [+] Screenfetch
-#   [+] Midori
-#   [+] Diolinux_paper(Diolinux Paper Orange Modern)
-#   [+] Kdenlive
-#   [+] Openssh(Client-Servidor)
-#   [+] Bleachbit
-#   [+] Supertuxkart
-#   [+] Figlet
-#   [+] Cowsay
-#   [+] Chromium
-#   [+] Synapse
-#   [+] Sweet Home 3d
-#   [+] Kate
-#   [+] Inkscape
-#   [+] Blender
-#   [+] Audacity
-#   [-] Openshot
-#   [-] Audacious
-#   [-] K3B
-#   [-] Scribus
-#   [-] Umbrello
-#   [-] Opera 
-#   [-] Skype
-#   [-] Tuxpaint
-#   [-] Calibre
-#   [+] Numix Icon
-#   [+] Plank
-#   [+] Gnome System Monitor
-#   [+] Nautilus
-#   [+] Wireshark
-#   [+] Ubuntu Desktop
-#   [+] Gnome-disk-utility
-#   [+] Smartgit
-#   [+] Git Kraken
-#   [+] Chkrootkit
-#   [+] Vivacious
-#   [+] Lampp
-#   [+] Php
-#   [+] Mysql
-#   [+] Ftp
-#   [+] Quota
-#
+# # [+] Todos
+# # [+] Firefox
+# # [+] Steam
+# # [+] Xampp
+# # [+] Spofity
+# # [+] Icones/Temas Mac
+# # [+] Codec's
+# # [+] Gimp
+# # [+] XFCE
+# # [+] Java 8
+# # [+] Redshift
+# # [+] Flux
+# # [+] NodeJS
+# # [+] Atom
+# # [+] Libreoffice
+# # [-] Netbeans
+# #     VERIFICAR, INSTALAR TAMBEM JDK
+# #     
+# # [+] Vlc
+# # [+] Clementine
+# # [+] Gparted
+# # [+] Tlp
+# # [+] Rar
+# # [+] Git
+# # [+] Lm-sensors
+# # [+] Stellarium
+# # [+] Texmaker
+# # [+] Gnome-terminal
+# # [+] Reaver
+# # [+] Tor
+# # VERIFICAR ARQUITETURA PARA INSTALAR
+# # [+] Android Studio
+# #     VERIFICAR, INSTALAR TAMBEM JDK	
+# # 
+# # [+] NTP
+# # [+] Hollywood
+# # [+] Synaptic	
+# # [+] Dolphin
+# # [+] Virtualbox
+# # [+] Brackets
+# # [+] Citra
+# # [-] DeSmuME 
+# #     ENCONTRAR FORMA DE INSTALAÇÃO AUTOMÁTICA
+# # [-] GBA - Gameboyadvanced
+# # [+] Mesa - ppa
+# # [-] Mutate
+# # [+] Screenfetch
+# # [+] Midori
+# # [+] Diolinux_paper(Diolinux Paper Orange Modern)
+# # [+] Kdenlive
+# # [+] Openssh(Client-Servidor)
+# # [+] Bleachbit
+# # [+] Supertuxkart
+# # [+] Figlet
+# # [+] Cowsay
+# # [+] Chromium
+# # [+] Synapse
+# # [+] Sweet Home 3d
+# # [+] Kate
+# # [+] Inkscape
+# # [+] Blender
+# # [+] Audacity
+# # [-] Openshot
+# # [-] Audacious
+# # [-] K3B
+# # [-] Scribus
+# # [-] Umbrello
+# # [-] Opera 
+# # [-] Skype
+# # [-] Tuxpaint
+# # [-] Calibre
+# # [+] Numix Icon
+# # [+] Plank
+# # [+] Gnome System Monitor
+# # [+] Nautilus
+# # [+] Wireshark
+# # [+] Ubuntu Desktop
+# # [+] Gnome-disk-utility
+# # [+] Smartgit
+# # [+] Git Kraken
+# # [+] Chkrootkit
+# # [+] Vivacious
+# # [+] Lampp
+# # [+] Php
+# # [+] Mysql
+# # [+] Ftp
+# # [+] Quota
 ################################################################################	
 # Reinicialização
-#	[+]Reiniciar
-#
+# # [+]Reiniciar
 ################################################################################
 
 #verificando se o usuário é ROOT
