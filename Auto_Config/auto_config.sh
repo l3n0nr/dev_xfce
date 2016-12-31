@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.102.7.17.4 #
+# versão do script: 0.0.104.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -216,6 +216,7 @@
 #   [+] Lampp
 #   [+] Php
 #   [+] Mysql
+#   [+] Ftp
 #
 ################################################################################	
 # Reinicialização
@@ -924,6 +925,14 @@ mysql()
     echo ""
     echo "Deseja instalar o MySQL? (s/n)"
     read -p "??" mysql
+}
+
+ftp()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o FTP? (s/n)"
+    read -p "??" ftp
 }
 
 ################################################################################
@@ -1979,6 +1988,20 @@ install_yes()
 		/etc/init.d/mysql start
             fi
             
+            if [[ $ftp == "s" ]]; then
+                #instalando o proftpd
+                apt-get install proftpd -y
+                
+                #instalando o tls
+                apt-get install openssl -y
+                
+                #criando diretorio para armazenar os certificados de validação
+                mkdir /etc/proftpd/cert
+                
+                #gerando certificados
+                openssl req -new -x509 -days 3650 -nodes -out \ /etc/proftpd/cert/proftpd.cert.pem -keyout /etc/proftpd/cert/proftpd.key.pem
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2341,6 +2364,10 @@ install_no()
         echo "Mysql"
     fi
     
+    if [[ $ftp == "n" ]]; then
+        echo "Ftp"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2470,6 +2497,7 @@ auto_config_ubuntu()
                     lammp
                     php
                     mysql
+                    ftp
                     ;;
                 
                 #graficos
