@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.104.7.17.4 #
+# versão do script: 0.0.105.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -217,6 +217,7 @@
 #   [+] Php
 #   [+] Mysql
 #   [+] Ftp
+#   [+] Quota
 #
 ################################################################################	
 # Reinicialização
@@ -933,6 +934,14 @@ ftp()
     echo ""
     echo "Deseja instalar o FTP? (s/n)"
     read -p "??" ftp
+}
+
+quota()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Quota? (s/n)"
+    read -p "??" quota
 }
 
 ################################################################################
@@ -2002,6 +2011,14 @@ install_yes()
                 openssl req -new -x509 -days 3650 -nodes -out \ /etc/proftpd/cert/proftpd.cert.pem -keyout /etc/proftpd/cert/proftpd.key.pem
             fi
             
+            if [[ $quota == "s" ]]; then
+                #instalando o quota
+                apt-get install quota quotatool -y
+                
+                #ativando o modulos
+                modprobe quota_v2
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2368,6 +2385,10 @@ install_no()
         echo "Ftp"
     fi
     
+    if [[ $quota == "n" ]]; then
+        echo "Quota"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2498,6 +2519,7 @@ auto_config_ubuntu()
                     php
                     mysql
                     ftp
+                    quota
                     ;;
                 
                 #graficos
