@@ -4,6 +4,7 @@
 # FONTES DE PESQUISA #
 ######################
 #
+################################################################################
 # por oliveiradeflavio(Flávio Oliveira)
 # 	contato: <github.com/oliveiradeflavio/scripts-linux>
 #
