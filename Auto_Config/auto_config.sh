@@ -215,6 +215,7 @@
 #   [+] Vivacious
 #   [+] Lampp
 #   [+] Php
+#   [+] Mysql
 #
 ################################################################################	
 # Reinicialização
@@ -915,6 +916,14 @@ php()
     echo ""
     echo "Deseja instalar o Php(Mysql+PostgreSQL)? (s/n)"
     read -p "??" php
+}
+
+mysql()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o MySQL? (s/n)"
+    read -p "??" mysql
 }
 
 ################################################################################
@@ -1941,16 +1950,30 @@ install_yes()
 		apt-get install php5 -y
 		
 		#instalando modulo apache php
-		apt-get install libapache2-mod-php5 -y
-		
-		#integração mysql
-		apt-get install php5-mysql -y
+		apt-get install libapache2-mod-php5 -y				
 		
 		#integração postgreSQL
 		apt-get install php5-pgsql -y
 		
 		#reiniciando o apache
 		/etc/init.d/apache force-reload
+            fi
+            
+            if [[ $mysql == "s" ]]; then
+                #integração mysql
+		apt-get install php5-mysql -y
+                
+                #instalando mysql server
+		apt-get install mysql-server -y
+		
+		#carregamento automatico boot
+		chkconfig mysqld on
+		
+		#criando base dados padrao
+		mysql_install_db
+		
+		#ativando servidor mysql
+		/etc/init.d/mysql start
             fi
             
 ################################################################################		
@@ -2311,6 +2334,10 @@ install_no()
         echo "Php"
     fi
     
+    if [[ $mysql == "n" ]]; then
+        echo "Mysql"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2439,6 +2466,7 @@ auto_config_ubuntu()
                     brackets
                     lammp
                     php
+                    mysql
                     ;;
                 
                 #graficos
