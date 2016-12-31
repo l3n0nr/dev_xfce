@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.101.7.17.4 #
+# versão do script: 0.0.102.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -214,6 +214,7 @@
 #   [+] Chkrootkit
 #   [+] Vivacious
 #   [+] Lampp
+#   [+] Php
 #
 ################################################################################	
 # Reinicialização
@@ -906,6 +907,14 @@ lampp()
     echo ""
     echo "Deseja instalar o Lampp? (s/n)"
     read -p "??" lampp
+}
+
+php()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Php(Mysql+PostgreSQL)? (s/n)"
+    read -p "??" php
 }
 
 ################################################################################
@@ -1927,6 +1936,23 @@ install_yes()
 		apt-get install ssl-cert		                
             fi
             
+            if [[ $php == "s" ]]; then
+                #instalando php
+		apt-get install php5 -y
+		
+		#instalando modulo apache php
+		apt-get install libapache2-mod-php5 -y
+		
+		#integração mysql
+		apt-get install php5-mysql -y
+		
+		#integração postgreSQL
+		apt-get install php5-pgsql -y
+		
+		#reiniciando o apache
+		/etc/init.d/apache force-reload
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2281,6 +2307,10 @@ install_no()
         echo "Lampp"
     fi
     
+    if [[ $php == "n" ]]; then
+        echo "Php"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2408,6 +2438,7 @@ auto_config_ubuntu()
                     netbeans
                     brackets
                     lammp
+                    php
                     ;;
                 
                 #graficos
