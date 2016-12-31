@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.105.7.17.4 #
+# versão do script: 0.0.107.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -2032,7 +2032,7 @@ install_no()
 ################################################################################	
 ######CORREÇÃO SISTEMA
     if [[ $update == "n" ]]; then
-            echo "Atualizando repositórios, "
+            echo "Atualizando repositórios, " 
     fi
 
     if [[ $update == "n" ]]; then
@@ -2040,63 +2040,63 @@ install_no()
     fi
 
     if [[ $corrigeerros == "n" ]]; then
-            echo "Corrigindo Erros, "
+            echo "Corrigindo Erros, " 
     fi
 
     if [[ $swap == "n" ]]; then
-            echo "Swap, "
+            echo "Swap, " 
     fi
     
     if [[ $pacotesquebrados == "n" ]]; then
-            echo "Pacotes quebrados,"
+            echo "Pacotes quebrados, " 
     fi
     
     if [[ $prelink_preload_deborphan == "n" ]]; then
-            echo "Prelink, Preload, Deborphan"
+            echo "Prelink, Preload, Deborphan",  
     fi
     
     if [[ $pacotes_antigos == "n" ]]; then
-            echo "Pacotes antigos"
+            echo "Pacotes antigos, " 
     fi
 
 ################################################################################
 ######LIMPANDO A MAQUINA
     if [[ $kernel == "n" ]]; then
-            echo "Removendo kernel's antigos,"
+            echo "Removendo kernel's antigos, " 
     fi
 
     if [[ $temporario == "n" ]]; then
-            echo "Removendo arquivos temporários,"
+            echo "Removendo arquivos temporários, " 
     fi
 
     if [[ $obsoleto == "n" ]]; then
-            echo "Removendo arquivos obsoletos,"
+            echo "Removendo arquivos obsoletos, " 
     fi
 
     if [[ $lixeira == "n" ]]; then
-            echo "Removendo arquivos da Lixeira,"
+            echo "Removendo arquivos da Lixeira, " 
     fi
 
     if [[ $firefoxcache == "n" ]]; then
-            echo "Limpeza no cache do Firefox"
+            echo "Limpeza no cache do Firefox, " 
     fi
 
     if [[ $firefoxcookie == "n" ]]; then
-            echo "Limpeza nos cookies do Firefox"
+            echo "Limpeza nos cookies do Firefox, " 
     fi
 
     if [[ $arquivosorfaos == "n" ]]; then
-            echo "Arquivos orfãos do sistema"
+            echo "Arquivos orfãos do sistema, " 
     fi
 
     if [[ $arquivosinuteis == "n" ]]; then
-            echo "Arquivos Inuteis"
+            echo "Arquivos Inuteis, " 
     fi		
     
 ################################################################################
 ######INSTALANDO PROGRAMAS
     if [[ $firefox == "n" ]]; then
-            echo "Firefox,"
+            echo "Firefox, " 
     fi
 
     if [[ $steam == "n" ]]; then
@@ -2104,283 +2104,284 @@ install_no()
     fi
 
     if [[ $xampp == "n" ]]; then
-            echo "Xampp, "
+            echo "Xampp, " 
     fi
 
     if [[ $spotify == "n" ]]; then
-            echo "Spotify, "
+            echo "Spotify, " 
     fi
 
     if [[ $mac == "n" ]]; then
-            echo "Mac, "
+            echo "Mac, " 
     fi
 
     if [[ $codecs == "n" ]]; then
-            echo "Codecs,"
+            echo "Codecs, " 
     fi
 
     if [[ $gimp == "n" ]]; then
-            echo "Gimp,"
+            echo "Gimp, " 
     fi
     
     if [[ $xfce == "n" ]]; then
-            echo "Xfce,"
+            echo "Xfce, " 
     fi
 
     if [[ $wine == "n" ]]; then
-            echo "Wine,"
+            echo "Wine, "
     fi
 
     if [[ $playonlinux == "n" ]]; then
-            echo "PlayonLinux,"
+            echo "PlayonLinux, " 
     fi
 
     if [[ $java == "n" ]]; then
-            echo "Java 8,"
+            echo "Java 8, " 
     fi
 
     if [[ $redshift == "n" ]]; then
-            echo "Redshift,"
+            echo "Redshift, " 
     fi
 
     if [[ $flux == "n" ]]; then
-            echo "Flux,"
+            echo "Flux, "
     fi
 
     if [[ $nodejs == "n" ]]; then
-            echo "NodeJS,"
+            echo "NodeJS, " 
     fi
 
     if [[ $atom == "n" ]]; then
-            echo "Atom,"
+            echo "Atom, " 
     fi
 
     if [[ $libreoffice == "n" ]]; then
-            echo "Libreoffice,"
+            echo "Libreoffice, " 
     fi
 
     if [[ $vlc == "n" ]]; then
-            echo "Vlc,"
+            echo "Vlc, " 
     fi
 
     if [[ $netbeans == "n" ]]; then
-            echo "Netbeans,"
+            echo "Netbeans, "
     fi
 
     if [[ $clementine == "n" ]]; then
-            echo "Clementine,"
+            echo "Clementine, " 
     fi
 
     if [[ $gparted == "n" ]]; then
-            echo "Gparted,"
+            echo "Gparted, "  
     fi
 
     if [[ $tlp == "n" ]]; then
-            echo "Tlp,"
+            echo "Tlp, "  
     fi
 
     if [[ $rar == "n" ]]; then
-            echo "Rar,"
+            echo "Rar, " 
     fi
     
     if [[ $git == "n" ]]; then
-            echo "Git,"
+            echo "Git, " 
     fi
 
     if [[ $lmsensors == "n" ]]; then
-            echo "Lm-sensors,"
+            echo "Lm-sensors, "
     fi
 
     if [[ $stellarium == "n" ]]; then
-            echo "Stellarium,"
+            echo "Stellarium, " 
     fi
 
     if [[ $texmaker == "n" ]]; then
-            echo "Texmaker,"
+            echo "Texmaker, " 
     fi
 
     if [[ $gnometerminal == "n" ]]; then
-            echo "Gnome-Terminal,"
+            echo "Gnome-Terminal, " 
     fi
     
     if [[ $reaver == "n" ]]; then
-            echo "Reaver,"
+            echo "Reaver, " 
     fi
 
     if [[ $tor == "n" ]]; then
-            echo "Tor,"
+            echo "Tor, " 
     fi
     
     if [[ $android == "n" ]]; then
-            echo "Android Studio,"
+            echo "Android Studio, " 
     fi
     
     if [[ $ntp == "n" ]]; then
-            echo "NTP,"
+            echo "NTP, " 
     fi
     
     if [[ $hollywood == "n" ]]; then
-            echo "Hollywood,"
+            echo "Hollywood, " 
     fi
     
     if [[ $synaptic == "n" ]]; then
-            echo "Synaptic,"
+            echo "Synaptic, " 
     fi
     
     if [[ $dolphin == "n" ]]; then
-            echo "Dolphin,"
+            echo "Dolphin, " 
     fi
     
     if [[ $virtualbox == "n" ]]; then
-            echo "Virtualbox,"
+            echo "Virtualbox, " 
     fi	
     
     if [[ $brackets == "n" ]]; then
-            echo "Brackets,"
+            echo "Brackets, " 
     fi
     
     if [[ $citra == "n" ]]; then
-            echo "Citra,"
+            echo "Citra, " 
+            
     fi
     
     if [[ $mesa == "n" ]]; then
-            echo "Mesa,"
+            echo "Mesa, " 
     fi
     
     if [[ $mutate == "n" ]]; then
-            echo "Mutate,"
+            echo "Mutate, " 
     fi
     
     if [[ $screenfetch == "n" ]]; then
-            echo "Screenfetch"
+            echo "Screenfetch, " 
     fi
     
     if [[ $midori == "n" ]]; then
-            echo "Midori"
+            echo "Midori, " 
     fi
 
     if [[ $diolinux_paper == "n" ]]; then
-            echo "Diolinux Paper"
+            echo "Diolinux Paper, " 
     fi
     
     if [[ $kdenlive == "n" ]]; then
-            echo "Kdenlive"
+            echo "Kdenlive, " 
     fi
     
     if [[ $openssh == "n" ]]; then
-            echo "Openssh"
+            echo "Openssh, " 
     fi
     
     if [[ $bleachbit == "n" ]]; then
-            echo "Bleachbit"
+            echo "Bleachbit, " 
     fi
     
     if [[ $supertuxkart == "n" ]]; then
-            echo "Supertuxkart"
+            echo "Supertuxkart, " 
     fi
     
     if [[ $figler == "n" ]]; then
-            echo "Figler"
+            echo "Figler, " 
     fi
     
     if [[ $cowsay == "n" ]]; then
-            echo "Cowsay"
-    fi
+            echo "Cowsay, " 
+    fi                    
     
     if [[ $chromium == "n" ]]; then
-            echo "Chromium"
+            echo "Chromium, " 
     fi
     
     if [[ $synapse == "n" ]]; then
-            echo "Synapse"
+            echo "Synapse, " 
     fi
     
     if [[ $sweethome3d == "n" ]]; then
-            echo "Sweet Home 3D"
+            echo "Sweet Home 3D, " 
     fi
     
     if [[ $kate == "n" ]]; then
-            echo "Kate"
+            echo "Kate, " 
     fi
     
     if [[ $inkscape == "n" ]]; then
-        echo "Inkscape"
+        echo "Inkscape, " 
     fi
     
     if [[ $blender == "n" ]]; then
-        echo "Blender"
+        echo "Blender, " 
     fi
     
     if [[ $audacity == "n" ]]; then
-        echo "Audacity"
+        echo "Audacity, " 
     fi
     
     if [[ $cheese == "n" ]]; then
-        echo "Cheese"
+        echo "Cheese, " 
     fi
     
     if [[ $numixicon == "n" ]]; then
-        echo "Numix Icon"
+        echo "Numix Icon, " 
     fi
     
     if [[ $plank == "n" ]]; then
-        echo "Plank"
+        echo "Plank, " 
     fi
     
     if [[ $gnomesystemmonitor == "n" ]]; then
-        echo "Gnome System Monitor"
+        echo "Gnome System Monitor, " 
     fi
     
     if [[ $nautilus == "n" ]]; then
-        echo "Nautilus"
+        echo "Nautilus, " 
     fi
     
     if [[ $wireshark == "n" ]]; then
-        echo "Wireshark"
+        echo "Wireshark, " 
     fi
     
     if [[ $ubuntudesktop == "n" ]]; then
-        echo "Ubuntu Desktop"
+        echo "Ubuntu Desktop, " 
     fi
     
     if [[ $gnomediskutility == "n" ]]; then
-        echo "Gnome System Utility"
+        echo "Gnome System Utility, " 
     fi
     
     if [[ $smartgit == "n" ]]; then
-        echo "Smart Git"
+        echo "Smart Git, " 
     fi
     
     if [[ $gitkraken == "n" ]]; then
-        echo "Git Kraken"
+        echo "Git Kraken, " 
     fi
     
     if [[ $chkrootkit == "n" ]]; then
-        echo "Chkrootkit"
+        echo "Chkrootkit, " 
     fi
     
     if [[ $vivacious == "n" ]]; then
-        echo "Vivacious"
+        echo "Vivacious, " 
     fi
     
     if [[ $lampp == "n" ]]; then
-        echo "Lampp"
+        echo "Lampp, " 
     fi
     
     if [[ $php == "n" ]]; then
-        echo "Php"
+        echo "Php, " 
     fi
     
     if [[ $mysql == "n" ]]; then
-        echo "Mysql"
+        echo "Mysql, "
     fi
     
     if [[ $ftp == "n" ]]; then
-        echo "Ftp"
+        echo "Ftp, " 
     fi
     
     if [[ $quota == "n" ]]; then
-        echo "Quota"
+        echo "Quota, " 
     fi
     
 ################################################################################		
