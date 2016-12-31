@@ -222,11 +222,10 @@
 
 #verificando se o usuário é ROOT
 if [[ `id -u` -ne 0 ]]; then
-    echo
-            echo "Você precisa ter poderes administrativos (root)"
-            echo "O script está sendo finalizado ..."
-            sleep 3
-            exit
+    echo "Você precisa ter poderes administrativos (root)"
+    echo "O script está sendo finalizado ..."
+    sleep 3
+    exit
 fi
 
 ################################################################################
