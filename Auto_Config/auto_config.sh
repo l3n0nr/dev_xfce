@@ -1957,6 +1957,9 @@ install_yes()
 		
 		#reiniciando o apache
 		/etc/init.d/apache force-reload
+		
+                #instalando phpmyadmin
+		apt-get install phpmyadmin -y
             fi
             
             if [[ $mysql == "s" ]]; then
