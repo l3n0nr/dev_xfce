@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.107.7.17.4 #
+# versão do script: 0.0.108.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -2387,7 +2387,7 @@ install_no()
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
-            echo "Máquina não será reiniciada agora!"
+        echo "Máquina não será reiniciada agora!"
     fi
 
     echo "----------------------------------------------"
@@ -2662,7 +2662,7 @@ auto_config_ubuntu()
 
 #inicia as funções que o usuário escolheu, executando primeiro as que ele deseja, posteriormente mostrando as que ele não quis realizar.
     install_yes
-    install_no
+    #install_no
 
     echo "TAREFAS FINALIZADAS, SAINDO.."
     clear
@@ -2675,9 +2675,9 @@ auto_config_fedora()
             #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
             
     #inicia as funções que o usuário escolheu, executando primeiro as que ele deseja, posteriormente mostrando as que ele não quis realizar.
-            update
-            upgrade	
-            arquivosinuteis		
+        update
+        upgrade	
+        arquivosinuteis		
 }
 
 ################################################################################
@@ -2689,45 +2689,45 @@ menu()
     echo "Ele irá realizar os seguintes passos"
     read -n1 -p "Para continuar escolha s(sim) ou n(não)  " escolha
             case $escolha in
-                    s|S) echo
-                            #verificar distribuição utilizada
-                            distro=$(cat /etc/*-release | grep DISTRIB_ID | sed -e "s;DISTRIB_ID=;;")
-                            
-                            #executando ações para a distribuição Ubuntu
-                            if [ "$distro" == "Ubuntu" ]; then
-                                    clear
-                                    echo "Você utiliza a distribuição(ou derivação) Ubuntu"
-                                    echo "Serão executadas ações especificas para esse tipo de distribuição"
-                                    echo "------------------------------------------------"
-                                    clear
-                                    auto_config_ubuntu
+                s|S) echo
+                        #verificar distribuição utilizada
+                        distro=$(cat /etc/*-release | grep DISTRIB_ID | sed -e "s;DISTRIB_ID=;;")
+                        
+                        #executando ações para a distribuição Ubuntu
+                        if [ "$distro" == "Ubuntu" ]; then
+                                clear
+                                echo "Você utiliza a distribuição(ou derivação) Ubuntu"
+                                echo "Serão executadas ações especificas para esse tipo de distribuição"
+                                echo "------------------------------------------------"
+                                clear
+                                auto_config_ubuntu
 
-                            #executando ações para a distribuição Fedora	
-                            elif [ "$distro" == "Fedora" ]; then
-                                    clear
-                                    echo "Você utiliza a distribuição(ou derivação) Red Hat"
-                                    echo "Serão executadas ações especificas para esse tipo de distribuição"
-                                    echo "------------------------------------------------"
-                                    clear
-                                    auto_config_fedora					
-                                    
-                            #distribuição não identificada	
-                            else
-                                    echo "Disponivel para Fedora e Ubuntu!!!"
-                                    echo "Script incompativel temporariamente"
-                            fi
-                            ;;
-                    n|N) echo
-                            echo Finalizando o script...
-                            sleep 1
-                            exit
-                            ;;
-                    *) echo
-                            echo Alternativa incorreta!!
-                            sleep 1
-                            menu
-                            exit
-                            ;;
+                        #executando ações para a distribuição Fedora	
+                        elif [ "$distro" == "Fedora" ]; then
+                                clear
+                                echo "Você utiliza a distribuição(ou derivação) Red Hat"
+                                echo "Serão executadas ações especificas para esse tipo de distribuição"
+                                echo "------------------------------------------------"
+                                clear
+                                auto_config_fedora					
+                                
+                        #distribuição não identificada	
+                        else
+                                echo "Disponivel para Fedora e Ubuntu!!!"
+                                echo "Script incompativel temporariamente"
+                        fi
+                        ;;
+                n|N) echo
+                        echo Finalizando o script...
+                        sleep 1
+                        exit
+                        ;;
+                *) echo
+                        echo Alternativa incorreta!!
+                        sleep 1
+                        menu
+                        exit
+                        ;;
             esac
 }
 
