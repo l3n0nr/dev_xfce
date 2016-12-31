@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.100.7.17.4 #
+# versão do script: 0.0.101.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -213,6 +213,7 @@
 #   [+] Git Kraken
 #   [+] Chkrootkit
 #   [+] Vivacious
+#   [+] Lampp
 #
 ################################################################################	
 # Reinicialização
@@ -897,6 +898,14 @@ vivacious()
     echo ""
     echo "Deseja instalar o Vivacious? (s/n)"
     read -p "??" vivacious
+}
+
+lampp()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Lampp? (s/n)"
+    read -p "??" lampp
 }
 
 ################################################################################
@@ -1910,6 +1919,14 @@ install_yes()
                 apt-get install vivacious-colors-gtk-light* -y
             fi
             
+            if [[ $lampp == "s" ]]; then
+                #instalando apache
+		apt-get install apache2 apache2-utils -y
+		
+		#instalando ssl(paginas seguras)
+		apt-get install ssl-cert		                
+            fi
+            
 ################################################################################		
 ######REINICIANDO
     #reiniciando a maquina
@@ -2260,6 +2277,10 @@ install_no()
         echo "Vivacious"
     fi
     
+    if [[ $lampp == "n" ]]; then
+        echo "Lampp"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2386,6 +2407,7 @@ auto_config_ubuntu()
                     android
                     netbeans
                     brackets
+                    lammp
                     ;;
                 
                 #graficos
@@ -2438,7 +2460,7 @@ auto_config_ubuntu()
                     gnomediskutility
                     smartgit
                     gitkraken
-                    chkrootkit
+                    chkrootkit                    
                     ;;
                     
                 #programas padroes    
