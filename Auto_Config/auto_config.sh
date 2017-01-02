@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.108.7.17.4 #
+# versão do script: 0.0.109.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -215,6 +215,8 @@
 # # [+] Mysql
 # # [+] Ftp
 # # [+] Quota
+# # [+] Flatabulous
+#
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -936,6 +938,14 @@ quota()
     echo ""
     echo "Deseja instalar o Quota? (s/n)"
     read -p "??" quota
+}
+
+flatabulous()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Flatabulous? (s/n)"
+    read -p "??" flatabulous
 }
 
 ################################################################################
@@ -2012,6 +2022,17 @@ install_yes()
             #ativando o modulos
             modprobe quota_v2
         fi
+        
+        if [[ $flatabulous == "s" ]]; then
+            #adicionando ppa
+            add-apt-repository ppa:noobslab/icons -y
+            
+            #atualizando lista pacotes
+            apt-get update 
+            
+            #instalando o flatabulous
+            apt-get install ultra-flat-icons-orange -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2384,6 +2405,10 @@ install_no()
         echo "Quota, " 
     fi
     
+    if [[ $flatabulous == "n" ]]; then
+        echo "Flatabulous"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2540,6 +2565,7 @@ auto_config_ubuntu()
                     nautilus
                     ubuntudesktop
                     vivacious
+                    flatabulous
                     ;;                    
                     
                 #outros programas
