@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.109.7.17.4 #
+# versão do script: 0.0.110.7.17.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -216,6 +216,7 @@
 # # [+] Ftp
 # # [+] Quota
 # # [+] Flatabulous
+# # [+] Material Design
 #
 ################################################################################	
 # Reinicialização
@@ -944,8 +945,16 @@ flatabulous()
 {
     clear
     echo ""
-    echo "Deseja instalar o Flatabulous? (s/n)"
+    echo "Deseja instalar o tema do Flatabulous? (s/n)"
     read -p "??" flatabulous
+}
+
+materialdesign()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o tema do Material Design? (s/n)"
+    read -p "??" materialdesign
 }
 
 ################################################################################
@@ -2033,6 +2042,17 @@ install_yes()
             #instalando o flatabulous
             apt-get install ultra-flat-icons-orange -y
         fi
+        
+        if [[ $materialdesign == "s" ]]; then
+            #adicionando ppa
+            add-apt-repository ppa:snwh/pulp -y 
+            
+            #atualizando lista pacotes
+            apt-get update 
+            
+            #instalando o materialdesign
+            apt-get install paper-icon-theme paper-gtk-theme -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2409,6 +2429,10 @@ install_no()
         echo "Flatabulous"
     fi
     
+    if [[ $materialdesign == "n" ]]; then
+        echo "Material Design"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2566,6 +2590,7 @@ auto_config_ubuntu()
                     ubuntudesktop
                     vivacious
                     flatabulous
+                    materialdesign
                     ;;                    
                     
                 #outros programas
