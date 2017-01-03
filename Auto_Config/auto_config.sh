@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.110.7.17.4 #
+# versão do script: 0.0.111.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -66,6 +66,7 @@
 #		mutate
 #               tor
 #               Numixicon
+#               Gnome system tools
 # 	e = pendencias
 #		GBA
 #		DeSmuME
@@ -81,7 +82,6 @@
 #               UNetbootin
 #               Code::blocks IDE
 #               PgAdminIII
-#               Gnome system tools
 #               Samba
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço.
@@ -217,6 +217,7 @@
 # # [+] Quota
 # # [+] Flatabulous
 # # [+] Material Design
+# # [+] Gnome System Tools
 #
 ################################################################################	
 # Reinicialização
@@ -955,6 +956,14 @@ materialdesign()
     echo ""
     echo "Deseja instalar o tema do Material Design? (s/n)"
     read -p "??" materialdesign
+}
+
+gnomesystemtools()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Gnome System Tools? (s/n)"
+    read -p "??" gnomesystemtools
 }
 
 ################################################################################
@@ -2053,6 +2062,11 @@ install_yes()
             #instalando o materialdesign
             apt-get install paper-icon-theme paper-gtk-theme -y
         fi
+        
+        if [[ $gnomesystemtools == "s" ]]; then
+            #instalando o gnomesystemtools
+            apt install gnomesystemtools* -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2433,6 +2447,9 @@ install_no()
         echo "Material Design"
     fi
     
+    if [[ $gnomesystemtools == "n" ]]; then
+        echo "Gnome System Tools"
+    fi
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2591,6 +2608,7 @@ auto_config_ubuntu()
                     vivacious
                     flatabulous
                     materialdesign
+                    gnomesystemtools
                     ;;                    
                     
                 #outros programas
