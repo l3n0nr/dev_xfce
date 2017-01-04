@@ -1335,7 +1335,7 @@ install_yes()
 
         if [[ $mac == "s" ]]; then
                 clear
-                "Instalando icones e temas do MacOS X"
+                echo "Instalando icones e temas do MacOS X"
                 #adicionando repositorio
                 add-apt-repository ppa:noobslab/macbuntu -y
 
