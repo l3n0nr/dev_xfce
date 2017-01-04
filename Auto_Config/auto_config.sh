@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.112.8.16.4 #
+# versão do script: 0.0.114.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -1855,7 +1855,7 @@ install_yes()
         
         if [[ $chromium == "s" ]]; then
                 #instalando chromium		
-                apt install chromium-browser* -y
+                apt install chromium-browser -y
         fi
         
         if [[ $synapse == "s" ]]; then
