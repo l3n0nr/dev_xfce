@@ -218,6 +218,7 @@
 # # [+] Flatabulous
 # # [+] Material Design
 # # [+] Gnome System Tools
+# # [+] Brightside
 #
 ################################################################################	
 # Reinicialização
@@ -964,6 +965,14 @@ gnomesystemtools()
     echo ""
     echo "Deseja instalar o Gnome System Tools? (s/n)"
     read -p "??" gnomesystemtools
+}
+
+brightside()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Brightside? (s/n)"
+    read -p "??" brightside
 }
 
 ################################################################################
@@ -2067,6 +2076,11 @@ install_yes()
             #instalando o gnomesystemtools
             apt install gnomesystemtools* -y
         fi
+        
+        if [[ $brightside == "s" ]]; then
+            #instalando o brightside
+            apt install brightside* -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2440,16 +2454,21 @@ install_no()
     fi
     
     if [[ $flatabulous == "n" ]]; then
-        echo "Flatabulous"
+        echo "Flatabulous, "
     fi
     
     if [[ $materialdesign == "n" ]]; then
-        echo "Material Design"
+        echo "Material Design, "
     fi
     
     if [[ $gnomesystemtools == "n" ]]; then
-        echo "Gnome System Tools"
+        echo "Gnome System Tools, "
     fi
+    
+    if [[ $brightside == "n" ]]; then
+        echo "Brightside, "
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2609,6 +2628,7 @@ auto_config_ubuntu()
                     flatabulous
                     materialdesign
                     gnomesystemtools
+                    brightside
                     ;;                    
                     
                 #outros programas
