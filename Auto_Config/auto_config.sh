@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.111.8.16.4 #
+# versão do script: 0.0.112.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -1660,7 +1660,7 @@ install_yes()
         
         if [[ $dolphin == "s" ]]; then
                 #adicionando repositorio do dolphin
-                add-apt-repository ppa:glennric/dolphin-emu
+                add-apt-repository ppa:glennric/dolphin-emu -y
                 
                 #atualizando lista de repositorios
                 apt update
@@ -1669,7 +1669,7 @@ install_yes()
                 apt-get install -f
 
                 #instalando dolphin
-                apt install dolphin-emu
+                apt install dolphin-emu* -y
                 #apt-get install dolphin-emu-master
         fi
 
