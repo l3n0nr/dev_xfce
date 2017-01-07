@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.114.8.16.4 #
+# versão do script: 0.0.115.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -1421,7 +1421,7 @@ install_yes()
                 apt-get install oracle-java8-installer -y
                 
                 #instalando java jre
-                apt-get install default-jre
+                apt-get install default-jre -y
         fi
 
         if [[ $redshift == "s" ]]; then
