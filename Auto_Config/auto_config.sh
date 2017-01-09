@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.115.8.16.4 #
+# versão do script: 0.0.116.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -219,6 +219,7 @@
 # # [+] Material Design
 # # [+] Gnome System Tools
 # # [+] Brightside
+# # [+] Square-Beam
 #
 ################################################################################	
 # Reinicialização
@@ -973,6 +974,14 @@ brightside()
     echo ""
     echo "Deseja instalar o Brightside? (s/n)"
     read -p "??" brightside
+}
+
+squarebeam()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o tema de icones Square Bean? (s/n)"
+    read -p "??" squarebeam
 }
 
 ################################################################################
@@ -2081,6 +2090,17 @@ install_yes()
             #instalando o brightside
             apt install brightside* -y
         fi
+        
+        if [[ $squarebeam == "s" ]]; then
+            #adicionando ppa
+            add-apt-repository ppa:noobslab/icons -y
+            
+            #atualizando lista pacotes repositorio
+            apt-get update
+            
+            #instalando tema de icones
+            apt-get install square-beam-icons -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2469,6 +2489,10 @@ install_no()
         echo "Brightside, "
     fi
     
+    if [[ $squarebeam == "n" ]]; then
+        echo "Square Beam"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2629,6 +2653,7 @@ auto_config_ubuntu()
                     materialdesign
                     gnomesystemtools
                     brightside
+                    squarebeam
                     ;;                    
                     
                 #outros programas
