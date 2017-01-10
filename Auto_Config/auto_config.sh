@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.115.8.16.4 #
+# versão do script: 0.0.116.8.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -219,6 +219,7 @@
 # # [+] Material Design
 # # [+] Gnome System Tools
 # # [+] Brightside
+# # [+] Liquorix
 #
 ################################################################################	
 # Reinicialização
@@ -973,6 +974,14 @@ brightside()
     echo ""
     echo "Deseja instalar o Brightside? (s/n)"
     read -p "??" brightside
+}
+
+liquorix()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Liquorix? (s/n)"
+    read -p "??" liquorix
 }
 
 ################################################################################
@@ -2081,6 +2090,22 @@ install_yes()
             #instalando o brightside
             apt install brightside* -y
         fi
+        
+        if [[ $liquorix == "s" ]]; then
+            #adicionando enderencos na lista de fontes
+            echo "deb http://liquorix.net/debian sid main" | sudo tee /etc/apt/sources.list.d/liquorix.list 
+            echo "deb-src http://liquorix.net/debian sid main" | sudo tee -a /etc/apt/sources.list.d/liquorix.list 
+
+            #atualizando o sistema
+            apt-get update 
+
+            #instalando o liquorix
+            apt-get install '^liquorix-([^-]+-)?keyring.?' -y
+            apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
+
+            #atualizando o grub
+            update-grub
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2469,6 +2494,10 @@ install_no()
         echo "Brightside, "
     fi
     
+    if [[ $liquorix == "n" ]]; then
+        echo "Liquorix"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2629,6 +2658,7 @@ auto_config_ubuntu()
                     materialdesign
                     gnomesystemtools
                     brightside
+                    liquorix
                     ;;                    
                     
                 #outros programas
