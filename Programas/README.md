@@ -2,55 +2,58 @@
 ==================================================================
 Usados
 ==================================================================
+
 #Desenvolvimento
-	Kate
-	Xampp
-	Java
-	Netbeans
+	Kate: Interface de programação Padrão;
+	Xampp: Utilizado como Servidor Back-end;
+	Java: Usada para Máquina Virtual;
+	Netbeans: IDE de desenvolvimento Robusta;
 
 #Internet
-	Firefox
-	Tor
+	Firefox: Utilização da Internet de forma padrão;
+	Tor: Utilização da Internet de forma Alternativa;
 	
 #Escritorio	
-	LibreOffice
-	Texmaker
-	Mousepad
+	LibreOffice: Desenvolvimento de documentos padrões;
+	Texmaker: Usado para a criação de textos científicos;
+	Mousepad: Usado para criação de textos rápidos;
 	
 #Gráficos
-	Sweet Home 3D
-	Gimp
+	Sweet Home 3D: Modelagem 3D;
+	Gimp: Trabalho com Imagens;
+	Inkscape: Trabalho com Vetores;
 	
 #Jogos
-	Wine
-	Play on Linux
-	Dolphin
-	Steam
+	Wine/Play on Linux: Usado para emulador aplicativos ".exe";
+	Dolphin: Usado da Emular jogos antigos;
+	Steam: Jogos para Linux;
+	Visual Gameboy Advanced: Usado para emulador jogos do Gameboy;
 	
 #Multimidia
-	Cheese
-	Spotify
-	Vlc
-	Clementine
+	Cheese: Webcam do computador;
+	Spotify: Usado para Musicas;
+	Vlc: Usado para vídeos;
+	Clementine: Usado para Musicas e Podcast's;
 	
 #Personalização
-	Mac(theme)
-	Codecs
-	Xfce(plugin's)
-	Plank
-	Gnome System Monitor
-	Nautilus
+	Mac: Tema de personalização;
+	Codecs: Pacotes para execução de mídias;
+	Xfce: Plugin's para a interface;
+	Plank: Menu de Aplicativos;
+	Gnome System Monitor: Acompanhamento do sistema;
+	Nautilus: Gerenciador de Arquivos;
 	
 #Outros
-	Ntp
-	Tlp
-	Rar
-	Git
-	Stellarium
-	Virtualbox
+	Ntp: Ajuste da hora;
+	Tlp: Redução do consumo de bateria;
+	Rar: Extração de arquivos compactados;
+	Git: Ferramenta de gerência de repositórios;
+	Stellarium: Visualizador do planetário;
+	Virtualbox: Máquina virtual de SO;
+	F.lux: Controlador da cor da tela;
 
 ==================================================================
-Testados, não usados
+Testados, não recomendados
 ==================================================================
 	-Atom - Alto consumo de memória RAM;
 	-Nemo - Falta de integração com interface XFCE; 
