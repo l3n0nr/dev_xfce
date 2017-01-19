@@ -2728,7 +2728,7 @@ auto_config_ubuntu()
                     #escritorio
                         libreoffice
                         texmaker
-                        mousepad
+#                         mousepad
                     
                     #graficos
                         sweethome3d
