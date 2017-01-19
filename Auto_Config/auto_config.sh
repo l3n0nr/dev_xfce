@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.118.8.16.4 #
+# versão do script: 0.0.121.7.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -66,7 +66,6 @@
 #		mutate
 #               tor
 #               Numixicon
-#               Gnome system tools
 # 	e = pendencias
 #		GBA
 #		DeSmuME
@@ -1160,6 +1159,9 @@ install_yes()
                 
                 #instalando pacote
                 dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+                
+                #removendo pacote
+                rm -f ttf-mscorefonts-installer_3.6_all.deb
         fi
     
     ######LIMPANDO A MAQUINA
@@ -2100,7 +2102,7 @@ install_yes()
         
         if [[ $gnomesystemtools == "s" ]]; then
             #instalando o gnomesystemtools
-            apt install gnomesystemtools* -y
+            apt install gnome-system-tools -y
         fi
         
         if [[ $brightside == "s" ]]; then
