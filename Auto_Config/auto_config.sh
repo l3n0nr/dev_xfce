@@ -380,7 +380,7 @@ firefox()
 {
     clear
     echo ""
-    echo "Deseja instalar o firefox? (s/n)"
+    echo "Deseja instalar o Firefox? (s/n)"
     read -p "?? " firefox
 }
 
@@ -388,7 +388,7 @@ steam()
 {
     clear
     echo ""
-    echo "Deseja instalar o steam? (s/n)"
+    echo "Deseja instalar o Steam? (s/n)"
     read -p "?? " steam
 }
 
@@ -396,7 +396,7 @@ xampp()
 {
     clear
     echo ""
-    echo "Deseja instalar o xampp? (s/n)"
+    echo "Deseja instalar o Xampp? (s/n)"
     read -p "?? " xampp
 }
 
@@ -404,7 +404,7 @@ spotify()
 {
     clear
     echo ""
-    echo "Deseja instalar o spotify? (s/n)"
+    echo "Deseja instalar o Spotify? (s/n)"
     read -p "??" spotify
 }
 
@@ -444,7 +444,7 @@ wine()
 {
     clear
     echo ""
-    echo "Deseja instalar o wine (s/n)?"
+    echo "Deseja instalar o Wine (s/n)?"
     read -p "??" wine
 }
 
@@ -452,7 +452,7 @@ playonlinux()
 {
     clear
     echo ""
-    echo "Deseja instalar o playonlinux (s/n)?"
+    echo "Deseja instalar o Playonlinux (s/n)?"
     read -p "??" playonlinux
 }
 
