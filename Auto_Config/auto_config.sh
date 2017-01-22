@@ -52,7 +52,11 @@
 #################################################################################
 #
 ####################################
+<<<<<<< HEAD
 # versão do script: 0.0.116.8.16.4 #
+=======
+# versão do script: 0.0.123.7.16.4 #
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -66,7 +70,6 @@
 #		mutate
 #               tor
 #               Numixicon
-#               Gnome system tools
 # 	e = pendencias
 #		GBA
 #		DeSmuME
@@ -113,6 +116,7 @@
 # # [+] Swap
 # # [+] Prelink, Preload, Deborphan
 # # [+] Pacotes com problemas
+# # [+] Fontes
 ################################################################################
 # Limpeza
 # # [+] Lixeira
@@ -219,7 +223,12 @@
 # # [+] Material Design
 # # [+] Gnome System Tools
 # # [+] Brightside
+<<<<<<< HEAD
 # # [+] Square-Beam
+=======
+# # [+] Liquorix
+# # [+] Moka
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
 #
 ################################################################################	
 # Reinicialização
@@ -299,6 +308,14 @@ pacotes_antigos()
     read -p "??" pacotes_antigos
 }
 
+fontes()
+{
+    clear
+    echo ""
+    echo "Deseja corrigir possiveis erros de fontes(s/n)?"
+    read -p "??" fontes
+}
+
 ################################################################################
 ######LIMPANDO A MÁQUINA
 temporario()
@@ -372,7 +389,7 @@ firefox()
 {
     clear
     echo ""
-    echo "Deseja instalar o firefox? (s/n)"
+    echo "Deseja instalar o Firefox? (s/n)"
     read -p "?? " firefox
 }
 
@@ -380,7 +397,7 @@ steam()
 {
     clear
     echo ""
-    echo "Deseja instalar o steam? (s/n)"
+    echo "Deseja instalar o Steam? (s/n)"
     read -p "?? " steam
 }
 
@@ -388,7 +405,7 @@ xampp()
 {
     clear
     echo ""
-    echo "Deseja instalar o xampp? (s/n)"
+    echo "Deseja instalar o Xampp? (s/n)"
     read -p "?? " xampp
 }
 
@@ -396,7 +413,7 @@ spotify()
 {
     clear
     echo ""
-    echo "Deseja instalar o spotify? (s/n)"
+    echo "Deseja instalar o Spotify? (s/n)"
     read -p "??" spotify
 }
 
@@ -436,7 +453,7 @@ wine()
 {
     clear
     echo ""
-    echo "Deseja instalar o wine (s/n)?"
+    echo "Deseja instalar o Wine (s/n)?"
     read -p "??" wine
 }
 
@@ -444,7 +461,7 @@ playonlinux()
 {
     clear
     echo ""
-    echo "Deseja instalar o playonlinux (s/n)?"
+    echo "Deseja instalar o Playonlinux (s/n)?"
     read -p "??" playonlinux
 }
 
@@ -976,12 +993,29 @@ brightside()
     read -p "??" brightside
 }
 
+<<<<<<< HEAD
 squarebeam()
 {
     clear
     echo ""
     echo "Deseja instalar o tema de icones Square Bean? (s/n)"
     read -p "??" squarebeam
+=======
+liquorix()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Liquorix? (s/n)"
+    read -p "??" liquorix
+}
+
+moka()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Tema Moka? (s/n)"
+    read -p "??" moka
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
 }
 
 ################################################################################
@@ -1144,6 +1178,17 @@ install_yes()
                 #VERIFICAR AÇÕES
                 rm -r /var/lib/apt/lists  sudo mkdir -p /var/lib/apt/lists/partial
         fi	
+        
+        if [[ $fontes == "s" ]]; then
+                #baixando pacote
+                wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+                
+                #instalando pacote
+                dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+                
+                #removendo pacote
+                rm -f ttf-mscorefonts-installer_3.6_all.deb
+        fi
     
     ######LIMPANDO A MAQUINA
         #removendo kernel antigo
@@ -1575,19 +1620,19 @@ install_yes()
 
         if [[ $tor == "s" ]]; then
                 #baixando o tor
-                #wget https://dist.torproject.org/torbrowser/6.0.7/tor-browser-linux32-6.0.7_en-US.tar.xz -O tor-browser.tar.xz
+#               wget https://dist.torproject.org/torbrowser/6.0.7/tor-browser-linux32-6.0.7_en-US.tar.xz -O tor-browser.tar.xz
 
                 #extraindo o arquivo
-                #sudo tar -xvJf tor-browser.tar.xz -C /opt/
+#               sudo tar -xvJf tor-browser.tar.xz -C /opt/
 
                 #movendo arquivos
-                #sudo mv /opt/tor-browser*/ /opt/tor-browser
+#               sudo mv /opt/tor-browser*/ /opt/tor-browser
 
                 #VERIFICAR
-                #sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/bin/torbrowser
+#               sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/bin/torbrowser
 
                 #removendo arquivo download
-                #rm tor-browser.tar.xz
+#               rm tor-browser.tar.xz
                 
                 #32bits
                 #add-apt-repository ppa:upubuntu-com/tor64 -y
@@ -1599,10 +1644,10 @@ install_yes()
                 add-apt-repository ppa:upubuntu-com/tor64 -y
                 
                 #atualizando lista de pacotes
-                apt-get update
+                apt-get update            
                 
                 #instalando tor
-                apt-get install tor-browser* -y
+                apt-get install tor-browser -y
         fi
 
         if [[ $vba == "s" ]]; then
@@ -2083,7 +2128,7 @@ install_yes()
         
         if [[ $gnomesystemtools == "s" ]]; then
             #instalando o gnomesystemtools
-            apt install gnomesystemtools* -y
+            apt install gnome-system-tools -y
         fi
         
         if [[ $brightside == "s" ]]; then
@@ -2091,6 +2136,7 @@ install_yes()
             apt install brightside* -y
         fi
         
+<<<<<<< HEAD
         if [[ $squarebeam == "s" ]]; then
             #adicionando ppa
             add-apt-repository ppa:noobslab/icons -y
@@ -2100,6 +2146,33 @@ install_yes()
             
             #instalando tema de icones
             apt-get install square-beam-icons -y
+=======
+        if [[ $liquorix == "s" ]]; then
+            #adicionando enderencos na lista de fontes
+            echo "deb http://liquorix.net/debian sid main" | sudo tee /etc/apt/sources.list.d/liquorix.list 
+            echo "deb-src http://liquorix.net/debian sid main" | sudo tee -a /etc/apt/sources.list.d/liquorix.list 
+
+            #atualizando o sistema
+            apt-get update 
+
+            #instalando o liquorix
+            apt-get install '^liquorix-([^-]+-)?keyring.?' -y
+            apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
+
+            #atualizando o grub
+            update-grub
+        fi
+        
+        if [[ $moka == "s" ]]; then
+            #adicionando ppa
+            add-apt-repository ppa:moka/stable -y
+
+            #atualizando lista repositorio
+            apt-get update 
+
+            #instalando tema
+            apt-get install moka-icon-theme -y
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
         fi
             
 ################################################################################		
@@ -2146,6 +2219,10 @@ install_no()
     
     if [[ $pacotes_antigos == "n" ]]; then
             echo "Pacotes antigos, " 
+    fi
+    
+    if [[ $fontes == "n" ]]; then
+            echo "Fontes, "
     fi
 
 ################################################################################
@@ -2489,8 +2566,17 @@ install_no()
         echo "Brightside, "
     fi
     
+<<<<<<< HEAD
     if [[ $squarebeam == "n" ]]; then
         echo "Square Beam"
+=======
+    if [[ $liquorix == "n" ]]; then
+        echo "Liquorix"
+    fi
+    
+    if [[ $moka == "n" ]]; then
+        echo "Moka"
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
     fi
     
 ################################################################################		
@@ -2532,6 +2618,7 @@ auto_config_ubuntu()
             corrigeerros
             swap
             pacotesquebrados
+            fontes
             ;;
     
     #limpando a máquina
@@ -2653,7 +2740,12 @@ auto_config_ubuntu()
                     materialdesign
                     gnomesystemtools
                     brightside
+<<<<<<< HEAD
                     squarebeam
+=======
+                    liquorix
+                    moka
+>>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
                     ;;                    
                     
                 #outros programas
@@ -2699,7 +2791,7 @@ auto_config_ubuntu()
                     #escritorio
                         libreoffice
                         texmaker
-                        mousepad
+#                         mousepad
                     
                     #graficos
                         sweethome3d
@@ -2726,6 +2818,7 @@ auto_config_ubuntu()
                         plank
                         gnomesystemmonitor
                         nautilus
+                        moka
                     
                     #outros
                         ntp
