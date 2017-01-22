@@ -52,16 +52,13 @@
 #################################################################################
 #
 ####################################
-<<<<<<< HEAD
-# versão do script: 0.0.116.8.16.4 #
-=======
-# versão do script: 0.0.123.7.16.4 #
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
+# versão do script: 0.1.124.7.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1];
 # 	b = erros na execução;	
+#               linha 2578
 # 	c = interações com o script + versões funcionando;
 # 	d = correções necessárias;
 #		netbeans
@@ -223,12 +220,9 @@
 # # [+] Material Design
 # # [+] Gnome System Tools
 # # [+] Brightside
-<<<<<<< HEAD
 # # [+] Square-Beam
-=======
 # # [+] Liquorix
 # # [+] Moka
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
 #
 ################################################################################	
 # Reinicialização
@@ -993,14 +987,14 @@ brightside()
     read -p "??" brightside
 }
 
-<<<<<<< HEAD
 squarebeam()
 {
     clear
     echo ""
     echo "Deseja instalar o tema de icones Square Bean? (s/n)"
     read -p "??" squarebeam
-=======
+}
+
 liquorix()
 {
     clear
@@ -1015,7 +1009,6 @@ moka()
     echo ""
     echo "Deseja instalar o Tema Moka? (s/n)"
     read -p "??" moka
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
 }
 
 ################################################################################
@@ -2136,7 +2129,6 @@ install_yes()
             apt install brightside* -y
         fi
         
-<<<<<<< HEAD
         if [[ $squarebeam == "s" ]]; then
             #adicionando ppa
             add-apt-repository ppa:noobslab/icons -y
@@ -2146,7 +2138,8 @@ install_yes()
             
             #instalando tema de icones
             apt-get install square-beam-icons -y
-=======
+        fi
+
         if [[ $liquorix == "s" ]]; then
             #adicionando enderencos na lista de fontes
             echo "deb http://liquorix.net/debian sid main" | sudo tee /etc/apt/sources.list.d/liquorix.list 
@@ -2172,7 +2165,6 @@ install_yes()
 
             #instalando tema
             apt-get install moka-icon-theme -y
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
         fi
             
 ################################################################################		
@@ -2566,17 +2558,15 @@ install_no()
         echo "Brightside, "
     fi
     
-<<<<<<< HEAD
     if [[ $squarebeam == "n" ]]; then
         echo "Square Beam"
-=======
+
     if [[ $liquorix == "n" ]]; then
         echo "Liquorix"
     fi
     
     if [[ $moka == "n" ]]; then
         echo "Moka"
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
     fi
     
 ################################################################################		
@@ -2740,12 +2730,9 @@ auto_config_ubuntu()
                     materialdesign
                     gnomesystemtools
                     brightside
-<<<<<<< HEAD
                     squarebeam
-=======
                     liquorix
                     moka
->>>>>>> b735f6edbaf9d0eae29325a259c406ef2291367b
                     ;;                    
                     
                 #outros programas
