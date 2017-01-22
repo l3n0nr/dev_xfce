@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.121.7.16.4 #
+# versão do script: 0.0.123.7.16.4 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -220,6 +220,7 @@
 # # [+] Gnome System Tools
 # # [+] Brightside
 # # [+] Liquorix
+# # [+] Moka
 #
 ################################################################################	
 # Reinicialização
@@ -992,6 +993,14 @@ liquorix()
     read -p "??" liquorix
 }
 
+moka()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Tema Moka? (s/n)"
+    read -p "??" moka
+}
+
 ################################################################################
 ######REINICIANDO
 reinicia()
@@ -1594,19 +1603,19 @@ install_yes()
 
         if [[ $tor == "s" ]]; then
                 #baixando o tor
-                #wget https://dist.torproject.org/torbrowser/6.0.7/tor-browser-linux32-6.0.7_en-US.tar.xz -O tor-browser.tar.xz
+#               wget https://dist.torproject.org/torbrowser/6.0.7/tor-browser-linux32-6.0.7_en-US.tar.xz -O tor-browser.tar.xz
 
                 #extraindo o arquivo
-                #sudo tar -xvJf tor-browser.tar.xz -C /opt/
+#               sudo tar -xvJf tor-browser.tar.xz -C /opt/
 
                 #movendo arquivos
-                #sudo mv /opt/tor-browser*/ /opt/tor-browser
+#               sudo mv /opt/tor-browser*/ /opt/tor-browser
 
                 #VERIFICAR
-                #sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/bin/torbrowser
+#               sudo ln -sf /opt/tor-browser/Browser/start-tor-browser /usr/bin/torbrowser
 
                 #removendo arquivo download
-                #rm tor-browser.tar.xz
+#               rm tor-browser.tar.xz
                 
                 #32bits
                 #add-apt-repository ppa:upubuntu-com/tor64 -y
@@ -1618,10 +1627,10 @@ install_yes()
                 add-apt-repository ppa:upubuntu-com/tor64 -y
                 
                 #atualizando lista de pacotes
-                apt-get update
+                apt-get update            
                 
                 #instalando tor
-                apt-get install tor-browser* -y
+                apt-get install tor-browser -y
         fi
 
         if [[ $vba == "s" ]]; then
@@ -2125,6 +2134,17 @@ install_yes()
             #atualizando o grub
             update-grub
         fi
+        
+        if [[ $moka == "s" ]]; then
+            #adicionando ppa
+            add-apt-repository ppa:moka/stable -y
+
+            #atualizando lista repositorio
+            apt-get update 
+
+            #instalando tema
+            apt-get install moka-icon-theme -y
+        fi
             
 ################################################################################		
 ######REINICIANDO
@@ -2521,6 +2541,10 @@ install_no()
         echo "Liquorix"
     fi
     
+    if [[ $moka == "n" ]]; then
+        echo "Moka"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2683,6 +2707,7 @@ auto_config_ubuntu()
                     gnomesystemtools
                     brightside
                     liquorix
+                    moka
                     ;;                    
                     
                 #outros programas
@@ -2755,6 +2780,7 @@ auto_config_ubuntu()
                         plank
                         gnomesystemmonitor
                         nautilus
+                        moka
                     
                     #outros
                         ntp
