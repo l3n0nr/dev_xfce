@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.126.7.16.5 #
+# versão do script: 0.0.127.7.16.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -224,6 +224,7 @@
 # # [+] Square-Beam
 # # [+] Liquorix
 # # [+] Moka
+# # [+] Mousepad
 #
 ################################################################################	
 # Reinicialização
@@ -1010,6 +1011,14 @@ moka()
     echo ""
     echo "Deseja instalar o Tema Moka? (s/n)"
     read -p "??" moka
+}
+
+mousepad()
+{
+    clear
+    echo ""
+    echo "Deseja instalar o Mousepad? (s/n)"
+    read -p "??" mousepad
 }
 
 ################################################################################
@@ -2167,6 +2176,11 @@ install_yes()
             #instalando tema
             apt-get install moka-icon-theme -y
         fi
+        
+        if [[ $mousepad == "s" ]]; then
+            #instalando mousepad
+            apt install mousepad* -y
+        fi        
             
 ################################################################################		
 ######REINICIANDO
@@ -2571,6 +2585,10 @@ install_no()
         echo "Moka"
     fi
     
+    if [[ $mousepad == "n" ]]; then
+        echo "Mousepad"
+    fi
+    
 ################################################################################		
 ######REINICIANDO
     if [[ $reinicia == "n" ]]; then
@@ -2780,7 +2798,7 @@ auto_config_ubuntu()
                     #escritorio
                         libreoffice
                         texmaker
-#                         mousepad
+                        mousepad
                     
                     #graficos
                         sweethome3d
