@@ -52,11 +52,7 @@
 #################################################################################
 #
 ####################################
-<<<<<<< HEAD
-# versão do script: 0.1.124.7.16.4 #
-=======
-# versão do script: 0.0.124.7.16.5 #
->>>>>>> 5207c5af970d84dd5579144fc7e90d23b01fb808
+# versão do script: 0.0.126.7.16.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -2144,11 +2140,7 @@ install_yes()
             #instalando tema de icones
             apt-get install square-beam-icons -y
         fi
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 5207c5af970d84dd5579144fc7e90d23b01fb808
         if [[ $liquorix == "s" ]]; then
             #adicionando enderencos na lista de fontes
             echo "deb http://liquorix.net/debian sid main" | sudo tee /etc/apt/sources.list.d/liquorix.list 
@@ -2569,12 +2561,8 @@ install_no()
     
     if [[ $squarebeam == "n" ]]; then
         echo "Square Beam"
-<<<<<<< HEAD
-
-=======
     fi
-    
->>>>>>> 5207c5af970d84dd5579144fc7e90d23b01fb808
+
     if [[ $liquorix == "n" ]]; then
         echo "Liquorix"
     fi
