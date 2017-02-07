@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.129.7.16.5 #
+# versão do script: 0.0.130.7.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -82,6 +82,8 @@
 #               Code::blocks IDE
 #               PgAdminIII
 #               Samba
+#               VERIFICAR LINHA 2752!!!!
+#
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
 #		-Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
