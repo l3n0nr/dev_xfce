@@ -1,9 +1,0 @@
-#!/bin/bash
-#duzeru-kernel amd64
-versao=`uname -r`
-clear
-echo -e "\e[33;1m $USER Kernel atual \e[m" 
-echo -e "\e[31;1m $versao \e[m"
-sleep 100
-
-#END

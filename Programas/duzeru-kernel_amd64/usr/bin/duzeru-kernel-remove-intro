@@ -1,4 +1,0 @@
-#!/bin/bash
-#duzeru-kernel amd64
-xfce4-terminal -e /usr/bin/duzeru-kernel-remove
-#END
