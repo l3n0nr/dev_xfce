@@ -52,13 +52,12 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.127.7.16.5 #
+# versão do script: 0.0.129.7.16.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1];
 # 	b = erros na execução;	
-#               linha 2578
 # 	c = interações com o script + versões funcionando;
 # 	d = correções necessárias;
 #		netbeans
@@ -130,7 +129,7 @@
 # # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
 ################################################################################
 # Instalação
-# # [+] Todos
+# # [+] Todos Programas
 # # [+] Firefox
 # # [+] Steam
 # # [+] Xampp
@@ -241,6 +240,14 @@ fi
 
 ################################################################################
 ######CORREÇÃO SISTEMA
+corrigetudo()
+{
+    clear
+    echo ""
+    echo "Deseja corrigir todos os problemas do sistema(s/n)?"
+    read -p "??" corrigetudo
+}
+
 update()
 {
     echo ""
@@ -1001,7 +1008,7 @@ liquorix()
 {
     clear
     echo ""
-    echo "Deseja instalar o Liquorix? (s/n)"
+    echo "Deseja instalar o Kernel Liquorix? (s/n)"
     read -p "??" liquorix
 }
 
@@ -1040,7 +1047,7 @@ install_yes()
 
     ######CORREÇÃO SISTEMA
         #atualizando os repositórios
-        if [[ $update == "s" ]]; then
+        if [[ $update == "s" || $corrigetudo == "s" ]]; then
                 if [ "$distro" == "Ubuntu" ]; then
                         clear
                         echo "Atualizando os repositórios na máquina"
@@ -1925,7 +1932,7 @@ install_yes()
                 apt install sweethome3d* -y
         fi	
         
-        if [[ $kate == "s" ]]; then
+        if [[ $kate == "s" || $padrao == "y" ]]; then
                 #instalando o kate
                 apt install kate* -y
         fi
@@ -2617,7 +2624,7 @@ auto_config_ubuntu()
     case $escolha in
     
     #atualizando o sistema
-    1) echo
+    1) echo        
             update
             upgrade	
             kernel
@@ -2625,11 +2632,26 @@ auto_config_ubuntu()
             
     #corrigindo erros
     2) echo
-            corrigeerros
-            swap
-            pacotesquebrados
-            fontes
-            ;;
+        read -n1 -p "Deseja escolher tudo?" corrigetudo
+        case $corrigetudo in
+
+            #instalar todos
+            s) echo 
+                corrigeerros
+                swap
+                pacotesquebrados
+                fontes
+                ;;
+                
+            #instalar alguns    
+            n) echo
+                corrigeerros
+                swap
+                pacotesquebrados
+                fontes
+                ;;
+        esac
+        ;;
     
     #limpando a máquina
     3) echo
@@ -2784,7 +2806,7 @@ auto_config_ubuntu()
                     ;;
                     
                 #programas padroes    
-                9) echo    
+                9) echo
                     #desenvolvimento
                         kate
                         xampp
@@ -2845,7 +2867,8 @@ auto_config_ubuntu()
                 #fechando        
                 x|X)echo Finalizando o script...
                     sleep 1
-                    exit
+                    clear        
+                    exit                    
                     ;;
 
                 *)  echo Alternativa incorreta!!
