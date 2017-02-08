@@ -241,14 +241,6 @@ fi
 
 ################################################################################
 ######CORREÇÃO SISTEMA
-corrigetudo()
-{
-    clear
-    echo ""
-    echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-    read -p "??" corrigetudo
-}
-
 update()
 {
     echo ""
@@ -2750,6 +2742,13 @@ auto_config_ubuntu()
             
     #corrigindo erros
     2) echo
+        
+        #verificando
+        clear
+        echo ""
+        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
+        read -p "??" corrigetudo        
+        
         if [[ $corrigetudo == "s" ]]; then
         {
             corrigetudo
@@ -2766,6 +2765,19 @@ auto_config_ubuntu()
     
     #limpando a máquina
     3) echo
+    
+        #verificando
+        clear
+        echo ""
+        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
+        read -p "??" limpatudo 
+        
+        if [[ $limpatudo == "s" ]]; then
+        {
+            limpatudo
+        }
+        else
+        {
             temporario
             obsoleto
             lixeira
@@ -2775,7 +2787,9 @@ auto_config_ubuntu()
             arquivosinuteis
             prelink_preload_deborphan
             pacotes_antigos
-            ;;
+        }
+        fi
+        ;;
             
     #instalando programas	
     4) echo
