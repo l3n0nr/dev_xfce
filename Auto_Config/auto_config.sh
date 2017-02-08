@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.131.6.17.5 #
+# versão do script: 0.0.132.6.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -2307,15 +2307,6 @@ install_yes()
             reboot
     fi
 }
-    
-################################################################################		
-######REINICIANDO
-    if [[ $reinicia == "n" ]]; then
-        echo "Máquina não será reiniciada agora!"
-    fi
-
-    echo "----------------------------------------------"
-}
 
 ################################################################################
 #criando função global, que inicia todas as outras
@@ -2433,7 +2424,7 @@ auto_config_ubuntu()
             case $categoria in
                 #instalando todos os programas
                 0) echo
-                    tudo
+#                   tudo
                     ;;
                     
                 #jogos
