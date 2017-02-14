@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 0.0.132.6.17.5 #
+# versão do script: 0.0.140.6.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -69,7 +69,6 @@
 #		GBA
 #		DeSmuME
 #               Openshot
-#               Audacious
 #               K3b
 #               Scribus
 #               Umbrello
@@ -116,10 +115,6 @@
 # # [+] Fontes
 ################################################################################
 # Limpeza
-# # [+] Lixeira
-# # [+] Firefox
-# #     [+] Cache
-# #     [+] Cookies
 # # [+] Excluindo pacotes antigos
 # # [+] Excluindo pacotes orfaõs
 # # [+] Removendo arquivos temporários
@@ -129,7 +124,7 @@
 # # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
 ################################################################################
 # Instalação
-# # [+] Todos Programas
+# # [-] Todos Programas
 # # [+] Firefox
 # # [+] Steam
 # # [+] Xampp
@@ -141,8 +136,6 @@
 # # [+] Java 8
 # # [+] Redshift
 # # [+] Flux
-# # [+] NodeJS
-# # [+] Atom
 # # [+] Libreoffice
 # # [-] Netbeans
 # #     VERIFICAR, INSTALAR TAMBEM JDK
@@ -166,9 +159,7 @@
 # # [+] NTP
 # # [+] Hollywood
 # # [+] Synaptic	
-# # [+] Dolphin
 # # [+] Virtualbox
-# # [+] Brackets
 # # [+] Citra
 # # [-] DeSmuME 
 # #     ENCONTRAR FORMA DE INSTALAÇÃO AUTOMÁTICA
@@ -176,13 +167,11 @@
 # # [+] Mesa - ppa
 # # [-] Mutate
 # # [+] Screenfetch
-# # [+] Midori
 # # [+] Diolinux_paper(Diolinux Paper Orange Modern)
 # # [+] Kdenlive
 # # [+] Openssh(Client-Servidor)
 # # [+] Bleachbit
 # # [+] Supertuxkart
-# # [+] Figlet
 # # [+] Cowsay
 # # [+] Chromium
 # # [+] Synapse
@@ -190,25 +179,14 @@
 # # [+] Kate
 # # [+] Inkscape
 # # [+] Blender
-# # [+] Audacity
-# # [-] Openshot
-# # [-] Audacious
-# # [-] K3B
-# # [-] Scribus
-# # [-] Umbrello
-# # [-] Opera 
-# # [-] Skype
-# # [-] Tuxpaint
 # # [-] Calibre
 # # [+] Numix Icon
 # # [+] Plank
 # # [+] Gnome System Monitor
 # # [+] Nautilus
 # # [+] Wireshark
-# # [+] Ubuntu Desktop
 # # [+] Gnome-disk-utility
 # # [+] Smartgit
-# # [+] Git Kraken
 # # [+] Chkrootkit
 # # [+] Vivacious
 # # [+] Lampp
@@ -217,13 +195,13 @@
 # # [+] Ftp
 # # [+] Quota
 # # [+] Flatabulous
-# # [+] Material Design
 # # [+] Gnome System Tools
 # # [+] Brightside
 # # [+] Square-Beam
 # # [+] Liquorix
 # # [+] Moka
 # # [+] Mousepad
+# # [+] Dolphin
 #
 ################################################################################	
 # Reinicialização
@@ -327,30 +305,6 @@ obsoleto()
     echo ""
     echo "Deseja remover os arquivos obsoletos do sistema operacional (s/n)?"
     read -p "??" obsoleto
-}
-
-lixeira()
-{
-    clear
-    echo ""
-    echo "Deseja apagar todos os arquivos da Lixeira (s/n)?"
-    read -p "??" lixeira
-}
-
-firefoxcache()
-{
-    clear
-    echo ""
-    echo "Deseja realizar a limpeza no Cache do navegador Firefox (s/n)?"
-    read -p "??" firefoxcache
-}
-
-firefoxcookie()
-{
-    clear
-    echo ""
-    echo "Deseja realizar a limpeza nos cookies no navegador Firefox (s/n)?"
-    read -p "??" firefoxcookie
 }
 
 arquivosorfaos()
@@ -482,22 +436,6 @@ flux()
     echo ""
     echo "Deseja instalar o Flux (s/n)?"
     read -p "??" flux
-}
-
-nodejs()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o NodeJS (s/n)?"
-    read -p "??" nodejs
-}
-
-atom()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Atom (s/n)?"
-    read -p "??" ato
 }
 
 libreoffice()
@@ -660,14 +598,6 @@ virtualbox()
     read -p "??" virtualbox
 }
 
-brackets()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Brackets? (s/n)?"
-    read -p "??" brackets
-}
-
 citra()
 {
     clear
@@ -698,14 +628,6 @@ screenfetch()
     echo ""
     echo "Deseja instalar o Screenfetch? (s/n)?"
     read -p "??" screenfetch
-}
-
-midori()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Midori? (s/n)?"
-    read -p "??" midori
 }
 
 diolinux_paper()
@@ -746,14 +668,6 @@ supertuxkart()
     echo ""
     echo "Deseja instalar o Supertuxkart? (s/n)"
     read -p "??" supertuxkart
-}
-
-figlet()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Figler? (s/n)"
-    read -p "??" figler
 }
 
 cowsay()
@@ -812,14 +726,6 @@ blender()
     read -p "??" blender
 }
 
-audacity()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Audacity? (s/n)"
-    read -p "??" audacity
-}
-
 cheese()
 {
     clear
@@ -868,14 +774,6 @@ wireshark()
     read -p "??" wireshark
 }
 
-ubuntudesktop()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Ubuntu Desktop? (s/n)"
-    read -p "??" ubuntudesktop
-}
-
 gnomediskutility()
 {
     clear
@@ -890,14 +788,6 @@ smartgit()
     echo ""
     echo "Deseja instalar o Smart Git? (s/n)"
     read -p "??" smartgit
-}
-
-gitkraken()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o Git Kraken? (s/n)"
-    read -p "??" gitkraken
 }
 
 chkrootkit()
@@ -962,14 +852,6 @@ flatabulous()
     echo ""
     echo "Deseja instalar o tema do Flatabulous? (s/n)"
     read -p "??" flatabulous
-}
-
-materialdesign()
-{
-    clear
-    echo ""
-    echo "Deseja instalar o tema do Material Design? (s/n)"
-    read -p "??" materialdesign
 }
 
 gnomesystemtools()
@@ -1038,138 +920,6 @@ install_yes()
     echo "----------------------------------------------"
 
     ######CORREÇÃO SISTEMA
-#       corrigindo tudo
-        if [[ $corrigetudo == "s" ]]; then
-#           atualizando os repositórios
-            if [ "$distro" == "Ubuntu" ]; then
-                clear
-                echo "Atualizando os repositórios na máquina"
-                echo "----------------------------------------------------------------------"
-                apt update
-                update-grub
-                        
-            elif [ "$distro" == "Fedora" ]; then
-                clear
-                echo "Atualizando os repositórios na máquina"
-                echo "----------------------------------------------------------------------"
-                dnf distro-sync 
-            fi
-            
-#           atualizando programas
-            if [ "$distro" == "Ubuntu" ]; then
-                clear
-                echo "Atualizando os programas da máquina"
-                echo "----------------------------------------------------------------------"
-                apt upgrade -y
-                apt-get dist-upgrade
-            elif [ "$distro" == "Fedora" ]; then
-                clear
-                echo "Atualizando os programas da máquina"
-                echo "----------------------------------------------------------------------"
-                dnf update -y 
-            fi
-            
-#           erros sistema
-            clear
-            echo "Corrigindo possiveis erros no Sistema"
-            echo "----------------------------------------------------------------------"
-            apt-get check -y &&
-            dpkg --configure -a -y &&
-            apt-get -f install &&
-            apt-get -f remove -y &&
-            apt-get autoremove -y &&
-            apt-get clean -y &&
-            apt-get install auto-apt -y &&
-            auto-apt update-local -y &&
-            auto-apt update -y &&
-            auto-apt updatedb -y
-            
-#           configurando swap
-            clear
-            echo "Configurando a Swap"
-            echo "-------------------"
-            memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
-            memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
-            background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
-            ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
-            clear
-            echo "Diminuindo a Prioridade de uso da memória SWAP"
-            echo
-            if [[ $memoswap == "vm.swappiness=10" ]]; then
-                    echo "Otimizando..."
-                    /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf"
-            elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-                    echo "Otimizando..."
-                    /bin/su -c "echo 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
-            elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-                    echo "Otimizando..."
-                    /bin/su -c "echo 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
-            elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-                    echo "Otimizando..."
-                    /bin/su -c "echo 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
-            else
-                    echo "Não há nada para ser otimizado"
-                    echo "Isso porque já foi otimizado anteriormente!"
-            fi
-                
-                
-            fi   
-            
-#           otimizando sistema
-            clear
-            echo
-            echo "Instalando Prelink, Preload e Deborphan"
-            #prelink =
-            #preload =
-            #deborphan = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
-            echo "-------------------"
-            sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
-            sudo apt-get install deborphan -y
-    
-            echo "Configurando Deborphan..."
-            sudo deborphan | xargs sudo apt-get -y remove --purge &&
-            sudo deborphan --guess-data | xargs sudo apt-get -y remove --purge
-            
-            #configurando o prelink e o preload
-            echo ""
-            echo "Configurando Prelink e Preload..."
-            echo "-------------------"
-                    memfree=$(grep "memfree = 50" /etc/preload.conf)
-                    memcached=$(grep "memcached = 0" /etc/preload.conf)
-                    processes=$(grep "processes = 30" /etc/preload.conf)
-                    prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
-                                            
-            echo "Ativando o PRELINK"
-            if [[ $prelink == "PRELINKING=unknown" ]]; then
-                    echo "adicionando ..."
-                    sed -i 's/unknown/yes/g' /etc/default/prelink	
-            else
-                    echo "Otimização já adicionada anteriormente."
-            fi
-        
-#           pacotesquebrados
-            clear
-            echo "Corrigindo pacotes quebrados"
-            echo "----------------------------"
-            dpkg --configure -a
-            #VERIFICAR AÇÕES
-            rm -r /var/lib/apt/lists  sudo mkdir -p /var/lib/apt/lists/partial
-            
-#           fontes            
-            clear
-            echo "Instalando pacotes de fontes"
-            echo "----------------------------"
-            #baixando pacote
-            wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-            
-            #instalando pacote
-            dpkg -i ttf-mscorefonts-installer_3.6_all.deb
-            
-            #removendo pacote
-            rm -f ttf-mscorefonts-installer_3.6_all.deb
-            
-#                       
-#####################################################################################################
         if [[ $update == "s" ]]; then
                 if [ "$distro" == "Ubuntu" ]; then
                         clear
@@ -1189,7 +939,6 @@ install_yes()
         #atualizando os programas
         if [[ $upgrade == "s" ]]; then
                 if [ "$distro" == "Ubuntu" ]; then
-                        clear
                         echo "Atualizando os programas da máquina"
                         echo "----------------------------------------------------------------------"
                         apt upgrade -y
@@ -1207,21 +956,20 @@ install_yes()
             clear
             echo "Corrigindo possiveis erros no Sistema"
             echo "----------------------------------------------------------------------"
-            apt-get check -y &&
-            dpkg --configure -a -y &&
-            apt-get -f install &&
-            apt-get -f remove -y &&
-            apt-get autoremove -y &&
-            apt-get clean -y &&
-            apt-get install auto-apt -y &&
-            auto-apt update-local -y &&
-            auto-apt update -y &&
+            apt-get check -y 
+            dpkg --configure -a -y
+            apt-get -f install 
+            apt-get -f remove -y 
+            apt-get autoremove -y 
+            apt-get clean -y 
+            apt-get install auto-apt -y 
+            auto-apt update-local -y 
+            auto-apt update -y 
             auto-apt updatedb -y
         fi
         
         #configurando a swap
         if [[ $swap == "s" ]]; then
-            clear
             echo "Configurando a Swap"
             echo "-------------------"
             memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
@@ -1251,8 +999,6 @@ install_yes()
         
         #otimizando sistema
         if [[ $prelink_preload_deborphan == "s" ]]; then		
-            clear
-            echo
             echo "Instalando Prelink, Preload e Deborphan"
             #prelink =
             #preload =
@@ -1287,7 +1033,6 @@ install_yes()
         #corrigindo pacotes quebrados
         if [[ $pacotesquebrados == "s" ]]; then
             #VERIFICAR AÇÕES
-            clear
             echo "Corrigindo pacotes quebrados"
             echo "----------------------------"
             dpkg --configure -a
@@ -1296,7 +1041,6 @@ install_yes()
         fi	
         
         if [[ $fontes == "s" ]]; then
-            clear
             echo "Instalando pacotes de fontes"
             echo "----------------------------"
             #baixando pacote
@@ -1312,7 +1056,6 @@ install_yes()
     ######LIMPANDO A MAQUINA
         #removendo kernel antigo
         if [[ $kernel == "s" ]]; then
-                clear
                 echo "Removendo os kernel's temporários do sistema"
                 echo "--------------------------------------------"
 
@@ -1392,32 +1135,7 @@ install_yes()
                 echo "Removendo os arquivos obsoletos do sistema"
                 echo "-----------------------------------------"
                 apt-get clean -y && apt-get autoclean -y
-        fi
-        
-        #limpando a lixeira
-        if [[ $lixeira == "s" ]]; then
-                clear
-                echo "Removendo todos os arquivos da Lixeira"
-                echo "--------------------------------------"
-                rm -Rf ~/.local/share/Trash/files/*
-        fi
-
-        #limpando cache do firefox
-        if [[ $firefoxcache == "s" ]]; then
-                clear
-                echo "Realizando a limpeza no cache no navegador Firefox"
-                echo "--------------------------------------"
-                rm - Rf ~/.mozilla/firefox/*.default/*.sqlite
-                rm -Rf ~/.cache/mozilla/firefox/*.default/*
-        fi
-        
-        #limpando cookies do firefox
-        if [[ $firefoxcookie == "s" ]]; then
-                clear
-                echo "Realizando a limpeza nos cookies no navegador Firefox"
-                echo "--------------------------------------"
-                rm -Rf ~/.mozilla/firefox/*.default/cookies.sqlite
-        fi
+        fi             
 
         #limpando arquivos orfaos
         if [[ $arquivosorfaos == "s" ]]; then
@@ -1474,8 +1192,7 @@ install_yes()
                 echo "----------------------------------------------------------------------"
 
                 #baixando o pacote
-                wget https://downloads.sourceforge.net/project/xampp/XAMPP%20Linux/5.6.28/xampp-linux-x64-5.6.28-0-installer.run -O xampp-installer.run
-                
+                wget http://nbtelecom.dl.sourceforge.net/project/xampp/XAMPP%20Linux/5.6.14/xampp-linux-x64-5.6.14-0-installer.run -O xampp-installer.run
                 echo "Realizando a instalação..."
                 echo "---------------------"
 
@@ -1624,43 +1341,23 @@ install_yes()
 #                     sudo python setup.py install &&
 #                     sudo python setup.py install --user
 
-                #instalando via ppa
-                #adicionando repositorio
-                add-apt-repository ppa:nathan-renniewaldock/flux -y
-                
-                #atualizando lista pacotes
-                apt update
-                
-                #instalando flux
-                apt install fluxgui* -y
+            #instalando via ppa
+            #adicionando repositorio
+            add-apt-repository ppa:nathan-renniewaldock/flux -y
+            
+            #atualizando lista pacotes
+            apt update
+            
+            #instalando flux
+            apt install fluxgui* -y
         fi
-
-        #instalando o nodejs
-        if [[ $nodejs == "s" ]]; then
-                #instalando npm
-                apt install nodejs npm -y
-
-                #configurando o npm
-                npm -g install express knex pg bower
-        fi
-
-        #instalando o atom
-        if [[ $atom == "s" ]]; then
-                #baixando o atom
-                wget https://atom.io/download/deb -O atom-amd64.deb
-
-                #executando o arquivo
-                dpkg -i atom-amd64.deb
-
-                #removendo o arquivo
-                rm atom-amd64.deb
-        fi
-
+        
         #instalando o libreoffice
         if [[ $libreoffice == "s" ]]; then
                 #adicionando ppa
                 add-apt-repository ppa:libreoffice/ppa -y
-                #instalando libreoffice
+               
+               #instalando libreoffice
                 apt install libreoffice* -y
         fi
 
@@ -1833,12 +1530,12 @@ install_yes()
         
         if [[ $hollywood == "s" ]]; then
                 #instalando recurso para hackear a matrix
-                sudo apt install hollywood
+                apt install hollywood
         fi
         
         if [[ $synaptic == "s" ]]; then
-                #instalando o synaptic
-                apt install synaptic* -y
+            #instalando o synaptic
+            apt install synaptic* -y
         fi
         
         if [[ $dolphin == "s" ]]; then
@@ -1866,16 +1563,6 @@ install_yes()
                 rm virtualbox.deb
         fi
         
-        if [[ $brackets == "s" ]]; then
-                #adicionando repositorio
-                add-apt-repository ppa:webupd8team/brackets && 
-                
-                #atualizando lista repositorios
-                apt update && 
-                
-                #instalando brackets
-                apt install brackets
-        fi
         
         if [[ $citra == "s" ]]; then
                 #SDL2
@@ -1915,8 +1602,11 @@ install_yes()
                 #adicionando repositorio
                 add-apt-repository ppa:paulo-miguel-dias/pkppa -y
 
+                #atualizando lista pacotes
+                apt update 
+                
                 #atualizando sistema
-                apt update && sudo apt-get dist-upgrade
+                apt-get dist-upgrade
         
                 #removendo caso erro
                 #ppa-purge ppa:paulo-miguel-dias/pkppa
@@ -1966,11 +1656,6 @@ install_yes()
                 apt install screenfetch -y
         fi
         
-        if [[ $midori == "s" ]]; then
-                #instalando o midori
-                apt install midori* -y
-        fi	
-
         if [[ $diolinux_paper == "s" ]]; then
                 #adicionando ppa			
                 add-apt-repository ppa:tiagosh/diolinux-paper-orange -y
@@ -2016,12 +1701,7 @@ install_yes()
                 #instalando supertuxkart				
                 apt install supertuxkart -y	
         fi	
-        
-        if [[ $figler == "s" ]]; then
-                #instalando o figler
-                apt install figler -y		
-        fi
-        
+                
         if [[ $cowsay == "s" ]]; then
                 #instalando cowsay
                 apt install cowsay* -y
@@ -2056,14 +1736,9 @@ install_yes()
                 #instalando o blender
                 apt-get install blender* -y
         fi
-        
-        if [[ $audacity == "s" ]]; then
-                #instalando o audacity
-                apt-get install audacity* -y
-        fi
-        
+                
         if [[ $cheese == "s" ]]; then
-                #instalando o audacity
+                #instalando o cheese
                 apt-get install cheese* -y
         fi
         
@@ -2109,11 +1784,6 @@ install_yes()
                 apt install wireshark* -y
         fi
         
-        if [[ $ubuntudesktop == "s" ]]; then
-                #instalando o ubuntudesktop
-                apt install ubuntu-desktop* -y
-        fi
-        
         if [[ $gnomediskutility == "s" ]]; then
                 #instalando o gnomediskutility
                 apt install gnome-disk-utility* -y
@@ -2130,17 +1800,6 @@ install_yes()
                 apt-get install smartgit smartgithg* -y
         fi
         
-        if [[ $gitkraken == "s" ]]; then
-                #baixando o git kraken
-                wget https://release.gitkraken.com/linux/gitkraken-amd64.deb -O gitkraken.deb
-
-                #instalando git kraken
-                dpkg -i gitkraken.deb
-
-                #removendo arquivo baixado
-                rm -r gitkraken.deb
-        fi
-            
         if [[ $chkrootkit == "s" ]]; then
                 #instalando o chkrootkit
                 apt install chkrootkit* -y
@@ -2234,18 +1893,7 @@ install_yes()
             #instalando o flatabulous
             apt-get install ultra-flat-icons-orange -y
         fi
-        
-        if [[ $materialdesign == "s" ]]; then
-            #adicionando ppa
-            add-apt-repository ppa:snwh/pulp -y 
-            
-            #atualizando lista pacotes
-            apt-get update 
-            
-            #instalando o materialdesign
-            apt-get install paper-icon-theme paper-gtk-theme -y
-        fi
-        
+                
         if [[ $gnomesystemtools == "s" ]]; then
             #instalando o gnomesystemtools
             apt install gnome-system-tools -y
@@ -2328,76 +1976,28 @@ auto_config_ubuntu()
     case $escolha in
     
     #atualizando o sistema
-    1) echo        
-    
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" atualizatudo   
+    1) echo            
+        update
+        upgrade	
+        kernel
+        ;;    
         
-        if [[ $atualizatudo == "s" ]]; then
-        {
-            atualizatudo
-        }
-        else
-        {        
-            update
-            upgrade	
-            kernel
-        }
-        fi
-        ;;
-            
     #corrigindo erros
     2) echo
-        
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" corrigetudo        
-        
-        if [[ $corrigetudo == "s" ]]; then
-        {
-            corrigetudo
-        }
-        else
-        {
-            corrigeerros
-            swap
-            pacotesquebrados
-            fontes
-        }
-        fi
+        corrigeerros
+        swap
+        pacotesquebrados
+        fontes
         ;;
     
     #limpando a máquina
     3) echo
-    
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" limpatudo 
-        
-        if [[ $limpatudo == "s" ]]; then
-        {
-            limpatudo
-        }
-        else
-        {
-            temporario
-            obsoleto
-            lixeira
-            firefoxcache
-            firefoxcookie
-            arquivosorfaos
-            arquivosinuteis
-            prelink_preload_deborphan
-            pacotes_antigos
-        }
-        fi
+        temporario
+        obsoleto
+        arquivosorfaos
+        arquivosinuteis
+        prelink_preload_deborphan
+        pacotes_antigos
         ;;
             
     #instalando programas	
@@ -2440,7 +2040,6 @@ auto_config_ubuntu()
                 
                 #multimidia
                 2) echo 
-                    audacity
                     cheese    
                     spotify
                     vlc
@@ -2458,7 +2057,6 @@ auto_config_ubuntu()
                 4) echo 
                     firefox    
                     chromium
-                    midori 
                     tor                         	                                                                                              
                     ;;
                         
@@ -2467,11 +2065,8 @@ auto_config_ubuntu()
                     kate
                     xampp
                     java
-                    nodejs
-                    atom
                     android
                     netbeans
-                    brackets
                     lammp
                     php
                     mysql
@@ -2500,10 +2095,8 @@ auto_config_ubuntu()
                     numixicon
                     plank                    
                     nautilus
-                    ubuntudesktop
                     vivacious
                     flatabulous
-                    materialdesign
                     gnomesystemtools
                     brightside
                     squarebeam
@@ -2515,8 +2108,7 @@ auto_config_ubuntu()
                 8) echo 
                     ntp
                     openssh
-                    bleachbit            
-                    figler                
+                    bleachbit                           
                     synapse
                     tlp
                     rar
@@ -2535,7 +2127,6 @@ auto_config_ubuntu()
                     wireshark
                     gnomediskutility
                     smartgit
-                    gitkraken
                     chkrootkit                    
                     ;;
                     
