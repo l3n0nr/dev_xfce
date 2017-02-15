@@ -1,6 +1,215 @@
 #!/bin/bash
-
-#verificando se o usuário é ROOT
+#
+######################
+# FONTES DE PESQUISA #
+######################
+#
+################################################################################
+# por oliveiradeflavio(Flávio Oliveira)
+# 	contato: <github.com/oliveiradeflavio/scripts-linux>
+#
+# por gmanson(Gabriel Manson)
+# 	contato: <github.com/gmasson/welcome-debian>
+#
+# por Lucas Alves Santos
+# 	fonte: <https://www.vivaolinux.com.br/script/Instalar-Tor-Browser/>
+#
+# por Edivaldo Brito
+# 	fonte: <http://www.edivaldobrito.com.br/instalando-ide-java-netbeans-8-0-ubuntu-e-derivados>
+#
+# por Fabiano de Oliveira e Souza
+# 	fonte: <https://www.vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
+#
+# por Lucas Novo Silva
+# 	fonte: <https://www.vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
+#
+# por Ricardo Ferreira
+# 	fonte: <http://www.linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
+#
+# por Vinícius Vieira
+#        fonte: <http://sejalivre.org/instalando-o-tor-browser-no-ubuntu-e-linux-mint/>
+#
+# por Dionatan Simioni
+# 	 fonte: <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
+#    	 fonte: <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
+# 	 fonte: <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+# 	 fonte: <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
+################################################################################
+#
+####################
+# DESENVOLVIDO POR #
+####################
+#
+# por lenonr(Lenon Ricardo) 
+#       contato: <lenonrmsouza@gmail.com>
+#
+#################################################################################
+#										#
+#	If I have seen further it is by standing on the shoulders of Giants.	#
+#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)		#
+#							~Isaac Newton		#
+#										#
+#################################################################################
+#
+####################################
+# versão do script: 1.0.140.6.17.5 #
+####################################
+#
+# legenda: a.b.c.d.e.f
+# 	a = alpha[0], beta[1];
+# 	b = erros na execução;	
+# 	c = interações com o script + versões funcionando;
+# 	d = correções necessárias;
+#		netbeans
+#		android
+#		vga
+#		mutate
+#               tor
+# 	e = pendencias
+#		GBA
+#		DeSmuME
+#               Openshot
+#               K3b
+#               Scribus
+#               Umbrello
+#               Opera
+#               Skype
+#               Tuxpaint
+#               Calibre
+#               UNetbootin
+#               Code::blocks IDE
+#               PgAdminIII
+#               Samba
+#
+# 	f = desenvolver
+# 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
+#		-Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
+#		-Verificar a arquitetura do sistema, para a instalação de determinados programas;
+#               -Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
+#               -Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
+#
+################################################################################
+#
+# Script testado em
+#	-Xubuntu 16.04
+#
+# Compativel com
+#	-Ubuntu
+#	-Fedora
+#
+################################################################################
+################################################################################
+# FUNCOES
+# Atualização
+# # [+] Update
+# #     [+] Update-Grud
+# # [+] Upgrade
+# # [+] Kernel 
+# #     [+] Remove antigos
+# #     [+] Atualiza novo
+################################################################################
+# CorrigindoErros
+# # [+] Swap
+# # [+] Prelink, Preload, Deborphan
+# # [+] Pacotes com problemas
+# # [+] Fontes
+################################################################################
+# Limpeza
+# # [+] Excluindo pacotes antigos
+# # [+] Excluindo pacotes orfaõs
+# # [+] Removendo arquivos temporários
+# # [+] Arquivos obsoletos
+# # [+] Kernel's antigos
+# # [+] Removendo arquivos (.bak, ~, tmp) pasta Home
+# # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
+################################################################################
+# Instalação
+# # [-] Todos Programas
+# # [+] Firefox
+# # [+] Steam
+# # [+] Xampp
+# # [+] Spofity
+# # [+] Icones/Temas Mac
+# # [+] Codec's
+# # [+] Gimp
+# # [+] XFCE
+# # [+] Java 8
+# # [+] Redshift
+# # [+] Flux
+# # [+] Libreoffice
+# # [-] Netbeans
+# #     VERIFICAR, INSTALAR TAMBEM JDK
+# #     
+# # [+] Vlc
+# # [+] Clementine
+# # [+] Gparted
+# # [+] Tlp
+# # [+] Rar
+# # [+] Git
+# # [+] Lm-sensors
+# # [+] Stellarium
+# # [+] Texmaker
+# # [+] Gnome-terminal
+# # [+] Reaver
+# # [+] Tor
+# # VERIFICAR ARQUITETURA PARA INSTALAR
+# # [+] Android Studio
+# #     VERIFICAR, INSTALAR TAMBEM JDK	
+# # 
+# # [+] NTP
+# # [+] Hollywood
+# # [+] Synaptic	
+# # [+] Virtualbox
+# # [+] Citra
+# # [-] DeSmuME 
+# #     ENCONTRAR FORMA DE INSTALAÇÃO AUTOMÁTICA
+# # [-] GBA - Gameboyadvanced
+# # [+] Mesa - ppa
+# # [-] Mutate
+# # [+] Screenfetch
+# # [+] Diolinux_paper(Diolinux Paper Orange Modern)
+# # [+] Kdenlive
+# # [+] Openssh(Client-Servidor)
+# # [+] Bleachbit
+# # [+] Supertuxkart
+# # [+] Cowsay
+# # [+] Chromium
+# # [+] Synapse
+# # [+] Sweet Home 3d
+# # [+] Kate
+# # [+] Inkscape
+# # [+] Blender
+# # [-] Calibre
+# # [+] Numix Icon
+# # [+] Plank
+# # [+] Gnome System Monitor
+# # [+] Nautilus
+# # [+] Wireshark
+# # [+] Gnome-disk-utility
+# # [+] Smartgit
+# # [+] Chkrootkit
+# # [+] Vivacious
+# # [+] Lampp
+# # [+] Php
+# # [+] Mysql
+# # [+] Ftp
+# # [+] Quota
+# # [+] Flatabulous
+# # [+] Gnome System Tools
+# # [+] Brightside
+# # [+] Square-Beam
+# # [+] Liquorix
+# # [+] Moka
+# # [+] Mousepad
+# # [+] Dolphin
+#
+################################################################################	
+# Reinicialização
+# # [+]Reiniciar
+################################################################################
+#
+################################################################################
+######VERIFICANDO USUARIO ROOT
 if [[ `id -u` -ne 0 ]]; then
     clear
     echo "Você precisa ter poderes administrativos (root)"
@@ -8,49 +217,56 @@ if [[ `id -u` -ne 0 ]]; then
     sleep 3
     exit
 fi
+################################################################################
+######ATUALIZA SISTEMA
+atualiza()
+{
+    clear
+    echo ""
+    echo "Deseja atualizar o sistema (s/n)? "
+    read -p "??" atualiza
+}
 
 ################################################################################
-######CORREÇÃO SISTEMA
-atualiza_tudo()
+######CORRIGE SISTEMA
+corrige()
 {
     clear
     echo ""
-    echo "Deseja realizar todas as funções do 'atualiza tudo' (s/n)? "
-    read -p "??" atualiza_tudo
+    echo "Deseja corrigir os problemas do sistema (s/n)? "
+    read -p "??" corrige
 }
 
-update()
+################################################################################
+######LIMPA SISTEMA
+limpa()
 {
     clear
     echo ""
-    echo "Deseja atualizar os repositórios de sua máquina (s/n)?"
-    read -p "??" update        
+    echo "Deseja realizar um limpeza no sistema (s/n)? "
+    read -p "??" limpa
 }
 
-upgrade()
+################################################################################
+######INSTALANDO PROGRAMAS
+instala()
 {
     clear
     echo ""
-    echo "Deseja atualizar os programas de sua máquina (s/n)?"
-    read -p "??" upgrade        
+    echo "Deseja instalar os programas padrões no sistema (s/n)? "
+    read -p "??" instala
 }
 
-
-if [[ $atualiza_tudo == "s" || $upgrade == "s" ]]; then
+################################################################################
+######REINICIANDO SISTEMA
+reinicia()
+{
     clear
-    echo "Atualizando os programas da máquina"
-    echo "----------------------------------------------------------------------"
-    apt upgrade -y
-    apt-get dist-upgrade    
-fi
+    echo ""
+    echo "Deseja reiniciar o sistema (s/n)? "
+    read -p "??" reinicia
+}
 
-if [[ $atualiza_tudo == "s" || $update == "s" ]]; then
-    clear
-    echo "Atualizando os repositórios na máquina"
-    echo "----------------------------------------------------------------------"
-    apt update
-    update-grub                
-fi        
 
 ################################################################################
 #criando função global, que inicia todas as outras
@@ -67,312 +283,42 @@ auto_config_ubuntu()
     echo "Digite 6 para sair do script;"
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
+    
     clear
-    case $escolha in
-    
-    #atualizando o sistema
-    1) echo        
-    
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" atualizatudo   
-        
-        if [[ $atualizatudo == "s" ]]; then
-        {       
-            update
-            upgrade	
-            kernel
-        }
-        fi
-        ;;
+    case $escolha in    
+        #atualizando o sistema
+        1) echo        
+            atualiza
             
-    #corrigindo erros
-    2) echo
-        
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" corrigetudo        
-        
-        if [[ $corrigetudo == "s" ]]; then
-        {
-            echo $corrigetudo
-            corrigetudo
-        }
-        else
-        {
-            corrigeerros
-            swap
-            pacotesquebrados
-            fontes
-        }
-        fi
-        ;;
-    
-    #limpando a máquina
-    3) echo
-    
-        #verificando
-        clear
-        echo ""
-        echo "Deseja corrigir todos os problemas do sistema(s/n)?"
-        read -p "??" limpatudo 
-        
-        if [[ $limpatudo == "s" ]]; then
-        {
-            limpatudo
-        }
-        else
-        {
-            temporario
-            obsoleto
-            lixeira
-            firefoxcache
-            firefoxcookie
-            arquivosorfaos
-            arquivosinuteis
-            prelink_preload_deborphan
-            pacotes_antigos
-        }
-        fi
-        ;;
+        #corrigindo erros
+        2) echo
+            corrige
             
-    #instalando programas	
-    4) echo
-            echo "Categorias"            
-            #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-            echo "---------------------------------------------------------"
-            #######VERIFICAR
-            echo "Digite 0 para instalar todos os programas das categorias,"
-            echo "---------------------------------------------------------"
-            echo "Digite 1, para entrar na área de Jogos,"
-            echo "Digite 2, para entrar na área de Multimidia, "
-            echo "Digite 3, para entrar na área de Escritório," 
-            echo "Digite 4, para entrar na área de Internet," 
-            echo "Digite 5, para entrar na área de Desenvolvimento,"
-            echo "Digite 6, para entrar na área de Gráficos,"
-            echo "Digite 7, para entrar na área de Personalização do sistema,"
-            echo "Digite 8, para entrar na área de outros programas,"
-            echo "Digite 9, para instalar os programas padrões;"
-            echo "---------------------------------------------------------"
-            echo "Digite X, para sair do script;"
-            echo "---------------------------------------------------------"
-            read -n1 -p "Ação:" categoria
-            clear
-            case $categoria in
-                #instalando todos os programas
-                0) echo
-#                   tudo
-                    ;;
-                    
-                #jogos
-                1) echo 
-                    steam
-                    supertuxkart
-                    wine
-                    playonlinux
-                    citra
-                    dolphin
-                    ;;
-                
-                #multimidia
-                2) echo 
-                    audacity
-                    cheese    
-                    spotify
-                    vlc
-                    clementine
-                    kdenlive
-                    ;;
-                
-                #escritorio
-                3) echo 
-                    libreoffice            
-                    texmaker 
-                    ;;
-                        
-                #internet
-                4) echo 
-                    firefox    
-                    chromium
-                    midori 
-                    tor                         	                                                                                              
-                    ;;
-                        
-                #desenvolvimento        
-                5) echo 
-                    kate
-                    xampp
-                    java
-                    nodejs
-                    atom
-                    android
-                    netbeans
-                    lammp
-                    php
-                    mysql
-                    ftp
-                    quota
-                    ;;
-                
-                #graficos
-                6) echo 
-                    sweethome3d            
-                    inkscape
-                    blender
-                    gimp
-                    ;;
-                    
-                #personalizacao    
-                7) echo    
-                    cowsay
-                    mac
-                    codecs
-                    screenfetch
-                    diolinux_paper
-                    xfce
-                    redshift
-                    flux
-                    numixicon
-                    plank                    
-                    nautilus
-                    ubuntudesktop
-                    vivacious
-                    flatabulous
-                    materialdesign
-                    gnomesystemtools
-                    brightside
-                    squarebeam
-                    liquorix
-                    moka
-                    ;;                    
-                    
-                #outros programas
-                8) echo 
-                    ntp
-                    openssh
-                    bleachbit            
-                    figler                
-                    synapse
-                    tlp
-                    rar
-                    git
-                    lmsensors
-                    gnometerminal
-                    reaver
-                    gnomesystemmonitor
-                    hollywood
-                    synaptic            
-                    mesa
-                    mutate
-                    gparted            
-                    stellarium            
-                    virtualbox
-                    wireshark
-                    gnomediskutility
-                    smartgit
-                    gitkraken
-                    chkrootkit                    
-                    ;;
-                    
-                #programas padroes    
-                9) echo
-                    #desenvolvimento
-                        kate
-                        xampp
-                        java
-                        netbeans
-                    
-                    #internet
-                        firefox
-                        tor
-                    
-                    #escritorio
-                        libreoffice
-                        texmaker
-                        mousepad
-                    
-                    #graficos
-                        sweethome3d
-                        gimp
-                        inkscape
-                    
-                    #jogos
-                        wine
-                        playonlinux
-                        dolphin
-                        steam
-                        visualgameboyadvanced
-                    
-                    #multimidia
-                        cheese
-                        spotify
-                        vlc
-                        clementine
-                    
-                    #personalização
-                        mac
-                        codecs
-                        xfce
-                        plank
-                        gnomesystemmonitor
-                        nautilus
-                        moka
-                    
-                    #outros
-                        ntp
-                        tlp
-                        rar
-                        git 
-                        stellarium
-                        virtualbox
-                        flux
-                    ;;
-                    
-                #voltando ao menu anterior        
-                v|V) echo 
-                    menu
-                    ;;
-                        
-                #fechando        
-                x|X)echo Finalizando o script...
-                    sleep 1
-                    clear        
-                    exit                    
-                    ;;
-
-                *)  echo Alternativa incorreta!!
-                    sleep 1
-                    menu
-                    exit
-                    ;;
-            esac
-            ;;
-    #reiniciando	
-    5) echo
-            reinicia
-            ;;
-    
-    #saindo
-    6) echo 	
+        #realizando limpeza
+        3) echo
+            limpa
+            
+        #instalando programas
+        4) echo
+            instala
+            
+        #reiniciando	
+        5) echo
+            reinicia 
+            
+        #saindo
+        6) echo 	
             exit
             ;;
-            
-    #entrada inválida	
-    *) echo
+                
+        #entrada inválida	
+        *) echo
             echo Alternativa incorreta!!
             sleep 1
             menu
             exit
             ;;
     esac
-
-#inicia as funções que o usuário escolheu, executando primeiro as que ele deseja, posteriormente mostrando as que ele não quis realizar.
-    install_yes
-    #install_no
 
     echo "TAREFAS FINALIZADAS, SAINDO.."
     clear
@@ -409,7 +355,6 @@ menu()
                                 echo "Você utiliza a distribuição(ou derivação) Ubuntu"
                                 echo "Serão executadas ações especificas para esse tipo de distribuição"
                                 echo "------------------------------------------------"
-                                clear
                                 auto_config_ubuntu
 
                         #executando ações para a distribuição Fedora	
