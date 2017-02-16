@@ -6,34 +6,34 @@
 #
 ################################################################################
 # por oliveiradeflavio(Flávio Oliveira)
-# 	contato: <github.com/oliveiradeflavio/scripts-linux>
+# 	<github.com/oliveiradeflavio/scripts-linux>
 #
 # por gmanson(Gabriel Manson)
-# 	contato: <github.com/gmasson/welcome-debian>
+# 	<github.com/gmasson/welcome-debian>
 #
 # por Lucas Alves Santos
-# 	fonte: <https://www.vivaolinux.com.br/script/Instalar-Tor-Browser/>
+# 	<https://www.vivaolinux.com.br/script/Instalar-Tor-Browser/>
 #
 # por Edivaldo Brito
-# 	fonte: <http://www.edivaldobrito.com.br/instalando-ide-java-netbeans-8-0-ubuntu-e-derivados>
+# 	<http://www.edivaldobrito.com.br/instalando-ide-java-netbeans-8-0-ubuntu-e-derivados>
 #
 # por Fabiano de Oliveira e Souza
-# 	fonte: <https://www.vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
+# 	<https://www.vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
 #
 # por Lucas Novo Silva
-# 	fonte: <https://www.vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
+# 	<https://www.vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
 #
 # por Ricardo Ferreira
-# 	fonte: <http://www.linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
+# 	<http://www.linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
 #
 # por Vinícius Vieira
-#        fonte: <http://sejalivre.org/instalando-o-tor-browser-no-ubuntu-e-linux-mint/>
+#        <http://sejalivre.org/instalando-o-tor-browser-no-ubuntu-e-linux-mint/>
 #
 # por Dionatan Simioni
-# 	 fonte: <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
-#    	 fonte: <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
-# 	 fonte: <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
-# 	 fonte: <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
+# 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
+#    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
+# 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+# 	 <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
 ################################################################################
 #
 ####################
@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.140.6.17.5 #
+# versão do script: 1.0.156.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -60,27 +60,7 @@
 # 	b = erros na execução;	
 # 	c = interações com o script + versões funcionando;
 # 	d = correções necessárias;
-#		netbeans
-#		android
-#		vga
-#		mutate
-#               tor
 # 	e = pendencias
-#		GBA
-#		DeSmuME
-#               Openshot
-#               K3b
-#               Scribus
-#               Umbrello
-#               Opera
-#               Skype
-#               Tuxpaint
-#               Calibre
-#               UNetbootin
-#               Code::blocks IDE
-#               PgAdminIII
-#               Samba
-#
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
 #		-Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
@@ -98,23 +78,26 @@
 #	-Fedora
 #
 ################################################################################
-################################################################################
 # FUNCOES
-# Atualização
+#
+################################################################################
+######ATUALIZA SISTEMA
 # # [+] Update
 # #     [+] Update-Grud
 # # [+] Upgrade
 # # [+] Kernel 
 # #     [+] Remove antigos
 # #     [+] Atualiza novo
+# # 
 ################################################################################
-# CorrigindoErros
+######CORRIGE SISTEMA
 # # [+] Swap
 # # [+] Prelink, Preload, Deborphan
 # # [+] Pacotes com problemas
 # # [+] Fontes
+# # 
 ################################################################################
-# Limpeza
+######LIMPA SISTEMA
 # # [+] Excluindo pacotes antigos
 # # [+] Excluindo pacotes orfaõs
 # # [+] Removendo arquivos temporários
@@ -122,9 +105,9 @@
 # # [+] Kernel's antigos
 # # [+] Removendo arquivos (.bak, ~, tmp) pasta Home
 # # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
+# # 
 ################################################################################
-# Instalação
-# # [-] Todos Programas
+######INSTALANDO PROGRAMAS
 # # [+] Firefox
 # # [+] Steam
 # # [+] Xampp
@@ -137,9 +120,6 @@
 # # [+] Redshift
 # # [+] Flux
 # # [+] Libreoffice
-# # [-] Netbeans
-# #     VERIFICAR, INSTALAR TAMBEM JDK
-# #     
 # # [+] Vlc
 # # [+] Clementine
 # # [+] Gparted
@@ -152,20 +132,12 @@
 # # [+] Gnome-terminal
 # # [+] Reaver
 # # [+] Tor
-# # VERIFICAR ARQUITETURA PARA INSTALAR
-# # [+] Android Studio
-# #     VERIFICAR, INSTALAR TAMBEM JDK	
-# # 
 # # [+] NTP
 # # [+] Hollywood
 # # [+] Synaptic	
 # # [+] Virtualbox
 # # [+] Citra
-# # [-] DeSmuME 
-# #     ENCONTRAR FORMA DE INSTALAÇÃO AUTOMÁTICA
-# # [-] GBA - Gameboyadvanced
 # # [+] Mesa - ppa
-# # [-] Mutate
 # # [+] Screenfetch
 # # [+] Diolinux_paper(Diolinux Paper Orange Modern)
 # # [+] Kdenlive
@@ -179,7 +151,6 @@
 # # [+] Kate
 # # [+] Inkscape
 # # [+] Blender
-# # [-] Calibre
 # # [+] Numix Icon
 # # [+] Plank
 # # [+] Gnome System Monitor
@@ -202,71 +173,149 @@
 # # [+] Moka
 # # [+] Mousepad
 # # [+] Dolphin
-#
+# #
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
 ################################################################################
 #
-################################################################################
-######VERIFICANDO USUARIO ROOT
-if [[ `id -u` -ne 0 ]]; then
-    clear
-    echo "Você precisa ter poderes administrativos (root)"
-    echo "O script está sendo finalizado ..."
-    sleep 3
-    exit
-fi
-################################################################################
-######ATUALIZA SISTEMA
-atualiza()
-{
-    clear
-    echo ""
-    echo "Deseja atualizar o sistema (s/n)? "
-    read -p "??" atualiza
-}
-
-################################################################################
-######CORRIGE SISTEMA
-corrige()
-{
-    clear
-    echo ""
-    echo "Deseja corrigir os problemas do sistema (s/n)? "
-    read -p "??" corrige
-}
-
-################################################################################
-######LIMPA SISTEMA
-limpa()
-{
-    clear
-    echo ""
-    echo "Deseja realizar um limpeza no sistema (s/n)? "
-    read -p "??" limpa
-}
-
-################################################################################
-######INSTALANDO PROGRAMAS
-instala()
-{
-    clear
-    echo ""
-    echo "Deseja instalar os programas padrões no sistema (s/n)? "
-    read -p "??" instala
-}
-
-################################################################################
-######REINICIANDO SISTEMA
-reinicia()
-{
-    clear
-    echo ""
-    echo "Deseja reiniciar o sistema (s/n)? "
-    read -p "??" reinicia
-}
-
+################################################################################ 
+##REALIZANDO VERIFICAÇÕES
+    ######VERIFICANDO USUARIO ROOT
+    if [[ `id -u` -ne 0 ]]; then
+        clear
+        echo "Você precisa ter poderes administrativos (root)"
+        echo "O script está sendo finalizado ..."
+        sleep 3
+        exit
+    fi
+        
+    ##CHAMANDOS FUNCOES    
+    #     
+    ################################################################################
+    ######ATUALIZA SISTEMA
+        if [[ $escolha == "1" ]]; then
+            #update
+                if [ "$distro" == "Ubuntu" ]; then
+                        clear
+                        echo "Atualizando os repositórios na máquina"
+                        echo "----------------------------------------------------------------------"
+                        apt update
+                        update-grub
+                        
+                elif [ "$distro" == "Fedora" ]; then
+                        clear
+                        echo "Atualizando os repositórios na máquina"
+                        echo "----------------------------------------------------------------------"
+                        dnf distro-sync 
+                fi
+                
+            #upgrade
+                if [ "$distro" == "Ubuntu" ]; then
+                        echo "Atualizando os programas da máquina"
+                        echo "----------------------------------------------------------------------"
+                        apt upgrade -y
+                        apt-get dist-upgrade
+                elif [ "$distro" == "Fedora" ]; then
+                        clear
+                        echo "Atualizando os programas da máquina"
+                        echo "----------------------------------------------------------------------"
+                        dnf update -y 
+                fi
+                
+            
+        fi
+        
+    ################################################################################
+    ######CORRIGE SISTEMA
+        if [[ $escolha == "2" ]]; then
+            #corrigeerros
+                if [ "$distro" == "Ubuntu" ]; then
+                    clear
+                    echo "Corrigindo possiveis erros no Sistema"
+                    echo "----------------------------------------------------------------------"
+                    apt-get check -y 
+                    dpkg --configure -a -y
+                    apt-get -f install 
+                    apt-get -f remove -y 
+                    apt-get autoremove -y 
+                    apt-get clean -y 
+                    apt-get install auto-apt -y 
+                    auto-apt update-local -y 
+                    auto-apt update -y 
+                    auto-apt updatedb -y
+                else
+                    echo "Função incompativel"                    
+                fi        
+                
+            #swap
+                if [ "$distro" == "Ubuntu" ]; then
+                    echo "Configurando a Swap"
+                    echo "-------------------"
+                    memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
+                    memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
+                    background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
+                    ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
+                    clear
+                    echo "Diminuindo a Prioridade de uso da memória SWAP"
+                    echo
+                    if [[ $memoswap == "vm.swappiness=10" ]]; then
+                            echo "Otimizando..."
+                            /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf"
+                    elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
+                            echo "Otimizando..."
+                            /bin/su -c "echo 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
+                    elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
+                            echo "Otimizando..."
+                            /bin/su -c "echo 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
+                    elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
+                            echo "Otimizando..."
+                            /bin/su -c "echo 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
+                    else
+                            echo "Não há nada para ser otimizado"
+                            echo "Isso porque já foi otimizado anteriormente!"
+                    fi
+                else
+                    echo "Função incompativel"
+                fi
+                
+            #prelink, preload
+                if [ "$distro" == "Ubuntu" ]; then
+                    echo "Instalando Prelink, Preload e Deborphan"
+                    #prelink =
+                    #preload =
+                    #deborphan = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
+                    echo "-------------------"
+                    sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
+                    sudo apt-get install deborphan -y
+            
+                    echo "Configurando Deborphan..."
+                    sudo deborphan | xargs sudo apt-get -y remove --purge &&
+                    sudo deborphan --guess-data | xargs sudo apt-get -y remove --purge
+                    
+                    #configurando o prelink e o preload
+                    echo ""
+                    echo "Configurando Prelink e Preload..."
+                    echo "-------------------"
+                            memfree=$(grep "memfree = 50" /etc/preload.conf)
+                            memcached=$(grep "memcached = 0" /etc/preload.conf)
+                            processes=$(grep "processes = 30" /etc/preload.conf)
+                            prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
+                                                    
+                    echo "Ativando o PRELINK"
+                    echo "-------------------"
+                    if [[ $prelink == "PRELINKING=unknown" ]]; then
+                            echo "adicionando ..."
+                            sed -i 's/unknown/yes/g' /etc/default/prelink	
+                    else
+                            echo "Otimização já adicionada anteriormente."
+                    fi
+                else
+                    echo "Função incompativel"
+                fi
+        fi
+    
+    
 
 ################################################################################
 #criando função global, que inicia todas as outras
@@ -289,22 +338,27 @@ auto_config_ubuntu()
         #atualizando o sistema
         1) echo        
             atualiza
+            ;;
             
         #corrigindo erros
         2) echo
             corrige
+            ;;
             
         #realizando limpeza
         3) echo
             limpa
+            ;;
             
         #instalando programas
         4) echo
             instala
+            ;;
             
         #reiniciando	
         5) echo
             reinicia 
+            ;;
             
         #saindo
         6) echo 	
@@ -324,19 +378,6 @@ auto_config_ubuntu()
     clear
 }
 
-################################################################################
-auto_config_fedora()
-{
-    echo "INICIANDO AS TAREFAS"
-            #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-            
-    #inicia as funções que o usuário escolheu, executando primeiro as que ele deseja, posteriormente mostrando as que ele não quis realizar.
-        update
-        upgrade	
-        arquivosinuteis		
-}
-
-################################################################################
 #mostrando mensagem inicial
 menu()
 {
