@@ -243,14 +243,13 @@ auto_config_ubuntu()
         
     ################################################################################
     ######CORRIGE SISTEMA
-        2) echo              
-        
+        2) echo                      
             if [ "$distro" == "Ubuntu" ]; then
                 clear
                 echo "Corrigindo possiveis erros no Sistema"
                 echo "----------------------------------------------------------------------"
                 apt-get check -y 
-                dpkg --configure -a -y
+                dpkg --configure -a 
                 apt-get -f install 
                 apt-get -f remove -y 
                 apt-get autoremove -y 
@@ -328,8 +327,121 @@ auto_config_ubuntu()
             else
                 echo "Função incompativel"
             fi
-            ;;
-                         
+        
+        #corrigindo pacotes quebrados
+            echo "Corrigindo pacotes quebrados"
+            echo "----------------------------"
+            dpkg --configure -a
+            #VERIFICAR AÇÕES
+            rm -r /var/lib/apt/lists  sudo mkdir -p /var/lib/apt/lists/partial
+            
+        #corrigindo erros fontes
+            echo "Instalando pacotes de fontes"
+            echo "----------------------------"
+            #baixando pacote
+            wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+            
+            #instalando pacote
+            dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+            
+            #removendo pacote
+            rm -f ttf-mscorefonts-installer_3.6_all.deb
+        ;;
+                
+    ################################################################################
+    ######LIMPA SISTEMA
+        3) echo
+            #removendo kernel antigo
+                echo "Removendo os kernel's temporários do sistema"
+                echo "--------------------------------------------"
+
+                #removendo kernel's antigos
+                dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^]*\).*/\1/;/[0-9]/!d' | xargs apt-get -y purge
+                
+                #removendo arquivos
+                apt autoremove -y
+                
+                echo "Instalando kernel's novos"
+                echo "--------------------------------------------"
+                
+                #instalando lynx
+                apt install lynx -y
+                
+                #Baixa a lista de kernel e atributos
+                list=$(lynx --dump http://kernel.ubuntu.com/~kernel-ppa/mainline/ | awk '/http/{print $2}')
+                AddressLastVersion=$( echo "${list}"  | grep -v rc | tail -n 1)
+                LastKernelAvaliable=$(echo $AddressLastVersion | cut -d "/" -f 6 | cut -d "-" -f1 | tr -d v )
+        
+                if [ -z $(echo $LastKernelAvaliable | cut -d "." -f3) ]  ; then LastKernelAvaliable=${LastKernelAvaliable}.0; fi  
+
+                        #kernel instalado
+                        LastKernelInstalled=$(ls /boot/ | grep img | cut -d "-" -f2 | sort -V | cut -d "." -f1,2,3 | tail -n 1)
+
+                        #tipo do processador
+                        arch=`uname -m`
+                        if  [ $arch = i686 ] || [ $arch = i386 ]; then 
+                                myarch="i386" 
+                        elif [ $arch = "x86_64" ]; then
+                                myarch="amd64"
+                        else 
+                                echo "Não foram encontrados pacotes para o seu processador :("
+                        exit 0
+                fi
+
+                #comparação
+                if [ $LastKernelInstalled = $LastKernelAvaliable ]; then
+                        echo
+                        echo
+                        echo "Seu Kernel" $LastKernelInstalled  "e' a versão mais recente disponível."
+                        echo "Até mais! :)"
+                        echo
+                        echo	
+                else
+                        echo
+                        echo "Seu Kernel e' o" $LastKernelInstalled "está disponível" $LastKernelAvaliable
+                        echo
+                        echo "Baixando o novo Kernel"
+                        DownloadFolder=/tmp/kernel_$LastKernelAvaliable; mkdir -p $DownloadFolder; cd $DownloadFolder
+                        wget $(lynx -dump -listonly $AddressLastVersion | awk '/http/{print $2}' | egrep 'all.deb|generic(.){1,}'$myarch'.deb')
+                        echo
+                        echo "...e vamos instalar"
+                        echo
+                        sudo dpkg -i *.deb
+                        echo
+                        echo "Para usar o novo Kernel vocẽ deve reiniciar o computador"
+                fi
+                
+            #removendo arquivos temporarios
+                echo "Removendo arquivos temporários do sistema"
+                echo "-----------------------------------------"
+                find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+                        
+            
+            #removendo arquivos obsoletos
+                echo "Removendo os arquivos obsoletos do sistema"
+                echo "-----------------------------------------"
+                apt-get clean -y && apt-get autoclean -y
+
+            #limpando arquivos orfaos
+                echo "Removendo Pacotes Órfãos"
+                echo "------------------------"
+                apt-get remove $(deborphan) -y ; apt-get autoremove -y
+            
+            #limpando arquivos inuteis
+                if [ "$distro" == "Ubuntu" ]; then
+                        echo "Removendo Pacotes inúteis"
+                        echo "------------------------"
+                        apt-get clean -y
+                elif [ "$distro" == "Fedora" ]; then
+                        echo "Removendo Pacotes inúteis"
+                        echo "------------------------"				
+                        dnf autoremove -y 
+                        dnf clean all 
+                fi	
+            
+            #removendo pacotes antigos
+                apt-get autoremove -y
+        ;;
+    
         #entrada inválida	
         *) echo
             echo Alternativa incorreta!!
@@ -350,46 +462,46 @@ menu()
     echo "Bem vindo ao script de automação de tarefas em Linux"
     echo "Ele irá realizar os seguintes passos"
     read -n1 -p "Para continuar escolha s(sim) ou n(não)  " escolha
-            case $escolha in
-                s|S) echo
-                        #verificar distribuição utilizada
-                        distro=$(cat /etc/*-release | grep DISTRIB_ID | sed -e "s;DISTRIB_ID=;;")
-                        
-                        #executando ações para a distribuição Ubuntu
-                        if [ "$distro" == "Ubuntu" ]; then
-                                clear
-                                echo "Você utiliza a distribuição(ou derivação) Ubuntu"
-                                echo "Serão executadas ações especificas para esse tipo de distribuição"
-                                echo "------------------------------------------------"
-                                auto_config_ubuntu
+        case $escolha in
+            s|S) echo
+                    #verificar distribuição utilizada
+                    distro=$(cat /etc/*-release | grep DISTRIB_ID | sed -e "s;DISTRIB_ID=;;")
+                    
+                    #executando ações para a distribuição Ubuntu
+                    if [ "$distro" == "Ubuntu" ]; then
+                            clear
+                            echo "Você utiliza a distribuição(ou derivação) Ubuntu"
+                            echo "Serão executadas ações especificas para esse tipo de distribuição"
+                            echo "------------------------------------------------"
+                            auto_config_ubuntu
 
-                        #executando ações para a distribuição Fedora	
-                        elif [ "$distro" == "Fedora" ]; then
-                                clear
-                                echo "Você utiliza a distribuição(ou derivação) Red Hat"
-                                echo "Serão executadas ações especificas para esse tipo de distribuição"
-                                echo "------------------------------------------------"
-                                clear
-                                auto_config_fedora					
-                                
-                        #distribuição não identificada	
-                        else
-                                echo "Disponivel para Fedora e Ubuntu!!!"
-                                echo "Script incompativel temporariamente"
-                        fi
-                        ;;
-                n|N) echo
-                        echo Finalizando o script...
-                        sleep 1
-                        exit
-                        ;;
-                *) echo
-                        echo Alternativa incorreta!!
-                        sleep 1
-                        menu
-                        exit
-                        ;;
-            esac
+                    #executando ações para a distribuição Fedora	
+                    elif [ "$distro" == "Fedora" ]; then
+                            clear
+                            echo "Você utiliza a distribuição(ou derivação) Red Hat"
+                            echo "Serão executadas ações especificas para esse tipo de distribuição"
+                            echo "------------------------------------------------"
+                            clear
+                            auto_config_fedora					
+                            
+                    #distribuição não identificada	
+                    else
+                            echo "Disponivel para Fedora e Ubuntu!!!"
+                            echo "Script incompativel temporariamente"
+                    fi
+                    ;;
+            n|N) echo
+                    echo Finalizando o script...
+                    sleep 1
+                    exit
+                    ;;
+            *) echo
+                    echo Alternativa incorreta!!
+                    sleep 1
+                    menu
+                    exit
+                    ;;
+        esac
 }
 
 ################################################################################
