@@ -346,6 +346,33 @@ auto_config_ubuntu()
             
             #removendo pacote
             rm -f ttf-mscorefonts-installer_3.6_all.deb
+            
+        #ntp
+            clear
+            echo "Corrigindo NTP "
+            echo "----------------------------------------------------------------------"
+            
+            #instalando software necessario
+            apt install ntpdate* -y
+
+            #realizando atualizacao hora/data
+            echo "Atualizando hora do servidor"
+            echo "Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
+
+            #servidor 1
+            echo "Servidor ntp.cais.rnp.br"
+                /usr/sbin/ntpdate ntp.cais.rnp.br
+
+            #servidor 2			
+            echo "Servidor ntp.ansp.br"
+                /usr/sbin/ntpdate ntp.ansp.br
+                    
+            #servidor 3
+            echo "Servidor ntp.iffca.edu.br"
+                /usr/sbin/ntpdate ntp.iffca.edu.br
+
+            echo "Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
+            echo "Hora do servidor atualizada!"
         ;;
                 
     ################################################################################
@@ -441,6 +468,419 @@ auto_config_ubuntu()
             #removendo pacotes antigos
                 apt-get autoremove -y
         ;;
+    
+    ################################################################################
+    ######INSTALA PROGRAMAS
+        4) echo            
+            #firefox
+                clear
+                echo "Instalando Firefox"
+                echo "----------------------------------------------------------------------"
+                apt install firefox* -y
+            
+            #steam
+                clear
+                echo "Instalando Steam"
+                echo "----------------------------------------------------------------------"
+                apt install steam* -y
+            
+            #spotify
+                clear
+                echo "Instalando Spotify"
+                echo "----------------------------------------------------------------------"
+                #baixando pacote
+                sh -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+
+                #baixando chave
+                apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+
+                #atualizando lista de repositorios
+                apt update -y
+
+                #instalando o spotify
+                apt install spotify-client -y
+                
+            #icones MAC OS-X
+                clear
+                echo "Instalando icones e temas do MacOS X"
+                echo "----------------------------------------------------------------------"
+                #adicionando repositorio
+                add-apt-repository ppa:noobslab/macbuntu -y
+
+                #atualizando lista de repositorios
+                apt update
+
+                #instalando icones do MacOS
+                apt-get install macbuntu-os-icons-lts-v7 -y
+
+                #instalando tema do MacOS
+                apt-get install macbuntu-os-ithemes-lts-v7 -y
+                
+            #codecs multimidia
+                clear
+                echo "Instalando Pacotes Multimidias (Codecs)"
+                echo "----------------------------------------------------------------------"
+                #instalando pacotes multimidias
+                apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
+                
+            #gimp
+                clear
+                echo "Instalando o Gimp"
+                echo "----------------------------------------------------------------------"
+                apt install gimp* -y
+                
+            #xfce
+                clear
+                if [ "$distro" == "Ubuntu" ]; then
+                        echo "Instalando Adicionais do XFCE4"
+                        echo "----------------------------------------------------------------------"
+                        #instalando componentes do XFCE
+                        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
+
+                        #dando permissão de leitura, para verificar temperatura do HDD
+                        chmod u+s /usr/sbin/hddtemp
+                        
+                elif [ "$distro" == "Fedora" ]; then
+                        echo "Instalando Adicionais do XFCE4"
+                        echo "----------------------------------------------------------------------"
+                        #instalando componentes do XFCE
+                        dnf install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin -y -f -q
+                        
+                        #dando permissão de leitura, para verificar temperatura do HDD
+                        chmod u+s /usr/sbin/hddtemp
+                fi
+            
+            #wine
+                clear
+                echo "Instalando Wine"
+                echo "----------------------------------------------------------------------"
+                #adicionado o repositorio
+                add-apt-repository ppa:ubuntu-wine/ppa -y
+
+                #instalando o wine
+                apt install wine* -y
+            
+            #playonlinux
+                clear
+                echo "Instalando o Playonlinux"
+                echo "----------------------------------------------------------------------"
+
+                #instalando o playonlinux
+                apt install playonlinux* -y                
+                
+            #redshift
+                clear
+                echo "Instalando o Redshift"
+                echo "----------------------------------------------------------------------"
+
+                #instalando o redshift
+                apt install redshift gtk-redshift -y
+                
+            #fluxgui
+                clear
+                echo "Instalando o FluxGUI"
+                echo "----------------------------------------------------------------------"
+                #adicionando repositorio
+                add-apt-repository ppa:nathan-renniewaldock/flux -y
+                
+                #atualizando lista pacotes
+                apt update
+                
+                #instalando flux
+                apt install fluxgui* -y
+                
+            #libreoffice
+                clear
+                echo "Instalando o Libreoffice"
+                echo "----------------------------------------------------------------------"
+                #adicionando ppa
+                add-apt-repository ppa:libreoffice/ppa -y
+               
+               #instalando libreoffice
+                apt install libreoffice* -y
+            
+            #vlc
+                clear
+                echo "Instalando o VLC"
+                echo "----------------------------------------------------------------------"
+                apt install vlc* -y
+                
+            #clementine
+                clear
+                echo "Instalando o Clementine"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o clementine
+                apt install clementine* -y
+                
+            #gparted
+                clear
+                echo "Instalando o Clementine"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o gparted
+                apt install gparted* -y
+                
+            #tlp
+                clear
+                echo "Instalando o Tlp"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o tlp
+                apt install tlp* -y
+                
+            #rar
+                clear
+                echo "Instalando o RAR"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o rar
+                apt install rar* -y
+                
+            #git
+                clear
+                echo "Instalando o Git"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o git
+                apt install git-core git* gitg* -y  
+                
+            #lm-sensors
+                clear
+                echo "Instalando o Lm-sensors "
+                echo "----------------------------------------------------------------------"
+            
+                #instalando o lmsensors
+                apt install lm-sensors -y
+                
+            #stellarium
+                clear
+                echo "Instalando o Stellarium "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o stellarium
+                apt install stellarium* -y
+            
+            #gnome-terminal
+                clear
+                echo "Instalando o Gnome-Terminal "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o gnometerminal
+                apt install gnometerminal* -y
+            
+            #reaver
+                clear
+                echo "Instalando o Reaver "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o reaver
+                apt install reaver
+                
+            #tor
+                clear
+                echo "Instalando o Tor "
+                echo "----------------------------------------------------------------------"
+                
+                #adicinando repositorio
+                add-apt-repository ppa:upubuntu-com/tor64 -y
+                
+                #atualizando lista de pacotes
+                apt-get update            
+                
+                #instalando tor
+                apt-get install tor-browser -y
+                
+            #hollywood
+                clear
+                echo "Instalando o Hollywood "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando recurso para hackear a matrix
+                apt install hollywood
+            
+            #synaptic
+                clear
+                echo "Instalando o Synaptic "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o synaptic
+                apt install synaptic* -y
+            
+            #dolphin
+                clear 
+                echo "Instalando o Dolphin "
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando repositorio do dolphin
+                add-apt-repository ppa:glennric/dolphin-emu -y
+                
+                #atualizando lista de repositorios
+                apt update 
+                
+                #corrigindo problemas de dependencias
+                apt-get install -f
+
+                #instalando dolphin
+                apt install dolphin-emu* -y
+                #apt-get install dolphin-emu-master                                            
+                
+            #citra
+                clear 
+                echo "Instalando o Citra "
+                echo "----------------------------------------------------------------------"
+                                
+                apt-get install libsdl2-dev
+
+                #Qt
+                apt-get install qtbase5-dev libqt5opengl5-dev
+
+                #GCC
+                apt-get install build-essential
+
+                #Cmake
+                apt-get install cmake
+
+                #Clang
+                apt-get install clang libc++-dev
+
+                #copiando repositorio
+                git clone --recursive https://github.com/citra-emu/citra
+                
+                #entrando na pasta
+                cd citra
+                
+                #construindo o citra
+                mkdir build && cd build
+                cmake ..
+                make
+                make install
+                
+            #screenfetch
+                clear 
+                echo "Instalando o Screenfetch "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o screenfetch
+                apt install screenfetch -y
+                
+            #diolinux paper
+                clear 
+                echo "Instalando o Diolinux Paper "
+                echo "----------------------------------------------------------------------"
+            
+                #adicionando ppa			
+                add-apt-repository ppa:tiagosh/diolinux-paper-orange -y
+
+                #atualizando sistema
+                apt update
+
+                #instalando tema
+                apt install diolinux-paper-orange -y
+                
+            #kdenlive
+                clear 
+                echo "Instalando o Kdenlive "
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando ppa
+                add-apt-repository ppa:sunab/kdenlive-release -y
+
+                #atualizando sistema
+                apt update
+
+                #instalando kdenlive	
+                apt install kdenlive -y
+                
+            #openssh
+                clear
+                echo "Instalando o OpenSSH"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando modo servidor
+                apt install openssh-server -y
+
+                #instalando modo cliente	
+                apt install openssh-client -y
+                
+            #bleachbit
+                clear
+                echo "Instalando o Bleachbit"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando bleachbit		
+                apt install bleachbit -y
+                
+            #chromium
+                clear
+                echo "Instalando o Bleachbit"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando chromium		
+                apt install chromium-browser -y
+                
+            #synapse                
+                clear
+                echo "Instalando o Synapse"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando o synapse
+                apt install synapse* -y
+                
+            #sweethome3D
+                clear
+                echo "Instalando o Sweet Home 3D"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando o sweethome3d
+                apt install sweethome3d* -y
+                
+            #kate
+                clear
+                echo "Instalando o Kate"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando o kate
+                apt install kate* -y
+            
+            #inkscape
+                clear
+                echo "Instalando o Inkscape"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando inkscape
+                apt-get install inkscape* -y 
+                
+            #blender
+                clear
+                echo "Instalando o Blender"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando o blender
+                apt-get install blender* -y
+                
+            #cheese
+                clear
+                echo "Instalando o Cheese"
+                echo "----------------------------------------------------------------------"                
+                
+                #instalando o cheese
+                apt-get install cheese* -y
+                
+            #plankdock
+                clear
+                echo "Instalando o Plank Dock"
+                echo "----------------------------------------------------------------------"                
+                
+                #adicionando ppa
+                add-apt-repository ppa:noobslab/apps -y
+                
+                #atualizando lista repositorios
+                apt-get update
+                
+                #instalando plank
+                apt-get install plank* plank-themer -y
+            ;;
     
         #entrada inválida	
         *) echo
