@@ -880,6 +880,85 @@ auto_config_ubuntu()
                 
                 #instalando plank
                 apt-get install plank* plank-themer -y
+            
+            #gnomesystemmonitor
+                clear
+                echo "Instalando o Gnome System Monitor"
+                echo "----------------------------------------------------------------------"
+            
+                #instalando gnomesystemmonitor
+                apt install gnome-system-monitor* -y
+                
+            #nautilus
+                clear
+                echo "Instalando o Nautilus"
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando ppa
+                add-apt-repository ppa:gnome3-team/gnome3 -y
+                
+                #atualizando lista repositorio
+                apt update
+        
+                #instalando o nautilus
+                apt install nautilus* -y            
+            
+            #wireshark
+                clear
+                echo "Instalando o Wireshark"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o wireshark
+                apt install wireshark* -y
+                
+            #gnomediskutility
+                clear
+                echo "Instalando o Gnome Disk Utility"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o gnomediskutility
+                apt install gnome-disk-utility* -y
+                
+            #smartgit
+                clear
+                echo "Instalando o Smartgit"
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando repositorio
+                add-apt-repository ppa:eugenesan/ppa -y
+
+                #atualizando lista pacotes
+                apt-get update
+
+                #instalando smartgit
+                apt-get install smartgit smartgithg* -y
+                
+            #chkrootkit
+                clear
+                echo "Instalando o Chkrootkit"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o chkrootkit
+                apt install chkrootkit* -y
+                
+            #liquorix
+                clear
+                echo "Instalando o Liquorix"
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando enderencos na lista de fontes
+                echo "deb http://liquorix.net/debian sid main" | sudo tee /etc/apt/sources.list.d/liquorix.list 
+                echo "deb-src http://liquorix.net/debian sid main" | sudo tee -a /etc/apt/sources.list.d/liquorix.list 
+
+                #atualizando o sistema
+                apt-get update 
+
+                #instalando o liquorix
+                apt-get install '^liquorix-([^-]+-)?keyring.?' -y
+                apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
+
+                #atualizando o grub
+                update-grub
             ;;
     
         #entrada inválida	
