@@ -189,12 +189,31 @@
         sleep 3
         exit
     fi
-        
+            
+################################################################################
+#criando função global, que inicia todas as outras
+auto_config_ubuntu()
+{
+    echo "INICIANDO AS TAREFAS"
+    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    echo "----------------------------------------"
+    echo "Digite 1 para atualizar o sistema,"
+    echo "Digite 2 para corrigir possíveis erros," 
+    echo "Digite 3 para realizar uma limpeza," 
+    echo "Digite 4 para instalar alguns programas," 
+    echo "Digite 5 para reiniciar a máquina."
+    echo "Digite 6 para sair do script;"
+    echo "----------------------------------------" 
+    read -n1 -p "Ação:" escolha
+    
     ##CHAMANDOS FUNCOES    
     #     
     ################################################################################
     ######ATUALIZA SISTEMA
-        if [[ $escolha == "1" ]]; then
+        clear
+        case $escolha in    
+            #atualizando o sistema
+            1) echo  
             #update
                 if [ "$distro" == "Ubuntu" ]; then
                         clear
@@ -221,15 +240,16 @@
                         echo "Atualizando os programas da máquina"
                         echo "----------------------------------------------------------------------"
                         dnf update -y 
-                fi
-                
-            
-        fi
+                fi                            
+        esac
         
     ################################################################################
     ######CORRIGE SISTEMA
-        if [[ $escolha == "2" ]]; then
-            #corrigeerros
+        clear
+        case $escolha in    
+            #corrigindo erros
+            2) echo              
+            
                 if [ "$distro" == "Ubuntu" ]; then
                     clear
                     echo "Corrigindo possiveis erros no Sistema"
@@ -313,58 +333,9 @@
                 else
                     echo "Função incompativel"
                 fi
-        fi
-    
-    
-
-################################################################################
-#criando função global, que inicia todas as outras
-auto_config_ubuntu()
-{
-    echo "INICIANDO AS TAREFAS"
-    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    echo "----------------------------------------"
-    echo "Digite 1 para atualizar o sistema,"
-    echo "Digite 2 para corrigir possíveis erros," 
-    echo "Digite 3 para realizar uma limpeza," 
-    echo "Digite 4 para instalar alguns programas," 
-    echo "Digite 5 para reiniciar a máquina."
-    echo "Digite 6 para sair do script;"
-    echo "----------------------------------------" 
-    read -n1 -p "Ação:" escolha
-    
-    clear
-    case $escolha in    
-        #atualizando o sistema
-        1) echo        
-            atualiza
-            ;;
-            
-        #corrigindo erros
-        2) echo
-            corrige
-            ;;
-            
-        #realizando limpeza
-        3) echo
-            limpa
-            ;;
-            
-        #instalando programas
-        4) echo
-            instala
-            ;;
-            
-        #reiniciando	
-        5) echo
-            reinicia 
-            ;;
-            
-        #saindo
-        6) echo 	
-            exit
-            ;;
-                
+        esac
+        
+#                 
         #entrada inválida	
         *) echo
             echo Alternativa incorreta!!
