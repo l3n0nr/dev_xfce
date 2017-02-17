@@ -52,7 +52,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.156.0.17.5 #
+# versão do script: 1.0.160.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -208,134 +208,128 @@ auto_config_ubuntu()
     
     ##CHAMANDOS FUNCOES    
     #     
+    case $escolha in   
     ################################################################################
     ######ATUALIZA SISTEMA
-        clear
-        case $escolha in    
-            #atualizando o sistema
-            1) echo  
-            #update
-                if [ "$distro" == "Ubuntu" ]; then
-                        clear
-                        echo "Atualizando os repositórios na máquina"
-                        echo "----------------------------------------------------------------------"
-                        apt update
-                        update-grub
-                        
-                elif [ "$distro" == "Fedora" ]; then
-                        clear
-                        echo "Atualizando os repositórios na máquina"
-                        echo "----------------------------------------------------------------------"
-                        dnf distro-sync 
-                fi
-                
-            #upgrade
-                if [ "$distro" == "Ubuntu" ]; then
-                        echo "Atualizando os programas da máquina"
-                        echo "----------------------------------------------------------------------"
-                        apt upgrade -y
-                        apt-get dist-upgrade
-                elif [ "$distro" == "Fedora" ]; then
-                        clear
-                        echo "Atualizando os programas da máquina"
-                        echo "----------------------------------------------------------------------"
-                        dnf update -y 
-                fi                            
-        esac
+        1) echo  
+        #update
+            if [ "$distro" == "Ubuntu" ]; then
+                    clear
+                    echo "Atualizando os repositórios na máquina"
+                    echo "----------------------------------------------------------------------"
+                    apt update
+                    update-grub
+                    
+            elif [ "$distro" == "Fedora" ]; then
+                    clear
+                    echo "Atualizando os repositórios na máquina"
+                    echo "----------------------------------------------------------------------"
+                    dnf distro-sync 
+            fi
+            
+        #upgrade
+            if [ "$distro" == "Ubuntu" ]; then
+                    echo "Atualizando os programas da máquina"
+                    echo "----------------------------------------------------------------------"
+                    apt upgrade -y
+                    apt-get dist-upgrade
+            elif [ "$distro" == "Fedora" ]; then
+                    clear
+                    echo "Atualizando os programas da máquina"
+                    echo "----------------------------------------------------------------------"
+                    dnf update -y 
+            fi    
+            ;;
         
     ################################################################################
     ######CORRIGE SISTEMA
-        clear
-        case $escolha in    
-            #corrigindo erros
-            2) echo              
-            
-                if [ "$distro" == "Ubuntu" ]; then
-                    clear
-                    echo "Corrigindo possiveis erros no Sistema"
-                    echo "----------------------------------------------------------------------"
-                    apt-get check -y 
-                    dpkg --configure -a -y
-                    apt-get -f install 
-                    apt-get -f remove -y 
-                    apt-get autoremove -y 
-                    apt-get clean -y 
-                    apt-get install auto-apt -y 
-                    auto-apt update-local -y 
-                    auto-apt update -y 
-                    auto-apt updatedb -y
-                else
-                    echo "Função incompativel"                    
-                fi        
-                
-            #swap
-                if [ "$distro" == "Ubuntu" ]; then
-                    echo "Configurando a Swap"
-                    echo "-------------------"
-                    memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
-                    memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
-                    background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
-                    ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
-                    clear
-                    echo "Diminuindo a Prioridade de uso da memória SWAP"
-                    echo
-                    if [[ $memoswap == "vm.swappiness=10" ]]; then
-                            echo "Otimizando..."
-                            /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf"
-                    elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-                            echo "Otimizando..."
-                            /bin/su -c "echo 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
-                    elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-                            echo "Otimizando..."
-                            /bin/su -c "echo 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
-                    elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-                            echo "Otimizando..."
-                            /bin/su -c "echo 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
-                    else
-                            echo "Não há nada para ser otimizado"
-                            echo "Isso porque já foi otimizado anteriormente!"
-                    fi
-                else
-                    echo "Função incompativel"
-                fi
-                
-            #prelink, preload
-                if [ "$distro" == "Ubuntu" ]; then
-                    echo "Instalando Prelink, Preload e Deborphan"
-                    #prelink =
-                    #preload =
-                    #deborphan = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
-                    echo "-------------------"
-                    sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
-                    sudo apt-get install deborphan -y
-            
-                    echo "Configurando Deborphan..."
-                    sudo deborphan | xargs sudo apt-get -y remove --purge &&
-                    sudo deborphan --guess-data | xargs sudo apt-get -y remove --purge
-                    
-                    #configurando o prelink e o preload
-                    echo ""
-                    echo "Configurando Prelink e Preload..."
-                    echo "-------------------"
-                            memfree=$(grep "memfree = 50" /etc/preload.conf)
-                            memcached=$(grep "memcached = 0" /etc/preload.conf)
-                            processes=$(grep "processes = 30" /etc/preload.conf)
-                            prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
-                                                    
-                    echo "Ativando o PRELINK"
-                    echo "-------------------"
-                    if [[ $prelink == "PRELINKING=unknown" ]]; then
-                            echo "adicionando ..."
-                            sed -i 's/unknown/yes/g' /etc/default/prelink	
-                    else
-                            echo "Otimização já adicionada anteriormente."
-                    fi
-                else
-                    echo "Função incompativel"
-                fi
-        esac
+        2) echo              
         
-#                 
+            if [ "$distro" == "Ubuntu" ]; then
+                clear
+                echo "Corrigindo possiveis erros no Sistema"
+                echo "----------------------------------------------------------------------"
+                apt-get check -y 
+                dpkg --configure -a -y
+                apt-get -f install 
+                apt-get -f remove -y 
+                apt-get autoremove -y 
+                apt-get clean -y 
+                apt-get install auto-apt -y 
+                auto-apt update-local -y 
+                auto-apt update -y 
+                auto-apt updatedb -y
+            else
+                echo "Função incompativel"                    
+            fi        
+            
+        #swap
+            if [ "$distro" == "Ubuntu" ]; then
+                echo "Configurando a Swap"
+                echo "-------------------"
+                memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
+                memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
+                background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
+                ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
+                clear
+                echo "Diminuindo a Prioridade de uso da memória SWAP"
+                echo
+                if [[ $memoswap == "vm.swappiness=10" ]]; then
+                        echo "Otimizando..."
+                        /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf"
+                elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
+                        echo "Otimizando..."
+                        /bin/su -c "echo 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
+                elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
+                        echo "Otimizando..."
+                        /bin/su -c "echo 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
+                elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
+                        echo "Otimizando..."
+                        /bin/su -c "echo 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
+                else
+                        echo "Não há nada para ser otimizado"
+                        echo "Isso porque já foi otimizado anteriormente!"
+                fi
+            else
+                echo "Função incompativel"
+            fi
+            
+        #prelink, preload
+            if [ "$distro" == "Ubuntu" ]; then
+                echo "Instalando Prelink, Preload e Deborphan"
+                #prelink =
+                #preload =
+                #deborphan = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
+                echo "-------------------"
+                sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
+                sudo apt-get install deborphan -y
+        
+                echo "Configurando Deborphan..."
+                sudo deborphan | xargs sudo apt-get -y remove --purge &&
+                sudo deborphan --guess-data | xargs sudo apt-get -y remove --purge
+                
+                #configurando o prelink e o preload
+                echo ""
+                echo "Configurando Prelink e Preload..."
+                echo "-------------------"
+                        memfree=$(grep "memfree = 50" /etc/preload.conf)
+                        memcached=$(grep "memcached = 0" /etc/preload.conf)
+                        processes=$(grep "processes = 30" /etc/preload.conf)
+                        prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
+                                                
+                echo "Ativando o PRELINK"
+                echo "-------------------"
+                if [[ $prelink == "PRELINKING=unknown" ]]; then
+                        echo "adicionando ..."
+                        sed -i 's/unknown/yes/g' /etc/default/prelink	
+                else
+                        echo "Otimização já adicionada anteriormente."
+                fi
+            else
+                echo "Função incompativel"
+            fi
+            ;;
+                         
         #entrada inválida	
         *) echo
             echo Alternativa incorreta!!
