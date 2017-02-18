@@ -730,19 +730,19 @@ auto_config_ubuntu()
                 echo "Instalando o Citra "
                 echo "----------------------------------------------------------------------"
                                 
-                apt-get install libsdl2-dev
+                apt-get install libsdl2-dev -y
 
                 #Qt
-                apt-get install qtbase5-dev libqt5opengl5-dev
+                apt-get install qtbase5-dev libqt5opengl5-dev -y
 
                 #GCC
-                apt-get install build-essential
+                apt-get install build-essential -y
 
                 #Cmake
-                apt-get install cmake
+                apt-get install cmake -y
 
                 #Clang
-                apt-get install clang libc++-dev
+                apt-get install clang libc++-dev -y
 
                 #copiando repositorio
                 git clone --recursive https://github.com/citra-emu/citra
