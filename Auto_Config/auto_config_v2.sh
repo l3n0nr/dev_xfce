@@ -33,7 +33,6 @@
 # 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
 #    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
 # 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
-# 	 <http://www.diolinux.com.br/2015/04/como-atualizar-kernel-para-a-ultima-versao-no-ubuntu.html>
 ################################################################################
 #
 ####################
@@ -52,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.170.0.17.5 #
+# versão do script: 1.0.171.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -87,7 +86,6 @@
 # # [+] Upgrade
 # # [+] Kernel 
 # #     [+] Remove antigos
-# #     [+] Atualiza novo
 # # 
 ################################################################################
 ######CORRIGE SISTEMA
@@ -386,58 +384,8 @@ auto_config_ubuntu()
                 dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^]*\).*/\1/;/[0-9]/!d' | xargs apt-get -y purge
                 
                 #removendo arquivos
-                apt autoremove -y
-                
-                echo "Instalando kernel's novos"
-                echo "--------------------------------------------"
-                
-                #instalando lynx
-                apt install lynx -y
-                
-                #Baixa a lista de kernel e atributos
-                list=$(lynx --dump http://kernel.ubuntu.com/~kernel-ppa/mainline/ | awk '/http/{print $2}')
-                AddressLastVersion=$( echo "${list}"  | grep -v rc | tail -n 1)
-                LastKernelAvaliable=$(echo $AddressLastVersion | cut -d "/" -f 6 | cut -d "-" -f1 | tr -d v )
-        
-                if [ -z $(echo $LastKernelAvaliable | cut -d "." -f3) ]  ; then LastKernelAvaliable=${LastKernelAvaliable}.0; fi  
-
-                        #kernel instalado
-                        LastKernelInstalled=$(ls /boot/ | grep img | cut -d "-" -f2 | sort -V | cut -d "." -f1,2,3 | tail -n 1)
-
-                        #tipo do processador
-                        arch=`uname -m`
-                        if  [ $arch = i686 ] || [ $arch = i386 ]; then 
-                                myarch="i386" 
-                        elif [ $arch = "x86_64" ]; then
-                                myarch="amd64"
-                        else 
-                                echo "Não foram encontrados pacotes para o seu processador :("
-                        exit 0
-                fi
-
-                #comparação
-                if [ $LastKernelInstalled = $LastKernelAvaliable ]; then
-                        echo
-                        echo
-                        echo "Seu Kernel" $LastKernelInstalled  "e' a versão mais recente disponível."
-                        echo "Até mais! :)"
-                        echo
-                        echo	
-                else
-                        echo
-                        echo "Seu Kernel e' o" $LastKernelInstalled "está disponível" $LastKernelAvaliable
-                        echo
-                        echo "Baixando o novo Kernel"
-                        DownloadFolder=/tmp/kernel_$LastKernelAvaliable; mkdir -p $DownloadFolder; cd $DownloadFolder
-                        wget $(lynx -dump -listonly $AddressLastVersion | awk '/http/{print $2}' | egrep 'all.deb|generic(.){1,}'$myarch'.deb')
-                        echo
-                        echo "...e vamos instalar"
-                        echo
-                        sudo dpkg -i *.deb
-                        echo
-                        echo "Para usar o novo Kernel vocẽ deve reiniciar o computador"
-                fi
-                
+                apt autoremove -y                
+                                
             #removendo arquivos temporarios
                 echo "Removendo arquivos temporários do sistema"
                 echo "-----------------------------------------"
