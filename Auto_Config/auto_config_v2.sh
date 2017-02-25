@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.171.0.17.5 #
+# versão do script: 1.0.172.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -93,6 +93,8 @@
 # # [+] Prelink, Preload, Deborphan
 # # [+] Pacotes com problemas
 # # [+] Fontes
+# # [+] Apport
+# # [+] Ntp
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -344,6 +346,9 @@ auto_config_ubuntu()
             
             #removendo pacote
             rm -f ttf-mscorefonts-installer_3.6_all.deb
+            
+        #apport
+            rm /var/crash/*
             
         #ntp
             clear
