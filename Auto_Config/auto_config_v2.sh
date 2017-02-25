@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.172.0.17.5 #
+# versão do script: 1.0.175.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -173,6 +173,9 @@
 # # [+] Moka
 # # [+] Mousepad
 # # [+] Dolphin
+# # [+] Mcomix
+# # [+] Calibre
+# # [+] Adapta
 # #
 ################################################################################	
 # Reinicialização
@@ -912,6 +915,30 @@ auto_config_ubuntu()
 
                 #atualizando o grub
                 update-grub
+                
+            #mcomix    
+                #adicionando repositorio
+                add-apt-repository ppa:nilarimogard/webupd8 -y
+
+                #atualizando lista repositorios
+                apt-get update
+
+                #instalando mcomix
+                apt-get install mcomix -y
+                
+            #calibre
+                #instalando calibre
+                apt install calibre -y
+                
+            #adapta    
+                #adicionando repositorio
+                apt-add-repository ppa:tista/adapta -y
+
+                #atualizando lista repositorios
+                apt update
+
+                #instalando adapta
+                apt install adapta-gtk-theme
             ;;
             
     ################################################################################
