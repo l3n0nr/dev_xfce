@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.175.0.17.5 #
+# versão do script: 1.0.176.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -176,6 +176,7 @@
 # # [+] Mcomix
 # # [+] Calibre
 # # [+] Adapta
+# # [+] Nvidia
 # #
 ################################################################################	
 # Reinicialização
@@ -939,6 +940,16 @@ auto_config_ubuntu()
 
                 #instalando adapta
                 apt install adapta-gtk-theme
+                
+            #nvidia
+                #adicionando repositorio
+                add-apt-repository ppa:ubuntu-x-swat/x-updates -y
+
+                #atualizando lista repositorios
+                apt-get update
+
+                #instalando nvidia
+                apt-get install nvidia-current -y
             ;;
             
     ################################################################################
