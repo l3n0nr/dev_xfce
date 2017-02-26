@@ -947,13 +947,13 @@ auto_config_ubuntu()
                 
             #nvidia
                 #adicionando repositorio
-                add-apt-repository ppa:ubuntu-x-swat/x-updates -y
+#               add-apt-repository ppa:ubuntu-x-swat/x-updates -y
 
                 #atualizando lista repositorios
-                apt-get update
+#               apt-get update
 
                 #instalando nvidia
-                apt-get install nvidia-current -y
+#               apt-get install nvidia-current -y
                 
             #visualgameboy
                 apt install visualboyadvance-gtk -y
