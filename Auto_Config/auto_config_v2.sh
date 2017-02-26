@@ -177,6 +177,7 @@
 # # [+] Calibre
 # # [+] Adapta
 # # [+] Nvidia
+# # [+] VisualGame Boy Advanced
 # #
 ################################################################################	
 # Reinicialização
@@ -735,6 +736,9 @@ auto_config_ubuntu()
                 #instalando tema
                 apt install diolinux-paper-orange -y
                 
+                #instalando adicional
+                apt install paper-icon-theme paper-gtk-theme -y
+                
             #kdenlive
                 clear 
                 echo "Instalando o Kdenlive "
@@ -950,6 +954,9 @@ auto_config_ubuntu()
 
                 #instalando nvidia
                 apt-get install nvidia-current -y
+                
+            #visualgameboy
+                apt install visualboyadvance-gtk -y
             ;;
             
     ################################################################################
