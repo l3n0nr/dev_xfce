@@ -178,6 +178,7 @@
 # # [+] Adapta
 # # [+] Nvidia
 # # [+] VisualGame Boy Advanced
+# # [+] Audacity
 # #
 ################################################################################	
 # Reinicialização
@@ -551,11 +552,15 @@ auto_config_ubuntu()
                 clear
                 echo "Instalando o Libreoffice"
                 echo "----------------------------------------------------------------------"
+                
+                #instalação completa
+                apt install libreoffice -y
+                
                 #adicionando ppa
                 add-apt-repository ppa:libreoffice/ppa -y
                
                #instalando libreoffice
-                apt install libreoffice* -y
+                apt install libreoffice* -y                               
             
             #vlc
                 clear
@@ -957,6 +962,9 @@ auto_config_ubuntu()
                 
             #visualgameboy
                 apt install visualboyadvance-gtk -y
+                
+            #audacity
+                apt install audacity* -y                
             ;;
             
     ################################################################################
