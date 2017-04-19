@@ -51,13 +51,13 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.171.0.17.5 #
+# versão do script: 1.0.172.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1];
 # 	b = erros na execução;	
-# 	c = interações com o script + versões funcionando;
+# 	c = interações com o script;
 # 	d = correções necessárias;
 # 	e = pendencias
 # 	f = desenvolver
@@ -415,6 +415,9 @@ auto_config_ubuntu()
             
             #removendo pacotes antigos
                 apt-get autoremove -y
+                
+            #verificando chkrootkit
+            chkrootkit
         ;;
     
     ################################################################################
