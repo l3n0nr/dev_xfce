@@ -51,7 +51,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.172.0.17.5 #
+# versão do script: 1.0.176.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -93,6 +93,8 @@
 # # [+] Prelink, Preload, Deborphan
 # # [+] Pacotes com problemas
 # # [+] Fontes
+# # [+] Apport
+# # [+] Ntp
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -171,6 +173,12 @@
 # # [+] Moka
 # # [+] Mousepad
 # # [+] Dolphin
+# # [+] Mcomix
+# # [+] Calibre
+# # [+] Adapta
+# # [+] Nvidia
+# # [+] VisualGame Boy Advanced
+# # [+] Audacity
 # #
 ################################################################################	
 # Reinicialização
@@ -344,6 +352,9 @@ auto_config_ubuntu()
             
             #removendo pacote
             rm -f ttf-mscorefonts-installer_3.6_all.deb
+            
+        #apport
+            rm /var/crash/*
             
         #ntp
             clear
@@ -544,11 +555,15 @@ auto_config_ubuntu()
                 clear
                 echo "Instalando o Libreoffice"
                 echo "----------------------------------------------------------------------"
+                
+                #instalação completa
+                apt install libreoffice -y
+                
                 #adicionando ppa
                 add-apt-repository ppa:libreoffice/ppa -y
                
                #instalando libreoffice
-                apt install libreoffice* -y
+                apt install libreoffice* -y                               
             
             #vlc
                 clear
@@ -728,6 +743,9 @@ auto_config_ubuntu()
 
                 #instalando tema
                 apt install diolinux-paper-orange -y
+                
+                #instalando adicional
+                apt install paper-icon-theme paper-gtk-theme -y
                 
             #kdenlive
                 clear 
@@ -910,6 +928,46 @@ auto_config_ubuntu()
 
                 #atualizando o grub
                 update-grub
+                
+            #mcomix    
+                #adicionando repositorio
+                add-apt-repository ppa:nilarimogard/webupd8 -y
+
+                #atualizando lista repositorios
+                apt-get update
+
+                #instalando mcomix
+                apt-get install mcomix -y
+                
+            #calibre
+                #instalando calibre
+                apt install calibre -y
+                
+            #adapta    
+                #adicionando repositorio
+                apt-add-repository ppa:tista/adapta -y
+
+                #atualizando lista repositorios
+                apt update
+
+                #instalando adapta
+                apt install adapta-gtk-theme
+                
+            #nvidia
+                #adicionando repositorio
+#               add-apt-repository ppa:ubuntu-x-swat/x-updates -y
+
+                #atualizando lista repositorios
+#               apt-get update
+
+                #instalando nvidia
+#               apt-get install nvidia-current -y
+                
+            #visualgameboy
+                apt install visualboyadvance-gtk -y
+                
+            #audacity
+                apt install audacity* -y                
             ;;
             
     ################################################################################
