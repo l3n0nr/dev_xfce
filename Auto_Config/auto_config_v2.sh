@@ -48,7 +48,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.180.0.17.5 #
+# versão do script: 1.0.181.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -137,7 +137,6 @@
 # # [+] Screenfetch
 # # [+] Diolinux_paper(Diolinux Paper Orange Modern)
 # # [+] Kdenlive
-# # [+] Bleachbit
 # # [+] Supertuxkart
 # # [+] Cowsay
 # # [+] Chromium
@@ -754,15 +753,7 @@ auto_config_ubuntu()
                 apt update
 
                 #instalando kdenlive	
-                apt install kdenlive -y                            
-                
-            #bleachbit
-                clear
-                echo "Instalando o Bleachbit"
-                echo "----------------------------------------------------------------------"                
-                
-                #instalando bleachbit		
-                apt install bleachbit -y
+                apt install kdenlive -y                                            
                 
             #chromium
                 clear
