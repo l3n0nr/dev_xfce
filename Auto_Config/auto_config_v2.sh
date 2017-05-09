@@ -11,9 +11,6 @@
 # por gmanson(Gabriel Manson)
 # 	<github.com/gmasson/welcome-debian>
 #
-# por Lucas Alves Santos
-# 	<https://www.vivaolinux.com.br/script/Instalar-Tor-Browser/>
-#
 # por Edivaldo Brito
 # 	<http://www.edivaldobrito.com.br/instalando-ide-java-netbeans-8-0-ubuntu-e-derivados>
 #
@@ -51,7 +48,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.176.0.17.5 #
+# versão do script: 1.0.180.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -131,7 +128,6 @@
 # # [+] Texmaker
 # # [+] Gnome-terminal
 # # [+] Reaver
-# # [+] Tor
 # # [+] NTP
 # # [+] Hollywood
 # # [+] Synaptic	
@@ -141,7 +137,6 @@
 # # [+] Screenfetch
 # # [+] Diolinux_paper(Diolinux Paper Orange Modern)
 # # [+] Kdenlive
-# # [+] Openssh(Client-Servidor)
 # # [+] Bleachbit
 # # [+] Supertuxkart
 # # [+] Cowsay
@@ -759,18 +754,7 @@ auto_config_ubuntu()
                 apt update
 
                 #instalando kdenlive	
-                apt install kdenlive -y
-                
-            #openssh
-                clear
-                echo "Instalando o OpenSSH"
-                echo "----------------------------------------------------------------------"
-                
-                #instalando modo servidor
-                apt install openssh-server -y
-
-                #instalando modo cliente	
-                apt install openssh-client -y
+                apt install kdenlive -y                            
                 
             #bleachbit
                 clear
