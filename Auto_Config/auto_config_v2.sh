@@ -45,7 +45,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.182.0.17.5 #
+# versão do script: 1.0.184.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -137,7 +137,6 @@
 # # [+] Supertuxkart
 # # [+] Cowsay
 # # [+] Chromium
-# # [+] Synapse
 # # [+] Sweet Home 3d
 # # [+] Kate
 # # [+] Inkscape
@@ -759,14 +758,6 @@ auto_config_ubuntu()
                 
                 #instalando chromium		
                 apt install chromium-browser -y
-                
-            #synapse                
-                clear
-                echo "Instalando o Synapse"
-                echo "----------------------------------------------------------------------"                
-                
-                #instalando o synapse
-                apt install synapse* -y
                 
             #sweethome3D
                 clear
