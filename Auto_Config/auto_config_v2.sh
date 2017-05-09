@@ -23,9 +23,6 @@
 # por Ricardo Ferreira
 # 	<http://www.linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
 #
-# por Vinícius Vieira
-#        <http://sejalivre.org/instalando-o-tor-browser-no-ubuntu-e-linux-mint/>
-#
 # por Dionatan Simioni
 # 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
 #    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
@@ -48,7 +45,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.181.0.17.5 #
+# versão do script: 1.0.182.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
