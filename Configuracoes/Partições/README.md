@@ -4,7 +4,7 @@ Swap 	= 	2048MB;
 
 \ 	= 	20480MB;
 
-\opt	=	5048MB;
+\opt	=	2048MB;
 
 \home	=	Restante;
 
