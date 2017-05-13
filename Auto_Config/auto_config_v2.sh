@@ -45,7 +45,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.184.0.17.5 #
+# versão do script: 1.0.186.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -166,10 +166,9 @@
 # # [+] Mcomix
 # # [+] Calibre
 # # [+] Adapta
-# # [+] Nvidia
 # # [+] VisualGame Boy Advanced
 # # [+] Audacity
-# #
+# # [+] Tor
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -914,23 +913,21 @@ auto_config_ubuntu()
                 apt update
 
                 #instalando adapta
-                apt install adapta-gtk-theme
-                
-            #nvidia
-                #adicionando repositorio
-#               add-apt-repository ppa:ubuntu-x-swat/x-updates -y
-
-                #atualizando lista repositorios
-#               apt-get update
-
-                #instalando nvidia
-#               apt-get install nvidia-current -y
+                apt install adapta-gtk-theme                
                 
             #visualgameboy
                 apt install visualboyadvance-gtk -y
                 
             #audacity
-                apt install audacity* -y                
+                apt install audacity* -y   
+                
+            #tor
+                #adicionando repositorio
+                    add-apt-repository ppa:webupd8team/tor-browser -y
+                #atualizando lista repositorio
+                    apt-get update
+                #instalando tor
+                    apt-get install tor-browser -y
             ;;
             
     ################################################################################
