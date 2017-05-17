@@ -726,6 +726,7 @@ auto_config_ubuntu()
             
                 #adicionando ppa			
                 add-apt-repository ppa:tiagosh/diolinux-paper-orange -y
+                add-apt-repository ppa:snwh/pulp -y 
 
                 #atualizando sistema
                 apt update
