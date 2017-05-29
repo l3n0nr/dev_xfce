@@ -1,10 +1,8 @@
 Tamanho das partições
 ---------------------
-Swap 	= 	2048MB;
+Swap 	= 	1024MB;
 
-\ 	= 	20480MB;
-
-\opt	=	2048MB;
+\ 	= 	40960MB;
 
 \home	=	Restante;
 
