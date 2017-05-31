@@ -711,6 +711,9 @@ auto_config_ubuntu()
                 make
                 make install
                 
+                #removendo pasta citra
+                rm citra/
+                
             #screenfetch
                 clear 
                 echo "Instalando o Screenfetch "
