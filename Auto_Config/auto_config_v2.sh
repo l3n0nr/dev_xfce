@@ -48,7 +48,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.190.0.17.5 #
+# versão do script: 1.0.192.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -333,7 +333,8 @@ auto_config_ubuntu()
             echo "----------------------------"
             dpkg --configure -a
             #VERIFICAR AÇÕES
-            rm -r /var/lib/apt/lists  sudo mkdir -p /var/lib/apt/lists/partial
+            rm -r /var/lib/apt/lists  
+            mkdir -p /var/lib/apt/lists/partial
             
         #corrigindo erros fontes
             echo "Instalando pacotes de fontes"
@@ -422,13 +423,9 @@ auto_config_ubuntu()
                 apt-get autoremove -y
                 
             #verificando chkrootkit
-            chkrootkit
-            
-            #removendo idiomas sobressalentes
-                #instalando localepurge
-                apt-get install localepurge -y
+                chkrootkit            
                 
-                #executando comando
+            #removendo idiomas sobressalentes
                 localepurge                            
         ;;
     
@@ -885,8 +882,17 @@ auto_config_ubuntu()
                 echo "Instalando o Chkrootkit"
                 echo "----------------------------------------------------------------------"
                 
+            
                 #instalando o chkrootkit
                 apt install chkrootkit* -y
+            
+            #chkrootkit
+                clear
+                echo "Instalando o Localepurge"
+                echo "----------------------------------------------------------------------"
+            
+                #instalando localepurge
+                apt-get install localepurge* -y
                 
             #liquorix
                 clear
