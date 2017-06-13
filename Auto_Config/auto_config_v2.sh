@@ -27,6 +27,9 @@
 # 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
 #    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
 # 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+#
+# por Cláudio Novais
+#        <http://ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
 ################################################################################
 #
 ####################
@@ -45,7 +48,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.186.0.17.5 #
+# versão do script: 1.0.188.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -381,7 +384,7 @@ auto_config_ubuntu()
                 echo "--------------------------------------------"
 
                 #removendo kernel's antigos
-                dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^]*\).*/\1/;/[0-9]/!d' | xargs apt-get -y purge
+                dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge
                 
                 #removendo arquivos
                 apt autoremove -y                
