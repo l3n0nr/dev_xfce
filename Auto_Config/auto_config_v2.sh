@@ -48,7 +48,7 @@
 #################################################################################
 #
 ####################################
-# versão do script: 1.0.188.0.17.5 #
+# versão do script: 1.0.190.0.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
@@ -102,6 +102,8 @@
 # # [+] Kernel's antigos
 # # [+] Removendo arquivos (.bak, ~, tmp) pasta Home
 # # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
+# # [+] Verificando Chkrootkit
+# # [+] Removendo idiomas sobressalentes
 # # 
 ################################################################################
 ######INSTALANDO PROGRAMAS
@@ -421,6 +423,13 @@ auto_config_ubuntu()
                 
             #verificando chkrootkit
             chkrootkit
+            
+            #removendo idiomas sobressalentes
+                #instalando localepurge
+                apt-get install localepurge -y
+                
+                #executando comando
+                localepurge                            
         ;;
     
     ################################################################################
