@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.195.0.17.5  #
+# versão do script: 1.0.196.0.17.5  #
 # ultima ediçao realizada: 14/06/17 #
 #####################################
 #
@@ -617,6 +617,15 @@ auto_config_ubuntu()
             
                 #instalando o lmsensors
                 apt install lm-sensors -y
+                
+            #texmaker
+                clear
+                clear
+                echo "Instalando o Texmaker "
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o texmaker
+                apt install texmaker* texlive-full* texlive-latex-extra* -y 
                 
             #stellarium
                 clear
