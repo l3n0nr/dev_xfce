@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.194.0.17.5  #
+# versão do script: 1.0.195.0.17.5  #
 # ultima ediçao realizada: 14/06/17 #
 #####################################
 #
@@ -700,20 +700,21 @@ auto_config_ubuntu()
                 clear 
                 echo "Instalando o Citra "
                 echo "----------------------------------------------------------------------"
-                                
-                apt-get install libsdl2-dev -y
+                               
+                #adicionando bibliotecas necessarias
+                    apt-get install libsdl2-dev -y
 
-                #Qt
-                apt-get install qtbase5-dev libqt5opengl5-dev -y
+                    #Qt
+                    apt-get install qtbase5-dev libqt5opengl5-dev -y
 
-                #GCC
-                apt-get install build-essential -y
+                    #GCC
+                    apt-get install build-essential -y
 
-                #Cmake
-                apt-get install cmake -y
+                    #Cmake
+                    apt-get install cmake -y
 
-                #Clang
-                apt-get install clang libc++-dev -y
+                    #Clang
+                    apt-get install clang libc++-dev -y
 
                 #copiando repositorio
                 git clone --recursive https://github.com/citra-emu/citra
@@ -728,7 +729,7 @@ auto_config_ubuntu()
                 make install
                 
                 #removendo pasta citra
-                rm citra/
+                rm -r citra/
                 
             #screenfetch
                 clear 
