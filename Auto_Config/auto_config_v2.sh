@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.193.0.17.5  #
-# ultima ediçao realizada: 13/06/17 #
+# versão do script: 1.0.194.0.17.5  #
+# ultima ediçao realizada: 14/06/17 #
 #####################################
 #
 # legenda: a.b.c.d.e.f
@@ -623,7 +623,13 @@ auto_config_ubuntu()
                 echo "Instalando o Stellarium "
                 echo "----------------------------------------------------------------------"
                 
-                #instalando o stellarium
+                #adicionando ppa
+                add-apt-repository ppa:stellarium/stellarium-releases -y
+                
+                #atualizando sistema
+                apt update                            
+                
+                #instalando o stellarium                
                 apt install stellarium* -y
             
             #gnome-terminal
