@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.197.0.17.5  #
+# versão do script: 1.0.198.0.17.5  #
 # ultima ediçao realizada: 25/06/17 #
 #####################################
 #
@@ -630,8 +630,11 @@ auto_config_ubuntu()
             #stellarium
                 clear
                 echo "Instalando o Stellarium "
-                echo "----------------------------------------------------------------------"
-                                
+                echo "----------------------------------------------------------------------"                                
+
+                #adicinando ppa
+                add-apt-repository ppa:stellarium/stellarium-releases -y
+                
                 #atualizando sistema
                 apt update                            
                 
