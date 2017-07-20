@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.198.0.17.5  #
-# ultima ediçao realizada: 25/06/17 #
+# versão do script: 1.0.200.0.17.5  #
+# ultima ediçao realizada: 19/07/17 #
 #####################################
 #
 # legenda: a.b.c.d.e.f
@@ -359,25 +359,28 @@ auto_config_ubuntu()
             
             #instalando software necessario
             apt install ntpdate* -y
+            
+            #parando o serviço NTP para realizar as configuraçoes necessarias
+            echo "Parando serviço NTP para realizaçao das configuraçoes necessarias"
+                service ntp stop
+            
+            #configurando script base - NTP
+            echo "Realizando alteraçao no arquivo base"
+            cat base/ntp.txt > /etc/ntp.conf
+            
+            #ativando servico novamente
+            echo "Ativando serviço NTP"
+                service ntp start
 
             #realizando atualizacao hora/data
             echo "Atualizando hora do servidor"
             echo "Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
-            #servidor 1
-            echo "Servidor ntp.cais.rnp.br"
-                /usr/sbin/ntpdate ntp.cais.rnp.br
+            #servidor NIC.BR
+            echo "Servidor NIC.BR"
+                ntpdate -q pool.ntp.br
 
-            #servidor 2			
-            echo "Servidor ntp.ansp.br"
-                /usr/sbin/ntpdate ntp.ansp.br
-                    
-            #servidor 3
-            echo "Servidor ntp.iffca.edu.br"
-                /usr/sbin/ntpdate ntp.iffca.edu.br
-
-            echo "Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
-            echo "Hora do servidor atualizada!"
+            echo "Hora do servidor atualizada!"                        
         ;;
                 
     ################################################################################
