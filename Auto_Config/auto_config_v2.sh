@@ -52,7 +52,7 @@
 # ultima ediçao realizada: 19/07/17 #
 #####################################
 #
-# legenda: a.b.c.d.e.f
+# Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1];
 # 	b = erros na execução;	
 # 	c = interações com o script;
@@ -64,6 +64,10 @@
 #		-Verificar a arquitetura do sistema, para a instalação de determinados programas;
 #               -Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
 #               -Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
+#
+#       [+] - Açao realizada 
+#       [*] - Processamento ou espera na execuçao
+#       [-] - Erro encontrado
 #
 ################################################################################
 #
@@ -361,26 +365,26 @@ auto_config_ubuntu()
             apt install ntpdate* -y
             
             #parando o serviço NTP para realizar as configuraçoes necessarias
-            echo "Parando serviço NTP para realizaçao das configuraçoes necessarias"
+            echo "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias"
                 service ntp stop
             
             #configurando script base - NTP
-            echo "Realizando alteraçao no arquivo base"
+            echo "[*] Realizando alteraçao no arquivo base"
             cat base/ntp.txt > /etc/ntp.conf
             
             #ativando servico novamente
-            echo "Ativando serviço NTP"
+            echo "[+] Ativando serviço NTP"
                 service ntp start
 
             #realizando atualizacao hora/data
-            echo "Atualizando hora do servidor"
-            echo "Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
+            echo "[+] Atualizando hora do servidor"
+            echo "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
             #servidor NIC.BR
-            echo "Servidor NIC.BR"
+            echo "[*] Servidor NIC.BR"
                 ntpdate -q pool.ntp.br
 
-            echo "Hora do servidor atualizada!"                        
+            echo "[+] Hora do servidor atualizada!"                        
         ;;
                 
     ################################################################################
