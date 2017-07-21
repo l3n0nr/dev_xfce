@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.200.0.17.5  #
+# versão do script: 1.0.201.0.17.5  #
 # ultima ediçao realizada: 19/07/17 #
 #####################################
 #
@@ -96,7 +96,7 @@
 # # [+] Pacotes com problemas
 # # [+] Fontes
 # # [+] Apport
-# # [+] Ntp
+# # [+] NTP
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -362,19 +362,7 @@ auto_config_ubuntu()
             echo "----------------------------------------------------------------------"
             
             #instalando software necessario
-            apt install ntpdate* -y
-            
-            #parando o serviço NTP para realizar as configuraçoes necessarias
-            echo "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias"
-                service ntp stop
-            
-            #configurando script base - NTP
-            echo "[*] Realizando alteraçao no arquivo base"
-            cat base/ntp.txt > /etc/ntp.conf
-            
-            #ativando servico novamente
-            echo "[+] Ativando serviço NTP"
-                service ntp start
+            apt install ntp ntpdate* -y
 
             #realizando atualizacao hora/data
             echo "[+] Atualizando hora do servidor"
