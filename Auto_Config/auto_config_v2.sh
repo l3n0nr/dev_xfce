@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.206.1.17.5  #
+# versão do script: 1.0.208.0.17.5  #
 # ultima ediçao realizada: 21/07/17 #
 #####################################
 #
@@ -57,7 +57,6 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               -funcao ntp = acusa erro no momento da instalação do pacote ntpdate
 # 	e = pendencias
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -390,7 +389,7 @@ auto_config_ubuntu()
             #realizando atualizacao hora/data
             echo "[+] Atualizando hora do servidor"
             echo "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
-
+             
             #servidor NIC.BR
             echo "[+] Atualizando servidores, aguarde..."
             echo "[*] NIC.BR"
@@ -1045,7 +1044,6 @@ menu()
 {
     clear
     echo "Bem vindo ao script de automação de tarefas em Linux"
-    echo "Ele irá realizar os seguintes passos"
     read -n1 -p "Para continuar escolha s(sim) ou n(não)  " escolha
         case $escolha in
             s|S) echo
