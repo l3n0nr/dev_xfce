@@ -53,7 +53,7 @@
 #####################################
 #
 # Legenda: a.b.c.d.e.f
-# 	a = alpha[0], beta[1];
+# 	a = alpha[0], beta[1], stable[2], freeze[3];
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
