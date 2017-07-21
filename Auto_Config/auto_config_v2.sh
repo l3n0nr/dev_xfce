@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.201.0.17.5  #
-# ultima ediçao realizada: 19/07/17 #
+# versão do script: 1.0.206.1.17.5  #
+# ultima ediçao realizada: 21/07/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -57,6 +57,7 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
+#               -funcao ntp = acusa erro no momento da instalação do pacote ntpdate
 # 	e = pendencias
 # 	f = desenvolver
 # 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -65,9 +66,11 @@
 #               -Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
 #               -Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
 #
+#####################################
 #       [+] - Açao realizada 
-#       [*] - Processamento ou espera na execuçao
+#       [*] - Processamento
 #       [-] - Erro encontrado
+#####################################
 #
 ################################################################################
 #
@@ -249,6 +252,14 @@ auto_config_ubuntu()
     ################################################################################
     ######CORRIGE SISTEMA
         2) echo                      
+            #atualizando lista de repositorios            
+            echo "[+] Atualizando lista de repositorios do sistema"            
+            apt update
+            
+            #atualizando lista de programas do sistema
+            echo "[+] Atualizando lista de programas do sistema"            
+            apt upgrade
+            
             if [ "$distro" == "Ubuntu" ]; then
                 clear
                 echo "Corrigindo possiveis erros no Sistema"
@@ -360,17 +371,46 @@ auto_config_ubuntu()
             clear
             echo "Corrigindo NTP "
             echo "----------------------------------------------------------------------"
-            
+                                
             #instalando software necessario
-            apt install ntp ntpdate* -y
+            apt install ntp ntpdate -y
+            
+            #parando o serviço NTP para realizar as configuraçoes necessarias
+            echo "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias"
+                service ntp stop
+            
+            #configurando script base - NTP
+            echo "[*] Realizando alteraçao no arquivo base"
+            cat base/ntp.txt > /etc/ntp.conf
+            
+            #ativando servico novamente
+            echo "[+] Ativando serviço NTP"
+                service ntp start
 
             #realizando atualizacao hora/data
             echo "[+] Atualizando hora do servidor"
             echo "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
             #servidor NIC.BR
-            echo "[*] Servidor NIC.BR"
+            echo "[+] Atualizando servidores, aguarde..."
+            echo "[*] NIC.BR"
                 ntpdate -q pool.ntp.br
+                
+            #servidor Ob. Nac.
+            echo "[*] Observatorio Nacional"
+                ntpdate -q ntp.on.br 
+            
+            # servidores da rnp
+            echo "[*] RNP"
+                ntpdate -q ntp.cert-rs.tche.br 
+
+            # servidores da ufrj
+            echo "[*] UFRJ"
+                ntpdate -q ntps1.pads.ufrj.br 
+                
+            # servidor da usp
+            echo "[*] USP"
+                ntpdate -q ntp.usp.br             
 
             echo "[+] Hora do servidor atualizada!"                        
         ;;
@@ -430,19 +470,19 @@ auto_config_ubuntu()
         4) echo            
             #firefox
                 clear
-                echo "Instalando Firefox"
+                echo "[+] Instalando Firefox"
                 echo "----------------------------------------------------------------------"
-                apt install firefox* -y
+                apt install firefox -y
             
             #steam
                 clear
-                echo "Instalando Steam"
+                echo "[+] Instalando Steam"
                 echo "----------------------------------------------------------------------"
-                apt install steam* -y
+                apt install steam -y
             
             #spotify
                 clear
-                echo "Instalando Spotify"
+                echo "[+] Instalando Spotify"
                 echo "----------------------------------------------------------------------"
                 #baixando pacote
                 sh -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
@@ -458,7 +498,7 @@ auto_config_ubuntu()
                 
             #icones MAC OS-X
                 clear
-                echo "Instalando icones e temas do MacOS X"
+                echo "[+] Instalando icones e temas do MacOS X"
                 echo "----------------------------------------------------------------------"
                 #adicionando repositorio
                 add-apt-repository ppa:noobslab/macbuntu -y
@@ -474,21 +514,21 @@ auto_config_ubuntu()
                 
             #codecs multimidia
                 clear
-                echo "Instalando Pacotes Multimidias (Codecs)"
+                echo "[+] Instalando Pacotes Multimidias (Codecs)"
                 echo "----------------------------------------------------------------------"
                 #instalando pacotes multimidias
                 apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
                 
             #gimp
                 clear
-                echo "Instalando o Gimp"
+                echo "[+] Instalando o Gimp"
                 echo "----------------------------------------------------------------------"
                 apt install gimp* -y
                 
             #xfce
                 clear
                 if [ "$distro" == "Ubuntu" ]; then
-                        echo "Instalando Adicionais do XFCE4"
+                        echo "[+] Instalando Adicionais do XFCE4"
                         echo "----------------------------------------------------------------------"
                         #instalando componentes do XFCE
                         apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
@@ -497,7 +537,7 @@ auto_config_ubuntu()
                         chmod u+s /usr/sbin/hddtemp
                         
                 elif [ "$distro" == "Fedora" ]; then
-                        echo "Instalando Adicionais do XFCE4"
+                        echo "[+] Instalando Adicionais do XFCE4"
                         echo "----------------------------------------------------------------------"
                         #instalando componentes do XFCE
                         dnf install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin -y -f -q
@@ -508,7 +548,7 @@ auto_config_ubuntu()
             
             #wine
                 clear
-                echo "Instalando Wine"
+                echo "[+] Instalando Wine"
                 echo "----------------------------------------------------------------------"
                 #adicionado o repositorio
                 add-apt-repository ppa:ubuntu-wine/ppa -y
@@ -518,7 +558,7 @@ auto_config_ubuntu()
             
             #playonlinux
                 clear
-                echo "Instalando o Playonlinux"
+                echo "[+] Instalando o Playonlinux"
                 echo "----------------------------------------------------------------------"
 
                 #instalando o playonlinux
@@ -526,7 +566,7 @@ auto_config_ubuntu()
                 
             #redshift
                 clear
-                echo "Instalando o Redshift"
+                echo "[+] Instalando o Redshift"
                 echo "----------------------------------------------------------------------"
 
                 #instalando o redshift
@@ -534,7 +574,7 @@ auto_config_ubuntu()
                 
             #fluxgui
                 clear
-                echo "Instalando o FluxGUI"
+                echo "[+] Instalando o FluxGUI"
                 echo "----------------------------------------------------------------------"
                 #adicionando repositorio
                 add-apt-repository ppa:nathan-renniewaldock/flux -y
@@ -547,11 +587,8 @@ auto_config_ubuntu()
                 
             #libreoffice
                 clear
-                echo "Instalando o Libreoffice"
+                echo "[+] Instalando o Libreoffice"
                 echo "----------------------------------------------------------------------"
-                
-                #instalação completa
-                apt install libreoffice -y
                 
                 #adicionando ppa
                 add-apt-repository ppa:libreoffice/ppa -y
@@ -561,37 +598,37 @@ auto_config_ubuntu()
             
             #vlc
                 clear
-                echo "Instalando o VLC"
+                echo "[+] Instalando o VLC"
                 echo "----------------------------------------------------------------------"
-                apt install vlc* -y
+                apt install vlc -y
                 
             #clementine
                 clear
-                echo "Instalando o Clementine"
+                echo "[+] Instalando o Clementine"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o clementine
-                apt install clementine* -y
+                apt install clementine -y
                 
             #gparted
                 clear
-                echo "Instalando o Clementine"
+                echo "[+] Instalando o Clementine"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o gparted
-                apt install gparted* -y
+                apt install gparted -y
                 
             #tlp
                 clear
-                echo "Instalando o Tlp"
+                echo "[+] Instalando o Tlp"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o tlp
-                apt install tlp* -y
+                apt install tl -y
                 
             #rar
                 clear
-                echo "Instalando o RAR"
+                echo "[+] Instalando o RAR"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o rar
@@ -599,15 +636,15 @@ auto_config_ubuntu()
                 
             #git
                 clear
-                echo "Instalando o Git"
+                echo "[+] Instalando o Git"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o git
-                apt install git-core git* gitg* -y  
+                apt install git-core git gitg -y  
                 
             #lm-sensors
                 clear
-                echo "Instalando o Lm-sensors "
+                echo "[+] Instalando o Lm-sensors "
                 echo "----------------------------------------------------------------------"
             
                 #instalando o lmsensors
@@ -616,7 +653,7 @@ auto_config_ubuntu()
             #texmaker
                 clear
                 clear
-                echo "Instalando o Texmaker "
+                echo "[+] Instalando o Texmaker "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o texmaker
@@ -624,7 +661,7 @@ auto_config_ubuntu()
                 
             #stellarium
                 clear
-                echo "Instalando o Stellarium "
+                echo "[+] Instalando o Stellarium "
                 echo "----------------------------------------------------------------------"                                
 
                 #adicinando ppa
@@ -638,15 +675,15 @@ auto_config_ubuntu()
             
             #gnome-terminal
                 clear
-                echo "Instalando o Gnome-Terminal "
+                echo "[+] Instalando o Gnome-Terminal "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o gnometerminal
-                apt install gnometerminal* -y
+                apt install gnometerminal -y
             
             #reaver
                 clear
-                echo "Instalando o Reaver "
+                echo "[+] Instalando o Reaver "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o reaver
@@ -654,21 +691,21 @@ auto_config_ubuntu()
                 
             #tor
                 clear
-                echo "Instalando o Tor "
+                echo "[+] Instalando o Tor "
                 echo "----------------------------------------------------------------------"
                 
-                #adicinando repositorio
-                add-apt-repository ppa:upubuntu-com/tor64 -y
+                #adicionando repositorio
+                    add-apt-repository ppa:webupd8team/tor-browser -y                
                 
                 #atualizando lista de pacotes
                 apt-get update            
                 
                 #instalando tor
                 apt-get install tor-browser -y
-                
+                                
             #hollywood
                 clear
-                echo "Instalando o Hollywood "
+                echo "[+] Instalando o Hollywood "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando recurso para hackear a matrix
@@ -676,15 +713,15 @@ auto_config_ubuntu()
             
             #synaptic
                 clear
-                echo "Instalando o Synaptic "
+                echo "[+] Instalando o Synaptic "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o synaptic
-                apt install synaptic* -y
+                apt install synaptic -y
             
             #dolphin
                 clear 
-                echo "Instalando o Dolphin "
+                echo "[+] Instalando o Dolphin "
                 echo "----------------------------------------------------------------------"
                 
                 #adicionando repositorio do dolphin
@@ -702,7 +739,7 @@ auto_config_ubuntu()
                 
             #citra
                 clear 
-                echo "Instalando o Citra "
+                echo "[+] Instalando o Citra "
                 echo "----------------------------------------------------------------------"
                                
                 #adicionando bibliotecas necessarias
@@ -737,7 +774,7 @@ auto_config_ubuntu()
                 
             #screenfetch
                 clear 
-                echo "Instalando o Screenfetch "
+                echo "[+] Instalando o Screenfetch "
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o screenfetch
@@ -745,7 +782,7 @@ auto_config_ubuntu()
                 
             #diolinux paper
                 clear 
-                echo "Instalando o Diolinux Paper "
+                echo "[+] Instalando o Diolinux Paper "
                 echo "----------------------------------------------------------------------"
             
                 #adicionando ppa			
@@ -763,7 +800,7 @@ auto_config_ubuntu()
                 
             #kdenlive
                 clear 
-                echo "Instalando o Kdenlive "
+                echo "[+] Instalando o Kdenlive "
                 echo "----------------------------------------------------------------------"
                 
                 #adicionando ppa
@@ -777,7 +814,7 @@ auto_config_ubuntu()
                 
             #chromium
                 clear
-                echo "Instalando o Bleachbit"
+                echo "[+] Instalando o Chromium"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando chromium		
@@ -785,47 +822,47 @@ auto_config_ubuntu()
                 
             #sweethome3D
                 clear
-                echo "Instalando o Sweet Home 3D"
+                echo "[+] Instalando o Sweet Home 3D"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando o sweethome3d
-                apt install sweethome3d* -y
+                apt install sweethome3d -y
                 
             #kate
                 clear
-                echo "Instalando o Kate"
+                echo "[+] Instalando o Kate"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando o kate
-                apt install kate* -y
+                apt install kate -y
             
             #inkscape
                 clear
-                echo "Instalando o Inkscape"
+                echo "[+] Instalando o Inkscape"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando inkscape
-                apt-get install inkscape* -y 
+                apt-get install inkscape -y 
                 
             #blender
                 clear
-                echo "Instalando o Blender"
+                echo "[+] Instalando o Blender"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando o blender
-                apt-get install blender* -y
+                apt-get install blender -y
                 
             #cheese
                 clear
-                echo "Instalando o Cheese"
+                echo "[+] Instalando o Cheese"
                 echo "----------------------------------------------------------------------"                
                 
                 #instalando o cheese
-                apt-get install cheese* -y
+                apt-get install cheese -y
                 
             #plankdock
                 clear
-                echo "Instalando o Plank Dock"
+                echo "[+] Instalando o Plank Dock"
                 echo "----------------------------------------------------------------------"                
                 
                 #adicionando ppa
@@ -839,15 +876,15 @@ auto_config_ubuntu()
             
             #gnomesystemmonitor
                 clear
-                echo "Instalando o Gnome System Monitor"
+                echo "[+] Instalando o Gnome System Monitor"
                 echo "----------------------------------------------------------------------"
             
                 #instalando gnomesystemmonitor
-                apt install gnome-system-monitor* -y
+                apt install gnome-system-monitor -y
                 
             #nautilus
                 clear
-                echo "Instalando o Nautilus"
+                echo "[+] Instalando o Nautilus"
                 echo "----------------------------------------------------------------------"
                 
                 #adicionando ppa
@@ -861,15 +898,15 @@ auto_config_ubuntu()
             
             #wireshark
                 clear
-                echo "Instalando o Wireshark"
+                echo "[+] Instalando o Wireshark"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o wireshark
-                apt install wireshark* -y
+                apt install wireshark -y
                 
             #gnomediskutility
                 clear
-                echo "Instalando o Gnome Disk Utility"
+                echo "[+] Instalando o Gnome Disk Utility"
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o gnomediskutility
@@ -877,7 +914,7 @@ auto_config_ubuntu()
                 
             #smartgit
                 clear
-                echo "Instalando o Smartgit"
+                echo "[+] Instalando o Smartgit"
                 echo "----------------------------------------------------------------------"
                 
                 #adicionando repositorio
@@ -887,28 +924,27 @@ auto_config_ubuntu()
                 apt-get update
 
                 #instalando smartgit
-                apt-get install smartgit smartgithg* -y
+                apt-get install smartgit smartgithg -y
                 
             #chkrootkit
                 clear
-                echo "Instalando o Chkrootkit"
+                echo "[+] Instalando o Chkrootkit"
                 echo "----------------------------------------------------------------------"
                 
-            
                 #instalando o chkrootkit
-                apt install chkrootkit* -y
+                apt install chkrootkit -y
             
             #chkrootkit
                 clear
-                echo "Instalando o Localepurge"
+                echo "[+] Instalando o Localepurge"
                 echo "----------------------------------------------------------------------"
             
                 #instalando localepurge
-                apt-get install localepurge* -y
+                apt-get install localepurge -y
                 
             #liquorix
                 clear
-                echo "Instalando o Liquorix"
+                echo "[+] Instalando o Liquorix"
                 echo "----------------------------------------------------------------------"
                 
                 #adicionando enderencos na lista de fontes
@@ -926,6 +962,10 @@ auto_config_ubuntu()
                 update-grub
                 
             #mcomix    
+                clear
+                echo "[+] Instalando o MCOMIX"
+                echo "----------------------------------------------------------------------"
+            
                 #adicionando repositorio
                 add-apt-repository ppa:nilarimogard/webupd8 -y
 
@@ -936,10 +976,18 @@ auto_config_ubuntu()
                 apt-get install mcomix -y
                 
             #calibre
+                clear
+                echo "[+] Instalando o Calibre"
+                echo "----------------------------------------------------------------------"
+                
                 #instalando calibre
                 apt install calibre -y
                 
             #adapta    
+                clear
+                echo "[+] Instalando o tema Adapta"
+                echo "----------------------------------------------------------------------"
+                
                 #adicionando repositorio
                 apt-add-repository ppa:tista/adapta -y
 
@@ -950,18 +998,20 @@ auto_config_ubuntu()
                 apt install adapta-gtk-theme                
                 
             #visualgameboy
+                clear
+                echo "[+] Instalando o Visualboyadvance"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o visualboyadvance
                 apt install visualboyadvance-gtk -y
                 
             #audacity
-                apt install audacity* -y   
+                clear
+                echo "[+] Instalando o Audacity"
+                echo "----------------------------------------------------------------------"
                 
-            #tor
-                #adicionando repositorio
-                    add-apt-repository ppa:webupd8team/tor-browser -y
-                #atualizando lista repositorio
-                    apt-get update
-                #instalando tor
-                    apt-get install tor-browser -y
+                #instalando o audacity
+                apt install audacity* -y                               
             ;;
             
     ################################################################################

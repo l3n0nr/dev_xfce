@@ -1,7 +1,7 @@
 ##########################################################
 # AUTOR: lenonr						 #
 # CONTATO: lenonrmsouza@gmail.com			 #
-# SCRIPT ATUALIZANDO DIA: 19/07/17			 #
+# SCRIPT ATUALIZANDO DIA: 21/07/17			 #
 # DISPONIVEL EM: <http://ntp.br/guia-linux-avancado.php> #
 ##########################################################
 # "memoria" para o escorregamento de frequencia do micro
@@ -27,8 +27,21 @@ server a.ntp.br iburst
 server b.ntp.br iburst
 server c.ntp.br iburst
 
-# outros servidores
-# server outro-servidor.dominio.br iburst
+# servidores do observatorio nacional
+server ntp.on.br iburst
+server ntp2.on.br iburst
+
+# servidores da rnp
+server ntp.cert-rs.tche.br iburst  
+server ntp.pop-mg.rnp.br iburst  
+
+# servidores da ufrj
+server ntp.pads.ufrj.br iburst
+server ntps1.pads.ufrj.br 
+server ntp2.pads.ufrj.br
+
+# servidor da usp
+server ntp.usp.br iburst
 
 # configuracoes de restricao de acesso
 restrict default kod notrap nomodify nopeer noquery
