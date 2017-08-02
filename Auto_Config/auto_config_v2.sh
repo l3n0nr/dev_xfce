@@ -182,6 +182,7 @@
 # # [+] VisualGame Boy Advanced
 # # [+] Audacity
 # # [+] Tor
+# # [+] Kstars
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -1011,7 +1012,15 @@ auto_config_ubuntu()
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o audacity
-                apt install audacity* -y                               
+                apt install audacity* -y   
+                
+            #Kstars
+                clear
+                echo "[+] Instalando o Kstars"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o kstars
+                apt install kstars* -y
             ;;
             
     ################################################################################
