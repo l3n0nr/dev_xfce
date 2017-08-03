@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.213.0.17.5  #
+# versão do script: 1.0.214.0.17.5  #
 # ultima ediçao realizada: 02/08/17 #
 #####################################
 #
@@ -185,6 +185,7 @@
 # # [+] Celestia
 # # [+] Simple Screen Recorder
 # # [+] Firewall Basic
+# # [+] Mega
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -1054,7 +1055,17 @@ auto_config_ubuntu()
                 
                 #instalando ufw + gufw
                 apt install ufw gufw -y
-            
+                
+            #mega
+                clear
+                echo "[+] Instalando Mega"
+                echo "----------------------------------------------------------------------"
+                                            
+                #instalando mega
+                dpkg -i base/mega/*.deb
+                apt install -fy
+                dpkg -i base/mega/*.deb
+                            
             ;;
             
     ################################################################################
