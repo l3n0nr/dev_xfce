@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.210.0.17.5  #
+# versão do script: 1.0.211.0.17.5  #
 # ultima ediçao realizada: 02/08/17 #
 #####################################
 #
@@ -182,6 +182,7 @@
 # # [+] Audacity
 # # [+] Tor
 # # [+] Kstars
+# # [+] Celestia
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -1020,6 +1021,29 @@ auto_config_ubuntu()
                 
                 #instalando o kstars
                 apt install kstars* -y
+                
+            #celestia
+                clear
+                echo "[+] Instalando o Celestia"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando o celestia
+                apt install celestia-gnome celestia* -y
+                
+            #simple screen recorder
+                clear
+                echo "[+] Instalando Simple Screen Recorder"
+                echo "----------------------------------------------------------------------"
+                
+                #adicionando fonte
+                add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+
+                #atualizando lista de repositorios
+                apt-get update 
+                
+                #instalando simplescreenrecorder
+                apt-get install simplescreenrecorder -y
+                apt-get install simplescreenrecorder-lib:i386 -y
             ;;
             
     ################################################################################
