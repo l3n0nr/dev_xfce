@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.214.0.17.5  #
+# versão do script: 1.0.217.0.0.6  #
 # ultima ediçao realizada: 02/08/17 #
 #####################################
 #
@@ -59,11 +59,12 @@
 # 	d = correções necessárias;
 # 	e = pendencias
 # 	f = desenvolver
-# 		-Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
-#		-Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
-#		-Verificar a arquitetura do sistema, para a instalação de determinados programas;
-#               -Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               -Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
+# 		-[INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
+#		-[FUNCAO CANCELA PROCESSAMENTO] - Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
+#		-[FUNCAO VERIFICA ARQUITETURA] - Verificar a arquitetura do sistema, para a instalação de determinados programas;
+#               -[FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
+#               -[FUNCAO INSTALA TODOS PROGRAMAS] - Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
+#               -[FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
 #
 #####################################
 #       [+] - Açao realizada 
@@ -83,7 +84,6 @@
 ################################################################################
 # FUNCOES
 #
-################################################################################
 ######ATUALIZA SISTEMA
 # # [+] Update
 # #     [+] Update-Grud
@@ -186,6 +186,13 @@
 # # [+] Simple Screen Recorder
 # # [+] Firewall Basic
 # # [+] Mega
+
+################################################################################	
+######REMOVENDO PROGRAMAS
+# # [+]Pidgin
+# # [+] Thunderbird
+# # [+] Parole
+
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -213,8 +220,9 @@ auto_config_ubuntu()
     echo "Digite 2 para corrigir possíveis erros," 
     echo "Digite 3 para realizar uma limpeza," 
     echo "Digite 4 para instalar alguns programas," 
-    echo "Digite 5 para reiniciar a máquina."
-    echo "Digite 6 para sair do script;"
+    echo "Digite 5 para remover alguns programas"
+    echo "Digite 6 para reiniciar a máquina."
+    echo "Digite 7 para sair do script;"
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
     
@@ -1067,16 +1075,37 @@ auto_config_ubuntu()
                 dpkg -i base/mega/*.deb
                             
             ;;
-            
+    
+    ################################################################################
+    ######REMOVES PROGRAMAS
+        5) echo
+            #removendo programas já instalados
+                clear
+                echo "[+] Removendo pidgin"
+                echo "----------------------------------------------------------------------"
+                apt purge pidgin* -y
+                
+                clear
+                echo "[+] Removendo Thunderbird"
+                echo "----------------------------------------------------------------------"
+                apt purge thunderbird* -y
+                
+                clear
+                echo "[+] Removendo Parole"
+                echo "----------------------------------------------------------------------"
+                apt purge parole* -y
+                            
+            ;;
+    
     ################################################################################
     ######REINICIANDO MAQUINA
-        5) echo
+        6) echo
             reboot -n
             ;;
         
     ################################################################################
     ######SAINDO SCRIPT
-        6) echo 	
+        7) echo 	
             exit
             ;;
     
