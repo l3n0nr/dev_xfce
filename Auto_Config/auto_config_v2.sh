@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.212.0.17.5  #
+# versão do script: 1.0.213.0.17.5  #
 # ultima ediçao realizada: 02/08/17 #
 #####################################
 #
@@ -183,6 +183,8 @@
 # # [+] Tor
 # # [+] Kstars
 # # [+] Celestia
+# # [+] Simple Screen Recorder
+# # [+] Firewall Basic
 ################################################################################	
 # Reinicialização
 # # [+]Reiniciar
@@ -1044,6 +1046,15 @@ auto_config_ubuntu()
                 #instalando simplescreenrecorder
                 apt-get install simplescreenrecorder -y
                 apt-get install simplescreenrecorder-lib:i386 -y
+            
+            #firewall basic
+                clear
+                echo "[+] Instalando Firewall Basico"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando ufw + gufw
+                apt install ufw gufw -y
+            
             ;;
             
     ################################################################################
