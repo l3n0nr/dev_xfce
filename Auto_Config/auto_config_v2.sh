@@ -49,7 +49,7 @@
 #
 #####################################
 # versão do script: 1.0.217.0.0.6  #
-# ultima ediçao realizada: 02/08/17 #
+# ultima ediçao realizada: 03/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
