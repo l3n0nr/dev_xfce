@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.211.0.17.5  #
+# versão do script: 1.0.212.0.17.5  #
 # ultima ediçao realizada: 02/08/17 #
 #####################################
 #
@@ -710,7 +710,7 @@ auto_config_ubuntu()
                 echo "----------------------------------------------------------------------"
                 
                 #instalando recurso para hackear a matrix
-                apt install hollywood
+                apt install hollywood -y
             
             #synaptic
                 clear
