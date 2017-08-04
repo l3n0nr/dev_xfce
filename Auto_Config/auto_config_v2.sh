@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.217.0.0.6  #
+# versão do script: 1.0.218.0.0.6  #
 # ultima ediçao realizada: 03/08/17 #
 #####################################
 #
@@ -189,7 +189,7 @@
 
 ################################################################################	
 ######REMOVENDO PROGRAMAS
-# # [+]Pidgin
+# # [+] Pidgin
 # # [+] Thunderbird
 # # [+] Parole
 
@@ -278,7 +278,7 @@ auto_config_ubuntu()
                 echo "----------------------------------------------------------------------"
                 apt-get check -y 
                 dpkg --configure -a 
-                apt-get -f install 
+                apt-get -f install -y
                 apt-get -f remove -y 
                 apt-get autoremove -y 
                 apt-get clean -y 
