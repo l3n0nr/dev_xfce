@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.218.0.0.6  #
-# ultima ediçao realizada: 03/08/17 #
+# versão do script: 1.0.219.0.0.6  #
+# ultima ediçao realizada: 08/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -99,6 +99,7 @@
 # # [+] Fontes
 # # [+] Apport
 # # [+] NTP
+# # [+] Iniciando sessão automaticamente
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -424,7 +425,11 @@ auto_config_ubuntu()
             echo "[*] USP"
                 ntpdate -q ntp.usp.br             
 
-            echo "[+] Hora do servidor atualizada!"                        
+            echo "[+] Hora do servidor atualizada!"        
+            
+        #iniciando sessão automaticamente
+            cat base/lightdm.conf > /etc/lightdm/lightdm.conf
+            
         ;;
                 
     ################################################################################
