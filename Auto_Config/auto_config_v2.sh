@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.219.0.0.6  #
-# ultima ediçao realizada: 08/08/17 #
+# versão do script: 1.0.220.0.0.6  #
+# ultima ediçao realizada: 11/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -540,7 +540,7 @@ auto_config_ubuntu()
                 clear
                 echo "[+] Instalando o Gimp"
                 echo "----------------------------------------------------------------------"
-                apt install gimp* -y
+                apt install gimp -y
                 
             #xfce
                 clear
