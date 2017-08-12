@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.220.0.0.6  #
-# ultima ediçao realizada: 11/08/17 #
+# versão do script: 1.0.221.0.0.6  #
+# ultima ediçao realizada: 12/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -277,16 +277,33 @@ auto_config_ubuntu()
                 clear
                 echo "Corrigindo possiveis erros no Sistema"
                 echo "----------------------------------------------------------------------"
+                
+                #verificando lista do apt
                 apt-get check -y 
-                dpkg --configure -a 
+                
+                #instalando possiveis dependencias 
                 apt-get -f install -y
+                
+                #removendo possiveis dependencias
                 apt-get -f remove -y 
+                
+                #removendo arquivos sobressalentes
                 apt-get autoremove -y 
+                
+                #limpando lista arquivos sobressalentes
                 apt-get clean -y 
+                
+                #corrigindo problemas de dependencias
                 apt-get install auto-apt -y 
-                auto-apt update-local -y 
-                auto-apt update -y 
-                auto-apt updatedb -y
+                
+                    #corrigindo repositorio local de dependencias automaticamente
+                    auto-apt update-local -y 
+                    
+                    #atualizando repositorio e seus dependencias
+                    auto-apt update -y
+                    
+                    #atualizando repositorio local
+                    auto-apt updatedb -y
             else
                 echo "Função incompativel"                    
             fi        
@@ -325,9 +342,9 @@ auto_config_ubuntu()
         #prelink, preload
             if [ "$distro" == "Ubuntu" ]; then
                 echo "Instalando Prelink, Preload e Deborphan"
-                #prelink =
-                #preload =
-                #deborphan = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
+                #prelink    = otimiza o tempo de boot
+                #preload    = reduz o tempo de inicialização das aplicações
+                #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
                 echo "-------------------"
                 sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
                 sudo apt-get install deborphan -y
@@ -360,7 +377,10 @@ auto_config_ubuntu()
         #corrigindo pacotes quebrados
             echo "Corrigindo pacotes quebrados"
             echo "----------------------------"
+            
+            #corrige possiveis erros na instalação de softwares
             dpkg --configure -a
+            
             #VERIFICAR AÇÕES
             rm -r /var/lib/apt/lists  
             mkdir -p /var/lib/apt/lists/partial
