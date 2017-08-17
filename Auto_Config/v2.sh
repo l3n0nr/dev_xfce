@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.223.0.0.7  #
+# versão do script: 1.0.224.0.0.7  #
 # ultima ediçao realizada: 17/08/17 #
 #####################################
 #
@@ -161,7 +161,6 @@
 # # [+] Nautilus
 # # [+] Wireshark
 # # [+] Gnome-disk-utility
-# # [+] Smartgit
 # # [+] Chkrootkit
 # # [+] Vivacious
 # # [+] Lampp
@@ -950,21 +949,7 @@ auto_config_ubuntu()
                 
                 #instalando o gnomediskutility
                 apt install gnome-disk-utility* -y
-                
-            #smartgit
-                clear
-                echo "[+] Instalando o Smartgit"
-                echo "----------------------------------------------------------------------"
-                
-                #adicionando repositorio
-                add-apt-repository ppa:eugenesan/ppa -y
-
-                #atualizando lista pacotes
-                apt-get update
-
-                #instalando smartgit
-                apt-get install smartgit smartgithg -y
-                
+                                
             #chkrootkit
                 clear
                 echo "[+] Instalando o Chkrootkit"
