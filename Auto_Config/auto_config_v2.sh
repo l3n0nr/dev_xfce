@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.221.0.0.6  #
-# ultima ediçao realizada: 12/08/17 #
+# versão do script: 1.0.222.0.0.6  #
+# ultima ediçao realizada: 16/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -187,6 +187,7 @@
 # # [+] Simple Screen Recorder
 # # [+] Firewall Basic
 # # [+] Mega
+# # [+] Open Ssh
 
 ################################################################################	
 ######REMOVENDO PROGRAMAS
@@ -1098,6 +1099,15 @@ auto_config_ubuntu()
                 dpkg -i base/mega/*.deb
                 apt install -fy
                 dpkg -i base/mega/*.deb
+                
+            #openssh
+                clear
+                clear
+                echo "[+] Instalando Openssh"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando openssh
+                apt install openssh-server openssh-client -y
                             
             ;;
     
