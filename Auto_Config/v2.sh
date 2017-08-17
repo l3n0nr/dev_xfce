@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.224.0.0.7  #
+# versão do script: 1.0.225.0.0.7  #
 # ultima ediçao realizada: 17/08/17 #
 #####################################
 #
@@ -101,6 +101,7 @@
 # # [+] Apport
 # # [+] NTP
 # # [+] Iniciando sessão automaticamente
+# # [+] Apport
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -450,6 +451,9 @@ auto_config_ubuntu()
             
         #iniciando sessão automaticamente
             cat base/lightdm.conf > /etc/lightdm/lightdm.conf
+            
+        #corrige apport - ubuntu 16.04
+            cat base/apport > /etc/default/apport
             
         ;;
                 
