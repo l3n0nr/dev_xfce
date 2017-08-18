@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.225.0.0.7  #
-# ultima ediçao realizada: 17/08/17 #
+# versão do script: 1.0.226.0.0.7  #
+# ultima ediçao realizada: 18/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -189,6 +189,7 @@
 # # [+] Firewall Basic
 # # [+] Mega
 # # [+] Open Ssh
+# # [+] Figlet
 
 ################################################################################	
 ######REMOVENDO PROGRAMAS
@@ -1098,7 +1099,15 @@ auto_config_ubuntu()
                 
                 #instalando openssh
                 apt install openssh* -y
-                            
+            
+            #figlet
+                clear
+                clear
+                echo "[+] Instalando Figlet"
+                echo "----------------------------------------------------------------------"
+                
+                #instalando openssh
+                apt install figlet -y                                                    
             ;;
     
     ################################################################################
