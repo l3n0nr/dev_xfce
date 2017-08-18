@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.226.0.0.7  #
+# versão do script: 1.0.227.0.0.7  #
 # ultima ediçao realizada: 18/08/17 #
 #####################################
 #
@@ -102,6 +102,7 @@
 # # [+] NTP
 # # [+] Iniciando sessão automaticamente
 # # [+] Apport
+# # [+] Terminal Personalizado
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -455,6 +456,9 @@ auto_config_ubuntu()
             
         #corrige apport - ubuntu 16.04
             cat base/apport > /etc/default/apport
+            
+        #terminal Personalizado
+            cat base/.bashrc > $HOME/.bashrc
             
         ;;
                 
