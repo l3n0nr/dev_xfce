@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.227.0.0.7  #
-# ultima ediçao realizada: 18/08/17 #
+# versão do script: 1.0.228.0.0.7  #
+# ultima ediçao realizada: 19/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -671,7 +671,7 @@ auto_config_ubuntu()
                 echo "----------------------------------------------------------------------"
                 
                 #instalando o tlp
-                apt install tl -y
+                apt install tlp -y
                 
             #rar
                 clear
