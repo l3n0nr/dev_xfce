@@ -42,7 +42,7 @@ Y="\[\033[0;33m\]" # Yellow (Amarelo)
 B="\[\033[0;34m\]" # Blue (Azul)
 M="\[\033[0;35m\]" # Magenta (Vermelho Claro)
 C="\[\033[0;36m\]" # Cyan (Ciano - Azul Claro)
-W="\[\033[0;37m\]" # White (Branco)
+# W="\[\033[0;37m\]" # White (Branco)
 
 ## Efeito Negrito (bold) e cores
 BK="\[\033[1;30m\]" # Bold+Black (Negrito+Preto)
@@ -52,7 +52,7 @@ BY="\[\033[1;33m\]" # Bold+Yellow (Negrito+Amarelo)
 BB="\[\033[1;34m\]" # Bold+Blue (Negrito+Azul)
 BM="\[\033[1;35m\]" # Bold+Magenta (Negrito+Vermelho Claro)
 BC="\[\033[1;36m\]" # Bold+Cyan (Negrito+Ciano - Azul Claro)
-BW="\[\033[1;37m\]" # Bold+White (Negrito+Branco)
+# BW="\[\033[1;37m\]" # Bold+White (Negrito+Branco)
 
 ## Cores de fundo (backgroud)
 BGK="\[\033[40m\]" # Black (Preto)
