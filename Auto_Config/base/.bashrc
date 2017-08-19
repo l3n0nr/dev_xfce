@@ -128,8 +128,8 @@ fi # Fim do if do dircolor
 
 # entrando no diretório mais usados
 alias dev_web='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /var/www/html/dev_web && ls && echo "######################################"'
-alias dev_xfce='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/GitHub/dev_xfce && ls && echo "######################################"'
-alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/GitHub/dev_scripts && ls && echo "######################################"'
+alias dev_xfce='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_xfce && ls && echo "######################################"'
+alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_scripts && ls && echo "######################################"'
 alias home='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr && ls && echo "######################################"'
 alias install='sudo apt install'
 
