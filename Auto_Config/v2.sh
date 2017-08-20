@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.228.0.0.7  #
-# ultima ediçao realizada: 19/08/17 #
+# versão do script: 1.0.229.0.0.7  #
+# ultima ediçao realizada: 20/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -103,6 +103,7 @@
 # # [+] Iniciando sessão automaticamente
 # # [+] Apport
 # # [+] Terminal Personalizado
+# # [+] Ssh
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -459,6 +460,9 @@ auto_config_ubuntu()
             
         #terminal Personalizado
             cat base/.bashrc > $HOME/.bashrc
+            
+        #altera arquivo ssh
+            cat base/sshd_config > /etc/ssh/sshd_config
             
         ;;
                 
