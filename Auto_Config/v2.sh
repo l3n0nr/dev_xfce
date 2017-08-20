@@ -615,7 +615,6 @@ auto_config_ubuntu()
                 clear
                 echo "[+] Instalando o Redshift"
                 echo "----------------------------------------------------------------------"
-
                 #instalando o redshift
                 apt install redshift gtk-redshift -y
                 
