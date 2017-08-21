@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.229.0.0.7  #
+# versão do script: 1.0.230.0.0.7  #
 # ultima ediçao realizada: 20/08/17 #
 #####################################
 #
@@ -104,6 +104,7 @@
 # # [+] Apport
 # # [+] Terminal Personalizado
 # # [+] Ssh
+# # [+] Log - Sudo
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -463,6 +464,9 @@ auto_config_ubuntu()
             
         #altera arquivo ssh
             cat base/sshd_config > /etc/ssh/sshd_config
+            
+        #ativando log sudo
+            cat base/login.defs > /etc/login.defs
             
         ;;
                 
