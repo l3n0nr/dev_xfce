@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.231.0.0.7  #
+# versão do script: 1.0.232.0.0.7  #
 # ultima ediçao realizada: 20/08/17 #
 #####################################
 #
@@ -105,6 +105,7 @@
 # # [+] Terminal Personalizado
 # # [+] Ssh
 # # [+] Log - Sudo
+# # [+] Lista de Repositorios padrão
 # # 
 ################################################################################
 ######LIMPA SISTEMA
@@ -467,6 +468,9 @@ auto_config_ubuntu()
             
         #ativando log sudo
             cat base/login.defs > /etc/login.defs
+            
+        #definindo lista de repositorios padrao
+            cat base/sources.list > /etc/apt/sources.list
             
         ;;
                 
