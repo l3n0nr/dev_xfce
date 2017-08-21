@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.230.0.0.7  #
+# versão do script: 1.0.231.0.0.7  #
 # ultima ediçao realizada: 20/08/17 #
 #####################################
 #
@@ -277,7 +277,7 @@ auto_config_ubuntu()
             
             #atualizando lista de programas do sistema
             echo "[+] Atualizando lista de programas do sistema"            
-            apt upgrade
+            apt upgrade -y
             
             if [ "$distro" == "Ubuntu" ]; then
                 clear
