@@ -133,12 +133,17 @@ alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd
 alias home='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr && ls && echo "######################################"'
 
 #criando atalhos para atualizar os diretorios do github 
-alias pull_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git pull && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git pull && echo "Diretório dev_web" && cd /var/www/html/dev_web && git pull && cd $HOME'
+alias pull_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git pull && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git pull && echo "Diretório dev_web" && cd /var/www/html/dev_web && git pull && cd /home/lenonr'
              
-alias push_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git push && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git push && echo "Diretório dev_web" && cd /var/www/html/dev_web && git push && cd $HOME'
+alias push_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git push && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git push && echo "Diretório dev_web" && cd /var/www/html/dev_web && git push && cd /home/lenonr'
+
+alias status_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git status && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git status && echo "Diretório dev_web" && cd /var/www/html/dev_web && git status ¨&& cd /home/lenonr'
 
 #criando apelido para instalação de programas
 alias install='sudo apt install'
+
+#criando apelido para comando screenfetch
+alias tela='screenfetch'
 
 #==============================================
 # Aliases para uso no dia-a-dia e testes
