@@ -818,7 +818,7 @@ php()
 {
     clear
     echo ""
-    echo "Deseja instalar o Php(Mysql+PostgreSQL)? (s/n)"
+    echo "Deseja instalar o Php? (s/n)"
     read -p "??" php
 }
 
