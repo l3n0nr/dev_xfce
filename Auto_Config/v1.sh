@@ -52,11 +52,11 @@
 #################################################################################
 #
 ####################################
-# versão do script: 2.0.140.6.17.5 #
+# versão do script: 3.0.140.6.17.5 #
 ####################################
 #
 # legenda: a.b.c.d.e.f
-# 	a = alpha[0], beta[1], freeze[2];
+# 	a = alpha[0], beta[1], stable[2], freeze[3];
 # 	b = erros na execução;	
 # 	c = interações com o script + versões funcionando;
 # 	d = correções necessárias;
