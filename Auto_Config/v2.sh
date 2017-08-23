@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 2.0.234.0.0.7  #
+# versão do script: 2.0.235.0.0.7  #
 # ultima ediçao realizada: 23/08/17 #
 #####################################
 #
@@ -278,7 +278,7 @@ auto_config_ubuntu()
                     echo "Atualizando os programas da máquina"
                     echo "----------------------------------------------------------------------"
                     apt upgrade -y
-                    apt-get dist-upgrade
+                    apt-get dist-upgrade -y
             elif [ "$distro" == "Fedora" ]; then
                     clear
                     echo "Atualizando os programas da máquina"
