@@ -48,7 +48,7 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.233.0.0.7  #
+# versão do script: 1.0.234.0.0.7  #
 # ultima ediçao realizada: 23/08/17 #
 #####################################
 #
@@ -67,6 +67,17 @@
 #               -VI     - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
 #               -VII    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web.
 #               -VIII   - [FUNCAO DESKTOP-NOTEBOOK] - Possibilitar a instalação de programas especificos de acordo com o tipo da máquina, desktop ou notebook. 
+#                     #capturando hostname da maquina
+#                     hostname=$(hostname)
+# 
+#                     #verificando variavel
+#                     if [[ $hostname == 'desktop' ]]; then
+#                         echo "desktop"
+#                     elif [[ $hostname == 'notebook' ]]; then
+#                         echo "notebook"
+#                     else
+#                         echo "não sei o que fazer"
+#                     fi
 #
 #####################################
 #       [+] - Açao realizada 
@@ -210,7 +221,7 @@
 ################################################################################ 
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
-    if [[ `id -u` -ne 0 ]]; then
+   if [[ `id -u` -ne 0 ]]; then
         clear
         echo "Você precisa ter poderes administrativos (root)"
         echo "O script está sendo finalizado ..."
