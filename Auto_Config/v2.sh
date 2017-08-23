@@ -48,8 +48,8 @@
 #################################################################################
 #
 #####################################
-# versão do script: 1.0.232.0.0.7  #
-# ultima ediçao realizada: 20/08/17 #
+# versão do script: 1.0.233.0.0.7  #
+# ultima ediçao realizada: 23/08/17 #
 #####################################
 #
 # Legenda: a.b.c.d.e.f
@@ -59,13 +59,14 @@
 # 	d = correções necessárias;
 # 	e = pendencias
 # 	f = desenvolver
-# 		-I - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
-#		-II - [FUNCAO CANCELA PROCESSAMENTO] - Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
-#		-III - [FUNCAO VERIFICA ARQUITETURA] - Verificar a arquitetura do sistema, para a instalação de determinados programas;
-#               -IV - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               -V - [FUNCAO INSTALA TODOS PROGRAMAS] - Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
-#               -VI - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
-#               -VII - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web.
+# 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
+#		-II     - [FUNCAO CANCELA PROCESSAMENTO] - Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
+#		-III    - [FUNCAO VERIFICA ARQUITETURA] - Verificar a arquitetura do sistema, para a instalação de determinados programas;
+#               -IV     - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
+#               -V      - [FUNCAO INSTALA TODOS PROGRAMAS] - Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
+#               -VI     - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
+#               -VII    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web.
+#               -VIII   - [FUNCAO DESKTOP-NOTEBOOK] - Possibilitar a instalação de programas especificos de acordo com o tipo da máquina, desktop ou notebook. 
 #
 #####################################
 #       [+] - Açao realizada 
