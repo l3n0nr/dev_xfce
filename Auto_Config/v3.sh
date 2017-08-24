@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.5.2.0.6]     #
+# # versão do script:           [0.0.8.2.0.6]     #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [24/08/17]      #
+# # ultima ediçao realizada:      [25/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -145,79 +145,72 @@
 # # 
 ################################################################################
 # # # # # INSTALANDO PROGRAMAS
+# NAVEGADORES
 # # [+] Firefox
+# # [+] Chromium
+# # [+] Tor
+# 
+# JOGOS
 # # [+] Steam
-# # [+] Xampp
+# # [+] Citra
+# # [+] Dolphin
+# # [+] VisualGame Boy Advanced
+# 
+# ASTRONOMIA
+# # [+] Stellarium
+# # [+] Kstars
+# # [+] Celestia
+# 
+# MULTIMIDIA
 # # [+] Spofity
+# # [+] Clementine
+# # [+] VLC
+# # [+] Kdenlive
+# # [+] Sweet Home 3D
+# # [+] Audacity
+# # [+] Mcomix
+# # [+] Simple Screen Recorder
+# # [+] Calibre
+# 
+# DESENVOLVIMENTO
+# # [+] Kate
+# # [+] Wireshark
+# # [+] Git
+# 
+# IMAGEM
+# # [+] Gimp
+# 
+# OFFICE
+# # [+] LibreOffice
+# # [+] Texmaker
+# 
+# PERSONALIZAÇÃO
 # # [+] Icones/Temas Mac
 # # [+] Codec's
-# # [+] Gimp
 # # [+] XFCE
-# # [+] Java 8
 # # [+] Redshift
-# # [+] Flux
-# # [+] Libreoffice
-# # [+] Vlc
-# # [+] Clementine
-# # [+] Gparted
-# # [+] Tlp
-# # [+] Rar
-# # [+] Git
-# # [+] Lm-sensors
-# # [+] Stellarium
-# # [+] Texmaker
 # # [+] Gnome-terminal
-# # [+] Reaver
 # # [+] NTP
-# # [+] Hollywood
 # # [+] Synaptic	
-# # [+] Virtualbox
-# # [+] Citra
-# # [+] Mesa - ppa
-# # [+] Screenfetch
-# # [+] Diolinux_paper(Diolinux Paper Orange Modern)
-# # [+] Kdenlive
-# # [+] Supertuxkart
-# # [+] Cowsay
-# # [+] Chromium
-# # [+] Sweet Home 3d
-# # [+] Kate
-# # [+] Inkscape
-# # [+] Blender
-# # [+] Numix Icon
 # # [+] Plank
 # # [+] Gnome System Monitor
 # # [+] Nautilus
-# # [+] Wireshark
+# # [+] Gparted
+# # [+] Tlp
+# # [+] Rar
+# # [+] Screenfetch
 # # [+] Gnome-disk-utility
-# # [+] Chkrootkit
-# # [+] Vivacious
-# # [+] Lampp
-# # [+] Php
-# # [+] Mysql
-# # [+] Ftp
-# # [+] Quota
-# # [+] Flatabulous
 # # [+] Gnome System Tools
 # # [+] Brightside
-# # [+] Square-Beam
-# # [+] Liquorix
-# # [+] Moka
-# # [+] Mousepad
-# # [+] Dolphin
-# # [+] Mcomix
-# # [+] Calibre
-# # [+] Adapta
-# # [+] VisualGame Boy Advanced
-# # [+] Audacity
-# # [+] Tor
-# # [+] Kstars
-# # [+] Celestia
-# # [+] Simple Screen Recorder
+# # [+] Figlet
+# 
+# OUTROS
 # # [+] Firewall Basic
 # # [+] Mega
 # # [+] Open Ssh
-# # [+] Figlet
+# # [+] Chkrootkit
+# # [+] Reaver
+# # [+] Lm-sensors
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1166,7 +1159,142 @@ auto_config_ubuntu()
     ################################################################################
     ######INSTALA PROGRAMAS
         4) echo  
-            clear            
+            clear   
+            if [[ $hostname == 'notebook' ]]; then             
+#               NAVEGADORES
+                firefox
+                chromium
+                tor
+                
+#               JOGOS
+#                 steam
+#                 citra
+#                 dolphin
+                visual_game_boy
+                
+#               ASTRONOMIA
+                stellarium
+                celestia
+                kstars
+                
+#               MULTIMIDIA
+#                 spotify
+                clementine
+                vlc
+#                 kdenlive
+#                 sweethome3d                
+                audacity
+                mcomix
+#                 simple_screen_recorder
+                calibre
+                
+#               DESENVOLVIMENTO
+                kate
+                wireshark
+                git
+                
+#               IMAGEM
+                gimp
+                
+#               OFFICE
+                libreoffice
+                texmaker
+                
+#               PERSONALIZAÇÃO
+                icones_mac
+                codecs
+                xfce
+                redshift
+                gnome_terminal
+                ntp
+                synaptic
+                plank
+                gnome_system_monitor
+                nautilus
+                gparted
+                tlp
+                rar
+                screenfetch
+                gnome_disk_utility
+                gnome_system_monitor
+                brightside
+                figlet
+                
+#               OUTROS
+                firewall_basic
+                mega
+                openssh
+                install_chkrootkit
+                reaver
+                sensors            
+            else            
+#               NAVEGADORES
+                firefox
+                chromium
+                tor
+                
+#               JOGOS
+                steam
+                citra
+                dolphin
+                visual_game_boy
+                
+#               ASTRONOMIA
+                stellarium
+                celestia
+                kstars
+                
+#               MULTIMIDIA
+                spotify
+                clementine
+                vlc
+                kdenlive
+                sweethome3d                
+                audacity
+                mcomix
+                simple_screen_recorder
+                calibre
+                
+#               DESENVOLVIMENTO
+                kate
+                wireshark
+                git
+                
+#               IMAGEM
+                gimp
+                
+#               OFFICE
+                libreoffice
+                texmaker
+                
+#               PERSONALIZAÇÃO
+                icones_mac
+                codecs
+                xfce
+                redshift
+                gnome_terminal
+                ntp
+                synaptic
+                plank
+                gnome_system_monitor
+                nautilus
+                gparted
+                tlp
+                rar
+                screenfetch
+                gnome_disk_utility
+                gnome_system_monitor
+                brightside
+                figlet
+                
+#               OUTROS
+                firewall_basic
+                mega
+                openssh
+                install_chkrootkit
+                reaver
+                sensors            
+            fi
             ;;
     
     ################################################################################
