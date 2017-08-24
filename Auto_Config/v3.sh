@@ -510,6 +510,7 @@
 
     kernel()
     {
+        echo ""
         echo "[+] Removendo os kernel's temporários do sistema"
         
         #removendo kernel's antigos
@@ -518,25 +519,29 @@
     
     arquivos_temporarios()
     {    
+        echo ""
         echo "[+] Removendo arquivos temporários do sistema"
         find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+                            
     }
     
     pacotes_orfaos()
     {
+        echo ""
         echo "[+] Removendo Pacotes Órfãos"
         apt-get remove $(deborphan) -y ; apt-get autoremove -y    
     }
         
     chkrootkit()
     {
+        echo ""
         echo "[+] Verificando Chkrootkit"        
         
         chkrootkit >> log.txt;
     }
     
     localpurge()
-    {        
+    {   
+        echo ""
         echo "Removendo idiomas extras"
         localepurge       
     }                    
@@ -545,12 +550,14 @@
 # # INSTALA PROGRAMAS  
     firefox()
     {
+        echo ""
         echo "[+] Instalando Firefox"
         apt install firefox -y >> log.txt            
     }
     
     chromium()
-    {
+    {    
+        echo ""
         echo "[+] Instalando o Chromium"
         
         apt install chromium-browser -y
@@ -558,13 +565,15 @@
     
     
     steam()
-    {
+    {    
+        echo ""
         echo "[+] Instalando Steam"
         apt install steam -y >> log.txt
     }
     
     spotify()
-    {
+    {    
+        echo ""
         echo "[+] Instalando Spotify"
         
         #baixando pacote
@@ -581,7 +590,8 @@
     }
 
     icones_mac()
-    {
+    {    
+        echo ""
         echo "[+] Instalando icones e temas do MacOS X"
         
         #adicionando repositorio
@@ -599,6 +609,7 @@
     
     codecs()
     {
+        echo ""
         echo "[+] Instalando Pacotes Multimidias (Codecs)"
         
         #instalando pacotes multimidias
@@ -608,12 +619,14 @@
 
     gimp()
     {
+        echo ""
         echo "[+] Instalando o Gimp"
         apt install gimp -y >> log.txt
     }
     
     xfce4()
     {
+        echo ""
         echo "[+] Instalando adicionais do XFCE"
     
         #instalando componentes do XFCE
@@ -626,6 +639,7 @@
     
     wine()
     {
+        echo ""
         echo "[+] Instalando o Wine"
         
         #adicionado o repositorio
@@ -639,18 +653,21 @@
     
     playonlinux()
     {
+        echo ""
         echo "[+] Instalando o PlayonLinux"        
         apt install playonlinux* -y >> log.txt
     }
     
     redshift()
     {
+        echo ""
         echo "[+] Instalando o Redshift"        
         apt install redshift gtk-redshift -y
     }
     
     libreoffice()
     {
+        echo ""
         echo "[+] Instalando o Libreoffice"
         
         #adicionando ppa
@@ -665,54 +682,63 @@
     
     vlc()
     {
+        echo ""
         echo "[+] Instalando o VLC"        
         apt install vlc -y >> log.txt
     }
     
     clementine()
     {
+        echo ""
         echo "[+] Instalando o Clementine"        
         apt install clementine -y >> log.txt
     }
     
     gparted()
     {
+        echo ""
         echo "[+] Instalando o Gparted"        
         apt install gparted -y >> log.txt    
     }
     
     tlp()
     {
+        echo ""
         echo "[+] Instalando o Tlp"        
         apt install tlp -y >> log.txt
     }
     
     rar()
     {
+        echo ""
         echo "[+] Instalando o Rar"
         apt install rar* -y >> log.txt
     }
     
     git()
     {
+        echo ""
         echo "[+] Instalando o Git"
         apt install git-core git gitg -y >> log.txt
     }
     
     lm-sensors()
     {
+        echo ""
         echo "[+] Instalando o Lm-sensors"
         apt install lm-sensors -y >> log.txt
     }
     
     texmaker()
     {
+        echo ""
         echo "[+] Instalando o Texmaker"        
         apt install texmaker* texlive-full* texlive-latex-extra* -y >> log.txt
     }
     
     stellarium()
     {
+        echo ""
         echo "[+] Instalando o Stellarium"
     
         #adicinando ppa
@@ -727,6 +753,7 @@
     
     texmaker()
     {
+        echo ""
         echo "[+] Instalando o Texmaker"
         
         apt install texmaker* texlive-full* texlive-latex-extra* -y 
@@ -734,6 +761,7 @@
     
     stellarium()
     {
+        echo "" 
         echo "[+] Instalando o Stellarium"
         
          #adicinando ppa
@@ -748,6 +776,7 @@
     
     kstars()
     {
+        echo ""
         echo "[+] Instalando o Kstars"
         
         apt install kstars* -y
@@ -755,6 +784,7 @@
     
     celestia()
     {
+        echo ""
         echo "[+] Instalando o Celestia"
         
         apt install celestia-gnome celestia* -y
@@ -762,6 +792,7 @@
     
     gnome_terminal()
     {
+        echo ""
         echo "[+] Instalando Gnome-terminal"
         
         apt install gnometerminal -y
@@ -769,6 +800,7 @@
     
     reaver()
     {
+        echo ""
         echo "[+] Instalando o Reaver"
         
         apt install reaver -y
@@ -776,6 +808,7 @@
     
     tor()
     {
+        echo ""
         echo "[+] Instalando o Tor"
         
         #adicionando repositorio
@@ -790,6 +823,7 @@
     
     synaptic()
     {
+        echo ""
         echo "[+] Instalando o Synaptic"
         
         apt install synaptic -y
@@ -797,6 +831,7 @@
     
     dolphin()
     {
+        echo ""
         echo "[+] Instalando o Dolphin"
         
         #adicionando repositorio do dolphin
@@ -814,6 +849,7 @@
     
     citra()
     {
+        echo ""
         echo "[+] Instalando o Citra"
         
         #adicionando bibliotecas necessarias
@@ -849,6 +885,7 @@
     
     visual_game_boy()
     {
+        echo ""
         echo "[+] Instalando o Visual Game Boy"
         
         apt install visualboyadvance-gtk -y
@@ -856,6 +893,7 @@
     
     screenfetch()
     {
+        echo ""
         echo "[+] Instalando o Screenfetch"
         
         apt install screenfetch -y
@@ -863,6 +901,7 @@
     
     kdenlive()
     {
+        echo ""
         echo "[+] Instalando o Kdenlive"
         
         #adicionando ppa
@@ -877,6 +916,7 @@
     
     sweethome3d()
     {
+        echo ""
         echo "[+] Instalando Sweet Home 3D"
         
         apt install sweethome3d -y
@@ -884,6 +924,7 @@
     
     kate()
     {
+        echo ""
         echo "[+] Instalando o Kate"
         
         apt install kate -y
@@ -891,11 +932,13 @@
     
     cheese()
     {
+        echo ""
         apt install cheese -y
     }
     
     plank()
     {
+        echo ""
         echo "[+] Instalando o Plank Dock"
         
         #adicionando ppa
@@ -910,6 +953,7 @@
     
     gnome_system_monitor()
     {
+        echo ""
         echo "[+] Instalando o Gnome System Monitor"
         
         apt install gnome-system-monitor -y
@@ -917,6 +961,7 @@
     
     nautilus()
     {
+        echo ""
         echo "[+] Instalando o Nautilus"
         
         #adicionando ppa
@@ -931,6 +976,7 @@
     
     wireshark()
     {
+        echo ""
         echo "[+] Instalando o Wireshark"
         
         apt install wireshark -y
@@ -938,6 +984,7 @@
     
     gnome_disk_utility()
     {
+        echo ""
         echo "[+] Instalando o Gnome Disk Utility"
         
         apt install gnome-disk-utility* -y
@@ -945,6 +992,7 @@
     
     calibre()
     {
+        echo ""
         echo "[+] Instalando o Calibre"
         
         apt install calibre -y       
@@ -952,6 +1000,7 @@
     
     audacity()
     {
+        echo ""
         echo "[+] Instalando o Audacity"
         
         apt install audacity* -y   
@@ -959,6 +1008,7 @@
     
     mcomix()
     {
+        echo ""
         echo "[+] Instalando o MComix"
     
         #adicionando repositorio
@@ -973,6 +1023,7 @@
     
     simple_screen_recorder()
     {
+        echo ""
         echo "[+] Instalando o Simple Screen Recorder"
         
         #adicionando fonte
@@ -988,6 +1039,7 @@
     
     mega()
     {
+        echo ""
         echo "[+] Instalando o MEGA"
     
         #instalando mega
@@ -998,6 +1050,7 @@
     
     openssh()
     {
+        echo ""
         echo "[+]'Instalando o OpenSSH"
         
         apt install openssh* -y
@@ -1005,6 +1058,7 @@
     
     figlet()
     {
+        echo ""
         echo "[+] Instalando o Figlet"
         
         apt install figlet -y
@@ -1012,6 +1066,7 @@
     
     install_chkrootkit()
     {
+        echo ""
         echo "[+] Instalando o Chkrootkit"
         
         apt install chkrootkit -y
@@ -1019,6 +1074,7 @@
     
     localepurge()
     {
+        echo ""
         echo "[+] Instalando o Localepurge"
         
         apt-get install localepurge -y                                           
@@ -1026,6 +1082,7 @@
     
     firewall_basic()
     {
+        echo ""
         echo "[+] Instalando o firewall UFW + GUFW"
     
         apt install ufw gufw -y                                    
