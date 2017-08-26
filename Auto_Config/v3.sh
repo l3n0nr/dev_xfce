@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.8.2.0.6]     #
+# # versão do script:           [0.0.9.2.0.6]     #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [25/08/17]      #
+# # ultima ediçao realizada:      [26/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -64,8 +64,9 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               - I - [FUNCAO_DPKG] - Loop detectado na execução dessa função
-#               - II - [ARQUIVO LOG] - Verificar criação e manutenção do arquivo de log.txt
+#               - I     - [FUNCAO_DPKG] - Loop detectado na execução dessa função
+#               - II    - [ARQUIVO LOG] - Verificar criação e manutenção do arquivo de log.txt
+#               - III   - [PHOTOGIMP]   - Verificar remoção e adição dos arquivos 
 # 	e = pendencias    
 # 	f = desenvolver
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -171,14 +172,13 @@
 # # [+] Mcomix
 # # [+] Simple Screen Recorder
 # # [+] Calibre
+# # [+] Gimp
+# # # [+] PhotoGimp
 # 
 # DESENVOLVIMENTO
 # # [+] Kate
 # # [+] Wireshark
 # # [+] Git
-# 
-# IMAGEM
-# # [+] Gimp
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -503,7 +503,7 @@
         echo ""
         echo "[+] Ativando log's do sudo"
         cat base/login.defs > /etc/login.defs    
-    }
+    }    
     
 # # # # # # # # # # 
 # # LIMPA SISTEMA   
@@ -622,6 +622,15 @@
         echo ""
         echo "[+] Instalando o Gimp"
         apt install gimp -y >> log.txt
+        
+        echo ""
+        echo "[+] Instalando o PhotoGimp"
+        
+        #removendo arquivo, caso já exista
+        rm -r $HOME/.gimp-2.8
+        
+        #adicionando novo arquivo
+        cp -r base/.gimp-2.8/* $HOME
     }
     
     xfce4()
