@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.19.1.0.5]    #
+# # versão do script:           [0.0.20.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -623,10 +623,10 @@
         echo "[+] Instalando o PhotoGimp"
         
         #removendo arquivo, caso já exista
-        rm -r $HOME/.gimp-2.8
+        rm -r /home/lenonr/.gimp-2.8
         
         #adicionando novo arquivo
-        cp -r base/.gimp-2.8/* $HOME
+        cp -r base/.gimp-2.8/* /home/lenonr/
     }
     
     xfce4()
