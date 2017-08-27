@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.18.1.0.6]    #
+# # versão do script:           [0.0.19.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -76,9 +76,7 @@
 #               -IV      - [FUNCAO INSTALA TODOS PROGRAMAS] - Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
 #               -V     - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
 # 
-#               -VI    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web.
-# 
-#               -VII   - [FUNCAO DESKTOP-NOTEBOOK] - Possibilitar a instalação de programas especificos de acordo com o tipo da máquina, desktop ou notebook. 
+#               -VI    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
 #
 #####################################
 #       [+] - Açao realizada 
