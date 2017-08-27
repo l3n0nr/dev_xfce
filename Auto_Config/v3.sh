@@ -1240,8 +1240,8 @@ auto_config_ubuntu()
                 
 #               ASTRONOMIA
                 stellarium
-                celestia
-                kstars
+#                 celestia
+#                 kstars
                 
 #               MULTIMIDIA
 #                 spotify
@@ -1284,7 +1284,7 @@ auto_config_ubuntu()
                 gnome_disk_utility
                 gnome_system_monitor
                 brightside
-                figlet
+#                 figlet
                 
 #               OUTROS
                 firewall_basic
