@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.16.2.0.6]    #
+# # versão do script:           [0.0.18.1.0.6]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -64,8 +64,6 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               - I     - [FUNCAO_DPKG] - Loop detectado na execução dessa função
-#               - II    - [ARQUIVO LOG] - Verificar criação e manutenção do arquivo de log.txt
 #               - III   - [PHOTOGIMP]   - Verificar remoção e adição dos arquivos 
 # 	e = pendencias    
 # 	f = desenvolver
@@ -370,19 +368,19 @@
         fi
     }
     
-#     dpkg()
-#     {
-#         #corrigindo pacotes quebrados
-#         echo ""
-#         echo "[+] Corrigindo pacotes quebrados"
-# 
-#         #corrige possiveis erros na instalação de softwares
-#         dpkg --configure -a >> log.txt
-# 
-#         #VERIFICAR AÇÕES
-#         rm -r /var/lib/apt/lists >> log.txt
-#         mkdir -p /var/lib/apt/lists/partial >> log.txt
-#     }
+    funcao_dpkg()
+    {
+        #corrigindo pacotes quebrados
+        echo ""
+        echo "[+] Corrigindo pacotes quebrados"
+
+        #corrige possiveis erros na instalação de softwares
+        dpkg --configure -a >> log.txt
+
+        #VERIFICAR AÇÕES
+        rm -r /var/lib/apt/lists >> log.txt
+        mkdir -p /var/lib/apt/lists/partial >> log.txt
+    }
     
     fonts()
     {
@@ -531,7 +529,7 @@
         apt-get remove $(deborphan) -y ; apt-get autoremove -y    
     }
         
-    chkrootkit()
+    funcao_chkrootkit()
     {
         echo ""
         echo "[+] Verificando Chkrootkit"        
@@ -1161,7 +1159,7 @@ auto_config_ubuntu()
                 apt_update_local
                 swap
                 prelink_preload_deborphan
-#                     dpkg
+                funcao_dpkg
                 fonts
                 ntp
                 apport
@@ -1180,7 +1178,7 @@ auto_config_ubuntu()
                 apt_update_local
                 swap
                 prelink_preload_deborphan
-#                     dpkg
+                funcao_dpkg
                 fonts
                 ntp
                 apport
@@ -1199,7 +1197,7 @@ auto_config_ubuntu()
                 apt_update_local
                 swap
                 prelink_preload_deborphan
-#                     dpkg
+                funcao_dpkg
                 fonts
                 ntp
                 apport
@@ -1218,7 +1216,7 @@ auto_config_ubuntu()
             kernel
             arquivos_temporarios
             pacotes_orfaos
-            chkrootkit
+            funcao_chkrootkit
             localpurge                                 
         ;;
     
