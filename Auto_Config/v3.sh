@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.9.2.0.6]     #
+# # versão do script:           [0.0.15.2.0.6]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [26/08/17]      #
+# # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1365,23 +1365,86 @@ auto_config_ubuntu()
     
     ################################################################################
     ######REMOVES PROGRAMAS
-        5) echo
-            #removendo programas já instalados
+        5) echo                    
                 clear
                 echo "[+] Removendo pidgin"
-                echo "----------------------------------------------------------------------"
                 apt purge pidgin* -y
                 
-                clear
+                echo ""
                 echo "[+] Removendo Thunderbird"
-                echo "----------------------------------------------------------------------"
                 apt purge thunderbird* -y
                 
-                clear
+                echo ""
                 echo "[+] Removendo Parole"
-                echo "----------------------------------------------------------------------"
                 apt purge parole* -y
-                            
+                                                                
+                echo ""
+                echo "[+] Removendo XBurn"
+                apt purge xfburn* -y
+                
+                echo ""
+                echo "[+] Removendo o Inkscape"
+                apt purge inkscape* -y
+                
+            hostname=$(hostname)            
+            if [[ $hostname == 'notebook' ]]; then                                             
+                echo "[+] Removendo pidgin"
+                apt purge pidgin* -y
+                
+                echo ""
+                echo "[+] Removendo Thunderbird"
+                apt purge thunderbird* -y
+                
+                echo ""
+                echo "[+] Removendo Parole"
+                apt purge parole* -y
+                
+                echo "[+] Removendo o blender"            
+                apt purge blender* -y
+                
+                echo ""
+                echo "[+] Removendo o Kstars"
+                apt purge kstarsv* -y
+                
+                echo ""
+                echo "[+] Removendo o Celestia"
+                apt purge celestia* -y
+                
+                echo ""
+                echo "[+] Removendo a Steam"
+                apt purge steam* -y
+                
+#                 echo ""
+#                 echo "[+] Removendo o Dolphin"
+#                 dolphin
+
+                echo ""
+                echo "[+] Removendo o Spotify"
+                apt purge spotify* -y
+                
+                echo ""
+                echo "[+] Removendo o kdenlive"
+                apt purge kdenlive* -y
+                
+                echo ""
+                echo "[+] Removendo o Sweet Home 3D"
+                apt purge sweethome3d* -y
+                
+                echo ""
+                echo "[+] Removendo o Simple Screen Recorder"
+                apt purge simplescreenrecorder* -y
+                
+                echo ""
+                echo "[+] Removendo o Figlet"
+                apt purge figlet* -y
+                
+                echo ""
+                echo "[+] Removendo o Transmission"
+                apt purge transmission* -y
+            else
+                echo ""
+            fi
+            
             ;;
     
     ################################################################################
