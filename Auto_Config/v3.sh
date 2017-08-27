@@ -1222,6 +1222,10 @@ auto_config_ubuntu()
     ######INSTALA PROGRAMAS
         4) echo  
             clear   
+            # # verificando nome para máquina para executar funções especificas
+            #capturando hostname da maquina
+            hostname=$(hostname)
+            
             if [[ $hostname == 'notebook' ]]; then             
 #               NAVEGADORES
                 firefox
