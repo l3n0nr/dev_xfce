@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.15.2.0.6]    #
+# # versão do script:           [0.0.16.2.0.6]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -239,22 +239,22 @@
     {
         #atualizando lista de repositorios            
         echo "[+] Atualizando lista de repositorios do sistema"            
-        apt update > base/atualiza.txt
+        apt update 
         
         #atualizando repositorio e seus dependencias
         echo "[+] Atualizando lista de programas e suas dependências"            
-        auto-apt update -y >> base/atualiza.txt
+        auto-apt update -y 
     }
     
     upgrade()
     {            
         #atualizando lista de programas do sistema
         echo "[+] Atualizando lista de programas do sistema"            
-        apt upgrade -y >> base/atualiza.txt
+        apt upgrade -y 
         
         #atualizando repositorio local
         echo "[+] Atualizando repositório local dos programas"            
-        auto-apt updatedb -y >> base/atualiza.txt
+        auto-apt updatedb -y 
     }
 
 # # # # # # # # # # 
@@ -264,7 +264,7 @@
         #verificando lista do apt
         echo ""
         echo "[+] Verificando lista do apt"
-        apt-get check -y >> log.txt
+        apt-get check -y
     }
     
     apt_install()
@@ -272,7 +272,7 @@
         #instalando possiveis dependencias 
         echo ""
         echo "[+] Instalando dependências pendentes"
-        apt-get -f install -y >> log.txt
+        apt-get -f install -y
     }
     
     apt_remove()
@@ -280,8 +280,8 @@
         #removendo possiveis dependencias
         echo ""
         echo "[+] Removendo possíveis dependências obsoletas"
-        apt-get -f remove -y >> log.txt     
-        apt-get autoremove -y >> log.txt     
+        apt-get -f remove -y   
+        apt-get autoremove -y    
     }    
     
     apt_clean()
@@ -289,7 +289,7 @@
         #limpando lista arquivos sobressalentes
         echo ""
         echo "[+] Limpando arquivos sobressalentes"
-        apt-get clean -y >> log.txt     
+        apt-get clean -y   
     }
     
     apt_auto()
@@ -297,7 +297,7 @@
         #corrigindo problemas de dependencias
         echo ""
         echo "[+] Corrigindo problemas de dependências"
-        apt-get install auto-apt -y >> log.txt
+        apt-get install auto-apt -y 
     }
     
     apt_update_local()
@@ -305,7 +305,7 @@
         #corrigindo repositorio local de dependencias automaticamente
         echo ""
         echo "[+] Corrigindo repositório local de dependências automaticamente"
-        auto-apt update-local >> log.txt     
+        auto-apt update-local    
     }
     
     swap()
@@ -347,7 +347,7 @@
         echo "[*] Instalando Prelink, Preload e Deborphan"                        
         echo "-------------------"
         sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
-        sudo apt-get install deborphan -y >> log.txt
+        sudo apt-get install deborphan -y 
         
         echo "[*] Configurando Deborphan..."
         sudo deborphan | xargs sudo apt-get -y remove --purge &&
@@ -394,10 +394,10 @@
         wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb >> log.txt 
         
         #instalando pacote
-        dpkg -i ttf-mscorefonts-installer_3.6_all.deb >> log.txt
+        dpkg -i ttf-mscorefonts-installer_3.6_all.deb 
         
         #removendo pacote
-        rm -f ttf-mscorefonts-installer_3.6_all.deb >> log.txt    
+        rm -f ttf-mscorefonts-installer_3.6_all.deb
     }
     
     ntp()
@@ -406,7 +406,7 @@
         echo "[+] Corrigindo NTP"
                             
         #instalando software necessario
-        apt install ntp ntpdate -y >> log.txt
+        apt install ntp ntpdate -y 
         
         #parando o serviço NTP para realizar as configuraçoes necessarias
         echo ""
@@ -536,7 +536,7 @@
         echo ""
         echo "[+] Verificando Chkrootkit"        
         
-        chkrootkit >> log.txt;
+        chkrootkit
     }
     
     localpurge()
@@ -552,7 +552,7 @@
     {
         echo ""
         echo "[+] Instalando Firefox"
-        apt install firefox -y >> log.txt            
+        apt install firefox -y        
     }
     
     chromium()
@@ -568,7 +568,7 @@
     {    
         echo ""
         echo "[+] Instalando Steam"
-        apt install steam -y >> log.txt
+        apt install steam -y 
     }
     
     spotify()
@@ -583,10 +583,10 @@
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
         #chamando função update
-        update >> log.txt
+        update 
 
         #instalando o spotify
-        apt install spotify-client -y >> log.txt
+        apt install spotify-client -y 
     }
 
     icones_mac()
@@ -595,16 +595,16 @@
         echo "[+] Instalando icones e temas do MacOS X"
         
         #adicionando repositorio
-        add-apt-repository ppa:noobslab/macbuntu -y >> log.txt
+        add-apt-repository ppa:noobslab/macbuntu -y 
 
         # chamando funcao update já criada
-        update >> log.txt
+        update 
 
         #instalando icones do MacOS
-        apt-get install macbuntu-os-icons-lts-v7 -y >> log.txt
+        apt-get install macbuntu-os-icons-lts-v7 -y 
 
         #instalando tema do MacOS
-        apt-get install macbuntu-os-ithemes-lts-v7 -y >> log.txt
+        apt-get install macbuntu-os-ithemes-lts-v7 -y 
     }
     
     codecs()
@@ -613,7 +613,7 @@
         echo "[+] Instalando Pacotes Multimidias (Codecs)"
         
         #instalando pacotes multimidias
-        apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes >> log.txt
+        apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
     }
 
 
@@ -621,7 +621,7 @@
     {
         echo ""
         echo "[+] Instalando o Gimp"
-        apt install gimp -y >> log.txt
+        apt install gimp -y 
         
         echo ""
         echo "[+] Instalando o PhotoGimp"
@@ -664,7 +664,7 @@
     {
         echo ""
         echo "[+] Instalando o PlayonLinux"        
-        apt install playonlinux* -y >> log.txt
+        apt install playonlinux* -y 
     }
     
     redshift()
@@ -680,69 +680,69 @@
         echo "[+] Instalando o Libreoffice"
         
         #adicionando ppa
-        add-apt-repository ppa:libreoffice/ppa -y >> log.txt
+        add-apt-repository ppa:libreoffice/ppa -y
         
         #chamando funcao já definida
         update
         
         #instalando libreoffice
-        apt install libreoffice* -y >> log.txt                               
+        apt install libreoffice* -y                               
     }
     
     vlc()
     {
         echo ""
         echo "[+] Instalando o VLC"        
-        apt install vlc -y >> log.txt
+        apt install vlc -y 
     }
     
     clementine()
     {
         echo ""
         echo "[+] Instalando o Clementine"        
-        apt install clementine -y >> log.txt
+        apt install clementine -y 
     }
     
     gparted()
     {
         echo ""
         echo "[+] Instalando o Gparted"        
-        apt install gparted -y >> log.txt    
+        apt install gparted -y    
     }
     
     tlp()
     {
         echo ""
         echo "[+] Instalando o Tlp"        
-        apt install tlp -y >> log.txt
+        apt install tlp -y 
     }
     
     rar()
     {
         echo ""
         echo "[+] Instalando o Rar"
-        apt install rar* -y >> log.txt
+        apt install rar* -y 
     }
     
     git()
     {
         echo ""
         echo "[+] Instalando o Git"
-        apt install git-core git gitg -y >> log.txt
+        apt install git-core git gitg -y 
     }
     
     lm-sensors()
     {
         echo ""
         echo "[+] Instalando o Lm-sensors"
-        apt install lm-sensors -y >> log.txt
+        apt install lm-sensors -y 
     }
     
     texmaker()
     {
         echo ""
         echo "[+] Instalando o Texmaker"        
-        apt install texmaker* texlive-full* texlive-latex-extra* -y >> log.txt
+        apt install texmaker* texlive-full* texlive-latex-extra* -y
     }
     
     stellarium()
