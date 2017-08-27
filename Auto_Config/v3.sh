@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.22.0.0.5]    #
+# # versão do script:           [0.0.22.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -62,21 +62,18 @@
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
 # 	b = erros na execução;	
+#               - I - Verificar menu
 # 	c = interações com o script;
 # 	d = correções necessárias;
 #               - III   - [PHOTOGIMP]   - Verificar remoção e adição dos arquivos 
 # 	e = pendencias    
 # 	f = desenvolver
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
-#                     #dialog/xdialog
+#                     #dialog/xdialog 
+#               -II     - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
+#               -III    - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
 # 
-#		-II     - [FUNCAO CANCELA PROCESSAMENTO] - Possibilitar ao usuário o cancelamento das ações selecionadas, dentro de um tempo pré-determinado(10 seg.);
-# 
-#               -III     - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               -IV      - [FUNCAO INSTALA TODOS PROGRAMAS] - Implementar uma funcao chamada padrao, onde contenha todos os programas padroes;
-#               -V     - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
-# 
-#               -VI    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
+#               -IV    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
 #
 #####################################
 #       [+] - Açao realizada 
@@ -175,6 +172,8 @@
 # # [+] Kate
 # # [+] Wireshark
 # # [+] Git
+# # [+] Apache
+# # [+] PhpMyAdmin
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -1095,6 +1094,22 @@
         apt install ufw gufw -y                                    
     }
     
+    apache()
+    {
+        echo ""
+        echo "[+] Instalando o Apache"
+    
+        apt install apache2 -y    
+    }
+    
+    phpmyadmin()
+    {
+        echo ""
+        echo "[+] Instalando o PhpMyAdmin"
+    
+        apt install phpmyadmin -y            
+    }
+    
        
 # # # # # # # # # # 
 
@@ -1118,16 +1133,13 @@ auto_config_ubuntu()
     echo "Digite 1 para atualizar o sistema,"
     echo "Digite 2 para corrigir possíveis erros," 
     echo "Digite 3 para realizar uma limpeza," 
-    echo "Digite 4 para instalar alguns programas," 
-    echo "Digite 5 para remover alguns programas"
-    echo "Digite 6 para reiniciar a máquina."
-    echo "Digite 7 para sair do script;"
+    echo "Digite 4 para instalar alguns programas,"     
+    echo "Digite 5 para instalar programas não essenciais,"
+    echo "Digite 6 para remover alguns programas,"
+    echo "Digite reboot para reiniciar a máquina."
+    echo "Digite sair para sair do script;"
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
-    
-    #limpando arquivo de log
-    rm log.txt
-    touch log.txt
     
     ##CHAMANDOS FUNCOES    
     #     
@@ -1364,10 +1376,16 @@ auto_config_ubuntu()
                 sensors            
             fi
             ;;
+            
+    ################################################################################
+    ######PROGRAMAS NÃO ESSENCIAIS
+        5) echo
+                
+    
     
     ################################################################################
     ######REMOVES PROGRAMAS
-        5) echo                    
+        6) echo                    
                 clear
                 echo "[+] Removendo pidgin"
                 apt purge pidgin* -y
@@ -1451,13 +1469,13 @@ auto_config_ubuntu()
     
     ################################################################################
     ######REINICIANDO MAQUINA
-        6) echo
+        reboot) echo
             reboot -n
             ;;
         
     ################################################################################
     ######SAINDO SCRIPT
-        7) echo 	
+        sair) echo 	
             exit
             ;;
     
