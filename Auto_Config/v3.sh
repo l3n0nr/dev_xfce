@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.26.0.0.5]    #
+# # versão do script:           [0.0.27.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [28/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -187,6 +187,7 @@
 # # [+] Gnome System Tools
 # # [+] Brightside
 # # [+] Figlet
+# # [+] Hardinfo
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1101,10 +1102,21 @@
     firewall_basic()
     {
         echo ""
-        echo "[+] Instalando o firewall UFW + GUFW"
+        echo "[+] Instalando o Firewall UFW + GUFW"
     
         apt install ufw gufw -y                                    
     }
+    
+    hardinfo()
+    {
+        echo ""
+        echo "[+] Instalando o Hardinfo"
+        
+        apt install hardinfo -y
+    }
+    
+# # # # # # # # # # 
+# # PROGRAMAS NÃO ESSENCIAIS
     
     apache()
     {
@@ -1210,7 +1222,7 @@ auto_config_ubuntu()
                 sshd_config
                 repositorios_padrao
                 log_sudo                    
-#                     lightdm
+#                 lightdm
             else                
                 clear
                 apt_check
@@ -1229,6 +1241,7 @@ auto_config_ubuntu()
                 sshd_config
                 repositorios_padrao
                 log_sudo
+                hosts
             fi
         
         ;;
@@ -1311,6 +1324,7 @@ auto_config_ubuntu()
                 gnome_system_monitor
                 brightside
 #                 figlet
+                hardinfo
                 
 #               OUTROS
                 firewall_basic
@@ -1378,6 +1392,7 @@ auto_config_ubuntu()
                 gnome_system_monitor
                 brightside
                 figlet
+                hardinfo
                 
 #               OUTROS
                 firewall_basic
