@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.25.0.0.5]    #
+# # versão do script:           [0.0.26.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [27/08/17]      #
+# # ultima ediçao realizada:      [28/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -112,6 +112,7 @@
 # # [+] Ssh
 # # [+] Log - Sudo
 # # [+] Lista de Repositorios padrão
+# # [+] Arquivo Hosts
 # # 
 ################################################################################
 # # # # # LIMPA SISTEMA
@@ -345,12 +346,12 @@
         echo ""
         echo "[*] Instalando Prelink, Preload e Deborphan"                        
         echo "-------------------"
-        sudo apt install prelink preload -y 1>/dev/null 2>/dev/stdout
-        sudo apt-get install deborphan -y 
+        apt install prelink preload -y 1>/dev/null 2>/dev/stdout
+        apt-get install deborphan -y 
         
         echo "[*] Configurando Deborphan..."
-        sudo deborphan | xargs sudo apt-get -y remove --purge &&
-        sudo deborphan --guess-data | xargs sudo apt-get -y remove --purge
+        deborphan | xargs sudo apt-get -y remove --purge &&
+        deborphan --guess-data | xargs apt-get -y remove --purge
 
         #configurando o prelink e o preload
         echo "[*] Configurando Prelink e Preload..."
@@ -488,21 +489,28 @@
         echo ""
         echo "[+] Alterando regras no acesso SSH"
         cat base/sshd_config > /etc/ssh/sshd_config    
-    }
-            
-    repositorios_padrao()
-    {
-        echo ""
-        echo "[+] Alterando lista de repositórios padrão"
-        cat base/sources.list > /etc/apt/sources.list    
-    }
+    }                
             
     log_sudo()
     {
         echo ""
         echo "[+] Ativando log's do sudo"
         cat base/login.defs > /etc/login.defs    
-    }    
+    }
+    
+    repositorios_padrao()
+    {
+        echo ""
+        echo "[+] Alterando lista de repositórios padrão"
+        cat base/sources.list > /etc/apt/sources.list    
+    }
+    
+    arquivo_hosts()
+    {
+        echo ""
+        echo "[+] Altera arquivo de Hosts"
+        cat base/hosts > /etc/hosts
+    }
     
 # # # # # # # # # # 
 # # LIMPA SISTEMA   
