@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.25.0.0.5]    #
+# # versão do script:           [0.0.26.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [27/08/17]      #
+# # ultima ediçao realizada:      [28/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -161,6 +161,7 @@
 # # [+] Wireshark
 # # [+] Git
 # # [+] Apache
+# # [+] Mysql-server
 # # [+] PhpMyAdmin
 # 
 # OFFICE
@@ -1106,6 +1107,14 @@
         apt install apache2 -y    
     }
     
+    mysql()
+    {
+        echo ""
+        echo "[+] Instalando o Mysql Server"
+        
+        apt install mysql-server -y
+    }
+    
     phpmyadmin()
     {
         echo ""
@@ -1385,6 +1394,7 @@ auto_config_ubuntu()
     ######PROGRAMAS NÃO ESSENCIAIS
         5) echo
             apache
+            mysql
             phpmyadmin
             ;;
     
