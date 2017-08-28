@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.22.1.0.5]    #
+# # versão do script:           [0.0.25.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [27/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -62,7 +62,6 @@
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
 # 	b = erros na execução;	
-#               - I - Verificar menu
 # 	c = interações com o script;
 # 	d = correções necessárias;
 #               - III   - [PHOTOGIMP]   - Verificar remoção e adição dos arquivos 
@@ -88,17 +87,6 @@
 #
 # # Compativel com
 #       - Ubuntu
-# 
-################################################################################
-# 
-# # ARQUIVOS DE LOG DO SCRIPT
-# 
-#   atualiza.txt: armazena informações sobre a opção "atualiza o sistema".
-#   corrige.txt: armazena informações sobre a opção "corrigir problemas"
-#   limpa.txt: armazena informações sobre a opção "limpa o sistema".
-#   instala.txt: armazena informações sobre a opção "instala programas".
-#   remove.txt: armazena informações sobre a opção "remove programas".
-#   reinicia.txt: armazena informações sobre a opção "reinicia sistema".
 # 
 ################################################################################
 # # FUNCOES
@@ -209,9 +197,25 @@
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
+# # # GERAL
 # # [+] Pidgin
 # # [+] Thunderbird
 # # [+] Parole
+# # [+] Adapta
+# # [+] Inkscape
+# # [+] Xfburn
+# # [+] Blender
+# 
+# # # NOTEBOOK 
+# # [+] Kstars
+# # [+] Celestia
+# # [+] Steam
+# # [+] Spotify
+# # [+] Kdenlive
+# # [+] Sweet Home 3D
+# # [+] Simple Screen Recorder
+# # [+] Figlet
+# # [+] Transmission
 
 ################################################################################	
 # Reinicialização
@@ -372,11 +376,11 @@
         echo "[+] Corrigindo pacotes quebrados"
 
         #corrige possiveis erros na instalação de softwares
-        dpkg --configure -a >> log.txt
+        dpkg --configure -a 
 
         #VERIFICAR AÇÕES
-        rm -r /var/lib/apt/lists >> log.txt
-        mkdir -p /var/lib/apt/lists/partial >> log.txt
+        rm -r /var/lib/apt/lists 
+        mkdir -p /var/lib/apt/lists/partial 
     }
     
     fonts()
@@ -386,7 +390,7 @@
         echo "[+] Instalando pacotes de fontes"
         
         #baixando pacote
-        wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb >> log.txt 
+        wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb 
         
         #instalando pacote
         dpkg -i ttf-mscorefonts-installer_3.6_all.deb 
@@ -509,7 +513,7 @@
         echo "[+] Removendo os kernel's temporários do sistema"
         
         #removendo kernel's antigos
-        dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge  >> log.txt
+        dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge  
     }
     
     arquivos_temporarios()
@@ -636,7 +640,7 @@
         echo "[+] Instalando adicionais do XFCE"
     
         #instalando componentes do XFCE
-        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q >> log.txt
+        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp 
@@ -754,7 +758,7 @@
         update                            
 
         #instalando o stellarium                
-        apt install stellarium* -y >> log.txt
+        apt install stellarium* -y 
     }
     
     texmaker()
@@ -1380,8 +1384,9 @@ auto_config_ubuntu()
     ################################################################################
     ######PROGRAMAS NÃO ESSENCIAIS
         5) echo
-                
-    
+            apache
+            phpmyadmin
+            ;;
     
     ################################################################################
     ######REMOVES PROGRAMAS
@@ -1406,6 +1411,14 @@ auto_config_ubuntu()
                 echo "[+] Removendo o Inkscape"
                 apt purge inkscape* -y
                 
+                echo ""
+                echo "[+] Removendo o Adapta"
+                apt purge adapta-gtk-theme* -y
+                
+                echo ""
+                echo "[+] Removendo o Blender"            
+                apt purge blender* -y
+                
             hostname=$(hostname)            
             if [[ $hostname == 'notebook' ]]; then                                             
                 echo "[+] Removendo pidgin"
@@ -1417,10 +1430,7 @@ auto_config_ubuntu()
                 
                 echo ""
                 echo "[+] Removendo Parole"
-                apt purge parole* -y
-                
-                echo "[+] Removendo o blender"            
-                apt purge blender* -y
+                apt purge parole* -y                
                 
                 echo ""
                 echo "[+] Removendo o Kstars"
@@ -1443,7 +1453,7 @@ auto_config_ubuntu()
                 apt purge spotify* -y
                 
                 echo ""
-                echo "[+] Removendo o kdenlive"
+                echo "[+] Removendo o Kdenlive"
                 apt purge kdenlive* -y
                 
                 echo ""
@@ -1460,7 +1470,7 @@ auto_config_ubuntu()
                 
                 echo ""
                 echo "[+] Removendo o Transmission"
-                apt purge transmission* -y
+                apt purge transmission* -y                
             else
                 echo ""
             fi
