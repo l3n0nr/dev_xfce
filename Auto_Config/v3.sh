@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.28.0.0.5]    #
+# # versão do script:           [1.0.30.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [29/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -256,7 +256,7 @@
         
         #atualizando repositorio local
         echo "[+] Atualizando repositório local dos programas"            
-        auto-apt updatedb -y 
+        auto-apt updatedb
     }
 
 # # # # # # # # # # 
