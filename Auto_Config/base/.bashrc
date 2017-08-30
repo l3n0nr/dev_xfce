@@ -142,8 +142,8 @@ alias status_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce 
 #criando apelido para instalação de programas
 alias install='sudo apt install'
 
-#criando apelido para comando screenfetch
-alias tela='screenfetch'
+#criando apelido para conectar ao roteador DD-WRT
+alias wrt='telnet 10.0.0.87'
 
 #==============================================
 # Aliases para uso no dia-a-dia e testes
