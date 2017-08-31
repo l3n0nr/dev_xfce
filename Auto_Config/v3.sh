@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.33.0.0.5]    #
+# # versão do script:           [1.0.33.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [31/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -64,6 +64,7 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
+#               -I      - [FUNCAO KERNEL] - Verificar funcao, aparentemente está removendo o driver da placa de video tambem.
 # 	e = pendencias    
 # 	f = desenvolver
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -1281,7 +1282,7 @@ auto_config_ubuntu()
     ######LIMPA SISTEMA
         3) echo
             clear
-            kernel
+#             kernel
             arquivos_temporarios
             pacotes_orfaos
             funcao_chkrootkit
