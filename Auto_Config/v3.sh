@@ -245,7 +245,7 @@
         
         #atualizando repositorio e seus dependencias
         echo "[+] Atualizando lista de programas e suas dependências"            
-        auto-apt update -y 
+        auto-apt update
     }
     
     upgrade()
