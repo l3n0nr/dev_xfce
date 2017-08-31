@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.30.0.0.5]    #
+# # versão do script:           [1.0.31.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [29/08/17]      #
+# # ultima ediçao realizada:      [31/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -189,6 +189,7 @@
 # # [+] Brightside
 # # [+] Figlet
 # # [+] Hardinfo
+# # [+] Synapse
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1116,6 +1117,16 @@
         apt install hardinfo -y
     }
     
+    synaptic()
+    {
+        echo ""
+        echo "[+] Instalando o Synaptic"
+        
+        add-apt-repository ppa:synapse-core/testing -y
+        update        
+        apt-get install synapse -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1334,6 +1345,7 @@ auto_config_ubuntu()
                 brightside
 #                 figlet
                 hardinfo
+                synaptic
                 
 #               OUTROS
                 firewall_basic
@@ -1402,6 +1414,7 @@ auto_config_ubuntu()
                 brightside
                 figlet
                 hardinfo
+                synaptic
                 
 #               OUTROS
                 firewall_basic
