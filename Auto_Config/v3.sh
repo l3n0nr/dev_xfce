@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.31.0.0.5]    #
+# # versão do script:           [1.0.33.0.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [31/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -64,7 +64,6 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               - III   - [PHOTOGIMP]   - Verificar remoção e adição dos arquivos 
 # 	e = pendencias    
 # 	f = desenvolver
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -190,6 +189,7 @@
 # # [+] Figlet
 # # [+] Hardinfo
 # # [+] Synapse
+# # [+] Nvidia
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -627,7 +627,7 @@
     }
 
 
-    gimp()
+    funcao_gimp()
     {
         echo ""
         echo "[+] Instalando o Gimp"
@@ -1127,6 +1127,17 @@
         apt-get install synapse -y
     }
     
+    nvidia()
+    {
+        echo ""
+        echo "[+] Instalando o driver da Placa Nvidia"
+        
+        apt-add-repository ppa:ubuntu-x-swat/x-updates -y
+        apt-add-repository ppa:xorg-edgers/ppa -y
+        update
+        apt install nvidia-current nvidia-settings -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1319,7 +1330,7 @@ auto_config_ubuntu()
                 git
                 
 #               IMAGEM
-                gimp
+                funcao_gimp
                 
 #               OFFICE
                 libreoffice
@@ -1388,7 +1399,7 @@ auto_config_ubuntu()
                 git
                 
 #               IMAGEM
-                gimp
+                funcao_gimp
                 
 #               OFFICE
                 libreoffice
@@ -1415,6 +1426,7 @@ auto_config_ubuntu()
                 figlet
                 hardinfo
                 synaptic
+                nvidia
                 
 #               OUTROS
                 firewall_basic
