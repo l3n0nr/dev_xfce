@@ -56,7 +56,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:           [1.0.33.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [31/08/17]      #
+# # ultima ediçao realizada:      [04/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -191,6 +191,7 @@
 # # [+] Hardinfo
 # # [+] Synapse
 # # [+] Nvidia
+# # [+] Psensor
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1139,6 +1140,14 @@
         apt install nvidia-current nvidia-settings -y
     }
     
+    psensor()
+    {
+        echo ""
+        echo "[+] Instalando o Psensor"
+        
+        install psensor* -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1358,6 +1367,7 @@ auto_config_ubuntu()
 #                 figlet
                 hardinfo
                 synaptic
+                psensor
                 
 #               OUTROS
                 firewall_basic
@@ -1435,7 +1445,8 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors            
+                sensors         
+                psensor
             fi
             ;;
             
