@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.33.1.0.5]    #
+# # versão do script:           [1.0.35.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [04/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1138,6 +1138,13 @@
         apt-add-repository ppa:xorg-edgers/ppa -y
         update
         apt install nvidia-current nvidia-settings -y
+        
+        #habilitando controle de velocidade e overclock da placa
+        dpkg -S nvidia-xconfig 
+        apt install nvidia* -f
+
+        #copiando arquivo base
+        cat base/xorg.conf > /etc/X11/xorg.conf        
     }
     
     psensor()
