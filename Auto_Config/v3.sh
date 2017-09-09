@@ -56,7 +56,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:           [1.0.35.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [04/09/17]      #
+# # ultima ediçao realizada:      [08/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -742,7 +742,7 @@
     {
         echo ""
         echo "[+] Instalando o Git"
-        apt install git-core git gitg -y 
+        apt install git-core git -y 
     }
     
     lm-sensors()
