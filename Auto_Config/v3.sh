@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.35.1.0.5]    #
+# # versão do script:           [1.0.39.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [08/09/17]      #
+# # ultima ediçao realizada:      [09/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -211,6 +211,9 @@
 # # [+] Inkscape
 # # [+] Xfburn
 # # [+] Blender
+# # [+] SmartGit
+# # [+] Gitg
+# # [+] Meld
 # 
 # # # NOTEBOOK 
 # # [+] Kstars
@@ -1547,7 +1550,20 @@ auto_config_ubuntu()
                 
                 echo ""
                 echo "[+] Removendo o Transmission"
-                apt purge transmission* -y                
+                apt purge transmission* -y        
+                
+                echo ""
+                echo "[+] SmartGit"                
+                apt purge smartgit -y 
+                
+                echo ""
+                echo "[+] Removendo o Gitg"
+                apt purge gitg -y
+                
+                echo ""
+                echo "[+] Removendo o Meld"
+                apt purge meld -y
+                
             else
                 echo ""
             fi
