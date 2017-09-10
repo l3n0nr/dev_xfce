@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.35.1.0.5]    #
+# # versão do script:           [1.0.33.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [04/09/17]      #
+# # ultima ediçao realizada:      [31/08/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -191,7 +191,6 @@
 # # [+] Hardinfo
 # # [+] Synapse
 # # [+] Nvidia
-# # [+] Psensor
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1138,21 +1137,6 @@
         apt-add-repository ppa:xorg-edgers/ppa -y
         update
         apt install nvidia-current nvidia-settings -y
-        
-        #habilitando controle de velocidade e overclock da placa
-        dpkg -S nvidia-xconfig 
-        apt install nvidia* -f
-
-        #copiando arquivo base
-        cat base/xorg.conf > /etc/X11/xorg.conf        
-    }
-    
-    psensor()
-    {
-        echo ""
-        echo "[+] Instalando o Psensor"
-        
-        install psensor* -y
     }
     
 # # # # # # # # # # 
@@ -1374,7 +1358,6 @@ auto_config_ubuntu()
 #                 figlet
                 hardinfo
                 synaptic
-                psensor
                 
 #               OUTROS
                 firewall_basic
@@ -1452,8 +1435,7 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors         
-                psensor
+                sensors            
             fi
             ;;
             
