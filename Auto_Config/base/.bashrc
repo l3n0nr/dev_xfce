@@ -152,3 +152,6 @@ alias wrt='telnet 10.0.0.87'
 # Testar conexão com ping
 # alias google='ping -t 3 www.google.com.br' # Ping ao google a cada 3 segundos
 # alias uol='ping -t 3 www.uol.com.br' # Ping ao UOL a cada 3 segundos
+
+# testanco configuracao do teclado
+setxkbmap -model abnt2 -layout br -variant abnt2
