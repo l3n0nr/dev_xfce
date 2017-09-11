@@ -54,9 +54,15 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
+<<<<<<< HEAD
 # # versão do script:           [1.0.33.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
 # # ultima ediçao realizada:      [31/08/17]      #
+=======
+# # versão do script:           [1.0.39.1.0.5]    #
+# # data de criação do script:    [23/08/17]      #
+# # ultima ediçao realizada:      [11/09/17]      #
+>>>>>>> 11e86700eb76ed31d2c3130a0812359536f2e861
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -210,6 +216,9 @@
 # # [+] Inkscape
 # # [+] Xfburn
 # # [+] Blender
+# # [+] SmartGit
+# # [+] Gitg
+# # [+] Meld
 # 
 # # # NOTEBOOK 
 # # [+] Kstars
@@ -741,7 +750,7 @@
     {
         echo ""
         echo "[+] Instalando o Git"
-        apt install git-core git gitg -y 
+        apt install git-core git -y 
     }
     
     lm-sensors()
@@ -1529,7 +1538,20 @@ auto_config_ubuntu()
                 
                 echo ""
                 echo "[+] Removendo o Transmission"
-                apt purge transmission* -y                
+                apt purge transmission* -y        
+                
+                echo ""
+                echo "[+] SmartGit"                
+                apt purge smartgit -y 
+                
+                echo ""
+                echo "[+] Removendo o Gitg"
+                apt purge gitg -y
+                
+                echo ""
+                echo "[+] Removendo o Meld"
+                apt purge meld -y
+                
             else
                 echo ""
             fi
@@ -1538,13 +1560,13 @@ auto_config_ubuntu()
     
     ################################################################################
     ######REINICIANDO MAQUINA
-        reboot) echo
+        7) echo
             reboot -n
             ;;
         
     ################################################################################
     ######SAINDO SCRIPT
-        sair) echo 	
+        8) echo 	
             exit
             ;;
     
