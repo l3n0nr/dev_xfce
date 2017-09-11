@@ -56,7 +56,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:           [1.0.39.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [09/09/17]      #
+# # ultima ediçao realizada:      [11/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1572,13 +1572,13 @@ auto_config_ubuntu()
     
     ################################################################################
     ######REINICIANDO MAQUINA
-        reboot) echo
+        7) echo
             reboot -n
             ;;
         
     ################################################################################
     ######SAINDO SCRIPT
-        sair) echo 	
+        8) echo 	
             exit
             ;;
     
