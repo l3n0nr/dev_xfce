@@ -1195,8 +1195,8 @@ auto_config_ubuntu()
     echo "Digite 4 para instalar alguns programas,"     
     echo "Digite 5 para instalar programas não essenciais,"
     echo "Digite 6 para remover alguns programas,"
-    echo "Digite reboot para reiniciar a máquina."
-    echo "Digite sair para sair do script;"
+    echo "Digite 7 para reiniciar a máquina."
+    echo "Digite 8 para sair do script;"
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
     
