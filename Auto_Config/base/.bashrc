@@ -145,6 +145,12 @@ alias install='sudo apt install'
 #criando apelido para conectar ao roteador DD-WRT
 alias wrt='telnet 10.0.0.87'
 
+#criando apelido para limpar a memória
+alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap.sh'
+
+#criando apelido para chamar script auto_config
+alias autoconfig='sudo /home/lenonr/Github/dev_xfce/Auto_Config/v3.sh'
+
 #==============================================
 # Aliases para uso no dia-a-dia e testes
 #==============================================
