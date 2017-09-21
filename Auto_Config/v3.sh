@@ -199,6 +199,7 @@
 # # [+] Chkrootkit
 # # [+] Reaver
 # # [+] Lm-sensors
+# # [+] Ibus
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1142,6 +1143,14 @@
         apt install nvidia-current nvidia-settings -y
     }
     
+    ibus()
+    {
+        echo ""
+        echo "[+] Instalando o Ibus"
+        
+        apt install ibus -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1368,7 +1377,9 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors            
+                sensors 
+                ibus
+                
             else            
 #               NAVEGADORES
                 firefox
@@ -1438,7 +1449,8 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors            
+                sensors   
+                ibus
             fi
             ;;
             
