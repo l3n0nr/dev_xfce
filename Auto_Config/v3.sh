@@ -56,7 +56,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:           [1.0.40.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [11/09/17]      #
+# # ultima ediçao realizada:      [23/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -200,6 +200,7 @@
 # # [+] Reaver
 # # [+] Lm-sensors
 # # [+] Ibus
+# # [+] Unetbootin
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1151,6 +1152,16 @@
         apt install ibus -y
     }
     
+    unetbootin()
+    {
+        echo ""
+        echo "[+] Instalando o Unetbootin"
+        
+        add-apt-repository ppa:gezakovacs/ppa -y
+        update
+        apt-get install unetbootin -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1379,6 +1390,7 @@ auto_config_ubuntu()
                 reaver
                 sensors 
                 ibus
+                unetbootin
                 
             else            
 #               NAVEGADORES
@@ -1398,7 +1410,7 @@ auto_config_ubuntu()
                 kstars
                 
 #               MULTIMIDIA
-                spotify
+#                 spotify
                 clementine
                 vlc
                 kdenlive
@@ -1451,6 +1463,7 @@ auto_config_ubuntu()
                 reaver
                 sensors   
                 ibus
+                unetbootin
             fi
             ;;
             
