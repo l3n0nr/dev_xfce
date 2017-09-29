@@ -11,7 +11,12 @@
 # Adaptado do original de Edinaldo P. Silva para Arch Linux
 # URL: http://gnu2all.blogspot.com.br/2011/10/arch-linux-bashrc.html
 # ======================================================================
-
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # versão do script:               [0.10]        #
+# # ultima ediçao realizada:      [29/09/17]      #
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+#
 #-----------------------------------------------
 # Configurações Gerais
 #-----------------------------------------------
@@ -103,28 +108,15 @@ fi # Fim da condição if
 ## Vê se o arquivo existe
 if [ -x /usr/bin/dircolors ]; then
 test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-
-## Aliases (apelidos) para comandos
-alias ls='ls --color=auto'
-alias dir='dir --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+    ## Aliases (apelidos) para comandos
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi # Fim do if do dircolor
 
 ## Aliases (apelidos) diversos
-
-# Editar sources.list
-# alias lists='sudo vim /etc/apt/sources.list'
-
-# atualizar o apt-get
-# alias upd='sudo apt-get update'
-
-# Reparar o apt-get
-# alias aptrepair='sudo apt-get -f install'
-
-# Reparar o dpkg
-# alias dpkgrepair='sudo dpkg --configure -a'
 
 # entrando no diretório mais usados
 alias dev_web='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /var/www/html/dev_web && ls && echo "######################################"'
@@ -132,32 +124,24 @@ alias dev_xfce='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /h
 alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_scripts && ls && echo "######################################"'
 alias home='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr && ls && echo "######################################"'
 
-#criando atalhos para atualizar os diretorios do github 
+#   criando atalhos para atualizar os diretorios do github 
 alias pull_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git pull && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git pull && echo "Diretório dev_web" && cd /var/www/html/dev_web && git pull && cd /home/lenonr'
              
 alias push_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git push && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git push && echo "Diretório dev_web" && cd /var/www/html/dev_web && git push && cd /home/lenonr'
 
 alias status_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git status && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git status && echo "Diretório dev_web" && cd /var/www/html/dev_web && git status ¨&& cd /home/lenonr'
 
-#criando apelido para instalação de programas
+# criando apelido para instalação de programas
 alias install='sudo apt install'
 
-#criando apelido para conectar ao roteador DD-WRT
+# criando apelido para conectar ao roteador DD-WRT
 alias wrt='telnet 10.0.0.87'
 
-#criando apelido para limpar a memória
+# criando apelido para limpar a memória
 alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap.sh'
 
-#criando apelido para chamar script auto_config
-# alias autoconfig='sudo /home/lenonr/Github/dev_xfce/Auto_Config/v3.sh'
-
-#==============================================
-# Aliases para uso no dia-a-dia e testes
-#==============================================
-
-# Testar conexão com ping
-# alias google='ping -t 3 www.google.com.br' # Ping ao google a cada 3 segundos
-# alias uol='ping -t 3 www.uol.com.br' # Ping ao UOL a cada 3 segundos
+# criando apelido para realizar backup dos arquivos no HD
+alias verificahd='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/verifica_midias.sh'
 
 # testanco configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
