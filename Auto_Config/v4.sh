@@ -66,7 +66,7 @@
 # 	d = correções necessárias;
 #               -I      - [FUNCAO KERNEL] - Verificar funcao, aparentemente está removendo o driver da placa de video tambem.
 # 	e = pendencias    
-# 	f = desenvolver
+# 	f = desenvolver 
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
 #                     #dialog/xdialog 
 #               -II     - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
@@ -1775,3 +1775,9 @@ menu()
 #INICIANDO SCRIPT
 menu
 ################################################################################
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+ 
+#                           RODAPE DO SCRIPT                                  #
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
