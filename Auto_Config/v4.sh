@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.40.1.0.5]    #
+# # versão do script:           [0.0.50.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [28/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -245,6 +245,20 @@
 # 
 # 
 # # # # # # # # # # 
+    teste()
+    {
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then
+            clear
+            echo "ubuntu";
+            sleep 120;
+        else
+            clear
+            echo "debian";
+            sleep 120;
+        fi                                
+    }
+    
 # # ATUALIZA SISTEMA
     update()
     {
@@ -1229,6 +1243,7 @@ auto_config_ubuntu()
     ######ATUALIZA SISTEMA
         1) echo  
             clear
+            teste
             update
             upgrade
         ;;
@@ -1599,6 +1614,90 @@ auto_config_ubuntu()
             menu
             exit
             ;;
+    esac
+
+    echo "TAREFAS FINALIZADAS, SAINDO.."
+    clear
+}
+
+auto_config_debian()
+{
+echo "INICIANDO AS TAREFAS"
+    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    echo "----------------------------------------"
+    echo "Digite 1 para atualizar o sistema,"
+    echo "(*)Digite 2 para corrigir possíveis erros," 
+    echo "(*)Digite 3 para realizar uma limpeza," 
+    echo "Digite 4 para instalar alguns programas,"     
+    echo "(*)Digite 5 para instalar programas não essenciais,"
+    echo "(*)Digite 6 para remover alguns programas,"
+    echo "Digite 7 para reiniciar a máquina."
+    echo "Digite 8 para sair do script;"
+    echo "----------------------------------------" 
+    read -n1 -p "Ação:" escolha
+    
+    ##CHAMANDOS FUNCOES    
+    #     
+    case $escolha in   
+    ################################################################################
+    ######ATUALIZA SISTEMA
+    1) echo  
+            clear
+            update
+            upgrade
+        ;;
+    
+    ################################################################################
+    ###### CORRINDO PROBLEMAS
+    2) echo  
+            auto_config_debian
+        ;;
+        
+    ################################################################################
+    ###### REALIZANDO LIMPEZA
+    3) echo  
+            auto_config_debian
+        ;;
+    
+    ################################################################################
+    ###### INSTALANDO PROGRAMAS
+    4) echo  
+            
+        ;;
+    
+    ################################################################################
+    ###### PROGRAMAS NAO ESSENCIAIS
+    5) echo  
+            auto_config_debian
+        ;;
+    
+    ################################################################################
+    ###### REMOVENDO PROGRAMAS
+    6) echo  
+            auto_config_debian
+        ;;
+    
+    ################################################################################
+    ###### REINICIANDO A MAQUINA
+    7) echo
+            reboot -n
+        ;;
+
+    ################################################################################
+    ###### SAINDO DO SCRIPT
+    8) echo 
+            exit
+        ;;
+    
+    ################################################################################
+    ######ENTRADA INVALIDA
+    *) echo
+        echo Alternativa incorreta!!
+        sleep 1
+        menu
+        exit
+        ;;
+        
     esac
 
     echo "TAREFAS FINALIZADAS, SAINDO.."
