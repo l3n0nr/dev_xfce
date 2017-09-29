@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [1.0.40.1.0.5]    #
+# # versão do script:           [2.0.40.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [23/09/17]      #
+# # ultima ediçao realizada:      [28/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -64,7 +64,6 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               -I      - [FUNCAO KERNEL] - Verificar funcao, aparentemente está removendo o driver da placa de video tambem.
 # 	e = pendencias    
 # 	f = desenvolver
 # 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
@@ -523,15 +522,6 @@
     
 # # # # # # # # # # 
 # # LIMPA SISTEMA   
-
-    kernel()
-    {
-        echo ""
-        echo "[+] Removendo os kernel's temporários do sistema"
-        
-        #removendo kernel's antigos
-        dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge  
-    }
     
     arquivos_temporarios()
     {    
