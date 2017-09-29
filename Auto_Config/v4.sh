@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.52.1.0.5]    #
+# # versão do script:           [0.0.56.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [28/09/17]      #
+# # ultima ediçao realizada:      [29/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -115,6 +115,7 @@
 # # [+] Log - Sudo
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
+# # [+] Gtkrc
 # # 
 ################################################################################
 # # # # # LIMPA SISTEMA
@@ -244,21 +245,7 @@
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
 # 
-# # # # # # # # # # 
-    teste()
-    {
-        # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then
-            clear
-            echo "ubuntu";
-            sleep 120;
-        else
-            clear
-            echo "debian";
-            sleep 120;
-        fi                                
-    }
-    
+# # # # # # # # # #    
 # # ATUALIZA SISTEMA
     update()
     {
@@ -276,7 +263,6 @@
         	echo "[+] Atualizando lista de repositorios do sistema"            
 	        apt update         
         fi                                
-
     }
     
     upgrade()
@@ -456,7 +442,7 @@
         #configurando script base - NTP
         echo ""
         echo "[*] Realizando alteraçao no arquivo base"
-        cat base/ntp.txt > /etc/ntp.conf
+        cat base/ubuntu/ntp.txt > /etc/ntp.conf
         
         #ativando servico novamente
         echo ""
@@ -505,14 +491,14 @@
         rm /var/crash/*
         
         #corrige apport - ubuntu 16.04
-        cat base/apport > /etc/default/apport 
+        cat base/ubuntu/apport > /etc/default/apport 
     }
     
     lightdm()
     {
         echo ""
         echo "[+] Iniciando sessão automaticamente"
-        cat base/lightdm.conf > /etc/lightdm/lightdm.conf
+        cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
     
     terminal_cool()
@@ -520,7 +506,7 @@
         #terminal Personalizado
         echo ""
         echo "[+] Deixando o terminal personalizado"
-        cat base/.bashrc > $HOME/.bashrc    
+        cat base/ubuntu/.bashrc > $HOME/.bashrc    
     }
             
     sshd_config()
@@ -528,28 +514,35 @@
         #altera arquivo ssh
         echo ""
         echo "[+] Alterando regras no acesso SSH"
-        cat base/sshd_config > /etc/ssh/sshd_config    
+        cat base/ubuntu/sshd_config > /etc/ssh/sshd_config    
     }                
             
     log_sudo()
     {
         echo ""
         echo "[+] Ativando log's do sudo"
-        cat base/login.defs > /etc/login.defs    
+        cat base/ubuntu/login.defs > /etc/login.defs    
     }
     
     repositorios_padrao()
     {
         echo ""
         echo "[+] Alterando lista de repositórios padrão"
-        cat base/sources.list > /etc/apt/sources.list    
+        cat base/ubuntu/sources.list > /etc/apt/sources.list    
     }
     
     arquivo_hosts()
     {
         echo ""
         echo "[+] Altera arquivo de Hosts"
-        cat base/hosts > /etc/hosts
+        cat base/ubuntu/hosts > /etc/hosts
+    }
+    
+    gtkrc()
+    {
+        echo ""
+        echo "[+] Arquivo de configuração da barra do Xfce"
+        cat base/ubuntu/.gtkrc-2.0 > /$HOME/.gtkrc-2.0
     }
     
 # # # # # # # # # # 
@@ -677,7 +670,7 @@
         rm -r /home/lenonr/.gimp-2.8
                 
         echo "[*] Inserindo novo arquivo"        
-        cp -r base/.gimp-2.8/ /home/lenonr/
+        cp -r base/ubuntu/.gimp-2.8/ /home/lenonr/        
         
         echo "[+] Novo arquivo adicionado"
     }
@@ -691,8 +684,7 @@
         apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
 
         #dando permissão de leitura, para verificar temperatura do HDD
-        chmod u+s /usr/sbin/hddtemp 
-    
+        chmod u+s /usr/sbin/hddtemp     
     }
     
     wine()
@@ -1101,9 +1093,9 @@
         echo "[+] Instalando o MEGA"
     
         #instalando mega
-        dpkg -i base/mega/*.deb
+        dpkg -i base/ubuntu/mega/*.deb
         apt install -fy
-        dpkg -i base/mega/*.deb
+        dpkg -i base/ubuntu/mega/*.deb
     }
     
     openssh()
@@ -1291,6 +1283,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 lightdm
+                gtkrc
             elif [[ $hostname == 'notebook' ]]; then 
                 clear
                 apt_check
@@ -1310,6 +1303,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo                    
 #                 lightdm
+                gtkrc
             else                
                 clear
                 apt_check
@@ -1329,6 +1323,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 hosts
+                gtkrc
             fi
         
         ;;
@@ -1716,6 +1711,7 @@ echo "INICIANDO AS TAREFAS"
     esac
 
     echo "TAREFAS FINALIZADAS, SAINDO.."
+    sleep 5
     clear
 }
 
