@@ -92,17 +92,17 @@ echo "Tamanho da memória do seu computador é $tam_mem MB."
 # # realizando calculos
     # se valor for menor ou igual a 2GB
     if [ "$tam_mem" -le "2048" ]; then
-        # aplicando taxa de calculo, baseando em 50% da memória real
+        # aplicando taxa de calculo, baseando em +/-50% da memória real
         swap=$((($tam_mem * 5)/10))
 
     # se valor for menor ou igual a 4GB
     elif [ "$tam_mem" -lt "4092" ]; then
-        # aplicando taxa de calculo, baseando em 30% da memória real
+        # aplicando taxa de calculo, baseando em +/-30% da memória real
         swap=$((($tam_mem * 3)/10))    
         
     # qual outra opção 
     else
-        # aplicando taxa de calculo, baseando em 10% da memória real
+        # aplicando taxa de calculo, baseando em +/-10% da memória real
         swap=$((($tam_mem * 1)/10))    
     fi
     
