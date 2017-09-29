@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [2.0.40.1.0.5]    #
+# # versão do script:           [2.0.44.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [28/09/17]      #
+# # ultima ediçao realizada:      [29/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -112,6 +112,7 @@
 # # [+] Log - Sudo
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
+# # [+] Gtkrc
 # # 
 ################################################################################
 # # # # # LIMPA SISTEMA
@@ -424,7 +425,7 @@
         #configurando script base - NTP
         echo ""
         echo "[*] Realizando alteraçao no arquivo base"
-        cat base/ntp.txt > /etc/ntp.conf
+        cat base/ubuntu/ntp.txt > /etc/ntp.conf
         
         #ativando servico novamente
         echo ""
@@ -480,7 +481,7 @@
     {
         echo ""
         echo "[+] Iniciando sessão automaticamente"
-        cat base/lightdm.conf > /etc/lightdm/lightdm.conf
+        cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
     
     terminal_cool()
@@ -488,7 +489,7 @@
         #terminal Personalizado
         echo ""
         echo "[+] Deixando o terminal personalizado"
-        cat base/.bashrc > $HOME/.bashrc    
+        cat base/ubuntu/.bashrc > $HOME/.bashrc    
     }
             
     sshd_config()
@@ -496,28 +497,35 @@
         #altera arquivo ssh
         echo ""
         echo "[+] Alterando regras no acesso SSH"
-        cat base/sshd_config > /etc/ssh/sshd_config    
+        cat base/ubuntu/sshd_config > /etc/ssh/sshd_config    
     }                
             
     log_sudo()
     {
         echo ""
         echo "[+] Ativando log's do sudo"
-        cat base/login.defs > /etc/login.defs    
+        cat base/ubuntu/login.defs > /etc/login.defs    
     }
     
     repositorios_padrao()
     {
         echo ""
         echo "[+] Alterando lista de repositórios padrão"
-        cat base/sources.list > /etc/apt/sources.list    
+        cat base/ubuntu/sources.list > /etc/apt/sources.list    
     }
     
     arquivo_hosts()
     {
         echo ""
         echo "[+] Altera arquivo de Hosts"
-        cat base/hosts > /etc/hosts
+        cat base/ubuntu/hosts > /etc/hosts
+    }
+    
+    gtkrc()
+    {
+        echo ""
+        echo "[+] Arquivo de configuração da barra do Xfce"
+        cat base/ubuntu/.gtkrc-2.0 > /$HOME/.gtkrc-2.0
     }
     
 # # # # # # # # # # 
@@ -636,7 +644,7 @@
         rm -r /home/lenonr/.gimp-2.8
                 
         echo "[*] Inserindo novo arquivo"        
-        cp -r base/.gimp-2.8/ /home/lenonr/
+        cp -r base/ubuntu/.gimp-2.8/ /home/lenonr/
         
         echo "[+] Novo arquivo adicionado"
     }
@@ -1060,9 +1068,9 @@
         echo "[+] Instalando o MEGA"
     
         #instalando mega
-        dpkg -i base/mega/*.deb
+        dpkg -i base/ubuntu/mega/*.deb
         apt install -fy
-        dpkg -i base/mega/*.deb
+        dpkg -i base/ubuntu/mega/*.deb
     }
     
     openssh()
@@ -1249,6 +1257,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 lightdm
+                gtkrc
             elif [[ $hostname == 'notebook' ]]; then 
                 clear
                 apt_check
@@ -1268,6 +1277,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo                    
 #                 lightdm
+                gtkrc
             else                
                 clear
                 apt_check
@@ -1287,6 +1297,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 hosts
+                gtkrc
             fi
         
         ;;
