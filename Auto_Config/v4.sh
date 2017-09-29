@@ -262,24 +262,39 @@
 # # ATUALIZA SISTEMA
     update()
     {
-        #atualizando lista de repositorios            
-        echo "[+] Atualizando lista de repositorios do sistema"            
-        apt update 
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then
+	        #atualizando lista de repositorios            
+	        echo "[+] Atualizando lista de repositorios do sistema"            
+	        apt update 
         
-        #atualizando repositorio e seus dependencias
-        echo "[+] Atualizando lista de programas e suas dependências"            
-        auto-apt update
+	        #atualizando repositorio e seus dependencias
+        	echo "[+] Atualizando lista de programas e suas dependências"            
+	        auto-apt update
+        else
+	        #atualizando lista de repositorios            
+        	echo "[+] Atualizando lista de repositorios do sistema"            
+	        apt update         
+        fi                                
+
     }
     
     upgrade()
     {            
-        #atualizando lista de programas do sistema
-        echo "[+] Atualizando lista de programas do sistema"            
-        apt upgrade -y 
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then
+        	#atualizando lista de programas do sistema
+	        echo "[+] Atualizando lista de programas do sistema"            
+	        apt upgrade -y 
         
-        #atualizando repositorio local
-        echo "[+] Atualizando repositório local dos programas"            
-        auto-apt updatedb
+	        #atualizando repositorio local
+	        echo "[+] Atualizando repositório local dos programas"            
+	        auto-apt updatedb
+	else
+        	#atualizando lista de programas do sistema
+	        echo "[+] Atualizando lista de programas do sistema"            
+	        apt upgrade -y 
+	fi
     }
 
 # # # # # # # # # # 
@@ -1642,7 +1657,7 @@ echo "INICIANDO AS TAREFAS"
     ################################################################################
     ######ATUALIZA SISTEMA
     1) echo  
-            clear
+            clear    
             update
             upgrade
         ;;
