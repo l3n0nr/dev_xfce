@@ -1,8 +1,8 @@
 Tamanho das partições
 ---------------------
-Swap    =       (1 GB) 1024MB;
+Swap    =       Verificar Script "calcula_swap"
 
-\	=	(30 GB) 30720MB;
+\	=	30720MB(30 GB);
 
 \home	=	Restante;
 
