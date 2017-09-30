@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.65.1.0.5]    #
+# # versão do script:           [0.0.68.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -241,6 +241,8 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
+# Criando variavel com localização da raiz do usuario
+home = '/home/lenonr'
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
@@ -506,7 +508,7 @@
         #terminal Personalizado
         echo ""
         echo "[+] Deixando o terminal personalizado"
-        cat base/.bashrc > $HOME/.bashrc    
+        cat base/.bashrc > $home/.bashrc    
     }
             
     sshd_config()
@@ -549,7 +551,7 @@
     {
         echo ""
         echo "[+] Arquivo de configuração da barra do Xfce"
-        cat base/.gtkrc-2.0 > /$HOME/.gtkrc-2.0
+        cat base/.gtkrc-2.0 > $home/.gtkrc-2.0
     }
     
 # # # # # # # # # # 
@@ -675,10 +677,10 @@
         
         echo "[*] Removendo arquivo existente"
 #         rm -r /home/lenonr/.gimp-2.8
-        rm -r $HOME/.gimp-2.8
+        rm -r $home/.gimp-2.8
                 
         echo "[*] Inserindo novo arquivo"        
-        cp -r base/.gimp-2.8/ $HOME
+        cp -r base/.gimp-2.8/ $home
         
         echo "[+] Novo arquivo adicionado"
     }
@@ -1180,15 +1182,24 @@
         echo ""
         echo "[+] Instalando o temas e icones"
         
-        # criando pastas
-        mkdir $HOME/.icons $HOME/.themes
+        echo "[*] Apagando pasta .icons"
+        rm -R $home/.icons 
+        
+        echo "[*] Criando pasta .icons"
+        mkdir $home/.icons         
+        
+        echo "[*] Apagando pasta .themes"
+        rm -R $home/.themes
+        
+        echo "[*] Criando pasta .themes"
+        mkdir $home/.themes
         
         # copiando arquivos para as pastas
         echo "[*] Movendo icones para pasta"
-        cp -r base/icons/* $HOME/.icons
+        cp -r base/icons/* $home/.icons
         
         echo "[*] Movendo temas para pasta"
-        cp -r base/themes/* $HOME/.themes
+        cp -r base/themes/* $home/.themes
         
         echo "[+] Arquivos movidos!"
     }        
