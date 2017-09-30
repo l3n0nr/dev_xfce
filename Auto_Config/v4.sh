@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.64.1.0.5]    #
+# # versão do script:           [0.0.65.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1184,8 +1184,13 @@
         mkdir $HOME/.icons $HOME/.themes
         
         # copiando arquivos para as pastas
+        echo "[*] Movendo icones para pasta"
         cp -r base/icons/* $HOME/.icons
+        
+        echo "[*] Movendo temas para pasta"
         cp -r base/themes/* $HOME/.themes
+        
+        echo "[+] Arquivos movidos!"
     }        
     
 # # # # # # # # # # 
