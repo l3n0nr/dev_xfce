@@ -246,6 +246,13 @@ home = '/home/lenonr'
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
+# ATUALIZAR
+# CORRIGIR
+# LIMPAR
+# INSTALAR
+# REMOVER
+# REINICIAR
+# SAIR
 # 
 # # # # # # # # # #    
 # # ATUALIZA SISTEMA
@@ -1182,24 +1189,26 @@ home = '/home/lenonr'
         echo ""
         echo "[+] Instalando o temas e icones"
         
-        echo "[*] Apagando pasta .icons"
-        rm -R $home/.icons 
-        
-        echo "[*] Criando pasta .icons"
-        mkdir $home/.icons         
-        
-        echo "[*] Apagando pasta .themes"
-        rm -R $home/.themes
-        
-        echo "[*] Criando pasta .themes"
-        mkdir $home/.themes
+#         echo "[*] Apagando pasta .icons"
+#         rm -R $home/.icons 
+#         
+#         echo "[*] Criando pasta .icons"
+#         mkdir $home/.icons         
+#         
+#         echo "[*] Apagando pasta .themes"
+#         rm -R $home/.themes
+#         
+#         echo "[*] Criando pasta .themes"
+#         mkdir $home/.themes
         
         # copiando arquivos para as pastas
         echo "[*] Movendo icones para pasta"
-        cp -r base/icons/* $home/.icons
+#         cp -r base/icons/* $home/.icons
+        cp -r base/icons/* /usr/share/icons
         
         echo "[*] Movendo temas para pasta"
-        cp -r base/themes/* $home/.themes
+#         cp -r base/themes/* $home/.themes
+        cp -r base/icons/* /usr/share/themes
         
         echo "[+] Arquivos movidos!"
     }        
