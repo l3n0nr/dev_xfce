@@ -1,21 +1,7 @@
-# 
-
-# deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
-
-#deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
-
-# Line commented out by installer because it failed to verify:
-#deb http://security.debian.org/ jessie/updates main contrib
-# Line commented out by installer because it failed to verify:
-#deb-src http://security.debian.org/ jessie/updates main contrib
-
-# jessie-updates, previously known as 'volatile'
-# A network mirror was not selected during install.  The following entries
-# are provided as examples, but you should amend them as appropriate
-# for your mirror of choice.
-#
-#### DEBIAN 9
-## BASE PRINCIPAL
+#------------------------------------------------------------------------------#
+#                            OFFICIAL DEBIAN REPOS                             #
+#------------------------------------------------------------------------------#
+ ## BASE PRINCIPAL
  deb http://ftp.debian.org/debian/ stretch main contrib
 
 ## ATUALIZAÇÕES
@@ -28,3 +14,17 @@
 ## ATUALIZAÇÕES DE SEGURANÇA
  deb http://security.debian.org/ stretch/updates main contrib non-free
  deb http://security.debian.org/ stretch/updates main
+
+# deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
+#deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
+
+# Line commented out by installer because it failed to verify:
+#deb http://security.debian.org/ jessie/updates main contrib
+# Line commented out by installer because it failed to verify:
+#deb-src http://security.debian.org/ jessie/updates main contrib
+
+# jessie-updates, previously known as 'volatile'
+# A network mirror was not selected during install.  The following entries
+# are provided as examples, but you should amend them as appropriate
+# for your mirror of choice.
+#------------------------------------------------------------------------------#
