@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.60.1.0.5]    #
+# # versão do script:           [0.0.64.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1353,11 +1353,21 @@ auto_config_ubuntu()
     ######LIMPA SISTEMA
         3) echo
             clear
-#             kernel
-            arquivos_temporarios
-            pacotes_orfaos
-            funcao_chkrootkit
-            localpurge                                 
+            
+            #verificando variavel
+            if [[ $hostname == 'desktop' ]]; then                        
+    #           kernel
+                arquivos_temporarios
+                pacotes_orfaos
+                funcao_chkrootkit
+                localpurge                                 
+            else
+                kernel
+                arquivos_temporarios
+                pacotes_orfaos
+                funcao_chkrootkit
+                localpurge                                             
+            fi
         ;;
     
     ################################################################################
@@ -1720,8 +1730,14 @@ echo "INICIANDO AS TAREFAS"
     
     ################################################################################
     ###### REMOVENDO PROGRAMAS
-    6) echo  
-            auto_config_debian
+    6) echo      
+            echo ""
+            echo "[+] Removendo XBurn"
+            apt purge xfburn* -y
+            
+            echo ""
+            echo "[+] Removendo Mutt"
+            apt purge mutt* -y
         ;;
     
     ################################################################################
