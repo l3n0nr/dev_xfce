@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.58.1.0.5]    #
+# # versão do script:           [0.0.60.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -194,6 +194,7 @@
 # # [+] Hardinfo
 # # [+] Synapse
 # # [+] Nvidia
+# # [+] Icones + Temas + Mouse
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -203,7 +204,6 @@
 # # [+] Reaver
 # # [+] Lm-sensors
 # # [+] Ibus
-# # [+] Unetbootin
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1175,23 +1175,18 @@
         apt install nvidia-current nvidia-settings -y
     }
     
-    ibus()
+    icones_temas()
     {
         echo ""
-        echo "[+] Instalando o Ibus"
+        echo "[+] Instalando o temas e icones"
         
-        apt install ibus -y
-    }
-    
-    unetbootin()
-    {
-        echo ""
-        echo "[+] Instalando o Unetbootin"
+        # criando pastas
+        mkdir $HOME/.icons $HOME/.themes
         
-        add-apt-repository ppa:gezakovacs/ppa -y
-        update
-        apt-get install unetbootin -y
-    }
+        # copiando arquivos para as pastas
+        cp -r base/icons/* $HOME/.icons
+        cp -r base/themes/* $HOME/.themes
+    }        
     
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
@@ -1218,6 +1213,24 @@
         echo "[+] Instalando o PhpMyAdmin"
     
         apt install phpmyadmin -y            
+    }
+    
+    ibus()
+    {
+        echo ""
+        echo "[+] Instalando o Ibus"
+        
+        apt install ibus -y
+    }
+    
+    unetbootin()
+    {
+        echo ""
+        echo "[+] Instalando o Unetbootin"
+        
+        add-apt-repository ppa:gezakovacs/ppa -y
+        update
+        apt-get install unetbootin -y
     }
     
        
@@ -1416,6 +1429,7 @@ auto_config_ubuntu()
 #                 figlet
                 hardinfo
                 synaptic
+                icones_temas
                 
 #               OUTROS
                 firewall_basic
@@ -1424,8 +1438,6 @@ auto_config_ubuntu()
                 install_chkrootkit
                 reaver
                 sensors 
-                ibus
-                unetbootin
                 
             else            
 #               NAVEGADORES
@@ -1489,6 +1501,7 @@ auto_config_ubuntu()
                 hardinfo
                 synaptic
                 nvidia
+                icones_temas
                 
 #               OUTROS
                 firewall_basic
@@ -1496,9 +1509,7 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors   
-                ibus
-                unetbootin
+                sensors               
             fi
             ;;
             
@@ -1508,6 +1519,7 @@ auto_config_ubuntu()
             apache
             mysql
             phpmyadmin
+            ibus
             ;;
     
     ################################################################################
@@ -1692,6 +1704,7 @@ echo "INICIANDO AS TAREFAS"
             plank
             git
             openssh
+            icones_temas
             #sudo
             #nmap
             #firmware-wifi
