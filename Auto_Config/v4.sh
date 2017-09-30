@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.68.1.0.5]    #
+# # versão do script:           [0.0.70.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -194,7 +194,7 @@
 # # [+] Hardinfo
 # # [+] Synapse
 # # [+] Nvidia
-# # [+] Icones + Temas + Mouse
+# # [+] Icones
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1184,31 +1184,14 @@ home = '/home/lenonr'
         apt install nvidia-current nvidia-settings -y
     }
     
-    icones_temas()
+    icones()
     {
         echo ""
-        echo "[+] Instalando o temas e icones"
-        
-#         echo "[*] Apagando pasta .icons"
-#         rm -R $home/.icons 
-#         
-#         echo "[*] Criando pasta .icons"
-#         mkdir $home/.icons         
-#         
-#         echo "[*] Apagando pasta .themes"
-#         rm -R $home/.themes
-#         
-#         echo "[*] Criando pasta .themes"
-#         mkdir $home/.themes
+        echo "[+] Instalando os icones"
         
         # copiando arquivos para as pastas
         echo "[*] Movendo icones para pasta"
-#         cp -r base/icons/* $home/.icons
         cp -r base/icons/* /usr/share/icons
-        
-        echo "[*] Movendo temas para pasta"
-#         cp -r base/themes/* $home/.themes
-        cp -r base/icons/* /usr/share/themes
         
         echo "[+] Arquivos movidos!"
     }        
@@ -1464,7 +1447,7 @@ auto_config_ubuntu()
 #                 figlet
                 hardinfo
                 synaptic
-                icones_temas
+                icones
                 
 #               OUTROS
                 firewall_basic
@@ -1536,7 +1519,7 @@ auto_config_ubuntu()
                 hardinfo
                 synaptic
                 nvidia
-                icones_temas
+                icones
                 
 #               OUTROS
                 firewall_basic
@@ -1739,7 +1722,7 @@ echo "INICIANDO AS TAREFAS"
             plank
             git
             openssh
-            icones_temas
+            icones
             #sudo
             #nmap
             #firmware-wifi
