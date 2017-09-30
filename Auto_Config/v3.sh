@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [2.0.44.1.0.5]    #
+# # versão do script:           [2.0.45.1.0.5]    #
 # # data de criação do script:    [23/08/17]      #
-# # ultima ediçao realizada:      [29/09/17]      #
+# # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -425,7 +425,7 @@
         #configurando script base - NTP
         echo ""
         echo "[*] Realizando alteraçao no arquivo base"
-        cat base/ubuntu/ntp.txt > /etc/ntp.conf
+        cat base/ntp.txt > /etc/ntp.conf
         
         #ativando servico novamente
         echo ""
@@ -489,7 +489,7 @@
         #terminal Personalizado
         echo ""
         echo "[+] Deixando o terminal personalizado"
-        cat base/ubuntu/.bashrc > $HOME/.bashrc    
+        cat base/.bashrc > $HOME/.bashrc    
     }
             
     sshd_config()
@@ -497,7 +497,7 @@
         #altera arquivo ssh
         echo ""
         echo "[+] Alterando regras no acesso SSH"
-        cat base/ubuntu/sshd_config > /etc/ssh/sshd_config    
+        cat base/sshd_config > /etc/ssh/sshd_config    
     }                
             
     log_sudo()
@@ -518,14 +518,14 @@
     {
         echo ""
         echo "[+] Altera arquivo de Hosts"
-        cat base/ubuntu/hosts > /etc/hosts
+        cat base/hosts > /etc/hosts
     }
     
     gtkrc()
     {
         echo ""
         echo "[+] Arquivo de configuração da barra do Xfce"
-        cat base/ubuntu/.gtkrc-2.0 > /$HOME/.gtkrc-2.0
+        cat base/.gtkrc-2.0 > /$HOME/.gtkrc-2.0
     }
     
 # # # # # # # # # # 
@@ -641,10 +641,11 @@
         echo "[+] Instalando o PhotoGimp"
         
         echo "[*] Removendo arquivo existente"
-        rm -r /home/lenonr/.gimp-2.8
+#         rm -r /home/lenonr/.gimp-2.8
+        rm -r $HOME/.gimp-2.8
                 
         echo "[*] Inserindo novo arquivo"        
-        cp -r base/ubuntu/.gimp-2.8/ /home/lenonr/
+        cp -r base/.gimp-2.8/ $HOME/
         
         echo "[+] Novo arquivo adicionado"
     }
