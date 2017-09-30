@@ -526,9 +526,16 @@
     
     repositorios_padrao()
     {
-        echo ""
-        echo "[+] Alterando lista de repositórios padrão"
-        cat base/ubuntu/sources.list > /etc/apt/sources.list    
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then
+            echo ""
+            echo "[+] Alterando lista de repositórios padrão"
+            cat base/ubuntu/sources.list > /etc/apt/sources.list    
+        else
+            echo ""
+            echo "[+] Alterando lista de repositórios padrão"
+            cat base/debian/sources.list > /etc/apt/sources.list    
+        fi
     }
     
     arquivo_hosts()
@@ -1636,7 +1643,7 @@ echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     echo "----------------------------------------"
     echo "Digite 1 para atualizar o sistema,"
-    echo "(*)Digite 2 para corrigir possíveis erros," 
+    echo "Digite 2 para corrigir possíveis erros," 
     echo "(*)Digite 3 para realizar uma limpeza," 
     echo "Digite 4 para instalar alguns programas,"     
     echo "(*)Digite 5 para instalar programas não essenciais,"
@@ -1660,7 +1667,14 @@ echo "INICIANDO AS TAREFAS"
     ################################################################################
     ###### CORRINDO PROBLEMAS
     2) echo  
-            auto_config_debian
+            apt_install
+            fonts
+            ntp
+            terminal_cool
+            sshd_config
+            repositorios_padrao
+            arquivo_hosts
+            gtkrc
         ;;
         
     ################################################################################
