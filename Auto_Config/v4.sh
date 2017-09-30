@@ -1686,6 +1686,15 @@ echo "INICIANDO AS TAREFAS"
     ################################################################################
     ###### INSTALANDO PROGRAMAS
     4) echo  
+            nautilus
+            redshift
+            plank
+            git
+            openssh
+            #sudo
+            #nmap
+            #firmware-wifi
+            #xfpanel
             
         ;;
     
