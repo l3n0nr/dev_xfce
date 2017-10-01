@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.75.1.0.5]    #
+# # versão do script:           [0.0.78.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -267,9 +267,7 @@ home = '/home/lenonr'
         if [ "$distro" == "ubuntu" ]; then	                
 	        #atualizando repositorio e seus dependencias
         	echo "[+] Atualizando lista de programas e suas dependências"            
-	        auto-apt update    
-        else
-            
+	        auto-apt update                
         fi                                
     }
     
@@ -1015,7 +1013,6 @@ home = '/home/lenonr'
         
             #atualizando lista repositorios
             update
-        else
         fi
         
         #instalando plank
@@ -1046,8 +1043,6 @@ home = '/home/lenonr'
 
             #instalando o nautilus
             apt install nautilus* -y   
-        else
-                
         fi
         
         #instalando o nautilus
@@ -1274,6 +1269,7 @@ auto_config_ubuntu()
     echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     echo "----------------------------------------"
+    echo "Digite 0 para verificar dados do sistema"
     echo "Digite 1 para atualizar o sistema,"
     echo "Digite 2 para corrigir possíveis erros," 
     echo "Digite 3 para realizar uma limpeza," 
@@ -1282,7 +1278,7 @@ auto_config_ubuntu()
     echo "Digite 6 para remover alguns programas,"
     echo "Digite 7 para sair do script,"
     echo "Digite 8 para reiniciar a máquina,"
-    echo "Digite 8 para desligar a máquina;"
+    echo "Digite 9 para desligar a máquina;"
     
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
@@ -1290,6 +1286,12 @@ auto_config_ubuntu()
     ##CHAMANDOS FUNCOES    
     #     
     case $escolha in   
+    ################################################################################
+    ######DADOS DOS SISTEMA
+        0) echo
+            
+        ;;
+    
     ################################################################################
     ######ATUALIZA SISTEMA
         1) echo  
@@ -1693,6 +1695,7 @@ auto_config_debian()
 echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     echo "----------------------------------------"
+    echo "Digite 0 para verificar dados do sistema"
     echo "Digite 1 para atualizar o sistema,"
     echo "Digite 2 para corrigir possíveis erros," 
     echo "(*)Digite 3 para realizar uma limpeza," 
@@ -1709,64 +1712,68 @@ echo "INICIANDO AS TAREFAS"
     #     
     case $escolha in   
     ################################################################################
+    ######DADOS DO SISTEMA
+        0) echo  
+            
+        ;;
+    ################################################################################
     ######ATUALIZA SISTEMA
-    1) echo  
-            clear    
-            update
-            upgrade
+        1) echo  
+                clear    
+                update
+                upgrade
         ;;
     
     ################################################################################
     ###### CORRINDO PROBLEMAS
-    2) echo  
-            apt_install
-            fonts
-            ntp
-            terminal_cool
-            sshd_config
-            repositorios_padrao
-            arquivo_hosts
-            gtkrc
+        2) echo  
+                apt_install
+                fonts
+                ntp
+                terminal_cool
+                sshd_config
+                repositorios_padrao
+                arquivo_hosts
+                gtkrc
         ;;
         
     ################################################################################
     ###### REALIZANDO LIMPEZA
-    3) echo  
-            auto_config_debian
+        3) echo  
+                auto_config_debian
         ;;
     
     ################################################################################
     ###### INSTALANDO PROGRAMAS
-    4) echo  
-            nautilus
-            redshift
-            plank
-            git
-            openssh
-            icones
-            #sudo
-            #nmap
-            #firmware-wifi
-            #xfpanel
-            
+        4) echo  
+                nautilus
+                redshift
+                plank
+                git
+                openssh
+                icones
+                #sudo
+                #nmap
+                #firmware-wifi
+                #xfpanel                
         ;;
     
     ################################################################################
     ###### PROGRAMAS NAO ESSENCIAIS
-    5) echo  
-            auto_config_debian
+        5) echo  
+                auto_config_debian
         ;;
     
     ################################################################################
     ###### REMOVENDO PROGRAMAS
-    6) echo      
-            echo ""
-            echo "[+] Removendo XBurn"
-            apt purge xfburn* -y
-            
-            echo ""
-            echo "[+] Removendo Mutt"
-            apt purge mutt* -y
+        6) echo      
+                echo ""
+                echo "[+] Removendo XBurn"
+                apt purge xfburn* -y
+                
+                echo ""
+                echo "[+] Removendo Mutt"
+                apt purge mutt* -y
         ;;
     
     ################################################################################
@@ -1777,23 +1784,23 @@ echo "INICIANDO AS TAREFAS"
     
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    8) echo
-            reboot -n
+        8) echo
+                reboot -n
         ;;
         
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    9) echo
-            halt -p
+        9) echo
+                halt -p
         ;;
         
     ################################################################################
     ######ENTRADA INVALIDA
-    *) echo
-        echo Alternativa incorreta!!
-        sleep 1
-        menu
-        exit
+        *) echo
+            echo Alternativa incorreta!!
+            sleep 1
+            menu
+            exit
         ;;
         
     esac
