@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.70.1.0.5]    #
+# # versão do script:           [0.0.71.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1291,7 +1291,6 @@ auto_config_ubuntu()
     ######ATUALIZA SISTEMA
         1) echo  
             clear
-            teste
             update
             upgrade
         ;;
