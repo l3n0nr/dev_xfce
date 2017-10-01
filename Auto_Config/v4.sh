@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.80.1.0.5]    #
+# # versão do script:           [0.0.85.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -295,6 +295,7 @@ home = '/home/lenonr'
                     printf "| Laço nº $laco | Vezes $vezes | Intervalo $tempo | \n"
                     printf "[+] DADOS GERAIS \n"
                     free -mht
+                    free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
                     
                     printf "\n"
                     df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'       
@@ -326,6 +327,7 @@ home = '/home/lenonr'
                     printf "| Laço nº $laco | Vezes $p_vezes | Intervalo $p_tempo | \n"
                     printf "[+] DADOS GERAIS \n"
                     free -mht
+                    free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
                     
                     printf "\n"
                     df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'                
@@ -529,6 +531,7 @@ home = '/home/lenonr'
         
         #removendo pacote
         rm -f ttf-mscorefonts-installer_3.6_all.deb
+        rm -f ttf-mscorefonts-installer_3.6_all.deb.1
     }
     
     ntp()
@@ -1377,8 +1380,8 @@ auto_config_ubuntu()
     echo "Digite 5 para instalar programas não essenciais,"
     echo "Digite 6 para remover alguns programas,"
     echo "Digite 7 para sair do script,"
-    echo "Digite reboot para reiniciar a máquina,"
-    echo "Digite halt para desligar a máquina;"
+    echo "Digite 8 para reiniciar a máquina,"
+    echo "Digite 9 para desligar a máquina;"
     
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
@@ -1471,7 +1474,7 @@ auto_config_ubuntu()
                 sshd_config
                 repositorios_padrao
                 log_sudo
-                hosts
+                arquivo_hosts
                 gtkrc
             fi
             
@@ -1655,7 +1658,7 @@ auto_config_ubuntu()
             fi
             
             auto_config_ubuntu
-            ;;
+        ;;
             
     ################################################################################
     ######PROGRAMAS NÃO ESSENCIAIS
@@ -1666,7 +1669,7 @@ auto_config_ubuntu()
             ibus
             
             auto_config_ubuntu
-            ;;
+        ;;
     
     ################################################################################
     ######REMOVES PROGRAMAS
@@ -1769,24 +1772,24 @@ auto_config_ubuntu()
             fi
             
             auto_config_ubuntu
-            ;;
+        ;;
     
     ################################################################################
     ###### SAINDO DO SCRIPT
-    7) echo 
-            exit
+        7) echo 
+                exit
         ;;
     
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    reboot) echo
-            reboot -n
+        reboot) echo
+                reboot -n
         ;;
         
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    halt) echo
-            halt -p
+        halt) echo
+                halt -p
         ;;
     
     ################################################################################
@@ -1796,7 +1799,7 @@ auto_config_ubuntu()
             sleep 1
             menu
             exit
-            ;;
+        ;;
     esac
 
     echo "TAREFAS FINALIZADAS, SAINDO.."
@@ -1901,8 +1904,8 @@ auto_config_debian()
     
     ################################################################################
     ###### SAINDO DO SCRIPT
-    7) echo 
-            exit            
+        7) echo 
+                exit            
         ;;
     
     ################################################################################
