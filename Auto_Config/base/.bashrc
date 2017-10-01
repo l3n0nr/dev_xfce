@@ -143,5 +143,8 @@ alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/rebo
 # criando apelido para realizar backup dos arquivos no HD
 alias verificahd='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/verifica_midias.sh'
 
+# criando apelido para verificar os log's do servidor dev_web
+alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
+
 # testanco configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
