@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.71.1.0.5]    #
+# # versão do script:           [0.0.75.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/09/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -258,19 +258,18 @@ home = '/home/lenonr'
 # # ATUALIZA SISTEMA
     update()
     {
-        # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then
-	        #atualizando lista de repositorios            
-	        echo "[+] Atualizando lista de repositorios do sistema"            
-	        apt update 
+    
+        #atualizando lista de repositorios            
+        echo "[+] Atualizando lista de repositorios do sistema"            
+        apt update 
         
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then	                
 	        #atualizando repositorio e seus dependencias
         	echo "[+] Atualizando lista de programas e suas dependências"            
-	        auto-apt update
+	        auto-apt update    
         else
-	        #atualizando lista de repositorios            
-        	echo "[+] Atualizando lista de repositorios do sistema"            
-	        apt update         
+            
         fi                                
     }
     
@@ -1008,14 +1007,20 @@ home = '/home/lenonr'
         echo ""
         echo "[+] Instalando o Plank Dock"
         
-        #adicionando ppa
-        add-apt-repository ppa:noobslab/apps -y
         
-        #atualizando lista repositorios
-        update
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then        
+            #adicionando ppa
+            add-apt-repository ppa:noobslab/apps -y
+        
+            #atualizando lista repositorios
+            update
+        else
+        fi
         
         #instalando plank
         apt-get install plank* plank-themer -y
+        
     }
     
     gnome_system_monitor()
@@ -1042,15 +1047,11 @@ home = '/home/lenonr'
             #instalando o nautilus
             apt install nautilus* -y   
         else
-            echo ""
-            echo "[+] Instalando o Nautilus"
-            
-            #atualizando lista repositorio
-            update
-
-            #instalando o nautilus
-            apt install nautilus* -y   
+                
         fi
+        
+        #instalando o nautilus
+        apt install nautilus* -y   
     }
     
     wireshark()
@@ -1279,8 +1280,10 @@ auto_config_ubuntu()
     echo "Digite 4 para instalar alguns programas,"     
     echo "Digite 5 para instalar programas não essenciais,"
     echo "Digite 6 para remover alguns programas,"
-    echo "Digite 7 para reiniciar a máquina."
-    echo "Digite 8 para sair do script;"
+    echo "Digite 7 para sair do script,"
+    echo "Digite 8 para reiniciar a máquina,"
+    echo "Digite 8 para desligar a máquina;"
+    
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
     
@@ -1654,16 +1657,22 @@ auto_config_ubuntu()
             ;;
     
     ################################################################################
-    ######REINICIANDO MAQUINA
-        7) echo
+    ###### SAINDO DO SCRIPT
+    7) echo 
+            exit
+        ;;
+    
+    ################################################################################
+    ###### REINICIANDO A MAQUINA
+    8) echo
             reboot -n
-            ;;
+        ;;
         
     ################################################################################
-    ######SAINDO SCRIPT
-        8) echo 	
-            exit
-            ;;
+    ###### REINICIANDO A MAQUINA
+    9) echo
+            halt -p
+        ;;
     
     ################################################################################
     ######ENTRADA INVALIDA
@@ -1689,9 +1698,10 @@ echo "INICIANDO AS TAREFAS"
     echo "(*)Digite 3 para realizar uma limpeza," 
     echo "Digite 4 para instalar alguns programas,"     
     echo "(*)Digite 5 para instalar programas não essenciais,"
-    echo "(*)Digite 6 para remover alguns programas,"
-    echo "Digite 7 para reiniciar a máquina."
-    echo "Digite 8 para sair do script;"
+    echo "(*)Digite 6 para remover alguns programas,"    
+    echo "Digite 7 para sair do script,"
+    echo "Digite 8 para reiniciar a máquina,"
+    echo "Digite 9 para desligar a máquina;"
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
     
@@ -1760,17 +1770,23 @@ echo "INICIANDO AS TAREFAS"
         ;;
     
     ################################################################################
-    ###### REINICIANDO A MAQUINA
-    7) echo
-            reboot -n
-        ;;
-
-    ################################################################################
     ###### SAINDO DO SCRIPT
-    8) echo 
+    7) echo 
             exit
         ;;
     
+    ################################################################################
+    ###### REINICIANDO A MAQUINA
+    8) echo
+            reboot -n
+        ;;
+        
+    ################################################################################
+    ###### REINICIANDO A MAQUINA
+    9) echo
+            halt -p
+        ;;
+        
     ################################################################################
     ######ENTRADA INVALIDA
     *) echo
