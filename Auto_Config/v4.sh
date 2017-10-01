@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.78.1.0.5]    #
+# # versão do script:           [0.0.80.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [30/09/17]      #
+# # ultima ediçao realizada:      [01/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -246,6 +246,7 @@ home = '/home/lenonr'
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
+# SISTEMA
 # ATUALIZAR
 # CORRIGIR
 # LIMPAR
@@ -254,6 +255,104 @@ home = '/home/lenonr'
 # REINICIAR
 # SAIR
 # 
+# # # # # # # # # #    
+# # DADOS DO SISTEMA
+    system()
+    {     
+        clear
+        
+        # definindo variavel de verificação
+        laco="0"
+    
+        # definindo quantidade de vezes que o laço sera repetido
+        p_vezes="30"
+        
+        # definindo tempo de atualização do laço
+        p_tempo="1"
+        
+        # mostrando mensagem
+        printf "#################################################################################################### \n"
+        printf "Essa função irá mostrar dados do sistema, como consumo de memória, utilização do disco e uptime do sistema; \n"
+        printf "Você pode escolher a quantidade de vezes que esses dados serão mostrados; \n"
+        printf "A forma padrão irá executar $p_vezes vezes em um intervalo de $p_tempo segundos. \n"
+        printf "#################################################################################################### \n\n"
+        read -n1 -p "Você deseja escolher? (s|sim|S|SIM) / (n|nao|N|NAO): " escolha
+        case $escolha in
+            s|sim|S|SIM) echo   
+                printf "\n"
+                read -n1 -p "Digite o valor de vezes que deseja executar essa função: " vezes
+                printf "\n"
+                read -n1 -p "Agora digite o valor o intervalo de atualização em segundos: " tempo
+                
+                # enquanto $local for menor ou igual a $vezes, executa
+                while [ $laco -le $vezes ]; 
+                do
+                    clear                                                            
+                    printf "################################# \n"
+                    printf "A sua distribuição é $distro \n"
+                    printf "################################# \n"
+                    
+                    printf "| Laço nº $laco | Vezes $vezes | Intervalo $tempo | \n"
+                    printf "[+] DADOS GERAIS \n"
+                    free -mht
+                    
+                    printf "\n"
+                    df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'       
+                                    
+                    printf "\n"
+                    printf "[+] Espaço de armazenamento \n"
+                    df -h
+                    
+                    printf "\n"
+                    printf "[+] Uptime do Sistema \n"
+                    uptime
+                    
+                    # realizando soma na variavel
+                    ((laco++))
+                    
+                    # aguardando tempo para atualização do laço
+                    sleep $tempo                                    
+                done
+            ;;
+            n|nao|N|NAO) echo
+                # enquanto $local for menor ou igual a $vezes, executa
+                while [ $laco -le $p_vezes ]; 
+                do
+                    clear                                                            
+                    printf "################################# \n"
+                    printf "A sua distribuição é $distro \n"
+                    printf "################################# \n"
+                    
+                    printf "| Laço nº $laco | Vezes $p_vezes | Intervalo $p_tempo | \n"
+                    printf "[+] DADOS GERAIS \n"
+                    free -mht
+                    
+                    printf "\n"
+                    df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'                
+                                    
+                    printf "\n"
+                    printf "[+] Espaço de armazenamento \n"
+                    df -h
+                    
+                    printf "\n"
+                    printf "[+] Uptime do Sistema \n"
+                    uptime
+                    
+                    # realizando soma na variavel
+                    ((laco++))
+                    
+                    # aguardando tempo para atualização do laço
+                    sleep $p_tempo                                    
+                done
+            ;;
+            *) 
+                echo "Digite corretamente!"
+                sleep 1
+                system    
+            ;;
+        esac                
+    }
+
 # # # # # # # # # #    
 # # ATUALIZA SISTEMA
     update()
@@ -1266,6 +1365,7 @@ home = '/home/lenonr'
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
 {
+    clear
     echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     echo "----------------------------------------"
@@ -1277,8 +1377,8 @@ auto_config_ubuntu()
     echo "Digite 5 para instalar programas não essenciais,"
     echo "Digite 6 para remover alguns programas,"
     echo "Digite 7 para sair do script,"
-    echo "Digite 8 para reiniciar a máquina,"
-    echo "Digite 9 para desligar a máquina;"
+    echo "Digite reboot para reiniciar a máquina,"
+    echo "Digite halt para desligar a máquina;"
     
     echo "----------------------------------------" 
     read -n1 -p "Ação:" escolha
@@ -1289,7 +1389,9 @@ auto_config_ubuntu()
     ################################################################################
     ######DADOS DOS SISTEMA
         0) echo
+            system
             
+            auto_config_ubuntu
         ;;
     
     ################################################################################
@@ -1297,7 +1399,9 @@ auto_config_ubuntu()
         1) echo  
             clear
             update
-            upgrade
+            upgrade            
+            
+            auto_config_ubuntu
         ;;
         
     ################################################################################
@@ -1370,7 +1474,8 @@ auto_config_ubuntu()
                 hosts
                 gtkrc
             fi
-        
+            
+            auto_config_ubuntu        
         ;;
                 
     ################################################################################
@@ -1392,12 +1497,15 @@ auto_config_ubuntu()
                 funcao_chkrootkit
                 localpurge                                             
             fi
+            
+            auto_config_ubuntu
         ;;
     
     ################################################################################
     ######INSTALA PROGRAMAS
         4) echo  
             clear   
+            
             # # verificando nome para máquina para executar funções especificas
             #capturando hostname da maquina
             hostname=$(hostname)
@@ -1545,6 +1653,8 @@ auto_config_ubuntu()
                 reaver
                 sensors               
             fi
+            
+            auto_config_ubuntu
             ;;
             
     ################################################################################
@@ -1554,6 +1664,8 @@ auto_config_ubuntu()
             mysql
             phpmyadmin
             ibus
+            
+            auto_config_ubuntu
             ;;
     
     ################################################################################
@@ -1656,6 +1768,7 @@ auto_config_ubuntu()
                 echo ""
             fi
             
+            auto_config_ubuntu
             ;;
     
     ################################################################################
@@ -1666,13 +1779,13 @@ auto_config_ubuntu()
     
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    8) echo
+    reboot) echo
             reboot -n
         ;;
         
     ################################################################################
     ###### REINICIANDO A MAQUINA
-    9) echo
+    halt) echo
             halt -p
         ;;
     
@@ -1692,7 +1805,8 @@ auto_config_ubuntu()
 
 auto_config_debian()
 {
-echo "INICIANDO AS TAREFAS"
+    clear
+    echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     echo "----------------------------------------"
     echo "Digite 0 para verificar dados do sistema"
@@ -1714,7 +1828,8 @@ echo "INICIANDO AS TAREFAS"
     ################################################################################
     ######DADOS DO SISTEMA
         0) echo  
-            
+                system            
+                auto_config_debian
         ;;
     ################################################################################
     ######ATUALIZA SISTEMA
@@ -1722,6 +1837,8 @@ echo "INICIANDO AS TAREFAS"
                 clear    
                 update
                 upgrade
+                
+                auto_config_debian
         ;;
     
     ################################################################################
@@ -1735,6 +1852,8 @@ echo "INICIANDO AS TAREFAS"
                 repositorios_padrao
                 arquivo_hosts
                 gtkrc
+                
+                auto_config_debian
         ;;
         
     ################################################################################
@@ -1755,7 +1874,9 @@ echo "INICIANDO AS TAREFAS"
                 #sudo
                 #nmap
                 #firmware-wifi
-                #xfpanel                
+                #xfpanel          
+                
+                auto_config_debian
         ;;
     
     ################################################################################
@@ -1774,12 +1895,14 @@ echo "INICIANDO AS TAREFAS"
                 echo ""
                 echo "[+] Removendo Mutt"
                 apt purge mutt* -y
+                
+                auto_config_debian
         ;;
     
     ################################################################################
     ###### SAINDO DO SCRIPT
     7) echo 
-            exit
+            exit            
         ;;
     
     ################################################################################
