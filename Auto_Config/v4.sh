@@ -1027,18 +1027,30 @@ home = '/home/lenonr'
     }
     
     nautilus()
-    {
-        echo ""
-        echo "[+] Instalando o Nautilus"
-        
-        #adicionando ppa
-        add-apt-repository ppa:gnome3-team/gnome3 -y
-        
-        #atualizando lista repositorio
-        update
+    {    
+        # verificando distribuição
+        if [ "$distro" == "ubuntu" ]; then        
+            echo ""
+            echo "[+] Instalando o Nautilus"
+            
+            #adicionando ppa
+            add-apt-repository ppa:gnome3-team/gnome3 -y
+            
+            #atualizando lista repositorio
+            update
 
-        #instalando o nautilus
-        apt install nautilus* -y   
+            #instalando o nautilus
+            apt install nautilus* -y   
+        else
+            echo ""
+            echo "[+] Instalando o Nautilus"
+            
+            #atualizando lista repositorio
+            update
+
+            #instalando o nautilus
+            apt install nautilus* -y   
+        fi
     }
     
     wireshark()
