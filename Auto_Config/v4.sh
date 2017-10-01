@@ -1025,7 +1025,7 @@ home = '/home/lenonr'
         
         apt install gnome-system-monitor -y
     }
-    
+     
     nautilus()
     {    
         # verificando distribuição
