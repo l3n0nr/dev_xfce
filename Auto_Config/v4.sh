@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.92.1.0.5]    #
+# # versão do script:           [0.0.96.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -365,7 +365,7 @@ home = '/home/lenonr'
         apt update 
         
         # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then	                
+        if [ "$distro" == "Ubuntu" ]; then	                
 	        #atualizando repositorio e seus dependencias
         	echo "[+] Atualizando lista de programas e suas dependências"            
 	        auto-apt update                
@@ -375,7 +375,7 @@ home = '/home/lenonr'
     upgrade()
     {            
         # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then
+        if [ "$distro" == "Ubuntu" ]; then
         	#atualizando lista de programas do sistema
 	        echo "[+] Atualizando lista de programas do sistema"            
 	        apt upgrade -y 
@@ -635,7 +635,7 @@ home = '/home/lenonr'
     repositorios_padrao()
     {
         # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then
+        if [ "$distro" == "Ubuntu" ]; then
             echo ""
             echo "[+] Alterando lista de repositórios padrão"
             cat base/ubuntu/sources.list > /etc/apt/sources.list    
@@ -1109,7 +1109,7 @@ home = '/home/lenonr'
         
         
         # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then        
+        if [ "$distro" == "Ubuntu" ]; then        
             #adicionando ppa
             add-apt-repository ppa:noobslab/apps -y
         
@@ -1133,7 +1133,7 @@ home = '/home/lenonr'
     nautilus()
     {    
         # verificando distribuição
-        if [ "$distro" == "ubuntu" ]; then        
+        if [ "$distro" == "Ubuntu" ]; then        
             echo ""
             echo "[+] Instalando o Nautilus"
             
@@ -1394,7 +1394,7 @@ auto_config_ubuntu()
         0) echo
             system
             
-            auto_config_ubuntu
+            auto_config
         ;;
     
     ################################################################################
@@ -1404,7 +1404,7 @@ auto_config_ubuntu()
             update
             upgrade            
             
-            auto_config_ubuntu
+            auto_config
         ;;
         
     ################################################################################
@@ -1478,7 +1478,7 @@ auto_config_ubuntu()
                 gtkrc
             fi
             
-            auto_config_ubuntu        
+            auto_config        
         ;;
                 
     ################################################################################
@@ -1501,7 +1501,7 @@ auto_config_ubuntu()
                 localpurge                                             
             fi
             
-            auto_config_ubuntu
+            auto_config
         ;;
     
     ################################################################################
@@ -1657,7 +1657,7 @@ auto_config_ubuntu()
                 sensors               
             fi
             
-            auto_config_ubuntu
+            auto_config
         ;;
             
     ################################################################################
@@ -1668,7 +1668,7 @@ auto_config_ubuntu()
             phpmyadmin
             ibus
             
-            auto_config_ubuntu
+            auto_config
         ;;
     
     ################################################################################
@@ -1676,19 +1676,19 @@ auto_config_ubuntu()
         6) echo                    
                 clear
                 echo "[+] Removendo pidgin"
-                apt purge pidgin* -y
+                apt purge pidgin -y
                 
                 echo ""
                 echo "[+] Removendo Thunderbird"
-                apt purge thunderbird* -y
+                apt purge thunderbird -y
                 
                 echo ""
                 echo "[+] Removendo Parole"
-                apt purge parole* -y
+                apt purge parole -y
                                                                 
                 echo ""
                 echo "[+] Removendo XBurn"
-                apt purge xfburn* -y
+                apt purge xfburn -y
                 
                 echo ""
                 echo "[+] Removendo o Inkscape"
@@ -1771,7 +1771,7 @@ auto_config_ubuntu()
                 echo ""
             fi
             
-            auto_config_ubuntu
+            auto_config
         ;;
     
     ################################################################################
@@ -1803,7 +1803,7 @@ auto_config_debian()
     ######DADOS DO SISTEMA
         0) echo  
                 system            
-                auto_config_debian
+                auto_config
         ;;
     ################################################################################
     ######ATUALIZA SISTEMA
@@ -1812,7 +1812,7 @@ auto_config_debian()
                 update
                 upgrade
                 
-                auto_config_debian
+                auto_config
         ;;
     
     ################################################################################
@@ -1827,13 +1827,13 @@ auto_config_debian()
                 arquivo_hosts
                 gtkrc
                 
-                auto_config_debian
+                auto_config
         ;;
         
     ################################################################################
     ###### REALIZANDO LIMPEZA
         3) echo  
-                auto_config_debian
+                auto_config
         ;;
     
     ################################################################################
@@ -1850,13 +1850,13 @@ auto_config_debian()
                 #firmware-wifi
                 #xfpanel          
                 
-                auto_config_debian
+                auto_config
         ;;
     
     ################################################################################
     ###### PROGRAMAS NAO ESSENCIAIS
         5) echo  
-                auto_config_debian
+                auto_config
         ;;
     
     ################################################################################
@@ -1864,13 +1864,13 @@ auto_config_debian()
         6) echo      
                 echo ""
                 echo "[+] Removendo XBurn"
-                apt purge xfburn* -y
+                apt purge xfburn -y
                 
                 echo ""
                 echo "[+] Removendo Mutt"
-                apt purge mutt* -y
+                apt purge mutt -y
                 
-                auto_config_debian
+                auto_config
         ;;
     
     ################################################################################
@@ -1898,18 +1898,17 @@ auto_config_debian()
 
 auto_config()
 {
-
-    # verificar distribuição utilizada
-    cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
-
-    # verificando distribuição
-    distro=$(sed '2!d' distro.txt)
-    
-    # apagando arquivo
-    rm distro.txt                          
+#     # verificar distribuição utilizada
+#     cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
+# 
+#     # verificando distribuição
+#     distro=$(sed '2!d' distro.txt)
+#     
+#     # apagando arquivo
+#     rm distro.txt                          
 
     # verificando distro | forma alterativa
-    v_distro=$(lsb_release -i | cut -f2)
+    distro=$(lsb_release -i | cut -f2)
     
     clear
     echo "INICIANDO AS TAREFAS"
@@ -1927,11 +1926,11 @@ auto_config()
     read -n1 -p "Ação:" escolhaauto_config
     
     #executando ações para a distribuição Ubuntu
-    if [ "$distro" == "ubuntu" ]; then
+    if [ "$distro" == "Ubuntu" ]; then
         clear
         auto_config_ubuntu                    
     #executando ações para a distribuição Fedora	
-    elif [ "$distro" == "debian" ]; then
+    elif [ "$distro" == "Debian" ]; then
         clear
         auto_config_debian
     else
