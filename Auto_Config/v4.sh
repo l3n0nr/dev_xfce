@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.85.1.0.5]    #
+# # versão do script:           [0.0.90.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [01/10/17]      #
+# # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1368,27 +1368,27 @@ home = '/home/lenonr'
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
 {
-    clear
-    echo "INICIANDO AS TAREFAS"
-    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    echo "----------------------------------------"
-    echo "Digite 0 para verificar dados do sistema"
-    echo "Digite 1 para atualizar o sistema,"
-    echo "Digite 2 para corrigir possíveis erros," 
-    echo "Digite 3 para realizar uma limpeza," 
-    echo "Digite 4 para instalar alguns programas,"     
-    echo "Digite 5 para instalar programas não essenciais,"
-    echo "Digite 6 para remover alguns programas,"
-    echo "Digite 7 para sair do script,"
-    echo "Digite 8 para reiniciar a máquina,"
-    echo "Digite 9 para desligar a máquina;"
-    
-    echo "----------------------------------------" 
-    read -n1 -p "Ação:" escolha
-    
+#     clear
+#     echo "INICIANDO AS TAREFAS"
+#     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+#     echo "----------------------------------------"
+#     echo "Digite 0 para verificar dados do sistema"
+#     echo "Digite 1 para atualizar o sistema,"
+#     echo "Digite 2 para corrigir possíveis erros," 
+#     echo "Digite 3 para realizar uma limpeza," 
+#     echo "Digite 4 para instalar alguns programas,"     
+#     echo "Digite 5 para instalar programas não essenciais,"
+#     echo "Digite 6 para remover alguns programas,"
+#     echo "Digite 7 para sair do script,"
+#     echo "Digite 8 para reiniciar a máquina,"
+#     echo "Digite 9 para desligar a máquina;"
+#     
+#     echo "----------------------------------------" 
+#     read -n1 -p "Ação:" escolha
+#     
     ##CHAMANDOS FUNCOES    
     #     
-    case $escolha in   
+    case $escolhaauto_config in   
     ################################################################################
     ######DADOS DOS SISTEMA
         0) echo
@@ -1489,13 +1489,13 @@ auto_config_ubuntu()
             #verificando variavel
             if [[ $hostname == 'desktop' ]]; then                        
     #           kernel
-                arquivos_temporarios
+#                 arquivos_temporarios
                 pacotes_orfaos
                 funcao_chkrootkit
                 localpurge                                 
             else
-                kernel
-                arquivos_temporarios
+#                 kernel
+#                 arquivos_temporarios
                 pacotes_orfaos
                 funcao_chkrootkit
                 localpurge                                             
@@ -1781,18 +1781,6 @@ auto_config_ubuntu()
         ;;
     
     ################################################################################
-    ###### REINICIANDO A MAQUINA
-        reboot) echo
-                reboot -n
-        ;;
-        
-    ################################################################################
-    ###### REINICIANDO A MAQUINA
-        halt) echo
-                halt -p
-        ;;
-    
-    ################################################################################
     ######ENTRADA INVALIDA
         *) echo
             echo Alternativa incorreta!!
@@ -1807,27 +1795,10 @@ auto_config_ubuntu()
 }
 
 auto_config_debian()
-{
-    clear
-    echo "INICIANDO AS TAREFAS"
-    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    echo "----------------------------------------"
-    echo "Digite 0 para verificar dados do sistema"
-    echo "Digite 1 para atualizar o sistema,"
-    echo "Digite 2 para corrigir possíveis erros," 
-    echo "(*)Digite 3 para realizar uma limpeza," 
-    echo "Digite 4 para instalar alguns programas,"     
-    echo "(*)Digite 5 para instalar programas não essenciais,"
-    echo "(*)Digite 6 para remover alguns programas,"    
-    echo "Digite 7 para sair do script,"
-    echo "Digite 8 para reiniciar a máquina,"
-    echo "Digite 9 para desligar a máquina;"
-    echo "----------------------------------------" 
-    read -n1 -p "Ação:" escolha
-    
+{        
     ##CHAMANDOS FUNCOES    
     #     
-    case $escolha in   
+    case $escolhaauto_config in   
     ################################################################################
     ######DADOS DO SISTEMA
         0) echo  
@@ -1906,19 +1877,7 @@ auto_config_debian()
     ###### SAINDO DO SCRIPT
         7) echo 
                 exit            
-        ;;
-    
-    ################################################################################
-    ###### REINICIANDO A MAQUINA
-        8) echo
-                reboot -n
-        ;;
-        
-    ################################################################################
-    ###### REINICIANDO A MAQUINA
-        9) echo
-                halt -p
-        ;;
+        ;;    
         
     ################################################################################
     ######ENTRADA INVALIDA
@@ -1936,6 +1895,49 @@ auto_config_debian()
     clear
 }
 
+
+auto_config()
+{
+
+    # verificar distribuição utilizada
+    cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
+
+    # verificando distribuição
+    distro=$(sed '2!d' distro.txt)
+    
+    # apagando arquivo
+    rm distro.txt                          
+
+    clear
+    echo "INICIANDO AS TAREFAS"
+    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    echo "----------------------------------------"
+#     echo "Digite 0 para verificar dados do sistema"
+    echo "Digite 1 para atualizar o sistema,"
+    echo "Digite 2 para corrigir possíveis erros," 
+    echo "Digite 3 para realizar uma limpeza," 
+    echo "Digite 4 para instalar alguns programas,"     
+    echo "Digite 5 para instalar programas não essenciais,"
+    echo "Digite 6 para remover alguns programas,"    
+    echo "Digite 7 para sair do script,"
+    echo "----------------------------------------" 
+    read -n1 -p "Ação:" escolhaauto_config
+    
+    #executando ações para a distribuição Ubuntu
+    if [ "$distro" == "ubuntu" ]; then
+        clear
+        auto_config_ubuntu                    
+    #executando ações para a distribuição Fedora	
+    elif [ "$distro" == "debian" ]; then
+        clear
+        auto_config_debian
+    else
+        echo "Disponivel para Debian ou Ubuntu!!!"
+        echo "Script incompativel infelizmente";
+    fi                        
+
+}
+
 #mostrando mensagem inicial
 menu()
 {
@@ -1949,37 +1951,20 @@ menu()
 /_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
     "
     echo ""
-    read -n1 -p "Para continuar escolha s(sim) ou n(não)  " escolha
-        case $escolha in
-            s|S) echo         
-                    #verificar distribuição utilizada
-                    cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
-
-                    #verificando distribuição
-                    distro=$(sed '2!d' distro.txt)
-                    
-                    #apagando arquivo
-                    rm distro.txt
-                    
-                    #executando ações para a distribuição Ubuntu
-                    if [ "$distro" == "ubuntu" ]; then
-                        clear
-                        auto_config_ubuntu                    
-                    #executando ações para a distribuição Fedora	
-                    elif [ "$distro" == "debian" ]; then
-                        clear
-                        auto_config_debian
-                    else
-                        echo "Disponivel para Debian ou Ubuntu!!!"
-                        echo "Script incompativel infelizmente";
-                    fi                        
+    read -n1 -p "Para continuar escolha s(sim) ou n(não) para sair. " escolhamenu
+        case $escolhamenu in
+            s|S) echo                      
+                    # executando script
+                    auto_config
                     ;;
             n|N) echo
+                    # saindo do script
                     echo Finalizando o script...
                     sleep 1
                     exit
                     ;;
             *) echo
+                    # restaurando menu
                     echo Alternativa incorreta!!
                     sleep 1
                     menu
