@@ -64,15 +64,15 @@
 # 	b = erros na execução;	
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#               -I      - [FUNCAO KERNEL] - Verificar funcao, aparentemente está removendo o driver da placa de video tambem.
 # 	e = pendencias    
+#               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
 # 	f = desenvolver 
-# 		-I      - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
+# 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
 #                     #dialog/xdialog 
-#               -II     - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               -III    - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
+#               - II    - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
+#               - III   - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
 # 
-#               -IV    - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
+#               - IV   - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
 #
 #####################################
 #       [+] - Açao realizada 
@@ -1304,7 +1304,15 @@ home = '/home/lenonr'
         cp -r base/icons/* /usr/share/icons
         
         echo "[+] Arquivos movidos!"
-    }        
+    }       
+    
+    brightside()
+    {
+        echo ""
+        echo "[+] Instalando o Brightside"
+    
+        apt install brightside -y
+    }
     
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
@@ -1845,6 +1853,8 @@ auto_config_debian()
                 git
                 openssh
                 icones
+                brightside
+                
                 #sudo
                 #nmap
                 #firmware-wifi
