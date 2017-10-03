@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.90.1.0.5]    #
+# # versão do script:           [0.0.92.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1908,6 +1908,9 @@ auto_config()
     # apagando arquivo
     rm distro.txt                          
 
+    # verificando distro | forma alterativa
+    v_distro=$(lsb_release -i | cut -f2)
+    
     clear
     echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
