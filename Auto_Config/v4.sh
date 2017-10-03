@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.96.1.0.5]    #
+# # versão do script:           [0.0.98.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1514,6 +1514,29 @@ auto_config_ubuntu()
             hostname=$(hostname)
             
             if [[ $hostname == 'notebook' ]]; then             
+#               PERSONALIZAÇÃO
+                icones_mac
+                codecs
+                xfce
+                redshift
+                gnome_terminal
+                ntp
+                synaptic
+                plank
+                gnome_system_monitor
+                nautilus
+                gparted
+                tlp
+                rar
+                screenfetch
+                gnome_disk_utility
+                gnome_system_monitor
+                brightside
+#                 figlet
+                hardinfo
+                synaptic
+                icones
+            
 #               NAVEGADORES
                 firefox
                 chromium
@@ -1552,8 +1575,18 @@ auto_config_ubuntu()
 #               OFFICE
                 libreoffice
                 texmaker
+                                
+#               OUTROS
+                firewall_basic
+                mega
+                openssh
+                install_chkrootkit
+                reaver
+                sensors 
                 
+            else 
 #               PERSONALIZAÇÃO
+                nvidia
                 icones_mac
                 codecs
                 xfce
@@ -1571,20 +1604,11 @@ auto_config_ubuntu()
                 gnome_disk_utility
                 gnome_system_monitor
                 brightside
-#                 figlet
+                figlet
                 hardinfo
-                synaptic
+                synaptic                
                 icones
-                
-#               OUTROS
-                firewall_basic
-                mega
-                openssh
-                install_chkrootkit
-                reaver
-                sensors 
-                
-            else            
+            
 #               NAVEGADORES
                 firefox
                 chromium
@@ -1622,31 +1646,7 @@ auto_config_ubuntu()
                 
 #               OFFICE
                 libreoffice
-                texmaker
-                
-#               PERSONALIZAÇÃO
-                icones_mac
-                codecs
-                xfce
-                redshift
-                gnome_terminal
-                ntp
-                synaptic
-                plank
-                gnome_system_monitor
-                nautilus
-                gparted
-                tlp
-                rar
-                screenfetch
-                gnome_disk_utility
-                gnome_system_monitor
-                brightside
-                figlet
-                hardinfo
-                synaptic
-                nvidia
-                icones
+                texmaker               
                 
 #               OUTROS
                 firewall_basic
@@ -1717,7 +1717,7 @@ auto_config_ubuntu()
                 
                 echo ""
                 echo "[+] Removendo o Kstars"
-                apt purge kstarsv* -y
+                apt purge kstars* -y
                 
                 echo ""
                 echo "[+] Removendo o Celestia"
