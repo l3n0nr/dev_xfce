@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.100.1.0.5]    #
+# # versão do script:           [0.0.101.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1367,6 +1367,14 @@ home = '/home/lenonr'
         apt install htop -y
     }
     
+    install_sudo()
+    {
+        echo ""
+        echo "[+] Instalando o Htop"    
+
+        apt install sudo -y
+    }
+    
        
 # # # # # # # # # # 
 
@@ -1867,7 +1875,7 @@ auto_config_debian()
                 icones
                 brightside
                 
-                #sudo
+                install_sudo
                 install_nmap
                 htop
                 #firmware-wifi
