@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.104.1.0.5]    #
+# # versão do script:           [0.0.106.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -143,6 +143,8 @@
 # # [+] Citra
 # # [+] Dolphin
 # # [+] VisualGame Boy Advanced
+# # [+] Wine
+# # [+] PlayonLinux
 # 
 # ASTRONOMIA
 # # [+] Stellarium
@@ -1296,6 +1298,10 @@ home = '/home/lenonr'
         apt-add-repository ppa:xorg-edgers/ppa -y
         update
         apt install nvidia-current nvidia-settings -y
+        
+        echo ""
+        echo "[+] Arquivo de configuração Nvidia"
+        cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
     }
     
     icones()
@@ -1315,7 +1321,7 @@ home = '/home/lenonr'
         echo ""
         echo "[+] Instalando o Brightside"
     
-        apt install brightside -y
+        apt install brightside* -y
     }
     
 # # # # # # # # # # 
@@ -1543,7 +1549,7 @@ auto_config_ubuntu()
 #               PERSONALIZAÇÃO
                 icones_mac
                 codecs
-                xfce
+                xfce4
                 redshift
                 gnome_terminal
                 ntp
@@ -1573,6 +1579,8 @@ auto_config_ubuntu()
 #                 citra
 #                 dolphin
                 visual_game_boy
+                wine
+#                 playonlinux
                 
 #               ASTRONOMIA
                 stellarium
@@ -1592,7 +1600,6 @@ auto_config_ubuntu()
                 
 #               DESENVOLVIMENTO
                 kate
-                wireshark
                 git
                 
 #               IMAGEM
@@ -1617,7 +1624,7 @@ auto_config_ubuntu()
                 nvidia
                 icones_mac
                 codecs
-                xfce
+                xfce4
                 redshift
                 gnome_terminal
                 ntp
@@ -1642,11 +1649,12 @@ auto_config_ubuntu()
                 chromium
                 tor
                 
-#               JOGOS
-                steam
+#               JOGOS                
                 citra
                 dolphin
                 visual_game_boy
+                wine
+                playonlinux
                 
 #               ASTRONOMIA
                 stellarium
@@ -1665,8 +1673,7 @@ auto_config_ubuntu()
                 calibre
                 
 #               DESENVOLVIMENTO
-                kate
-                wireshark
+                kate                
                 git
                 
 #               IMAGEM
@@ -1692,12 +1699,27 @@ auto_config_ubuntu()
             
     ################################################################################
     ######PROGRAMAS NÃO ESSENCIAIS
-        5) echo
+        5) echo                    
+            # desenvolvimento
             apache
             mysql
             phpmyadmin
+            
+            # verificando computador
+            if [[ $hostname == 'desktop' ]]; then            
+                # desenvolvimento
+                wireshark
+                
+                # jogos
+                steam
+            else
+            
+            fi
+                
+            # teclado
             ibus
             
+            # chamando o menu novamente
             auto_config
         ;;
     
