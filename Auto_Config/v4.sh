@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.101.1.0.5]    #
+# # versão do script:           [0.0.104.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -66,6 +66,8 @@
 # 	d = correções necessárias;
 # 	e = pendencias    
 #               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
+                            # criar possivel verificação
+                            # dmidecode | grep "Reference Designation: Broadcom"                    
 # 	f = desenvolver 
 # 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
 #                     #dialog/xdialog 
@@ -1879,6 +1881,17 @@ auto_config_debian()
                 install_nmap
                 htop
                 #firmware-wifi
+                
+                #verificando variavel
+                if [[ $hostname == 'notebook' ]]; then
+                    echo ""
+                    echo "[+] Instalando firmware Wifi"
+                    
+                    apt install firmware-brcm80211 -y                                        
+                else
+
+                fi
+                
                 #xfpanel          
                 
                 auto_config
@@ -1895,10 +1908,12 @@ auto_config_debian()
         6) echo      
                 echo ""
                 echo "[+] Removendo XBurn"
+                
                 apt purge xfburn -y
                 
                 echo ""
                 echo "[+] Removendo Mutt"
+                
                 apt purge mutt -y
                 
                 auto_config
