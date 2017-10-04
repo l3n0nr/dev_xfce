@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.98.1.0.5]    #
+# # versão do script:           [0.0.100.1.0.5]    #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [03/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -204,6 +204,8 @@
 # # [+] Reaver
 # # [+] Lm-sensors
 # # [+] Ibus
+# # [+] Nmap
+# # [+] Htop
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1349,14 +1351,20 @@ home = '/home/lenonr'
         apt install ibus -y
     }
     
-    unetbootin()
+    install_nmap()
     {
         echo ""
-        echo "[+] Instalando o Unetbootin"
+        echo "[+] Instalando o Nmap"
         
-        add-apt-repository ppa:gezakovacs/ppa -y
-        update
-        apt-get install unetbootin -y
+        apt install nmap -y
+    }
+    
+    htop()
+    {
+        echo ""
+        echo "[+] Instalando o Htop"
+        
+        apt install htop -y
     }
     
        
@@ -1591,6 +1599,8 @@ auto_config_ubuntu()
                 install_chkrootkit
                 reaver
                 sensors 
+                install_nmap
+                htop
                 
             else 
 #               PERSONALIZAÇÃO
@@ -1662,7 +1672,9 @@ auto_config_ubuntu()
                 openssh
                 install_chkrootkit
                 reaver
-                sensors               
+                sensors  
+                install_nmap
+                htop
             fi
             
             auto_config
@@ -1856,7 +1868,8 @@ auto_config_debian()
                 brightside
                 
                 #sudo
-                #nmap
+                install_nmap
+                htop
                 #firmware-wifi
                 #xfpanel          
                 
