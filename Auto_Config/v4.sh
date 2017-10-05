@@ -54,9 +54,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.106.1.0.5]   #
+# # versão do script:           [0.0.108.1.0.5]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [04/10/17]      #
+# # ultima ediçao realizada:      [05/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -210,6 +210,7 @@
 # # [+] Ibus
 # # [+] Nmap
 # # [+] Htop
+# # [+] VirtualBox
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1324,6 +1325,24 @@ home = '/home/lenonr'
         apt install brightside* -y
     }
     
+    virtualbox()
+    {
+        echo ""        
+        echo "[+] Realizando download"
+        wget download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+        
+        echo "[*] Instalando o VirtualBox"
+        dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+        
+        echo "[*] Corrigindo problemas de dependências"
+        apt install -f
+        
+        echo "[*] Removendo Virtualbox"
+        rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+        
+        echo "Virtualbox instalado!"
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1709,6 +1728,9 @@ auto_config_ubuntu()
             if [[ $hostname == 'desktop' ]]; then            
                 # desenvolvimento
                 wireshark
+                
+                # outros
+                virtualbox
                 
                 # jogos
                 steam            
