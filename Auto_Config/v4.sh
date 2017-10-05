@@ -54,7 +54,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.108.1.0.5]   #
+# # versão do script:           [0.0.109.1.0.5]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [05/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -117,7 +117,6 @@
 # # [+] Log - Sudo
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
-# # [+] Gtkrc
 # # 
 ################################################################################
 # # # # # LIMPA SISTEMA
@@ -658,13 +657,6 @@ home = '/home/lenonr'
         echo ""
         echo "[+] Altera arquivo de Hosts"
         cat base/hosts > /etc/hosts
-    }
-    
-    gtkrc()
-    {
-        echo ""
-        echo "[+] Arquivo de configuração da barra do Xfce"
-        cat base/.gtkrc-2.0 > $home/.gtkrc-2.0
     }
     
 # # # # # # # # # # 
@@ -1486,7 +1478,6 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 lightdm
-                gtkrc
             elif [[ $hostname == 'notebook' ]]; then 
                 clear
                 apt_check
@@ -1506,7 +1497,6 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo                    
 #                 lightdm
-                gtkrc
             else                
                 clear
                 apt_check
@@ -1526,7 +1516,6 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 arquivo_hosts
-                gtkrc
             fi
             
             auto_config        
@@ -1897,7 +1886,6 @@ auto_config_debian()
                 sshd_config
                 repositorios_padrao
                 arquivo_hosts
-                gtkrc
                 
                 auto_config
         ;;
