@@ -1711,9 +1711,7 @@ auto_config_ubuntu()
                 wireshark
                 
                 # jogos
-                steam
-            else
-            
+                steam            
             fi
                 
             # teclado
@@ -1910,8 +1908,6 @@ auto_config_debian()
                     echo "[+] Instalando firmware Wifi"
                     
                     apt install firmware-brcm80211 -y                                        
-                else
-
                 fi
                 
                 #xfpanel          
