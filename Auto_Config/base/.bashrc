@@ -13,8 +13,8 @@
 # ======================================================================
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:               [0.10]        #
-# # ultima ediçao realizada:      [29/09/17]      #
+# # versão do script:               [0.20]        #
+# # ultima ediçao realizada:      [05/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #-----------------------------------------------
@@ -148,3 +148,8 @@ alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; k
 
 # testanco configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
+
+# habilitando autocompletar
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
