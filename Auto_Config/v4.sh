@@ -17,9 +17,6 @@
 # por gmanson(Gabriel Manson)
 # 	<github.com/gmasson/welcome-debian>
 #
-# por Edivaldo Brito
-# 	<http://www.edivaldobrito.com.br/instalando-ide-java-netbeans-8-0-ubuntu-e-derivados>
-#
 # por Fabiano de Oliveira e Souza
 # 	<https://www.vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
 #
@@ -54,7 +51,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.108.1.0.5]   #
+# # versão do script:           [0.0.110.1.0.5]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [05/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -249,7 +246,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
 # Criando variavel com localização da raiz do usuario
-home = '/home/lenonr'
+home = "/home/lenonr"
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
