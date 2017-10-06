@@ -51,9 +51,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.110.1.0.5]   #
+# # versão do script:           [0.0.112.1.0.5]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [05/10/17]      #
+# # ultima ediçao realizada:      [06/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1936,7 +1936,15 @@ auto_config_debian()
     
     ################################################################################
     ###### PROGRAMAS NAO ESSENCIAIS
-        5) echo  
+        5) echo 
+                # desenvolvimento
+                apache
+                mysql
+                phpmyadmin
+                
+                # teclado
+                ibus
+                
                 auto_config
         ;;
     
