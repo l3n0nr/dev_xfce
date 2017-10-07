@@ -30,9 +30,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.7.0.0.0]    #
+# # versão do script:           [0.1.8.0.0.0]    #
 # # data de criação do script:    [29/09/17]      #
-# # ultima ediçao realizada:      [06/10/17]      #
+# # ultima ediçao realizada:      [07/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -92,10 +92,12 @@ echo "Tamanho da memória do seu computador é $tam_mem MB."
 # # realizando calculos    
     # se valor for menor ou igual a 512MB
     if [ "$tam_mem" -le "512" ]; then
+        # aplicando taxa de calculo, baseando em +/-90% da memória real
         swap=$((($tam_mem * 9)/10))
         
     # se valor for menor ou igual a 1GB
     if [ "$tam_mem" -le "1024" ]; then
+        # aplicando taxa de calculo, baseando em +/-70% da memória real
         swap=$((($tam_mem * 7)/10))
         
     # se valor for menor ou igual a 2GB
@@ -108,7 +110,7 @@ echo "Tamanho da memória do seu computador é $tam_mem MB."
         # aplicando taxa de calculo, baseando em +/-30% da memória real
         swap=$((($tam_mem * 3)/10))    
         
-    # qual outra opção 
+    # qualquer outra opção 
     else
         # aplicando taxa de calculo, baseando em +/-10% da memória real
         swap=$((($tam_mem * 1)/10))    
