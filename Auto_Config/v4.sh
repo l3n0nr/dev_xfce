@@ -51,9 +51,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.113.1.0.5]   #
+# # versão do script:           [0.0.115.1.0.4]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [07/10/17]      #
+# # ultima ediçao realizada:      [09/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -70,8 +70,6 @@
 #                     #dialog/xdialog 
 #               - II    - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
 #               - III   - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
-# 
-#               - IV   - [FUNCAO INSTALA PROGRAMAS OPCIONAIS] - Possibilitar a instalar de programas não essenciais para o sistema, como o servidor web. 
 #
 #####################################
 #       [+] - Açao realizada 
@@ -877,7 +875,7 @@ home = "/home/lenonr"
         apt install rar* -y 
     }
     
-    git()
+    install_git()
     {
         echo ""
         echo "[+] Instalando o Git"
@@ -1408,24 +1406,6 @@ home = "/home/lenonr"
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
 {
-#     clear
-#     echo "INICIANDO AS TAREFAS"
-#     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-#     echo "----------------------------------------"
-#     echo "Digite 0 para verificar dados do sistema"
-#     echo "Digite 1 para atualizar o sistema,"
-#     echo "Digite 2 para corrigir possíveis erros," 
-#     echo "Digite 3 para realizar uma limpeza," 
-#     echo "Digite 4 para instalar alguns programas,"     
-#     echo "Digite 5 para instalar programas não essenciais,"
-#     echo "Digite 6 para remover alguns programas,"
-#     echo "Digite 7 para sair do script,"
-#     echo "Digite 8 para reiniciar a máquina,"
-#     echo "Digite 9 para desligar a máquina;"
-#     
-#     echo "----------------------------------------" 
-#     read -n1 -p "Ação:" escolha
-#     
     ##CHAMANDOS FUNCOES    
     #     
     case $escolhaauto_config in   
@@ -1608,7 +1588,7 @@ auto_config_ubuntu()
                 
 #               DESENVOLVIMENTO
                 kate
-                git
+                install_git
                 
 #               IMAGEM
                 funcao_gimp
@@ -1658,8 +1638,8 @@ auto_config_ubuntu()
                 tor
                 
 #               JOGOS                
-                citra
-                dolphin
+#                 citra
+#                 dolphin
                 visual_game_boy
                 wine
                 playonlinux
@@ -1671,18 +1651,18 @@ auto_config_ubuntu()
                 
 #               MULTIMIDIA
 #                 spotify
-                clementine
+#                 clementine
                 vlc
                 kdenlive
                 sweethome3d                
                 audacity
-                mcomix
+#                 mcomix
                 simple_screen_recorder
-                calibre
+#                 calibre
                 
 #               DESENVOLVIMENTO
                 kate                
-                git
+                install_git
                 
 #               IMAGEM
                 funcao_gimp
