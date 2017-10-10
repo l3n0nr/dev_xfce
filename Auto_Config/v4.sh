@@ -51,7 +51,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.117.1.0.4]   #
+# # versão do script:           [0.0.130.1.0.4]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -280,7 +280,7 @@ home = "/home/lenonr"
         printf "#################################################################################################### \n\n"
         read -n1 -p "Você deseja escolher? (s|sim|S|SIM) / (n|nao|N|NAO): " escolha
         case $escolha in
-            s|sim|S|SIM) echo   
+            s|sim|S|SIM) printf   
                 printf "\n"
                 read -n1 -p "Digite o valor de vezes que deseja executar essa função: " vezes
                 printf "\n"
@@ -317,7 +317,7 @@ home = "/home/lenonr"
                     sleep $tempo                                    
                 done
             ;;
-            n|nao|N|NAO) echo
+            n|nao|N|NAO) printf
                 # enquanto $local for menor ou igual a $vezes, executa
                 while [ $laco -le $p_vezes ]; 
                 do
@@ -350,7 +350,7 @@ home = "/home/lenonr"
                 done
             ;;
             *) 
-                echo "Digite corretamente!"
+                printf "Digite corretamente!"
                 sleep 1
                 system    
             ;;
@@ -363,13 +363,15 @@ home = "/home/lenonr"
     {
     
         #atualizando lista de repositorios            
-        echo "[+] Atualizando lista de repositorios do sistema"            
+        printf "[+] Atualizando lista de repositorios do sistema \n"   
+        
         apt update 
         
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then	                
 	        #atualizando repositorio e seus dependencias
-        	echo "[+] Atualizando lista de programas e suas dependências"            
+        	printf "[+] Atualizando lista de programas e suas dependências \n" 
+        	
 	        auto-apt update                
         fi                                
     }
@@ -379,15 +381,18 @@ home = "/home/lenonr"
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then
         	#atualizando lista de programas do sistema
-	        echo "[+] Atualizando lista de programas do sistema"            
+	        printf "[+] Atualizando lista de programas do sistema \n"  
+	        
 	        apt upgrade -y 
         
 	        #atualizando repositorio local
-	        echo "[+] Atualizando repositório local dos programas"            
+	        printf "[+] Atualizando repositório local dos programas \n"  
+	        
 	        auto-apt updatedb
 	else
         	#atualizando lista de programas do sistema
-	        echo "[+] Atualizando lista de programas do sistema"            
+	        printf "[+] Atualizando lista de programas do sistema \n"  
+	        
 	        apt upgrade -y 
 	fi
     }
@@ -397,24 +402,27 @@ home = "/home/lenonr"
     apt_check()
     {        
         #verificando lista do apt
-        echo ""
-        echo "[+] Verificando lista do apt"
+        printf "\n"
+        printf "[+] Verificando lista do apt \n"
+        
         apt-get check -y
     }
     
     apt_install()
     {
         #instalando possiveis dependencias 
-        echo ""
-        echo "[+] Instalando dependências pendentes"
+        printf "\n"
+        printf "[+] Instalando dependências pendentes \n"
+        
         apt-get -f install -y
     }
     
     apt_remove()
     {
         #removendo possiveis dependencias
-        echo ""
-        echo "[+] Removendo possíveis dependências obsoletas"
+        printf "\n"
+        printf "[+] Removendo possíveis dependências obsoletas \n"
+        
         apt-get -f remove -y   
         apt-get autoremove -y    
     }    
@@ -422,52 +430,55 @@ home = "/home/lenonr"
     apt_clean()
     {
         #limpando lista arquivos sobressalentes
-        echo ""
-        echo "[+] Limpando arquivos sobressalentes"
+        printf "\n"
+        printf "[+] Limpando arquivos sobressalentes \n "
+        
         apt-get clean -y   
     }
     
     apt_auto()
     {
         #corrigindo problemas de dependencias
-        echo ""
-        echo "[+] Corrigindo problemas de dependências"
+        printf "\n"
+        printf "[+] Corrigindo problemas de dependências \n"
+        
         apt-get install auto-apt -y 
     }
     
     apt_update_local()
     {        
         #corrigindo repositorio local de dependencias automaticamente
-        echo ""
-        echo "[+] Corrigindo repositório local de dependências automaticamente"
+        printf "\n"
+        printf "[+] Corrigindo repositório local de dependências automaticamente \n"
+        
         auto-apt update-local    
     }
     
     swap()
     {
         #configurando a swap para uma melhor performance
-        echo ""
-        echo "[+] Configurando a Swap"        
+        printf "\n"
+        printf "[+] Configurando a Swap"        
         memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
         memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
         background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
         ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)        
-        echo "[+] Diminuindo a Prioridade de uso da memória SWAP"
+        printf "[+] Diminuindo a Prioridade de uso da memória SWAP"
         if [[ $memoswap == "vm.swappiness=10" ]]; then
-                echo "[*] Otimizando..."
-                /bin/su -c "echo 'vm.swappiness=10' >> /etc/sysctl.conf" 
+                printf "[*] Otimizando... \n"
+                /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf" 
         elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-                echo "[*] Otimizando..."
-                /bin/su -c "echo 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf" 
+                printf "[*] Otimizando... \n"
+                /bin/su -c "printf 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf" 
         elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-                echo "[*] Otimizando..."
-                /bin/su -c "echo 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
+                printf "[*] Otimizando... \n"
+                /bin/su -c "printf 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
         elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-                echo "[*] Otimizando..."
-                /bin/su -c "echo 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
+                printf "[*] Otimizando... \n"
+                /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
         else
-                echo "[-] Não há nada para ser otimizado"
-                echo "[-] Isso porque já foi otimizado anteriormente!"
+                printf "[-] Não há nada para ser otimizado \n"
+                printf "[-] Isso porque já foi otimizado anteriormente! \n"
         fi    
     }
     
@@ -478,38 +489,39 @@ home = "/home/lenonr"
         #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
         
         #instalando prelink, preload, deborphan para um melhor performance do sistema
-        echo ""
-        echo "[*] Instalando Prelink, Preload e Deborphan"                        
-        echo "-------------------"
+        printf "\n"
+        printf "[*] Instalando Prelink, Preload e Deborphan \n"                        
+        printf "------------------- \n"
+        
         apt install prelink preload -y 1>/dev/null 2>/dev/stdout
         apt-get install deborphan -y 
         
-        echo "[*] Configurando Deborphan..."
+        printf "[*] Configurando Deborphan... \n"
         deborphan | xargs sudo apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
         #configurando o prelink e o preload
-        echo "[*] Configurando Prelink e Preload..."
+        printf "[*] Configurando Prelink e Preload... \n"
                 memfree=$(grep "memfree = 50" /etc/preload.conf)
                 memcached=$(grep "memcached = 0" /etc/preload.conf)
                 processes=$(grep "processes = 30" /etc/preload.conf)
                 prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
         
-        echo "[*] Ativando o PRELINK"
-        echo "-------------------"
+        printf "[*] Ativando o PRELINK \n"
+        printf "------------------- \n"
         if [[ $prelink == "PRELINKING=unknown" ]]; then
-                echo "adicionando ..."
+                printf "adicionando ... \n"
                 sed -i 's/unknown/yes/g' /etc/default/prelink	
         else
-                echo "[-] Otimização já adicionada anteriormente."
+                printf "[-] Otimização já adicionada anteriormente. \n"
         fi
     }
     
     funcao_dpkg()
     {
         #corrigindo pacotes quebrados
-        echo ""
-        echo "[+] Corrigindo pacotes quebrados"
+        printf "\n"
+        printf "[+] Corrigindo pacotes quebrados \n"
 
         #corrige possiveis erros na instalação de softwares
         dpkg --configure -a 
@@ -522,8 +534,8 @@ home = "/home/lenonr"
     fonts()
     {
         #corrigindo erros fontes
-        echo ""
-        echo "[+] Instalando pacotes de fontes"
+        printf "\n"
+        printf "[+] Instalando pacotes de fontes \n"
         
         #baixando pacote
         wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb 
@@ -538,66 +550,66 @@ home = "/home/lenonr"
     
     ntp()
     {        
-        echo ""
-        echo "[+] Corrigindo NTP"
+        printf "\n"
+        printf "[+] Corrigindo NTP \n"
                             
         #instalando software necessario
         apt install ntp ntpdate -y 
         
         #parando o serviço NTP para realizar as configuraçoes necessarias
-        echo ""
-        echo "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias"
+        printf "\n"
+        printf "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias \n"
             service ntp stop
         
         #configurando script base - NTP
-        echo ""
-        echo "[*] Realizando alteraçao no arquivo base"
+        printf "\n"
+        printf "[*] Realizando alteraçao no arquivo base \n"
         cat base/ntp.txt > /etc/ntp.conf
         
         #ativando servico novamente
-        echo ""
-        echo "[+] Ativando serviço NTP"
+        printf "\n"
+        printf "[+] Ativando serviço NTP \n"
             service ntp start
 
         #realizando atualizacao hora/data
-        echo ""
-        echo "[+] Atualizando hora do servidor"
-        echo "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
+        printf "\n"
+        printf "[+] Atualizando hora do servidor \n"
+        printf "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
             
         #servidor NIC.BR
-        echo ""
-        echo "[+] Atualizando servidores, aguarde..."
-        echo "[*] NIC.BR"
+        printf "\n"
+        printf "[+] Atualizando servidores, aguarde...\n"
+        printf "[*] NIC.BR \n"
             ntpdate -q pool.ntp.br
             
         #servidor Ob. Nac.
-        echo ""
-        echo "[*] Observatorio Nacional"
+        printf "\n"
+        printf "[*] Observatorio Nacional \n"
             ntpdate -q ntp.on.br 
         
         # servidores da rnp
-        echo ""
-        echo "[*] RNP"
+        printf "\n"
+        printf "[*] RNP \n"
             ntpdate -q ntp.cert-rs.tche.br 
 
         # servidores da ufrj
-        echo ""
-        echo "[*] UFRJ"
+        printf "\n"
+        printf "[*] UFRJ \n"
             ntpdate -q ntps1.pads.ufrj.br 
             
         # servidor da usp
-        echo ""
-        echo "[*] USP"
+        printf "\n"
+        printf "[*] USP \n"
             ntpdate -q ntp.usp.br             
 
-        echo ""
-        echo "[+] Hora do servidor atualizada!"        
+        printf "\n"
+        printf "[+] Hora do servidor atualizada! \n"        
     }
     
     apport()
     {
-        echo ""
-        echo "[+] Removendo possiveis erros com o apport"
+        printf "\n"
+        printf "[+] Removendo possiveis erros com o apport \n"
         rm /var/crash/*
         
         #corrige apport - ubuntu 16.04
@@ -606,31 +618,35 @@ home = "/home/lenonr"
     
     lightdm()
     {
-        echo ""
-        echo "[+] Iniciando sessão automaticamente"
+        printf "\n"
+        printf "[+] Iniciando sessão automaticamente \n"
+        
         cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
     
     terminal_cool()
     {
         #terminal Personalizado
-        echo ""
-        echo "[+] Deixando o terminal personalizado"
+        printf "\n"
+        printf "[+] Deixando o terminal personalizado \n"
+        
         cat base/.bashrc > $home/.bashrc    
     }
             
     sshd_config()
     {
         #altera arquivo ssh
-        echo ""
-        echo "[+] Alterando regras no acesso SSH"
+        printf "\n"
+        printf "[+] Alterando regras no acesso SSH \n"
+        
         cat base/sshd_config > /etc/ssh/sshd_config    
     }                
             
     log_sudo()
     {
-        echo ""
-        echo "[+] Ativando log's do sudo"
+        printf "\n"
+        printf "[+] Ativando log's do sudo \n"
+        
         cat base/ubuntu/login.defs > /etc/login.defs    
     }
     
@@ -638,20 +654,23 @@ home = "/home/lenonr"
     {
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then
-            echo ""
-            echo "[+] Alterando lista de repositórios padrão"
+            printf "\n"
+            printf "[+] Alterando lista de repositórios padrão \n"
+            
             cat base/ubuntu/sources.list > /etc/apt/sources.list    
         else
-            echo ""
-            echo "[+] Alterando lista de repositórios padrão"
+            printf "\n"
+            printf "[+] Alterando lista de repositórios padrão \n"
+            
             cat base/debian/sources.list > /etc/apt/sources.list    
         fi
     }
     
     arquivo_hosts()
     {
-        echo ""
-        echo "[+] Altera arquivo de Hosts"
+        printf "\n"
+        printf "[+] Altera arquivo de Hosts \n\n"
+        
         cat base/hosts > /etc/hosts
     }
     
@@ -660,8 +679,8 @@ home = "/home/lenonr"
 
     kernel()
     {
-        echo ""
-        echo "[+] Removendo os kernel's temporários do sistema"
+        printf "\n"
+        printf "[+] Removendo os kernel's temporários do sistema \n"
         
         #removendo kernel's antigos
         dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge  
@@ -669,30 +688,33 @@ home = "/home/lenonr"
     
     arquivos_temporarios()
     {    
-        echo ""
-        echo "[+] Removendo arquivos temporários do sistema"
+        printf "\n"
+        printf "[+] Removendo arquivos temporários do sistema \n"
+        
         find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+                            
     }
     
     pacotes_orfaos()
     {
-        echo ""
-        echo "[+] Removendo Pacotes Órfãos"
+        printf "\n"
+        printf "[+] Removendo Pacotes Órfãos \n"
+        
         apt-get remove $(deborphan) -y ; apt-get autoremove -y    
     }
         
     funcao_chkrootkit()
     {
-        echo ""
-        echo "[+] Verificando Chkrootkit"        
+        printf "\n"
+        printf "[+] Verificando Chkrootkit \n"        
         
         chkrootkit
     }
     
     localpurge()
     {   
-        echo ""
-        echo "Removendo idiomas extras"
+        printf "\n"
+        printf "Removendo idiomas extras \n"
+        
         localepurge       
     }                    
     
@@ -700,15 +722,16 @@ home = "/home/lenonr"
 # # INSTALA PROGRAMAS  
     firefox()
     {
-        echo ""
-        echo "[+] Instalando Firefox"
+        printf "\n"
+        printf "[+] Instalando Firefox \n"
+        
         apt install firefox -y        
     }
     
     chromium()
     {    
-        echo ""
-        echo "[+] Instalando o Chromium"
+        printf "\n"
+        printf "[+] Instalando o Chromium \n"
         
         apt install chromium-browser -y
     }
@@ -716,18 +739,19 @@ home = "/home/lenonr"
     
     steam()
     {    
-        echo ""
-        echo "[+] Instalando Steam"
+        printf "\n"
+        printf "[+] Instalando Steam \n"
+        
         apt install steam -y 
     }
     
     spotify()
     {    
-        echo ""
-        echo "[+] Instalando Spotify"
+        printf "\n"
+        printf "[+] Instalando Spotify \n"
         
         #baixando pacote
-        sh -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+        sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
         #baixando chave
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
@@ -741,8 +765,8 @@ home = "/home/lenonr"
 
     icones_mac()
     {    
-        echo ""
-        echo "[+] Instalando icones e temas do MacOS X"
+        printf "\n"
+        printf "[+] Instalando icones e temas do MacOS X \n"
         
         #adicionando repositorio
         add-apt-repository ppa:noobslab/macbuntu -y 
@@ -759,8 +783,8 @@ home = "/home/lenonr"
     
     codecs()
     {
-        echo ""
-        echo "[+] Instalando Pacotes Multimidias (Codecs)"
+        printf "\n"
+        printf "[+] Instalando Pacotes Multimidias (Codecs) \n"
         
         #instalando pacotes multimidias
         apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
@@ -769,27 +793,27 @@ home = "/home/lenonr"
 
     funcao_gimp()
     {
-        echo ""
-        echo "[+] Instalando o Gimp"
+        printf "\n"
+        printf "[+] Instalando o Gimp \n"
         apt install gimp -y 
         
-        echo ""
-        echo "[+] Instalando o PhotoGimp"
+        printf "\n"
+        printf "[+] Instalando o PhotoGimp \n"
         
-        echo "[*] Removendo arquivo existente"
+        printf "[*] Removendo arquivo existente \n"
 #         rm -r /home/lenonr/.gimp-2.8
         rm -r $home/.gimp-2.8
                 
-        echo "[*] Inserindo novo arquivo"        
+        printf "[*] Inserindo novo arquivo \n"        
         cp -r base/.gimp-2.8/ $home
         
-        echo "[+] Novo arquivo adicionado"
+        printf "[+] Novo arquivo adicionado \n"
     }
     
     xfce4()
     {
-        echo ""
-        echo "[+] Instalando adicionais do XFCE"
+        printf "\n"
+        printf "[+] Instalando adicionais do XFCE \n"
     
         #instalando componentes do XFCE
         apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
@@ -800,8 +824,8 @@ home = "/home/lenonr"
     
     wine()
     {
-        echo ""
-        echo "[+] Instalando o Wine"
+        printf "\n"
+        printf "[+] Instalando o Wine \n"
         
         #adicionado o repositorio
         add-apt-repository ppa:ubuntu-wine/ppa -y
@@ -814,22 +838,24 @@ home = "/home/lenonr"
     
     playonlinux()
     {
-        echo ""
-        echo "[+] Instalando o PlayonLinux"        
+        printf "\n"
+        printf "[+] Instalando o PlayonLinux \n"        
+        
         apt install playonlinux* -y 
     }
     
     redshift()
     {
-        echo ""
-        echo "[+] Instalando o Redshift"        
+        printf "\n"
+        printf "[+] Instalando o Redshift \n"        
+        
         apt install redshift gtk-redshift -y
     }
     
     libreoffice()
     {
-        echo ""
-        echo "[+] Instalando o Libreoffice"
+        printf "\n"
+        printf "[+] Instalando o Libreoffice \n"
         
         #adicionando ppa
         add-apt-repository ppa:libreoffice/ppa -y
@@ -843,64 +869,71 @@ home = "/home/lenonr"
     
     vlc()
     {
-        echo ""
-        echo "[+] Instalando o VLC"        
+        printf "\n"
+        printf "[+] Instalando o VLC \n"        
+        
         apt install vlc -y 
     }
     
     clementine()
     {
-        echo ""
-        echo "[+] Instalando o Clementine"        
+        printf "\n"
+        printf "[+] Instalando o Clementine \n"        
+        
         apt install clementine -y 
     }
     
     gparted()
     {
-        echo ""
-        echo "[+] Instalando o Gparted"        
+        printf "\n"
+        printf "[+] Instalando o Gparted \n"        
+        
         apt install gparted -y    
     }
     
     tlp()
     {
-        echo ""
-        echo "[+] Instalando o Tlp"        
+        printf "\n"
+        printf "[+] Instalando o Tlp \n"        
+        
         apt install tlp -y 
     }
     
     rar()
     {
-        echo ""
-        echo "[+] Instalando o Rar"
+        printf "\n"
+        printf "[+] Instalando o Rar \n"
+        
         apt install rar* -y 
     }
     
     install_git()
     {
-        echo ""
-        echo "[+] Instalando o Git"
+        printf "\n"
+        printf "[+] Instalando o Git \n"
+        
         apt install git-core git -y 
     }
     
     lm-sensors()
     {
-        echo ""
-        echo "[+] Instalando o Lm-sensors"
+        printf "\n"
+        printf "[+] Instalando o Lm-sensors \n"
+        
         apt install lm-sensors -y 
     }
     
     texmaker()
     {
-        echo ""
-        echo "[+] Instalando o Texmaker"        
+        printf "\n"
+        printf "[+] Instalando o Texmaker \n"        
         apt install texmaker* texlive-full* texlive-latex-extra* -y
     }
     
     stellarium()
     {
-        echo ""
-        echo "[+] Instalando o Stellarium"
+        printf "\n"
+        printf "[+] Instalando o Stellarium \n"
     
         #adicinando ppa
         add-apt-repository ppa:stellarium/stellarium-releases -y 
@@ -914,16 +947,16 @@ home = "/home/lenonr"
     
     texmaker()
     {
-        echo ""
-        echo "[+] Instalando o Texmaker"
+        printf "\n"
+        printf "[+] Instalando o Texmaker \n"
         
         apt install texmaker* texlive-full* texlive-latex-extra* -y 
     }
     
     stellarium()
     {
-        echo "" 
-        echo "[+] Instalando o Stellarium"
+        printf "\n" 
+        printf "[+] Instalando o Stellarium \n"
         
          #adicinando ppa
         add-apt-repository ppa:stellarium/stellarium-releases -y
@@ -937,40 +970,40 @@ home = "/home/lenonr"
     
     kstars()
     {
-        echo ""
-        echo "[+] Instalando o Kstars"
+        printf "\n"
+        printf "[+] Instalando o Kstars \n"
         
         apt install kstars* -y
     } 
     
     celestia()
     {
-        echo ""
-        echo "[+] Instalando o Celestia"
+        printf "\n"
+        printf "[+] Instalando o Celestia \n"
         
         apt install celestia-gnome celestia* -y
     }
     
     gnome_terminal()
     {
-        echo ""
-        echo "[+] Instalando Gnome-terminal"
+        printf "\n"
+        printf "[+] Instalando Gnome-terminal \n"
         
         apt install gnometerminal -y
     }
     
     reaver()
     {
-        echo ""
-        echo "[+] Instalando o Reaver"
+        printf "\n"
+        printf "[+] Instalando o Reaver \n"
         
         apt install reaver -y
     }
     
     tor()
     {
-        echo ""
-        echo "[+] Instalando o Tor"
+        printf "\n"
+        printf "[+] Instalando o Tor \n"
         
         #adicionando repositorio
         add-apt-repository ppa:webupd8team/tor-browser -y                
@@ -984,16 +1017,16 @@ home = "/home/lenonr"
     
     synaptic()
     {
-        echo ""
-        echo "[+] Instalando o Synaptic"
+        printf "\n"
+        printf "[+] Instalando o Synaptic \n"
         
         apt install synaptic -y
     }
     
     dolphin()
     {
-        echo ""
-        echo "[+] Instalando o Dolphin"
+        printf "\n"
+        printf "[+] Instalando o Dolphin \n"
         
         #adicionando repositorio do dolphin
         add-apt-repository ppa:glennric/dolphin-emu -y
@@ -1010,8 +1043,8 @@ home = "/home/lenonr"
     
     citra()
     {
-        echo ""
-        echo "[+] Instalando o Citra"
+        printf "\n"
+        printf "[+] Instalando o Citra \n"
         
         #adicionando bibliotecas necessarias
         apt-get install libsdl2-dev -y
@@ -1046,24 +1079,24 @@ home = "/home/lenonr"
     
     visual_game_boy()
     {
-        echo ""
-        echo "[+] Instalando o Visual Game Boy"
+        printf "\n"
+        printf "[+] Instalando o Visual Game Boy \n"
         
         apt install visualboyadvance-gtk -y
     }
     
     screenfetch()
     {
-        echo ""
-        echo "[+] Instalando o Screenfetch"
+        printf "\n"
+        printf "[+] Instalando o Screenfetch \n"
         
         apt install screenfetch -y
     }
     
     kdenlive()
     {
-        echo ""
-        echo "[+] Instalando o Kdenlive"
+        printf "\n"
+        printf "[+] Instalando o Kdenlive \n"
         
         #adicionando ppa
         add-apt-repository ppa:sunab/kdenlive-release -y
@@ -1077,30 +1110,32 @@ home = "/home/lenonr"
     
     sweethome3d()
     {
-        echo ""
-        echo "[+] Instalando Sweet Home 3D"
+        printf "\n"
+        printf "[+] Instalando Sweet Home 3D \n"
         
         apt install sweethome3d -y
     }
     
     kate()
     {
-        echo ""
-        echo "[+] Instalando o Kate"
+        printf "\n"
+        printf "[+] Instalando o Kate \n"
         
         apt install kate -y
     }
     
     cheese()
     {
-        echo ""
+        printf "\n"
+        printf "[+] Instalando o Chesse \n"
+        
         apt install cheese -y
     }
     
     plank()
     {
-        echo ""
-        echo "[+] Instalando o Plank Dock"
+        printf "\n"
+        printf "[+] Instalando o Plank Dock \n"
         
         
         # verificando distribuição
@@ -1119,8 +1154,8 @@ home = "/home/lenonr"
     
     gnome_system_monitor()
     {
-        echo ""
-        echo "[+] Instalando o Gnome System Monitor"
+        printf "\n"
+        printf "[+] Instalando o Gnome System Monitor \n"
         
         apt install gnome-system-monitor -y
     }
@@ -1129,8 +1164,8 @@ home = "/home/lenonr"
     {    
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then        
-            echo ""
-            echo "[+] Instalando o Nautilus"
+            printf "\n"
+            printf "[+] Instalando o Nautilus \n"
             
             #adicionando ppa
             add-apt-repository ppa:gnome3-team/gnome3 -y
@@ -1148,40 +1183,40 @@ home = "/home/lenonr"
     
     wireshark()
     {
-        echo ""
-        echo "[+] Instalando o Wireshark"
+        printf "\n"
+        printf "[+] Instalando o Wireshark \n"
         
         apt install wireshark -y
     }
     
     gnome_disk_utility()
     {
-        echo ""
-        echo "[+] Instalando o Gnome Disk Utility"
+        printf "\n"
+        printf "[+] Instalando o Gnome Disk Utility \n"
         
         apt install gnome-disk-utility* -y
     }
     
     calibre()
     {
-        echo ""
-        echo "[+] Instalando o Calibre"
+        printf "\n"
+        printf "[+] Instalando o Calibre \n"
         
         apt install calibre -y       
     }
     
     audacity()
     {
-        echo ""
-        echo "[+] Instalando o Audacity"
+        printf "\n"
+        printf "[+] Instalando o Audacity \n"
         
         apt install audacity* -y   
     }    
     
     mcomix()
     {
-        echo ""
-        echo "[+] Instalando o MComix"
+        printf "\n"
+        printf "[+] Instalando o MComix \n"
     
         #adicionando repositorio
         add-apt-repository ppa:nilarimogard/webupd8 -y
@@ -1195,8 +1230,8 @@ home = "/home/lenonr"
     
     simple_screen_recorder()
     {
-        echo ""
-        echo "[+] Instalando o Simple Screen Recorder"
+        printf "\n"
+        printf "[+] Instalando o Simple Screen Recorder \n"
         
         #adicionando fonte
         add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
@@ -1211,8 +1246,8 @@ home = "/home/lenonr"
     
     mega()
     {
-        echo ""
-        echo "[+] Instalando o MEGA"
+        printf "\n"
+        printf "[+] Instalando o MEGA \n"
     
         #instalando mega
         dpkg -i base/ubuntu/mega/*.deb
@@ -1222,56 +1257,56 @@ home = "/home/lenonr"
     
     openssh()
     {
-        echo ""
-        echo "[+]'Instalando o OpenSSH"
+        printf "\n"
+        printf "[+]'Instalando o OpenSSH \n"
         
         apt install openssh* -y
     }
     
     figlet()
     {
-        echo ""
-        echo "[+] Instalando o Figlet"
+        printf "\n"
+        printf "[+] Instalando o Figlet \n"
         
         apt install figlet -y
     }   
     
     install_chkrootkit()
     {
-        echo ""
-        echo "[+] Instalando o Chkrootkit"
+        printf "\n"
+        printf "[+] Instalando o Chkrootkit \n"
         
         apt install chkrootkit -y
     }
     
     localepurge()
     {
-        echo ""
-        echo "[+] Instalando o Localepurge"
+        printf "\n"
+        printf "[+] Instalando o Localepurge \n"
         
         apt-get install localepurge -y                                           
     }
     
     firewall_basic()
     {
-        echo ""
-        echo "[+] Instalando o Firewall UFW + GUFW"
+        printf "\n"
+        printf "[+] Instalando o Firewall UFW + GUFW \n"
     
         apt install ufw gufw -y                                    
     }
     
     hardinfo()
     {
-        echo ""
-        echo "[+] Instalando o Hardinfo"
+        printf "\n"
+        printf "[+] Instalando o Hardinfo \n"
         
         apt install hardinfo -y
     }
     
     synaptic()
     {
-        echo ""
-        echo "[+] Instalando o Synaptic"
+        printf "\n"
+        printf "[+] Instalando o Synaptic \n"
         
         add-apt-repository ppa:synapse-core/testing -y
         update        
@@ -1280,35 +1315,35 @@ home = "/home/lenonr"
     
     nvidia()
     {
-        echo ""
-        echo "[+] Instalando o driver da Placa Nvidia"
+        printf "\n"
+        printf "[+] Instalando o driver da Placa Nvidia \n"
         
         apt-add-repository ppa:ubuntu-x-swat/x-updates -y
         apt-add-repository ppa:xorg-edgers/ppa -y
         update
         apt install nvidia-current nvidia-settings -y
         
-        echo ""
-        echo "[+] Arquivo de configuração Nvidia"
+        printf "\n"
+        printf "[+] Arquivo de configuração Nvidia \n"
         cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
     }
     
     icones()
     {
-        echo ""
-        echo "[+] Instalando os icones"
+        printf "\n"
+        printf "[+] Instalando os icones \n"
         
         # copiando arquivos para as pastas
-        echo "[*] Movendo icones para pasta"
+        printf "[*] Movendo icones para pasta \n"
         cp -r base/icons/* /usr/share/icons
         
-        echo "[+] Arquivos movidos!"
+        printf "[+] Arquivos movidos! \n"
     }       
     
     brightside()
     {
-        echo ""
-        echo "[+] Instalando o Brightside"
+        printf "\n"
+        printf "[+] Instalando o Brightside \n"
     
         apt install brightside* -y
     }
@@ -1318,34 +1353,34 @@ home = "/home/lenonr"
         # variavel de verificação 
         var_virtualbox=$(which virtualbox) 
         
-        echo ""                
-        echo "[+] Verificando se existe VirtualBox instalado"
+        printf "\n"                
+        printf "[+] Verificando se existe VirtualBox já está instalado \n"
         
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_virtualbox ]]; then        
-            echo ""        
-            echo "[*] Realizando download"
+            printf "\n"        
+            printf "[*] Realizando download \n"
             wget download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
             
-            echo "[*] Instalando o VirtualBox"
+            printf "[*] Instalando o VirtualBox \n"
             dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
             
-            echo "[*] Corrigindo problemas de dependências"
+            printf "[*] Corrigindo problemas de dependências \n"
             apt install -f
             
-            echo "[*] Removendo Virtualbox"
+            printf "[*] Removendo Virtualbox \n"
             rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
             
-            echo "[+] Virtualbox instalado com sucesso!"
+            printf "[+] Virtualbox instalado com sucesso! \n"
         else
-            echo "[+] VirtualBox já está instalado!"
+            printf "[+] VirtualBox já está instalado! \n"
         fi
     }
     
     install_tree()
     {
-        echo ""
-        echo "[+] Instalando Tree"
+        printf "\n"
+        printf "[+] Instalando Tree \n"
     
         apt install tree* -y
     }
@@ -1355,56 +1390,56 @@ home = "/home/lenonr"
     
     apache()
     {
-        echo ""
-        echo "[+] Instalando o Apache"
+        printf "\n"
+        printf "[+] Instalando o Apache \n"
     
         apt install apache2 -y    
     }
     
     mysql()
     {
-        echo ""
-        echo "[+] Instalando o Mysql Server"
+        printf "\n"
+        printf "[+] Instalando o Mysql Server \n"
         
         apt install mysql-server -y
     }
     
     phpmyadmin()
     {
-        echo ""
-        echo "[+] Instalando o PhpMyAdmin"
+        printf "\n"
+        printf "[+] Instalando o PhpMyAdmin \n"
     
         apt install phpmyadmin -y            
     }
     
     ibus()
     {
-        echo ""
-        echo "[+] Instalando o Ibus"
+        printf "\n"
+        printf "[+] Instalando o Ibus \n"
         
         apt install ibus -y
     }
     
     install_nmap()
     {
-        echo ""
-        echo "[+] Instalando o Nmap"
+        printf "\n"
+        printf "[+] Instalando o Nmap \n"
         
         apt install nmap -y
     }
     
     htop()
     {
-        echo ""
-        echo "[+] Instalando o Htop"
+        printf "\n"
+        printf "[+] Instalando o Htop \n"
         
         apt install htop -y
     }
     
     install_sudo()
     {
-        echo ""
-        echo "[+] Instalando o Htop"    
+        printf "\n"
+        printf "[+] Instalando o Htop \n"    
 
         apt install sudo -y
     }
@@ -1416,8 +1451,8 @@ home = "/home/lenonr"
     ######VERIFICANDO USUARIO ROOT
    if [[ `id -u` -ne 0 ]]; then
         clear
-        echo "[-] Você precisa ter poderes administrativos (root)"
-        echo "[-] O script está sendo finalizado ..."
+        printf "[-] Você precisa ter poderes administrativos (root) \n"
+        printf "[-] O script está sendo finalizado... \n"
         sleep 3
         exit
     fi
@@ -1431,7 +1466,7 @@ auto_config_ubuntu()
     case $escolhaauto_config in   
     ################################################################################
     ######DADOS DOS SISTEMA
-        0) echo
+        0) printf
             system
             
             auto_config
@@ -1439,7 +1474,7 @@ auto_config_ubuntu()
     
     ################################################################################
     ######ATUALIZA SISTEMA
-        1) echo  
+        1) printf  
             clear
             update
             upgrade            
@@ -1449,7 +1484,7 @@ auto_config_ubuntu()
         
     ################################################################################
     ######CORRIGE SISTEMA
-        2) echo                                      
+        2) printf                                      
             clear
             # # verificando nome para máquina para executar funções especificas
             #capturando hostname da maquina
@@ -1523,7 +1558,7 @@ auto_config_ubuntu()
                 
     ################################################################################
     ######LIMPA SISTEMA
-        3) echo
+        3) printf
             clear
             
             #verificando variavel
@@ -1546,7 +1581,7 @@ auto_config_ubuntu()
     
     ################################################################################
     ######INSTALA PROGRAMAS
-        4) echo  
+        4) printf  
             clear   
             
             # # verificando nome para máquina para executar funções especificas
@@ -1709,7 +1744,7 @@ auto_config_ubuntu()
             
     ################################################################################
     ######PROGRAMAS NÃO ESSENCIAIS
-        5) echo                    
+        5) printf                    
             # desenvolvimento
             apache
             mysql
@@ -1736,102 +1771,144 @@ auto_config_ubuntu()
     
     ################################################################################
     ######REMOVES PROGRAMAS
-        6) echo                    
+        6) printf                    
                 clear
-                echo "[+] Removendo pidgin"
+                printf "[+] Removendo pidgin \n"
                 apt purge pidgin -y
                 
-                echo ""
-                echo "[+] Removendo Thunderbird"
+                printf "\n"
+                printf "[+] Removendo Thunderbird \n"
+                
                 apt purge thunderbird -y
                 
-                echo ""
-                echo "[+] Removendo Parole"
+                
+                printf "\n"
+                printf "[+] Removendo Parole \n"
+                
                 apt purge parole -y
-                                                                
-                echo ""
-                echo "[+] Removendo XBurn"
+                                    
+                                    
+                printf "\n"
+                printf "[+] Removendo XBurn \n"
+                
                 apt purge xfburn -y
                 
-                echo ""
-                echo "[+] Removendo o Inkscape"
+                
+                printf "\n"
+                printf "[+] Removendo o Inkscape \n"
+                
                 apt purge inkscape* -y
                 
-                echo ""
-                echo "[+] Removendo o Adapta"
+                
+                printf "\n"
+                printf "[+] Removendo o Adapta \n"
+                
                 apt purge adapta-gtk-theme* -y
                 
-                echo ""
-                echo "[+] Removendo o Blender"            
+                
+                printf "\n"
+                printf "[+] Removendo o Blender \n"            
+                
                 apt purge blender* -y
+                
                 
             hostname=$(hostname)            
             if [[ $hostname == 'notebook' ]]; then                                             
-                echo "[+] Removendo pidgin"
+                printf "[+] Removendo pidgin \n"
+                
                 apt purge pidgin* -y
                 
-                echo ""
-                echo "[+] Removendo Thunderbird"
+                
+                printf "\n"
+                printf "[+] Removendo Thunderbird \n"
+                
                 apt purge thunderbird* -y
                 
-                echo ""
-                echo "[+] Removendo Parole"
+                
+                printf "\n"
+                printf "[+] Removendo Parole \n"
+                
                 apt purge parole* -y                
                 
-                echo ""
-                echo "[+] Removendo o Kstars"
+                
+                printf "\n"
+                printf "[+] Removendo o Kstars \n"
+                
                 apt purge kstars* -y
                 
-                echo ""
-                echo "[+] Removendo o Celestia"
+                printf "\n"
+                printf "[+] Removendo o Celestia \n"
                 apt purge celestia* -y
                 
-                echo ""
-                echo "[+] Removendo a Steam"
+                
+                
+                printf "\n"
+                printf "[+] Removendo a Steam \n"
+                
                 apt purge steam* -y
                 
-#                 echo ""
-#                 echo "[+] Removendo o Dolphin"
+                                
+#                 printf ""
+#                 printf "[+] Removendo o Dolphin"
 #                 dolphin
 
-                echo ""
-                echo "[+] Removendo o Spotify"
+
+                printf "\n"
+                printf "[+] Removendo o Spotify \n"
+                
                 apt purge spotify* -y
                 
-                echo ""
-                echo "[+] Removendo o Kdenlive"
+                                
+                printf "\n"
+                printf "[+] Removendo o Kdenlive \n"
+                
                 apt purge kdenlive* -y
                 
-                echo ""
-                echo "[+] Removendo o Sweet Home 3D"
+                
+                printf "\n"
+                printf "[+] Removendo o Sweet Home 3D \n"
+                
                 apt purge sweethome3d* -y
                 
-                echo ""
-                echo "[+] Removendo o Simple Screen Recorder"
+                
+                printf "\n"
+                printf "[+] Removendo o Simple Screen Recorder \n"
+                
                 apt purge simplescreenrecorder* -y
                 
-                echo ""
-                echo "[+] Removendo o Figlet"
+                
+                printf "\n"
+                printf "[+] Removendo o Figlet \n"
+                
                 apt purge figlet* -y
                 
-                echo ""
-                echo "[+] Removendo o Transmission"
+                
+                printf "\n"
+                printf "[+] Removendo o Transmission \n"
+                
                 apt purge transmission* -y        
                 
-                echo ""
-                echo "[+] SmartGit"                
+                
+                printf "\n"
+                printf "[+] SmartGit \n"                 
+                
                 apt purge smartgit -y 
                 
-                echo ""
-                echo "[+] Removendo o Gitg"
+                
+                printf "\n"
+                printf "[+] Removendo o Gitg \n"
+                
                 apt purge gitg -y
                 
-                echo ""
-                echo "[+] Removendo o Meld"
+                
+                printf "\n"
+                printf "[+] Removendo o Meld \n"
+                
                 apt purge meld -y
                 
+                
             else
-                echo ""
+                printf "\n"
             fi
             
             auto_config
@@ -1839,21 +1916,21 @@ auto_config_ubuntu()
     
     ################################################################################
     ###### SAINDO DO SCRIPT
-        7) echo 
+        7) printf 
                 exit
         ;;
     
     ################################################################################
     ######ENTRADA INVALIDA
-        *) echo
-            echo Alternativa incorreta!!
+        *) printf
+            printf "Alternativa incorreta!! \n"
             sleep 1
             menu
             exit
         ;;
     esac
 
-    echo "TAREFAS FINALIZADAS, SAINDO.."
+    printf "TAREFAS FINALIZADAS, SAINDO.. \n"
     clear
 }
 
@@ -1864,13 +1941,13 @@ auto_config_debian()
     case $escolhaauto_config in   
     ################################################################################
     ######DADOS DO SISTEMA
-        0) echo  
+        0) printf  
                 system            
                 auto_config
         ;;
     ################################################################################
     ######ATUALIZA SISTEMA
-        1) echo  
+        1) printf  
                 clear    
                 update
                 upgrade
@@ -1880,7 +1957,7 @@ auto_config_debian()
     
     ################################################################################
     ###### CORRINDO PROBLEMAS
-        2) echo  
+        2) printf  
                 apt_install
                 fonts
                 ntp
@@ -1894,13 +1971,13 @@ auto_config_debian()
         
     ################################################################################
     ###### REALIZANDO LIMPEZA
-        3) echo  
+        3) printf  
                 auto_config
         ;;
     
     ################################################################################
     ###### INSTALANDO PROGRAMAS
-        4) echo  
+        4) printf  
                 nautilus
                 redshift
                 plank
@@ -1916,8 +1993,8 @@ auto_config_debian()
                 
                 #verificando variavel
                 if [[ $hostname == 'notebook' ]]; then
-                    echo ""
-                    echo "[+] Instalando firmware Wifi"
+                    printf "\n"
+                    printf "[+] Instalando firmware Wifi \n"
                     
                     apt install firmware-brcm80211 -y                                        
                 fi
@@ -1929,7 +2006,7 @@ auto_config_debian()
     
     ################################################################################
     ###### PROGRAMAS NAO ESSENCIAIS
-        5) echo 
+        5) printf 
                 # desenvolvimento
                 apache
                 mysql
@@ -1943,16 +2020,18 @@ auto_config_debian()
     
     ################################################################################
     ###### REMOVENDO PROGRAMAS
-        6) echo      
-                echo ""
-                echo "[+] Removendo XBurn"
+        6) printf      
+                printf "\n"
+                printf "[+] Removendo XBurn \n"
                 
                 apt purge xfburn -y
                 
-                echo ""
-                echo "[+] Removendo Mutt"
+                
+                printf "\n"
+                printf "[+] Removendo Mutt \n"
                 
                 apt purge mutt -y
+                
                 
                 auto_config
         ;;
@@ -1966,7 +2045,7 @@ auto_config_debian()
     ################################################################################
     ######ENTRADA INVALIDA
         *) echo
-            echo Alternativa incorreta!!
+            printf Alternativa incorreta!!
             sleep 1
             menu
             exit
@@ -1974,7 +2053,7 @@ auto_config_debian()
         
     esac
 
-    echo "TAREFAS FINALIZADAS, SAINDO.."
+    printf "TAREFAS FINALIZADAS, SAINDO..\n"
     sleep 5
     clear
 }
@@ -2018,8 +2097,8 @@ auto_config()
         clear
         auto_config_debian
     else
-        echo "Disponivel para Debian ou Ubuntu!!!"
-        echo "Script incompativel infelizmente";
+        printf "Disponivel para Debian ou Ubuntu!!! \n"
+        printf "Script incompativel infelizmente \n";
     fi                        
 
 }
@@ -2028,15 +2107,15 @@ auto_config()
 menu()
 {
     clear
-    echo "Bem vindo ao script de automação de tarefas no Linux(Debian + Ubuntu)"
-    echo ""
-    echo "   
+    printf "Bem vindo ao script de automação de tarefas no Linux(Debian + Ubuntu) \n"
+    printf "    
    / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |  
   / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_ 
  / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
 /_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
     "
-    echo ""
+    
+    printf "\n"
     read -n1 -p "Para continuar escolha s(sim) ou n(não) para sair. " escolhamenu
         case $escolhamenu in
             s|S) echo                      
@@ -2045,13 +2124,13 @@ menu()
                     ;;
             n|N) echo
                     # saindo do script
-                    echo Finalizando o script...
+                    printf Finalizando o script...
                     sleep 1
                     exit
                     ;;
             *) echo
                     # restaurando menu
-                    echo Alternativa incorreta!!
+                    printf Alternativa incorreta!!
                     sleep 1
                     menu
                     exit
