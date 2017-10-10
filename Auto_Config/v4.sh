@@ -51,7 +51,7 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.115.1.0.4]   #
+# # versão do script:           [0.0.116.1.0.4]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [09/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -205,6 +205,7 @@
 # # [+] Nmap
 # # [+] Htop
 # # [+] VirtualBox
+# # [+] Tree
 
 ################################################################################	
 # # # # # REMOVENDO PROGRAMAS
@@ -1330,6 +1331,14 @@ home = "/home/lenonr"
         echo "Virtualbox instalado!"
     }
     
+    install_tree()
+    {
+        echo ""
+        echo "[+] Instalando Tree"
+    
+        apt install tree* -y
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1606,6 +1615,7 @@ auto_config_ubuntu()
                 sensors 
                 install_nmap
                 htop
+                install_tree
                 
             else 
 #               PERSONALIZAÇÃO
@@ -1680,6 +1690,7 @@ auto_config_ubuntu()
                 sensors  
                 install_nmap
                 htop
+                install_tree
             fi
             
             auto_config
