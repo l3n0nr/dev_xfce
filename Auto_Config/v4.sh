@@ -51,9 +51,9 @@
 #################################################################################
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.116.1.0.4]   #
+# # versão do script:           [0.0.117.1.0.4]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [09/10/17]      #
+# # ultima ediçao realizada:      [10/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1315,20 +1315,31 @@ home = "/home/lenonr"
     
     virtualbox()
     {
-        echo ""        
-        echo "[+] Realizando download"
-        wget download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+        # variavel de verificação 
+        var_virtualbox=$(which virtualbox) 
         
-        echo "[*] Instalando o VirtualBox"
-        dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+        echo ""                
+        echo "[+] Verificando se existe VirtualBox instalado"
         
-        echo "[*] Corrigindo problemas de dependências"
-        apt install -f
-        
-        echo "[*] Removendo Virtualbox"
-        rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-        
-        echo "Virtualbox instalado!"
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_virtualbox ]]; then        
+            echo ""        
+            echo "[*] Realizando download"
+            wget download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            
+            echo "[*] Instalando o VirtualBox"
+            dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            
+            echo "[*] Corrigindo problemas de dependências"
+            apt install -f
+            
+            echo "[*] Removendo Virtualbox"
+            rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            
+            echo "[+] Virtualbox instalado com sucesso!"
+        else
+            echo "[+] VirtualBox já está instalado!"
+        fi
     }
     
     install_tree()
