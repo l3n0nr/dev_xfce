@@ -6,11 +6,11 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
-######################
-# FONTES DE PESQUISA #
-######################
+# # # # # # # # # # # # # 
+#   FONTES DE PESQUISA  #
+# # # # # # # # # # # # # 
 #
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # por oliveiradeflavio(Flávio Oliveira)
 # 	<github.com/oliveiradeflavio/scripts-linux>
 #
@@ -33,25 +33,25 @@
 #
 # por Cláudio Novais
 #        <http://ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
-####################
-# DESENVOLVIDO POR #
-####################
+# # # # # # # # # # # # # 
+#   DESENVOLVIDO POR    #
+# # # # # # # # # # # # # 
 #
 # por lenonr(Lenon Ricardo) 
 #       contato: <lenonrmsouza@gmail.com>
 #
-#################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #										#
 #	If I have seen further it is by standing on the shoulders of Giants.	#
 #	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)		#
 #							~Isaac Newton		#
 #										#
-#################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.130.1.0.4]   #
+# # versão do script:           [0.0.145.2.0.4]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -63,22 +63,28 @@
 # 	d = correções necessárias;
 # 	e = pendencias    
 #               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
-                            # criar possivel verificação
-                            # dmidecode | grep "Reference Designation: Broadcom"                    
+#                           - Criar possivel verificação
+#                           - Dmidecode | grep "Reference Designation: Broadcom"                    
+#                             
+#               - II    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
+#                           - Tor-Browser
+#                           - Wine
+#                           - Icones-macbuntu
+# 
 # 	f = desenvolver 
-# 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar, selecionando apenas com o espaço;
-#                     #dialog/xdialog 
+# 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar
+#                           - Dialog/Xdialog 
 #               - II    - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               - III   - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja instalar, sendo que o script vai realizar a remoção automaticamente
+#               - III   - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja remover;
 #
-#####################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# 
 #       [+] - Açao realizada 
 #       [*] - Processamento
 #       [-] - Não executado
-#####################################
-#
-################################################################################
-#
+# 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# 
 # # Script testado em
 #	- Xubuntu 16.04
 #       - Debian 9
@@ -87,7 +93,8 @@
 #       - Ubuntu
 #       - Debian 9
 # 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# 
 # # FUNCOES
 # 
 # # # # # ATUALIZA SISTEMA
@@ -97,7 +104,7 @@
 # # [+] Kernel 
 # #     [+] Remove antigos
 # # 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # CORRIGE SISTEMA
 # # [+] Swap
 # # [+] Prelink, Preload, Deborphan
@@ -113,7 +120,7 @@
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
 # # 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # LIMPA SISTEMA
 # # [+] Excluindo pacotes antigos
 # # [+] Excluindo pacotes orfaõs
@@ -125,7 +132,7 @@
 # # [+] Verificando Chkrootkit
 # # [+] Removendo idiomas sobressalentes
 # # 
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # INSTALANDO PROGRAMAS
 # NAVEGADORES
 # # [+] Firefox
@@ -206,8 +213,8 @@
 # # [+] Htop
 # # [+] VirtualBox
 # # [+] Tree
-
-################################################################################	
+# 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # # # # REMOVENDO PROGRAMAS
 # # # GERAL
 # # [+] Pidgin
@@ -231,11 +238,11 @@
 # # [+] Simple Screen Recorder
 # # [+] Figlet
 # # [+] Transmission
-
-################################################################################	
+# 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 	
+# 
 # Reinicialização
 # # [+]Reiniciar
-#
 # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
  
@@ -676,7 +683,6 @@ home = "/home/lenonr"
     
 # # # # # # # # # # 
 # # LIMPA SISTEMA   
-
     kernel()
     {
         printf "\n"
@@ -721,7 +727,7 @@ home = "/home/lenonr"
 # # # # # # # # # # 
 # # INSTALA PROGRAMAS  
     firefox()
-    {
+    {                
         printf "\n"
         printf "[+] Instalando Firefox \n"
         
@@ -747,24 +753,34 @@ home = "/home/lenonr"
     
     spotify()
     {    
-        printf "\n"
-        printf "[+] Instalando Spotify \n"
+        # variavel de verificação 
+        var_spotify=$(which spotify)  
+
+        printf "\n"                
+        printf "[+] Verificando se existe Spotify já está instalado \n"
         
-        #baixando pacote
-        sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+        if [[ ! -e $var_spotify ]]; then        
+            printf "\n"
+            printf "[+] Instalando Spotify \n"
+        
+            #baixando pacote
+            sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
-        #baixando chave
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+            #baixando chave
+            apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
-        #chamando função update
-        update 
+            #chamando função update
+            update 
 
-        #instalando o spotify
-        apt install spotify-client -y 
+            #instalando o spotify
+            apt install spotify-client -y 
+        else
+            printf "[+] Spofity já está instalando! \n"
+        fi
     }
 
     icones_mac()
-    {    
+    {            
         printf "\n"
         printf "[+] Instalando icones e temas do MacOS X \n"
         
@@ -854,17 +870,28 @@ home = "/home/lenonr"
     
     libreoffice()
     {
-        printf "\n"
-        printf "[+] Instalando o Libreoffice \n"
-        
-        #adicionando ppa
-        add-apt-repository ppa:libreoffice/ppa -y
-        
-        #chamando funcao já definida
-        update
-        
-        #instalando libreoffice
-        apt install libreoffice* -y                               
+        # variavel de verificação 
+        var_libreoffice=$(which libreoffice) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe LibreOffice já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_libreoffice ]]; then                
+            printf "\n"
+            printf "[+] Instalando o Libreoffice \n"
+            
+            #adicionando ppa
+            add-apt-repository ppa:libreoffice/ppa -y
+            
+            #chamando funcao já definida
+            update
+            
+            #instalando libreoffice
+            apt install libreoffice* -y
+        else
+            printf "[+] Libreoffice já está instalado! \n"
+        fi
     }
     
     vlc()
@@ -904,7 +931,7 @@ home = "/home/lenonr"
         printf "\n"
         printf "[+] Instalando o Rar \n"
         
-        apt install rar* -y 
+        apt install rar -y 
     }
     
     install_git()
@@ -921,28 +948,32 @@ home = "/home/lenonr"
         printf "[+] Instalando o Lm-sensors \n"
         
         apt install lm-sensors -y 
-    }
-    
-    texmaker()
-    {
-        printf "\n"
-        printf "[+] Instalando o Texmaker \n"        
-        apt install texmaker* texlive-full* texlive-latex-extra* -y
-    }
+    }    
     
     stellarium()
     {
-        printf "\n"
-        printf "[+] Instalando o Stellarium \n"
-    
-        #adicinando ppa
-        add-apt-repository ppa:stellarium/stellarium-releases -y 
+        # variavel de verificação 
+        var_stellarium=$(which stellarium) 
 
-        #atualizando sistema
-        update                            
+        printf "\n"                
+        printf "[+] Verificando se existe Stellarium já está instalado \n"
 
-        #instalando o stellarium                
-        apt install stellarium* -y 
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_stellarium ]]; then                    
+            printf "\n"
+            printf "[+] Instalando o Stellarium \n"
+        
+            #adicinando ppa
+            add-apt-repository ppa:stellarium/stellarium-releases -y 
+
+            #atualizando sistema
+            update                            
+
+            #instalando o stellarium                
+            apt install stellarium* -y 
+        else
+            printf "[+] Stellarium já está instalado!"
+        fi
     }
     
     texmaker()
@@ -951,22 +982,7 @@ home = "/home/lenonr"
         printf "[+] Instalando o Texmaker \n"
         
         apt install texmaker* texlive-full* texlive-latex-extra* -y 
-    }
-    
-    stellarium()
-    {
-        printf "\n" 
-        printf "[+] Instalando o Stellarium \n"
-        
-         #adicinando ppa
-        add-apt-repository ppa:stellarium/stellarium-releases -y
-        
-        #chamando funcao já definida
-        update                            
-        
-        #instalando o stellarium                
-        apt install stellarium* -y
-    }
+    }    
     
     kstars()
     {
@@ -1095,17 +1111,28 @@ home = "/home/lenonr"
     
     kdenlive()
     {
-        printf "\n"
-        printf "[+] Instalando o Kdenlive \n"
-        
-        #adicionando ppa
-        add-apt-repository ppa:sunab/kdenlive-release -y
+        # variavel de verificação 
+        var_kdenlive=$(which kdenlive) 
 
-        #atualizando sistema
-        update
+        printf "\n"                
+        printf "[+] Verificando se existe Kdenlive está instalado \n"
 
-        #instalando kdenlive	
-        apt install kdenlive -y
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_kdenlive ]]; then                        
+            printf "\n"
+            printf "[+] Instalando o Kdenlive \n"
+            
+            #adicionando ppa
+            add-apt-repository ppa:sunab/kdenlive-release -y
+
+            #atualizando sistema
+            update
+
+            #instalando kdenlive	
+            apt install kdenlive -y
+        else
+            printf "[+] Kdenlive já está instalado!"
+        fi
     } 
     
     sweethome3d()
@@ -1134,22 +1161,32 @@ home = "/home/lenonr"
     
     plank()
     {
-        printf "\n"
-        printf "[+] Instalando o Plank Dock \n"
-        
-        
-        # verificando distribuição
-        if [ "$distro" == "Ubuntu" ]; then        
-            #adicionando ppa
-            add-apt-repository ppa:noobslab/apps -y
-        
-            #atualizando lista repositorios
-            update
+        # variavel de verificação 
+        var_plank=$(which plank) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe Plank já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_plank ]]; then                        
+            printf "\n"
+            printf "[+] Instalando o Plank Dock \n"
+            
+            
+            # verificando distribuição
+            if [ "$distro" == "Ubuntu" ]; then        
+                #adicionando ppa
+                add-apt-repository ppa:noobslab/apps -y
+            
+                #atualizando lista repositorios
+                update
+            fi
+            
+            #instalando plank
+            apt-get install plank* plank-themer -y
+        else
+            printf "[+] Plank já está instalado! \n"
         fi
-        
-        #instalando plank
-        apt-get install plank* plank-themer -y
-        
     }
     
     gnome_system_monitor()
@@ -1161,24 +1198,35 @@ home = "/home/lenonr"
     }
      
     nautilus()
-    {    
-        # verificando distribuição
-        if [ "$distro" == "Ubuntu" ]; then        
+    {   
+        # variavel de verificação 
+        var_nautilus=$(which nautilus) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe Nautilus já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_nautilus ]]; then                            
             printf "\n"
             printf "[+] Instalando o Nautilus \n"
             
-            #adicionando ppa
-            add-apt-repository ppa:gnome3-team/gnome3 -y
-            
-            #atualizando lista repositorio
-            update
+            # verificando distribuição
+            if [ "$distro" == "Ubuntu" ]; then                                
+                #adicionando ppa
+                add-apt-repository ppa:gnome3-team/gnome3 -y
+                
+                #atualizando lista repositorio
+                update
 
-            #instalando o nautilus
-            apt install nautilus* -y   
-        fi
-        
-        #instalando o nautilus
-        apt install nautilus* -y   
+                #instalando o nautilus
+                apt install nautilus* -y   
+            else
+                #instalando o nautilus
+                apt install nautilus* -y   
+            fi
+        else
+            printf "[+] Nautilus já está instalado! \n"
+        fi        
     }
     
     wireshark()
@@ -1230,18 +1278,29 @@ home = "/home/lenonr"
     
     simple_screen_recorder()
     {
-        printf "\n"
-        printf "[+] Instalando o Simple Screen Recorder \n"
-        
-        #adicionando fonte
-        add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+        # variavel de verificação 
+        var_simplescreenrecorder=$(which simplescreenrecorder) 
 
-        #atualizando lista de repositorios
-        apt-get update 
-        
-        #instalando simplescreenrecorder
-        apt-get install simplescreenrecorder -y
-        apt-get install simplescreenrecorder-lib:i386 -y
+        printf "\n"                
+        printf "[+] Verificando se existe Simple Screen Recorder já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_simplescreenrecorder ]]; then            
+            printf "\n"
+            printf "[*] Instalando o Simple Screen Recorder \n"
+            
+            #adicionando fonte
+            add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+
+            #atualizando lista de repositorios
+            apt-get update 
+            
+            #instalando simplescreenrecorder
+            apt-get install simplescreenrecorder -y
+            apt-get install simplescreenrecorder-lib:i386 -y
+        else
+            printf "[+] Simple Screen Recorder já está instalado! \n"
+        fi
     }
     
     mega()
@@ -1305,27 +1364,49 @@ home = "/home/lenonr"
     
     synaptic()
     {
-        printf "\n"
-        printf "[+] Instalando o Synaptic \n"
-        
-        add-apt-repository ppa:synapse-core/testing -y
-        update        
-        apt-get install synapse -y
+        # variavel de verificação 
+        var_synapse=$(which synapse) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe Synapse já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_synapse ]]; then                            
+            printf "\n"
+            printf "[+] Instalando o Synaptic \n"
+            
+            add-apt-repository ppa:synapse-core/testing -y
+            update        
+            apt-get install synapse -y
+        else
+            printf "[+] Synapse já está instalado no sistema! \n"
+        fi
     }
     
     nvidia()
     {
-        printf "\n"
-        printf "[+] Instalando o driver da Placa Nvidia \n"
-        
-        apt-add-repository ppa:ubuntu-x-swat/x-updates -y
-        apt-add-repository ppa:xorg-edgers/ppa -y
-        update
-        apt install nvidia-current nvidia-settings -y
-        
-        printf "\n"
-        printf "[+] Arquivo de configuração Nvidia \n"
-        cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
+        # variavel de verificação 
+        var_nvidia=$(which nvidia-settings) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe Nvidia já está instalado \n"
+
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_nvidia ]]; then                                
+            printf "\n"
+            printf "[+] Instalando o driver da Placa Nvidia \n"
+            
+            apt-add-repository ppa:ubuntu-x-swat/x-updates -y
+            apt-add-repository ppa:xorg-edgers/ppa -y
+            update
+            apt install nvidia-current nvidia-settings -y
+            
+            printf "\n"
+            printf "[+] Arquivo de configuração Nvidia \n"
+            cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
+        else
+            printf "[+] Nvidia já está instalado no sistema! \n"
+        fi
     }
     
     icones()
@@ -1345,7 +1426,7 @@ home = "/home/lenonr"
         printf "\n"
         printf "[+] Instalando o Brightside \n"
     
-        apt install brightside* -y
+        apt install brightside -y
     }
     
     virtualbox()
@@ -1439,7 +1520,7 @@ home = "/home/lenonr"
     install_sudo()
     {
         printf "\n"
-        printf "[+] Instalando o Htop \n"    
+        printf "[+] Instalando o Sudo \n"    
 
         apt install sudo -y
     }
@@ -1457,23 +1538,23 @@ home = "/home/lenonr"
         exit
     fi
             
-################################################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
 {
     ##CHAMANDOS FUNCOES    
     #     
     case $escolhaauto_config in   
-    ################################################################################
-    ######DADOS DOS SISTEMA
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### DADOS DOS SISTEMA
         0) printf
             system
             
             auto_config
         ;;
     
-    ################################################################################
-    ######ATUALIZA SISTEMA
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### ATUALIZA SISTEMA
         1) printf  
             clear
             update
@@ -1482,8 +1563,8 @@ auto_config_ubuntu()
             auto_config
         ;;
         
-    ################################################################################
-    ######CORRIGE SISTEMA
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### CORRIGE SISTEMA
         2) printf                                      
             clear
             # # verificando nome para máquina para executar funções especificas
@@ -1556,8 +1637,8 @@ auto_config_ubuntu()
             auto_config        
         ;;
                 
-    ################################################################################
-    ######LIMPA SISTEMA
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### LIMPA SISTEMA
         3) printf
             clear
             
@@ -1579,8 +1660,8 @@ auto_config_ubuntu()
             auto_config
         ;;
     
-    ################################################################################
-    ######INSTALA PROGRAMAS
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### INSTALA PROGRAMAS
         4) printf  
             clear   
             
@@ -1623,7 +1704,7 @@ auto_config_ubuntu()
 #                 dolphin
                 visual_game_boy
                 wine
-#                 playonlinux
+                playonlinux
                 
 #               ASTRONOMIA
                 stellarium
@@ -1742,8 +1823,8 @@ auto_config_ubuntu()
             auto_config
         ;;
             
-    ################################################################################
-    ######PROGRAMAS NÃO ESSENCIAIS
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### PROGRAMAS NÃO ESSENCIAIS
         5) printf                    
             # desenvolvimento
             apache
@@ -1769,8 +1850,8 @@ auto_config_ubuntu()
             auto_config
         ;;
     
-    ################################################################################
-    ######REMOVES PROGRAMAS
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### REMOVES PROGRAMAS
         6) printf                    
                 clear
                 printf "[+] Removendo pidgin \n"
@@ -1914,13 +1995,13 @@ auto_config_ubuntu()
             auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### SAINDO DO SCRIPT
         7) printf 
                 exit
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ######ENTRADA INVALIDA
         *) printf
             printf "Alternativa incorreta!! \n"
@@ -1939,14 +2020,15 @@ auto_config_debian()
     ##CHAMANDOS FUNCOES    
     #     
     case $escolhaauto_config in   
-    ################################################################################
+    
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ######DADOS DO SISTEMA
         0) printf  
                 system            
                 auto_config
         ;;
-    ################################################################################
-    ######ATUALIZA SISTEMA
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+    ###### ATUALIZA SISTEMA
         1) printf  
                 clear    
                 update
@@ -1955,7 +2037,7 @@ auto_config_debian()
                 auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### CORRINDO PROBLEMAS
         2) printf  
                 apt_install
@@ -1969,13 +2051,13 @@ auto_config_debian()
                 auto_config
         ;;
         
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### REALIZANDO LIMPEZA
         3) printf  
                 auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### INSTALANDO PROGRAMAS
         4) printf  
                 nautilus
@@ -2004,7 +2086,7 @@ auto_config_debian()
                 auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### PROGRAMAS NAO ESSENCIAIS
         5) printf 
                 # desenvolvimento
@@ -2018,7 +2100,7 @@ auto_config_debian()
                 auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### REMOVENDO PROGRAMAS
         6) printf      
                 printf "\n"
@@ -2036,13 +2118,13 @@ auto_config_debian()
                 auto_config
         ;;
     
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### SAINDO DO SCRIPT
         7) echo 
                 exit            
         ;;    
         
-    ################################################################################
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ######ENTRADA INVALIDA
         *) echo
             printf Alternativa incorreta!!
@@ -2138,13 +2220,14 @@ menu()
         esac
 }
 
-################################################################################
-#INICIANDO SCRIPT
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# INICIANDO SCRIPT
 menu
-################################################################################
+# 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
  
-#                           RODAPE DO SCRIPT                                  #
+#                           RODAPE DO SCRIPT                                    #
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
