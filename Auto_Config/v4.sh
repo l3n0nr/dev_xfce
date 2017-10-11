@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.145.2.0.4]   #
+# # versão do script:           [0.0.146.2.0.4]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1787,8 +1787,8 @@ auto_config_ubuntu()
                 kstars
                 
 #               MULTIMIDIA
-#                 spotify
-#                 clementine
+                spotify
+                clementine
                 vlc
                 kdenlive
                 sweethome3d                
