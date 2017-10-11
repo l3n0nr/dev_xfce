@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.146.2.0.4]   #
+# # versão do script:           [0.0.147.2.0.4]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -757,7 +757,7 @@ home = "/home/lenonr"
         var_spotify=$(which spotify)  
 
         printf "\n"                
-        printf "[+] Verificando se existe Spotify já está instalado \n"
+        printf "[+] Verificando se existe Spotify instalado \n"
         
         if [[ ! -e $var_spotify ]]; then        
             printf "\n"
@@ -874,7 +874,7 @@ home = "/home/lenonr"
         var_libreoffice=$(which libreoffice) 
 
         printf "\n"                
-        printf "[+] Verificando se existe LibreOffice já está instalado \n"
+        printf "[+] Verificando se existe LibreOffice instalado \n"
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_libreoffice ]]; then                
@@ -956,7 +956,7 @@ home = "/home/lenonr"
         var_stellarium=$(which stellarium) 
 
         printf "\n"                
-        printf "[+] Verificando se existe Stellarium já está instalado \n"
+        printf "[+] Verificando se existe Stellarium instalado \n"
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_stellarium ]]; then                    
@@ -1115,7 +1115,7 @@ home = "/home/lenonr"
         var_kdenlive=$(which kdenlive) 
 
         printf "\n"                
-        printf "[+] Verificando se existe Kdenlive está instalado \n"
+        printf "[+] Verificando se existe Kdenlive instalado \n"
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_kdenlive ]]; then                        
@@ -1165,7 +1165,7 @@ home = "/home/lenonr"
         var_plank=$(which plank) 
 
         printf "\n"                
-        printf "[+] Verificando se existe Plank já está instalado \n"
+        printf "[+] Verificando se existe Plank está instalado \n"
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_plank ]]; then                        
@@ -1203,7 +1203,7 @@ home = "/home/lenonr"
         var_nautilus=$(which nautilus) 
 
         printf "\n"                
-        printf "[+] Verificando se existe Nautilus já está instalado \n"
+        printf "[+] Verificando se existe Nautilus instalado \n"
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_nautilus ]]; then                            
