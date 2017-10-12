@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.150.2.0.4]   #
+# # versão do script:           [0.0.151.2.0.4]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [10/10/17]      #
+# # ultima ediçao realizada:      [12/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1414,11 +1414,7 @@ home = "/home/lenonr"
         printf "\n"
         printf "[+] Realizando backup dos arquivos \n"
 
-        # criando variaveis
-        # # variaveis de verificao
-        caminho='/home/lenonr/MEGA/Outros/Themes_Icons'
-        verifica='cd $caminho; echo $?'
-
+        # criando variaveis        
         # # variaveis de entrada
         input_icons='/home/lenonr/MEGA/Outros/Themes_Icons/icons/*'
         input_themes='/home/lenonr/MEGA/Outros/Themes_Icons/themes/*'
@@ -1426,6 +1422,10 @@ home = "/home/lenonr"
         # # variaveis de saida
         output_icons='/usr/share/icons/'
         output_themes='/usr/share/themes/'
+        
+        # # variaveis de verificao
+        caminho='/home/lenonr/MEGA/Outros/Themes_Icons'
+        verifica='cd $caminho; echo $?'
 
         # realizando verificação na pasta de origem
         if [[ ! -e $caminho ]]; then
