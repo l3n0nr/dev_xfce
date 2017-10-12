@@ -14,7 +14,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:               [0.20]        #
-# # ultima ediçao realizada:      [05/10/17]      #
+# # ultima ediçao realizada:      [12/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 #-----------------------------------------------
@@ -122,17 +122,15 @@ fi # Fim do if do dircolor
 alias dev_web='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /var/www/html/dev_web && ls && echo "######################################"'
 alias dev_xfce='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_xfce && ls && echo "######################################"'
 alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_scripts && ls && echo "######################################"'
+alias dev_sysadmin='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_sysadmin && ls && echo "######################################"'
 alias home='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr && ls && echo "######################################"'
 
 #   criando atalhos para atualizar os diretorios do github 
-alias pull_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git pull && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git pull && echo "Diretório dev_web" && cd /var/www/html/dev_web && git pull && cd /home/lenonr'
-             
-alias push_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git push && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git push && echo "Diretório dev_web" && cd /var/www/html/dev_web && git push && cd /home/lenonr'
+alias pull_git='clear; echo "[*] Verificando Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git pull && echo && echo "[*] Verificando Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git pull && echo && echo "[*] Verificando Diretório dev_web" && cd /var/www/html/dev_web && git pull && echo && echo "[*] Verificando Diretório dev_sysadmin" && cd /home/lenonr/Github/dev_sysadmin && git pull && echo && cd /home/lenonr'
 
-alias status_git='echo "Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git status && echo "Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git status && echo "Diretório dev_web" && cd /var/www/html/dev_web && git status ¨&& cd /home/lenonr'
+alias push_git='clear; echo "[*] Verificando Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git push && echo && echo "[*] Verificando Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git push && echo && echo "[*] Verificando Diretório dev_web" && cd /var/www/html/dev_web && git push && echo && echo "[*] Verificando Diretório dev_sysadmin" && cd /home/lenonr/Github/dev_sysadmin && git push && echo && cd /home/lenonr'
 
-# criando apelido para instalação de programas
-alias install='sudo apt install'
+alias status_git='clear; echo "[*] Verificando Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git status && echo && echo "[*] Verificando Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git status && echo && echo "[*] Verificando Diretório dev_web" && cd /var/www/html/dev_web && git status && echo && echo "[*] Verificando Diretório dev_sysadmin" && cd /home/lenonr/Github/dev_sysadmin && git status && echo && cd /home/lenonr'             
 
 # criando apelido para conectar ao roteador DD-WRT
 alias wrt='telnet 10.0.0.87'
@@ -145,6 +143,9 @@ alias verificahd='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/ver
 
 # criando apelido para verificar os log's do servidor dev_web
 alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
+
+# criando apelido para realizar backup do bashrc
+alias backup_bashrc='clear; printf "[*] Realizado backup do bashrc\n"; cat .bashrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.bashrc ; printf "[+] Backup realizado! \n"'
 
 # testanco configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
