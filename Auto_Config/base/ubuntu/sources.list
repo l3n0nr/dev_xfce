@@ -1,0 +1,20 @@
+#------------------------------------------------------------------------------#
+#                            OFFICIAL UBUNTU REPOS                             #
+#------------------------------------------------------------------------------#
+# ESPECIFICO PARA VERSAO: 16.04 
+# REFERENCIA: <https://repogen.simplylinux.ch/generate.php>
+
+
+###### Ubuntu Main Repos
+deb http://br.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse 
+deb-src http://br.archive.ubuntu.com/ubuntu/ xenial main restricted universe multiverse 
+
+###### Ubuntu Update Repos
+deb http://br.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse 
+deb http://br.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse 
+deb http://br.archive.ubuntu.com/ubuntu/ xenial-proposed main restricted universe multiverse 
+deb http://br.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse 
+deb-src http://br.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe multiverse 
+deb-src http://br.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe multiverse 
+deb-src http://br.archive.ubuntu.com/ubuntu/ xenial-proposed main restricted universe multiverse 
+deb-src http://br.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse 
