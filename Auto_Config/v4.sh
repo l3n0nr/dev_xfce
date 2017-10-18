@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.152.2.0.4]   #
+# # versão do script:           [0.0.155.2.0.1]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [17/10/17]      #
+# # ultima ediçao realizada:      [18/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -74,8 +74,6 @@
 # 	f = desenvolver 
 # 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar
 #                           - Dialog/Xdialog 
-#               - II    - [FUNCAO GERAL] - Facilitar a instalação dos programas, com a opção de instalar todos disponiveis no script;
-#               - III   - [FUNCAO REMOVE PROGRAMAS] - Possibilitar o usuario digitar o nome do programa que deseja remover;
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
@@ -1863,7 +1861,7 @@ auto_config_ubuntu()
                 virtualbox
                 
                 # jogos
-                steam            
+#                 steam            
             fi
                 
             # teclado
