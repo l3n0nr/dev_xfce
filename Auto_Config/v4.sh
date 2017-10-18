@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.151.2.0.4]   #
+# # versão do script:           [0.0.152.2.0.4]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [12/10/17]      #
+# # ultima ediçao realizada:      [17/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -888,7 +888,7 @@ home = "/home/lenonr"
             update
             
             #instalando libreoffice
-            apt install libreoffice* -y
+            apt-get install libreoffice libreoffice-style-breeze -y
         else
             printf "[+] Libreoffice já está instalado! \n"
         fi
