@@ -30,6 +30,7 @@
 # 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
 #    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
 # 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+#        <http://www.diolinux.com.br/2015/09/como-instalar-drivers-de-video-no-ubuntu-linux.html>
 #
 # por Cláudio Novais
 #        <http://ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
@@ -51,7 +52,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.155.2.0.1]   #
+# # versão do script:           [0.0.158.2.0.1]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [20/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
