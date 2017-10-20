@@ -53,7 +53,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # # versão do script:           [0.0.155.2.0.1]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [18/10/17]      #
+# # ultima ediçao realizada:      [20/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1394,6 +1394,7 @@ home = "/home/lenonr"
             printf "\n"
             printf "[+] Instalando o driver da Placa Nvidia \n"
             
+            apt-add-repository ppa:graphics-drivers/ppa -y 
             apt-add-repository ppa:ubuntu-x-swat/x-updates -y
             apt-add-repository ppa:xorg-edgers/ppa -y
             update
