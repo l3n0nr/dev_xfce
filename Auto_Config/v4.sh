@@ -52,7 +52,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.160.2.0.1]   #
+# # versão do script:           [0.0.160.3.0.1]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [23/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -74,7 +74,9 @@
 # 
 # 	f = desenvolver 
 # 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar
-#                           - Dialog/Xdialog 
+#                           - Dialog/Xdialog
+# 
+#               - II    - [FUNCOES POR PARAMETROS] - Implementar o script, para que seja possivel executar algumas tarefas diretamente por parametros na execucao do mesmo
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
