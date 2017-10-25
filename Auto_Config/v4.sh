@@ -52,9 +52,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.160.3.0.1]   #
+# # versão do script:           [0.0.170.2.0.1]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [23/10/17]      #
+# # ultima ediçao realizada:      [25/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -75,8 +75,6 @@
 # 	f = desenvolver 
 # 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar
 #                           - Dialog/Xdialog
-# 
-#               - II    - [FUNCOES POR PARAMETROS] - Implementar o script, para que seja possivel executar algumas tarefas diretamente por parametros na execucao do mesmo
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
@@ -252,24 +250,73 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
 # Criando variavel com localização da raiz do usuario
-home = "/home/lenonr"
+# home = "/home/lenonr"
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
-# SISTEMA
 # ATUALIZAR
 # CORRIGIR
 # LIMPAR
 # INSTALAR
 # REMOVER
-# REINICIAR
 # SAIR
 # 
 # # # # # # # # # #    
+# 
+# criando funcoes para serem executadas como parametro
+func_help()
+{
+    clear
+    clear
+    printf "############################################################################\n"
+    printf "    
+   / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |  
+  / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_ 
+ / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
+/_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
+    "    
+    printf "\n"
+    printf "############################################################################
+
+    Bem vindo ao script de automação de tarefas no Linux ele poderá realizar
+
+        - Atualização do sistema, 
+        - Correção de erros, 
+        - Limpeza geral do sistema,
+        - Instalação de programas,             
+        - Remoção de programas desnecessários,
+            
+    Paramêtros disponiveis:
+        - help: mostra informações sobre o script;
+        - atualiza: atualiza o sistema;
+
+    Exemplos:
+        - Lendo instruções de funcionamento:
+            ~ v4.sh help
+        
+        - Atualizando o Sistema:
+            ~ v4.sh atualiza
+            
+        - Visualizando o menu de ações:
+            ~ v4.sh
+        
+    **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
+            
+############################################################################
+"
+}
+
+func_atualiza()
+{
+    clear
+    update
+    upgrade    
+}
+
+# 
 # # ATUALIZA SISTEMA
     update()
-    {
-    
+    {    
         #atualizando lista de repositorios            
         printf "[+] Atualizando lista de repositorios do sistema \n"   
         
@@ -1470,13 +1517,6 @@ auto_config_ubuntu()
     ##CHAMANDOS FUNCOES    
     #     
     case $escolhaauto_config in   
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-    ###### DADOS DOS SISTEMA
-        0) echo
-            system
-            
-            auto_config
-        ;;
     
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### ATUALIZA SISTEMA
@@ -2074,10 +2114,13 @@ auto_config()
     # verificando distro | forma alterativa
     distro=$(lsb_release -i | cut -f2)
     
-    clear
-    echo "INICIANDO AS TAREFAS"
+#     clear
+#     echo "INICIANDO AS TAREFAS"
     #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    echo "----------------------------------------"
+    printf "                
+                AUTOCONFIG - V4
+                \n"
+    echo "-------------------------------------------------"
 #     echo "Digite 0 para verificar dados do sistema"
     echo "Digite 1 para atualizar o sistema,"
     echo "Digite 2 para corrigir possíveis erros," 
@@ -2086,8 +2129,9 @@ auto_config()
     echo "Digite 5 para instalar programas não essenciais,"
     echo "Digite 6 para remover alguns programas,"    
     echo "Digite 7 para sair do script,"
-    echo "----------------------------------------" 
-    read -n1 -p "Ação:" escolhaauto_config
+    echo "-------------------------------------------------" 
+    read -n1 -p "
+Número da ação:" escolhaauto_config
     
     #executando ações para a distribuição Ubuntu
     if [ "$distro" == "Ubuntu" ]; then
@@ -2106,42 +2150,29 @@ auto_config()
 
 #mostrando mensagem inicial
 menu()
-{
+{    
     clear
-    printf "Bem vindo ao script de automação de tarefas no Linux(Debian + Ubuntu) \n"
-    printf "    
-   / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |  
-  / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_ 
- / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
-/_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
-    "
     
-    printf "\n"
-    read -n1 -p "Para continuar escolha s(sim) ou n(não) para sair. " escolhamenu
-        case $escolhamenu in
-            s|S) echo                      
-                    # executando script
-                    auto_config
-                    ;;
-            n|N) echo
-                    # saindo do script
-                    printf Finalizando o script...
-                    sleep 1
-                    exit
-                    ;;
-            *) echo
-                    # restaurando menu
-                    printf Alternativa incorreta!!
-                    sleep 1
-                    menu
-                    exit
-                    ;;
-        esac
+    # executando menu
+    auto_config
+
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # INICIANDO SCRIPT
-menu
+# menu
+
+if [ $# -eq 0 ]; then
+#         auto_config
+    menu
+fi
+
+# verificando o que foi digitado
+case $1 in
+    ajuda) func_help;;
+    atualiza) func_atualiza;;
+esac
+
 # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
