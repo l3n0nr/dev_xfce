@@ -52,9 +52,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.0.170.2.0.1]   #
+# # versão do script:           [0.1.175.2.0.1]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [25/10/17]      #
+# # ultima ediçao realizada:      [26/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -292,7 +292,7 @@ func_help()
 
     Exemplos:
         - Lendo instruções de funcionamento:
-            ~ v4.sh help
+            ~ v4.sh ajuda
         
         - Atualizando o Sistema:
             ~ v4.sh atualiza
@@ -1514,6 +1514,7 @@ func_atualiza()
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
 {
+    clear
     ##CHAMANDOS FUNCOES    
     #     
     case $escolhaauto_config in   
@@ -1609,18 +1610,17 @@ auto_config_ubuntu()
             
             #verificando variavel
             if [[ $hostname == 'desktop' ]]; then                        
-    #           kernel
-#                 arquivos_temporarios
-                pacotes_orfaos
-                funcao_chkrootkit
-                localpurge                                 
-            else
 #                 kernel
 #                 arquivos_temporarios
-                pacotes_orfaos
-                funcao_chkrootkit
-                localpurge                                             
+#                 pacotes_orfaos
+#                 funcao_chkrootkit
+#                 localpurge                                                                                     
+                prinf ""
             fi
+            
+            pacotes_orfaos
+            funcao_chkrootkit
+            localpurge 
             
             auto_config
         ;;
@@ -2102,6 +2102,7 @@ auto_config_debian()
 
 auto_config()
 {
+    clear
 #     # verificar distribuição utilizada
 #     cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
 # 
