@@ -52,7 +52,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.175.2.0.1]   #
+# # versão do script:           [0.1.177.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [26/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -73,8 +73,6 @@
 #                           - Icones-macbuntu
 # 
 # 	f = desenvolver 
-# 		- I     - [INTERFACE GRAFICA] - Criar uma interface gráfica, possibilitando ao usuário selecionar as ações que o usuário deseja realizar
-#                           - Dialog/Xdialog
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
@@ -1502,7 +1500,7 @@ func_atualiza()
 
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
-   if [[ `id -u` -ne 0 ]]; then
+    if [[ `id -u` -ne 0 ]]; then
         clear
         printf "[-] Você precisa ter poderes administrativos (root) \n"
         printf "[-] O script está sendo finalizado... \n"
