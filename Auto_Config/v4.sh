@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.179.2.0.0]   #
+# # versão do script:           [0.1.180.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [27/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1496,10 +1496,7 @@ func_atualiza()
         printf "[+] Verificando se existe o TuxGuitar instalado \n"
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_tuxguitar ]]; then    
-            printf "\n"
-            printf "[+] Instalando o TuxGuitar \n"    
-        
+        if [[ ! -e $var_tuxguitar ]]; then            
             printf "[*] Realizando download do pacote \n"    
             wget https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
             
@@ -1511,6 +1508,9 @@ func_atualiza()
             
             printf "[*] Instalando pacote \n"
             dpkg -i tuxguitar-1.4-linux-x86_64.deb
+            
+            printf "[*] Removendo pacote"
+            rm tuxguitar-1.4-linux-x86_64.deb
         else
             printf "[+] TuxGuitar já está instalado \n"
         fi
