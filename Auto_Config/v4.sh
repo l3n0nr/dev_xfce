@@ -28,7 +28,6 @@
 #
 # por Dionatan Simioni
 # 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
-#    	 <http://www.diolinux.com.br/2016/12/diolinux-paper-orange-modern-theme-for-unity.html>
 # 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
 #        <http://www.diolinux.com.br/2015/09/como-instalar-drivers-de-video-no-ubuntu-linux.html>
 #
@@ -52,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.178.2.0.0]   #
+# # versão do script:           [0.1.179.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [26/10/17]      #
+# # ultima ediçao realizada:      [27/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -147,7 +146,6 @@
 # ASTRONOMIA
 # # [+] Stellarium
 # # [+] Kstars
-# # [+] Celestia
 # 
 # MULTIMIDIA
 # # [+] Spofity
@@ -230,7 +228,6 @@
 # 
 # # # NOTEBOOK 
 # # [+] Kstars
-# # [+] Celestia
 # # [+] Steam
 # # [+] Spotify
 # # [+] Kdenlive
@@ -939,15 +936,7 @@ func_atualiza()
         printf "[+] Instalando o Kstars \n"
         
         apt install kstars* -y
-    } 
-    
-    celestia()
-    {
-        printf "\n"
-        printf "[+] Instalando o Celestia \n"
-        
-        apt install celestia-gnome celestia* -y
-    }
+    }     
     
     gnome_terminal()
     {
@@ -1702,7 +1691,6 @@ auto_config_ubuntu()
                 
 #               ASTRONOMIA
                 stellarium
-#                 celestia
 #                 kstars
                 
 #               MULTIMIDIA
@@ -1777,7 +1765,6 @@ auto_config_ubuntu()
                 
 #               ASTRONOMIA
                 stellarium
-                celestia
                 kstars
                 
 #               MULTIMIDIA
@@ -1912,13 +1899,7 @@ auto_config_ubuntu()
                 printf "\n"
                 printf "[+] Removendo o Kstars \n"
                 
-                apt purge kstars* -y
-                
-                printf "\n"
-                printf "[+] Removendo o Celestia \n"
-                apt purge celestia* -y
-                
-                
+                apt purge kstars* -y                                                
                 
                 printf "\n"
                 printf "[+] Removendo a Steam \n"
