@@ -52,7 +52,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.177.2.0.0]   #
+# # versão do script:           [0.1.178.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [26/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -161,6 +161,9 @@
 # # [+] Calibre
 # # [+] Gimp
 # # # [+] PhotoGimp
+# 
+# MUSICA    
+# # [+] Tux Guitar
 # 
 # DESENVOLVIMENTO
 # # [+] Kate
@@ -1495,6 +1498,34 @@ func_atualiza()
         apt install sudo -y
     }
     
+    tuxguitar()
+    {
+        # variavel de verificação 
+        var_tuxguitar=$(which java) 
+
+        printf "\n"                
+        printf "[+] Verificando se existe o TuxGuitar instalado \n"
+
+        # criando verificação para instalar o tuxguitar
+        if [[ ! -e $var_tuxguitar ]]; then    
+            printf "\n"
+            printf "[+] Instalando o TuxGuitar \n"    
+        
+            printf "[*] Realizando download do pacote \n"    
+            wget https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
+            
+            printf "[*] Instalando pacote \n"    
+            dpkg -i tuxguitar-1.4-linux-x86_64.deb
+            
+            printf "[*] Resolvendo dependências \n"    
+            apt install -f 
+            
+            printf "[*] Instalando pacote \n"
+            dpkg -i tuxguitar-1.4-linux-x86_64.deb
+        else
+            printf "[+] TuxGuitar já está instalado \n"
+        fi
+    }
        
 # # # # # # # # # # 
 
@@ -1759,6 +1790,9 @@ auto_config_ubuntu()
 #                 mcomix
                 simple_screen_recorder
 #                 calibre
+
+#               MUSICA
+                tuxguitar
                 
 #               DESENVOLVIMENTO
                 kate                
