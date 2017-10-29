@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.180.2.0.0]   #
+# # versão do script:           [0.1.181.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [27/10/17]      #
+# # ultima ediçao realizada:      [28/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1626,15 +1626,14 @@ auto_config_ubuntu()
         3) echo
             clear
             
-            #verificando variavel
-            if [[ $hostname == 'desktop' ]]; then                        
-#                 kernel
-#                 arquivos_temporarios
-#                 pacotes_orfaos
-#                 funcao_chkrootkit
-#                 localpurge                                                                                     
-                prinf ""
-            fi
+#             #verificando variavel
+#             if [[ $hostname == 'desktop' ]]; then                        
+# #                 kernel
+# #                 arquivos_temporarios
+# #                 pacotes_orfaos
+# #                 funcao_chkrootkit
+# #                 localpurge                                                                                     
+#             fi
             
             pacotes_orfaos
             funcao_chkrootkit
