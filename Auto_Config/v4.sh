@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.181.2.0.0]   #
+# # versão do script:           [0.1.183.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [28/10/17]      #
+# # ultima ediçao realizada:      [29/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1337,15 +1337,16 @@ func_atualiza()
             apt-add-repository ppa:graphics-drivers/ppa -y 
             apt-add-repository ppa:ubuntu-x-swat/x-updates -y
             apt-add-repository ppa:xorg-edgers/ppa -y
-            update
-            apt install nvidia-current nvidia-settings -y
+            update        
             
             printf "\n"
             printf "[+] Arquivo de configuração Nvidia \n"
+            
             cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
-        else
-            printf "[+] Nvidia já está instalado no sistema! \n"
         fi
+            
+        apt install nvidia-current nvidia-settings -y
+        printf "[+] Nvidia já está instalado no sistema! \n"
     }
     
     icones()
@@ -1571,7 +1572,7 @@ auto_config_ubuntu()
                 ntp
                 apport
                 terminal_cool
-                sshd_config
+#                 sshd_config
                 repositorios_padrao
                 log_sudo
                 lightdm
@@ -1590,7 +1591,7 @@ auto_config_ubuntu()
                 ntp
                 apport
                 terminal_cool
-                sshd_config
+#                 sshd_config
                 repositorios_padrao
                 log_sudo                    
 #                 lightdm
@@ -1609,7 +1610,7 @@ auto_config_ubuntu()
                 ntp
                 apport
                 terminal_cool
-                sshd_config
+#                 sshd_config
                 repositorios_padrao
                 log_sudo
                 arquivo_hosts
@@ -2015,7 +2016,7 @@ auto_config_debian()
                 fonts
                 ntp
                 terminal_cool
-                sshd_config
+#                 sshd_config
                 repositorios_padrao
                 arquivo_hosts
                 
