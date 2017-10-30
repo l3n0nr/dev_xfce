@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.225.3.0.0]   #
+# # versão do script:           [0.1.226.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -583,7 +583,7 @@ func_atualiza()
     {
         printf "\n"
         printf "[+] Removendo possiveis erros com o apport \n"
-        rm /var/crash/*
+#         rm /var/crash/*
         
         #corrige apport - ubuntu 16.04
         cat base/ubuntu/apport > /etc/default/apport 
@@ -769,8 +769,8 @@ func_atualiza()
             printf "\n"
             printf "[+] Instalando o PhotoGimp \n"
             
-            printf "[*] Removendo arquivo existente \n"
-            rm -r $pasta_home/.gimp-2.8
+#             printf "[*] Removendo arquivo existente \n"
+#             rm -r $pasta_home/.gimp-2.8
                     
             printf "[*] Inserindo novo arquivo \n"        
             cp -r base/.gimp-2.8/ $pasta_home
