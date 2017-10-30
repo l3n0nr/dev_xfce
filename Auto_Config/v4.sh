@@ -1306,16 +1306,16 @@ func_atualiza()
     icones()
     {
         printf "\n"
-        printf "[+] Realizando backup dos arquivos \n"
+        printf "[+] Gerando lista dos arquivos \n"
 
-        # criando variaveis        
+        # criando variaveis                
         # # variaveis de entrada
-        input_icons='/home/lenonr/MEGA/Outros/Themes_Icons/icons/*'
-        input_themes='/home/lenonr/MEGA/Outros/Themes_Icons/themes/*'
-
+        input_icons='/usr/share/icons/'
+        input_themes='/usr/share/themes/'
+        
         # # variaveis de saida
-        output_icons='/usr/share/icons/'
-        output_themes='/usr/share/themes/'
+        output_icons='/home/lenonr/MEGA/Outros/Themes_Icons/icons/*'
+        output_themes='/home/lenonr/MEGA/Outros/Themes_Icons/themes/*'
         
         # # variaveis de verificao
         caminho='/home/lenonr/MEGA/Outros/Themes_Icons'
@@ -1449,13 +1449,13 @@ func_atualiza()
             printf "[+] Instalando Tux Guitar \n"
             
             printf "[*] Realizando download do pacote \n"    
-            wget https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
+            wget -c https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
             
             printf "[*] Instalando pacote \n"    
             dpkg -i tuxguitar-1.4-linux-x86_64.deb
             
             printf "[*] Resolvendo dependências \n"    
-            apt install -f 
+            apt install -fy
             
             printf "[*] Instalando pacote \n"
             dpkg -i tuxguitar-1.4-linux-x86_64.deb
