@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.200.2.0.0]   #
+# # versão do script:           [0.1.202.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -171,6 +171,7 @@
 # # [+] Mysql-server
 # # [+] PhpMyAdmin
 # # [+] ZSH
+# # [+] Docker
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -508,17 +509,23 @@ func_atualiza()
         rm -f ttf-mscorefonts-installer_3.6_all.deb.1
     }
     
-    ntp()
+    install_ntp()
     {        
         printf "\n"
-        printf "[+] Corrigindo NTP \n"
+        printf "[+] Instalando o NTP \n"
                             
         #instalando software necessario
-        apt install ntp ntpdate -y 
+        apt install ntp ntpdate -y                 
+    }
+    
+    config_ntp()
+    {
+        printf "\n"
+        printf "[+] Configurando o NTP \n"
         
         #parando o serviço NTP para realizar as configuraçoes necessarias
         printf "\n"
-        printf "[+] Parando serviço NTP para realizaçao das configuraçoes necessarias \n"
+        printf "[*] Parando serviço NTP para realizaçao das configuraçoes necessarias \n"
             service ntp stop
         
         #configurando script base - NTP
@@ -1455,7 +1462,7 @@ func_atualiza()
         var_tuxguitar=$(which java) 
 
         printf "\n"                
-        printf "[+] Verificando se existe o TuxGuitar instalado \n"
+        printf "[+] Verificando se existe o TuxGuitar está instalado \n"
 
         # criando verificação para instalar o tuxguitar
         if [[ ! -e $var_tuxguitar ]]; then            
@@ -1499,8 +1506,29 @@ func_atualiza()
 
 
             # voltando para o diretorio anterior para seguir o funcionamento do script
-            cd -
-            
+#             cd -            
+    }
+    
+    install_docker()
+    {
+        printf "\n"
+        printf "[+] Verificando se existe o Docker está instalado \n"
+        
+         # variavel de verificação 
+        var_docker=$(which docker) 
+
+         # criando verificação para instalar o tuxguitar
+        if [[ ! -e $var_docker ]]; then  
+        
+            printf "\n"                
+            printf "[+] Instalando o Docker \n"    
+        
+            curl -fsSL https://get.docker.com/ | sh        
+        else
+            printf "\n"                
+            printf "[+] O Docker já está instalado no seu sistema. \n"    
+        fi                    
+        
     }
        
 # # # # # # # # # # 
@@ -1555,7 +1583,7 @@ auto_config_ubuntu()
                 prelink_preload_deborphan
                 funcao_dpkg
                 fonts
-                ntp
+                config_ntp
                 apport
                 repositorios_padrao
                 log_sudo
@@ -1572,7 +1600,7 @@ auto_config_ubuntu()
                 prelink_preload_deborphan
                 funcao_dpkg
                 fonts
-                ntp
+                config_ntp
                 apport
                 repositorios_padrao
                 log_sudo                    
@@ -1589,7 +1617,7 @@ auto_config_ubuntu()
                 prelink_preload_deborphan
                 funcao_dpkg
                 fonts
-                ntp
+                config_ntp
                 apport
                 repositorios_padrao
                 log_sudo
@@ -1639,7 +1667,7 @@ auto_config_ubuntu()
                 xfce4
                 redshift
                 gnome_terminal
-                ntp
+                install_ntp
                 plank
                 gnome_system_monitor
                 nautilus
@@ -1687,11 +1715,7 @@ auto_config_ubuntu()
                 
 #               IMAGEM
                 funcao_gimp
-                
-#               OFFICE
-                libreoffice
-                texmaker
-                                
+                                                
 #               OUTROS
                 firewall_basic
                 mega
@@ -1703,6 +1727,10 @@ auto_config_ubuntu()
                 htop
                 install_tree
                 
+#               OFFICE
+                libreoffice
+                texmaker
+                
             else 
 #               PERSONALIZAÇÃO
                 nvidia
@@ -1711,7 +1739,7 @@ auto_config_ubuntu()
                 xfce4
                 redshift
                 gnome_terminal
-                ntp
+                install_ntp
                 plank
                 gnome_system_monitor
                 nautilus
@@ -1761,11 +1789,7 @@ auto_config_ubuntu()
                 install_git
                 
 #               IMAGEM
-                funcao_gimp
-                
-#               OFFICE
-                libreoffice
-                texmaker               
+                funcao_gimp                            
                 
 #               OUTROS
                 firewall_basic
@@ -1777,6 +1801,10 @@ auto_config_ubuntu()
                 install_nmap
                 htop
                 install_tree
+                
+#               OFFICE
+                libreoffice
+                texmaker
             fi
             
             auto_config
@@ -1788,19 +1816,20 @@ auto_config_ubuntu()
             # desenvolvimento
             apache
             mysql
-            phpmyadmin
+            phpmyadmin            
+            install_zsh
+            install_docker
             
             # verificando computador
             if [[ $hostname == 'desktop' ]]; then            
                 # desenvolvimento
-                wireshark
-                install_zsh
+                wireshark                
                 
                 # outros
                 virtualbox
                 
                 # jogos
-#                 steam            
+                steam            
             fi
                 
             # teclado
@@ -1990,7 +2019,7 @@ auto_config_debian()
         2) printf  
                 apt_install
                 fonts
-                ntp
+                config_ntp
                 repositorios_padrao
                 arquivo_hosts
                 
@@ -2015,7 +2044,9 @@ auto_config_debian()
                 brightside
                 
                 install_sudo
-                install_nmap
+                install_nmap                
+                install_docker
+                
                 htop
                 #firmware-wifi
                 
