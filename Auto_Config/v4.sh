@@ -829,7 +829,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe LibreOffice instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_libreoffice ]]; then                
             printf "\n"
             printf "[+] Instalando o Libreoffice \n"
@@ -911,7 +910,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Stellarium instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_stellarium ]]; then                    
             printf "\n"
             printf "[+] Instalando o Stellarium \n"
@@ -1054,7 +1052,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Kdenlive instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_kdenlive ]]; then                        
             printf "\n"
             printf "[+] Instalando o Kdenlive \n"
@@ -1104,7 +1101,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Plank está instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_plank ]]; then                        
             printf "\n"
             printf "[+] Instalando o Plank Dock \n"
@@ -1142,7 +1138,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Nautilus instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_nautilus ]]; then                            
             printf "\n"
             printf "[+] Instalando o Nautilus \n"
@@ -1221,7 +1216,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Simple Screen Recorder já está instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_simplescreenrecorder ]]; then            
             printf "\n"
             printf "[*] Instalando o Simple Screen Recorder \n"
@@ -1307,7 +1301,6 @@ func_atualiza()
         printf "\n"                
         printf "[+] Verificando se existe Nvidia já está instalado \n"
 
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_nvidia ]]; then                                
             printf "\n"
             printf "[+] Instalando o driver da Placa Nvidia \n"
@@ -1383,7 +1376,7 @@ func_atualiza()
         if [[ ! -e $var_virtualbox ]]; then        
             printf "\n"        
             printf "[*] Realizando download \n"
-            wget download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
             
             printf "[*] Instalando o VirtualBox \n"
             dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
