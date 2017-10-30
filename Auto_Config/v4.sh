@@ -289,13 +289,13 @@ func_help()
 
     Exemplos:
         - Lendo instruções de funcionamento:
-            ~ v4.sh ajuda
+            ~ v4.sh
         
         - Atualizando o Sistema:
             ~ v4.sh atualiza
             
         - Visualizando o menu de ações:
-            ~ v4.sh
+            ~ v4.sh menu
         
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
             
@@ -2146,13 +2146,13 @@ menu()
 
 if [ $# -eq 0 ]; then
 #         auto_config
-    menu
+    func_help
 fi
 
 # verificando o que foi digitado
 case $1 in
-    ajuda) func_help;;
     atualiza) func_atualiza;;
+    menu) auto_config;;
 esac
 
 # 
