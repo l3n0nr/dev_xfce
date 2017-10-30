@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.226.3.0.0]   #
+# # versão do script:           [0.1.228.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -198,6 +198,7 @@
 # # [+] Hardinfo    
 # # [+] Nvidia
 # # [+] Icones
+# # [+] Pulse Effects
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1380,6 +1381,31 @@ func_atualiza()
         apt install tree* -y
     }
     
+    pulseeffects()
+    {
+        # variavel de verificação 
+        var_pulseeffects=$(which pulseeffects) 
+                    
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_pulseeffects ]]; then  
+        
+            printf "[+] Instalando o Pulse Effects \n"
+            #instalando mega
+            dpkg -i base/ubuntu/pulseeffects/*.deb
+            
+            printf "[*] Resolvendo dependencias \n"
+            apt install -fy
+            
+            printf "[*] Instalando o Pulse Effects \n"
+            dpkg -i base/ubuntu/pulseeffects/*.deb     
+            
+            printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
+            sleep 5
+        else
+            printf "[*] Pulse Effects já está instalado \n"        
+        fi
+    }
+    
 # # # # # # # # # # 
 # # PROGRAMAS NÃO ESSENCIAIS
     
@@ -1809,6 +1835,9 @@ auto_config_ubuntu()
                 
                 # jogos
                 steam            
+                
+                # personalização
+                pulseeffects
             fi
                 
             # teclado
@@ -1888,13 +1917,7 @@ auto_config_ubuntu()
                 printf "\n"
                 printf "[+] Removendo a Steam \n"
                 
-                apt purge steam* -y
-                
-                                
-#                 printf ""
-#                 printf "[+] Removendo o Dolphin"
-#                 dolphin
-
+                apt purge steam* -y                
 
                 printf "\n"
                 printf "[+] Removendo o Spotify \n"
