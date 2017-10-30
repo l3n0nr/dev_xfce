@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.228.3.0.0]   #
+# # versão do script:           [0.1.230.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -473,6 +473,7 @@ func_atualiza()
                 prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
         
         printf "[*] Ativando o PRELINK \n"
+        printf "\n"
         printf "------------------- \n"
         if [[ $prelink == "PRELINKING=unknown" ]]; then
                 printf "adicionando ... \n"
@@ -1381,7 +1382,7 @@ func_atualiza()
         apt install tree* -y
     }
     
-    pulseeffects()
+    install_pulseeffects()
     {
         # variavel de verificação 
         var_pulseeffects=$(which pulseeffects) 
@@ -1402,7 +1403,9 @@ func_atualiza()
             printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
             sleep 5
         else
-            printf "[*] Pulse Effects já está instalado \n"        
+            printf "\n"
+            printf "[+] Pulse Effects já está instalado"        
+            printf "\n"
         fi
     }
     
@@ -1499,9 +1502,9 @@ func_atualiza()
             printf "[+] Instalando o ZSH \n"    
             apt install zsh -y
 
-            printf "\n [+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
+            printf "\n[+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
             printf "[+] Exemplo: sudo /etc/passwd - $pasta_home:/bin/zsh -> $pasta_home:/bin/zsh \n"
-            sleep 10
+#             sleep 10
             
 #             altera_zsh=$(cat /etc/passwd | grep $pasta_home:/bin)            
 #             cd $pasta_home
@@ -1837,7 +1840,7 @@ auto_config_ubuntu()
                 steam            
                 
                 # personalização
-                pulseeffects
+                install_pulseeffects
             fi
                 
             # teclado
