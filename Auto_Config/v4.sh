@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.183.2.0.0]   #
+# # versão do script:           [0.1.190.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [29/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -110,8 +110,6 @@
 # # [+] NTP
 # # [+] Iniciando sessão automaticamente
 # # [+] Apport
-# # [+] Terminal Personalizado
-# # [+] Ssh
 # # [+] Log - Sudo
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
@@ -182,7 +180,6 @@
 # # [+] Redshift
 # # [+] Gnome-terminal
 # # [+] NTP
-# # [+] Synaptic	
 # # [+] Plank
 # # [+] Gnome System Monitor
 # # [+] Nautilus
@@ -194,8 +191,7 @@
 # # [+] Gnome System Tools
 # # [+] Brightside
 # # [+] Figlet
-# # [+] Hardinfo
-# # [+] Synapse
+# # [+] Hardinfo    
 # # [+] Nvidia
 # # [+] Icones
 # 
@@ -318,21 +314,27 @@ func_atualiza()
         #atualizando lista de repositorios            
         printf "[+] Atualizando lista de repositorios do sistema \n"   
         
+        printf "\n"
+        
         apt update 
         
-        # verificando distribuição
-        if [ "$distro" == "Ubuntu" ]; then	                
-	        #atualizando repositorio e seus dependencias
-        	printf "[+] Atualizando lista de programas e suas dependências \n" 
-        	
-	        auto-apt update                
-        fi                                
+#         # verificando distribuição
+#         if [ "$distro" == "Ubuntu" ]; then	                
+#                 printf "\n"
+#                 
+# 	        #atualizando repositorio e seus dependencias
+#         	printf "[+] Atualizando lista de programas e suas dependências \n" 
+#         	
+# 	        auto-apt update                
+#         fi                                
     }
     
     upgrade()
     {            
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then
+                printf "\n"
+                
         	#atualizando lista de programas do sistema
 	        printf "[+] Atualizando lista de programas do sistema \n"  
 	        
@@ -347,6 +349,8 @@ func_atualiza()
 	        printf "[+] Atualizando lista de programas do sistema \n"  
 	        
 	        apt upgrade -y 
+	        apt dist-upgrade -y
+	        
 	fi
     }
 
@@ -575,25 +579,7 @@ func_atualiza()
         printf "[+] Iniciando sessão automaticamente \n"
         
         cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
-    }
-    
-    terminal_cool()
-    {
-        #terminal Personalizado
-        printf "\n"
-        printf "[+] Deixando o terminal personalizado \n"
-        
-        cat base/.bashrc > $home/.bashrc    
-    }
-            
-    sshd_config()
-    {
-        #altera arquivo ssh
-        printf "\n"
-        printf "[+] Alterando regras no acesso SSH \n"
-        
-        cat base/sshd_config > /etc/ssh/sshd_config    
-    }                
+    }               
             
     log_sudo()
     {
@@ -968,15 +954,7 @@ func_atualiza()
         #instalando tor
         apt-get install tor-browser -y
     }
-    
-    synaptic()
-    {
-        printf "\n"
-        printf "[+] Instalando o Synaptic \n"
         
-        apt install synaptic -y
-    }
-    
     dolphin()
     {
         printf "\n"
@@ -1300,27 +1278,6 @@ func_atualiza()
         apt install hardinfo -y
     }
     
-    synaptic()
-    {
-        # variavel de verificação 
-        var_synapse=$(which synapse) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe Synapse já está instalado \n"
-
-        # criando verificação para instalar o virtualbox
-        if [[ ! -e $var_synapse ]]; then                            
-            printf "\n"
-            printf "[+] Instalando o Synaptic \n"
-            
-            add-apt-repository ppa:synapse-core/testing -y
-            update        
-            apt-get install synapse -y
-        else
-            printf "[+] Synapse já está instalado no sistema! \n"
-        fi
-    }
-    
     nvidia()
     {
         # variavel de verificação 
@@ -1571,8 +1528,6 @@ auto_config_ubuntu()
                 fonts
                 ntp
                 apport
-                terminal_cool
-#                 sshd_config
                 repositorios_padrao
                 log_sudo
                 lightdm
@@ -1590,8 +1545,6 @@ auto_config_ubuntu()
                 fonts
                 ntp
                 apport
-                terminal_cool
-#                 sshd_config
                 repositorios_padrao
                 log_sudo                    
 #                 lightdm
@@ -1609,8 +1562,6 @@ auto_config_ubuntu()
                 fonts
                 ntp
                 apport
-                terminal_cool
-#                 sshd_config
                 repositorios_padrao
                 log_sudo
                 arquivo_hosts
@@ -1660,7 +1611,6 @@ auto_config_ubuntu()
                 redshift
                 gnome_terminal
                 ntp
-                synaptic
                 plank
                 gnome_system_monitor
                 nautilus
@@ -1673,8 +1623,6 @@ auto_config_ubuntu()
                 brightside
 #                 figlet
                 hardinfo
-                synaptic
-                icones
             
 #               NAVEGADORES
                 firefox
@@ -1735,7 +1683,6 @@ auto_config_ubuntu()
                 redshift
                 gnome_terminal
                 ntp
-                synaptic
                 plank
                 gnome_system_monitor
                 nautilus
@@ -1747,9 +1694,8 @@ auto_config_ubuntu()
                 gnome_system_monitor
                 brightside
                 figlet
-                hardinfo
-                synaptic                
-                icones
+                hardinfo   
+#                 icones
             
 #               NAVEGADORES
                 firefox
@@ -2015,8 +1961,6 @@ auto_config_debian()
                 apt_install
                 fonts
                 ntp
-                terminal_cool
-#                 sshd_config
                 repositorios_padrao
                 arquivo_hosts
                 
@@ -2037,7 +1981,7 @@ auto_config_debian()
                 plank
                 git
                 openssh
-                icones
+#                 icones
                 brightside
                 
                 install_sudo
