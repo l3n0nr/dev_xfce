@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.190.2.0.0]   #
+# # versão do script:           [0.1.200.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [29/10/17]      #
+# # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -70,6 +70,8 @@
 #                           - Tor-Browser
 #                           - Wine
 #                           - Icones-macbuntu
+# 
+#               - III   - [USUARIO ZSH]     - Alterar diretamente no script a funcao "/home/lenonr:/bin/bash" por "/home/lenonr:/bin/zsh" no arquivo /etc/passwd
 # 
 # 	f = desenvolver 
 #
@@ -168,6 +170,7 @@
 # # [+] Apache
 # # [+] Mysql-server
 # # [+] PhpMyAdmin
+# # [+] ZSH
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -244,7 +247,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
 # Criando variavel com localização da raiz do usuario
-# home = "/home/lenonr"
+pasta_home="/home/lenonr"
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
@@ -453,12 +456,12 @@ func_atualiza()
         apt install prelink preload -y 1>/dev/null 2>/dev/stdout
         apt-get install deborphan -y 
         
-        printf "[*] Configurando Deborphan... \n"
+        echo "[*] Configurando Deborphan... \n"
         deborphan | xargs sudo apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
         #configurando o prelink e o preload
-        printf "[*] Configurando Prelink e Preload... \n"
+        echo "[*] Configurando Prelink e Preload... "
                 memfree=$(grep "memfree = 50" /etc/preload.conf)
                 memcached=$(grep "memcached = 0" /etc/preload.conf)
                 processes=$(grep "processes = 30" /etc/preload.conf)
@@ -750,10 +753,10 @@ func_atualiza()
         
         printf "[*] Removendo arquivo existente \n"
 #         rm -r /home/lenonr/.gimp-2.8
-        rm -r $home/.gimp-2.8
+        rm -r $past_home/.gimp-2.8
                 
         printf "[*] Inserindo novo arquivo \n"        
-        cp -r base/.gimp-2.8/ $home
+        cp -r base/.gimp-2.8/ $pasta_home
         
         printf "[+] Novo arquivo adicionado \n"
     }
@@ -1296,13 +1299,14 @@ func_atualiza()
             apt-add-repository ppa:xorg-edgers/ppa -y
             update        
             
+            apt install nvidia-current nvidia-settings -y
+            
             printf "\n"
             printf "[+] Arquivo de configuração Nvidia \n"
             
-            cat base/ubuntu/.nvidia-settings-rc > $home/.nvidia-settings-rc    
+#             cat base/ubuntu/.nvidia-settings-rc > $past_home/.nvidia-settings-rc    
         fi
-            
-        apt install nvidia-current nvidia-settings -y
+                    
         printf "[+] Nvidia já está instalado no sistema! \n"
     }
     
@@ -1472,6 +1476,31 @@ func_atualiza()
         else
             printf "[+] TuxGuitar já está instalado \n"
         fi
+    }
+    
+    install_zsh()
+    {          
+            printf "\n"
+            printf "[+] Instalando o Sudo \n"    
+            apt install zsh -y
+
+            printf "[+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
+            printf "[+] Exemplo: sudo /etc/passwd - $pasta_home:/bin/zsh -> $pasta_home:/bin/zsh \n"
+            sleep 10
+            
+#             altera_zsh=$(cat /etc/passwd | grep $pasta_home:/bin)            
+#             cd $pasta_home
+#             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#             cd -            
+
+            printf "[+] Instalando a personalização do zsh \n"	
+
+#             cd $HOME
+
+
+            # voltando para o diretorio anterior para seguir o funcionamento do script
+            cd -
+            
     }
        
 # # # # # # # # # # 
@@ -1765,6 +1794,7 @@ auto_config_ubuntu()
             if [[ $hostname == 'desktop' ]]; then            
                 # desenvolvimento
                 wireshark
+                install_zsh
                 
                 # outros
                 virtualbox
@@ -2008,10 +2038,13 @@ auto_config_debian()
                 # desenvolvimento
                 apache
                 mysql
-                phpmyadmin
+                phpmyadmin                
                 
                 # teclado
                 ibus
+                
+                # desenvolvimento
+                install_zsh
                 
                 auto_config
         ;;
@@ -2059,22 +2092,13 @@ auto_config_debian()
 
 auto_config()
 {
-    clear
-#     # verificar distribuição utilizada
-#     cat /etc/*-release | grep ID | sed -e "s;ID=;;" | sed -e "s;DISTRIB_;;" | sed -e "s;VERSION_;;" | sed -e "s;ID_LIKE=;;" > distro.txt
-# 
-#     # verificando distribuição
-#     distro=$(sed '2!d' distro.txt)
-#     
-#     # apagando arquivo
-#     rm distro.txt                          
+    clear                     
 
     # verificando distro | forma alterativa
     distro=$(lsb_release -i | cut -f2)
     
-#     clear
-#     echo "INICIANDO AS TAREFAS"
-    #chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    
     printf "                
                 AUTOCONFIG - V4
                 \n"
