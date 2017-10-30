@@ -740,7 +740,7 @@ func_atualiza()
     }
     
     codecs()
-    {
+    {        
         printf "\n"
         printf "[+] Instalando Pacotes Multimidias (Codecs) \n"
         
@@ -751,21 +751,33 @@ func_atualiza()
 
     funcao_gimp()
     {
-        printf "\n"
-        printf "[+] Instalando o Gimp \n"
-        apt install gimp -y 
+    
+     # variavel de verificação 
+        var_gimp=$(which gimp)  
+
+        printf "\n"                
+        printf "[+] Verificando se existe Spotify instalado \n"
         
-        printf "\n"
-        printf "[+] Instalando o PhotoGimp \n"
-        
-        printf "[*] Removendo arquivo existente \n"
-#         rm -r /home/lenonr/.gimp-2.8
-        rm -r $pasta_home/.gimp-2.8
-                
-        printf "[*] Inserindo novo arquivo \n"        
-        cp -r base/.gimp-2.8/ $pasta_home
-        
-        printf "[+] Novo arquivo adicionado! \n"
+        if [[ ! -e $var_gimp ]]; then        
+            printf "\n"
+            printf "[+] Instalando o Gimp \n"
+            apt install gimp -y 
+            
+            printf "\n"
+            printf "[+] Instalando o PhotoGimp \n"
+            
+            printf "[*] Removendo arquivo existente \n"
+    #         rm -r /home/lenonr/.gimp-2.8
+            rm -r $pasta_home/.gimp-2.8
+                    
+            printf "[*] Inserindo novo arquivo \n"        
+            cp -r base/.gimp-2.8/ $pasta_home
+            
+            printf "[+] Novo arquivo adicionado! \n"
+        else
+            printf "\n"
+            printf "[+] Gimp já está instalado na sua máquina! \n"            
+        fi
     }
     
     xfce4()
