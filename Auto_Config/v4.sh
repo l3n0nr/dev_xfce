@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.215.3.0.0]   #
+# # versão do script:           [0.1.225.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -236,11 +236,6 @@
 # # [+] Figlet
 # # [+] Transmission
 # 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 	
-# 
-# Reinicialização
-# # [+]Reiniciar
-# 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
  
 #                               CORPO DO SCRIPT                               #
@@ -316,8 +311,8 @@ func_atualiza()
     update()
     {    
         #atualizando lista de repositorios            
-        printf "[+] Atualizando lista de repositorios do sistema \n"   
-        
+        printf "\n"
+        printf "[+] Atualizando lista de repositorios do sistema"           
         printf "\n"
         
         apt update 
@@ -337,19 +332,20 @@ func_atualiza()
     {            
         # verificando distribuição
         if [ "$distro" == "Ubuntu" ]; then
-                printf "\n"
-                
+                printf "\n"                
         	#atualizando lista de programas do sistema
 	        printf "[+] Atualizando lista de programas do sistema \n"  
 	        
 	        apt upgrade -y 
         
 	        #atualizando repositorio local
+	        printf "\n"
 	        printf "[+] Atualizando repositório local dos programas \n"  
 	        
 	        auto-apt updatedb
 	else
         	#atualizando lista de programas do sistema
+        	printf "\n"
 	        printf "[+] Atualizando lista de programas do sistema \n"  
 	        
 	        apt upgrade -y 
@@ -364,7 +360,8 @@ func_atualiza()
     {        
         #verificando lista do apt
         printf "\n"
-        printf "[+] Verificando lista do apt \n"
+        printf "[+] Verificando lista do apt"
+        printf "\n"
         
         apt-get check -y
     }
@@ -373,7 +370,8 @@ func_atualiza()
     {
         #instalando possiveis dependencias 
         printf "\n"
-        printf "[+] Instalando dependências pendentes \n"
+        printf "[+] Instalando dependências pendentes"
+        printf "\n"
         
         apt-get -f install -y
     }
@@ -382,7 +380,8 @@ func_atualiza()
     {
         #removendo possiveis dependencias
         printf "\n"
-        printf "[+] Removendo possíveis dependências obsoletas \n"
+        printf "[+] Removendo possíveis dependências obsoletas"
+        printf "\n"
         
         apt-get -f remove -y   
         apt-get autoremove -y    
@@ -392,7 +391,8 @@ func_atualiza()
     {
         #limpando lista arquivos sobressalentes
         printf "\n"
-        printf "[+] Limpando arquivos sobressalentes \n "
+        printf "[+] Limpando arquivos sobressalentes"
+        printf "\n"
         
         apt-get clean -y   
     }
@@ -401,7 +401,8 @@ func_atualiza()
     {
         #corrigindo problemas de dependencias
         printf "\n"
-        printf "[+] Corrigindo problemas de dependências \n"
+        printf "[+] Corrigindo problemas de dependências"
+        printf "\n"
         
         apt-get install auto-apt -y 
     }
@@ -410,7 +411,8 @@ func_atualiza()
     {        
         #corrigindo repositorio local de dependencias automaticamente
         printf "\n"
-        printf "[+] Corrigindo repositório local de dependências automaticamente \n"
+        printf "[+] Corrigindo repositório local de dependências automaticamente"
+        printf "\n"
         
         auto-apt update-local    
     }
@@ -441,6 +443,7 @@ func_atualiza()
                 printf "[-] Não há nada para ser otimizado \n"
                 printf "[-] Isso porque já foi otimizado anteriormente! \n"
         fi    
+        printf "\n"
     }
     
     prelink_preload_deborphan()
@@ -482,7 +485,8 @@ func_atualiza()
     {
         #corrigindo pacotes quebrados
         printf "\n"
-        printf "[+] Corrigindo pacotes quebrados \n"
+        printf "[+] Corrigindo pacotes quebrados"
+        printf "\n"
 
         #corrige possiveis erros na instalação de softwares
         dpkg --configure -a 
@@ -496,7 +500,8 @@ func_atualiza()
     {
         #corrigindo erros fontes
         printf "\n"
-        printf "[+] Instalando pacotes de fontes \n"
+        printf "[+] Instalando pacotes de fontes"
+        printf "\n"
         
         #baixando pacote
         wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb 
@@ -512,7 +517,8 @@ func_atualiza()
     install_ntp()
     {        
         printf "\n"
-        printf "[+] Instalando o NTP \n"
+        printf "[+] Instalando o NTP"
+        printf "\n"
                             
         #instalando software necessario
         apt install ntp ntpdate -y                 
@@ -754,9 +760,6 @@ func_atualiza()
     
      # variavel de verificação 
         var_gimp=$(which gimp)  
-
-        printf "\n"                
-        printf "[+] Verificando se existe Spotify instalado \n"
         
         if [[ ! -e $var_gimp ]]; then        
             printf "\n"
@@ -825,9 +828,6 @@ func_atualiza()
     {
         # variavel de verificação 
         var_libreoffice=$(which libreoffice) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe LibreOffice instalado \n"
 
         if [[ ! -e $var_libreoffice ]]; then                
             printf "\n"
@@ -906,9 +906,6 @@ func_atualiza()
     {
         # variavel de verificação 
         var_stellarium=$(which stellarium) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe Stellarium instalado \n"
 
         if [[ ! -e $var_stellarium ]]; then                    
             printf "\n"
@@ -1049,9 +1046,6 @@ func_atualiza()
         # variavel de verificação 
         var_kdenlive=$(which kdenlive) 
 
-        printf "\n"                
-        printf "[+] Verificando se existe Kdenlive instalado \n"
-
         if [[ ! -e $var_kdenlive ]]; then                        
             printf "\n"
             printf "[+] Instalando o Kdenlive \n"
@@ -1098,9 +1092,6 @@ func_atualiza()
         # variavel de verificação 
         var_plank=$(which plank) 
 
-        printf "\n"                
-        printf "[+] Verificando se existe Plank está instalado \n"
-
         if [[ ! -e $var_plank ]]; then                        
             printf "\n"
             printf "[+] Instalando o Plank Dock \n"
@@ -1134,9 +1125,6 @@ func_atualiza()
     {   
         # variavel de verificação 
         var_nautilus=$(which nautilus) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe Nautilus instalado \n"
 
         if [[ ! -e $var_nautilus ]]; then                            
             printf "\n"
@@ -1212,9 +1200,6 @@ func_atualiza()
     {
         # variavel de verificação 
         var_simplescreenrecorder=$(which simplescreenrecorder) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe Simple Screen Recorder já está instalado \n"
 
         if [[ ! -e $var_simplescreenrecorder ]]; then            
             printf "\n"
@@ -1298,9 +1283,6 @@ func_atualiza()
         # variavel de verificação 
         var_nvidia=$(which nvidia-settings) 
 
-        printf "\n"                
-        printf "[+] Verificando se existe Nvidia já está instalado \n"
-
         if [[ ! -e $var_nvidia ]]; then                                
             printf "\n"
             printf "[+] Instalando o driver da Placa Nvidia \n"
@@ -1368,9 +1350,6 @@ func_atualiza()
     {
         # variavel de verificação 
         var_virtualbox=$(which virtualbox) 
-        
-        printf "\n"                
-        printf "[+] Verificando se existe VirtualBox já está instalado \n"
         
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_virtualbox ]]; then        
@@ -1463,13 +1442,12 @@ func_atualiza()
     tuxguitar()
     {
         # variavel de verificação 
-        var_tuxguitar=$(which java) 
-
-        printf "\n"                
-        printf "[+] Verificando se existe o TuxGuitar está instalado \n"
+#         var_tuxguitar=$(which java) 
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_tuxguitar ]]; then            
+#         if [[ ! -e $var_tuxguitar ]]; then            
+            printf "[+] Instalando Tux Guitar \n"
+            
             printf "[*] Realizando download do pacote \n"    
             wget https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
             
@@ -1484,9 +1462,9 @@ func_atualiza()
             
             printf "[*] Removendo pacote"
             rm tuxguitar-1.4-linux-x86_64.deb
-        else
-            printf "[+] TuxGuitar já está instalado \n"
-        fi
+#         else
+#             printf "[+] TuxGuitar já está instalado \n"
+#         fi
     }
     
     install_zsh()
@@ -1515,13 +1493,10 @@ func_atualiza()
     
     install_docker()
     {
-        printf "\n"
-        printf "[+] Verificando se existe o Docker está instalado \n"
-        
-         # variavel de verificação 
+        # variavel de verificação 
         var_docker=$(which docker) 
 
-         # criando verificação para instalar o tuxguitar
+        # criando verificação para instalar o tuxguitar
         if [[ ! -e $var_docker ]]; then  
         
             printf "\n"                
