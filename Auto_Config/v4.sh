@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.210.2.0.0]   #
+# # versão do script:           [0.1.215.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1499,10 +1499,10 @@ func_atualiza()
     install_zsh()
     {          
             printf "\n"
-            printf "[+] Instalando o Sudo \n"    
+            printf "[+] Instalando o ZSH \n"    
             apt install zsh -y
 
-            printf "[+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
+            printf "\n [+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
             printf "[+] Exemplo: sudo /etc/passwd - $pasta_home:/bin/zsh -> $pasta_home:/bin/zsh \n"
             sleep 10
             
@@ -1511,7 +1511,7 @@ func_atualiza()
 #             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 #             cd -            
 
-            printf "[+] Instalando a personalização do zsh \n"	
+#             printf "[+] Instalando a personalização do zsh \n"	
 
 #             cd $HOME
 
