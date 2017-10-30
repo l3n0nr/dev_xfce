@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.204.2.0.0]   #
+# # versão do script:           [0.1.210.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [30/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -767,7 +767,6 @@ func_atualiza()
             printf "[+] Instalando o PhotoGimp \n"
             
             printf "[*] Removendo arquivo existente \n"
-    #         rm -r /home/lenonr/.gimp-2.8
             rm -r $pasta_home/.gimp-2.8
                     
             printf "[*] Inserindo novo arquivo \n"        
