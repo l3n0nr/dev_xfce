@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.231.3.0.0]   #
+# # versão do script:           [0.1.232.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [31/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -624,11 +624,14 @@ func_atualiza()
     }
     
     arquivo_hosts()
-    {
-        printf "\n"
-        printf "[+] Altera arquivo de Hosts \n\n"
+    {                
+        #verificando variavel
+        if [[ $hostname == 'desktop' ]]; then        
+            printf "\n"
+            printf "[+] Altera arquivo de Hosts \n\n"
         
-        cat base/hosts > /etc/hosts
+            cat base/ubuntu/hosts > /etc/hosts
+        fi                            
     }
     
 # # # # # # # # # # 
@@ -1596,6 +1599,7 @@ auto_config_ubuntu()
                 repositorios_padrao
                 log_sudo
                 lightdm
+                arquivo_hosts
             elif [[ $hostname == 'notebook' ]]; then 
                 clear
                 apt_check
@@ -1628,8 +1632,7 @@ auto_config_ubuntu()
                 config_ntp
                 apport
                 repositorios_padrao
-                log_sudo
-                arquivo_hosts
+                log_sudo                
             fi
             
             # realizando atualização
