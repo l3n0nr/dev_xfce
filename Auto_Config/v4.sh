@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.230.3.0.0]   #
+# # versão do script:           [0.1.231.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [30/10/17]      #
+# # ultima ediçao realizada:      [31/10/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -473,8 +473,8 @@ func_atualiza()
                 prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
         
         printf "[*] Ativando o PRELINK \n"
-        printf "\n"
-        printf "------------------- \n"
+#         printf "\n"
+#         printf "------------------- \n"
         if [[ $prelink == "PRELINKING=unknown" ]]; then
                 printf "adicionando ... \n"
                 sed -i 's/unknown/yes/g' /etc/default/prelink	
