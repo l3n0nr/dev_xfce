@@ -628,7 +628,7 @@ func_atualiza()
         #verificando variavel
         if [[ $hostname == 'desktop' ]]; then        
             printf "\n"
-            printf "[+] Altera arquivo de Hosts \n\n"
+            printf "[+] Alterando arquivo Hosts \n\n"
         
             cat base/ubuntu/hosts > /etc/hosts
         fi                            
