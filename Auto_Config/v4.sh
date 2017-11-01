@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.243.3.0.0]   #
+# # versão do script:           [0.1.245.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -244,8 +244,15 @@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
+# # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-pasta_home="/home/lenonr"
+    pasta_home="/home/lenonr"           # personalizavel
+
+# verificando distro 
+    distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
+    
+#capturando hostname da maquina
+    hostname=$(hostname)                # desktop ou notebook
 # 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 # 
@@ -1568,11 +1575,7 @@ func_atualiza()
 
 func_corrige()
 {
-    clear
-    
-    # # verificando nome para máquina para executar funções especificas
-    #capturando hostname da maquina
-    hostname=$(hostname)
+    clear        
 
     #verificando variavel
     if [[ $hostname == 'desktop' ]]; then
@@ -2176,10 +2179,7 @@ auto_config_debian()
 
 auto_config()
 {
-    clear                     
-
-    # verificando distro | forma alterativa
-    distro=$(lsb_release -i | cut -f2)
+    clear                         
     
     # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     
