@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.245.3.0.0]   #
+# # versão do script:           [0.1.246.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1963,7 +1963,13 @@ func_todas()
     func_remove 
     func_corrige 
     func_limpa
-    reboot
+        
+#     resposta = 0;       # 0 = halt, 1 = reboot, 2=nada;    
+    # verificando qual ação o usuario deseja realizar
+    
+#     printf "Qual ação voce deseja realizar?"
+#     read -n1 -p
+    halt
 }
 
 ##REALIZANDO VERIFICAÇÕES
