@@ -77,9 +77,10 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
-#       [+] - Açao realizada 
-#       [*] - Processamento
-#       [-] - Não executado
+#       [+] - Açao realizada; 
+#       [*] - Processamento;
+#       [-] - Não executado;
+#       [!] - Mensagem de aviso;
 # 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # 
