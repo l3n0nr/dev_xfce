@@ -454,7 +454,7 @@ func_help()
                 /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
         else
                 printf "[-] Não há nada para ser otimizado \n"
-                printf "[-] Isso porque já foi otimizado anteriormente! \n"
+                printf "[!] Isso porque já foi otimizado anteriormente! \n"
         fi    
         printf "\n"
     }
