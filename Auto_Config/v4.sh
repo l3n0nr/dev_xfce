@@ -627,7 +627,7 @@ func_help()
             printf "[+] Alterando lista de repositórios padrão \n"
             
             cat base/ubuntu/sources.list > /etc/apt/sources.list    
-        elif [ $distro == "Debian" ]
+        elif [ $distro == "Debian" ]; then
             printf "\n"
             printf "[+] Alterando lista de repositórios padrão \n"
             
