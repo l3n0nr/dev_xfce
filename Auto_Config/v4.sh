@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.241.3.0.0]   #
+# # versão do script:           [0.1.242.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1957,6 +1957,7 @@ func_todas()
     func_remove 
     func_corrige 
     func_limpa
+    reboot
 }
 
 ##REALIZANDO VERIFICAÇÕES
