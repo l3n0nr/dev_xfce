@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.240.3.0.0]   #
+# # versão do script:           [0.1.241.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1949,6 +1949,16 @@ func_remove()
     fi
 }
 
+func_todas()
+{
+    func_atualiza
+    func_instala 
+    func_instala_outros 
+    func_remove 
+    func_corrige 
+    func_limpa
+}
+
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
     if [[ `id -u` -ne 0 ]]; then
@@ -2219,7 +2229,7 @@ case $1 in
     instala) func_instala;;
     instala_outros) func_instala_outros;;
     remove) func_remove;;    
-    formatado) func_atualiza || func_instala || func_instala_outros || func_remove || func_corrige || func_limpa;; 
+    formatado) func_todas;; 
 esac
 
 # 
