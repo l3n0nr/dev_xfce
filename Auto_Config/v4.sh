@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.242.3.0.0]   #
+# # versão do script:           [0.1.243.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -344,7 +344,7 @@ func_help()
     upgrade()
     {            
         # verificando distribuição
-        if [ "$distro" == "Ubuntu" ]; then
+        if [ $distro == "Ubuntu" ]; then
                 printf "\n"                
         	#atualizando lista de programas do sistema
 	        printf "[+] Atualizando lista de programas do sistema \n"  
@@ -622,16 +622,18 @@ func_help()
     repositorios_padrao()
     {
         # verificando distribuição
-        if [ "$distro" == "Ubuntu" ]; then
+        if [ $distro == "Ubuntu" ]; then
             printf "\n"
             printf "[+] Alterando lista de repositórios padrão \n"
             
             cat base/ubuntu/sources.list > /etc/apt/sources.list    
-        else
+        elif [ $distro == "Debian" ]
             printf "\n"
             printf "[+] Alterando lista de repositórios padrão \n"
             
             cat base/debian/sources.list > /etc/apt/sources.list    
+        else
+            printf "[!] Não realizou nada, distro não identificada! \n"
         fi
     }
     
@@ -1115,7 +1117,7 @@ func_help()
             
             
             # verificando distribuição
-            if [ "$distro" == "Ubuntu" ]; then        
+            if [ $distro == "Ubuntu" ]; then        
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
             
@@ -1148,7 +1150,7 @@ func_help()
             printf "[+] Instalando o Nautilus \n"
             
             # verificando distribuição
-            if [ "$distro" == "Ubuntu" ]; then                                
+            if [ $distro == "Ubuntu" ]; then                                
                 #adicionando ppa
                 add-apt-repository ppa:gnome3-team/gnome3 -y
                 
@@ -2198,11 +2200,11 @@ auto_config()
 Número da ação:" escolhaauto_config
     
     #executando ações para a distribuição Ubuntu
-    if [ "$distro" == "Ubuntu" ]; then
+    if [ $distro == "Ubuntu" ]; then
         clear
         auto_config_ubuntu                    
     #executando ações para a distribuição Fedora	
-    elif [ "$distro" == "Debian" ]; then
+    elif [ $distro == "Debian" ]; then
         clear
         auto_config_debian
     else
