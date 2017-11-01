@@ -1963,11 +1963,20 @@ func_todas()
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
     if [[ `id -u` -ne 0 ]]; then
-        clear
-        printf "[-] Você precisa ter poderes administrativos (root) \n"
-        printf "[-] O script está sendo finalizado... \n"
-        sleep 3
-        exit
+        clear        
+        printf "############################################################################\n"
+        printf "            
+   / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |  
+  / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_ 
+ / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
+/_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
+    "    
+    printf "\n"
+        printf "############################################################################ \n"
+        printf "[!] O script para funcionar, precisa estar sendo executado como root! \n"
+        printf "[!] Favor, logar na conta root e executar o script novamente. \n"
+        printf "############################################################################ \n"    
+    exit
     fi
             
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
