@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.232.3.0.0]   #
+# # versão do script:           [0.1.240.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [31/10/17]      #
+# # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -291,20 +291,31 @@ func_help()
         - Atualizando o Sistema:
             ~ v4.sh atualiza
             
+        - Corrigindo o Sistema:
+            ~ v4.sh corrige
+        
+        - Limpando o Sistema:
+            ~ v4.sh limpa
+            
+        - Instalando programas:
+            ~ v4.sh instala
+        
+        - Instalando outros programas:
+            ~ v4.sh instala_outros
+            
+        - Removendo programas:
+            ~ v4.sh remove
+            
         - Visualizando o menu de ações:
             ~ v4.sh menu
+            
+        - Após a maquina ser formatado(todos as funções executadas)
+            ~ v4.sh formatado
         
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
             
 ############################################################################
 "
-}
-
-func_atualiza()
-{
-    clear
-    update
-    upgrade    
 }
 
 # 
@@ -456,7 +467,7 @@ func_atualiza()
         #instalando prelink, preload, deborphan para um melhor performance do sistema
         printf "\n"
         printf "[*] Instalando Prelink, Preload e Deborphan \n"                        
-        printf "------------------- \n"
+#         printf "------------------- \n"
         
         apt install prelink preload -y 1>/dev/null 2>/dev/stdout
         apt-get install deborphan -y 
@@ -1544,6 +1555,400 @@ func_atualiza()
        
 # # # # # # # # # # 
 
+# # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
+func_atualiza()
+{
+    clear
+    update
+    upgrade    
+}
+
+func_corrige()
+{
+    clear
+    
+    # # verificando nome para máquina para executar funções especificas
+    #capturando hostname da maquina
+    hostname=$(hostname)
+
+    #verificando variavel
+    if [[ $hostname == 'desktop' ]]; then
+        clear
+        apt_check
+        apt_install
+        apt_remove
+        apt_clean
+        apt_auto
+        apt_update_local
+        swap
+        prelink_preload_deborphan
+        funcao_dpkg
+        fonts
+        config_ntp
+        apport
+        repositorios_padrao
+        log_sudo
+        lightdm
+        arquivo_hosts
+    elif [[ $hostname == 'notebook' ]]; then 
+        clear
+        apt_check
+        apt_install
+        apt_remove
+        apt_clean
+        apt_auto
+        apt_update_local
+        swap
+        prelink_preload_deborphan
+        funcao_dpkg
+        fonts
+        config_ntp
+        apport
+        repositorios_padrao
+        log_sudo                    
+#                 lightdm
+    else                
+        clear
+        apt_check
+        apt_install
+        apt_remove
+        apt_clean
+        apt_auto
+        apt_update_local
+        swap
+        prelink_preload_deborphan
+        funcao_dpkg
+        fonts
+        config_ntp
+        apport
+        repositorios_padrao
+        log_sudo                
+    fi
+    
+    # realizando atualização
+    update
+}
+
+func_limpa()
+{
+    clear
+    pacotes_orfaos
+    funcao_chkrootkit
+    localpurge 
+}
+
+func_instala()
+{
+    clear   
+            
+    # # verificando nome para máquina para executar funções especificas
+    #capturando hostname da maquina
+    hostname=$(hostname)
+    
+    if [[ $hostname == 'notebook' ]]; then             
+#               PERSONALIZAÇÃO
+        icones_mac
+        codecs
+        xfce4
+        redshift
+        gnome_terminal
+        install_ntp
+        plank
+        gnome_system_monitor
+        nautilus
+        gparted
+        tlp
+        rar
+        screenfetch
+        gnome_disk_utility
+        gnome_system_monitor
+        brightside
+#                 figlet
+        hardinfo
+    
+#               NAVEGADORES
+        firefox
+        chromium
+        tor
+        
+#               JOGOS
+#                 steam
+#                 citra
+#                 dolphin
+        visual_game_boy
+        wine
+        playonlinux
+        
+#               ASTRONOMIA
+        stellarium
+#                 kstars
+        
+#               MULTIMIDIA
+#                 spotify
+        clementine
+        vlc
+#                 kdenlive
+#                 sweethome3d                
+        audacity
+        mcomix
+#                 simple_screen_recorder
+        calibre
+        
+#               DESENVOLVIMENTO
+        kate
+        install_git
+        
+#               IMAGEM
+        funcao_gimp
+                                        
+#               OUTROS
+        firewall_basic
+        mega
+        openssh
+        install_chkrootkit
+        reaver
+        sensors 
+        install_nmap
+        htop
+        install_tree
+        
+#               OFFICE
+        libreoffice
+        texmaker
+        
+    else 
+#               PERSONALIZAÇÃO
+        nvidia
+        icones_mac
+        codecs
+        xfce4
+        redshift
+        gnome_terminal
+        install_ntp
+        plank
+        gnome_system_monitor
+        nautilus
+        gparted
+        tlp
+        rar
+        screenfetch
+        gnome_disk_utility
+        gnome_system_monitor
+        brightside
+        figlet
+        hardinfo   
+#                 icones
+    
+#               NAVEGADORES
+        firefox
+        chromium
+        tor
+        
+#               JOGOS                
+#                 citra
+#                 dolphin
+        visual_game_boy
+        wine
+        playonlinux
+        
+#               ASTRONOMIA
+        stellarium
+        kstars
+        
+#               MULTIMIDIA
+        spotify
+        clementine
+        vlc
+        kdenlive
+        sweethome3d                
+        audacity
+#                 mcomix
+        simple_screen_recorder
+#                 calibre
+
+#               MUSICA
+        tuxguitar
+        
+#               DESENVOLVIMENTO
+        kate                
+        install_git
+        
+#               IMAGEM
+        funcao_gimp                            
+        
+#               OUTROS
+        firewall_basic
+        mega
+        openssh
+        install_chkrootkit
+        reaver
+        sensors  
+        install_nmap
+        htop
+        install_tree
+        
+#               OFFICE
+        libreoffice
+        texmaker
+    fi
+}
+
+func_instala_outros()
+{
+    # desenvolvimento
+    apache
+    mysql
+    phpmyadmin            
+    install_zsh
+    install_docker
+    
+    # verificando computador
+    if [[ $hostname == 'desktop' ]]; then            
+        # desenvolvimento
+        wireshark                
+        
+        # outros
+        virtualbox
+        
+        # jogos
+        steam            
+        
+        # personalização
+        install_pulseeffects
+    fi
+        
+    # teclado
+    ibus
+}
+
+func_remove()
+{
+    clear
+    printf "[+] Removendo pidgin \n"
+    apt purge pidgin -y
+    
+    printf "\n"
+    printf "[+] Removendo Thunderbird \n"
+    
+    apt purge thunderbird -y
+    
+    
+    printf "\n"
+    printf "[+] Removendo Parole \n"
+    
+    apt purge parole -y
+                        
+                        
+    printf "\n"
+    printf "[+] Removendo XBurn \n"
+    
+    apt purge xfburn -y
+    
+    
+    printf "\n"
+    printf "[+] Removendo o Inkscape \n"
+    
+    apt purge inkscape* -y
+    
+    
+    printf "\n"
+    printf "[+] Removendo o Adapta \n"
+    
+    apt purge adapta-gtk-theme* -y
+    
+    
+    printf "\n"
+    printf "[+] Removendo o Blender \n"            
+    
+    apt purge blender* -y
+        
+    hostname=$(hostname)            
+    if [[ $hostname == 'notebook' ]]; then                                             
+        printf "[+] Removendo pidgin \n"
+        
+        apt purge pidgin* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo Thunderbird \n"
+        
+        apt purge thunderbird* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo Parole \n"
+        
+        apt purge parole* -y                
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Kstars \n"
+        
+        apt purge kstars* -y                                                
+        
+        printf "\n"
+        printf "[+] Removendo a Steam \n"
+        
+        apt purge steam* -y                
+
+        printf "\n"
+        printf "[+] Removendo o Spotify \n"
+        
+        apt purge spotify* -y
+        
+                        
+        printf "\n"
+        printf "[+] Removendo o Kdenlive \n"
+        
+        apt purge kdenlive* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Sweet Home 3D \n"
+        
+        apt purge sweethome3d* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Simple Screen Recorder \n"
+        
+        apt purge simplescreenrecorder* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Figlet \n"
+        
+        apt purge figlet* -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Transmission \n"
+        
+        apt purge transmission* -y        
+        
+        
+        printf "\n"
+        printf "[+] SmartGit \n"                 
+        
+        apt purge smartgit -y 
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Gitg \n"
+        
+        apt purge gitg -y
+        
+        
+        printf "\n"
+        printf "[+] Removendo o Meld \n"
+        
+        apt purge meld -y
+            
+    else
+        printf "\n"
+    fi
+}
+
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
     if [[ `id -u` -ne 0 ]]; then
@@ -1566,423 +1971,42 @@ auto_config_ubuntu()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### ATUALIZA SISTEMA
         1) echo  
-            clear
-            update
-            upgrade            
-            
+            func_atualiza            
             auto_config
         ;;
         
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### CORRIGE SISTEMA
         2) echo                                    
-            clear
-            # # verificando nome para máquina para executar funções especificas
-            #capturando hostname da maquina
-            hostname=$(hostname)
-
-            #verificando variavel
-            if [[ $hostname == 'desktop' ]]; then
-                clear
-                apt_check
-                apt_install
-                apt_remove
-                apt_clean
-                apt_auto
-                apt_update_local
-                swap
-                prelink_preload_deborphan
-                funcao_dpkg
-                fonts
-                config_ntp
-                apport
-                repositorios_padrao
-                log_sudo
-                lightdm
-                arquivo_hosts
-            elif [[ $hostname == 'notebook' ]]; then 
-                clear
-                apt_check
-                apt_install
-                apt_remove
-                apt_clean
-                apt_auto
-                apt_update_local
-                swap
-                prelink_preload_deborphan
-                funcao_dpkg
-                fonts
-                config_ntp
-                apport
-                repositorios_padrao
-                log_sudo                    
-#                 lightdm
-            else                
-                clear
-                apt_check
-                apt_install
-                apt_remove
-                apt_clean
-                apt_auto
-                apt_update_local
-                swap
-                prelink_preload_deborphan
-                funcao_dpkg
-                fonts
-                config_ntp
-                apport
-                repositorios_padrao
-                log_sudo                
-            fi
-            
-            # realizando atualização
-            update
-            
+            func_corrige            
             auto_config        
         ;;
                 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### LIMPA SISTEMA
-        3) echo
-            clear
-            
-#             #verificando variavel
-#             if [[ $hostname == 'desktop' ]]; then                        
-# #                 kernel
-# #                 arquivos_temporarios
-# #                 pacotes_orfaos
-# #                 funcao_chkrootkit
-# #                 localpurge                                                                                     
-#             fi
-            
-            pacotes_orfaos
-            funcao_chkrootkit
-            localpurge 
-            
+        3) echo            
+            func_limpa            
             auto_config
         ;;
     
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### INSTALA PROGRAMAS
-        4) echo  
-            clear   
-            
-            # # verificando nome para máquina para executar funções especificas
-            #capturando hostname da maquina
-            hostname=$(hostname)
-            
-            if [[ $hostname == 'notebook' ]]; then             
-#               PERSONALIZAÇÃO
-                icones_mac
-                codecs
-                xfce4
-                redshift
-                gnome_terminal
-                install_ntp
-                plank
-                gnome_system_monitor
-                nautilus
-                gparted
-                tlp
-                rar
-                screenfetch
-                gnome_disk_utility
-                gnome_system_monitor
-                brightside
-#                 figlet
-                hardinfo
-            
-#               NAVEGADORES
-                firefox
-                chromium
-                tor
-                
-#               JOGOS
-#                 steam
-#                 citra
-#                 dolphin
-                visual_game_boy
-                wine
-                playonlinux
-                
-#               ASTRONOMIA
-                stellarium
-#                 kstars
-                
-#               MULTIMIDIA
-#                 spotify
-                clementine
-                vlc
-#                 kdenlive
-#                 sweethome3d                
-                audacity
-                mcomix
-#                 simple_screen_recorder
-                calibre
-                
-#               DESENVOLVIMENTO
-                kate
-                install_git
-                
-#               IMAGEM
-                funcao_gimp
-                                                
-#               OUTROS
-                firewall_basic
-                mega
-                openssh
-                install_chkrootkit
-                reaver
-                sensors 
-                install_nmap
-                htop
-                install_tree
-                
-#               OFFICE
-                libreoffice
-                texmaker
-                
-            else 
-#               PERSONALIZAÇÃO
-                nvidia
-                icones_mac
-                codecs
-                xfce4
-                redshift
-                gnome_terminal
-                install_ntp
-                plank
-                gnome_system_monitor
-                nautilus
-                gparted
-                tlp
-                rar
-                screenfetch
-                gnome_disk_utility
-                gnome_system_monitor
-                brightside
-                figlet
-                hardinfo   
-#                 icones
-            
-#               NAVEGADORES
-                firefox
-                chromium
-                tor
-                
-#               JOGOS                
-#                 citra
-#                 dolphin
-                visual_game_boy
-                wine
-                playonlinux
-                
-#               ASTRONOMIA
-                stellarium
-                kstars
-                
-#               MULTIMIDIA
-                spotify
-                clementine
-                vlc
-                kdenlive
-                sweethome3d                
-                audacity
-#                 mcomix
-                simple_screen_recorder
-#                 calibre
-
-#               MUSICA
-                tuxguitar
-                
-#               DESENVOLVIMENTO
-                kate                
-                install_git
-                
-#               IMAGEM
-                funcao_gimp                            
-                
-#               OUTROS
-                firewall_basic
-                mega
-                openssh
-                install_chkrootkit
-                reaver
-                sensors  
-                install_nmap
-                htop
-                install_tree
-                
-#               OFFICE
-                libreoffice
-                texmaker
-            fi
-            
+        4) echo              
+            func_instala            
             auto_config
         ;;
             
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### PROGRAMAS NÃO ESSENCIAIS
-        5) echo                   
-            # desenvolvimento
-            apache
-            mysql
-            phpmyadmin            
-            install_zsh
-            install_docker
-            
-            # verificando computador
-            if [[ $hostname == 'desktop' ]]; then            
-                # desenvolvimento
-                wireshark                
-                
-                # outros
-                virtualbox
-                
-                # jogos
-                steam            
-                
-                # personalização
-                install_pulseeffects
-            fi
-                
-            # teclado
-            ibus
-            
-            # chamando o menu novamente
+        5) echo                               
+            func_instala_outros            
             auto_config
         ;;
     
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### REMOVES PROGRAMAS
-        6) echo                    
-                clear
-                printf "[+] Removendo pidgin \n"
-                apt purge pidgin -y
-                
-                printf "\n"
-                printf "[+] Removendo Thunderbird \n"
-                
-                apt purge thunderbird -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo Parole \n"
-                
-                apt purge parole -y
-                                    
-                                    
-                printf "\n"
-                printf "[+] Removendo XBurn \n"
-                
-                apt purge xfburn -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Inkscape \n"
-                
-                apt purge inkscape* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Adapta \n"
-                
-                apt purge adapta-gtk-theme* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Blender \n"            
-                
-                apt purge blender* -y
-                
-                
-            hostname=$(hostname)            
-            if [[ $hostname == 'notebook' ]]; then                                             
-                printf "[+] Removendo pidgin \n"
-                
-                apt purge pidgin* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo Thunderbird \n"
-                
-                apt purge thunderbird* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo Parole \n"
-                
-                apt purge parole* -y                
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Kstars \n"
-                
-                apt purge kstars* -y                                                
-                
-                printf "\n"
-                printf "[+] Removendo a Steam \n"
-                
-                apt purge steam* -y                
-
-                printf "\n"
-                printf "[+] Removendo o Spotify \n"
-                
-                apt purge spotify* -y
-                
-                                
-                printf "\n"
-                printf "[+] Removendo o Kdenlive \n"
-                
-                apt purge kdenlive* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Sweet Home 3D \n"
-                
-                apt purge sweethome3d* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Simple Screen Recorder \n"
-                
-                apt purge simplescreenrecorder* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Figlet \n"
-                
-                apt purge figlet* -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Transmission \n"
-                
-                apt purge transmission* -y        
-                
-                
-                printf "\n"
-                printf "[+] SmartGit \n"                 
-                
-                apt purge smartgit -y 
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Gitg \n"
-                
-                apt purge gitg -y
-                
-                
-                printf "\n"
-                printf "[+] Removendo o Meld \n"
-                
-                apt purge meld -y
-                
-                
-            else
-                printf "\n"
-            fi
-            
+        6) echo                                    
+            func_remove            
             auto_config
         ;;
     
@@ -2015,9 +2039,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     ###### ATUALIZA SISTEMA
         1) printf  
-                clear    
-                update
-                upgrade
+                func_atualiza
                 
                 auto_config
         ;;
@@ -2190,8 +2212,14 @@ fi
 
 # verificando o que foi digitado
 case $1 in
-    atualiza) func_atualiza;;
     menu) auto_config;;
+    atualiza) func_atualiza;;
+    corrige) func_corrige;;
+    limpa) func_limpa;;
+    instala) func_instala;;
+    instala_outros) func_instala_outros;;
+    remove) func_remove;;    
+    formatado) func_atualiza || func_instala || func_instala_outros || func_remove || func_corrige || func_limpa;; 
 esac
 
 # 
