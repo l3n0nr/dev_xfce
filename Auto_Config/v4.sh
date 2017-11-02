@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.246.3.0.0]   #
+# # versão do script:           [0.1.247.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [01/11/17]      #
+# # ultima ediçao realizada:      [02/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -1959,7 +1959,7 @@ func_todas()
 {
     func_atualiza
     func_instala 
-    func_instala_outros 
+#     func_instala_outros # necessario interação com o usuario, se ativa não irá fazer tudo automatico
     func_remove 
     func_corrige 
     func_limpa
@@ -1969,7 +1969,9 @@ func_todas()
     
 #     printf "Qual ação voce deseja realizar?"
 #     read -n1 -p
-    halt
+
+    # desligando o computador apos o processo
+    halt -p
 }
 
 ##REALIZANDO VERIFICAÇÕES
