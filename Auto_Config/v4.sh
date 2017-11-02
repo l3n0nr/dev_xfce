@@ -58,9 +58,13 @@
 #
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
+# 
 # 	b = erros na execução;	
+# 
 # 	c = interações com o script;
+# 
 # 	d = correções necessárias;
+# 
 # 	e = pendencias    
 #               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
 #                           - Criar possivel verificação
