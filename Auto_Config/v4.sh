@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.248.3.0.0]   #
+# # versão do script:           [0.1.250.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [02/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1972,8 +1972,8 @@ func_todas()
     # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
     
-    # corrige possiveis problemas no sistema
-    func_corrige 
+    # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
+#     func_corrige 
     
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
