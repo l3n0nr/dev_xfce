@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.247.3.0.0]   #
+# # versão do script:           [0.1.248.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [02/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1957,11 +1957,25 @@ func_remove()
 
 func_todas()
 {
+    # atualizando sistema
     func_atualiza
+    
+    # instalando programas
     func_instala 
-#     func_instala_outros # necessario interação com o usuario, se ativa não irá fazer tudo automatico
-    func_remove 
+    
+    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
+#     func_instala_outros 
+
+    # removendo programas pré-instalados, desnecessários
+    func_remove     
+    
+    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    func_atualiza
+    
+    # corrige possiveis problemas no sistema
     func_corrige 
+    
+    # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
         
 #     resposta = 0;       # 0 = halt, 1 = reboot, 2=nada;    
