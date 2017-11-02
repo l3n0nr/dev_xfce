@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.246.3.0.0]   #
+# # versão do script:           [0.1.247.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [01/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -286,11 +286,7 @@ func_help()
         - Correção de erros, 
         - Limpeza geral do sistema,
         - Instalação de programas,             
-        - Remoção de programas desnecessários,
-            
-    Paramêtros disponiveis:
-        - help: mostra informações sobre o script;
-        - atualiza: atualiza o sistema;
+        - Remoção de programas desnecessários,            
 
     Exemplos:
         - Lendo instruções de funcionamento:
@@ -317,7 +313,7 @@ func_help()
         - Visualizando o menu de ações:
             ~ v4.sh menu
             
-        - Após a maquina ser formatado(todos as funções executadas)
+        - Após a maquina ser formatada(todos as funções automáticas)
             ~ v4.sh formatado
         
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
