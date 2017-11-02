@@ -51,11 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-<<<<<<< HEAD
-# # versão do script:           [0.1.250.3.0.0]   #
-=======
-# # versão do script:           [0.1.247.3.0.0]   #
->>>>>>> 65336a63d7c9fef1f09ff7c1187d4f7f85ba0084
+# # versão do script:           [0.1.252.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [02/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -167,6 +163,7 @@
 # 
 # MUSICA    
 # # [+] Tux Guitar
+# # [+] MuseScore
 # 
 # DESENVOLVIMENTO
 # # [+] Kate
@@ -1498,7 +1495,8 @@ func_help()
 #         var_tuxguitar=$(which java) 
 
         # criando verificação para instalar o tuxguitar
-#         if [[ ! -e $var_tuxguitar ]]; then            
+#         if [[ ! -e $var_tuxguitar ]]; then     
+            printf "\n"
             printf "[+] Instalando Tux Guitar \n"
             
             printf "[*] Realizando download do pacote \n"    
@@ -1518,6 +1516,15 @@ func_help()
 #         else
 #             printf "[+] TuxGuitar já está instalado \n"
 #         fi
+    }
+    
+    muse_score()
+    {
+            printf "\n"
+            printf "[+] Instalando Muse Score \n"
+            
+            apt install musescore -y            
+            snap install musescore -y       
     }
     
     install_zsh()
@@ -1549,7 +1556,7 @@ func_help()
         # variavel de verificação 
         var_docker=$(which docker) 
 
-        # criando verificação para instalar o tuxguitar
+        # criando verificação para instalar o docker
         if [[ ! -e $var_docker ]]; then  
         
             printf "\n"                
@@ -1774,6 +1781,7 @@ func_instala()
 
 #               MUSICA
         tuxguitar
+        muse_score
         
 #               DESENVOLVIMENTO
         kate                
@@ -1983,11 +1991,6 @@ func_todas()
     
 #     printf "Qual ação voce deseja realizar?"
 #     read -n1 -p
-<<<<<<< HEAD
-
-    # desligando o computador apos o processo
-=======
->>>>>>> 65336a63d7c9fef1f09ff7c1187d4f7f85ba0084
     halt -p
 }
 
