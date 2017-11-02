@@ -1969,7 +1969,7 @@ func_todas()
     
 #     printf "Qual ação voce deseja realizar?"
 #     read -n1 -p
-    halt
+    halt -p
 }
 
 ##REALIZANDO VERIFICAÇÕES
