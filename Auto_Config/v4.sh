@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.252.3.0.0]   #
+# # versão do script:           [0.1.254.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [02/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -70,6 +70,8 @@
 #                           - Tor-Browser
 #                           - Wine
 #                           - Icones-macbuntu
+#                           - Tux Guitar
+#                           - Muse Score
 # 
 #               - III   - [USUARIO ZSH]     - Alterar diretamente no script a funcao "/home/lenonr:/bin/bash" por "/home/lenonr:/bin/zsh" no arquivo /etc/passwd
 # 
@@ -314,8 +316,11 @@ func_help()
         - Visualizando o menu de ações:
             ~ v4.sh menu
             
-        - Após a maquina ser formatada(todos as funções automáticas)
+        - Após a maquina ser formatada(apenas as funções automáticas)
             ~ v4.sh formatado
+            
+        - Para executar todas as funções(semi-automático)
+            ~ v4.sh todas
         
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
             
@@ -828,7 +833,7 @@ func_help()
         #chamando funcao já criada
         update
 
-        apt install wine* -y
+        apt install wine -y
     }
     
     playonlinux()
@@ -836,7 +841,7 @@ func_help()
         printf "\n"
         printf "[+] Instalando o PlayonLinux \n"        
         
-        apt install playonlinux* -y 
+        apt install playonlinux -y 
     }
     
     redshift()
@@ -1185,7 +1190,7 @@ func_help()
         printf "\n"
         printf "[+] Instalando o Gnome Disk Utility \n"
         
-        apt install gnome-disk-utility* -y
+        apt install gnome-disk-utility -y
     }
     
     calibre()
@@ -1201,7 +1206,7 @@ func_help()
         printf "\n"
         printf "[+] Instalando o Audacity \n"
         
-        apt install audacity* -y   
+        apt install audacity -y   
     }    
     
     mcomix()
@@ -1400,7 +1405,7 @@ func_help()
         printf "\n"
         printf "[+] Instalando Tree \n"
     
-        apt install tree* -y
+        apt install tree -y
     }
     
     install_pulseeffects()
@@ -1963,7 +1968,7 @@ func_remove()
     fi
 }
 
-func_todas()
+func_formatado()
 {
     # atualizando sistema
     func_atualiza
@@ -1992,6 +1997,30 @@ func_todas()
 #     printf "Qual ação voce deseja realizar?"
 #     read -n1 -p
     halt -p
+}
+
+func_todas()
+{
+# atualizando sistema
+    func_atualiza
+    
+    # instalando programas
+    func_instala 
+    
+    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
+    func_instala_outros 
+
+    # removendo programas pré-instalados, desnecessários
+    func_remove     
+    
+    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    func_atualiza
+    
+    # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
+    func_corrige 
+    
+    # realiza uma limpeza no sistema, removendo coisas desnecessárias
+    func_limpa        
 }
 
 ##REALIZANDO VERIFICAÇÕES
@@ -2264,13 +2293,17 @@ fi
 # verificando o que foi digitado
 case $1 in
     menu) auto_config;;
+    
     atualiza) func_atualiza;;
     corrige) func_corrige;;
     limpa) func_limpa;;
     instala) func_instala;;
     instala_outros) func_instala_outros;;
     remove) func_remove;;    
-    formatado) func_todas;; 
+    
+    formatado) func_formatado;; 
+    
+    todas) func_todas;;
 esac
 
 # 
