@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.254.3.0.0]   #
+# # versão do script:           [0.1.256.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [02/11/17]      #
+# # ultima ediçao realizada:      [03/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -207,6 +207,7 @@
 # # [+] Nvidia
 # # [+] Icones
 # # [+] Pulse Effects
+# # [+] XFCE Theme Manager
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1417,7 +1418,6 @@ func_help()
         # variavel de verificação 
         var_pulseeffects=$(which pulseeffects) 
                     
-        # criando verificação para instalar o virtualbox
         if [[ ! -e $var_pulseeffects ]]; then  
         
             printf "[+] Instalando o Pulse Effects \n"
@@ -1435,6 +1435,29 @@ func_help()
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"        
+            printf "\n"
+        fi
+    }
+    
+    install_xfce_theme_manager()
+    {
+        # variavel de verificação 
+        var_xfce_theme_manager=$(which xfce-theme-manager) 
+                    
+        if [[ ! -e $var_xfce_theme_manager ]]; then  
+        
+            printf "[+] Instalando o XFCE Theme Manager \n"                                    
+            printf "[*] Adicionando PPA \n"
+            add-apt-repository ppa:rebuntu16/other-stuff -y
+            
+            printf "[*] Atualizando repositorios \n"
+            update
+            
+            printf "[*] Instalando o XFCE Theme Manager \n"
+            apt-get install xfce-theme-manager -y                                        
+        else
+            printf "\n"
+            printf "[+] XFCE Theme Manager já está instalado"        
             printf "\n"
         fi
     }
@@ -1825,11 +1848,14 @@ func_instala_outros()
     install_zsh
     install_docker
     
+    # teclado
+    ibus
+    
+    # desenvolvimento
+    wireshark  
+    
     # verificando computador
-    if [[ $hostname == 'desktop' ]]; then            
-        # desenvolvimento
-        wireshark                
-        
+    if [[ $hostname == 'desktop' ]]; then                                          
         # outros
         virtualbox
         
@@ -1838,10 +1864,8 @@ func_instala_outros()
         
         # personalização
         install_pulseeffects
-    fi
-        
-    # teclado
-    ibus
+        install_xfce_theme_manager        
+    fi            
 }
 
 func_remove()
@@ -1978,28 +2002,18 @@ func_formatado()
     func_atualiza
     
     # instalando programas
-    func_instala 
-    
-    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
-#     func_instala_outros 
+    func_instala     
 
     # removendo programas pré-instalados, desnecessários
     func_remove     
     
     # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
-    func_atualiza
-    
-    # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
-#     func_corrige 
+    func_atualiza        
     
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
         
-#     resposta = 0;       # 0 = halt, 1 = reboot, 2=nada;    
-    # verificando qual ação o usuario deseja realizar
-    
-#     printf "Qual ação voce deseja realizar?"
-#     read -n1 -p
+    # desligando sistema
     halt -p
 }
 
