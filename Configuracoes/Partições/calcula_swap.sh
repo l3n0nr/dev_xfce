@@ -75,7 +75,7 @@ tam_mem=$(free -mt | grep Mem: | awk '{ print $2 " MB" }' | sed -e "s; MB;;")
 
 # mostrando memoria instalada
 echo "Tamanho da memória do seu computador é $tam_mem MB."
-
+ 
 # # # # # # # # # # # # # # # # # #
 # TABELA DE APOIO PARA CONVERSAO  #
 # # # # # # # # # # # # # # # # # #
