@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.261.3.0.0]   #
+# # versão do script:           [0.1.262.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [05/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -180,6 +180,7 @@
 # # [+] PhpMyAdmin
 # # [+] ZSH
 # # [+] Docker
+# # [+] Netbeans
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -1587,6 +1588,18 @@ func_help()
         fi                    
         
     }
+    
+    install_netbeans()
+    {
+        #
+        printf "\n"
+        printf "[+] Instalando Netbeans \n"
+        
+        # executando scriptg
+        /home/lenonr/MEGA/LifeStyle/Linux/Config/sh/netbeans-8.2-linux.sh
+        
+        printf "[+] Netbeans instalado! "
+    }
        
 # # # # # # # # # # 
 
@@ -1831,14 +1844,16 @@ func_instala_outros()
     apache
     mysql
     phpmyadmin            
-    install_zsh
-    install_docker
+    install_zsh    
+    install_docker    
+    install_netbeans
+    wireshark  
+    
+    # personalização
+    install_pulseeffects    
     
     # teclado
-    ibus
-    
-    # desenvolvimento
-    wireshark  
+    ibus    
     
     # verificando computador
     if [[ $hostname == 'desktop' ]]; then                                          
@@ -1846,10 +1861,7 @@ func_instala_outros()
         virtualbox
         
         # jogos
-        steam            
-        
-        # personalização
-        install_pulseeffects    
+        steam                            
     fi            
 }
 
