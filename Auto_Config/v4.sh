@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.256.3.0.0]   #
+# # versão do script:           [0.1.260.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [03/11/17]      #
+# # ultima ediçao realizada:      [05/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -207,7 +207,6 @@
 # # [+] Nvidia
 # # [+] Icones
 # # [+] Pulse Effects
-# # [+] XFCE Theme Manager
 # 
 # OUTROS
 # # [+] Firewall Basic
@@ -1257,10 +1256,16 @@ func_help()
         printf "\n"
         printf "[+] Instalando o MEGA \n"
     
-        #instalando mega
-        dpkg -i base/ubuntu/mega/*.deb
+        # instalando mega
+#         dpkg -i base/ubuntu/mega/*.deb
+        dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+        
+        # corrigindo dependencias
         apt install -fy
-        dpkg -i base/ubuntu/mega/*.deb
+        
+        # instalando mega
+#         dpkg -i base/ubuntu/mega/*.deb
+        dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
     }
     
     openssh()
@@ -1422,42 +1427,21 @@ func_help()
         
             printf "[+] Instalando o Pulse Effects \n"
             #instalando mega
-            dpkg -i base/ubuntu/pulseeffects/*.deb
+#             dpkg -i base/ubuntu/pulseeffects/*.deb
+            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/pulseeffects/*.deb
             
             printf "[*] Resolvendo dependencias \n"
             apt install -fy
             
             printf "[*] Instalando o Pulse Effects \n"
-            dpkg -i base/ubuntu/pulseeffects/*.deb     
+#             dpkg -i base/ubuntu/pulseeffects/*.deb     
+            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/pulseeffects/*.deb
             
             printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
             sleep 5
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"        
-            printf "\n"
-        fi
-    }
-    
-    install_xfce_theme_manager()
-    {
-        # variavel de verificação 
-        var_xfce_theme_manager=$(which xfce-theme-manager) 
-                    
-        if [[ ! -e $var_xfce_theme_manager ]]; then  
-        
-            printf "[+] Instalando o XFCE Theme Manager \n"                                    
-            printf "[*] Adicionando PPA \n"
-            add-apt-repository ppa:rebuntu16/other-stuff -y
-            
-            printf "[*] Atualizando repositorios \n"
-            update
-            
-            printf "[*] Instalando o XFCE Theme Manager \n"
-            apt-get install xfce-theme-manager -y                                        
-        else
-            printf "\n"
-            printf "[+] XFCE Theme Manager já está instalado"        
             printf "\n"
         fi
     }
@@ -1863,8 +1847,7 @@ func_instala_outros()
         steam            
         
         # personalização
-        install_pulseeffects
-        install_xfce_theme_manager        
+        install_pulseeffects    
     fi            
 }
 
