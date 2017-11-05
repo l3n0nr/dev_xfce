@@ -74,8 +74,6 @@
 #                           - Tor-Browser
 #                           - Wine
 #                           - Icones-macbuntu
-#                           - Tux Guitar
-#                           - Muse Score
 # 
 #               - III   - [USUARIO ZSH]     - Alterar diretamente no script a funcao "/home/lenonr:/bin/bash" por "/home/lenonr:/bin/zsh" no arquivo /etc/passwd
 # 
