@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.262.3.0.0]   #
+# # versão do script:           [0.1.263.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [05/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1591,14 +1591,13 @@ func_help()
     
     install_netbeans()
     {
-        #
         printf "\n"
         printf "[+] Instalando Netbeans \n"
         
         # executando scriptg
         /home/lenonr/MEGA/LifeStyle/Linux/Config/sh/netbeans-8.2-linux.sh
         
-        printf "[+] Netbeans instalado! "
+#         printf "[+] Netbeans instalado! "
     }
        
 # # # # # # # # # # 
