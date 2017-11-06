@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.264.3.0.0]   #
+# # versão do script:           [0.1.265.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [06/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
@@ -1595,7 +1595,7 @@ func_help()
         # criando verificação para instalar o atom
         if [[ ! -e $var_atom ]]; then    
             printf "\n"
-            printf "[+] Instalando atom \n"
+            printf "[+] Instalando o Atom \n"
         
             # executando scriptg
             dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/atom/*.deb
