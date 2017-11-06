@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.263.3.0.0]   #
+# # versão do script:           [0.1.264.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [05/11/17]      #
+# # ultima ediçao realizada:      [06/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -178,7 +178,7 @@
 # # [+] PhpMyAdmin
 # # [+] ZSH
 # # [+] Docker
-# # [+] Netbeans
+# # [+] Atom
 # 
 # OFFICE
 # # [+] LibreOffice
@@ -1587,15 +1587,22 @@ func_help()
         
     }
     
-    install_netbeans()
+    install_atom()
     {
-        printf "\n"
-        printf "[+] Instalando Netbeans \n"
+        # variavel de verificao
+        var_atom=$(which atom)
         
-        # executando scriptg
-        /home/lenonr/MEGA/LifeStyle/Linux/Config/sh/netbeans-8.2-linux.sh
+        # criando verificação para instalar o atom
+        if [[ ! -e $var_atom ]]; then    
+            printf "\n"
+            printf "[+] Instalando atom \n"
         
-#         printf "[+] Netbeans instalado! "
+            # executando scriptg
+            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/atom/*.deb
+        else
+            printf "\n"
+            printf "[+] O Atom já está instalando no seu sistema. \n "
+        fi
     }
        
 # # # # # # # # # # 
@@ -1843,7 +1850,7 @@ func_instala_outros()
     phpmyadmin            
     install_zsh    
     install_docker    
-    install_netbeans
+    install_atom
     wireshark  
     
     # personalização
