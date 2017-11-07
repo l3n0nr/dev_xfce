@@ -99,20 +99,21 @@ alias push_git='clear; echo "[*] Verificando Diretório dev_xfce" && cd /home/le
 
 alias status_git='clear; echo "[*] Verificando Diretório dev_xfce" && cd /home/lenonr/Github/dev_xfce && git status && echo && echo "[*] Verificando Diretório dev_scripts" && cd /home/lenonr/Github/dev_scripts && git status && echo && echo "[*] Verificando Diretório dev_web" && cd /var/www/html/dev_web && git status && echo && echo "[*] Verificando Diretório dev_sysadmin" && cd /home/lenonr/Github/dev_sysadmin && git status && echo && cd /home/lenonr'             
 
-# criando apelido para conectar ao roteador DD-WRT
+# alias para conectar ao roteador DD-WRT
 alias wrt='telnet 10.0.0.87'
 
-# criando apelido para limpar a memória
-alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap.sh'
-
-# criando apelido para realizar backup dos arquivos no HD
+# alias para realizar backup dos arquivos no HD
 alias verificahd='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/verifica_midias.sh'
 
-# criando apelido para verificar os log's do servidor dev_web
+# alias para verificar os log's do servidor dev_web
 alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
 
+# alias para reiniciar swap
+alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap/reinicia_swap.sh'
+
+
 # criando apelido para realizar backup do bashrc
-alias backup_bashrc='clear; printf "[*] Realizado backup do bashrc\n"; cat .bashrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.bashrc ; printf "[+] Backup realizado! \n"'
+alias backup_zsh='clear; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
 
 # testanco configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
