@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# # versão do script:           [0.1.265.3.0.0]   #
+# # versão do script:           [0.1.266.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [06/11/17]      #
+# # ultima ediçao realizada:      [07/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # Legenda: a.b.c.d.e.f
@@ -857,10 +857,10 @@ func_help()
     
     libreoffice()
     {
-        # variavel de verificação 
-        var_libreoffice=$(which libreoffice) 
-
-        if [[ ! -e $var_libreoffice ]]; then                
+#         # variavel de verificação 
+#         var_libreoffice=$(which libreoffice) 
+# 
+#         if [[ ! -e $var_libreoffice ]]; then                
             printf "\n"
             printf "[+] Instalando o Libreoffice \n"
             
@@ -872,9 +872,9 @@ func_help()
             
             #instalando libreoffice
             apt-get install libreoffice libreoffice-style-breeze -y
-        else
-            printf "[+] Libreoffice já está instalado! \n"
-        fi
+#         else
+#             printf "[+] Libreoffice já está instalado! \n"
+#         fi
     }
     
     vlc()
