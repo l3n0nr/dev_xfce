@@ -1936,8 +1936,7 @@ func_remove()
         printf "\n"
         printf "[+] Removendo Parole \n"
 
-        apt purge parole* -y
-
+        apt purge parole* -y        
 
         printf "\n"
         printf "[+] Removendo o Kstars \n"
@@ -2333,7 +2332,7 @@ case $1 in
 
     formatado) func_formatado;;
 
-    todas) func_todas;;
+	todas) func_todas;;
 esac
 
 #
