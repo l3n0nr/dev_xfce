@@ -53,7 +53,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [0.1.267.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/11/17]      #
+# # ultima ediçao realizada:      [12/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -121,6 +121,7 @@
 # # [+] Lista de Repositorios padrão
 # # [+] Arquivo Hosts
 # # [+] Chaveiro de Sessão
+# # [+] Xclip
 # #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # LIMPA SISTEMA
@@ -667,6 +668,14 @@ func_help()
         printf "[+] Removendo o chaveiro da sessão \n\n"
 
         sudo apt-get remove gnome-keyring -y
+    }
+
+    install_xclip()
+    {
+        printf "\n"
+        printf "[+] Instalando Xclip \n\n"
+
+        apt install xclip -y
     }
 
 # # # # # # # # # #
@@ -1648,6 +1657,7 @@ func_corrige()
         lightdm
         arquivo_hosts
         chaveiro
+        install_xclip
     elif [[ $hostname == 'notebook' ]]; then
         clear
         apt_check
@@ -1936,7 +1946,7 @@ func_remove()
         printf "\n"
         printf "[+] Removendo Parole \n"
 
-        apt purge parole* -y        
+        apt purge parole* -y
 
         printf "\n"
         printf "[+] Removendo o Kstars \n"
@@ -2164,6 +2174,7 @@ auto_config_debian()
                 repositorios_padrao
                 arquivo_hosts
                 chaveiro
+                install_xclip
 
                 auto_config
         ;;
