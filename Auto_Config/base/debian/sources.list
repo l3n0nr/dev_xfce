@@ -1,21 +1,21 @@
 #------------------------------------------------------------------------------#
 #                            OFFICIAL DEBIAN REPOS                             #
 #------------------------------------------------------------------------------#
- ## BASE PRINCIPAL
- deb http://ftp.debian.org/debian/ stretch main contrib
+## BASE PRINCIPAL
+deb http://ftp.debian.org/debian/ stretch main contrib
 
 ## ATUALIZAÇÕES
- deb http://deb.debian.org/debian/ stretch-updates main
+deb http://deb.debian.org/debian/ stretch-updates main
 
 ## PROGRAMAS NON-FREE
- deb http://deb.debian.org/debian/ stretch main contrib non-free
- deb http://deb.debian.org/debian/ stretch-updates main contrib non-free
+deb http://deb.debian.org/debian/ stretch main contrib non-free
+deb http://deb.debian.org/debian/ stretch-updates main contrib non-free
 
 ## ATUALIZAÇÕES DE SEGURANÇA
- deb http://security.debian.org/ stretch/updates main contrib non-free
- deb http://security.debian.org/ stretch/updates main
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb http://security.debian.org/ stretch/updates main
 
-# deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
+#deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
 #deb cdrom:[Debian GNU/Linux 8.7.1 _Jessie_ - Official amd64 DVD Binary-1 20170116-11:01]/ jessie contrib main
 
 # Line commented out by installer because it failed to verify:
