@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.267.3.0.0]   #
+# # versão do script:           [0.1.268.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [12/11/17]      #
+# # ultima ediçao realizada:      [15/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -821,8 +821,8 @@ func_help()
 #             printf "[*] Removendo arquivo existente \n"
 #             rm -r $pasta_home/.gimp-2.8
 
-            printf "[*] Inserindo novo arquivo \n"
-            cp -r base/.gimp-2.8/ $pasta_home
+            # printf "[*] Inserindo novo arquivo \n"
+            # cp -r base/.gimp-2.8/ $pasta_home
 
             printf "[+] Novo arquivo adicionado! \n"
         else
