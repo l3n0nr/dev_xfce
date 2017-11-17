@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.268.3.0.0]   #
+# # versão do script:           [0.1.267.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [15/11/17]      #
+# # ultima ediçao realizada:      [17/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1455,7 +1455,7 @@ func_help()
             dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/pulseeffects/*.deb
 
             printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
-            sleep 5
+            sleep 5s
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"
@@ -1570,7 +1570,7 @@ func_help()
 
             printf "\n[+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
             printf "[+] Exemplo: sudo /etc/passwd - $pasta_home:/bin/zsh -> $pasta_home:/bin/zsh \n"
-#             sleep 10
+#             sleep 10s
 
 #             altera_zsh=$(cat /etc/passwd | grep $pasta_home:/bin)
 #             cd $pasta_home
@@ -2141,7 +2141,7 @@ auto_config_ubuntu()
     ######ENTRADA INVALIDA
         *) echo
             printf "Alternativa incorreta!! \n"
-            sleep 1
+            sleep 1s
             menu
             exit
         ;;
@@ -2261,7 +2261,7 @@ auto_config_debian()
     ######ENTRADA INVALIDA
         *) echo
             printf Alternativa incorreta!!
-            sleep 1
+            sleep 1s
             menu
             exit
         ;;
@@ -2269,7 +2269,7 @@ auto_config_debian()
     esac
 
     printf "TAREFAS FINALIZADAS, SAINDO..\n"
-    sleep 5
+    sleep 5s
     clear
 }
 
