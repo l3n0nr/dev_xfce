@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.268.3.0.0]   #
+# # versão do script:           [0.1.269.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [18/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1781,7 +1781,6 @@ func_instala()
 
 #               OUTROS
         firewall_basic
-        mega
         openssh
         install_chkrootkit
         reaver
@@ -1858,7 +1857,6 @@ func_instala()
 
 #               OUTROS
         firewall_basic
-        mega
         openssh
         install_chkrootkit
         reaver
@@ -1886,6 +1884,7 @@ func_instala_outros()
 
     # personalização
     install_pulseeffects
+    mega
 
     # teclado
     ibus
@@ -2035,6 +2034,9 @@ func_formatado()
     # instalando programas
     func_instala
 
+    # instala outros programas
+    func_instala_outros
+    
     # removendo programas pré-instalados, desnecessários
     func_remove
 
@@ -2043,7 +2045,7 @@ func_formatado()
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
-
+    
     # desligando sistema
     halt -p
 }
