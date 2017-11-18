@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.267.3.0.0]   #
+# # versão do script:           [0.1.268.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [17/11/17]      #
+# # ultima ediçao realizada:      [18/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -208,6 +208,7 @@
 # # [+] Nvidia
 # # [+] Icones
 # # [+] Pulse Effects
+# # [+] Terminator
 #
 # OUTROS
 # # [+] Firewall Basic
@@ -1442,6 +1443,7 @@ func_help()
 
         if [[ ! -e $var_pulseeffects ]]; then
 
+            printf " \n"
             printf "[+] Instalando o Pulse Effects \n"
             #instalando mega
 #             dpkg -i base/ubuntu/pulseeffects/*.deb
@@ -1461,6 +1463,14 @@ func_help()
             printf "[+] Pulse Effects já está instalado"
             printf "\n"
         fi
+    }
+    
+    install_terminator()
+    {
+        printf " \n"
+        printf "[+] Instalando o Terminator \n"
+        
+        apt install terminator -y
     }
 
 # # # # # # # # # #
@@ -1841,6 +1851,7 @@ func_instala()
 #               DESENVOLVIMENTO
         kate
         install_git
+        install_terminator
 
 #               IMAGEM
         funcao_gimp
