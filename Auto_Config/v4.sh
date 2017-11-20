@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.270.3.0.0]   #
+# # versão do script:           [0.1.271.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [19/11/17]      #
+# # ultima ediçao realizada:      [20/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1890,7 +1890,7 @@ func_instala_outros()
 
     # personalização
     install_pulseeffects
-    mega
+    #mega
 
     # teclado
     ibus
