@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.273.3.0.0]   #
+# # versão do script:           [0.1.274.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [20/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -845,16 +845,24 @@ func_help()
 
     wine()
     {
-        printf "\n"
-        printf "[+] Instalando o Wine \n"
+    # variavel de verificação
+        var_wine=$(which wine)
 
-        #adicionado o repositorio
-        add-apt-repository ppa:ubuntu-wine/ppa -y
+        if [[ ! -e $var_wine ]]; then
+            printf "\n"
+            printf "[+] Instalando o Wine \n"
 
-        #chamando funcao já criada
-        update
+            #adicionado o repositorio
+            add-apt-repository ppa:ubuntu-wine/ppa -y
 
-        apt install wine -y
+            #chamando funcao já criada
+            update
+
+            apt install wine -y
+        else
+            printf "\n"
+            printf "[+] Wine já está instalado na sua máquina! \n"
+        fi
     }
 
     playonlinux()
