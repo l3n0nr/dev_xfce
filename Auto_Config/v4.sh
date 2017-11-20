@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.271.3.0.0]   #
+# # versão do script:           [0.1.272.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [20/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -180,7 +180,6 @@
 # # [+] PhpMyAdmin
 # # [+] ZSH
 # # [+] Docker
-# # [+] Atom
 # # [+] Sublime
 #
 # OFFICE
@@ -1607,24 +1606,6 @@ func_help()
 
     }
 
-    install_atom()
-    {
-        # variavel de verificao
-        var_atom=$(which atom)
-
-        # criando verificação para instalar o atom
-        if [[ ! -e $var_atom ]]; then
-            printf "\n"
-            printf "[+] Instalando o Atom \n"
-
-            # executando scriptg
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/atom/*.deb
-        else
-            printf "\n"
-            printf "[+] O Atom já está instalando no seu sistema. \n "
-        fi
-    }
-
     install_sublime()
     {
         printf "\n"
@@ -1883,8 +1864,7 @@ func_instala_outros()
     mysql
     phpmyadmin
     install_zsh
-    install_docker
-    install_atom    
+    install_docker  
 
     wireshark
 
