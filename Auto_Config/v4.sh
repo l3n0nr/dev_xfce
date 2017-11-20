@@ -51,7 +51,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.272.3.0.0]   #
+# # versão do script:           [0.1.273.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [20/11/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1261,20 +1261,25 @@ func_help()
     }
 
     mega()
-    {
-        printf "\n"
-        printf "[+] Instalando o MEGA \n"
+    {       
+        # variavel de verificação
+        var_mega=$(which megasync)
 
-        # instalando mega
-#         dpkg -i base/ubuntu/mega/*.deb
-        dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+        if [[ ! -e $var_mega ]]; then        
+            printf "\n"
+            printf "[+] Instalando o MEGA \n"
+            
+            # instalando mega
+            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
 
-        # corrigindo dependencias
-        apt install -fy
+            # corrigindo dependencias
+            apt install -fy
 
-        # instalando mega
-#         dpkg -i base/ubuntu/mega/*.deb
-        dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+            # instalando mega
+            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+        else
+            printf "[+] MEGA Sync já está instalado! \n"
+        fi
     }
 
     openssh()
