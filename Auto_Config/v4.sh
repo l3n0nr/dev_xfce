@@ -53,7 +53,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [0.1.274.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [20/11/17]      #
+# # ultima ediçao realizada:      [05/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1759,13 +1759,13 @@ func_instala()
 #                 kstars
 
 #               MULTIMIDIA
-#                 spotify
+        spotify
         clementine
         vlc
 #                 kdenlive
 #                 sweethome3d
         audacity
-        mcomix
+#                 mcomix
 #                 simple_screen_recorder
         calibre
 
@@ -1957,20 +1957,17 @@ func_remove()
 
         apt purge parole* -y
 
+
         printf "\n"
         printf "[+] Removendo o Kstars \n"
 
         apt purge kstars* -y
 
+
         printf "\n"
         printf "[+] Removendo a Steam \n"
 
-        apt purge steam* -y
-
-        printf "\n"
-        printf "[+] Removendo o Spotify \n"
-
-        apt purge spotify* -y
+        apt purge steam* -y        
 
 
         printf "\n"
