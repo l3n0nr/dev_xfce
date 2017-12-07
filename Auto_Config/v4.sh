@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.274.3.0.0]   #
+# # versão do script:           [0.1.275.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [05/12/17]      #
+# # ultima ediçao realizada:      [07/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -770,7 +770,7 @@ func_help()
             update
 
             #instalando o spotify
-            apt install spotify-client -y
+            apt install spotify-client -y --allow-unauthenticated
         else
             printf "[+] Spofity já está instalando! \n"
         fi
