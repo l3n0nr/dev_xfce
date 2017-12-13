@@ -18,21 +18,21 @@
 # 	<github.com/gmasson/welcome-debian>
 #
 # por Fabiano de Oliveira e Souza
-# 	<https://www.vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
+# 	<vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
 #
 # por Lucas Novo Silva
-# 	<https://www.vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
+# 	<vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
 #
 # por Ricardo Ferreira
-# 	<http://www.linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
+# 	<linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
 #
 # por Dionatan Simioni
-# 	 <http://www.diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
-# 	 <http://www.diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
-#        <http://www.diolinux.com.br/2015/09/como-instalar-drivers-de-video-no-ubuntu-linux.html>
+# 	<diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
+# 	<diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
+#   <diolinux.com.br/2015/09/como-instalar-drivers-de-video-no-ubuntu-linux.html>
 #
 # por Cláudio Novais
-#        <http://ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
+#   <ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -221,6 +221,7 @@
 # # [+] Htop
 # # [+] VirtualBox
 # # [+] Tree
+# # [+] Aircrack-ng
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # # # # REMOVENDO PROGRAMAS
@@ -1481,6 +1482,14 @@ func_help()
         apt install terminator -y
     }
 
+    install_aircrack()
+    {
+        printf " \n"
+        printf "[+] Instalando o Aircrack-ng \n"
+
+        apt install aircrack-ng -y
+    }
+
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
 
@@ -1778,7 +1787,6 @@ func_instala()
 #               DESENVOLVIMENTO
         kate
         install_git
-        install_terminator
         install_sublime
 
 #               IMAGEM
@@ -1793,6 +1801,8 @@ func_instala()
         install_nmap
         htop
         install_tree
+        install_aircrack
+        install_terminator
 
 #               OFFICE
         libreoffice
