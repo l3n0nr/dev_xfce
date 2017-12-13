@@ -51,9 +51,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.276.3.0.0]   #
+# # versão do script:           [0.1.277.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [10/12/17]      #
+# # ultima ediçao realizada:      [13/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -982,6 +982,7 @@ func_help()
         printf "[+] Instalando o Texmaker \n"
 
         apt install texmaker* texlive-full* texlive-latex-extra* -y
+        apt install aspell aspell-pt-br -y
     }
 
     kstars()
