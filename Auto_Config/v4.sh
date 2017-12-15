@@ -33,6 +33,9 @@
 #
 # por Cláudio Novais
 #   <ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
+#
+# por 
+#	<fosspost.org/tutorials/how-to-customize-firefox-57-user-interface>
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -51,9 +54,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.277.3.0.0]   #
+# # versão do script:           [0.1.278.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [13/12/17]      #
+# # ultima ediçao realizada:      [14/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -730,6 +733,12 @@ func_help()
         printf "[+] Instalando Firefox \n"
 
         apt install firefox -y
+
+		# VERIFICAR MANUALMENTE - HABILITAR FUNCAO FIREFOX 
+        # configurando interface
+        # cd pasta_home/.mozilla/firefox/*.default
+        # mkdir chrome; cd chrome; touch userChrome.css
+        # cd pasta_home/Github/dev_xfce/Auto_Config
     }
 
     chromium()
