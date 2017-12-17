@@ -1,16 +1,16 @@
 #!/bin/bash
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
+#                                                                             #
 #                           CABEÇALHO DO SCRIPT                               #
-
+#                                                                             #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
 #   FONTES DE PESQUISA  #
 # # # # # # # # # # # # #
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # por oliveiradeflavio(Flávio Oliveira)
 # 	<github.com/oliveiradeflavio/scripts-linux>
 #
@@ -36,7 +36,8 @@
 #
 # por 
 #	<fosspost.org/tutorials/how-to-customize-firefox-57-user-interface>
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
 #   DESENVOLVIDO POR    #
@@ -45,18 +46,18 @@
 # por lenonr(Lenon Ricardo)
 #       contato: <lenonrmsouza@gmail.com>
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#										#
-#	If I have seen further it is by standing on the shoulders of Giants.	#
-#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)		#
-#							~Isaac Newton		#
-#										#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+#										                                      #
+#	If I have seen further it is by standing on the shoulders of Giants.	  #
+#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)		      #
+#							~Isaac Newton		                              #
+#										                                      #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [0.1.278.3.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [14/12/17]      #
+# # ultima ediçao realizada:      [17/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,14 +83,15 @@
 #
 # 	f = desenvolver
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-#       [+] - Açao realizada;
+# # Mensagens de Status
+#       [+] - Ação realizada;
 #       [*] - Processamento;
 #       [-] - Não executado;
 #       [!] - Mensagem de aviso;
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Script testado em
 #	- Xubuntu 16.04
@@ -99,161 +101,10 @@
 #       - Ubuntu
 #       - Debian 9
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# # FUNCOES
-#
-# # # # # ATUALIZA SISTEMA
-# # [+] Update
-# #     [+] Update-Grud
-# # [+] Upgrade
-# # [+] Kernel
-# #     [+] Remove antigos
-# #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # CORRIGE SISTEMA
-# # [+] Swap
-# # [+] Prelink, Preload, Deborphan
-# # [+] Pacotes com problemas
-# # [+] Fontes
-# # [+] Apport
-# # [+] NTP
-# # [+] Iniciando sessão automaticamente
-# # [+] Apport
-# # [+] Log - Sudo
-# # [+] Lista de Repositorios padrão
-# # [+] Arquivo Hosts
-# # [+] Chaveiro de Sessão
-# # [+] Xclip
-# #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # LIMPA SISTEMA
-# # [+] Excluindo pacotes antigos
-# # [+] Excluindo pacotes orfaõs
-# # [+] Removendo arquivos temporários
-# # [+] Arquivos obsoletos
-# # [+] Kernel's antigos
-# # [+] Removendo arquivos (.bak, ~, tmp) pasta Home
-# # [+] Excluindo arquivos inuteis do cache do gerenciador de pacotes
-# # [+] Verificando Chkrootkit
-# # [+] Removendo idiomas sobressalentes
-# #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # INSTALANDO PROGRAMAS
-# NAVEGADORES
-# # [+] Firefox
-# # [+] Chromium
-# # [+] Tor
-#
-# JOGOS
-# # [+] Steam
-# # [+] Citra
-# # [+] Dolphin
-# # [+] VisualGame Boy Advanced
-# # [+] Wine
-# # [+] PlayonLinux
-#
-# ASTRONOMIA
-# # [+] Stellarium
-# # [+] Kstars
-#
-# MULTIMIDIA
-# # [+] Spofity
-# # [+] Clementine
-# # [+] VLC
-# # [+] Kdenlive
-# # [+] Sweet Home 3D
-# # [+] Audacity
-# # [+] Mcomix
-# # [+] Simple Screen Recorder
-# # [+] Calibre
-# # [+] Gimp
-# # # [+] PhotoGimp
-#
-# MUSICA
-# # [+] Tux Guitar
-# # [+] MuseScore
-#
-# DESENVOLVIMENTO
-# # [+] Kate
-# # [+] Wireshark
-# # [+] Git
-# # [+] Apache
-# # [+] Mysql-server
-# # [+] PhpMyAdmin
-# # [+] ZSH
-# # [+] Docker
-# # [+] Sublime
-#
-# OFFICE
-# # [+] LibreOffice
-# # [+] Texmaker
-#
-# PERSONALIZAÇÃO
-# # [+] Icones/Temas Mac
-# # [+] Codec's
-# # [+] XFCE
-# # [+] Redshift
-# # [+] Gnome-terminal
-# # [+] NTP
-# # [+] Plank
-# # [+] Gnome System Monitor
-# # [+] Nautilus
-# # [+] Gparted
-# # [+] Tlp
-# # [+] Screenfetch
-# # [+] Gnome-disk-utility
-# # [+] Gnome System Tools
-# # [+] Brightside
-# # [+] Figlet
-# # [+] Hardinfo
-# # [+] Nvidia
-# # [+] Icones
-# # [+] Pulse Effects
-# # [+] Terminator
-#
-# OUTROS
-# # [+] Firewall Basic
-# # [+] Mega
-# # [+] Open Ssh
-# # [+] Chkrootkit
-# # [+] Reaver
-# # [+] Lm-sensors
-# # [+] Ibus
-# # [+] Nmap
-# # [+] Htop
-# # [+] VirtualBox
-# # [+] Tree
-# # [+] Aircrack-ng
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # # # # REMOVENDO PROGRAMAS
-# # # GERAL
-# # [+] Pidgin
-# # [+] Thunderbird
-# # [+] Parole
-# # [+] Adapta
-# # [+] Inkscape
-# # [+] Xfburn
-# # [+] Blender
-# # [+] SmartGit
-# # [+] Gitg
-# # [+] Meld
-#
-# # # NOTEBOOK
-# # [+] Kstars
-# # [+] Steam
-# # [+] Spotify
-# # [+] Kdenlive
-# # [+] Sweet Home 3D
-# # [+] Simple Screen Recorder
-# # [+] Figlet
-# # [+] Transmission
-#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
+#                                                                             #
 #                               CORPO DO SCRIPT                               #
-
+#                                                                             #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # VARIAVEIS DE AMBIENTE
@@ -264,8 +115,8 @@
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 #capturando hostname da maquina
-    hostname=$(hostname)                # desktop ou notebook
-#
+    hostname=$(hostname)                # Funções configuradas a partir de valores -desktop ou notebook-
+
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
 # ATUALIZAR
@@ -277,7 +128,7 @@
 #
 # # # # # # # # # #
 #
-# criando funcoes para serem executadas como parametro
+# criando funcoes para serem executadas como parametros
 func_help()
 {
     clear
@@ -896,6 +747,7 @@ func_help()
 
     libreoffice()
     {
+        # se habilitar verificação, novas atualizações não serão instaladas.
 #         # variavel de verificação
 #         var_libreoffice=$(which libreoffice)
 #
@@ -2384,7 +2236,7 @@ esac
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
+#                                                                               #
 #                           RODAPE DO SCRIPT                                    #
-
+#                                                                               #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
