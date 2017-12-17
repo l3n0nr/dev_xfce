@@ -891,7 +891,7 @@ func_help()
         apt install redshift gtk-redshift -y
 
         # criando link
-        cat base/redshift.conf > pasta_home/.config/redshift.conf -f
+        cat base/redshift.conf > pasta_home/.config/redshift.conf 
     }
 
     libreoffice()
