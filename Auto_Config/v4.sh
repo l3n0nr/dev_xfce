@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.278.3.0.0]   #
+# # versão do script:           [0.1.281.1.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [17/12/17]      #
+# # ultima ediçao realizada:      [24/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -75,8 +75,6 @@
 #                           - Dmidecode | grep "Reference Designation: Broadcom"
 #
 #               - II    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
-#                           - Tor-Browser
-#                           - Wine
 #                           - Icones-macbuntu
 #
 #               - III   - [USUARIO ZSH]     - Alterar diretamente no script a funcao "/home/lenonr:/bin/bash" por "/home/lenonr:/bin/zsh" no arquivo /etc/passwd
@@ -873,17 +871,26 @@ func_help()
 
     tor()
     {
-        printf "\n"
-        printf "[+] Instalando o Tor \n"
+        # variavel de verificação
+        var_tor=$(which tor)
 
-        #adicionando repositorio
-        add-apt-repository ppa:webupd8team/tor-browser -y
+        if [[ ! -e $var_tor ]]; then
+            printf "\n"
+            printf "[+] Instalando o Tor \n"
 
-        #atualizando lista de pacotes
-        update
+            #adicionando repositorio
+            add-apt-repository ppa:webupd8team/tor-browser -y
 
-        #instalando tor
-        apt-get install tor-browser -y
+            #atualizando lista de pacotes
+            update
+
+            #instalando tor
+            apt-get install tor tor-browser -y
+        else
+        {
+            printf "\n"
+            printf "[+] Tor já está instalado! \n"            
+        }
     }
 
     dolphin()
@@ -1456,22 +1463,8 @@ func_help()
             printf "[+] Instalando o ZSH \n"
             apt install zsh -y
 
-            printf "\n[+] Será necessário voce configurar o arquivo /etc/passwd e alterar a linha do seu usuário padrão, colocando zsh no lugar do bash(padrão) \n"
-            printf "[+] Exemplo: sudo /etc/passwd - $pasta_home:/bin/zsh -> $pasta_home:/bin/zsh \n"
-#             sleep 10s
-
-#             altera_zsh=$(cat /etc/passwd | grep $pasta_home:/bin)
-#             cd $pasta_home
-#             sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#             cd -
-
-#             printf "[+] Instalando a personalização do zsh \n"
-
-#             cd $HOME
-
-
-            # voltando para o diretorio anterior para seguir o funcionamento do script
-#             cd -
+            printf "\n Modificando bash padrao para zsh"
+            chsh -s /usr/bin/zsh
     }
 
     install_docker()
