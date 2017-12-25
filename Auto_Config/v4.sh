@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.281.1.0.0]   #
+# # versão do script:           [0.1.282.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [24/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -76,8 +76,6 @@
 #
 #               - II    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
 #                           - Icones-macbuntu
-#
-#               - III   - [USUARIO ZSH]     - Alterar diretamente no script a funcao "/home/lenonr:/bin/bash" por "/home/lenonr:/bin/zsh" no arquivo /etc/passwd
 #
 # 	f = desenvolver
 #
@@ -1463,8 +1461,10 @@ func_help()
             printf "[+] Instalando o ZSH \n"
             apt install zsh -y
 
-            printf "\n Modificando bash padrao para zsh"
+            printf "\n [*] Modificando bash padrao para zsh"
             chsh -s /usr/bin/zsh
+
+            printf "\n [+] Seu interpretador de comandos foi alterado para o ZSH!!"
     }
 
     install_docker()
