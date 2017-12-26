@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [0.1.282.2.0.0]   #
+# # versão do script:           [0.1.283.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [24/12/17]      #
+# # ultima ediçao realizada:      [26/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -885,10 +885,9 @@ func_help()
             #instalando tor
             apt-get install tor tor-browser -y
         else
-        {
             printf "\n"
-            printf "[+] Tor já está instalado! \n"            
-        }
+            printf "[+] Tor já está instalado! \n" 
+        fi           
     }
 
     dolphin()
