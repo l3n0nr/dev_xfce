@@ -15,3 +15,8 @@ apt install nmap -y
 
 
 wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+wget ftp.us.debian.org/debian/pool/main/x/xfce4-whiskermenu-plugin/xfce4-whiskermenu-plugin_1.4.0-1_amd64.deb
+
+apt --fix-broken install -y
+
