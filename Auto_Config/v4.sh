@@ -57,7 +57,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [0.1.283.2.0.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [26/12/17]      #
+# # ultima ediçao realizada:      [28/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -553,7 +553,9 @@ func_help()
         printf "\n"
         printf "[+] Removendo Pacotes Órfãos \n"
 
-        apt-get remove $(deborphan) -y ; apt-get autoremove -y
+        # apt-get remove $(deborphan) -y ; apt-get autoremove -y
+        apt-get remove $(deborphan) -y 
+        apt-get autoremove -y
     }
 
     funcao_chkrootkit()
@@ -698,6 +700,28 @@ func_help()
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp
+    }
+
+    install_xfpanel-switch()
+    {
+    	# variavel de verificação
+        var_xfpanel=$(which xfpanel-switch)
+
+        if [[ ! -e $var_xfpanel ]]; then
+    		printf "\n"
+        	printf "[+] Instalando Xfpanel-switch \n"
+
+	        wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+	        dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+	        # corrigindo problemas de dependencias
+	        apt --fix-broken install -y
+
+	        dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+	    else
+			printf "[+] Xfpanel-switch ja esta instalado \n"	    	
     }
 
     wine()
@@ -1366,7 +1390,7 @@ func_help()
         apt install apache2 -y
     }
 
-    mysql()
+    install_mysql()
     {
         printf "\n"
         printf "[+] Instalando o Mysql Server \n"
@@ -1594,6 +1618,7 @@ func_instala()
         icones_mac
         codecs
         xfce4
+        install_xfpanel-switch
         redshift
         gnome_terminal
         install_ntp
@@ -1743,7 +1768,7 @@ func_instala_outros()
 {
     # desenvolvimento
     apache
-    mysql
+    install_mysql
     phpmyadmin
     install_zsh
     install_docker  
@@ -2066,10 +2091,12 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALANDO PROGRAMAS
         4) printf
+				xfce4
+				install_xfpanel-switch
                 nautilus
                 redshift
                 plank
-                git
+                install_git
                 openssh
 #                 icones
                 brightside
@@ -2099,7 +2126,7 @@ auto_config_debian()
         5) printf
                 # desenvolvimento
                 apache
-                mysql
+                install_mysql
                 phpmyadmin
 
                 # teclado
