@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.283.0.2.0]   #
+# # versão do script:           [2.0.284.1.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [28/12/17]      #
+# # ultima ediçao realizada:      [29/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -68,6 +68,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
+#				- I     - [NOTEBOOK/DEBIAN] - Verificar funcao debian na situacao hostname(notebook)
 #
 # 	e = pendencias
 #               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
@@ -722,6 +723,7 @@ func_help()
 
 	    else
 			printf "[+] Xfpanel-switch ja esta instalado \n"	    	
+		fi
     }
 
     wine()
