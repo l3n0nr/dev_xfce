@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.284.1.2.0]   #
+# # versão do script:           [2.0.285.1.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [29/12/17]      #
+# # ultima ediçao realizada:      [30/12/17]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1049,10 +1049,14 @@ func_help()
 
                 #atualizando lista repositorios
                 update
+
+                #instalando plank
+            	apt-get install plank* plank-themer -y
+
             fi
 
             #instalando plank
-            apt-get install plank* plank-themer -y
+            apt-get install plank* -y
         else
             printf "[+] Plank já está instalado! \n"
         fi
