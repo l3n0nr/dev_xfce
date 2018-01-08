@@ -112,7 +112,7 @@
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 #capturando hostname da maquina
-    hostname=$(hostname)                # Funções configuradas a partir de valores -desktop ou notebook-
+    v_hostname=$(hostname)                # Funções configuradas a partir de valores -desktop ou notebook-
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -506,7 +506,7 @@ func_help()
     arquivo_hosts()
     {
         #verificando variavel
-        if [[ $hostname == 'desktop' ]]; then
+        if [[ $v_hostname == 'desktop' ]]; then
             printf "\n"
             printf "[+] Alterando arquivo Hosts \n\n"
 
@@ -1114,35 +1114,12 @@ func_help()
         apt install gnome-disk-utility -y
     }
 
-    calibre()
-    {
-        printf "\n"
-        printf "[+] Instalando o Calibre \n"
-
-        apt install calibre -y
-    }
-
     audacity()
     {
         printf "\n"
         printf "[+] Instalando o Audacity \n"
 
         apt install audacity -y
-    }
-
-    mcomix()
-    {
-        printf "\n"
-        printf "[+] Instalando o MComix \n"
-
-        #adicionando repositorio
-        add-apt-repository ppa:nilarimogard/webupd8 -y
-
-        #atualizando lista repositorios
-        apt-get update
-
-        #instalando mcomix
-        apt-get install mcomix -y
     }
 
     simple_screen_recorder()
@@ -1544,7 +1521,7 @@ func_corrige()
     clear
 
     #verificando variavel
-    if [[ $hostname == 'desktop' ]]; then
+    if [[ $v_hostname == 'desktop' ]]; then
         clear
         apt_check
         apt_install
@@ -1564,7 +1541,7 @@ func_corrige()
         arquivo_hosts
         chaveiro
         install_xclip
-    elif [[ $hostname == 'notebook' ]]; then
+    elif [[ $v_hostname == 'notebook' ]]; then
         clear
         apt_check
         apt_install
@@ -1617,9 +1594,9 @@ func_instala()
 
     # # verificando nome para máquina para executar funções especificas
     #capturando hostname da maquina
-    hostname=$(hostname)
+    # v_hostname=$(hostname)
 
-    if [[ $hostname == 'notebook' ]]; then
+    if [[ $v_hostname == 'notebook' ]]; then
 #               PERSONALIZAÇÃO
         icones_mac
         codecs
@@ -1664,9 +1641,7 @@ func_instala()
 #                 kdenlive
 #                 sweethome3d
         audacity
-#                 mcomix
 #                 simple_screen_recorder
-        calibre
 
 #               DESENVOLVIMENTO
         kate
@@ -1737,9 +1712,7 @@ func_instala()
         kdenlive
         sweethome3d
         audacity
-#                 mcomix
         simple_screen_recorder
-#                 calibre
 
 #               MUSICA
         tuxguitar
@@ -1789,7 +1762,7 @@ func_instala_outros()
     ibus
 
     # verificando computador
-    if [[ $hostname == 'desktop' ]]; then
+    if [[ $v_hostname == 'desktop' ]]; then
         # outros
         virtualbox
 
@@ -1839,8 +1812,9 @@ func_remove()
 
     apt purge blender* -y
 
-    hostname=$(hostname)
-    if [[ $hostname == 'notebook' ]]; then
+    # v_hostname=$(hostname)
+
+    if [[ $v_hostname == 'notebook' ]]; then
         printf "[+] Removendo pidgin \n"
 
         apt purge pidgin* -y
@@ -2115,7 +2089,7 @@ auto_config_debian()
                 #firmware-wifi
 
                 #verificando variavel
-                if [[ $hostname == 'notebook' ]]; then
+                if [[ $v_hostname == 'notebook' ]]; then
                     printf "\n"
                     printf "[+] Instalando firmware Wifi \n"
 
