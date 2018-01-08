@@ -57,7 +57,11 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [2.0.286.1.2.0]   #
 # # data de criação do script:    [28/09/17]      #
+<<<<<<< HEAD
 # # ultima ediçao realizada:      [08/01/18]      #
+=======
+# # ultima ediçao realizada:      [03/01/18]      #
+>>>>>>> 760f67fd3d2288275a1d9e44ee1d90cedb7042f1
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -305,22 +309,22 @@ func_help()
         memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
         background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
         ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
-        printf "[+] Diminuindo a Prioridade de uso da memória SWAP"
+        printf "\n [+] Diminuindo a Prioridade de uso da memória SWAP"
         if [[ $memoswap == "vm.swappiness=10" ]]; then
-                printf "[*] Otimizando... \n"
+                printf "\n[*] Otimizando..."
                 /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf"
         elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-                printf "[*] Otimizando... \n"
+                printf "\n[*] Otimizando..."
                 /bin/su -c "printf 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
         elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-                printf "[*] Otimizando... \n"
+                printf "\n[*] Otimizando..."
                 /bin/su -c "printf 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
         elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-                printf "[*] Otimizando... \n"
+                printf "\n[*] Otimizando... "
                 /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
         else
-                printf "[-] Não há nada para ser otimizado \n"
-                printf "[!] Isso porque já foi otimizado anteriormente! \n"
+                printf "\n[-] Não há nada para ser otimizado"
+                printf "\n[!] Isso porque já foi otimizado anteriormente!"
         fi
         printf "\n"
     }

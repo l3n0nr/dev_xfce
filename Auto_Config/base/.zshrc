@@ -111,12 +111,17 @@ alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; k
 # alias para reiniciar swap
 alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap/reinicia_swap.sh'
 
-
 # criando apelido para realizar backup do bashrc
 alias backup_zsh='clear; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
 
-# testanco configuracao do teclado
+# testando configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
+
+# calculando tempo lançamento foguetes
+alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/calc_lancamento.sh'
 
 # autocompletar 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
