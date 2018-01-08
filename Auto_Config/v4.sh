@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.285.1.2.0]   #
+# # versão do script:           [2.0.286.1.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [30/12/17]      #
+# # ultima ediçao realizada:      [08/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
