@@ -57,11 +57,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [2.0.286.1.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-<<<<<<< HEAD
 # # ultima ediçao realizada:      [08/01/18]      #
-=======
-# # ultima ediçao realizada:      [03/01/18]      #
->>>>>>> 760f67fd3d2288275a1d9e44ee1d90cedb7042f1
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1510,6 +1506,17 @@ func_help()
         apt install sublime-text -y ;
     }
 
+    firmware_wifi()
+    {
+    	#verificando variavel
+        if [[ $v_hostname == 'notebook' ]]; then
+            printf "\n"
+            printf "[+] Instalando firmware Wifi \n"
+
+            apt install firmware-brcm80211 -y
+        fi
+	}
+
 # # # # # # # # # #
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1522,63 +1529,64 @@ func_atualiza()
 
 func_corrige()
 {
-    clear
+	if [ $distro == "Ubuntu" ]; then
+	    clear
 
-    #verificando variavel
-    if [[ $v_hostname == 'desktop' ]]; then
-        clear
-        apt_check
-        apt_install
-        apt_remove
-        apt_clean
-        apt_auto
-        apt_update_local
-        swap
-        prelink_preload_deborphan
-        funcao_dpkg
-        fonts
-        config_ntp
-        apport
-        repositorios_padrao
-        log_sudo
-        lightdm
-        arquivo_hosts
-        chaveiro
-        install_xclip
-    elif [[ $v_hostname == 'notebook' ]]; then
-        clear
-        apt_check
-        apt_install
-        apt_remove
-        apt_clean
-        apt_auto
-        apt_update_local
-        swap
-        prelink_preload_deborphan
-        funcao_dpkg
-        fonts
-        config_ntp
-        apport
-        repositorios_padrao
-        log_sudo
-#                 lightdm
-    else
-        clear
-        apt_check
-        apt_install
-        apt_remove
-        apt_clean
-        apt_auto
-        apt_update_local
-        swap
-        prelink_preload_deborphan
-        funcao_dpkg
-        fonts
-        config_ntp
-        apport
-        repositorios_padrao
-        log_sudo
-    fi
+	    #verificando variavel
+	    if [[ $v_hostname == 'desktop' ]]; then
+	        clear
+	        apt_check
+	        apt_install
+	        apt_remove
+	        apt_clean
+	        apt_auto
+	        apt_update_local
+	        swap
+	        prelink_preload_deborphan
+	        funcao_dpkg
+	        fonts
+	        config_ntp
+	        apport
+	        repositorios_padrao
+	        log_sudo
+	        lightdm
+	        arquivo_hosts
+	        chaveiro
+	        install_xclip
+	    elif [[ $v_hostname == 'notebook' ]]; then
+	        clear
+	        apt_check
+	        apt_install
+	        apt_remove
+	        apt_clean
+	        apt_auto
+	        apt_update_local
+	        swap
+	        prelink_preload_deborphan
+	        funcao_dpkg
+	        fonts
+	        config_ntp
+	        apport
+	        repositorios_padrao
+	        log_sudo
+	    else
+	        clear
+	        apt_check
+	        apt_install
+	        apt_remove
+	        apt_clean
+	        apt_auto
+	        apt_update_local
+	        swap
+	        prelink_preload_deborphan
+	        funcao_dpkg
+	        fonts
+	        config_ntp
+	        apport
+	        repositorios_padrao
+	        log_sudo
+	    fi
+	fi
 
     # realizando atualização
     update
@@ -1594,157 +1602,164 @@ func_limpa()
 
 func_instala()
 {
-    clear
+	if [ $distro == "Ubuntu" ]; then		
+	    clear	  
 
-    # # verificando nome para máquina para executar funções especificas
-    #capturando hostname da maquina
-    # v_hostname=$(hostname)
+	    if [[ $v_hostname == 'notebook' ]]; then
+	#               PERSONALIZAÇÃO
+	        icones_mac
+	        codecs
+	        xfce4
+	        install_xfpanel-switch
+	        redshift
+	        gnome_terminal
+	        install_ntp
+	        plank
+	        gnome_system_monitor
+	        nautilus
+	        gparted
+	        tlp
+	        screenfetch
+	        gnome_disk_utility
+	        gnome_system_monitor
+	        brightside
+	#                 figlet
+	        hardinfo
 
-    if [[ $v_hostname == 'notebook' ]]; then
-#               PERSONALIZAÇÃO
-        icones_mac
-        codecs
-        xfce4
-        install_xfpanel-switch
-        redshift
-        gnome_terminal
-        install_ntp
-        plank
-        gnome_system_monitor
+	#               NAVEGADORES
+	        firefox
+	        chromium
+	        tor
+
+	#               JOGOS
+	        visual_game_boy
+	        wine
+	        playonlinux
+
+	#               ASTRONOMIA
+	        stellarium
+
+	#               MULTIMIDIA
+	        spotify
+	        clementine
+	        vlc
+	        audacity
+
+	#               DESENVOLVIMENTO
+	        kate
+	        install_git
+	        install_sublime
+
+	#               IMAGEM
+	        funcao_gimp
+
+	#               OUTROS
+	        firewall_basic
+	        openssh
+	        install_chkrootkit
+	        reaver
+	        sensors
+	        install_nmap
+	        htop
+	        install_tree
+	        install_aircrack
+	        install_terminator
+
+	#               OFFICE
+	        libreoffice
+	        texmaker
+
+	    else
+	#               PERSONALIZAÇÃO
+	        nvidia
+	        icones_mac
+	        codecs
+	        xfce4
+	        redshift
+	        gnome_terminal
+	        install_ntp
+	        plank
+	        gnome_system_monitor
+	        nautilus
+	        gparted
+	        tlp
+	        screenfetch
+	        gnome_disk_utility
+	        gnome_system_monitor
+	        brightside
+	        figlet
+	        hardinfo
+
+	#               NAVEGADORES
+	        firefox
+	        chromium
+	        tor
+
+	#               JOGOS
+	        visual_game_boy
+	        wine
+	        playonlinux
+
+	#               ASTRONOMIA
+	        stellarium
+	        kstars
+
+	#               MULTIMIDIA
+	        spotify
+	        clementine
+	        vlc
+	        kdenlive
+	        sweethome3d
+	        audacity
+	        simple_screen_recorder
+
+	#               MUSICA
+	        tuxguitar
+	        muse_score
+
+	#               DESENVOLVIMENTO
+	        kate
+	        install_git
+	        install_terminator
+	        install_sublime
+
+	#               IMAGEM
+	        funcao_gimp
+
+	#               OUTROS
+	        firewall_basic
+	        openssh
+	        install_chkrootkit
+	        reaver
+	        sensors
+	        install_nmap
+	        htop
+	        install_tree
+
+	#               OFFICE
+	        libreoffice
+	        texmaker
+	    fi
+
+    elif [ $distro == "Debian" ]; then
+		xfce4
+		install_xfpanel-switch
         nautilus
-        gparted
-        tlp
-        screenfetch
-        gnome_disk_utility
-        gnome_system_monitor
-        brightside
-#                 figlet
-        hardinfo
-
-#               NAVEGADORES
-        firefox
-        chromium
-        tor
-
-#               JOGOS
-#                 steam
-#                 citra
-#                 dolphin
-        visual_game_boy
-        wine
-        playonlinux
-
-#               ASTRONOMIA
-        stellarium
-#                 kstars
-
-#               MULTIMIDIA
-        spotify
-        clementine
-        vlc
-#                 kdenlive
-#                 sweethome3d
-        audacity
-#                 simple_screen_recorder
-
-#               DESENVOLVIMENTO
-        kate
+        redshift
+        plank
         install_git
-        install_sublime
-
-#               IMAGEM
-        funcao_gimp
-
-#               OUTROS
-        firewall_basic
         openssh
-        install_chkrootkit
-        reaver
-        sensors
+        brightside
+
+        install_sudo
         install_nmap
-        htop
-        install_tree
-        install_aircrack
-        install_terminator
+        install_docker
 
-#               OFFICE
-        libreoffice
-        texmaker
-
+        htop                
+        firmware_wifi
     else
-#               PERSONALIZAÇÃO
-        nvidia
-        icones_mac
-        codecs
-        xfce4
-        redshift
-        gnome_terminal
-        install_ntp
-        plank
-        gnome_system_monitor
-        nautilus
-        gparted
-        tlp
-        screenfetch
-        gnome_disk_utility
-        gnome_system_monitor
-        brightside
-        figlet
-        hardinfo
-#                 icones
-
-#               NAVEGADORES
-        firefox
-        chromium
-        tor
-
-#               JOGOS
-#                 citra
-#                 dolphin
-        visual_game_boy
-        wine
-        playonlinux
-
-#               ASTRONOMIA
-        stellarium
-        kstars
-
-#               MULTIMIDIA
-        spotify
-        clementine
-        vlc
-        kdenlive
-        sweethome3d
-        audacity
-        simple_screen_recorder
-
-#               MUSICA
-        tuxguitar
-        muse_score
-
-#               DESENVOLVIMENTO
-        kate
-        install_git
-        install_terminator
-        install_sublime
-
-#               IMAGEM
-        funcao_gimp
-
-#               OUTROS
-        firewall_basic
-        openssh
-        install_chkrootkit
-        reaver
-        sensors
-        install_nmap
-        htop
-        install_tree
-
-#               OFFICE
-        libreoffice
-        texmaker
-    fi
+		printf "\nERRO!"
+	fi	
 }
 
 func_instala_outros()
@@ -2075,32 +2090,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALANDO PROGRAMAS
         4) printf
-				xfce4
-				install_xfpanel-switch
-                nautilus
-                redshift
-                plank
-                install_git
-                openssh
-#                 icones
-                brightside
-
-                install_sudo
-                install_nmap
-                install_docker
-
-                htop
-                #firmware-wifi
-
-                #verificando variavel
-                if [[ $v_hostname == 'notebook' ]]; then
-                    printf "\n"
-                    printf "[+] Instalando firmware Wifi \n"
-
-                    apt install firmware-brcm80211 -y
-                fi
-
-                #xfpanel
+				func_instala
 
                 auto_config
         ;;
@@ -2215,7 +2205,6 @@ menu()
 # menu
 
 if [ $# -eq 0 ]; then
-#         auto_config
     func_help
 fi
 
