@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.286.1.2.0]   #
+# # versão do script:           [2.0.300.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [08/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -68,14 +68,9 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I     - [NOTEBOOK/DEBIAN] - Verificar funcao debian na situacao hostname(notebook)
 #
 # 	e = pendencias
-#               - I     - [FIRMWARE WIFI] - Criar funcao para instalar automaticamente o driver wi-fi para o modelo do computador(Notebook HP Pavilion G4)
-#                           - Criar possivel verificação
-#                           - Dmidecode | grep "Reference Designation: Broadcom"
-#
-#               - II    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
+#               - I    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
 #                           - Icones-macbuntu
 #
 # 	f = desenvolver
@@ -1586,6 +1581,17 @@ func_corrige()
 	        repositorios_padrao
 	        log_sudo
 	    fi
+	elif [[ $distro == "Debian" ]]; then
+		apt_install
+        fonts
+        config_ntp
+        repositorios_padrao
+        arquivo_hosts
+        chaveiro
+        install_xclip
+		#statements
+	else
+		printf "\nERRO CORRIGE!"
 	fi
 
     # realizando atualização
@@ -1758,7 +1764,7 @@ func_instala()
         htop                
         firmware_wifi
     else
-		printf "\nERRO!"
+		printf "\nERRO INSTALA!"
 	fi	
 }
 
@@ -1771,14 +1777,15 @@ func_instala_outros()
     install_zsh
     install_docker  
 
-    wireshark
-
-    # personalização
-    install_pulseeffects
-    #mega
+    wireshark    
 
     # teclado
     ibus
+
+    if [ $distro == "Ubuntu" ]; then	
+		# personalização
+    	install_pulseeffects
+    fi
 
     # verificando computador
     if [[ $v_hostname == 'desktop' ]]; then
@@ -1792,126 +1799,105 @@ func_instala_outros()
 
 func_remove()
 {
+	printf "\n"
+    printf "[+] Removendo XBurn \n"
+    apt purge xfburn -y
+
     clear
     printf "[+] Removendo pidgin \n"
     apt purge pidgin -y
 
     printf "\n"
     printf "[+] Removendo Thunderbird \n"
-
     apt purge thunderbird -y
 
 
     printf "\n"
     printf "[+] Removendo Parole \n"
-
     apt purge parole -y
 
 
     printf "\n"
-    printf "[+] Removendo XBurn \n"
-
-    apt purge xfburn -y
-
-
-    printf "\n"
     printf "[+] Removendo o Inkscape \n"
-
     apt purge inkscape* -y
 
 
     printf "\n"
     printf "[+] Removendo o Adapta \n"
-
     apt purge adapta-gtk-theme* -y
 
 
     printf "\n"
     printf "[+] Removendo o Blender \n"
-
     apt purge blender* -y
 
     # v_hostname=$(hostname)
 
     if [[ $v_hostname == 'notebook' ]]; then
         printf "[+] Removendo pidgin \n"
-
         apt purge pidgin* -y
 
 
         printf "\n"
         printf "[+] Removendo Thunderbird \n"
-
         apt purge thunderbird* -y
 
 
         printf "\n"
         printf "[+] Removendo Parole \n"
-
         apt purge parole* -y
 
 
         printf "\n"
         printf "[+] Removendo o Kstars \n"
-
         apt purge kstars* -y
 
 
         printf "\n"
         printf "[+] Removendo a Steam \n"
-
         apt purge steam* -y        
 
 
         printf "\n"
         printf "[+] Removendo o Kdenlive \n"
-
         apt purge kdenlive* -y
 
 
         printf "\n"
         printf "[+] Removendo o Sweet Home 3D \n"
-
         apt purge sweethome3d* -y
 
 
         printf "\n"
         printf "[+] Removendo o Simple Screen Recorder \n"
-
         apt purge simplescreenrecorder* -y
 
 
         printf "\n"
         printf "[+] Removendo o Figlet \n"
-
         apt purge figlet* -y
 
 
         printf "\n"
         printf "[+] Removendo o Transmission \n"
-
         apt purge transmission* -y
 
 
         printf "\n"
         printf "[+] SmartGit \n"
-
         apt purge smartgit -y
 
 
         printf "\n"
         printf "[+] Removendo o Gitg \n"
-
         apt purge gitg -y
 
 
         printf "\n"
         printf "[+] Removendo o Meld \n"
-
         apt purge meld -y
-
     else
-        printf "\n"
+    	printf "\n"	   
     fi
 }
 
@@ -1995,6 +1981,7 @@ auto_config_ubuntu()
     ###### ATUALIZA SISTEMA
         1) echo
             func_atualiza
+
             auto_config
         ;;
 
@@ -2002,6 +1989,7 @@ auto_config_ubuntu()
     ###### CORRIGE SISTEMA
         2) echo
             func_corrige
+
             auto_config
         ;;
 
@@ -2009,6 +1997,7 @@ auto_config_ubuntu()
     ###### LIMPA SISTEMA
         3) echo
             func_limpa
+
             auto_config
         ;;
 
@@ -2016,6 +2005,7 @@ auto_config_ubuntu()
     ###### INSTALA PROGRAMAS
         4) echo
             func_instala
+
             auto_config
         ;;
 
@@ -2023,6 +2013,7 @@ auto_config_ubuntu()
     ###### PROGRAMAS NÃO ESSENCIAIS
         5) echo
             func_instala_outros
+
             auto_config
         ;;
 
@@ -2030,20 +2021,21 @@ auto_config_ubuntu()
     ###### REMOVES PROGRAMAS
         6) echo
             func_remove
+
             auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
         7) echo
-                exit
+        	exit
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ######ENTRADA INVALIDA
         *) echo
-            printf "Alternativa incorreta!! \n"
-            sleep 1s
+            printf "\nAlternativa incorreta!!"
+            sleep 1s #1 segundo
             menu
             exit
         ;;
@@ -2070,13 +2062,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### CORRINDO PROBLEMAS
         2) printf
-                apt_install
-                fonts
-                config_ntp
-                repositorios_padrao
-                arquivo_hosts
-                chaveiro
-                install_xclip
+                func_corrige
 
                 auto_config
         ;;
@@ -2098,16 +2084,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### PROGRAMAS NAO ESSENCIAIS
         5) printf
-                # desenvolvimento
-                apache
-                install_mysql
-                phpmyadmin
-
-                # teclado
-                ibus
-
-                # desenvolvimento
-                install_zsh
+				func_instala_outros                
 
                 auto_config
         ;;
@@ -2115,17 +2092,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVENDO PROGRAMAS
         6) printf
-                printf "\n"
-                printf "[+] Removendo XBurn \n"
-
-                apt purge xfburn -y
-
-
-                printf "\n"
-                printf "[+] Removendo Mutt \n"
-
-                apt purge mutt -y
-
+				func_remove		               
 
                 auto_config
         ;;
