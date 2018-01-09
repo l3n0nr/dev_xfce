@@ -2205,16 +2205,13 @@ fi
 # verificando o que foi digitado
 case $1 in
     menu) auto_config;;
-
     atualiza) func_atualiza;;
     corrige) func_corrige;;
     limpa) func_limpa;;
     instala) func_instala;;
     instala_outros) func_instala_outros;;
     remove) func_remove;;
-
     formatado) func_formatado;;
-
 	todas) func_todas;;
 esac
 
