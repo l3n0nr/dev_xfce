@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.300.0.1.0]   #
+# # versão do script:           [2.0.301.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [08/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -615,19 +615,23 @@ func_help()
             printf "\n"
             printf "[+] Instalando Spotify \n"
 
-            #baixando pacote
-            sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+        ## via PPA
+            # #baixando pacote
+            # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
-            #baixando chave
-            apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+            # #baixando chave
+            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
-            #chamando função update
-            update
+            # #chamando função update
+            # update
 
-            #instalando o spotify
-            apt install spotify-client -y --allow-unauthenticated
+            # #instalando o spotify
+            # apt install spotify-client -y --allow-unauthenticated
+
+        ## via snapd
+        	snap install spotify
         else
-            printf "[+] Spofity já está instalando! \n"
+            printf "[+] Spofity já está instalado! \n"
         fi
     }
 
@@ -1512,6 +1516,15 @@ func_help()
         fi
 	}
 
+	install_snap()
+	{
+		printf "\n"
+
+		printf "[+] Instalando Snap"
+
+		apt install snapd
+	}
+
 # # # # # # # # # #
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1655,6 +1668,7 @@ func_instala()
 	        kate
 	        install_git
 	        install_sublime
+	        install_snap
 
 	#               IMAGEM
 	        funcao_gimp
@@ -1728,6 +1742,7 @@ func_instala()
 	        install_git
 	        install_terminator
 	        install_sublime
+	        install_snap
 
 	#               IMAGEM
 	        funcao_gimp
@@ -1760,6 +1775,7 @@ func_instala()
         install_sudo
         install_nmap
         install_docker
+        install_snap
 
         htop                
         firmware_wifi
