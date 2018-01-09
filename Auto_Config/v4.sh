@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.301.0.1.0]   #
+# # versão do script:           [2.0.302.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/01/18]      #
+# # ultima ediçao realizada:      [09/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -523,6 +523,14 @@ func_help()
         printf "[+] Instalando Xclip \n\n"
 
         apt install xclip -y
+    }
+
+    atualiza_db()
+    {
+        printf "\n"
+        printf "[+] Atualizando base de dados do sistema \n\n"        
+
+        updatedb
     }
 
 # # # # # # # # # #
@@ -1561,6 +1569,7 @@ func_corrige()
 	        arquivo_hosts
 	        chaveiro
 	        install_xclip
+            atualiza_db
 	    elif [[ $v_hostname == 'notebook' ]]; then
 	        clear
 	        apt_check
@@ -1577,6 +1586,7 @@ func_corrige()
 	        apport
 	        repositorios_padrao
 	        log_sudo
+            atualiza_db
 	    else
 	        clear
 	        apt_check
@@ -1593,6 +1603,7 @@ func_corrige()
 	        apport
 	        repositorios_padrao
 	        log_sudo
+            atualiza_db
 	    fi
 	elif [[ $distro == "Debian" ]]; then
 		apt_install
@@ -1602,7 +1613,7 @@ func_corrige()
         arquivo_hosts
         chaveiro
         install_xclip
-		#statements
+        atualiza_db
 	else
 		printf "\nERRO CORRIGE!"
 	fi
