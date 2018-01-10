@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.307.0.1.0]   #
+# # versão do script:           [2.0.308.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1549,7 +1549,7 @@ func_help()
     {
     	printf "\n"
         printf "[+] Instalando firmware's non-free \n"        
-    	apt install firmware-linux firmware-linux-nonfree
+    	apt install firmware-linux firmware-linux-nonfree -y
 
     	#verificando variavel
         if [[ $v_hostname == 'notebook' ]]; then
