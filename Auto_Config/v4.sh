@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.306.0.1.0]   #
+# # versão do script:           [2.0.307.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -527,6 +527,19 @@ func_help()
 
     atualiza_db()
     {
+    	# variavel de verificação
+        var_locate=$(which locate)
+
+        printf "\n"
+        printf "[+] Verificando se existe Locate instalado \n"
+
+        if [[ ! -e $var_locate ]]; then
+            printf "\n"
+            printf "[+] Instalando Locate \n"
+
+            apt install locate -y
+        fi
+
         printf "\n"
         printf "[+] Atualizando base de dados do sistema \n\n"        
 
