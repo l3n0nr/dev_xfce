@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.302.0.1.0]   #
+# # versão do script:           [2.0.35.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [09/01/18]      #
+# # ultima ediçao realizada:      [10/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -87,11 +87,11 @@
 #
 # # Script testado em
 #	- Xubuntu 16.04
-#       - Debian 9
+#   - Debian 9
 #
 # # Compativel com
-#       - Ubuntu
-#       - Debian 9
+#   - Ubuntu
+#   - Debian 9
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -107,7 +107,7 @@
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 #capturando hostname da maquina
-    v_hostname=$(hostname)                # Funções configuradas a partir de valores -desktop ou notebook-
+    v_hostname=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -596,10 +596,19 @@ func_help()
 
     chromium()
     {
-        printf "\n"
-        printf "[+] Instalando o Chromium \n"
+    	if [[ $distro == "Ubuntu" ]]; then
+	        printf "\n"
+	        printf "[+] Instalando o Chromium \n"
+	        apt install chromium-browser -y
 
-        apt install chromium-browser -y
+        elif [[ $distro == "Debian" ]]; then
+        	printf "\n"
+	        printf "[+] Instalando o Chromium \n"
+        	apt install chromium chromium-l10n -y
+
+    	else
+    		printf "\n[-] ERRO CHROMIUM!"
+    	fi
     }
 
 
@@ -668,6 +677,7 @@ func_help()
 
         #instalando pacotes multimidias
         apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
+        apt install lame libavcodec-extra libav-tools -y
     }
 
 
@@ -682,8 +692,8 @@ func_help()
             printf "[+] Instalando o Gimp \n"
             apt install gimp -y
 
-            printf "\n"
-            printf "[+] Instalando o PhotoGimp \n"
+            # printf "\n"
+            # printf "[+] Instalando o PhotoGimp \n"
 
 #             printf "[*] Removendo arquivo existente \n"
 #             rm -r $pasta_home/.gimp-2.8
@@ -691,7 +701,7 @@ func_help()
             # printf "[*] Inserindo novo arquivo \n"
             # cp -r base/.gimp-2.8/ $pasta_home
 
-            printf "[+] Novo arquivo adicionado! \n"
+            # printf "[+] Novo arquivo adicionado! \n"
         else
             printf "\n"
             printf "[+] Gimp já está instalado na sua máquina! \n"
@@ -704,7 +714,7 @@ func_help()
         printf "[+] Instalando adicionais do XFCE \n"
 
         #instalando componentes do XFCE
-        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-time-out-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -y -f -q
+        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp
@@ -1369,6 +1379,15 @@ func_help()
         apt install aircrack-ng -y
     }
 
+    install_snap()
+	{
+		printf "\n"
+
+		printf "[+] Instalando Snap"
+
+		apt install snapd
+	}
+
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
 
@@ -1513,8 +1532,12 @@ func_help()
         apt install sublime-text -y ;
     }
 
-    firmware_wifi()
+    firmware()
     {
+    	printf "\n"
+        printf "[+] Instalando firmware's non-free \n"        
+    	apt install firmware-linux firmware-linux-nonfree
+
     	#verificando variavel
         if [[ $v_hostname == 'notebook' ]]; then
             printf "\n"
@@ -1522,16 +1545,7 @@ func_help()
 
             apt install firmware-brcm80211 -y
         fi
-	}
-
-	install_snap()
-	{
-		printf "\n"
-
-		printf "[+] Instalando Snap"
-
-		apt install snapd
-	}
+	}	
 
 # # # # # # # # # #
 
@@ -1615,7 +1629,7 @@ func_corrige()
         install_xclip
         atualiza_db
 	else
-		printf "\nERRO CORRIGE!"
+		printf "\n[-] ERRO CORRIGE!"
 	fi
 
     # realizando atualização
@@ -1774,6 +1788,9 @@ func_instala()
 	    fi
 
     elif [ $distro == "Debian" ]; then
+		firefox
+	    chromium
+
 		xfce4
 		install_xfpanel-switch
         nautilus
@@ -1789,9 +1806,9 @@ func_instala()
         install_snap
 
         htop                
-        firmware_wifi
+        firmware
     else
-		printf "\nERRO INSTALA!"
+		printf "\n[-] ERRO INSTALA!"
 	fi	
 }
 
