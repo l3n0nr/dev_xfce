@@ -55,7 +55,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.35.0.1.0]   #
+# # versão do script:           [2.0.306.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1248,8 +1248,8 @@ func_help()
 
             apt install nvidia-current nvidia-settings -y
 
-            printf "\n"
-            printf "[+] Arquivo de configuração Nvidia \n"
+            # printf "\n"
+            # printf "[+] Arquivo de configuração Nvidia \n"
 
 #             cat base/ubuntu/.nvidia-settings-rc > $past_home/.nvidia-settings-rc
         fi
