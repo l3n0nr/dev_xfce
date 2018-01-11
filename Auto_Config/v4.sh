@@ -55,9 +55,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.308.0.1.0]   #
+# # versão do script:           [2.0.310.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [10/01/18]      #
+# # ultima ediçao realizada:      [11/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -645,21 +645,40 @@ func_help()
             printf "\n"
             printf "[+] Instalando Spotify \n"
 
-        ## via PPA
-            # #baixando pacote
-            # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+			if [[ $distro == "Ubuntu" ]]; then            
+	            #baixando pacote
+	            sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
-            # #baixando chave
-            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+	            #baixando chave
+	            apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
-            # #chamando função update
-            # update
+	            #chamando função update
+	            update
 
-            # #instalando o spotify
-            # apt install spotify-client -y --allow-unauthenticated
+	            #instalando o spotify
+	            apt install spotify-client -y --allow-unauthenticated
+			elif [[ $distro == "Debian" ]]; then
+        		# adicionando dependencia
+        		apt install dirmngr -y
 
-        ## via snapd
-        	snap install spotify
+        		# adicionando chave
+        		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+
+        		# adicionando repositorio
+        		echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+        		# atualizando a lista de repositorios
+        		update
+
+        		# baixando lib
+        		wget ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb 
+
+        		# instalando lib
+				dpkg -i libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb -y
+
+				# instalando spotify
+				apt install spotify-client -y          		
+        	fi
         else
             printf "[+] Spofity já está instalado! \n"
         fi
