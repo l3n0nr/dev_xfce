@@ -34,7 +34,10 @@
 # por Cláudio Novais
 #   <ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
 #
-# por 
+# por Wiki Debian - Tor Browser
+#	<wiki.debian.org/TorBrowser#Debian_9_.22Stretch.22>
+#
+# por M.Hanny Sabbagh  
 #	<fosspost.org/tutorials/how-to-customize-firefox-57-user-interface>
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -57,7 +60,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [2.0.310.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [11/01/18]      #
+# # ultima ediçao realizada:      [13/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -951,14 +954,34 @@ func_help()
             printf "\n"
             printf "[+] Instalando o Tor \n"
 
-            #adicionando repositorio
-            add-apt-repository ppa:webupd8team/tor-browser -y
+            # verificando distribuição
+            if [ $distro == "Ubuntu" ]; then
+	            #adicionando repositorio
+	            add-apt-repository ppa:webupd8team/tor-browser -y
 
-            #atualizando lista de pacotes
-            update
+	            #atualizando lista de pacotes
+	            update
 
-            #instalando tor
-            apt-get install tor tor-browser -y
+	            #instalando tor
+	            apt-get install tor tor-browser -y
+
+            elif [ $distro == "Debian" ]; then
+            	echo 
+    #         	# adicionando repositorio tor
+				# echo "" >> /etc/apt/sources.list
+    #         	echo "" >> /etc/apt/sources.list
+    #         	echo "#------------------------------------------------------------------------------#" >> /etc/apt/sources.list
+    #         	echo "# REPOSITORIO TOR" >> /etc/apt/sources.list
+    #         	echo "deb http://deb.debian.org/debian stretch-backports main contrib" >> /etc/apt/sources.list
+				
+				# # atualizando lista repositorio
+				# update
+
+				# apt install tor torbrowser-launcher -t stretch-backports -y
+            else
+            	printf "\n [-] ERRO TOR"
+            fi
+
         else
             printf "\n"
             printf "[+] Tor já está instalado! \n" 
@@ -1090,7 +1113,6 @@ func_help()
             printf "\n"
             printf "[+] Instalando o Plank Dock \n"
 
-
             # verificando distribuição
             if [ $distro == "Ubuntu" ]; then
                 #adicionando ppa
@@ -1101,7 +1123,6 @@ func_help()
 
                 #instalando plank
             	apt-get install plank* plank-themer -y
-
             fi
 
             #instalando plank
@@ -1822,6 +1843,7 @@ func_instala()
     elif [ $distro == "Debian" ]; then
 		firefox
 	    chromium
+	    tor
 
 		xfce4
 		install_xfpanel-switch
