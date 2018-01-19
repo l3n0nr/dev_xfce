@@ -554,7 +554,6 @@ func_help()
         printf "\n"
         printf "[+] Removendo Pacotes Órfãos \n"
 
-        # apt-get remove $(deborphan) -y ; apt-get autoremove -y
         apt-get remove $(deborphan) -y 
         apt-get autoremove -y
     }
@@ -607,7 +606,6 @@ func_help()
     		printf "\n[-] ERRO CHROMIUM!"
     	fi
     }
-
 
     steam()
     {
