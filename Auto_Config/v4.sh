@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.310.0.1.0]   #
+# # versão do script:           [2.0.312.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [13/01/18]      #
+# # ultima ediçao realizada:      [19/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -208,8 +208,8 @@ func_help()
     upgrade()
     {
         # verificando distribuição
-        if [ $distro == "Ubuntu" ]; then
-                printf "\n"
+        if [ $distro == "Ubuntu" ]; then            
+            printf "\n"
         	#atualizando lista de programas do sistema
 	        printf "[+] Atualizando lista de programas do sistema \n"
 
@@ -220,15 +220,14 @@ func_help()
 	        printf "[+] Atualizando repositório local dos programas \n"
 
 	        auto-apt updatedb
-	else
+		else
         	#atualizando lista de programas do sistema
         	printf "\n"
 	        printf "[+] Atualizando lista de programas do sistema \n"
 
 	        apt upgrade -y
 	        apt dist-upgrade -y
-
-	fi
+		fi
     }
 
 # # # # # # # # # #
@@ -390,17 +389,7 @@ func_help()
         #removendo pacote
         rm -f ttf-mscorefonts-installer_3.6_all.deb
         rm -f ttf-mscorefonts-installer_3.6_all.deb.1
-    }
-
-    install_ntp()
-    {
-        printf "\n"
-        printf "[+] Instalando o NTP"
-        printf "\n"
-
-        #instalando software necessario
-        apt install ntp ntpdate -y
-    }
+    }    
 
     config_ntp()
     {
@@ -517,16 +506,8 @@ func_help()
         printf "\n"
         printf "[+] Removendo o chaveiro da sessão \n\n"
 
-        sudo apt-get remove gnome-keyring -y
-    }
-
-    install_xclip()
-    {
-        printf "\n"
-        printf "[+] Instalando Xclip \n\n"
-
-        apt install xclip -y
-    }
+        apt-get remove gnome-keyring -y
+    }    
 
     atualiza_db()
     {
@@ -715,11 +696,9 @@ func_help()
         apt install lame libavcodec-extra libav-tools -y
     }
 
-
     funcao_gimp()
     {
-
-     # variavel de verificação
+     	# variavel de verificação
         var_gimp=$(which gimp)
 
         if [[ ! -e $var_gimp ]]; then
@@ -772,7 +751,6 @@ func_help()
 	        apt --fix-broken install -y
 
 	        dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
-
 	    else
 			printf "[+] Xfpanel-switch ja esta instalado \n"	    	
 		fi
@@ -780,7 +758,7 @@ func_help()
 
     wine()
     {
-    # variavel de verificação
+    	# variavel de verificação
         var_wine=$(which wine)
 
         if [[ ! -e $var_wine ]]; then
@@ -821,8 +799,10 @@ func_help()
 
     libreoffice()
     {
-        # se habilitar verificação, novas atualizações não serão instaladas.
-#         # variavel de verificação
+		# se habilitar verificação, novas atualizações não serão instaladas.
+		# libreoffice ja vem instalado por padrao na formataçao
+# 		
+# 		variavel de verificação 		
 #         var_libreoffice=$(which libreoffice)
 #
 #         if [[ ! -e $var_libreoffice ]]; then
@@ -1441,6 +1421,24 @@ func_help()
 		apt install snapd
 	}
 
+	install_ntp()
+    {
+        printf "\n"
+        printf "[+] Instalando o NTP"
+        printf "\n"
+
+        #instalando software necessario
+        apt install ntp ntpdate -y
+    }
+
+    install_xclip()
+    {
+        printf "\n"
+        printf "[+] Instalando Xclip \n\n"
+
+        apt install xclip -y
+    }
+
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
 
@@ -1762,6 +1760,7 @@ func_instala()
 	        install_tree
 	        install_aircrack
 	        install_terminator
+	        install_xclip
 
 	#               OFFICE
 	        libreoffice
@@ -1834,6 +1833,8 @@ func_instala()
 	        install_nmap
 	        htop
 	        install_tree
+	        install_ntp
+	        install_xclip
 
 	#               OFFICE
 	        libreoffice
@@ -1858,6 +1859,8 @@ func_instala()
         install_nmap
         install_docker
         install_snap
+        install_ntp
+		install_xclip
 
         htop                
         firmware
