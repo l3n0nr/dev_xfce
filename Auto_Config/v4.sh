@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.312.0.1.0]   #
+# # versão do script:           [2.0.315.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [19/01/18]      #
+# # ultima ediçao realizada:      [12/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -75,6 +75,7 @@
 # 	e = pendencias
 #               - I    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
 #                           - Icones-macbuntu
+# 				- II   - [KERNEL]		   - Melhorar script para remover kernel mais antigo
 #
 # 	f = desenvolver
 #
@@ -188,45 +189,27 @@ func_help()
     update()
     {
         #atualizando lista de repositorios
-        printf "\n"
-        printf "[+] Atualizando lista de repositorios do sistema"
-        printf "\n"
-
-        apt update
-
-#         # verificando distribuição
-#         if [ "$distro" == "Ubuntu" ]; then
-#                 printf "\n"
-#
-# 	        #atualizando repositorio e seus dependencias
-#         	printf "[+] Atualizando lista de programas e suas dependências \n"
-#
-# 	        auto-apt update
-#         fi
+        printf "\n[+] Atualizando lista de repositorios do sistema"
+        	apt update
     }
 
     upgrade()
     {
         # verificando distribuição
         if [ $distro == "Ubuntu" ]; then            
-            printf "\n"
         	#atualizando lista de programas do sistema
-	        printf "[+] Atualizando lista de programas do sistema \n"
-
-	        apt upgrade -y
+	        printf "\n[+] Atualizando lista de programas do sistema \n"
+	        	apt upgrade -y
 
 	        #atualizando repositorio local
-	        printf "\n"
-	        printf "[+] Atualizando repositório local dos programas \n"
+	        printf "\n[+] Atualizando repositório local dos programas \n"
+	        	auto-apt updatedb
 
-	        auto-apt updatedb
 		else
-        	#atualizando lista de programas do sistema
-        	printf "\n"
-	        printf "[+] Atualizando lista de programas do sistema \n"
-
-	        apt upgrade -y
-	        apt dist-upgrade -y
+        	#atualizando lista de programas do sistem
+	        printf "\n[+] Atualizando lista de programas do sistema \n"
+		        apt upgrade -y
+		        apt dist-upgrade -y
 		fi
     }
 
@@ -235,62 +218,44 @@ func_help()
     apt_check()
     {
         #verificando lista do apt
-        printf "\n"
-        printf "[+] Verificando lista do apt"
-        printf "\n"
-
-        apt-get check -y
+        printf "\n[+] Verificando lista do apt"
+        	apt-get check -y
     }
 
     apt_install()
     {
         #instalando possiveis dependencias
-        printf "\n"
-        printf "[+] Instalando dependências pendentes"
-        printf "\n"
-
-        apt-get -f install -y
+        printf "\n[+] Instalando dependências pendentes"
+        	apt-get install -fy
     }
 
     apt_remove()
     {
         #removendo possiveis dependencias
-        printf "\n"
-        printf "[+] Removendo possíveis dependências obsoletas"
-        printf "\n"
-
-        apt-get -f remove -y
-        apt-get autoremove -y
+        printf "\n[+] Removendo possíveis dependências obsoletas"
+	        apt-get remove -fy
+	        apt-get autoremove -y
     }
 
     apt_clean()
     {
         #limpando lista arquivos sobressalentes
-        printf "\n"
-        printf "[+] Limpando arquivos sobressalentes"
-        printf "\n"
-
-        apt-get clean -y
+        printf "\n[+] Limpando arquivos sobressalentes"
+        	apt-get clean -y
     }
 
     apt_auto()
     {
         #corrigindo problemas de dependencias
-        printf "\n"
-        printf "[+] Corrigindo problemas de dependências"
-        printf "\n"
-
-        apt-get install auto-apt -y
+        printf "\n[+] Corrigindo problemas de dependências"
+        	apt-get install auto-apt -y
     }
 
     apt_update_local()
     {
         #corrigindo repositorio local de dependencias automaticamente
-        printf "\n"
-        printf "[+] Corrigindo repositório local de dependências automaticamente"
-        printf "\n"
-
-        auto-apt update-local
+        printf "\n[+] Corrigindo repositório local de dependências automaticamente"
+        	auto-apt update-local
     }
 
     swap()
@@ -329,14 +294,13 @@ func_help()
         #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
 
         #instalando prelink, preload, deborphan para um melhor performance do sistema
-        printf "\n"
-        printf "[*] Instalando Prelink, Preload e Deborphan \n"
+        printf "\n[*] Instalando Prelink, Preload e Deborphan"
 #         printf "------------------- \n"
 
         apt install prelink preload -y 1>/dev/null 2>/dev/stdout
         apt-get install deborphan -y
 
-        echo "[*] Configurando Deborphan... \n"
+        echo "[*] Configurando Deborphan... "
         deborphan | xargs sudo apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
@@ -354,31 +318,26 @@ func_help()
                 printf "adicionando ... \n"
                 sed -i 's/unknown/yes/g' /etc/default/prelink
         else
-                printf "[-] Otimização já adicionada anteriormente. \n"
+                printf "\n[-] Otimização já adicionada anteriormente."
         fi
     }
 
     funcao_dpkg()
     {
         #corrigindo pacotes quebrados
-        printf "\n"
-        printf "[+] Corrigindo pacotes quebrados"
-        printf "\n"
+        printf "\n[+] Corrigindo pacotes quebrados"
+	        #corrige possiveis erros na instalação de softwares
+	        dpkg --configure -a
 
-        #corrige possiveis erros na instalação de softwares
-        dpkg --configure -a
-
-        #VERIFICAR AÇÕES
-        rm -r /var/lib/apt/lists
-        mkdir -p /var/lib/apt/lists/partial
+	        #VERIFICAR AÇÕES
+	        rm -r /var/lib/apt/lists
+	        mkdir -p /var/lib/apt/lists/partial
     }
 
     fonts()
     {
         #corrigindo erros fontes
-        printf "\n"
-        printf "[+] Instalando pacotes de fontes"
-        printf "\n"
+        printf "\n[+] Instalando pacotes de fontes"
 
         #baixando pacote
         wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
@@ -393,100 +352,75 @@ func_help()
 
     config_ntp()
     {
-        printf "\n"
-        printf "[+] Configurando o NTP \n"
+        printf "\n[+] Configurando o NTP"
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
-        printf "\n"
-        printf "[*] Parando serviço NTP para realizaçao das configuraçoes necessarias \n"
+        printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"
             service ntp stop
 
         #configurando script base - NTP
-        printf "\n"
-        printf "[*] Realizando alteraçao no arquivo base \n"
+        printf "\n[*] Realizando alteraçao no arquivo base"
         cat base/ntp.txt > /etc/ntp.conf
 
         #ativando servico novamente
-        printf "\n"
-        printf "[+] Ativando serviço NTP \n"
+        printf "\n[+] Ativando serviço NTP"
             service ntp start
 
         #realizando atualizacao hora/data
-        printf "\n"
-        printf "[+] Atualizando hora do servidor \n"
-        printf "[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
+        printf "\n[+] Atualizando hora do servidor"
+        printf "\n[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
-        #servidor NIC.BR
-        printf "\n"
-        printf "[+] Atualizando servidores, aguarde...\n"
-        printf "[*] NIC.BR \n"
+        printf "\n[+] Atualizando servidores, aguarde..."
+        printf "\n[*] NIC.BR"
             ntpdate -q pool.ntp.br
-
-        #servidor Ob. Nac.
-        printf "\n"
-        printf "[*] Observatorio Nacional \n"
+     
+        printf "\n[*] Observatorio Nacional"
             ntpdate -q ntp.on.br
 
-        # servidores da rnp
-        printf "\n"
-        printf "[*] RNP \n"
+        printf "\n[*] RNP"
             ntpdate -q ntp.cert-rs.tche.br
 
-        # servidores da ufrj
-        printf "\n"
-        printf "[*] UFRJ \n"
+        printf "\n[*] UFRJ"
             ntpdate -q ntps1.pads.ufrj.br
 
-        # servidor da usp
-        printf "\n"
-        printf "[*] USP \n"
+        printf "\n[*] USP"
             ntpdate -q ntp.usp.br
 
-        printf "\n"
-        printf "[+] Hora do servidor atualizada! \n"
+        printf "\n[+] Hora do servidor atualizada! \n"
     }
 
     apport()
     {
-        printf "\n"
-        printf "[+] Removendo possiveis erros com o apport \n"
-#         rm /var/crash/*
-
-        #corrige apport - ubuntu 16.04
-        cat base/ubuntu/apport > /etc/default/apport
+        printf "\n[+] Removendo possiveis erros com o apport \n"
+	        #corrige apport - ubuntu 16.04
+	        cat base/ubuntu/apport > /etc/default/apport
     }
 
     lightdm()
     {
-        printf "\n"
-        printf "[+] Iniciando sessão automaticamente \n"
-
-        cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
+        printf "\n[+] Iniciando sessão automaticamente \n"
+        	cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
 
     log_sudo()
     {
-        printf "\n"
-        printf "[+] Ativando log's do sudo \n"
-
-        cat base/ubuntu/login.defs > /etc/login.defs
+        printf "\n[+] Ativando log's do sudo \n"
+        	cat base/ubuntu/login.defs > /etc/login.defs
     }
 
     repositorios_padrao()
     {
         # verificando distribuição
         if [ $distro == "Ubuntu" ]; then
-            printf "\n"
-            printf "[+] Alterando lista de repositórios padrão \n"
+            printf "\n[+] Alterando lista de repositórios padrão \n"
 
             cat base/ubuntu/sources.list > /etc/apt/sources.list
         elif [ $distro == "Debian" ]; then
-            printf "\n"
-            printf "[+] Alterando lista de repositórios padrão \n"
+            printf "\n[+] Alterando lista de repositórios padrão \n"
 
             cat base/debian/sources.list > /etc/apt/sources.list
         else
-            printf "[!] Não realizou nada, distro não identificada! \n"
+            printf "\n[!] Não realizou nada, distro não identificada! \n"
         fi
     }
 
@@ -494,8 +428,7 @@ func_help()
     {
         #verificando variavel
         if [[ $v_hostname == 'desktop' ]]; then
-            printf "\n"
-            printf "[+] Alterando arquivo Hosts \n\n"
+            printf "\n[+] Alterando arquivo Hosts \n\n"
 
             cat base/ubuntu/hosts > /etc/hosts
         fi
@@ -503,10 +436,8 @@ func_help()
 
     chaveiro()
     {
-        printf "\n"
-        printf "[+] Removendo o chaveiro da sessão \n\n"
-
-        apt-get remove gnome-keyring -y
+        printf "\n[+] Removendo o chaveiro da sessão"
+        	apt-get remove gnome-keyring -y
     }    
 
     atualiza_db()
@@ -514,48 +445,58 @@ func_help()
     	# variavel de verificação
         var_locate=$(which locate)
 
-        printf "\n"
-        printf "[+] Verificando se existe Locate instalado \n"
+        printf "\n[+] Verificando se existe Locate instalado \n"
 
         if [[ ! -e $var_locate ]]; then
             printf "\n"
             printf "[+] Instalando Locate \n"
-
-            apt install locate -y
+            	apt install locate -y
         fi
 
-        printf "\n"
-        printf "[+] Atualizando base de dados do sistema \n\n"        
-
-        updatedb
+        printf "\n[+] Atualizando base de dados do sistema \n\n"        
+        	updatedb
     }
 
 # # # # # # # # # #
 # # LIMPA SISTEMA
     kernel()
     {
-        printf "\n"
-        printf "[+] Removendo os kernel's temporários do sistema \n"
+        printf "\n[+] Removendo os kernel's temporários do sistema \n"
 
         #removendo kernel's antigos
-        dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge
+        # dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge
+
+        ### REMOVENDO KERNEL ESPECIFICO - VERIFICAR
+  #       # listando kernel's
+		# dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' > /tmp/kernels.txt
+
+		# # contando linhas
+		# wc /tmp/kernels.txt > /tmp/quantidade.txt  	
+
+		# # capturando valor total
+  #       valor=$(cut -c3 /tmp/quantidade.txt)
+
+  #       # pegando penultimo valor
+  #       valor=$(($valor-1))
+
+  #       # listando kernel especifico - mais velho
+  #       cat -n /tmp/kernels.txt | grep -n ^ | grep ^$valor: | cut -d: -f2 > /tmp/kernel.txt
+
+  #       cut -d' ' -f2 /tmp/kernel.txt
     }
 
     arquivos_temporarios()
     {
         printf "\n"
         printf "[+] Removendo arquivos temporários do sistema \n"
-
-        find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+
+        	find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+
     }
 
     pacotes_orfaos()
     {
-        printf "\n"
-        printf "[+] Removendo Pacotes Órfãos \n"
-
-        apt-get remove $(deborphan) -y 
-        apt-get autoremove -y
+        printf "\n[+] Removendo Pacotes Órfãos \n"
+	        apt-get remove $(deborphan) -y 
+	        apt-get autoremove -y
     }
 
     funcao_chkrootkit()
