@@ -50,17 +50,17 @@
 #       contato: <lenonrmsouza@gmail.com>
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#										                                      #
-#	If I have seen further it is by standing on the shoulders of Giants.	  #
-#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)		      #
-#							~Isaac Newton		                              #
-#										                                      #
+#									      #
+#	If I have seen further it is by standing on the shoulders of Giants.  #
+#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)	      #
+#							~Isaac Newton	      #
+#									      #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [2.0.315.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [12/01/18]      #
+# # ultima ediçao realizada:      [27/01/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -75,7 +75,7 @@
 # 	e = pendencias
 #               - I    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
 #                           - Icones-macbuntu
-# 				- II   - [KERNEL]		   - Melhorar script para remover kernel mais antigo
+# 				- II   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #
 # 	f = desenvolver
 #
@@ -105,13 +105,13 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    pasta_home="/home/lenonr"           # personalizavel
+    PASTA_HOME="/home/lenonr"           # personalizavel
 
 # verificando distro
-    distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
+    DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 #capturando hostname da maquina
-    v_hostname=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
+    V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -196,7 +196,7 @@ func_help()
     upgrade()
     {
         # verificando distribuição
-        if [ $distro == "Ubuntu" ]; then            
+        if [ $ == "Ubuntu" ]; then            
         	#atualizando lista de programas do sistema
 	        printf "\n[+] Atualizando lista de programas do sistema \n"
 	        	apt upgrade -y
@@ -411,11 +411,11 @@ func_help()
     repositorios_padrao()
     {
         # verificando distribuição
-        if [ $distro == "Ubuntu" ]; then
+        if [ $DISTRO == "Ubuntu" ]; then
             printf "\n[+] Alterando lista de repositórios padrão \n"
 
             cat base/ubuntu/sources.list > /etc/apt/sources.list
-        elif [ $distro == "Debian" ]; then
+        elif [ $DISTRO == "Debian" ]; then
             printf "\n[+] Alterando lista de repositórios padrão \n"
 
             cat base/debian/sources.list > /etc/apt/sources.list
@@ -427,7 +427,7 @@ func_help()
     arquivo_hosts()
     {
         #verificando variavel
-        if [[ $v_hostname == 'desktop' ]]; then
+        if [[ $V_HOSTNAME == 'desktop' ]]; then
             printf "\n[+] Alterando arquivo Hosts \n\n"
 
             cat base/ubuntu/hosts > /etc/hosts
@@ -533,12 +533,12 @@ func_help()
 
     chromium()
     {
-    	if [[ $distro == "Ubuntu" ]]; then
+    	if [[ $DISTRO == "Ubuntu" ]]; then
 	        printf "\n"
 	        printf "[+] Instalando o Chromium \n"
 	        apt install chromium-browser -y
 
-        elif [[ $distro == "Debian" ]]; then
+        elif [[ $DISTRO == "Debian" ]]; then
         	printf "\n"
 	        printf "[+] Instalando o Chromium \n"
         	apt install chromium chromium-l10n -y
@@ -568,7 +568,7 @@ func_help()
             printf "\n"
             printf "[+] Instalando Spotify \n"
 
-			if [[ $distro == "Ubuntu" ]]; then            
+			if [[ $DISTRO == "Ubuntu" ]]; then            
 	            #baixando pacote
 	            sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
@@ -580,7 +580,7 @@ func_help()
 
 	            #instalando o spotify
 	            apt install spotify-client -y --allow-unauthenticated
-			elif [[ $distro == "Debian" ]]; then
+			elif [[ $DISTRO == "Debian" ]]; then
         		# adicionando dependencia
         		apt install dirmngr -y
 
@@ -649,10 +649,10 @@ func_help()
             # printf "[+] Instalando o PhotoGimp \n"
 
 #             printf "[*] Removendo arquivo existente \n"
-#             rm -r $pasta_home/.gimp-2.8
+#             rm -r $PASTA_HOME/.gimp-2.8
 
             # printf "[*] Inserindo novo arquivo \n"
-            # cp -r base/.gimp-2.8/ $pasta_home
+            # cp -r base/.gimp-2.8/ $PASTA_HOME
 
             # printf "[+] Novo arquivo adicionado! \n"
         else
@@ -733,7 +733,7 @@ func_help()
         apt install redshift gtk-redshift -y
 
         # criando link
-        cat base/redshift.conf > pasta_home/.config/redshift.conf 
+        cat base/redshift.conf > PASTA_HOME/.config/redshift.conf 
     }
 
     libreoffice()
@@ -874,7 +874,7 @@ func_help()
             printf "[+] Instalando o Tor \n"
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $DISTRO == "Ubuntu" ]; then
 	            #adicionando repositorio
 	            add-apt-repository ppa:webupd8team/tor-browser -y
 
@@ -884,7 +884,7 @@ func_help()
 	            #instalando tor
 	            apt-get install tor tor-browser -y
 
-            elif [ $distro == "Debian" ]; then
+            elif [ $DISTRO == "Debian" ]; then
             	echo 
     #         	# adicionando repositorio tor
 				# echo "" >> /etc/apt/sources.list
@@ -923,42 +923,6 @@ func_help()
 
         #instalando dolphin
         apt install dolphin-emu* -y
-    }
-
-    citra()
-    {
-        printf "\n"
-        printf "[+] Instalando o Citra \n"
-
-        #adicionando bibliotecas necessarias
-        apt-get install libsdl2-dev -y
-
-        #Qt
-        apt-get install qtbase5-dev libqt5opengl5-dev -y
-
-        #GCC
-        apt-get install build-essential -y
-
-        #Cmake
-        apt-get install cmake -y
-
-        #Clang
-        apt-get install clang libc++-dev -y
-
-        #copiando repositorio
-        git clone --recursive https://github.com/citra-emu/citra
-
-        #entrando na pasta
-        cd citra
-
-        #construindo o citra
-        mkdir build && cd build
-        cmake ..
-        make
-        make install
-
-        #removendo pasta citra
-        rm -r citra/
     }
 
     visual_game_boy()
@@ -1033,7 +997,7 @@ func_help()
             printf "[+] Instalando o Plank Dock \n"
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $DISTRO == "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
 
@@ -1069,7 +1033,7 @@ func_help()
             printf "[+] Instalando o Nautilus \n"
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $DISTRO == "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:gnome3-team/gnome3 -y
 
@@ -1207,9 +1171,9 @@ func_help()
     nvidia()
     {
         # variavel de verificação
-        var_nvidia=$(which nvidia-settings)
+        VAR_NVIDIA=$(which nvidia-settings)
 
-        if [[ ! -e $var_nvidia ]]; then
+        if [[ ! -e $VAR_NVIDIA ]]; then
             printf "\n"
             printf "[+] Instalando o driver da Placa Nvidia \n"
 
@@ -1275,10 +1239,10 @@ func_help()
     virtualbox()
     {
         # variavel de verificação
-        var_virtualbox=$(which virtualbox)
+        VAR_VIRTUALBOX=$(which virtualbox)
 
         # criando verificação para instalar o virtualbox
-        if [[ ! -e $var_virtualbox ]]; then
+        if [[ ! -e $VAR_VIRTUALBOX ]]; then
             printf "\n"
             printf "[*] Realizando download \n"
             wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
@@ -1309,9 +1273,9 @@ func_help()
     install_pulseeffects()
     {
         # variavel de verificação
-        var_pulseeffects=$(which pulseeffects)
+        VAR_PULSEEFFECTS=$(which pulseeffects)
 
-        if [[ ! -e $var_pulseeffects ]]; then
+        if [[ ! -e $VAR_PULSEEFFECTS ]]; then
 
             printf " \n"
             printf "[+] Instalando o Pulse Effects \n"
@@ -1352,15 +1316,15 @@ func_help()
     }
 
     install_snap()
-	{
-		printf "\n"
+    {
+            printf "\n"
 
-		printf "[+] Instalando Snap"
+            printf "[+] Instalando Snap"
 
-		apt install snapd
-	}
+            apt install snapd
+    }
 
-	install_ntp()
+    install_ntp()
     {
         printf "\n"
         printf "[+] Instalando o NTP"
@@ -1470,32 +1434,32 @@ func_help()
 
     muse_score()
     {
-            printf "\n"
-            printf "[+] Instalando Muse Score \n"
+        printf "\n"
+        printf "[+] Instalando Muse Score \n"
 
-            apt install musescore -y
-            snap install musescore -y
+        apt install musescore -y
+        snap install musescore -y
     }
 
     install_zsh()
     {
-            printf "\n"
-            printf "[+] Instalando o ZSH \n"
-            apt install zsh -y
+        printf "\n"
+        printf "[+] Instalando o ZSH \n"
+        apt install zsh -y
 
-            printf "\n [*] Modificando bash padrao para zsh"
-            chsh -s /usr/bin/zsh
+        printf "\n [*] Modificando bash padrao para zsh"
+        chsh -s /usr/bin/zsh
 
-            printf "\n [+] Seu interpretador de comandos foi alterado para o ZSH!!"
+        printf "\n [+] Seu interpretador de comandos foi alterado para o ZSH!!"
     }
 
     install_docker()
     {
         # variavel de verificação
-        var_docker=$(which docker)
+        VAR_DOCKER=$(which docker)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $var_docker ]]; then
+        if [[ ! -e $VAR_DOCKER ]]; then
 
             printf "\n"
             printf "[+] Instalando o Docker \n"
@@ -1529,7 +1493,7 @@ func_help()
     	apt install firmware-linux firmware-linux-nonfree -y
 
     	#verificando variavel
-        if [[ $v_hostname == 'notebook' ]]; then
+        if [[ $V_HOSTNAME == 'notebook' ]]; then
             printf "\n"
             printf "[+] Instalando firmware Wifi \n"
 
@@ -1549,11 +1513,11 @@ func_atualiza()
 
 func_corrige()
 {
-	if [ $distro == "Ubuntu" ]; then
+	if [ $DISTRO == "Ubuntu" ]; then
 	    clear
 
 	    #verificando variavel
-	    if [[ $v_hostname == 'desktop' ]]; then
+	    if [[ $V_HOSTNAME == 'desktop' ]]; then
 	        clear
 	        apt_check
 	        apt_install
@@ -1574,7 +1538,7 @@ func_corrige()
 	        chaveiro
 	        install_xclip
             atualiza_db
-	    elif [[ $v_hostname == 'notebook' ]]; then
+	    elif [[ $V_HOSTNAME == 'notebook' ]]; then
 	        clear
 	        apt_check
 	        apt_install
@@ -1609,7 +1573,7 @@ func_corrige()
 	        log_sudo
             atualiza_db
 	    fi
-	elif [[ $distro == "Debian" ]]; then
+	elif [[ $DISTRO == "Debian" ]]; then
 		apt_install
         fonts
         config_ntp
@@ -1636,10 +1600,10 @@ func_limpa()
 
 func_instala()
 {
-	if [ $distro == "Ubuntu" ]; then		
+	if [ $DISTRO == "Ubuntu" ]; then		
 	    clear	  
 
-	    if [[ $v_hostname == 'notebook' ]]; then
+	    if [[ $V_HOSTNAME == 'notebook' ]]; then
 	#               PERSONALIZAÇÃO
 	        icones_mac
 	        codecs
@@ -1780,7 +1744,7 @@ func_instala()
 	        texmaker
 	    fi
 
-    elif [ $distro == "Debian" ]; then
+    elif [ $DISTRO == "Debian" ]; then
 		firefox
 	    chromium
 	    tor
@@ -1822,13 +1786,13 @@ func_instala_outros()
     # teclado
     ibus
 
-    if [ $distro == "Ubuntu" ]; then	
+    if [ $DISTRO == "Ubuntu" ]; then	
 		# personalização
     	install_pulseeffects
     fi
 
     # verificando computador
-    if [[ $v_hostname == 'desktop' ]]; then
+    if [[ $ == 'desktop' ]]; then
         # outros
         virtualbox
 
@@ -1839,7 +1803,7 @@ func_instala_outros()
 
 func_remove()
 {
-	printf "\n"
+    printf "\n"
     printf "[+] Removendo XBurn \n"
     apt purge xfburn -y
 
@@ -1871,9 +1835,9 @@ func_remove()
     printf "[+] Removendo o Blender \n"
     apt purge blender* -y
 
-    # v_hostname=$(hostname)
+    # V_HOSTNAME=$(hostname)
 
-    if [[ $v_hostname == 'notebook' ]]; then
+    if [[ $V_HOSTNAME == 'notebook' ]]; then
         printf "[+] Removendo pidgin \n"
         apt purge pidgin* -y
 
@@ -2015,7 +1979,7 @@ auto_config_ubuntu()
     clear
     ##CHAMANDOS FUNCOES
     #
-    case $escolhaauto_config in
+    case $ESCOLHAAUTO_CONFIG in
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### ATUALIZA SISTEMA
@@ -2089,7 +2053,7 @@ auto_config_debian()
 {
     ##CHAMANDOS FUNCOES
     #
-    case $escolhaauto_config in
+    case $ESCOLHAAUTO_CONFIG in
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### ATUALIZA SISTEMA
@@ -2116,7 +2080,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALANDO PROGRAMAS
         4) printf
-				func_instala
+                func_instala
 
                 auto_config
         ;;
@@ -2124,7 +2088,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### PROGRAMAS NAO ESSENCIAIS
         5) printf
-				func_instala_outros                
+                func_instala_outros                
 
                 auto_config
         ;;
@@ -2132,7 +2096,7 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVENDO PROGRAMAS
         6) printf
-				func_remove		               
+                func_remove		               
 
                 auto_config
         ;;
@@ -2180,14 +2144,14 @@ auto_config()
     echo "Digite 7 para sair do script,"
     echo "-------------------------------------------------"
     read -n1 -p "
-Número da ação:" escolhaauto_config
+Número da ação:" ESCOLHAAUTO_CONFIG
 
     #executando ações para a distribuição Ubuntu
-    if [ $distro == "Ubuntu" ]; then
+    if [ $DISTRO == "Ubuntu" ]; then
         clear
         auto_config_ubuntu
     #executando ações para a distribuição Fedora
-    elif [ $distro == "Debian" ]; then
+    elif [ $DISTRO == "Debian" ]; then
         clear
         auto_config_debian
     else
@@ -2225,7 +2189,7 @@ case $1 in
     instala_outros) func_instala_outros;;
     remove) func_remove;;
     formatado) func_formatado;;
-	todas) func_todas;;
+    todas) func_todas;;
 esac
 
 #
