@@ -50,17 +50,17 @@
 #       contato: <lenonrmsouza@gmail.com>
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#									      #
-#	If I have seen further it is by standing on the shoulders of Giants.  #
-#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)	      #
-#							~Isaac Newton	      #
-#									      #
+#									      									  #
+#	If I have seen further it is by standing on the shoulders of Giants.      #
+#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)	          #
+#							~Isaac Newton	      							  #
+#									      									  #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # versão do script:           [2.0.315.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [27/01/18]      #
+# # ultima ediçao realizada:      [04/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1342,6 +1342,14 @@ func_help()
         apt install xclip -y
     }
 
+    install_espeak()
+    {
+    	printf "\n"
+        printf "[+] Instalando speak \n\n"
+
+        apt install espeak -y	
+    }
+
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
 
@@ -1506,6 +1514,8 @@ func_help()
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
 {
+	espeak -vpt-br "Atualizando"
+
     clear
     update
     upgrade
@@ -1513,6 +1523,8 @@ func_atualiza()
 
 func_corrige()
 {
+	espeak -vpt-br "Corrigindo"
+
 	if [ $DISTRO == "Ubuntu" ]; then
 	    clear
 
@@ -1592,6 +1604,8 @@ func_corrige()
 
 func_limpa()
 {
+	espeak -vpt-br "Limpando"
+
     clear
     pacotes_orfaos
     funcao_chkrootkit
@@ -1600,6 +1614,8 @@ func_limpa()
 
 func_instala()
 {
+	espeak -vpt-br "Instalando"
+
 	if [ $DISTRO == "Ubuntu" ]; then		
 	    clear	  
 
@@ -1738,6 +1754,7 @@ func_instala()
 	        install_tree
 	        install_ntp
 	        install_xclip
+	        install_espeak
 
 	#               OFFICE
 	        libreoffice
@@ -1764,6 +1781,7 @@ func_instala()
         install_snap
         install_ntp
 		install_xclip
+		install_espeak
 
         htop                
         firmware
@@ -1774,6 +1792,8 @@ func_instala()
 
 func_instala_outros()
 {
+	espeak -vpt-br "Instalando outros"
+
     # desenvolvimento
     apache
     install_mysql
@@ -1803,6 +1823,8 @@ func_instala_outros()
 
 func_remove()
 {
+	espeak -vpt-br "Removendo programas"
+
     printf "\n"
     printf "[+] Removendo XBurn \n"
     apt purge xfburn -y
