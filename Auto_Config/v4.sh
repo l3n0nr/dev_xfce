@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.315.0.2.0]   #
+# # versão do script:           [2.0.320.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [04/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -2213,6 +2213,8 @@ case $1 in
     formatado) func_formatado;;
     todas) func_todas;;
 esac
+
+espeak -vpt-br "Finalizado!!"
 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
