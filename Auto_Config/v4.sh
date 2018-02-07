@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.320.0.2.0]   #
+# # versão do script:           [2.0.321.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [04/02/18]      #
+# # ultima ediçao realizada:      [07/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1543,7 +1543,7 @@ func_corrige()
 	        fonts
 	        config_ntp
 	        apport
-	        repositorios_padrao
+	        # repositorios_padrao
 	        log_sudo
 	        lightdm
 	        arquivo_hosts
@@ -1564,7 +1564,7 @@ func_corrige()
 	        fonts
 	        config_ntp
 	        apport
-	        repositorios_padrao
+	        # repositorios_padrao
 	        log_sudo
             atualiza_db
 	    else
@@ -1581,7 +1581,7 @@ func_corrige()
 	        fonts
 	        config_ntp
 	        apport
-	        repositorios_padrao
+	        # repositorios_padrao
 	        log_sudo
             atualiza_db
 	    fi
