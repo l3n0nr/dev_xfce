@@ -1553,7 +1553,8 @@ func_help()
         apt install zsh -y
 
         printf "\n [*] Modificando bash padrao para zsh"
-        chsh -s /usr/bin/zsh
+        # chsh -s /usr/bin/zsh
+        chsh -s $(which zsh)
 
         printf "\n [+] Seu interpretador de comandos foi alterado para o ZSH!!"
     }
@@ -2297,7 +2298,7 @@ if [ $# -eq 0 ]; then
     func_help
 fi
 
-# arquivo de log	
+# mostrando data/hora log inicilização script	
 	date > /tmp/log.txt
 
 # verificando o que foi digitado
@@ -2318,6 +2319,9 @@ case $1 in
 esac
 
 espeak -vpt-br "Finalizado!!"
+
+# mostrando data/hora log finalização script
+date > /tmp/log.txt
 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
