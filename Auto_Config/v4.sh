@@ -598,7 +598,6 @@ func_help()
 
         printf "\n"
         printf "\n [+] Verificando se existe Spotify instalado"
-        printf "\n [+] Verificando se existe Spotify instalado" >> /tmp/log.txt
 
         if [[ ! -e $var_spotify ]]; then
             printf "\n"
@@ -606,16 +605,18 @@ func_help()
 
 			if [[ $DISTRO == "Ubuntu" ]]; then            
 	            #baixando pacote
-	            sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+	            # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
-	            #baixando chave
-	            apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+	            # #baixando chave
+	            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
-	            #chamando função update
-	            update
+	            # #chamando função update
+	            # update
 
-	            #instalando o spotify
-	            apt install spotify-client -y --allow-unauthenticated
+	            # #instalando o spotify
+	            # apt install spotify-client -y --allow-unauthenticated
+	            snap install spotify-y 
+	            
 			elif [[ $DISTRO == "Debian" ]]; then
         		# adicionando dependencia
         		apt install dirmngr -y
