@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.332.0.2.0]   #
+# # versão do script:           [2.0.335.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [08/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -323,8 +323,7 @@ func_help()
                 processes=$(grep "processes = 30" /etc/preload.conf)
                 prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
 
-        printf "[*] Ativando o PRELINK \n"
-        printf "[*] Ativando o PRELINK \n" >> /tmp/log.txt
+        printf "[*] Ativando o PRELINK "
 
         if [[ $prelink == "PRELINKING=unknown" ]]; then
                 printf "adicionando ... \n"
@@ -416,16 +415,16 @@ func_help()
 
     lightdm()
     {
-        printf "\n[+] Iniciando sessão automaticamente \n"
-        printf "\n[+] Iniciando sessão automaticamente \n" >> /tmp/log.txt
+        printf "\n[+] Iniciando sessão automaticamente"
+        printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
 
     	cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
 
     log_sudo()
     {
-        printf "\n[+] Ativando log's do sudo \n"
-        printf "\n[+] Ativando log's do sudo \n" >> /tmp/log.txt
+        printf "\n[+] Ativando log's do sudo"
+        printf "\n[+] Ativando log's do sudo" >> /tmp/log.txt
     
     	cat base/ubuntu/login.defs > /etc/login.defs
     }
@@ -434,18 +433,18 @@ func_help()
     {
         # verificando distribuição
         if [ $DISTRO == "Ubuntu" ]; then
-            printf "\n[+] Alterando lista de repositórios padrão \n"
-            printf "\n[+] Alterando lista de repositórios padrão \n" >> /tmp/log.txt
+            printf "\n[+] Alterando lista de repositórios padrão"
+            printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
             cat base/ubuntu/sources.list > /etc/apt/sources.list
         elif [ $DISTRO == "Debian" ]; then
-            printf "\n[+] Alterando lista de repositórios padrão \n"
-            printf "\n[+] Alterando lista de repositórios padrão \n" >> /tmp/log.txt
+            printf "\n[+] Alterando lista de repositórios padrão"
+            printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
             cat base/debian/sources.list > /etc/apt/sources.list
         else
-            printf "\n[!] Não realizou nada, distro não identificada! \n"
-            printf "\n[!] Não realizou nada, distro não identificada! \n" >> /tmp/log.txt
+            printf "\n[!] Não realizou nada, distro não identificada!"
+            printf "\n[!] Não realizou nada, distro não identificada!" >> /tmp/log.txt
         fi
     }
 
@@ -548,8 +547,8 @@ func_help()
     localpurge()
     {
         printf "\n "
-        printf "\nRemovendo idiomas extras" 
-        printf "\nRemovendo idiomas extras" >> /tmp/log.txt
+        printf "\n[+]Removendo idiomas extras" 
+        printf "\n[+]Removendo idiomas extras" >> /tmp/log.txt
 
         localepurge
     }
@@ -578,7 +577,7 @@ func_help()
         	printf "\n"
 	        printf "\n[+] Instalando o Chromium"
 	        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-	        
+
         	apt install chromium chromium-l10n -y
 
     	else
@@ -1201,8 +1200,8 @@ func_help()
     openssh()
     {
         printf "\n"
-        printf "\n[+]'Instalando o OpenSSH"
-        printf "\n[+]'Instalando o OpenSSH" >> /tmp/log.txt
+        printf "\n[+]Instalando o OpenSSH"
+        printf "\n[+]Instalando o OpenSSH" >> /tmp/log.txt
 
         apt install openssh* -y
     }
@@ -1928,7 +1927,7 @@ func_instala_outros()
 func_remove()
 {
 	espeak -vpt-br "Removendo programas"
-	printf "\n[+] Removendo programas" >> /tmp/log.txt
+	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
 
     printf "\n"
     printf "[+] Removendo XBurn \n"
