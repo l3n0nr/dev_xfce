@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.330.0.2.0]   #
+# # versão do script:           [2.0.332.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [07/02/18]      #
+# # ultima ediçao realizada:      [08/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -273,6 +273,8 @@ func_help()
         #configurando a swap para uma melhor performance
         printf "\n"
         printf "[+] Configurando a Swap"
+        printf "[+] Configurando a Swap" >> /tmp/log.txt
+
         memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
         memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
         background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
@@ -306,7 +308,6 @@ func_help()
         #instalando prelink, preload, deborphan para um melhor performance do sistema
         printf "\n[*] Instalando Prelink, Preload e Deborphan"
         printf "\n[*] Instalando Prelink, Preload e Deborphan" >> /tmp/log.txt
-#         printf "------------------- \n"
 
         apt install prelink preload -y 1>/dev/null 2>/dev/stdout
         apt-get install deborphan -y
@@ -324,8 +325,7 @@ func_help()
 
         printf "[*] Ativando o PRELINK \n"
         printf "[*] Ativando o PRELINK \n" >> /tmp/log.txt
-#         printf "\n"
-#         printf "------------------- \n"
+
         if [[ $prelink == "PRELINKING=unknown" ]]; then
                 printf "adicionando ... \n"
                 sed -i 's/unknown/yes/g' /etc/default/prelink
@@ -339,12 +339,13 @@ func_help()
         #corrigindo pacotes quebrados
         printf "\n[+] Corrigindo pacotes quebrados"
         printf "\n[+] Corrigindo pacotes quebrados" >> /tmp/log.txt
-	        #corrige possiveis erros na instalação de softwares
-	        dpkg --configure -a
 
-	        #VERIFICAR AÇÕES
-	        rm -r /var/lib/apt/lists
-	        mkdir -p /var/lib/apt/lists/partial
+        #corrige possiveis erros na instalação de softwares
+        dpkg --configure -a
+
+        #VERIFICAR AÇÕES
+        rm -r /var/lib/apt/lists
+        mkdir -p /var/lib/apt/lists/partial
     }
 
     fonts()
@@ -408,22 +409,25 @@ func_help()
     {
         printf "\n[+] Removendo possiveis erros com o apport \n"
         printf "\n[+] Removendo possiveis erros com o apport \n" >> /tmp/log.txt
-	        #corrige apport - ubuntu 16.04
-	        cat base/ubuntu/apport > /etc/default/apport
+
+        #corrige apport - ubuntu 16.04
+        cat base/ubuntu/apport > /etc/default/apport
     }
 
     lightdm()
     {
         printf "\n[+] Iniciando sessão automaticamente \n"
         printf "\n[+] Iniciando sessão automaticamente \n" >> /tmp/log.txt
-        	cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
+
+    	cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
     }
 
     log_sudo()
     {
         printf "\n[+] Ativando log's do sudo \n"
         printf "\n[+] Ativando log's do sudo \n" >> /tmp/log.txt
-        	cat base/ubuntu/login.defs > /etc/login.defs
+    
+    	cat base/ubuntu/login.defs > /etc/login.defs
     }
 
     repositorios_padrao()
@@ -460,7 +464,8 @@ func_help()
     {
         printf "\n[+] Removendo o chaveiro da sessão"
         printf "\n[+] Removendo o chaveiro da sessão" >> /tmp/log.txt
-        	apt-get remove gnome-keyring -y
+
+    	apt-get remove gnome-keyring -y
     }    
 
     atualiza_db()
@@ -475,12 +480,14 @@ func_help()
             printf "\n"
             printf "[+] Instalando Locate"
             printf "[+] Instalando Locate" >> /tmp/log.txt
-            	apt install locate -y
+
+        	apt install locate -y
         fi
 
         printf "\n[+] Atualizando base de dados do sistema"        
         printf "\n[+] Atualizando base de dados do sistema" >> /tmp/log.txt
-        	updatedb
+
+    	updatedb
     }
 
 # # # # # # # # # #
@@ -516,15 +523,17 @@ func_help()
         printf "\n"
         printf "\n[+] Removendo arquivos temporários do sistema" 
         printf "\n[+] Removendo arquivos temporários do sistema" >> /tmp/log.txt
-        	find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+
+
+    	find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+
     }
 
     pacotes_orfaos()
     {
         printf "\n[+] Removendo Pacotes Órfãos"
         printf "\n[+] Removendo Pacotes Órfãos" >> /tmp/log.txt
-	        apt-get remove $(deborphan) -y 
-	        apt-get autoremove -y
+
+        apt-get remove $(deborphan) -y 
+        apt-get autoremove -y
     }
 
     funcao_chkrootkit()
@@ -554,12 +563,6 @@ func_help()
         printf "\n[+] Instalando Firefox" >> /tmp/log.txt
 
         apt install firefox -y
-
-		# VERIFICAR MANUALMENTE - HABILITAR FUNCAO FIREFOX 
-        # configurando interface
-        # cd pasta_home/.mozilla/firefox/*.default
-        # mkdir chrome; cd chrome; touch userChrome.css
-        # cd pasta_home/Github/dev_xfce/Auto_Config
     }
 
     chromium()
@@ -568,12 +571,14 @@ func_help()
 	        printf "\n"
 	        printf "\n[+] Instalando o Chromium"
 	        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
 	        apt install chromium-browser -y
 
         elif [[ $DISTRO == "Debian" ]]; then
         	printf "\n"
 	        printf "\n[+] Instalando o Chromium"
 	        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+	        
         	apt install chromium chromium-l10n -y
 
     	else
@@ -601,7 +606,7 @@ func_help()
 
         if [[ ! -e $var_spotify ]]; then
             printf "\n"
-            printf "\n [+] Instalando Spotify" >> /tmp/log.txt
+            printf "\n[+] Instalando Spotify" >> /tmp/log.txt
 
 			if [[ $DISTRO == "Ubuntu" ]]; then            
 	            #baixando pacote
@@ -1516,14 +1521,14 @@ func_help()
 #             printf "[*] Realizando download do pacote \n"
 #             wget -c https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
 
-            printf "[*] Instalando pacote \n"
+            printf "\n[*] Instalando pacote"
             dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/tuxguitar/*.deb
 #             dpkg -i tuxguitar-1.4-linux-x86_64.deb
 
-            printf "[*] Resolvendo dependências \n"
+            printf "\n[*] Resolvendo dependências"
             apt install -fy
 
-            printf "[*] Instalando pacote \n"
+            printf "\n[*] Instalando pacote"
             dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/tuxguitar/*.deb
 #             dpkg -i tuxguitar-1.4-linux-x86_64.deb
 
@@ -1552,11 +1557,11 @@ func_help()
 
         apt install zsh -y
 
-        printf "\n [*] Modificando bash padrao para zsh"
+        printf "\n[*] Modificando bash padrao para zsh"
         # chsh -s /usr/bin/zsh
         chsh -s $(which zsh)
 
-        printf "\n [+] Seu interpretador de comandos foi alterado para o ZSH!!"
+        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!!"
     }
 
     install_docker()
@@ -1573,7 +1578,7 @@ func_help()
             curl -fsSL https://get.docker.com/ | sh
         else
             printf "\n"
-            printf "[+] O Docker já está instalado no seu sistema. \n"
+            printf "\n[+] O Docker já está instalado no seu sistema."
         fi
 
     }
