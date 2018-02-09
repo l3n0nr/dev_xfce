@@ -272,8 +272,8 @@ func_help()
     {
         #configurando a swap para uma melhor performance
         printf "\n"
-        printf "[+] Configurando a Swap"
-        printf "[+] Configurando a Swap" >> /tmp/log.txt
+        printf "\n[+] Configurando a Swap"
+        printf "\n[+] Configurando a Swap" >> /tmp/log.txt
 
         memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
         memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
@@ -2315,17 +2315,15 @@ case $1 in
     instala_outros) func_instala_outros;;
     remove) func_remove;;
     formatado) func_formatado;;
-
-    nvidia) nvidia;;
-	texmaker) texmaker;;
-
     todas) func_todas;;
+	nvidia) nvidia;;
+	texmaker) texmaker;;
 esac
 
 espeak -vpt-br "Finalizado!!"
 
 # mostrando data/hora log finalização script
-date > /tmp/log.txt
+date >> /tmp/log.txt
 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
