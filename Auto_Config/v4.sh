@@ -37,8 +37,8 @@
 # por Wiki Debian - Tor Browser
 #	<wiki.debian.org/TorBrowser#Debian_9_.22Stretch.22>
 #
-# por M.Hanny Sabbagh  
-#	<fosspost.org/tutorials/how-to-customize-firefox-57-user-interface>
+# por Install Wine stable 2.0.3 Release on Ubuntu 17.10 - Sourabh 
+#   <http://sourcedigit.com/22831-install-wine-stable-2-0-3-release-on-ubuntu-17-10/>
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.335.0.2.0]   #
+# # versão do script:           [2.0.360.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/02/18]      #
+# # ultima ediçao realizada:      [11/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -94,7 +94,7 @@
 #   - Debian 9
 #
 # # Compativel com
-#   - Ubuntu
+#   - Xubuntu 16.04 - LTS
 #   - Debian 9
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -608,7 +608,7 @@ func_help()
             printf "\n[+] Instalando Spotify" >> /tmp/log.txt
 
 			if [[ $DISTRO == "Ubuntu" ]]; then            
-	            #baixando pacote
+	            # #baixando pacote
 	            # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
 	            # #baixando chave
@@ -619,7 +619,8 @@ func_help()
 
 	            # #instalando o spotify
 	            # apt install spotify-client -y --allow-unauthenticated
-	            snap install spotify-y 
+
+	            snap install spotify
 	            
 			elif [[ $DISTRO == "Debian" ]]; then
         		# adicionando dependencia
@@ -674,7 +675,8 @@ func_help()
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)" >> /tmp/log.txt
 
         #instalando pacotes multimidias
-        apt install ubuntu-restricted-extras faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes
+        apt install ubuntu-restricted-extras -y
+        apt install faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes        
         apt install lame libavcodec-extra libav-tools -y
     }
 
@@ -750,13 +752,30 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando o Wine" >> /tmp/log.txt
 
-            #adicionado o repositorio
-            add-apt-repository ppa:ubuntu-wine/ppa -y
+            # ubuntu 16.04
+                # adicionado o repositorio
+                add-apt-repository ppa:ubuntu-wine/ppa -y
 
-            #chamando funcao já criada
-            update
+                # chamando funcao já criada
+                update
 
-            apt install wine -y
+                apt install wine -y
+
+            # # ubuntu 17.10
+            # wget -nc https://dl.winehq.org/wine-builds/Release.key && sudo apt-key add Release.key
+
+            # # adicionando repositorio
+            # apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+
+            # # atualizando o sistema
+            # update
+
+            # apt-get install --install-recommends winehq-stable -y
+
+            # # corrigindo dependencias
+            # apt install -fy
+
+            # apt-get install --install-recommends winehq-stable -y
         else
             printf "\n"
             printf "[+] Wine já está instalado na sua máquina! \n"
@@ -936,6 +955,7 @@ func_help()
 
             # verificando distribuição
             if [ $DISTRO == "Ubuntu" ]; then
+                # ubuntu 16.04
 	            #adicionando repositorio
 	            add-apt-repository ppa:webupd8team/tor-browser -y
 
@@ -944,6 +964,7 @@ func_help()
 
 	            #instalando tor
 	            apt-get install tor tor-browser -y
+                # apt install tor torbrowser-launcher -y
 
             elif [ $DISTRO == "Debian" ]; then
             	echo 
@@ -1411,7 +1432,7 @@ func_help()
             printf "\n[+] Instalando Snap"
             printf "\n[+] Instalando Snap" >> /tmp/log.txt
 
-            apt install snapd
+            apt install snapd -y
     }
 
     install_ntp()
@@ -1544,7 +1565,7 @@ func_help()
         printf "\n[+] Instalando Muse Score"
         printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
 
-        apt install musescore -y
+        # apt install musescore -y
         snap install musescore -y
     }
 
@@ -2039,8 +2060,8 @@ func_formatado()
     # instalando programas
     func_instala
 
-    # instala outros programas
-    func_instala_outros
+    #
+    texmaker
     
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2050,8 +2071,11 @@ func_formatado()
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
-    
-    # desligando sistema
+
+    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    func_atualiza
+
+    # desligando a maquina apos configuração
     halt -p
 }
 
@@ -2069,14 +2093,14 @@ func_todas()
     # removendo programas pré-instalados, desnecessários
     func_remove
 
-    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
-    func_atualiza
-
     # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
     func_corrige
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
+
+    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    func_atualiza
 }
 
 ##REALIZANDO VERIFICAÇÕES
