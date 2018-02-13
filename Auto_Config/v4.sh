@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.360.0.2.0]   #
+# # versão do script:           [2.0.361.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [11/02/18]      #
+# # ultima ediçao realizada:      [13/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1221,8 +1221,8 @@ func_help()
     openssh()
     {
         printf "\n"
-        printf "\n[+]Instalando o OpenSSH"
-        printf "\n[+]Instalando o OpenSSH" >> /tmp/log.txt
+        printf "\n[+] Instalando o OpenSSH"
+        printf "\n[+] Instalando o OpenSSH" >> /tmp/log.txt
 
         apt install openssh* -y
     }
