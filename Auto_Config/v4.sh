@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.361.0.2.0]   #
+# # versão do script:           [2.0.363.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [13/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -547,8 +547,8 @@ func_help()
     localpurge()
     {
         printf "\n "
-        printf "\n[+]Removendo idiomas extras" 
-        printf "\n[+]Removendo idiomas extras" >> /tmp/log.txt
+        printf "\n[+] Removendo idiomas extras" 
+        printf "\n[+] Removendo idiomas extras" >> /tmp/log.txt
 
         localepurge
     }
