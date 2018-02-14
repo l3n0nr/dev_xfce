@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.363.0.2.0]   #
+# # versão do script:           [2.0.364.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [13/02/18]      #
+# # ultima ediçao realizada:      [14/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1530,34 +1530,19 @@ func_help()
     tuxguitar()
     {
         # variavel de verificação
-#         var_tuxguitar=$(which java)
+        var_tuxguitar=$(/snap/bin/tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
-#         if [[ ! -e $var_tuxguitar ]]; then
+        if [[ ! -e $var_tuxguitar ]]; then
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
 
-#             printf "[*] Realizando download do pacote \n"
-#             wget -c https://downloads.sourceforge.net/project/tuxguitar/TuxGuitar/TuxGuitar-1.4/tuxguitar-1.4-linux-x86_64.deb
-
-            printf "\n[*] Instalando pacote"
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/tuxguitar/*.deb
-#             dpkg -i tuxguitar-1.4-linux-x86_64.deb
-
-            printf "\n[*] Resolvendo dependências"
-            apt install -fy
-
-            printf "\n[*] Instalando pacote"
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/tuxguitar/*.deb
-#             dpkg -i tuxguitar-1.4-linux-x86_64.deb
-
-#             printf "[*] Removendo pacote"
-#             rm tuxguitar-1.4-linux-x86_64.deb
-#         else
-#             printf "[+] TuxGuitar já está instalado \n"
-#         fi
-    }
+			snap install tuxguitar-vs
+		else
+			printf "[+] TuxGuitar já está instalado \n"
+		fi
+	}
 
     muse_score()
     {
