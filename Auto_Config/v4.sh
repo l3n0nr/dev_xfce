@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.364.0.2.0]   #
+# # versão do script:           [2.0.365.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [14/02/18]      #
+# # ultima ediçao realizada:      [15/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1530,7 +1530,7 @@ func_help()
     tuxguitar()
     {
         # variavel de verificação
-        var_tuxguitar=$(/snap/bin/tuxguitar-vs)
+        var_tuxguitar=$(which tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
         if [[ ! -e $var_tuxguitar ]]; then
