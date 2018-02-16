@@ -721,29 +721,54 @@ func_help()
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp
-    }
 
-    install_xfpanel-switch()
-    {
-    	# variavel de verificação
+        ## xfpanel-switch
+        # variavel de verificação
         var_xfpanel=$(which xfpanel-switch)
 
         if [[ ! -e $var_xfpanel ]]; then
-    		printf "\n"
-        	printf "\n[+] Instalando Xfpanel-switch"
-        	printf "\n[+] Instalando Xfpanel-switch" >> /tmp/log.txt
+            printf "\n"
+            printf "\n[+] Instalando Xfpanel-switch"
+            printf "\n[+] Instalando Xfpanel-switch" >> /tmp/log.txt
 
-	        wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            # wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
-	        dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            # dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
-	        # corrigindo problemas de dependencias
-	        apt --fix-broken install -y
+            dpkg -i /base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
-	        dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
-	    else
-			printf "[+] Xfpanel-switch ja esta instalado \n"	    	
-		fi
+            # corrigindo problemas de dependencias
+            apt --fix-broken install -y
+
+            dpkg -i /base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+        else
+            printf "[+] Xfpanel-switch ja esta instalado \n"            
+        fi
+
+        ## whisker-menu
+        ## variavel de verificacao
+        var_whiskermenu=$(which xfce4-popup-whiskermenu)
+
+        if [[ ! -e $var_whiskermenu ]]; then
+            printf "\n"
+            printf "\n[+] Instalando Whisker-menu"
+            printf "\n[+] Instalando Whisker-menu" >> /tmp/log.txt
+
+            # wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+            # dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
+
+            dpkg -i base/deb/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+
+            # corrigindo problemas de dependencias
+            apt --fix-broken install -y
+
+            dpkg -i base/deb/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+        else
+            printf "[+] Whisker-menu ja esta instalado \n"            
+        fi
+
+
     }
 
     wine()
@@ -1392,15 +1417,13 @@ func_help()
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
             #instalando mega
-#             dpkg -i base/ubuntu/pulseeffects/*.deb
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/pulseeffects/*.deb
+            dpkg -i /base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
             printf "[*] Resolvendo dependencias \n"
             apt install -fy
 
             printf "[*] Instalando o Pulse Effects \n"
-#             dpkg -i base/ubuntu/pulseeffects/*.deb
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/pulseeffects/*.deb
+            dpkg -i /base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
             printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
             sleep 5s
@@ -1736,7 +1759,6 @@ func_instala()
 	        icones_mac
 	        codecs
 	        xfce4
-	        install_xfpanel-switch
 	        redshift
 	        gnome_terminal
 	        install_ntp
@@ -1879,7 +1901,6 @@ func_instala()
 	    tor
 
 		xfce4
-		install_xfpanel-switch
         nautilus
         redshift
         plank
