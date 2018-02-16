@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.365.0.2.0]   #
+# # versão do script:           [2.0.367.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [15/02/18]      #
+# # ultima ediçao realizada:      [17/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -92,6 +92,7 @@
 # # Script testado em
 #	- Xubuntu 16.04
 #   - Debian 9
+#   - Xubuntu 17.10 - OBS:Não aconselhável utilização, pois há diversas incompatibilidades de softwares
 #
 # # Compativel com
 #   - Xubuntu 16.04 - LTS
@@ -333,7 +334,7 @@ func_help()
         fi
     }
 
-    funcao_dpkg()
+    pacotes_quebrados()
     {
         #corrigindo pacotes quebrados
         printf "\n[+] Corrigindo pacotes quebrados"
@@ -341,6 +342,8 @@ func_help()
 
         #corrige possiveis erros na instalação de softwares
         dpkg --configure -a
+        apt install -f 
+        apt-get --fix-broken install
 
         #VERIFICAR AÇÕES
         rm -r /var/lib/apt/lists
@@ -1648,7 +1651,7 @@ func_corrige()
 	        apt_update_local
 	        swap
 	        prelink_preload_deborphan
-	        funcao_dpkg
+	        pacotes_quebrados
 	        fonts
 	        config_ntp
 	        apport
@@ -1669,7 +1672,7 @@ func_corrige()
 	        apt_update_local
 	        swap
 	        prelink_preload_deborphan
-	        funcao_dpkg
+	        pacotes_quebrados
 	        fonts
 	        config_ntp
 	        apport
@@ -1686,7 +1689,7 @@ func_corrige()
 	        apt_update_local
 	        swap
 	        prelink_preload_deborphan
-	        funcao_dpkg
+	        pacotes_quebrados
 	        fonts
 	        config_ntp
 	        apport
@@ -2110,7 +2113,7 @@ func_todas()
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #criando função global, que inicia todas as outras
 auto_config_ubuntu()
-{
+{  
     clear
     ##CHAMANDOS FUNCOES
     #
@@ -2313,6 +2316,9 @@ fi
 
 # mostrando data/hora log inicilização script	
 	date > /tmp/log.txt
+    # echo "Distro identificada: "$DISTRO >> /tmp/log.txt
+    # uname -a >> /tmp/log.txt
+    lsb_release -a >> /tmp/log.txt
 
 # verificando o que foi digitado
 case $1 in
@@ -2332,6 +2338,7 @@ esac
 espeak -vpt-br "Finalizado!!"
 
 # mostrando data/hora log finalização script
+echo >> /tmp/log.txt
 date >> /tmp/log.txt
 
 #
