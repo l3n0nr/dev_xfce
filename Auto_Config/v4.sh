@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.367.0.2.0]   #
+# # versão do script:           [2.0.370.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [17/02/18]      #
+# # ultima ediçao realizada:      [16/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -767,8 +767,6 @@ func_help()
         else
             printf "[+] Whisker-menu ja esta instalado \n"            
         fi
-
-
     }
 
     wine()
