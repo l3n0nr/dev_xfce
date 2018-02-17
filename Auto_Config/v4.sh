@@ -1920,12 +1920,16 @@ func_instala()
         install_git
         openssh
         brightside
+	spotify
+	steam
 
         install_sudo
         install_nmap
         install_docker
         install_snap
         install_ntp
+		install_terminator
+		kate
 		install_xclip
 		install_espeak
 
@@ -2323,7 +2327,7 @@ auto_config()
         auto_config_debian
     else
         printf "Disponivel para Debian ou Ubuntu!!! \n"
-        printf "Script incompativel infelizmente \n";
+        printf "Script incompativel infelizmente \n"
     fi
 }
 
