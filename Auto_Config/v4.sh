@@ -37,8 +37,8 @@
 # por Wiki Debian - Tor Browser
 #	<wiki.debian.org/TorBrowser#Debian_9_.22Stretch.22>
 #
-# por Install Wine stable 2.0.3 Release on Ubuntu 17.10 - Sourabh 
-#   <http://sourcedigit.com/22831-install-wine-stable-2-0-3-release-on-ubuntu-17-10/>
+# por Sandro de Castro - Guia de pós-instalação do Debian 9 Stretch
+#	<https://www.blogopcaolinux.com.br/2017/06/Guia-de-pos-instalacao-do-Debian-9-Stretch.html>
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.370.0.2.0]   #
+# # versão do script:           [2.0.376.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [16/02/18]      #
+# # ultima ediçao realizada:      [17/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -106,7 +106,7 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME="/home/lenonr"           # personalizavel
+    PASTA_HOME=$HOME           		# personalizavel
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -595,6 +595,13 @@ func_help()
         printf "\n[+] Instalando Steam"
         printf "\n[+] Instalando Steam" >> /tmp/log.txt
 
+	# instalando dependencias steam - DEBIAN 9
+	if [[ $DISTRO == "Debian" ]]; then      	
+		dpkg --add-architecture i386		
+		update
+		apt install libgl1-nvidia-glx:i386 -y		
+	fi		
+
         apt install steam -y
     }
 
@@ -680,7 +687,7 @@ func_help()
         #instalando pacotes multimidias
         apt install ubuntu-restricted-extras -y
         apt install faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes        
-        apt install lame libavcodec-extra libav-tools -y
+        apt install lame libavcodec-extra libav-tools -y	
     }
 
     funcao_gimp()
@@ -1303,21 +1310,29 @@ func_help()
         VAR_NVIDIA=$(which nvidia-settings)
 
         if [[ ! -e $VAR_NVIDIA ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o driver da Placa Nvidia"
-            printf "\n[+] Instalando o driver da Placa Nvidia" >> /tmp/log.txt
+            # verificando distribuição
+            if [ $DISTRO == "Ubuntu" ]; then
+		    printf "\n"
+		    printf "\n[+] Instalando o driver da Placa Nvidia"
+		    printf "\n[+] Instalando o driver da Placa Nvidia" >> /tmp/log.txt
 
-            apt-add-repository ppa:graphics-drivers/ppa -y
-            apt-add-repository ppa:ubuntu-x-swat/x-updates -y
-            apt-add-repository ppa:xorg-edgers/ppa -y
-            update
+		    apt-add-repository ppa:graphics-drivers/ppa -y
+		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
+		    apt-add-repository ppa:xorg-edgers/ppa -y
+		    update
 
-            apt install nvidia-current nvidia-settings -y
+		    apt install nvidia-current nvidia-settings -y
 
-            # printf "\n"
-            # printf "[+] Arquivo de configuração Nvidia \n"
+		    # printf "\n"
+		    # printf "[+] Arquivo de configuração Nvidia \n"
 
-#             cat base/ubuntu/.nvidia-settings-rc > $past_home/.nvidia-settings-rc
+	#             cat base/ubuntu/.nvidia-settings-rc > $past_home/.nvidia-settings-rc
+		fi
+	elif [[ $DISTRO == "Debian" ]]; then
+		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
+		update
+		apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver
+		
         fi
 
         printf "[+] Nvidia já está instalado no sistema! \n"
@@ -1415,13 +1430,13 @@ func_help()
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
             #instalando mega
-            dpkg -i /base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
+            dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
             printf "[*] Resolvendo dependencias \n"
             apt install -fy
 
             printf "[*] Instalando o Pulse Effects \n"
-            dpkg -i /base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
+            dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
             printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
             sleep 5s
@@ -1937,10 +1952,8 @@ func_instala_outros()
     # teclado
     ibus
 
-    if [ $DISTRO == "Ubuntu" ]; then	
-		# personalização
+# personalizacao
     	install_pulseeffects
-    fi
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
@@ -1988,8 +2001,6 @@ func_remove()
     printf "\n"
     printf "[+] Removendo o Blender \n"
     apt purge blender* -y
-
-    # V_HOSTNAME=$(hostname)
 
     if [[ $V_HOSTNAME == 'notebook' ]]; then
         printf "[+] Removendo pidgin \n"
