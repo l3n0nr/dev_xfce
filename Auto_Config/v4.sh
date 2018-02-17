@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.376.0.2.0]   #
+# # versão do script:           [2.0.380.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [17/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1625,6 +1625,8 @@ func_help()
             printf "\n[+] O Docker já está instalado no seu sistema."
         fi
 
+        # removendo docker 
+        # apt purge docker-ce -y
     }
 
     install_sublime()
