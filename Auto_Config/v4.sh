@@ -1640,6 +1640,12 @@ func_help()
         update  
         
         apt install sublime-text -y
+
+	if [ $DISTRO == "Debian" ]; then
+		# apt-get install snapd snapd-xdg-open
+		snap install sublime-text-3 --classic --candidate
+		# snap refresh sublime-text-3
+	fi
     }
 
     firmware()
@@ -1909,11 +1915,11 @@ func_instala()
 	    fi
 
     elif [ $DISTRO == "Debian" ]; then
-		firefox
-	    chromium
-	    tor
+	firefox
+	chromium
+	tor
 
-		xfce4
+	xfce4
         nautilus
         redshift
         plank
@@ -1928,10 +1934,12 @@ func_instala()
         install_docker
         install_snap
         install_ntp
-		install_terminator
-		kate
-		install_xclip
-		install_espeak
+	install_terminator
+	kate
+	install_xclip
+	install_espeak
+	install_sublime
+	screenfetch
 
         htop                
         firmware
