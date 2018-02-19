@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.376.0.2.0]   #
+# # versão do script:           [2.0.380.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [17/02/18]      #
+# # ultima ediçao realizada:      [18/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -208,7 +208,6 @@ func_help()
 	        printf "\n[+] Atualizando repositório local dos programas \n"
 	        printf "\n[+] Atualizando repositório local dos programas \n" >> /tmp/log.txt
 	        	auto-apt updatedb
-
 		else
         	#atualizando lista de programas do sistem
         	printf "\n[+] Atualizando lista de programas do sistema \n"
@@ -547,7 +546,7 @@ func_help()
         chkrootkit
     }
 
-    localpurge()
+    func_localepurge()
     {
         printf "\n "
         printf "\n[+] Removendo idiomas extras" 
@@ -922,15 +921,18 @@ func_help()
         var_stellarium=$(which stellarium)
 
         if [[ ! -e $var_stellarium ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o Stellarium"
-            printf "\n[+] Instalando o Stellarium" >> /tmp/log.txt
+            # verificando distribuição
+            if [ $DISTRO == "Ubuntu" ]; then
+                printf "\n"
+                printf "\n[+] Instalando o Stellarium"
+                printf "\n[+] Instalando o Stellarium" >> /tmp/log.txt
 
-            #adicinando ppa
-            add-apt-repository ppa:stellarium/stellarium-releases -y
+                #adicinando ppa
+                add-apt-repository ppa:stellarium/stellarium-releases -y
 
-            #atualizando sistema
-            update
+                #atualizando sistema
+                update
+            fi
 
             #instalando o stellarium
             apt install stellarium* -y
@@ -1164,14 +1166,12 @@ func_help()
                 add-apt-repository ppa:gnome3-team/gnome3 -y
 
                 #atualizando lista repositorio
-                update
-
-                #instalando o nautilus
-                apt install nautilus* -y
-            else
-                #instalando o nautilus
-                apt install nautilus* -y
+                update                
             fi
+
+            #instalando o nautilus
+            apt install nautilus* -y
+
         else
             printf "[+] Nautilus já está instalado! \n"
         fi
@@ -1278,7 +1278,7 @@ func_help()
         apt install chkrootkit -y
     }
 
-    localepurge()
+    install_localepurge()
     {
         printf "\n"
         printf "\n[+] Instalando o Localepurge"
@@ -1295,7 +1295,7 @@ func_help()
         apt install ufw gufw -y
     }
 
-    hardinfo()
+    install_hardinfo()
     {
         printf "\n"
         printf "\n[+] Instalando o Hardinfo"
@@ -1372,15 +1372,6 @@ func_help()
         #     printf "[*] Copiando icones para pasta de destino \n"
         #     cp -r $input_icons $output_icons
         # fi
-    }
-
-    brightside()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Brightside"
-        printf "\n[+] Instalando o Brightside" >> /tmp/log.txt
-
-        apt install brightside -y
     }
 
     virtualbox()
@@ -1589,8 +1580,7 @@ func_help()
         printf "\n[+] Instalando Muse Score"
         printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
 
-        # apt install musescore -y
-        snap install musescore -y
+        snap install musescore
     }
 
     install_zsh()
@@ -1633,19 +1623,20 @@ func_help()
         printf "\n[+] Instalando o Sublime"
         printf "\n[+] Instalando o Sublime" >> /tmp/log.txt
 
-        wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
-        apt install apt-transport-https -y 
-        echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-        
-        update  
-        
-        apt install sublime-text -y
+        if [ $DISTRO == "Ubuntu" ]; then
+            wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
+            apt install apt-transport-https -y 
+            echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
+            
+            update  
+            
+            apt install sublime-text -y
 
-	if [ $DISTRO == "Debian" ]; then
-		# apt-get install snapd snapd-xdg-open
-		snap install sublime-text-3 --classic --candidate
-		# snap refresh sublime-text-3
-	fi
+        elif [ $DISTRO == "Debian" ]; then
+        	# apt-get install snapd snapd-xdg-open
+        	snap install sublime-text-3 --classic --candidate
+        	# snap refresh sublime-text-3
+        fi
     }
 
     firmware()
@@ -1763,7 +1754,7 @@ func_limpa()
     clear
     pacotes_orfaos
     funcao_chkrootkit
-    localpurge
+    func_localepurge
 }
 
 func_instala()
@@ -1789,9 +1780,7 @@ func_instala()
 	        screenfetch
 	        gnome_disk_utility
 	        gnome_system_monitor
-	        brightside
-	#                 figlet
-	        hardinfo
+	        install_hardinfo
 
 	#               NAVEGADORES
 	        firefox
@@ -1836,7 +1825,6 @@ func_instala()
 
 	#               OFFICE
 	        libreoffice
-	        # texmaker
 
 	    else
 	#               PERSONALIZAÇÃO
@@ -1855,9 +1843,8 @@ func_instala()
 	        screenfetch
 	        gnome_disk_utility
 	        gnome_system_monitor
-	        brightside
 	        figlet
-	        hardinfo
+	        install_hardinfo
 
 	#               NAVEGADORES
 	        firefox
@@ -1911,38 +1898,61 @@ func_instala()
 
 	#               OFFICE
 	        libreoffice
-	        # texmaker
 	    fi
 
     elif [ $DISTRO == "Debian" ]; then
-	firefox
-	chromium
-	tor
+    	firefox
+    	chromium
+    	tor
 
-	xfce4
+    	xfce4
         nautilus
         redshift
         plank
         install_git
         openssh
-        brightside
-	spotify
-	steam
+    	spotify
+    	steam
+        vlc
+        codecs
+        gnome3-system-monitor
+        kate
+        screenfetch
+        htop                
+        firmware
+        clementine
+        gparted
+        install_git
+        lm-sensors
+        stellarium
+        kstars
+        gnome_terminal
+        sweethome3d
+        gnome_system_monitor
+        gnome_disk_utility
+        audacity
+        simple_screen_recorder
+        openssh
+        figlet        
+        firewall_basic
+        tuxguitar
+        muse_score
+        xclip        
 
         install_sudo
         install_nmap
         install_docker
         install_snap
         install_ntp
-	install_terminator
-	kate
-	install_xclip
-	install_espeak
-	install_sublime
-	screenfetch
+    	install_terminator    	
+    	install_xclip
+    	install_espeak
+    	install_sublime    	
+        install_tree
+        install_ntp
+        install_localepurge
+        install_hardinfo
 
-        htop                
-        firmware
     else
 		printf "\n[-] ERRO INSTALA!"
 	fi	
@@ -1965,7 +1975,7 @@ func_instala_outros()
     ibus
 
 # personalizacao
-    	install_pulseeffects
+    install_pulseeffects
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
@@ -2014,6 +2024,18 @@ func_remove()
     printf "[+] Removendo o Blender \n"
     apt purge blender* -y
 
+    printf "\n"
+    printf "[+] Removendo o Exfalso \n"
+    apt purge exfalso* -y
+
+    printf "\n"
+    printf "[+] Removendo o Quodlibet \n"
+    apt purge quodlibet* -y
+
+    printf "\n"
+    printf "[+] Removendo o XTerm \n"
+    apt purge xterm* -y
+    
     if [[ $V_HOSTNAME == 'notebook' ]]; then
         printf "[+] Removendo pidgin \n"
         apt purge pidgin* -y
