@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.380.0.2.0]   #
+# # versão do script:           [2.0.381.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [18/02/18]      #
+# # ultima ediçao realizada:      [19/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1937,8 +1937,8 @@ func_instala()
         openssh
         figlet        
         firewall_basic
-        tuxguitar
-        muse_score
+        # tuxguitar
+        # muse_score
         xclip        
 
         install_sudo
