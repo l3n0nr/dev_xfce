@@ -1615,6 +1615,8 @@ func_help()
             printf "\n[+] O Docker já está instalado no seu sistema."
         fi
 
+        # removendo docker 
+        # apt purge docker-ce -y
     }
 
     install_sublime()
