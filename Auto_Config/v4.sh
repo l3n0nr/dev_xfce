@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.381.0.2.0]   #
+# # versão do script:           [2.0.384.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [19/02/18]      #
+# # ultima ediçao realizada:      [22/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1576,11 +1576,20 @@ func_help()
 
     muse_score()
     {
-        printf "\n"
-        printf "\n[+] Instalando Muse Score"
-        printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
+        # variavel de verificação
+        VAR_MUSESCORE=$(which musescore)
 
-        snap install musescore
+        # criando verificação para instalar o docker
+        if [[ ! -e $VAR_MUSESCORE ]]; then
+            printf "\n"
+            printf "\n[+] Instalando Muse Score"
+            printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
+
+            snap install musescore
+        else
+            printf "\n"
+            printf "\n[+] O Musescore já está instalado no seu sistema."
+        fi
     }
 
     install_zsh()
@@ -1605,7 +1614,6 @@ func_help()
 
         # criando verificação para instalar o docker
         if [[ ! -e $VAR_DOCKER ]]; then
-
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
@@ -1969,10 +1977,8 @@ func_instala_outros()
     install_mysql
     phpmyadmin
     install_zsh
-    install_docker  
-
+    #install_docker  
     wireshark    
-
     # teclado
     ibus
 
