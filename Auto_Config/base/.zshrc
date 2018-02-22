@@ -90,6 +90,7 @@ alias dev_web='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /va
 alias dev_xfce='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_xfce && ls && echo "######################################"'
 alias dev_scripts='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_scripts && ls && echo "######################################"'
 alias dev_sysadmin='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_sysadmin && ls && echo "######################################"'
+alias dev_ksp='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr/Github/dev_ksp && ls && echo "######################################"'
 alias home='clear && echo "########## LISTA DE ARQUIVOS ##########" && cd /home/lenonr && ls && echo "######################################"'
 
 #   criando atalhos para atualizar os diretorios do github 
