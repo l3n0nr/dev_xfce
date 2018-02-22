@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.385.0.2.0]   #
+# # versão do script:           [2.0.386.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [22/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -111,8 +111,11 @@
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
-#capturando hostname da maquina
+# capturando hostname da maquina
     V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
+
+# habilitando ou desabilitando espeak
+    VAR_MUDO=0
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -173,11 +176,13 @@ func_help()
         - Visualizando o menu de ações:
             ~ v4.sh menu
 
-        - Após a maquina ser formatada(apenas as funções automáticas)
+        - Após a maquina ser formatada(apenas as funções automáticas e depois desliga a máquina)
             ~ v4.sh formatado
 
         - Para executar todas as funções(semi-automático)
             ~ v4.sh todas
+
+        - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outra ao iniciar o script.  
 
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
 
@@ -1677,7 +1682,10 @@ func_help()
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
 {
-	espeak -vpt-br "Atualizando"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Atualizando"
+    fi
 
     clear
     update
@@ -1686,7 +1694,10 @@ func_atualiza()
 
 func_corrige()
 {
-	espeak -vpt-br "Corrigindo"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Corrigindo"
+    fi
 
 	if [ $DISTRO == "Ubuntu" ]; then
 	    clear
@@ -1767,7 +1778,10 @@ func_corrige()
 
 func_limpa()
 {
-	espeak -vpt-br "Limpando"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Limpando"
+    fi
 
     clear
     pacotes_orfaos
@@ -1777,7 +1791,10 @@ func_limpa()
 
 func_instala()
 {
-	espeak -vpt-br "Instalando"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Instalando"
+    fi
 
 	if [ $DISTRO == "Ubuntu" ]; then		
 	    clear	  
@@ -1981,9 +1998,12 @@ func_instala()
 
 func_instala_outros()
 {
-	espeak -vpt-br "Instalando outros"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Instalando outros"
+    fi
 
-    # desenvolvimento
+	# desenvolvimento
     apache
     install_mysql
     phpmyadmin
@@ -2008,7 +2028,11 @@ func_instala_outros()
 
 func_remove()
 {
-	espeak -vpt-br "Removendo programas"
+    ## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Removendo programas"
+    fi
+
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
 
     printf "\n"
@@ -2131,7 +2155,6 @@ func_formatado()
     # instalando programas
     func_instala
 
-    #
     texmaker
     
     # removendo programas pré-instalados, desnecessários
@@ -2392,33 +2415,43 @@ menu()
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # INICIANDO SCRIPT
 # menu
-
 if [ $# -eq 0 ]; then
     func_help
 fi
 
+## manipulando parametros - parametro acao/mudo(boolean)
+for i in "$@"; do
+    # verificando o que foi digitado
+    case $i in
+        menu) auto_config;;
+        atualiza) func_atualiza;;
+        corrige) func_corrige;;
+        limpa) func_limpa;;
+        instala) func_instala;;
+        instala_outros) func_instala_outros;;
+        remove) func_remove;;
+        formatado) func_formatado;;
+        todas) func_todas;;
+        nvidia) nvidia;;
+        texmaker) texmaker;;
+    esac    
+
+    # alterando valor - funcoes em silencio
+    if [ $i == "mudo" ]; then
+        VAR_MUDO=1
+    fi
+done
+
 # mostrando data/hora log inicilização script	
-	date > /tmp/log.txt
-    # echo "Distro identificada: "$DISTRO >> /tmp/log.txt
-    # uname -a >> /tmp/log.txt
-    lsb_release -a >> /tmp/log.txt
+date > /tmp/log.txt
 
-# verificando o que foi digitado
-case $1 in
-    menu) auto_config;;
-    atualiza) func_atualiza;;
-    corrige) func_corrige;;
-    limpa) func_limpa;;
-    instala) func_instala;;
-    instala_outros) func_instala_outros;;
-    remove) func_remove;;
-    formatado) func_formatado;;
-    todas) func_todas;;
-	nvidia) nvidia;;
-	texmaker) texmaker;;
-esac
+# mostrando informacoes da distro
+lsb_release -a >> /tmp/log.txt
 
-espeak -vpt-br "Finalizado!!"
+## verificando valor VAR_MUDO 
+if [ $VAR_MUDO == "0" ]; then
+    espeak -vpt-br "Finalizado!!"
+fi
 
 # mostrando data/hora log finalização script
 echo >> /tmp/log.txt
