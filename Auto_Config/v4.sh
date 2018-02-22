@@ -58,7 +58,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.384.0.2.0]   #
+# # versão do script:           [2.0.385.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [22/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -1664,6 +1664,14 @@ func_help()
         fi
 	}	
 
+    install_python()
+    {
+        printf "\n"
+        printf "\n[+] Instalando pip" >> /tmp/log.txt        
+
+        apt-get install python3.5 python-pip -y
+    }
+
 # # # # # # # # # #
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1832,6 +1840,7 @@ func_instala()
 	        install_aircrack
 	        install_terminator
 	        install_xclip
+            install_python
 
 	#               OFFICE
 	        libreoffice
@@ -1889,6 +1898,7 @@ func_instala()
 	        install_terminator
 	        install_sublime
 	        install_snap
+            install_python
 
 	#               IMAGEM
 	        funcao_gimp
@@ -1962,6 +1972,7 @@ func_instala()
         install_ntp
         install_localepurge
         install_hardinfo
+        install_python
 
     else
 		printf "\n[-] ERRO INSTALA!"
