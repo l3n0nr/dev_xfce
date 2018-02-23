@@ -1711,7 +1711,7 @@ func_corrige()
 	        apt_clean
 	        apt_auto
 	        apt_update_local
-	        swap
+	        # swap
 	        prelink_preload_deborphan
 	        pacotes_quebrados
 	        fonts
@@ -1732,7 +1732,7 @@ func_corrige()
 	        apt_clean
 	        apt_auto
 	        apt_update_local
-	        swap
+	        # swap
 	        prelink_preload_deborphan
 	        pacotes_quebrados
 	        fonts
@@ -1749,7 +1749,7 @@ func_corrige()
 	        apt_clean
 	        apt_auto
 	        apt_update_local
-	        swap
+	        # swap
 	        prelink_preload_deborphan
 	        pacotes_quebrados
 	        fonts
