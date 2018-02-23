@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.386.0.2.0]   #
+# # versão do script:           [2.0.390.0.2.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [22/02/18]      #
+# # ultima ediçao realizada:      [23/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -114,8 +114,11 @@
 # capturando hostname da maquina
     V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
-# habilitando ou desabilitando espeak
+# espeak habilitado
     VAR_MUDO=0
+
+# usuario virtualbox
+    USUARIO="lenonr"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -688,8 +691,11 @@ func_help()
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)"
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)" >> /tmp/log.txt
 
-        #instalando pacotes multimidias
-        apt install ubuntu-restricted-extras -y
+        if [[ $DISTRO == "Ubuntu" ]]; then
+            #instalando pacotes multimidias
+            apt install ubuntu-restricted-extras -y
+        fi
+
         apt install faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes        
         apt install lame libavcodec-extra libav-tools -y	
     }
@@ -789,7 +795,7 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando o Wine" >> /tmp/log.txt
 
-            # ubuntu 16.04
+            if [[ $DISTRO == "Ubuntu" ]]; then
                 # adicionado o repositorio
                 add-apt-repository ppa:ubuntu-wine/ppa -y
 
@@ -797,22 +803,9 @@ func_help()
                 update
 
                 apt install wine -y
+            fi
 
-            # # ubuntu 17.10
-            # wget -nc https://dl.winehq.org/wine-builds/Release.key && sudo apt-key add Release.key
-
-            # # adicionando repositorio
-            # apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
-
-            # # atualizando o sistema
-            # update
-
-            # apt-get install --install-recommends winehq-stable -y
-
-            # # corrigindo dependencias
-            # apt install -fy
-
-            # apt-get install --install-recommends winehq-stable -y
+            # verificar funcao debian
         else
             printf "\n"
             printf "[+] Wine já está instalado na sua máquina! \n"
@@ -853,11 +846,13 @@ func_help()
             printf "\n[+] Instalando o Libreoffice"
             printf "\n[+] Instalando o Libreoffice" >> /tmp/log.txt
 
-            #adicionando ppa
-            add-apt-repository ppa:libreoffice/ppa -y
+            if [[ $DISTRO == "Ubuntu" ]]; then
+                #adicionando ppa
+                add-apt-repository ppa:libreoffice/ppa -y
 
-            #chamando funcao já definida
-            update
+                #chamando funcao já definida
+                update
+            fi
 
             #instalando libreoffice
             apt-get install libreoffice libreoffice-style-breeze -y
@@ -1036,14 +1031,16 @@ func_help()
         printf "\n[+] Instalando o Dolphin"
         printf "\n[+] Instalando o Dolphin" >> /tmp/log.txt
 
-        #adicionando repositorio do dolphin
-        add-apt-repository ppa:glennric/dolphin-emu -y
+        if [[ $DISTRO == "Ubuntu" ]]; then
+            #adicionando repositorio do dolphin
+            add-apt-repository ppa:glennric/dolphin-emu -y
 
-        #atualizando lista de repositorios
-        update
+            #atualizando lista de repositorios
+            update
 
-        #corrigindo problemas de dependencias
-        apt-get install -f
+            #corrigindo problemas de dependencias
+            apt-get install -f
+        fi
 
         #instalando dolphin
         apt install dolphin-emu* -y
@@ -1077,11 +1074,13 @@ func_help()
             printf "\n[+] Instalando o Kdenlive"
             printf "\n[+] Instalando o Kdenlive" >> /tmp/log.txt
 
-            #adicionando ppa
-            add-apt-repository ppa:sunab/kdenlive-release -y
+            if [[ $DISTRO == "Ubuntu" ]]; then
+                #adicionando ppa
+                add-apt-repository ppa:sunab/kdenlive-release -y
 
-            #atualizando sistema
-            update
+                #atualizando sistema
+                update
+            fi
 
             #instalando kdenlive
             apt install kdenlive -y
@@ -1219,11 +1218,13 @@ func_help()
             printf "\n[*] Instalando o Simple Screen Recorder"
             printf "\n[*] Instalando o Simple Screen Recorder" >> /tmp/log.txt
 
-            #adicionando fonte
-            add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+            if [[ $DISTRO == "Ubuntu" ]]; then
+                #adicionando fonte
+                add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
 
-            #atualizando lista de repositorios
-            apt-get update
+                #atualizando lista de repositorios
+                apt-get update
+            fi
 
             #instalando simplescreenrecorder
             apt-get install simplescreenrecorder -y
@@ -1315,68 +1316,32 @@ func_help()
         VAR_NVIDIA=$(which nvidia-settings)
 
         if [[ ! -e $VAR_NVIDIA ]]; then
-            # verificando distribuição
             if [ $DISTRO == "Ubuntu" ]; then
-		    printf "\n"
-		    printf "\n[+] Instalando o driver da Placa Nvidia"
-		    printf "\n[+] Instalando o driver da Placa Nvidia" >> /tmp/log.txt
+    		    printf "\n"
+    		    printf "\n[+] Instalando o driver da Placa Nvidia"
+    		    printf "\n[+] Instalando o driver da Placa Nvidia" >> /tmp/log.txt
 
-		    apt-add-repository ppa:graphics-drivers/ppa -y
-		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
-		    apt-add-repository ppa:xorg-edgers/ppa -y
-		    update
+    		    apt-add-repository ppa:graphics-drivers/ppa -y
+    		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
+    		    apt-add-repository ppa:xorg-edgers/ppa -y
+    		    update
 
-		    apt install nvidia-current nvidia-settings -y
+    		    apt install nvidia-current nvidia-settings -y  
+            elif [[ $DISTRO == "Debian" ]]; then
+                # adicionando repositorio
+        		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
-		    # printf "\n"
-		    # printf "[+] Arquivo de configuração Nvidia \n"
+                # atualizando sistema
+        	    update
 
-	#             cat base/ubuntu/.nvidia-settings-rc > $past_home/.nvidia-settings-rc
-		fi
-	elif [[ $DISTRO == "Debian" ]]; then
-		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
-		update
-		apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver
-		
+                # instalando driver
+        	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver
+            else
+                printf "\nDistribuiçao desconhecida"
+            fi
+        else
+            printf "[+] Nvidia já está instalado no sistema! \n"
         fi
-
-        printf "[+] Nvidia já está instalado no sistema! \n"
-    }
-
-    icones()
-    {
-        printf "\n"
-        # printf "\n[+] Gerando lista dos arquivos"
-        # printf "\n[+] Gerando lista dos arquivos" >> /tmp/log.txt
-
-        # # criando variaveis
-        # # # variaveis de entrada
-        # input_icons='/usr/share/icons/'
-        # input_themes='/usr/share/themes/'
-
-        # # # variaveis de saida
-        # output_icons='/home/lenonr/MEGA/Outros/Themes_Icons/icons/*'
-        # output_themes='/home/lenonr/MEGA/Outros/Themes_Icons/themes/*'
-
-        # # # variaveis de verificao
-        # caminho='/home/lenonr/MEGA/Outros/Themes_Icons'
-        # verifica='cd $caminho; echo $?'
-
-        # # realizando verificação na pasta de origem
-        # if [[ ! -e $caminho ]]; then
-        #     # mostrando mensagem de erro
-        #     printf "[-] Caminho não encontrado!! \n"
-        #     printf "[-] Verifique a pasta de origem!! \n"
-        #     exit 127
-        # else
-        #     # executando backup
-        #     printf "[+] Executando backup! \n"
-        #     printf "[*] Copiando temas para pasta de destino \n"
-        #     cp -r $input_themes $output_themes
-
-        #     printf "[*] Copiando icones para pasta de destino \n"
-        #     cp -r $input_icons $output_icons
-        # fi
     }
 
     virtualbox()
@@ -1386,21 +1351,36 @@ func_help()
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $VAR_VIRTUALBOX ]]; then
-            printf "\n"
-            printf "[*] Realizando download \n"
-            wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            if [[ $DISTRO == "Ubuntu" ]]; then
+                printf "\n"
+                printf "[*] Realizando download \n"
+                wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
 
-            printf "\n[*] Instalando o VirtualBox" 
-            printf "\n[*] Instalando o VirtualBox" >> /tmp/log.txt
-            dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+                printf "\n[*] Instalando o VirtualBox" 
+                printf "\n[*] Instalando o VirtualBox" >> /tmp/log.txt
+                dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
 
-            printf "[*] Corrigindo problemas de dependências \n"
-            apt install -f
+                printf "[*] Corrigindo problemas de dependências \n"
+                apt install -f
 
-            printf "[*] Removendo Virtualbox \n"
-            rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+                printf "[*] Removendo Virtualbox \n"
+                rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            elif [[ $DISTRO == "Debian" ]]; then
+                # adicionando repositorio
+                sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
-            printf "[+] Virtualbox instalado com sucesso! \n"
+                # obtendo chave
+                wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+
+                # atualizando sistema
+                update
+
+                # baixando virtualbox
+                apt install virtualbox-5.1 -y
+
+                # adicionando usuario ao grupo 
+                gpasswd -a $USUARIO vboxusers
+            fi
         else
             printf "[+] VirtualBox já está instalado! \n"
         fi
@@ -1425,17 +1405,36 @@ func_help()
             printf " \n"
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
-            #instalando mega
-            dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
+            # #instalando mega
+            # dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
-            printf "[*] Resolvendo dependencias \n"
-            apt install -fy
+            # printf "[*] Resolvendo dependencias \n"
+            # apt install -fy
 
-            printf "[*] Instalando o Pulse Effects \n"
-            dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
+            # printf "[*] Instalando o Pulse Effects \n"
+            # # dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
 
-            printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
-            sleep 5s
+            # printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
+            # sleep 5s
+
+            # debian
+            # # adicionando repositorio
+            # echo "deb http://ppa.launchpad.net/mikhailnov/pulseeffects/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/mikhailnov-ubuntu-pulseeffects-bionic.list
+
+            # # adicionando chave de segurança
+            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FE3AE55CF74041EAA3F0AD10D5B19A73A8ECB754
+
+            # # atualizando sistema
+            # update
+
+            # # instalando pulseeffects
+            # apt install pulseeffects -y
+
+            # adicionando via flatpak
+            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+            # instalando via flatpak
+            flatpak install flathub com.github.wwmm.pulseeffects
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"
@@ -1978,7 +1977,7 @@ func_instala()
 
         install_sudo
         install_nmap
-        install_docker
+        # install_docker
         install_snap
         install_ntp
     	install_terminator    	
