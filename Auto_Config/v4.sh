@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.390.0.2.0]   #
+# # versão do script:           [2.0.392.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [23/02/18]      #
+# # ultima ediçao realizada:      [24/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -73,9 +73,7 @@
 # 	d = correções necessárias;
 #
 # 	e = pendencias
-#               - I    - [WHICH PROGRAMAS] - Adicionar verificação de alguns programas, antes da instalação.
-#                           - Icones-macbuntu
-# 				- II   - [KERNEL] - Melhorar script para remover kernel mais antigo
+# 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #
 # 	f = desenvolver
 #
@@ -106,7 +104,7 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME=$HOME           		# personalizavel
+    PASTA_HOME=$HOME           		   
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -115,10 +113,10 @@
     V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # espeak habilitado
-    VAR_MUDO=0
+    VAR_MUDO=0                          # valor padrao = mudo desativado
 
 # usuario virtualbox
-    USUARIO="lenonr"
+    USUARIO="lenonr"                    # personalizavel
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -2372,12 +2370,10 @@ auto_config()
     clear
 
     # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-
     printf "
                 AUTOCONFIG - V4
                 \n"
     echo "-------------------------------------------------"
-#     echo "Digite 0 para verificar dados do sistema"
     echo "Digite 1 para atualizar o sistema,"
     echo "Digite 2 para corrigir possíveis erros,"
     echo "Digite 3 para realizar uma limpeza,"
