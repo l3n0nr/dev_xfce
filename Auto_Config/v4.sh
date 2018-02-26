@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.392.0.1.0]   #
+# # versão do script:           [2.0.395.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [24/02/18]      #
+# # ultima ediçao realizada:      [26/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1505,6 +1505,7 @@ func_help()
         printf "\n[+] Instalando o Apache" >> /tmp/log.txt
 
         apt install apache2 -y
+        service apache2 restart
     }
 
     install_mysql()
@@ -1513,7 +1514,7 @@ func_help()
         printf "\n[+] Instalando o Mysql Server"
         printf "\n[+] Instalando o Mysql Server" >> /tmp/log.txt
 
-        apt install mysql-server -y
+        apt install mysql-server mysql-server -y
     }
 
     phpmyadmin()
