@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.395.0.1.0]   #
+# # versão do script:           [2.0.396.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [26/02/18]      #
+# # ultima ediçao realizada:      [27/02/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -104,7 +104,7 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME=$HOME           		   
+    PASTA_HOME=$HOME           		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
