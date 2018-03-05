@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.396.0.1.0]   #
+# # versão do script:           [2.0.397.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [27/02/18]      #
+# # ultima ediçao realizada:      [05/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1523,7 +1523,7 @@ func_help()
         printf "\n[+] Instalando o PhpMyAdmin"
         printf "\n[+] Instalando o PhpMyAdmin" >> /tmp/log.txt
 
-        apt install phpmyadmin -y
+        apt install php phpmyadmin -y
     }
 
     ibus()
