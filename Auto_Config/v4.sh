@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.397.0.1.0]   #
+# # versão do script:           [2.0.398.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [05/03/18]      #
+# # ultima ediçao realizada:      [06/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1799,7 +1799,7 @@ func_instala()
 
 	    if [[ $V_HOSTNAME == 'notebook' ]]; then
 	#               PERSONALIZAÇÃO
-	        icones_mac
+	        # icones_mac
 	        codecs
 	        xfce4
 	        redshift
@@ -1863,7 +1863,7 @@ func_instala()
 	    else
 	#               PERSONALIZAÇÃO
 	        nvidia
-	        icones_mac
+	        # icones_mac
 	        codecs
 	        xfce4
 	        redshift
