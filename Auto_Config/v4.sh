@@ -1607,7 +1607,11 @@ func_help()
         # chsh -s /usr/bin/zsh
         chsh -s $(which zsh)
 
-        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!!"
+        printf "\n[*] Copiando arquivo padrao ZSH"
+        cat base/.zshrc >> $PASTA_HOME/.zshrc
+        
+        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
+        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
     }
 
     install_docker()
