@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.397.0.1.0]   #
+# # versão do script:           [2.0.400.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [05/03/18]      #
+# # ultima ediçao realizada:      [08/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1844,7 +1844,7 @@ func_instala()
 	        funcao_gimp
 
 	#               OUTROS
-	        firewall_basic
+	        # firewall_basic
 	        openssh
 	        install_chkrootkit
 	        reaver
@@ -1905,7 +1905,7 @@ func_instala()
 
 	#               MUSICA
 	        tuxguitar
-	        muse_score
+	        # muse_score
 
 	#               DESENVOLVIMENTO
 	        kate
@@ -1969,7 +1969,7 @@ func_instala()
         simple_screen_recorder
         openssh
         figlet        
-        firewall_basic
+        # firewall_basic
         # tuxguitar
         # muse_score
         xclip        
@@ -2033,113 +2033,93 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
 
-    printf "\n"
-    printf "[+] Removendo XBurn \n"
-    apt purge xfburn -y
+    # printf "\n"
+    # printf "[+] Removendo XBurn \n"
+    # apt purge xfburn -y
 
-    clear
-    printf "[+] Removendo pidgin \n"
-    apt purge pidgin -y
+    # clear
+    # printf "[+] Removendo pidgin \n"
+    # apt purge pidgin -y
 
-    printf "\n"
-    printf "[+] Removendo Thunderbird \n"
-    apt purge thunderbird -y
-
-
-    printf "\n"
-    printf "[+] Removendo Parole \n"
-    apt purge parole -y
+    # printf "\n"
+    # printf "[+] Removendo Thunderbird \n"
+    # apt purge thunderbird -y
 
 
-    printf "\n"
-    printf "[+] Removendo o Inkscape \n"
-    apt purge inkscape* -y
+    # printf "\n"
+    # printf "[+] Removendo Parole \n"
+    # apt purge parole -y
 
 
-    printf "\n"
-    printf "[+] Removendo o Adapta \n"
-    apt purge adapta-gtk-theme* -y
+    # printf "\n"
+    # printf "[+] Removendo o Inkscape \n"
+    # apt purge inkscape* -y
 
 
-    printf "\n"
-    printf "[+] Removendo o Blender \n"
-    apt purge blender* -y
+    # printf "\n"
+    # printf "[+] Removendo o Adapta \n"
+    # apt purge adapta-gtk-theme* -y
 
-    printf "\n"
-    printf "[+] Removendo o Exfalso \n"
-    apt purge exfalso* -y
 
-    printf "\n"
-    printf "[+] Removendo o Quodlibet \n"
-    apt purge quodlibet* -y
+    # printf "\n"
+    # printf "[+] Removendo o Blender \n"
+    # apt purge blender* -y
 
-    printf "\n"
-    printf "[+] Removendo o XTerm \n"
-    apt purge xterm* -y
+    # printf "\n"
+    # printf "[+] Removendo o Exfalso \n"
+    # apt purge exfalso* -y
+
+    # printf "\n"
+    # printf "[+] Removendo o Quodlibet \n"
+    # apt purge quodlibet* -y
+
+    # printf "\n"
+    # printf "[+] Removendo o XTerm \n"
+    # apt purge xterm* -y
+
+    apt purge xfburn thunderbird parole inkscape* blender* exfalso* quodlibet* xterm* pidgin* meld* gtkhash*  -y
     
     if [[ $V_HOSTNAME == 'notebook' ]]; then
-        printf "[+] Removendo pidgin \n"
-        apt purge pidgin* -y
+        # printf "[+] Removendo o Kstars \n"
+        # apt purge kstars* -y
 
+        # printf "\n"
+        # printf "[+] Removendo a Steam \n"
+        # apt purge steam* -y        
 
-        printf "\n"
-        printf "[+] Removendo Thunderbird \n"
-        apt purge thunderbird* -y
+        # printf "\n"
+        # printf "[+] Removendo o Kdenlive \n"
+        # apt purge kdenlive* -y
 
+        # printf "\n"
+        # printf "[+] Removendo o Sweet Home 3D \n"
+        # apt purge sweethome3d* -y
 
-        printf "\n"
-        printf "[+] Removendo Parole \n"
-        apt purge parole* -y
+        # printf "\n"
+        # printf "[+] Removendo o Simple Screen Recorder \n"
+        # apt purge simplescreenrecorder* -y
 
+        # printf "\n"
+        # printf "[+] Removendo o Figlet \n"
+        # apt purge figlet* -y
 
-        printf "\n"
-        printf "[+] Removendo o Kstars \n"
-        apt purge kstars* -y
+        # printf "\n"
+        # printf "[+] Removendo o Transmission \n"
+        # apt purge transmission* -y
 
+        # printf "\n"
+        # printf "[+] SmartGit \n"
+        # apt purge smartgit -y
 
-        printf "\n"
-        printf "[+] Removendo a Steam \n"
-        apt purge steam* -y        
+        # printf "\n"
+        # printf "[+] Removendo o Gitg \n"
+        # apt purge gitg -y
 
+        # printf "\n"
+        # printf "[+] Removendo o Meld \n"
+        # apt purge meld -y
 
-        printf "\n"
-        printf "[+] Removendo o Kdenlive \n"
-        apt purge kdenlive* -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Sweet Home 3D \n"
-        apt purge sweethome3d* -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Simple Screen Recorder \n"
-        apt purge simplescreenrecorder* -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Figlet \n"
-        apt purge figlet* -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Transmission \n"
-        apt purge transmission* -y
-
-
-        printf "\n"
-        printf "[+] SmartGit \n"
-        apt purge smartgit -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Gitg \n"
-        apt purge gitg -y
-
-
-        printf "\n"
-        printf "[+] Removendo o Meld \n"
-        apt purge meld -y
+        apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* transmission* smartgit* gitg* -y
     else
     	printf "\n"	   
     fi
