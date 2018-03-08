@@ -58,15 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-<<<<<<< HEAD
-# # versão do script:           [2.0.398.0.1.0]   #
-# # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [06/03/18]      #
-=======
 # # versão do script:           [2.0.400.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [08/03/18]      #
->>>>>>> e27bca10dfae061c0d372fc638bd281b41f6a571
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
