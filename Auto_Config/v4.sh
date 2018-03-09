@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.400.0.1.0]   #
+# # versão do script:           [2.0.402.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/03/18]      #
+# # ultima ediçao realizada:      [09/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -117,6 +117,9 @@
 
 # usuario virtualbox
     USUARIO="lenonr"                    # personalizavel
+
+# icones mac
+    LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -666,21 +669,26 @@ func_help()
 
     icones_mac()
     {
-        printf "\n"
-        printf "\n[+] Instalando icones e temas do MacOS X"
-        printf "\n[+] Instalando icones e temas do MacOS X" >> /tmp/log.txt
+        if [ -e "$LOCAL_ICONESMAC" ]; then 
+            printf "\n"
+            printf "\n[+] Instalando icones e temas do MacOS X"
+            printf "\n[+] Instalando icones e temas do MacOS X" >> /tmp/log.txt
 
-        #adicionando repositorio
-        add-apt-repository ppa:noobslab/macbuntu -y
+            #adicionando repositorio
+            add-apt-repository ppa:noobslab/macbuntu -y
 
-        # chamando funcao update já criada
-        update
+            # chamando funcao update já criada
+            update
 
-        #instalando icones do MacOS
-        apt-get install macbuntu-os-icons-lts-v7 -y
+            #instalando icones do MacOS
+            apt-get install macbuntu-os-icons-lts-v7 -y
 
-        #instalando tema do MacOS
-        apt-get install macbuntu-os-ithemes-lts-v7 -y
+            #instalando tema do MacOS
+            apt-get install macbuntu-os-ithemes-lts-v7 -y
+        else
+            printf "\n[-] Icones já estao instalados" 
+            printf "\n[-] Icones já estao instalados" >> /tmp/log.txt
+        fi
     }
 
     codecs()
