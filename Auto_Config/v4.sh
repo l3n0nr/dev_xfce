@@ -104,7 +104,7 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME=$HOME           		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
+    PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -836,7 +836,7 @@ func_help()
         apt install redshift gtk-redshift -y
 
         # criando link
-        cat base/redshift.conf > PASTA_HOME/.config/redshift.conf 
+        cat base/redshift.conf > $PASTA_HOME/.config/redshift.conf 
     }
 
     libreoffice()
