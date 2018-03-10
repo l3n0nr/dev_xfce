@@ -58,9 +58,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.402.0.1.0]   #
+# # versão do script:           [2.0.406.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [09/03/18]      #
+# # ultima ediçao realizada:      [10/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -89,12 +89,13 @@
 #
 # # Script testado em
 #	- Xubuntu 16.04
+#   - Xubuntu 17.10 - OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
+#   - Debian 8		- OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
 #   - Debian 9
-#   - Xubuntu 17.10 - OBS:Não aconselhável utilização, pois há diversas incompatibilidades de softwares
 #
 # # Compativel com
-#   - Xubuntu 16.04 - LTS
-#   - Debian 9
+#   - Xubuntu 16.04 - LTS -	[SCRIPT ESTAVEL]
+#   - Debian 9			  -	[SCRIPT EM OTIMIZAÇÃO]
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -233,7 +234,8 @@ func_help()
         #verificando lista do apt
         printf "\n[+] Verificando lista do apt"
         printf "\n[+] Verificando lista do apt" >> /tmp/log.txt
-        	apt-get check -y
+        
+        apt-get check -y
     }
 
     apt_install()
@@ -241,7 +243,8 @@ func_help()
         #instalando possiveis dependencias
         printf "\n[+] Instalando dependências pendentes"
         printf "\n[+] Instalando dependências pendentes" >> /tmp/log.txt
-        	apt-get install -fy
+
+        apt-get install -fy
     }
 
     apt_remove()
@@ -249,8 +252,9 @@ func_help()
         #removendo possiveis dependencias
         printf "\n[+] Removendo possíveis dependências obsoletas"
         printf "\n[+] Removendo possíveis dependências obsoletas" >> /tmp/log.txt
-	        apt-get remove -fy
-	        apt-get autoremove -y
+
+        apt-get remove -fy
+        apt-get autoremove -y
     }
 
     apt_clean()
@@ -258,7 +262,8 @@ func_help()
         #limpando lista arquivos sobressalentes
         printf "\n[+] Limpando arquivos sobressalentes"
         printf "\n[+] Limpando arquivos sobressalentes" >> /tmp/log.txt
-        	apt-get clean -y
+        
+        apt-get clean -y
     }
 
     apt_auto()
@@ -266,7 +271,8 @@ func_help()
         #corrigindo problemas de dependencias
         printf "\n[+] Corrigindo problemas de dependências"
         printf "\n[+] Corrigindo problemas de dependências" >> /tmp/log.txt
-        	apt-get install auto-apt -y
+        
+        apt-get install auto-apt -y
     }
 
     apt_update_local()
@@ -274,7 +280,8 @@ func_help()
         #corrigindo repositorio local de dependencias automaticamente
         printf "\n[+] Corrigindo repositório local de dependências automaticamente"
         printf "\n[+] Corrigindo repositório local de dependências automaticamente" >> /tmp/log.txt
-        	auto-apt update-local
+        
+        auto-apt update-local
     }
 
     swap()
@@ -335,10 +342,10 @@ func_help()
         printf "[*] Ativando o PRELINK "
 
         if [[ $prelink == "PRELINKING=unknown" ]]; then
-                printf "adicionando ... \n"
-                sed -i 's/unknown/yes/g' /etc/default/prelink
+            printf "adicionando ... \n"
+            sed -i 's/unknown/yes/g' /etc/default/prelink
         else
-                printf "\n[-] Otimização já adicionada anteriormente."
+            printf "\n[-] Otimização já adicionada anteriormente."
         fi
     }
 
@@ -381,16 +388,16 @@ func_help()
         printf "\n[+] Configurando o NTP" >> /tmp/log.txt
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
-        printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"
-            service ntp stop
+        printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"           
+        	service ntp stop
 
         #configurando script base - NTP
         printf "\n[*] Realizando alteraçao no arquivo base"
         cat base/ntp.txt > /etc/ntp.conf
 
         #ativando servico novamente
-        printf "\n[+] Ativando serviço NTP"
-            service ntp start
+        printf "\n[+] Ativando serviço NTP"        
+        	service ntp start
 
         #realizando atualizacao hora/data
         printf "\n[+] Atualizando hora do servidor"
@@ -1392,6 +1399,15 @@ func_help()
         fi
     }
 
+    ristretto()
+    {
+    	printf "\n"
+        printf "\n[+] Instalando Ristretto"
+        printf "\n[+] Instalando Ristretto" >> /tmp/log.txt	
+
+        apt install ristretto -y
+    }
+
     install_tree()
     {
         printf "\n"
@@ -1468,11 +1484,11 @@ func_help()
 
     install_snap()
     {
-            printf "\n"
-            printf "\n[+] Instalando Snap"
-            printf "\n[+] Instalando Snap" >> /tmp/log.txt
+        printf "\n"
+        printf "\n[+] Instalando Snap"
+        printf "\n[+] Instalando Snap" >> /tmp/log.txt
 
-            apt install snapd -y
+        apt install snapd -y
     }
 
     install_ntp()
@@ -1698,6 +1714,7 @@ func_atualiza()
     fi
 
     clear
+
     update
     upgrade
 }
@@ -1794,6 +1811,7 @@ func_limpa()
     fi
 
     clear
+
     pacotes_orfaos
     funcao_chkrootkit
     func_localepurge
@@ -1810,7 +1828,6 @@ func_instala()
 	    clear	  
 
 	    if [[ $V_HOSTNAME == 'notebook' ]]; then
-	#               PERSONALIZAÇÃO
 	        # icones_mac
 	        codecs
 	        xfce4
@@ -1827,36 +1844,28 @@ func_instala()
 	        gnome_system_monitor
 	        install_hardinfo
 
-	#               NAVEGADORES
 	        firefox
 	        chromium
 	        tor
 
-	#               JOGOS
 	        visual_game_boy
 	        wine
 	        playonlinux
 
-	#               ASTRONOMIA
 	        stellarium
 
-	#               MULTIMIDIA
 	        spotify
 	        clementine
 	        vlc
 	        audacity
 
-	#               DESENVOLVIMENTO
 	        kate
 	        install_git
 	        install_sublime
 	        install_snap
 
-	#               IMAGEM
 	        funcao_gimp
 
-	#               OUTROS
-	        # firewall_basic
 	        openssh
 	        install_chkrootkit
 	        reaver
@@ -1869,11 +1878,8 @@ func_instala()
 	        install_xclip
             install_python
 
-	#               OFFICE
 	        libreoffice
-
 	    else
-	#               PERSONALIZAÇÃO
 	        nvidia
 	        # icones_mac
 	        codecs
@@ -1892,21 +1898,17 @@ func_instala()
 	        figlet
 	        install_hardinfo
 
-	#               NAVEGADORES
 	        firefox
 	        chromium
 	        tor
 
-	#               JOGOS
 	        visual_game_boy
 	        wine
 	        playonlinux
 
-	#               ASTRONOMIA
 	        stellarium
 	        kstars
 
-	#               MULTIMIDIA
 	        spotify
 	        clementine
 	        vlc
@@ -1915,11 +1917,9 @@ func_instala()
 	        audacity
 	        simple_screen_recorder
 
-	#               MUSICA
 	        tuxguitar
 	        # muse_score
 
-	#               DESENVOLVIMENTO
 	        kate
 	        install_git
 	        install_terminator
@@ -1927,10 +1927,8 @@ func_instala()
 	        install_snap
             install_python
 
-	#               IMAGEM
 	        funcao_gimp
 
-	#               OUTROS
 	        firewall_basic
 	        openssh
 	        install_chkrootkit
@@ -1943,7 +1941,6 @@ func_instala()
 	        install_xclip
 	        install_espeak
 
-	#               OFFICE
 	        libreoffice
 	    fi
 
@@ -1981,14 +1978,11 @@ func_instala()
         simple_screen_recorder
         openssh
         figlet        
-        # firewall_basic
-        # tuxguitar
-        # muse_score
         xclip        
+        ristretto
 
         install_sudo
         install_nmap
-        # install_docker
         install_snap
         install_ntp
     	install_terminator    	
@@ -2000,7 +1994,6 @@ func_instala()
         install_localepurge
         install_hardinfo
         install_python
-
     else
 		printf "\n[-] ERRO INSTALA!"
 	fi	
@@ -2012,26 +2005,19 @@ func_instala_outros()
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Instalando outros"
     fi
-
-	# desenvolvimento
+	
     apache
     install_mysql
     phpmyadmin
-    install_zsh
-    #install_docker  
+    install_zshr  
     wireshark    
-    # teclado
     ibus
 
-# personalizacao
     install_pulseeffects
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
-        # outros
         virtualbox
-
-        # jogos
         steam
     fi
 }
@@ -2044,94 +2030,10 @@ func_remove()
     fi
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
-
-    # printf "\n"
-    # printf "[+] Removendo XBurn \n"
-    # apt purge xfburn -y
-
-    # clear
-    # printf "[+] Removendo pidgin \n"
-    # apt purge pidgin -y
-
-    # printf "\n"
-    # printf "[+] Removendo Thunderbird \n"
-    # apt purge thunderbird -y
-
-
-    # printf "\n"
-    # printf "[+] Removendo Parole \n"
-    # apt purge parole -y
-
-
-    # printf "\n"
-    # printf "[+] Removendo o Inkscape \n"
-    # apt purge inkscape* -y
-
-
-    # printf "\n"
-    # printf "[+] Removendo o Adapta \n"
-    # apt purge adapta-gtk-theme* -y
-
-
-    # printf "\n"
-    # printf "[+] Removendo o Blender \n"
-    # apt purge blender* -y
-
-    # printf "\n"
-    # printf "[+] Removendo o Exfalso \n"
-    # apt purge exfalso* -y
-
-    # printf "\n"
-    # printf "[+] Removendo o Quodlibet \n"
-    # apt purge quodlibet* -y
-
-    # printf "\n"
-    # printf "[+] Removendo o XTerm \n"
-    # apt purge xterm* -y
-
     apt purge xfburn thunderbird parole inkscape* blender* exfalso* quodlibet* xterm* pidgin* meld* gtkhash*  -y
     
     if [[ $V_HOSTNAME == 'notebook' ]]; then
-        # printf "[+] Removendo o Kstars \n"
-        # apt purge kstars* -y
-
-        # printf "\n"
-        # printf "[+] Removendo a Steam \n"
-        # apt purge steam* -y        
-
-        # printf "\n"
-        # printf "[+] Removendo o Kdenlive \n"
-        # apt purge kdenlive* -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Sweet Home 3D \n"
-        # apt purge sweethome3d* -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Simple Screen Recorder \n"
-        # apt purge simplescreenrecorder* -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Figlet \n"
-        # apt purge figlet* -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Transmission \n"
-        # apt purge transmission* -y
-
-        # printf "\n"
-        # printf "[+] SmartGit \n"
-        # apt purge smartgit -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Gitg \n"
-        # apt purge gitg -y
-
-        # printf "\n"
-        # printf "[+] Removendo o Meld \n"
-        # apt purge meld -y
-
-        apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* transmission* smartgit* gitg* -y
+    	apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* transmission* smartgit* gitg* -y
     else
     	printf "\n"	   
     fi
@@ -2349,7 +2251,6 @@ auto_config_debian()
             menu
             exit
         ;;
-
     esac
 
     printf "TAREFAS FINALIZADAS, SAINDO..\n"
