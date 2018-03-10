@@ -184,6 +184,7 @@ LOCAL_DEVSCRIPTS='/home/lenonr/Github/dev_scripts'
 LOCAL_DEVSYSADMIN='/home/lenonr/Github/dev_sysadmin'
 LOCAL_DEVKSP='/home/lenonr/Github/dev_ksp'
 LOCAL_DEVWEB='/var/www/html/dev_web'
+LOCAL_DEVCLONEREPO='/home/lenonr/Github/dev_clonerepo'
 
 LOCAL_HOME='/home/lenonr'
 LOCAL_WRT='10.0.0.87'
@@ -262,6 +263,21 @@ dev_web()
 	  	echo "######################################"
   	else
 		echo "Diretorio '$LOCAL_DEVWEB' nao existe"
+	fi
+}
+
+dev_clonerepo() 
+{	
+  	clear 
+
+  	# verificando se diretorio existe 
+  	if [ -e "$LOCAL_DEVCLONEREPO" ]; then 
+	  	echo "########## LISTA DE ARQUIVOS ##########" 
+	  	cd $LOCAL_DEVCLONEREPO
+	  	ls
+	  	echo "######################################"
+  	else
+		echo "Diretorio '$LOCAL_DEVCLONEREPO' nao existe"
 	fi
 }
 
@@ -355,6 +371,14 @@ pull_git()
 	fi
 
 	# verificando se diretorio existe 
+  	if [ -e "$LOCAL_DEVCLONEREPO" ]; then 
+	  	echo "[*] Verificando Diretório dev_clonerepo"
+	  	cd $LOCAL_DEVCLONEREPO
+	  	git pull
+	  	printf "\n"
+	fi
+
+	# verificando se diretorio existe 
   	if [ -e "$LOCAL_HOME" ]; then 
 	  	cd $LOCAL_HOME
 	fi	
@@ -405,6 +429,14 @@ push_git()
 	fi
 
 	# verificando se diretorio existe 
+  	if [ -e "$LOCAL_DEVCLONEREPO" ]; then 
+	  	echo "[*] Verificando Diretório dev_clonerepo"
+	  	cd $LOCAL_DEVCLONEREPO
+	  	git push
+	  	printf "\n"
+	fi
+
+	# verificando se diretorio existe 
   	if [ -e "$LOCAL_HOME" ]; then 
 	  	cd $LOCAL_HOME
 	fi	
@@ -450,6 +482,14 @@ status_git()
   	if [ -e "$LOCAL_DEVWEB" ]; then 
 	  	echo "[*] Verificando Diretório dev_web"
 	  	cd $LOCAL_DEVWEB
+	  	git status
+	  	printf "\n"
+	fi
+
+	# verificando se diretorio existe 
+  	if [ -e "$LOCAL_DEVCLONEREPO" ]; then 
+	  	echo "[*] Verificando Diretório dev_clonerepo"
+	  	cd $LOCAL_DEVCLONEREPO
 	  	git status
 	  	printf "\n"
 	fi
