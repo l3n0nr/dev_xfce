@@ -58,7 +58,6 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # versão do script:           [2.0.406.0.1.0]   #
 # # data de criação do script:    [28/09/17]      #
 # # ultima ediçao realizada:      [10/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -104,6 +103,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # VARIAVEIS DE AMBIENTE
+# versao do script
+	VERSAO="2.0.410.0.1.0"
+
 # Criando variavel com localização da raiz do usuario
     PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
@@ -2089,6 +2091,11 @@ func_todas()
     func_atualiza
 }
 
+version()
+{
+	echo "Versao do script: $VERSAO"
+}
+
 ##REALIZANDO VERIFICAÇÕES
     ######VERIFICANDO USUARIO ROOT
     if [[ `id -u` -ne 0 ]]; then
@@ -2266,6 +2273,7 @@ auto_config()
     # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     printf "
                 AUTOCONFIG - V4
+        Versao do script: $VERSAO
                 \n"
     echo "-------------------------------------------------"
     echo "Digite 1 para atualizar o sistema,"
@@ -2323,6 +2331,7 @@ for i in "$@"; do
         todas) func_todas;;
         nvidia) nvidia;;
         texmaker) texmaker;;
+		v) version;;
     esac    
 
     # alterando valor - funcoes em silencio
