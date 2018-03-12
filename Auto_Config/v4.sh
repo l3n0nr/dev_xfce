@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [10/03/18]      #
+# # ultima ediçao realizada:      [12/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -77,7 +77,7 @@
 # 	f = desenvolver
 #
 # versao do script
-	VERSAO="2.0.411.0.1.0"
+	VERSAO="2.0.412.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2092,7 +2092,12 @@ func_todas()
 
 version()
 {
-	echo "Versao do script: $VERSAO"
+	## verificando valor variavel
+    if [ $VAR_MUDO == "0" ]; then
+        espeak -vpt-br "Versao do script: $VERSAO"
+    else
+		echo "Versao do script: $VERSAO"
+	fi
 }
 
 ##REALIZANDO VERIFICAÇÕES
