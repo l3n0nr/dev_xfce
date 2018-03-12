@@ -1,31 +1,21 @@
 #------------------------------------------------------------------------------#
 #                            OFFICIAL DEBIAN REPOS                             #
 #------------------------------------------------------------------------------#
-## BASE PRINCIPAL
-deb http://ftp.debian.org/debian/ stretch main contrib
+###### Debian Main Repos
+# main - testing
+deb http://deb.debian.org/debian/ testing main contrib non-free
+deb http://deb.debian.org/debian/ buster main contrib non-free
 
-## ATUALIZAÇÕES
-deb http://deb.debian.org/debian/ stretch-updates main
+# update - testing
+deb http://deb.debian.org/debian/ testing-updates main contrib non-free
+deb http://deb.debian.org/debian/ buster-updates main contrib non-fre
 
-## PROGRAMAS NON-FREE
-deb http://deb.debian.org/debian/ stretch main contrib non-free
-deb http://deb.debian.org/debian/ stretch-updates main contrib non-free
+# security - testing
+deb http://deb.debian.org/debian-security testing/updates main
+deb http://deb.debian.org/debian-security/ buster/updates main contrib non-free
 
-## ATUALIZAÇÕES DE SEGURANÇA
-deb http://security.debian.org/ stretch/updates main contrib non-free
-deb http://security.debian.org/ stretch/updates main
-
-# Testing repository - main, contrib and non-free branches
-deb http://http.us.debian.org/debian testing main non-free contrib
-deb-src http://http.us.debian.org/debian testing main non-free contrib
-
-# Testing security updates repository
-deb http://security.debian.org/ testing/updates main contrib non-free
-deb-src http://security.debian.org/ testing/updates main contrib non-free
-
-# Unstable repo main, contrib and non-free branches, no security updates here
-deb http://http.us.debian.org/debian unstable main non-free contrib
-deb-src http://http.us.debian.org/debian unstable main non-free contrib
+# proposed-updates
+deb http://deb.debian.org/debian/ buster-proposed-updates main contrib non-free
 
 #------------------------------------------------------------------------------#
 # SPOTIFY REPOSITORY 
