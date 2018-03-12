@@ -76,6 +76,8 @@
 #
 # 	f = desenvolver
 #
+# versao do script
+	VERSAO="2.0.411.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -103,26 +105,23 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # VARIAVEIS DE AMBIENTE
-# versao do script
-	local VERSAO="2.0.410.0.1.0"
-
 # Criando variavel com localização da raiz do usuario
-    local PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
+    PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
 # verificando distro
-    local DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
+    DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 # capturando hostname da maquina
-    local V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
+    V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # espeak habilitado
-    local VAR_MUDO=0                          # valor padrao = mudo desativado
+    VAR_MUDO=0                          # valor padrao = mudo desativado
 
 # usuario virtualbox
-    local USUARIO="lenonr"                    # personalizavel
+    USUARIO="lenonr"                    # personalizavel
 
 # icones mac
-    local LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
+    LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -2331,7 +2330,7 @@ for i in "$@"; do
         todas) func_todas;;
         nvidia) nvidia;;
         texmaker) texmaker;;
-		v) version;;
+		-v|-version) version;;
     esac    
 
     # alterando valor - funcoes em silencio
