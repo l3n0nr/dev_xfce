@@ -104,25 +104,25 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # versao do script
-	VERSAO="2.0.410.0.1.0"
+	local VERSAO="2.0.410.0.1.0"
 
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
+    local PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
 # verificando distro
-    DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
+    local DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 # capturando hostname da maquina
-    V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
+    local V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # espeak habilitado
-    VAR_MUDO=0                          # valor padrao = mudo desativado
+    local VAR_MUDO=0                          # valor padrao = mudo desativado
 
 # usuario virtualbox
-    USUARIO="lenonr"                    # personalizavel
+    local USUARIO="lenonr"                    # personalizavel
 
 # icones mac
-    LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
+    local LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
