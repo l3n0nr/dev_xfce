@@ -77,7 +77,7 @@
 # 	f = desenvolver
 #
 # versao do script
-	VERSAO="2.0.412.0.1.0"
+	VERSAO="2.0.413.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1829,7 +1829,6 @@ func_instala()
 	    clear	  
 
 	    if [[ $V_HOSTNAME == 'notebook' ]]; then
-	        # icones_mac
 	        codecs
 	        xfce4
 	        redshift
@@ -1882,7 +1881,6 @@ func_instala()
 	        libreoffice
 	    else
 	        nvidia
-	        # icones_mac
 	        codecs
 	        xfce4
 	        redshift
