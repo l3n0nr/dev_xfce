@@ -77,13 +77,13 @@
 #
 # 	f = desenvolver
 #		# DEBIAN
-#				- I   - [LOGIN] - Habilitar login automatico usuario 
-#				- II  - [Remover] - _imagemmagick
-#				- III - [Instalar] - cheese
-#				- IV   - [Verificar] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
+#				- I   - [LOGIN]     - Habilitar login automatico usuario 
+#				- II  - [REMOVER]   - _imagemmagick
+#				- III - [INSTALAR]  - cheese
+#				- IV  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.415.1.1.3"
+	VERSAO="2.0.420.1.1.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1865,7 +1865,8 @@ func_instala()
 	simple_screen_recorder
 	sweethome3d   
 	tuxguitar 
-	muse_score             
+	muse_score
+	cheese             
     
     figlet    
     firewall_basic        
