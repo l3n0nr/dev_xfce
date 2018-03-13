@@ -75,9 +75,14 @@
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #
 # 	f = desenvolver
+#		# DEBIAN
+#				- I   - [LOGIN] - Habilitar login automatico usuario 
+#				- II  - [Remover] - IMAGEMMAGICK/XSane
+#				- III - [Instalar] - Cheese
+#				- IV   - [Verificar] - Steam/Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.413.0.1.0"
+	VERSAO="2.0.415.0.1.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
