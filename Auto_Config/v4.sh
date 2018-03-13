@@ -70,6 +70,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
+#				- I   - [FUNCOES] - Colocar o prefixo "install_" em todas funcoes para evitar palavras reservadas
 #
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
@@ -77,12 +78,12 @@
 # 	f = desenvolver
 #		# DEBIAN
 #				- I   - [LOGIN] - Habilitar login automatico usuario 
-#				- II  - [Remover] - IMAGEMMAGICK/XSane
-#				- III - [Instalar] - Cheese
-#				- IV   - [Verificar] - Steam/Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
+#				- II  - [Remover] - _imagemmagick
+#				- III - [Instalar] - cheese
+#				- IV   - [Verificar] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.415.0.1.4"
+	VERSAO="2.0.415.1.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -610,18 +611,41 @@ func_help()
     	fi
     }
 
+    vivaldi()
+    {
+    	var_vivaldi=$(which vivaldi)        
+
+        if [[ ! -e $var_vivaldi ]]; then
+            printf "\n"
+            printf "\n[+] Instalando Vivaldi"
+            printf "\n[+] Instalando Vivaldi" >> /tmp/log.txt
+
+	    	wget https://downloads.vivaldi.com/stable/vivaldi-stable_1.14.1077.55-1_amd64.deb
+
+	    	dpkg -i vivaldi-stable_1.14.1077.55-1_amd64.deb
+
+	    	apt --fix-broken install -y
+
+			dpkg -i vivaldi-stable_1.14.1077.55-1_amd64.deb  
+
+			rm vivaldi-stable_1.14.1077.55-1_amd64.deb  
+		else
+			printf "\n[+] Vivaldi ja esta instalado" >> /tmp/log.txt			  	
+		fi
+    }
+
     steam()
     {
         printf "\n"
         printf "\n[+] Instalando Steam"
         printf "\n[+] Instalando Steam" >> /tmp/log.txt
 
-	# instalando dependencias steam - DEBIAN 9
-	if [[ $DISTRO == "Debian" ]]; then      	
-		dpkg --add-architecture i386		
-		update
-		apt install libgl1-nvidia-glx:i386 -y		
-	fi		
+		# instalando dependencias steam - DEBIAN 9
+		if [[ $DISTRO == "Debian" ]]; then      	
+			dpkg --add-architecture i386		
+			update
+			apt install libgl1-nvidia-glx:i386 -y		
+		fi		
 
         apt install steam -y
     }
@@ -630,9 +654,6 @@ func_help()
     {
         # variavel de verificação
         var_spotify=$(which spotify)
-
-        printf "\n"
-        printf "\n [+] Verificando se existe Spotify instalado"
 
         if [[ ! -e $var_spotify ]]; then
             printf "\n"
@@ -1164,7 +1185,7 @@ func_help()
         fi
     }
 
-    gnome_system_monitor()
+    install_gnome_system_monitor()
     {
         printf "\n"
         printf "\n[+] Instalando o Gnome System Monitor"
@@ -1816,7 +1837,7 @@ func_limpa()
         espeak -vpt-br "Limpando"
     fi
 
-    clear
+    clear   
 
     pacotes_orfaos
     funcao_chkrootkit
@@ -1830,177 +1851,89 @@ func_instala()
         espeak -vpt-br "Instalando"
     fi
 
-	if [ $DISTRO == "Ubuntu" ]; then		
-	    clear	  
+	firefox
+	chromium
+	vivaldi
+	tor  
 
-	    if [[ $V_HOSTNAME == 'notebook' ]]; then
-	        codecs
-	        xfce4
-	        redshift
-	        gnome_terminal
-	        install_ntp
-	        plank
-	        gnome_system_monitor
-	        nautilus
-	        gparted
-	        tlp
-	        screenfetch
-	        gnome_disk_utility
-	        gnome_system_monitor
-	        install_hardinfo
+	codecs
+	vlc
+	clementine
+	spotify	   
+	funcao_gimp
+	muse_score
+	simple_screen_recorder
+	sweethome3d   
+	tuxguitar 
+	muse_score             
+    
+    figlet    
+    firewall_basic        
+    gnome_disk_utility
+    gnome-system-monitor
+    gnome_terminal
+    gparted        
+    htop         
 
-	        firefox
-	        chromium
-	        tor
+	kate
+	install_git
+	install_python    
+	install_sublime
+    install_terminator
 
+    kstars
+    stellarium
+
+    libreoffice 
+
+	xfce4
+    lm-sensors    
+    nautilus
+    openssh
+    plank    
+    reaver
+    redshift
+    ristretto    
+    screenfetch
+    sensors    
+    tlp	     
+
+    install_aircrack
+    install_chkrootkit
+    install_espeak    
+    install_gnome_system_monitor
+    install_hardinfo
+    install_nmap
+    install_ntp
+    install_snap    
+    install_tree
+    install_xclip 
+
+	if [[ $V_HOSTNAME == 'notebook' ]]; then
+		firmware		
+
+		if [ $DISTRO == "Ubuntu" ]; then		
 	        visual_game_boy
 	        wine
-	        playonlinux
+		elif [ $DISTRO == "Debian" ]; then				
+	    	printf ""	
+		fi
+	elif [[ $V_HOSTNAME == 'desktop' ]]; then
+		audacity
+    	kdenlive
+    	visual_game_boy
+        wine
+        playonlinux
+        nvidia        
 
-	        stellarium
-
-	        spotify
-	        clementine
-	        vlc
-	        audacity
-
-	        kate
-	        install_git
-	        install_sublime
-	        install_snap
-
-	        funcao_gimp
-
-	        openssh
-	        install_chkrootkit
-	        reaver
-	        sensors
-	        install_nmap
-	        htop
-	        install_tree
-	        install_aircrack
-	        install_terminator
-	        install_xclip
-            install_python
-
-	        libreoffice
-	    else
-	        nvidia
-	        codecs
-	        xfce4
-	        redshift
-	        gnome_terminal
-	        install_ntp
-	        plank
-	        gnome_system_monitor
-	        nautilus
-	        gparted
-	        tlp
-	        screenfetch
-	        gnome_disk_utility
-	        gnome_system_monitor
-	        figlet
-	        install_hardinfo
-
-	        firefox
-	        chromium
-	        tor
-
-	        visual_game_boy
-	        wine
-	        playonlinux
-
-	        stellarium
-	        kstars
-
-	        spotify
-	        clementine
-	        vlc
-	        kdenlive
-	        sweethome3d
-	        audacity
-	        simple_screen_recorder
-
-	        tuxguitar
-	        # muse_score
-
-	        kate
-	        install_git
-	        install_terminator
-	        install_sublime
-	        install_snap
-            install_python
-
-	        funcao_gimp
-
-	        firewall_basic
-	        openssh
-	        install_chkrootkit
-	        reaver
-	        sensors
-	        install_nmap
-	        htop
-	        install_tree
-	        install_ntp
-	        install_xclip
-	        install_espeak
-
-	        libreoffice
-	    fi
-
-    elif [ $DISTRO == "Debian" ]; then
-    	firefox
-    	chromium
-    	tor
-
-    	xfce4
-        nautilus
-        redshift
-        plank
-        install_git
-        openssh
-    	spotify
-    	steam
-        vlc
-        codecs
-        gnome3-system-monitor
-        kate
-        screenfetch
-        htop                
-        firmware
-        clementine
-        gparted
-        install_git
-        lm-sensors
-        stellarium
-        kstars
-        gnome_terminal
-        sweethome3d
-        gnome_system_monitor
-        gnome_disk_utility
-        audacity
-        simple_screen_recorder
-        openssh
-        figlet        
-        xclip        
-        ristretto
-
-        install_sudo
-        install_nmap
-        install_snap
-        install_ntp
-    	install_terminator    	
-    	install_xclip
-    	install_espeak
-    	install_sublime    	
-        install_tree
-        install_ntp
-        install_localepurge
-        install_hardinfo
-        install_python
-    else
+		if [ $DISTRO == "Ubuntu" ]; then		
+			printf ""	        	        
+		elif [ $DISTRO == "Debian" ]; then		
+			printf ""	
+		fi
+	else
 		printf "\n[-] ERRO INSTALA!"
-	fi	
+	fi
 }
 
 func_instala_outros()
@@ -2013,9 +1946,29 @@ func_instala_outros()
     apache
     install_mysql
     phpmyadmin
-    install_zshr  
+    install_zsh  
     wireshark    
     ibus
+
+    openssh
+    figlet        
+    xclip            
+    openssh
+
+    install_sudo
+    install_nmap
+    install_snap
+    install_ntp
+	install_terminator    	
+	install_xclip
+	install_espeak
+	install_sublime    	
+    install_tree
+    install_ntp
+    install_localepurge
+    install_hardinfo
+    install_python
+    install_chkrootkit
 
     install_pulseeffects
 
@@ -2034,10 +1987,12 @@ func_remove()
     fi
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
-    apt purge xfburn thunderbird parole inkscape* blender* exfalso* quodlibet* xterm* pidgin* meld* gtkhash*  -y
+    apt purge xfburn thunderbird parole inkscape* blender* \
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* -y
     
     if [[ $V_HOSTNAME == 'notebook' ]]; then
-    	apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* transmission* smartgit* gitg* -y
+    	apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* \
+    	transmission* smartgit* gitg* -y
     else
     	printf "\n"	   
     fi
