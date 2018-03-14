@@ -70,7 +70,6 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I   - [FUNCOES] - Colocar o prefixo "install_" em todas funcoes para evitar palavras reservadas
 #
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
@@ -79,11 +78,10 @@
 #		# DEBIAN
 #				- I   - [LOGIN]     - Habilitar login automatico usuario 
 #				- II  - [REMOVER]   - _imagemmagick
-#				- III - [INSTALAR]  - cheese
-#				- IV  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
+#				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.420.1.1.4"
+	VERSAO="2.0.432.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -580,7 +578,7 @@ func_help()
 
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
-    firefox()
+    install_firefox()
     {
         printf "\n"
         printf "\n[+] Instalando Firefox"
@@ -589,7 +587,7 @@ func_help()
         apt install firefox -y
     }
 
-    chromium()
+    install_chromium()
     {
     	if [[ $DISTRO == "Ubuntu" ]]; then
 	        printf "\n"
@@ -611,7 +609,7 @@ func_help()
     	fi
     }
 
-    vivaldi()
+    install_vivaldi()
     {
     	var_vivaldi=$(which vivaldi)        
 
@@ -634,7 +632,7 @@ func_help()
 		fi
     }
 
-    steam()
+    install_steam()
     {
         printf "\n"
         printf "\n[+] Instalando Steam"
@@ -650,7 +648,7 @@ func_help()
         apt install steam -y
     }
 
-    spotify()
+    install_spotify()
     {
         # variavel de verificação
         var_spotify=$(which spotify)
@@ -701,7 +699,7 @@ func_help()
         fi
     }
 
-    icones_mac()
+    install_icones_mac()
     {
         if [ -e "$LOCAL_ICONESMAC" ]; then 
             printf "\n"
@@ -725,7 +723,7 @@ func_help()
         fi
     }
 
-    codecs()
+    install_codecs()
     {
         printf "\n"
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)"
@@ -740,7 +738,7 @@ func_help()
         apt install lame libavcodec-extra libav-tools -y	
     }
 
-    funcao_gimp()
+    install_funcao_gimp()
     {
      	# variavel de verificação
         var_gimp=$(which gimp)
@@ -767,7 +765,7 @@ func_help()
         fi
     }
 
-    xfce4()
+    install_xfce4()
     {
         printf "\n"
         printf "\n[+] Instalando adicionais do XFCE" 
@@ -826,7 +824,7 @@ func_help()
         fi
     }
 
-    wine()
+    install_wine()
     {
     	# variavel de verificação
         var_wine=$(which wine)
@@ -852,7 +850,7 @@ func_help()
         fi
     }
 
-    playonlinux()
+    install_playonlinux()
     {
         printf "\n"
         printf "\n[+] Instalando o PlayonLinux"
@@ -861,7 +859,7 @@ func_help()
         apt install playonlinux -y
     }
 
-    redshift()
+    install_redshift()
     {
         printf "\n"
         printf "\n[+] Instalando o Redshift"
@@ -873,7 +871,7 @@ func_help()
         cat base/redshift.conf > $PASTA_HOME/.config/redshift.conf 
     }
 
-    libreoffice()
+    install_libreoffice()
     {
 		# se habilitar verificação, novas atualizações não serão instaladas.
 		# libreoffice ja vem instalado por padrao na formataçao
@@ -901,7 +899,7 @@ func_help()
 #         fi
     }
 
-    vlc()
+    install_vlc()
     {
         printf "\n"
         printf "\n[+] Instalando o VLC"
@@ -910,7 +908,7 @@ func_help()
         apt install vlc -y
     }
 
-    clementine()
+    install_clementine()
     {
         printf "\n"
         printf "\n[+] Instalando o Clementine"
@@ -919,7 +917,7 @@ func_help()
         apt install clementine -y
     }
 
-    gparted()
+    install_gparted()
     {
         printf "\n"
         printf "\n[+] Instalando o Gparted"
@@ -928,7 +926,7 @@ func_help()
         apt install gparted -y
     }
 
-    tlp()
+    install_tlp()
     {
         printf "\n"
         printf "\n[+] Instalando o Tlp"
@@ -937,7 +935,7 @@ func_help()
         apt install tlp -y
     }
 
-    install_git()
+    install_install_git()
     {
         printf "\n"
         printf "\n[+] Instalando o Git"
@@ -946,7 +944,7 @@ func_help()
         apt install git-core git -y
     }
 
-    lm-sensors()
+    install_lm-sensors()
     {
         printf "\n"
         printf "\n[+] Instalando o Lm-sensors"
@@ -955,7 +953,7 @@ func_help()
         apt install lm-sensors -y
     }
 
-    stellarium()
+    install_stellarium()
     {
         # variavel de verificação
         var_stellarium=$(which stellarium)
@@ -981,7 +979,7 @@ func_help()
         fi
     }
 
-    texmaker()
+    install_texmaker()
     {
         printf "\n"
         printf "\n[+] Instalando o Texmaker"
@@ -991,7 +989,7 @@ func_help()
         apt install aspell aspell-pt-br -y
     }
 
-    kstars()
+    install_kstars()
     {
         printf "\n"
         printf "\n[+] Instalando o Kstars"
@@ -1000,16 +998,7 @@ func_help()
         apt install kstars* -y
     }
 
-    gnome_terminal()
-    {
-        printf "\n"
-        printf "\n[+] Instalando Gnome-terminal"
-        printf "\n[+] Instalando Gnome-terminal" >> /tmp/log.txt
-
-        apt install gnometerminal -y
-    }
-
-    reaver()
+    install_reaver()
     {
         printf "\n"
         printf "\n[+] Instalando o Reaver"
@@ -1018,7 +1007,7 @@ func_help()
         apt install reaver -y
     }
 
-    tor()
+    install_tor()
     {
         # variavel de verificação
         var_tor=$(which tor)
@@ -1065,7 +1054,7 @@ func_help()
         fi           
     }
 
-    dolphin()
+    install_dolphin()
     {
         printf "\n"
         printf "\n[+] Instalando o Dolphin"
@@ -1086,7 +1075,7 @@ func_help()
         apt install dolphin-emu* -y
     }
 
-    visual_game_boy()
+    install_visual_game_boy()
     {
         printf "\n"
         printf "\n[+] Instalando o Visual Game Boy"
@@ -1095,7 +1084,7 @@ func_help()
         apt install visualboyadvance-gtk -y
     }
 
-    screenfetch()
+    install_screenfetch()
     {
         printf "\n"
         printf "\n[+] Instalando o Screenfetch"
@@ -1104,7 +1093,7 @@ func_help()
         apt install screenfetch -y
     }
 
-    kdenlive()
+    install_kdenlive()
     {
         # variavel de verificação
         var_kdenlive=$(which kdenlive)
@@ -1129,7 +1118,7 @@ func_help()
         fi
     }
 
-    sweethome3d()
+    install_sweethome3d()
     {
         printf "\n"
         printf "\n[+] Instalando Sweet Home 3D"
@@ -1138,7 +1127,7 @@ func_help()
         apt install sweethome3d -y
     }
 
-    kate()
+    install_kate()
     {
         printf "\n"
         printf "\n[+] Instalando o Kate"
@@ -1147,16 +1136,16 @@ func_help()
         apt install kate -y
     }
 
-    cheese()
+    install_cheese()
     {
         printf "\n"
-        printf "\n[+] Instalando o Chesse"
-        printf "\n[+] Instalando o Chesse" >> /tmp/log.txt
+        printf "\n[+] Instalando o Cheese"
+        printf "\n[+] Instalando o Cheese" >> /tmp/log.txt
 
         apt install cheese -y
     }
 
-    plank()
+    install_plank()
     {
         # variavel de verificação
         var_plank=$(which plank)
@@ -1194,7 +1183,7 @@ func_help()
         apt install gnome-system-monitor -y
     }
 
-    nautilus()
+    install_nautilus()
     {
         # variavel de verificação
         var_nautilus=$(which nautilus)
@@ -1221,7 +1210,7 @@ func_help()
         fi
     }
 
-    wireshark()
+    install_wireshark()
     {
         printf "\n"
         printf "\n[+] Instalando o Wireshark"
@@ -1230,7 +1219,7 @@ func_help()
         apt install wireshark -y
     }
 
-    gnome_disk_utility()
+    install_gnome_disk_utility()
     {
         printf "\n"
         printf "\n[+] Instalando o Gnome Disk Utility"
@@ -1239,7 +1228,7 @@ func_help()
         apt install gnome-disk-utility -y
     }
 
-    audacity()
+    install_audacity()
     {
         printf "\n"
         printf "\n[+] Instalando o Audacity"
@@ -1248,7 +1237,7 @@ func_help()
         apt install audacity -y
     }
 
-    simple_screen_recorder()
+    install_simple_screen_recorder()
     {
         # variavel de verificação
         var_simplescreenrecorder=$(which simplescreenrecorder)
@@ -1274,7 +1263,7 @@ func_help()
         fi
     }
 
-    mega()
+    install_mega()
     {       
         # variavel de verificação
         var_mega=$(which megasync)
@@ -1297,7 +1286,7 @@ func_help()
         fi
     }
 
-    openssh()
+    install_openssh()
     {
         printf "\n"
         printf "\n[+] Instalando o OpenSSH"
@@ -1306,7 +1295,7 @@ func_help()
         apt install openssh* -y
     }
 
-    figlet()
+    install_figlet()
     {
         printf "\n"
         printf "\n[+] Instalando o Figlet"
@@ -1333,7 +1322,7 @@ func_help()
         apt-get install localepurge -y
     }
 
-    firewall_basic()
+    install_firewall_basic()
     {
         printf "\n"
         printf "\n[+] Instalando o Firewall UFW + GUFW" >> /tmp/log.txt
@@ -1350,7 +1339,7 @@ func_help()
         apt install hardinfo -y
     }
 
-    nvidia()
+    install_nvidia()
     {
         # variavel de verificação
         VAR_NVIDIA=$(which nvidia-settings)
@@ -1384,7 +1373,7 @@ func_help()
         fi
     }
 
-    virtualbox()
+    install_virtualbox()
     {
         # variavel de verificação
         VAR_VIRTUALBOX=$(which virtualbox)
@@ -1426,7 +1415,7 @@ func_help()
         fi
     }
 
-    ristretto()
+    install_ristretto()
     {
     	printf "\n"
         printf "\n[+] Instalando Ristretto"
@@ -1435,7 +1424,7 @@ func_help()
         apt install ristretto -y
     }
 
-    install_tree()
+    install_install_tree()
     {
         printf "\n"
         printf "\n[+] Instalando Tree"
@@ -1548,8 +1537,7 @@ func_help()
 
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
-
-    apache()
+    install_apache()
     {
         printf "\n"
         printf "\n[+] Instalando o Apache"
@@ -1568,7 +1556,7 @@ func_help()
         apt install mysql-server mysql-server -y
     }
 
-    phpmyadmin()
+    install_phpmyadmin()
     {
         printf "\n"
         printf "\n[+] Instalando o PhpMyAdmin"
@@ -1577,7 +1565,7 @@ func_help()
         apt install php phpmyadmin -y
     }
 
-    ibus()
+    install_ibus()
     {
         printf "\n"
         printf "\n[+] Instalando o Ibus"
@@ -1595,7 +1583,7 @@ func_help()
         apt install nmap -y
     }
 
-    htop()
+    install_htop()
     {
         printf "\n"
         printf "\n[+] Instalando o Htop" >> /tmp/log.txt
@@ -1611,7 +1599,7 @@ func_help()
         apt install sudo -y
     }
 
-    tuxguitar()
+    install_tuxguitar()
     {
         # variavel de verificação
         var_tuxguitar=$(which tuxguitar-vs)
@@ -1628,7 +1616,7 @@ func_help()
 		fi
 	}
 
-    muse_score()
+    install_muse_score()
     {
         # variavel de verificação
         VAR_MUSESCORE=$(which musescore)
@@ -1707,7 +1695,7 @@ func_help()
         fi
     }
 
-    firmware()
+    install_firmware()
     {
     	printf "\n"
         printf "\n[+] Instalando firmware's non-free" >> /tmp/log.txt        
@@ -1851,84 +1839,84 @@ func_instala()
         espeak -vpt-br "Instalando"
     fi
 
-	firefox
-	chromium
-	vivaldi
-	tor  
+	install_firefox
+	install_chromium
+	install_vivaldi
+	install_tor  
 
-	codecs
-	vlc
-	clementine
-	spotify	   
-	funcao_gimp
-	muse_score
-	simple_screen_recorder
-	sweethome3d   
-	tuxguitar 
-	muse_score
-	cheese             
-    
-    figlet    
-    firewall_basic        
-    gnome_disk_utility
-    gnome-system-monitor
-    gnome_terminal
-    gparted        
-    htop         
+	install_codecs
+	install_vlc
+	install_clementine
+	install_spotify	   
+	install_funcao_gimp
+	install_muse_score
+	install_simple_screen_recorder
+	install_sweethome3d   
+	install_tuxguitar 
+	install_muse_score                
 
-	kate
+	install_kate
 	install_git
 	install_python    
 	install_sublime
     install_terminator
 
-    kstars
-    stellarium
+    install_kstars
+    install_stellarium
 
-    libreoffice 
+    install_libreoffice 
 
-	xfce4
-    lm-sensors    
-    nautilus
-    openssh
-    plank    
-    reaver
-    redshift
-    ristretto    
-    screenfetch
-    sensors    
-    tlp	     
+	install_xfce4
+    install_lm-sensors    
+    install_nautilus
+    install_openssh
+    install_plank    
+    install_reaver
+    install_redshift
+    install_ristretto    
+    install_screenfetch
+    install_sensors    
+    install_tlp	    
 
-    install_aircrack
-    install_chkrootkit
-    install_espeak    
-    install_gnome_system_monitor
-    install_hardinfo
-    install_nmap
-    install_ntp
-    install_snap    
-    install_tree
+    install_zsh  
+    install_wireshark    
+    install_ibus
+    install_openssh
+    install_figlet        
     install_xclip 
+    install_sudo
+    install_nmap
+    install_snap
+    install_ntp    
+    install_gparted
+    install_espeak      
+    install_tree
+    install_localepurge    
+    install_chkrootkit    
+    install_firewall_basic        
+    install_gnome_disk_utility
+    install_gnome_system_monitor    
+    install_htop          
 
-	if [[ $V_HOSTNAME == 'notebook' ]]; then
-		firmware		
+	if [[ $V_HOSTNAME == 'notebook' ]]; then		
+        install_cheese  	
 
 		if [ $DISTRO == "Ubuntu" ]; then		
-	        visual_game_boy
-	        wine
+	        install_visual_game_boy
+	        install_wine
 		elif [ $DISTRO == "Debian" ]; then				
-	    	printf ""	
+	    	install_firmware  	
 		fi
 	elif [[ $V_HOSTNAME == 'desktop' ]]; then
-		audacity
-    	kdenlive
-    	visual_game_boy
-        wine
-        playonlinux
-        nvidia        
+		install_audacity
+    	install_kdenlive
+    	install_visual_game_boy
+        install_wine
+        install_playonlinux
+        install_nvidia        
 
 		if [ $DISTRO == "Ubuntu" ]; then		
-			printf ""	        	        
+            install_pulseeffects       	        
 		elif [ $DISTRO == "Debian" ]; then		
 			printf ""	
 		fi
@@ -1944,39 +1932,20 @@ func_instala_outros()
         espeak -vpt-br "Instalando outros"
     fi
 	
-    apache
+    install_apache
     install_mysql
-    phpmyadmin
-    install_zsh  
-    wireshark    
-    ibus
-
-    openssh
-    figlet        
-    xclip            
-    openssh
-
-    install_sudo
-    install_nmap
-    install_snap
-    install_ntp
-	install_terminator    	
-	install_xclip
-	install_espeak
-	install_sublime    	
-    install_tree
-    install_ntp
-    install_localepurge
-    install_hardinfo
+    install_phpmyadmin
     install_python
-    install_chkrootkit
 
-    install_pulseeffects
+    install_aircrack  
+    install_hardinfo
+    install_nmap    
+    install_figlet          
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
-        virtualbox
-        steam
+        install_virtualbox
+        install_steam
     fi
 }
 
