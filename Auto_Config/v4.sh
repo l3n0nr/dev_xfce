@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [12/03/18]      #
+# # ultima ediçao realizada:      [14/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.432.0.1.3"
+	VERSAO="2.0.434.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1896,10 +1896,14 @@ func_instala()
     install_firewall_basic        
     install_gnome_disk_utility
     install_gnome_system_monitor    
-    install_htop          
+    install_htop         
+    install_hardinfo
+    install_nmap    
+    install_figlet           
 
 	if [[ $V_HOSTNAME == 'notebook' ]]; then		
-        install_cheese  	
+        install_cheese
+        install_aircrack  	
 
 		if [ $DISTRO == "Ubuntu" ]; then		
 	        install_visual_game_boy
@@ -1935,12 +1939,7 @@ func_instala_outros()
     install_apache
     install_mysql
     install_phpmyadmin
-    install_python
-
-    install_aircrack  
-    install_hardinfo
-    install_nmap    
-    install_figlet          
+    install_python          
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
