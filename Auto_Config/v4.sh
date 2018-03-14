@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.434.0.1.3"
+	VERSAO="2.0.436.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1380,36 +1380,41 @@ func_help()
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $VAR_VIRTUALBOX ]]; then
-            if [[ $DISTRO == "Ubuntu" ]]; then
-                printf "\n"
-                printf "[*] Realizando download \n"
-                wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            # if [[ $DISTRO == "Ubuntu" ]]; then
+            #     printf "\n"
+            #     printf "[*] Realizando download \n"
+            #     wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
 
-                printf "\n[*] Instalando o VirtualBox" 
-                printf "\n[*] Instalando o VirtualBox" >> /tmp/log.txt
-                dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            #     printf "\n[*] Instalando o VirtualBox" 
+            #     printf "\n[*] Instalando o VirtualBox" >> /tmp/log.txt
+            #     dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
 
-                printf "[*] Corrigindo problemas de dependências \n"
-                apt install -f
+            #     printf "[*] Corrigindo problemas de dependências \n"
+            #     apt install -f
 
-                printf "[*] Removendo Virtualbox \n"
-                rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-            elif [[ $DISTRO == "Debian" ]]; then
-                # adicionando repositorio
-                sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+            #     printf "[*] Removendo Virtualbox \n"
+            #     rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
+            # elif [[ $DISTRO == "Debian" ]]; then
+            #     # adicionando repositorio
+            #     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
-                # obtendo chave
-                wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+            #     # obtendo chave
+            #     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
 
-                # atualizando sistema
-                update
+            #     # atualizando sistema
+            #     update
 
-                # baixando virtualbox
-                apt install virtualbox-5.1 -y
+            #     # baixando virtualbox
+            #     apt install virtualbox-5.1 -y
 
-                # adicionando usuario ao grupo 
-                gpasswd -a $USUARIO vboxusers
-            fi
+            #     # adicionando usuario ao grupo 
+            #     gpasswd -a $USUARIO vboxusers
+            # fi
+
+            printf "\n"
+            printf "[*] Instalando Virtualbox \n"
+
+            apt install virtualbox-5.1 -y
         else
             printf "[+] VirtualBox já está instalado! \n"
         fi
@@ -1716,6 +1721,15 @@ func_help()
         printf "\n[+] Instalando pip" >> /tmp/log.txt        
 
         apt-get install python3.5 python-pip -y
+    }
+
+    install_dropbox()
+    {
+        printf "\n"
+        printf "\n[+] Instalando Dropbox"
+        printf "\n[+] Instalando Dropbox" >> /tmp/log.txt
+
+        apt install nautilus-dropbox -y
     }
 
 # # # # # # # # # #
