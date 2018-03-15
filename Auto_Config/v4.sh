@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [14/03/18]      #
+# # ultima ediçao realizada:      [15/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.437.0.1.3"
+	VERSAO="2.0.440.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1889,23 +1889,20 @@ func_instala()
     install_redshift
     install_ristretto    
     install_screenfetch
-    install_sensors    
+    install_lm-sensors    
     install_tlp	    
 
-    install_zsh  
-    install_wireshark    
+    install_zsh          
     install_ibus
     install_openssh
     install_figlet        
     install_xclip 
     install_sudo
     install_nmap
-    install_snap
-    install_ntp    
+    install_snap    
     install_gparted
     install_espeak      
-    install_tree
-    install_localepurge    
+    install_tree        
     install_chkrootkit    
     install_firewall_basic        
     install_gnome_disk_utility
@@ -1953,7 +1950,11 @@ func_instala_outros()
     install_apache
     install_mysql
     install_phpmyadmin
-    install_python          
+    install_python       
+
+    install_wireshark  
+    install_ntp 
+    install_localepurge
 
     # verificando computador
     if [[ $ == 'desktop' ]]; then
