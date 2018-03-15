@@ -400,7 +400,7 @@ func_help()
         	service ntp stop
 
         #configurando script base - NTP
-        printf "\n[*] Realizando alteraçao no arquivo base"
+        printf "\n[*] Realizando alteraçao no arquivo base "
         cat base/ntp.txt > /etc/ntp.conf
 
         #ativando servico novamente
@@ -412,22 +412,22 @@ func_help()
         printf "\n[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
         printf "\n[+] Atualizando servidores, aguarde..."
-        printf "\n[*] NIC.BR"
+        printf "\n[*] NIC.BR\n"
             ntpdate -q pool.ntp.br
      
-        printf "\n[*] Observatorio Nacional"
+        printf "\n[*] Observatorio Nacional\n"
             ntpdate -q ntp.on.br
 
-        printf "\n[*] RNP"
+        printf "\n[*] RNP\n"
             ntpdate -q ntp.cert-rs.tche.br
 
-        printf "\n[*] UFRJ"
+        printf "\n[*] UFRJ\n"
             ntpdate -q ntps1.pads.ufrj.br
 
-        printf "\n[*] USP"
+        printf "\n[*] USP\n"
             ntpdate -q ntp.usp.br
 
-        printf "\n[+] Hora do servidor atualizada! \n"
+        printf "\n[+] Hora do servidor atualizada!\n"
     }
 
     apport()
@@ -544,8 +544,8 @@ func_help()
 
     		cp -r ../Configuracoes/Interface/icons/Breeze /usr/share/icons
     	else
-    		printf "\n [+] Voce ja possui os arquivos Breeze!"
-    		printf "\n [+] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
+    		printf "\n [-] Voce ja possui os arquivos Breeze!"
+    		printf "\n [-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
     	fi
 
     	if [ -e "$VAR_FLATREMIX" ]; then 
@@ -554,8 +554,8 @@ func_help()
 
     		cp -r ../Configuracoes/Interface/icons/Flat_Remix_Light /usr/share/icons
     	else
-    		printf "\n [+] Voce ja possui os arquivos Flat_Remix_Light!"
-    		printf "\n [+] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
+    		printf "\n [-] Voce ja possui os arquivos Flat_Remix_Light!"
+    		printf "\n [-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
     	fi
 
 		if [ -e "$VAR_PAPIRUS" ]; then 
@@ -564,8 +564,8 @@ func_help()
 
 	    	cp -r ../Configuracoes/Interface/icons/Papirus_Light /usr/share/icons
 	    else
-	    	printf "\n [+] Voce ja possui os arquivos Papirus_Light!"
-	    	printf "\n [+] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
+	    	printf "\n [-] Voce ja possui os arquivos Papirus_Light!"
+	    	printf "\n [-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
     	fi
 
     	if [ -e "$VAR_ICONES_MACOS" ]; then 
@@ -574,8 +574,8 @@ func_help()
 
 			cp -r ../Configuracoes/Interface/themes/* /usr/share/themes
 		else
-			printf "\n [+] Voce ja possui os arquivos MacOS X!"
-			printf "\n [+] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
+			printf "\n [-] Voce ja possui os arquivos MacOS X!"
+			printf "\n [-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
 		fi
     }
 
