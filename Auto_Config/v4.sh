@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.440.0.1.3"
+	VERSAO="2.0.441.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -935,7 +935,7 @@ func_help()
         apt install tlp -y
     }
 
-    install_install_git()
+    install_git()
     {
         printf "\n"
         printf "\n[+] Instalando o Git"
