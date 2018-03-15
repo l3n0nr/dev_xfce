@@ -76,12 +76,13 @@
 #
 # 	f = desenvolver
 #		# DEBIAN
-#				- I   - [LOGIN]     - Habilitar login automatico usuario 
-#				- II  - [REMOVER]   - _imagemmagick
+#				- I    - [LOGIN]     - Habilitar login automatico usuario 
+#				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
+#               - IV   - [ICONES/TEMAS] - 
 #
 # versao do script
-	VERSAO="2.0.445.0.1.3"
+	VERSAO="2.0.450.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -691,7 +692,7 @@ func_help()
         		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
 
         		# adicionando repositorio
-        		echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+        		echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
 
         		# atualizando a lista de repositorios
         		update
@@ -1609,10 +1610,22 @@ func_help()
 
     install_sudo()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
+        # variavel de verificação
+        var_sudo=$(which /usr/bin/sudo)
 
-        apt install sudo -y
+        # criando verificação para instalar o tuxguitar
+        if [[ ! -e $var_sudo ]]; then
+            printf "\n"
+            printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
+
+            apt install sudo -y
+
+            echo "$USUARIO   ALL=(ALL:ALL) ALL" >> /etc/sudoers
+        else
+            printf "\n"
+            printf "\n[+] Sudo ja esta instalado"
+            printf "\n[+] Sudo ja esta instalado" >> /tmp/log.txt            
+        fi
     }
 
     install_tuxguitar()
