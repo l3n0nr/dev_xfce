@@ -78,10 +78,9 @@
 #		# DEBIAN
 #				- I    - [LOGIN]     - Habilitar login automatico usuario 
 #				- II   - [REMOVER]   - _imagemmagick
-#				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
-#               - IV   - [ICONES/TEMAS] - 
+#				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 # versao do script
-	VERSAO="2.0.450.0.1.3"
+	VERSAO="2.0.455.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -124,8 +123,11 @@
 # usuario virtualbox
     USUARIO="lenonr"                    # personalizavel
 
-# icones mac
-    LOCAL_ICONESMAC="/usr/share/themes/MacBuntu-OS/"
+# personalizacao
+    VAR_ICONES_MACOS="/usr/share/themes/MacBuntu-OS/"
+	VAR_BREEZE="/usr/share/icons/Breeze"
+	VAR_FLATREMIX="/usr/share/icons/Flat_Remix_Light"
+	VAR_PAPIRUS="/usr/share/icons/Papirus_Light"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -534,6 +536,49 @@ func_help()
         fi
     }
 
+    icones_temas()
+    {    	
+		if [ -e "$VAR_BREEZE" ]; then 
+			printf "\n [+] Copiando icones Breeze"
+			printf "\n [+] Copiando icones Breeze" >> /tmp/log.txt
+
+    		cp -r ../Configuracoes/Interface/icons/Breeze /usr/share/icons
+    	else
+    		printf "\n [+] Voce ja possui os arquivos Breeze!"
+    		printf "\n [+] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
+    	fi
+
+    	if [ -e "$VAR_FLATREMIX" ]; then 
+    		printf "\n [+] Copiando icones Flat_Remix_Light"
+    		printf "\n [+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
+
+    		cp -r ../Configuracoes/Interface/icons/Flat_Remix_Light /usr/share/icons
+    	else
+    		printf "\n [+] Voce ja possui os arquivos Flat_Remix_Light!"
+    		printf "\n [+] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
+    	fi
+
+		if [ -e "$VAR_PAPIRUS" ]; then 
+			printf "\n [+] Copiando icones Papirus_Light"
+			printf "\n [+] Copiando icones Papirus_Light" >> /tmp/log.txt
+
+	    	cp -r ../Configuracoes/Interface/icons/Papirus_Light /usr/share/icons
+	    else
+	    	printf "\n [+] Voce ja possui os arquivos Papirus_Light!"
+	    	printf "\n [+] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
+    	fi
+
+    	if [ -e "$VAR_ICONES_MACOS" ]; then 
+    		printf "\n [+] Copiando icones MacOS X"
+    		printf "\n [+] Copiando icones MacOS X" >> /tmp/log.txt
+
+			cp -r ../Configuracoes/Interface/themes/* /usr/share/themes
+		else
+			printf "\n [+] Voce ja possui os arquivos MacOS X!"
+			printf "\n [+] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
+		fi
+    }
+
 # # # # # # # # # #
 # # LIMPA SISTEMA
     kernel()
@@ -665,9 +710,14 @@ func_help()
         printf "\n[+] Instalando Steam" >> /tmp/log.txt
 
 		# instalando dependencias steam - DEBIAN 9
-		if [[ $DISTRO == "Debian" ]]; then      	
+		if [[ $DISTRO == "Debian" ]]; then 
+			# adicionando arquitetura/dependencia      	
 			dpkg --add-architecture i386		
+
+			# atualizando sistema			
 			update
+
+			# instalando nvidia
 			apt install libgl1-nvidia-glx:i386 -y		
 		fi		
 
@@ -723,31 +773,7 @@ func_help()
         else
             printf "[+] Spofity já está instalado! \n"
         fi
-    }
-
-    install_icones_mac()
-    {
-        if [ -e "$LOCAL_ICONESMAC" ]; then 
-            printf "\n"
-            printf "\n[+] Instalando icones e temas do MacOS X"
-            printf "\n[+] Instalando icones e temas do MacOS X" >> /tmp/log.txt
-
-            #adicionando repositorio
-            add-apt-repository ppa:noobslab/macbuntu -y
-
-            # chamando funcao update já criada
-            update
-
-            #instalando icones do MacOS
-            apt-get install macbuntu-os-icons-lts-v7 -y
-
-            #instalando tema do MacOS
-            apt-get install macbuntu-os-ithemes-lts-v7 -y
-        else
-            printf "\n[-] Icones já estao instalados" 
-            printf "\n[-] Icones já estao instalados" >> /tmp/log.txt
-        fi
-    }
+    }   
 
     install_codecs()
     {
@@ -1812,6 +1838,8 @@ func_corrige()
     lightdm
     arquivo_hosts
     chaveiro
+
+    icones_temas
 
 	if [[ $V_HOSTNAME == 'notebook' ]]; then               
         if [ $DISTRO == "Ubuntu" ]; then        
