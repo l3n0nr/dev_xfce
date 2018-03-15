@@ -80,7 +80,6 @@
 #				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #               - IV   - [ICONES/TEMAS] - 
-#
 # versao do script
 	VERSAO="2.0.450.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -518,6 +517,21 @@ func_help()
         printf "\n[+] Atualizando base de dados do sistema" >> /tmp/log.txt
 
     	updatedb
+    }
+
+    autologin()
+    {
+        var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
+
+        if [[ ! -e $var_autologin ]]; then
+            printf "\n[+] Habilitando login automatico" 
+            printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
+
+            echo "autologin-user=$USUARIO" >> /etc/lightdm/lightdm.conf
+        else
+            printf "\n [+] Login ja esta habilitado"
+            printf "\n [+] Login ja esta habilitado" >> /tmp/log.txt
+        fi
     }
 
 # # # # # # # # # #
@@ -1779,78 +1793,41 @@ func_corrige()
         espeak -vpt-br "Corrigindo"
     fi
 
-	if [ $DISTRO == "Ubuntu" ]; then
-	    clear
+    apt_check
+    apt_install
+    apt_remove
+    apt_clean
+    apt_auto
+    apt_update_local
 
-	    #verificando variavel
-	    if [[ $V_HOSTNAME == 'desktop' ]]; then
-	        clear
-	        apt_check
-	        apt_install
-	        apt_remove
-	        apt_clean
-	        apt_auto
-	        apt_update_local
-	        # swap
-	        prelink_preload_deborphan
-	        pacotes_quebrados
-	        fonts
-	        config_ntp
-	        apport
-	        # repositorios_padrao
-	        log_sudo
-	        lightdm
-	        arquivo_hosts
-	        chaveiro
-	        install_xclip
-            atualiza_db
-	    elif [[ $V_HOSTNAME == 'notebook' ]]; then
-	        clear
-	        apt_check
-	        apt_install
-	        apt_remove
-	        apt_clean
-	        apt_auto
-	        apt_update_local
-	        # swap
-	        prelink_preload_deborphan
-	        pacotes_quebrados
-	        fonts
-	        config_ntp
-	        apport
-	        # repositorios_padrao
-	        log_sudo
-            atualiza_db
-	    else
-	        clear
-	        apt_check
-	        apt_install
-	        apt_remove
-	        apt_clean
-	        apt_auto
-	        apt_update_local
-	        # swap
-	        prelink_preload_deborphan
-	        pacotes_quebrados
-	        fonts
-	        config_ntp
-	        apport
-	        # repositorios_padrao
-	        log_sudo
-            atualiza_db
-	    fi
-	elif [[ $DISTRO == "Debian" ]]; then
-		apt_install
-        fonts
-        config_ntp
-        repositorios_padrao
-        arquivo_hosts
-        chaveiro
-        install_xclip
-        atualiza_db
-	else
-		printf "\n[-] ERRO CORRIGE!"
-	fi
+    prelink_preload_deborphan
+    pacotes_quebrados
+    fonts
+    config_ntp
+    apport
+
+    log_sudo
+    atualiza_db   
+
+    lightdm
+    arquivo_hosts
+    chaveiro
+
+	if [[ $V_HOSTNAME == 'notebook' ]]; then               
+        if [ $DISTRO == "Ubuntu" ]; then        
+            printf ""   
+        elif [ $DISTRO == "Debian" ]; then              
+            autologin
+        fi
+    elif [[ $V_HOSTNAME == 'desktop' ]]; then        
+        if [ $DISTRO == "Ubuntu" ]; then           
+            printf ""   
+        elif [ $DISTRO == "Debian" ]; then      
+            autologin
+        fi
+    else
+        printf "\n[-] ERRO CORRIGE!"
+    fi
 
     # realizando atualização
     update
