@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.436.0.1.3"
+	VERSAO="2.0.437.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -790,12 +790,12 @@ func_help()
 
             # dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
-            dpkg -i /base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
             # corrigindo problemas de dependencias
             apt --fix-broken install -y
 
-            dpkg -i /base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
         else
             printf "[+] Xfpanel-switch ja esta instalado \n"            
         fi
