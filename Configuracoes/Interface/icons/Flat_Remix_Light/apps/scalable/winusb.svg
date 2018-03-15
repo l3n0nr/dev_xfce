@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" version="1.1">
+ <g transform="translate(-384.57143,-35.798)">
+  <g transform="matrix(0,-1.1836789,1.1836789,0,316.92581,515.65872)">
+   <rect stroke-miterlimit="2" style="fill:#ffffff;fill-rule:evenodd;stroke:#003bc3;stroke-width:0;stroke-linecap:square;stroke-miterlimit:2" width="59.786" height="114.016" x="130.25" y="362.17"/>
+   <rect stroke-miterlimit="2" style="fill:#d5dce0;fill-rule:evenodd;stroke:#003bc3;stroke-width:0;stroke-linecap:square;stroke-miterlimit:2" width="59.786" height="114.016" x="190.03" y="362.17"/>
+   <rect stroke-miterlimit="2" style="fill:#424242;fill-rule:evenodd;stroke:#000000;stroke-width:11.48274231;stroke-linecap:square;stroke-miterlimit:2" width="207.301" height="292.863" x="85.47" y="76.41" rx="27.435" ry="27.435"/>
+   <path style="fill:#223656;fill-rule:evenodd;stroke:#003bc3;stroke-width:0;stroke-linecap:square;stroke-miterlimit:2" d="m 144.18661,428.76746 v 18.96971 h 31.49218 v -18.96971 z m 62.11899,0 v 18.96971 h 31.70754 v -18.96971 z"/>
+  </g>
+  <g transform="matrix(2.0636515,0,0,2.0636515,-895.8738,-514.51394)">
+   <g>
+    <rect style="fill:#d41a1a" width="40.768" height="40.768" x="672.75" y="347.95"/>
+    <rect style="fill:#0fa15f;fill-opacity:0.99607843" width="40.768" height="40.768" x="717.51" y="347.95"/>
+    <rect style="fill:#ffc831" width="40.768" height="40.768" x="717.51" y="392.72"/>
+    <rect style="fill:#367bf0" width="40.768" height="40.768" x="672.75" y="392.72"/>
+    <path style="opacity:0.3" d="m 288.17383,348.92188 v 4 h 40.76758 v -4 z m 44.76758,0 v 4 h 40.76757 v -4 z m -44.76758,44.76953 v 4 h 40.76758 v -4 z m 44.76758,0 v 4 h 40.76757 v -4 z" transform="translate(384.57143,35.798)"/>
+   </g>
+  </g>
+ </g>
+</svg>

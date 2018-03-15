@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" version="1.1" viewBox="0 0 48 48">
+ <defs>
+  <clipPath id="clipPath4157" clipPathUnits="userSpaceOnUse">
+   <path style="fill:#f9f8f2" d="m 27.642964,3.2951379 13.085584,13.0855841 -11.072418,0 c -0.977824,0 -2.013166,-1.035372 -2.013166,-2.013167 l 0,-11.0724171 z"/>
+  </clipPath>
+  <filter id="filter4201" style="color-interpolation-filters:sRGB" width="1.12" height="1.12" x="-.06" y="-.06">
+   <feGaussianBlur stdDeviation=".283"/>
+  </filter>
+ </defs>
+ <path style="fill:#006ab9" d="m 9.797671,4.203584 c -0.89444,0 -1.73913,0.8447 -1.73913,1.73913 l 0,36.52174 c 0,0.84473 0.89443,1.73913 1.73913,1.73913 l 27.82609,0 c 0.84472,0 1.73913,-0.89443 1.73913,-1.73913 l 0,-26.95652 -11.30435,-11.30435 z"/>
+ <path style="fill-opacity:0.39200003;filter:url(#filter4201)" d="m 28.248139,4.2710929 11.304348,11.3043481 -9.565218,0 c -0.844721,0 -1.73913,-0.894435 -1.73913,-1.739131 l 0,-9.5652171 z" clip-path="url(#clipPath4157)" transform="translate(-0.28928897,0.20358399)"/>
+ <path style="fill:#3689c8" d="m 28.058541,4.203584 11.30435,11.30435 -9.56522,0 c -0.84472,0 -1.73913,-0.89443 -1.73913,-1.73913 l 0,-9.56522 z"/>
+ <polygon style="fill:#ffffff;fill-rule:evenodd" points="110963 115341 22194 115341 44385 76894 133156 76894" transform="matrix(1.4721539e-4,0,0,1.3438523e-4,14.761465,19.479039)"/>
+ <polygon style="fill:#ffffff;fill-rule:evenodd" points="133156 76894 88772 0 44385 0 88772 76894" transform="matrix(1.4550562e-4,0,0,1.5118261e-4,14.98913,16.895834)"/>
+ <path style="fill:#ffffff;fill-rule:evenodd" d="m 20.414062,17.929167 -6.428354,10.366797 3.010047,6.02589 6.259977,-10.967682 z"/>
+</svg>

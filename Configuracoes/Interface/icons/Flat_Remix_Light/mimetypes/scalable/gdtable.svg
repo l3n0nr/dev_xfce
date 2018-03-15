@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" version="1.1" viewBox="0 0 48 48">
+ <defs>
+  <clipPath id="clipPath4157" clipPathUnits="userSpaceOnUse">
+   <path style="fill:#f9f8f2" d="m 27.642964,3.2951379 13.085584,13.0855841 -11.072418,0 c -0.977824,0 -2.013166,-1.035372 -2.013166,-2.013167 l 0,-11.0724171 z"/>
+  </clipPath>
+  <filter id="filter4201" style="color-interpolation-filters:sRGB" width="1.12" height="1.12" x="-.06" y="-.06">
+   <feGaussianBlur stdDeviation=".283"/>
+  </filter>
+ </defs>
+ <path style="fill:#0fa15f;fill-opacity:0.99607843" d="m 9.797669,4.203582 c -0.894434,0 -1.73913,0.8447 -1.73913,1.73913 l 0,36.521744 c 0,0.844721 0.894435,1.73913 1.73913,1.73913 l 27.826091,0 c 0.84472,0 1.73913,-0.894435 1.73913,-1.73913 l 0,-26.956524 -11.30435,-11.30435 z"/>
+ <path style="fill-opacity:0.39200003;filter:url(#filter4201)" d="m 28.248139,4.2710929 11.304348,11.3043481 -9.565218,0 c -0.844721,0 -1.73913,-0.894435 -1.73913,-1.739131 l 0,-9.5652171 z" clip-path="url(#clipPath4157)" transform="translate(-0.28928697,0.20358199)"/>
+ <path style="fill:#5cbc91" d="m 28.05854,4.203582 11.30435,11.30435 -9.56522,0 c -0.84472,0 -1.73913,-0.89443 -1.73913,-1.73913 l 0,-9.56522 z"/>
+ <g style="fill:#ffffff" transform="matrix(0.16145833,0,0,0.16145833,3.333333,3.3333334)">
+  <path style="fill:#ffffff" d="m 185.96144,96.192652 -33.23119,42.203368 -15.58537,-18.8982 -34.75272,44.94456 -15.521976,-17.75607 -36.485604,45.52797 4.691464,2.41073 31.994904,-39.91954 15.606502,17.84919 34.62593,-44.76655 15.54313,18.83887 33.47421,-42.5334 12.7007,13.75493 4.48016,-2.65631 -17.54014,-18.999548 z"/>
+  <rect style="fill:#ffffff" width="20" height="12" x="60" y="100"/>
+  <rect style="fill:#ffffff" width="20" height="12" x="60" y="116"/>
+  <rect style="fill:#ffffff" width="28" height="12" x="84" y="100"/>
+  <rect style="fill:#ffffff" width="28" height="12" x="84" y="116"/>
+  <rect style="fill:#ffffff" width="16" height="64" x="180" y="136"/>
+  <rect style="fill:#ffffff" width="16" height="40" x="148" y="160"/>
+  <rect style="fill:#ffffff" width="16" height="20" x="116" y="180"/>
+ </g>
+</svg>
