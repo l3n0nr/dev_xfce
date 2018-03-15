@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Simple Screen Recorder/Nvidia/Xfpanel/Zsh - Notebook
 #
 # versao do script
-	VERSAO="2.0.441.0.1.3"
+	VERSAO="2.0.445.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -133,6 +133,7 @@
 # CORRIGIR
 # LIMPAR
 # INSTALAR
+#   INSTALA_OUTROS # funcoes que necessitam de interaçao(usuario-computador)
 # REMOVER
 # SAIR
 #
@@ -473,13 +474,19 @@ func_help()
 
     arquivo_hosts()
     {
-        #verificando variavel
-        if [[ $V_HOSTNAME == 'desktop' ]]; then
-            printf "\n[+] Alterando arquivo Hosts"
-            printf "\n[+] Alterando arquivo Hosts" >> /tmp/log.txt
+        printf "\n[+] Alterando arquivo Hosts"
+        printf "\n[+] Alterando arquivo Hosts" >> /tmp/log.txt
 
-            cat base/ubuntu/hosts > /etc/hosts
+        # verificando computador
+        if [[ $V_HOSTNAME == 'desktop' ]]; then
+            cat base/hosts_desktop > /etc/hosts
+        elif [[ $V_HOSTNAME == 'notebook' ]]; then
+            cat base/hosts_notebook > /etc/hosts
+        else
+            printf "\n[-] Verificar arquivo hosts"
+            printf "\n[-] Verificar arquivo hosts" >> /tmp/log.txt
         fi
+                
     }
 
     chaveiro()
@@ -585,6 +592,10 @@ func_help()
         printf "\n[+] Instalando Firefox" >> /tmp/log.txt
 
         apt install firefox -y
+
+        if [[ $DISTRO == "Debian" ]]; then
+            apt install -t sid firefox -y
+        fi
     }
 
     install_chromium()
@@ -1429,7 +1440,7 @@ func_help()
         apt install ristretto -y
     }
 
-    install_install_tree()
+    install_tree()
     {
         printf "\n"
         printf "\n[+] Instalando Tree"
@@ -1875,7 +1886,6 @@ func_instala()
 	install_sublime
     install_terminator
 
-    install_kstars
     install_stellarium
 
     install_libreoffice 
@@ -1923,6 +1933,7 @@ func_instala()
 	    	install_firmware  	
 		fi
 	elif [[ $V_HOSTNAME == 'desktop' ]]; then
+        install_kstars
 		install_audacity
     	install_kdenlive
     	install_visual_game_boy
@@ -1957,7 +1968,7 @@ func_instala_outros()
     install_localepurge
 
     # verificando computador
-    if [[ $ == 'desktop' ]]; then
+    if [[ $V_HOSTNAME == 'desktop' ]]; then
         install_virtualbox
         install_steam
     fi
@@ -1975,7 +1986,7 @@ func_remove()
     exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* -y
     
     if [[ $V_HOSTNAME == 'notebook' ]]; then
-    	apt purge kstars* steam* kdenlive* sweethome3d* simplescreenrecorder* \
+    	apt purge kstars* steam* kdenlive* \
     	transmission* smartgit* gitg* -y
     else
     	printf "\n"	   
@@ -1990,6 +2001,7 @@ func_formatado()
     # instalando programas
     func_instala
 
+    # texmaker - trabalhos academicos
     texmaker
     
     # removendo programas pré-instalados, desnecessários
