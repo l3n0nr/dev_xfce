@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [15/03/18]      #
+# # ultima ediçao realizada:      [16/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -80,7 +80,7 @@
 #				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 # versao do script
-	VERSAO="2.0.455.0.1.3"
+	VERSAO="2.0.456.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1716,7 +1716,7 @@ func_help()
         chsh -s $(which zsh)
 
         printf "\n[*] Copiando arquivo padrao ZSH"
-        cat base/.zshrc >> $PASTA_HOME/.zshrc
+        cat base/.zshrc > $PASTA_HOME/.zshrc
         
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
