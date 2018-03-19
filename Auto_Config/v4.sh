@@ -59,7 +59,11 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
+<<<<<<< HEAD
 # # ultima ediçao realizada:      [16/03/18]      #
+=======
+# # ultima ediçao realizada:      [17/03/18]      #
+>>>>>>> c20b287ddf2a5cfedd02e3045f9cc1aa5ba78219
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -80,7 +84,11 @@
 #				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 # versao do script
+<<<<<<< HEAD
 	VERSAO="2.0.456.0.1.3"
+=======
+	VERSAO="2.0.460.0.1.3"
+>>>>>>> c20b287ddf2a5cfedd02e3045f9cc1aa5ba78219
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -502,12 +510,9 @@ func_help()
     atualiza_db()
     {
     	# variavel de verificação
-        var_locate=$(which locate)
+        VAR_LOCATE=$(which locate)
 
-        printf "\n[+] Verificando se existe Locate instalado" 
-        printf "\n[+] Verificando se existe Locate instalado" >> /tmp/log.txt
-
-        if [[ ! -e $var_locate ]]; then
+        if [[ ! -e $VAR_LOCATE ]]; then
             printf "\n"
             printf "[+] Instalando Locate"
             printf "[+] Instalando Locate" >> /tmp/log.txt
@@ -523,59 +528,60 @@ func_help()
 
     autologin()
     {
-        var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
+        # verificando se existe "autologin-user=$USUARIO" no arquivo '/etc/lightdm/lightdm.conf'
+        VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
 
-        if [[ ! -e $var_autologin ]]; then
+        if [[ $VAR_AUTOLOGIN = "1" ]]; then  
             printf "\n[+] Habilitando login automatico" 
             printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
             echo "autologin-user=$USUARIO" >> /etc/lightdm/lightdm.conf
         else
-            printf "\n [+] Login ja esta habilitado"
-            printf "\n [+] Login ja esta habilitado" >> /tmp/log.txt
+            printf "\n[+] Login ja esta habilitado"
+            printf "\n[+] Login ja esta habilitado" >> /tmp/log.txt
         fi
     }
 
     icones_temas()
     {    	
 		if [ -e "$VAR_BREEZE" ]; then 
-			printf "\n [+] Copiando icones Breeze"
-			printf "\n [+] Copiando icones Breeze" >> /tmp/log.txt
+			printf "\n[+] Copiando icones Breeze"
+			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
 
     		cp -r ../Configuracoes/Interface/icons/Breeze /usr/share/icons
     	else
-    		printf "\n [-] Voce ja possui os arquivos Breeze!"
-    		printf "\n [-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
+    		printf "\n[-] Voce ja possui os arquivos Breeze!"
+    		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
     	fi
 
     	if [ -e "$VAR_FLATREMIX" ]; then 
-    		printf "\n [+] Copiando icones Flat_Remix_Light"
-    		printf "\n [+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
+    		printf "\n[+] Copiando icones Flat_Remix_Light"
+    		printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
 
     		cp -r ../Configuracoes/Interface/icons/Flat_Remix_Light /usr/share/icons
     	else
-    		printf "\n [-] Voce ja possui os arquivos Flat_Remix_Light!"
-    		printf "\n [-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
+    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
+    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
     	fi
 
 		if [ -e "$VAR_PAPIRUS" ]; then 
-			printf "\n [+] Copiando icones Papirus_Light"
-			printf "\n [+] Copiando icones Papirus_Light" >> /tmp/log.txt
+			printf "\n[+] Copiando icones Papirus_Light"
+			printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
 
 	    	cp -r ../Configuracoes/Interface/icons/Papirus_Light /usr/share/icons
 	    else
-	    	printf "\n [-] Voce ja possui os arquivos Papirus_Light!"
-	    	printf "\n [-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
+	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
+	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
     	fi
 
     	if [ -e "$VAR_ICONES_MACOS" ]; then 
-    		printf "\n [+] Copiando icones MacOS X"
-    		printf "\n [+] Copiando icones MacOS X" >> /tmp/log.txt
+    		printf "\n[+] Copiando icones MacOS X"
+    		printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
 
 			cp -r ../Configuracoes/Interface/themes/* /usr/share/themes
 		else
-			printf "\n [-] Voce ja possui os arquivos MacOS X!"
-			printf "\n [-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
+			printf "\n[-] Voce ja possui os arquivos MacOS X!"
+			printf "\n[-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
 		fi
     }
 
@@ -647,37 +653,62 @@ func_help()
 # # INSTALA PROGRAMAS
     install_firefox()
     {
-        printf "\n"
-        printf "\n[+] Instalando Firefox"
-        printf "\n[+] Instalando Firefox" >> /tmp/log.txt
+        # printf "\n"
+        # printf "\n[+] Instalando Firefox"
+        # printf "\n[+] Instalando Firefox" >> /tmp/log.txt
 
-        apt install firefox -y
+        # apt install firefox -y
 
-        if [[ $DISTRO == "Debian" ]]; then
-            apt install -t sid firefox -y
+        # if [[ $DISTRO == "Debian" ]]; then
+        #     # apt install -t sid firefox -y
+        # fi
+
+        var_firefox=$(which firefox)        
+
+        if [[ ! -e $var_firefox ]]; then        
+            printf "\n[+] Instalando Firefox"
+            printf "\n[+] Instalando Firefox" >> /tmp/log.txt
+            
+            snap install firefox
+        else
+            printf "\n[+] Firefox ja esta instalado"
+            printf "\n[+] Firefox ja esta instalado" >> /tmp/log.txt                
         fi
+
     }
 
     install_chromium()
     {
-    	if [[ $DISTRO == "Ubuntu" ]]; then
-	        printf "\n"
-	        printf "\n[+] Instalando o Chromium"
-	        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+    	# if [[ $DISTRO == "Ubuntu" ]]; then
+	    #     printf "\n"
+	    #     printf "\n[+] Instalando o Chromium"
+	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-	        apt install chromium-browser -y
+	    #     apt install chromium-browser -y
 
-        elif [[ $DISTRO == "Debian" ]]; then
-        	printf "\n"
-	        printf "\n[+] Instalando o Chromium"
-	        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+     #    elif [[ $DISTRO == "Debian" ]]; then
+     #    	printf "\n"
+	    #     printf "\n[+] Instalando o Chromium"
+	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-        	apt install chromium chromium-l10n -y
+     #    	apt install chromium chromium-l10n -y
 
-    	else
-    		printf "\n[-] ERRO CHROMIUM!"
-    		printf "\n[-] ERRO CHROMIUM!" >> /tmp/log.txt
-    	fi
+    	# else
+    	# 	printf "\n[-] ERRO CHROMIUM!"
+    	# 	printf "\n[-] ERRO CHROMIUM!" >> /tmp/log.txt
+    	# fi
+        
+        var_chromium=$(which chromium)        
+
+        if [[ ! -e $var_chromium ]]; then
+            printf "\n[+] Instalando o Chromium"
+            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
+            snap install chromium
+        else
+            printf "\n[+] Chromium ja esta instalado"
+            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+        fi
     }
 
     install_vivaldi()
@@ -1561,7 +1592,7 @@ func_help()
         printf "\n[+] Instalando Snap"
         printf "\n[+] Instalando Snap" >> /tmp/log.txt
 
-        apt install snapd -y
+        apt install snapd        
     }
 
     install_ntp()
@@ -1651,10 +1682,10 @@ func_help()
     install_sudo()
     {
         # variavel de verificação
-        var_sudo=$(which /usr/bin/sudo)
+        VAR_SUDO=$(which /usr/bin/sudo)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_sudo ]]; then
+        if [[ ! -e $VAR_SUDO ]]; then
             printf "\n"
             printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
 
@@ -1671,10 +1702,10 @@ func_help()
     install_tuxguitar()
     {
         # variavel de verificação
-        var_tuxguitar=$(which tuxguitar-vs)
+        VAR_TUXGUITAR=$(which tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_tuxguitar ]]; then
+        if [[ ! -e $VAR_TUXGUITAR ]]; then
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
