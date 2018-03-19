@@ -59,11 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-<<<<<<< HEAD
-# # ultima ediçao realizada:      [16/03/18]      #
-=======
-# # ultima ediçao realizada:      [17/03/18]      #
->>>>>>> c20b287ddf2a5cfedd02e3045f9cc1aa5ba78219
+# # ultima ediçao realizada:      [19/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -84,11 +80,7 @@
 #				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 # versao do script
-<<<<<<< HEAD
-	VERSAO="2.0.456.0.1.3"
-=======
-	VERSAO="2.0.460.0.1.3"
->>>>>>> c20b287ddf2a5cfedd02e3045f9cc1aa5ba78219
+	VERSAO="2.0.462.0.1.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -118,6 +110,7 @@
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
     PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
+#	$HOME 
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -130,6 +123,7 @@
 
 # usuario virtualbox
     USUARIO="lenonr"                    # personalizavel
+#	$USER
 
 # personalizacao
     VAR_ICONES_MACOS="/usr/share/themes/MacBuntu-OS/"
@@ -699,16 +693,32 @@ func_help()
     	# fi
         
         var_chromium=$(which chromium)        
+        var_chromium1=$(which chromium-browser)
 
-        if [[ ! -e $var_chromium ]]; then
-            printf "\n[+] Instalando o Chromium"
-            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+        if [[ $DISTRO == "Debian" ]]; then 
+	        if [[ ! -e $var_chromium ]]; then
+	            printf "\n[+] Instalando o Chromium"
+	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-            snap install chromium
-        else
-            printf "\n[+] Chromium ja esta instalado"
-            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
-        fi
+	            snap install chromium
+	        else
+	            printf "\n[+] Chromium ja esta instalado"
+	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+	        fi	
+        elif [[ $DISTRO == "Ubuntu" ]]; then 
+	        if [[ ! -e $var_chromium1 ]]; then
+	            printf "\n[+] Instalando o Chromium"
+	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
+	            snap install chromium
+	        else
+	            printf "\n[+] Chromium ja esta instalado"
+	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+	        fi	
+	    else
+	    	printf "\n[-] Erro instalação Chromium"
+	    	printf "\n[-] Erro instalação Chromium" >> /tmp/log.txt
+        fi      
     }
 
     install_vivaldi()
