@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [19/03/18]      #
+# # ultima ediçao realizada:      [20/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -79,8 +79,9 @@
 #				- I    - [LOGIN]     - Habilitar login automatico usuario 
 #				- II   - [REMOVER]   - _imagemmagick
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
+#               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.462.0.1.3"
+	VERSAO="2.0.466.0.1.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -439,15 +440,7 @@ func_help()
 
         #corrige apport - ubuntu 16.04
         cat base/ubuntu/apport > /etc/default/apport
-    }
-
-    lightdm()
-    {
-        printf "\n[+] Iniciando sessão automaticamente"
-        printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
-
-    	cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
-    }
+    }   
 
     log_sudo()
     {
@@ -525,11 +518,18 @@ func_help()
         # verificando se existe "autologin-user=$USUARIO" no arquivo '/etc/lightdm/lightdm.conf'
         VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
 
-        if [[ $VAR_AUTOLOGIN = "1" ]]; then  
-            printf "\n[+] Habilitando login automatico" 
-            printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
+        if [[ $DISTRO == "Debian" ]]; then             
+            if [[ $VAR_AUTOLOGIN = "1" ]]; then  
+                printf "\n[+] Habilitando login automatico" 
+                printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
-            echo "autologin-user=$USUARIO" >> /etc/lightdm/lightdm.conf
+                echo "autologin-user=$USUARIO" >> /etc/lightdm/lightdm.conf
+            fi
+        elif [[ $DISTRO == "Ubuntu" ]]; then 
+            printf "\n[+] Iniciando sessão automaticamente"
+            printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
+
+            cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
         else
             printf "\n[+] Login ja esta habilitado"
             printf "\n[+] Login ja esta habilitado" >> /tmp/log.txt
@@ -1124,18 +1124,15 @@ func_help()
                 # apt install tor torbrowser-launcher -y
 
             elif [ $DISTRO == "Debian" ]; then
-            	echo 
-    #         	# adicionando repositorio tor
-				# echo "" >> /etc/apt/sources.list
-    #         	echo "" >> /etc/apt/sources.list
-    #         	echo "#------------------------------------------------------------------------------#" >> /etc/apt/sources.list
-    #         	echo "# REPOSITORIO TOR" >> /etc/apt/sources.list
-    #         	echo "deb http://deb.debian.org/debian stretch-backports main contrib" >> /etc/apt/sources.list
-				
-				# # atualizando lista repositorio
-				# update
+                # debian 9                
+                # adicionando repositorio
+                printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
 
-				# apt install tor torbrowser-launcher -t stretch-backports -y
+                # atualizando sistema
+                update
+
+                # instalando tor
+                apt install torbrowser-launcher -t stretch-backports
             else
             	printf "\n[-] ERRO TOR"
             	printf "\n[-] ERRO TOR" >> /tmp/log.txt
@@ -1864,8 +1861,7 @@ func_corrige()
     apt_install
     apt_remove
     apt_clean
-    apt_auto
-    apt_update_local
+    apt_auto    
 
     prelink_preload_deborphan
     pacotes_quebrados
@@ -1876,7 +1872,7 @@ func_corrige()
     log_sudo
     atualiza_db   
 
-    lightdm
+    autologin
     arquivo_hosts
     chaveiro
 
@@ -1884,15 +1880,15 @@ func_corrige()
 
 	if [[ $V_HOSTNAME == 'notebook' ]]; then               
         if [ $DISTRO == "Ubuntu" ]; then        
-            printf ""   
+            apt_update_local
         elif [ $DISTRO == "Debian" ]; then              
-            autologin
+            printf ""   
         fi
     elif [[ $V_HOSTNAME == 'desktop' ]]; then        
         if [ $DISTRO == "Ubuntu" ]; then           
-            printf ""   
+            apt_update_local
         elif [ $DISTRO == "Debian" ]; then      
-            autologin
+            printf ""   
         fi
     else
         printf "\n[-] ERRO CORRIGE!"
@@ -2334,7 +2330,8 @@ if [ $# -eq 0 ]; then
 fi
 
 ## manipulando parametros - parametro acao/mudo(boolean)
-for i in "$@"; do
+for i in "$@"; 
+do
     # verificando o que foi digitado
     case $i in
         menu) auto_config;;
