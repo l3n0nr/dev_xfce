@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [20/03/18]      #
+# # ultima ediçao realizada:      [21/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.467.0.1.4"
+	VERSAO="2.0.470.0.1.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -519,7 +519,7 @@ func_help()
         VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
 
         if [[ $DISTRO == "Debian" ]]; then             
-            if [[ $VAR_AUTOLOGIN = "1" ]]; then  
+            if [ -e "$VAR_AUTOLOGIN" ]; then  
                 printf "\n[+] Habilitando login automatico" 
                 printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
@@ -774,43 +774,45 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando Spotify" >> /tmp/log.txt
 
-			if [[ $DISTRO == "Ubuntu" ]]; then            
-	            # #baixando pacote
-	            # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+            snap install spotify
 
-	            # #baixando chave
-	            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
+			# if [[ $DISTRO == "Ubuntu" ]]; then            
+	  #           # #baixando pacote
+	  #           # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
-	            # #chamando função update
-	            # update
+	  #           # #baixando chave
+	  #           # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
 
-	            # #instalando o spotify
-	            # apt install spotify-client -y --allow-unauthenticated
+	  #           # #chamando função update
+	  #           # update
 
-	            snap install spotify
+	  #           # #instalando o spotify
+	  #           # apt install spotify-client -y --allow-unauthenticated
+
+	  #           snap install spotify
 	            
-			elif [[ $DISTRO == "Debian" ]]; then
-        		# adicionando dependencia
-        		apt install dirmngr -y
+			# elif [[ $DISTRO == "Debian" ]]; then
+   #      		# adicionando dependencia
+   #      		apt install dirmngr -y
 
-        		# adicionando chave
-        		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
+   #      		# adicionando chave
+   #      		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
 
-        		# adicionando repositorio
-        		echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
+   #      		# adicionando repositorio
+   #      		echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
 
-        		# atualizando a lista de repositorios
-        		update
+   #      		# atualizando a lista de repositorios
+   #      		update
 
-        		# baixando lib
-        		wget ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb 
+   #      		# baixando lib
+   #      		wget ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb 
 
-        		# instalando lib
-				dpkg -i libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb -y
+   #      		# instalando lib
+			# 	dpkg -i libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb -y
 
-				# instalando spotify
-				apt install spotify-client -y          		
-        	fi
+			# 	# instalando spotify
+			# 	apt install spotify-client -y          		
+   #      	fi
         else
             printf "[+] Spofity já está instalado! \n"
         fi
@@ -827,7 +829,19 @@ func_help()
             apt install ubuntu-restricted-extras -y
         fi
 
-        apt install faac faad ffmpeg gstreamer0.10-ffmpeg flac icedax id3v2 lame libflac++6 libjpeg-progs libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec mpeg3-utils mpegdemux mpg123 mpg321 regionset sox uudeview vorbis-tools x264 arj p7zip p7zip-full p7zip-rar rar unrar unace-nonfree sharutils uudeview mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg libxine1-misc-plugins libxine1-plugins libxine1-x nautilus-script-audio-convert nautilus-scripts-manager tagtool spotify-client prelink deborphan oracle-java7-installer -y --force-yes        
+        apt install faac faad ffmpeg gstreamer0.10-ffmpeg \
+        flac icedax id3v2 lame libflac++6 libjpeg-progs \
+        libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec \
+        mpeg3-utils mpegdemux mpg123 mpg321 regionset sox \
+        uudeview vorbis-tools x264 arj p7zip p7zip-full \
+        unace-nonfree sharutils uudeview \
+        mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 \
+        libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
+        libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
+        libxine1-misc-plugins libxine1-plugins libxine1-x \
+        nautilus-script-audio-convert nautilus-scripts-manager tagtool \
+        spotify-client prelink deborphan oracle-java7-installer -y --force-yes    
+
         apt install lame libavcodec-extra libav-tools -y	
     }
 
@@ -1132,7 +1146,7 @@ func_help()
                 update
 
                 # instalando tor
-                apt install torbrowser-launcher -t stretch-backports
+                apt install tor torbrowser-launcher -t stretch-backports
             else
             	printf "\n[-] ERRO TOR"
             	printf "\n[-] ERRO TOR" >> /tmp/log.txt
@@ -1869,8 +1883,7 @@ func_corrige()
     apt_check
     apt_install
     apt_remove
-    apt_clean
-    apt_auto    
+    apt_clean        
 
     prelink_preload_deborphan
     pacotes_quebrados
@@ -1890,12 +1903,14 @@ func_corrige()
 	if [[ $V_HOSTNAME == 'notebook' ]]; then               
         if [ $DISTRO == "Ubuntu" ]; then        
             apt_update_local
+            apt_auto
         elif [ $DISTRO == "Debian" ]; then              
             printf ""   
         fi
     elif [[ $V_HOSTNAME == 'desktop' ]]; then        
         if [ $DISTRO == "Ubuntu" ]; then           
             apt_update_local
+            apt_auto
         elif [ $DISTRO == "Debian" ]; then      
             printf ""   
         fi
