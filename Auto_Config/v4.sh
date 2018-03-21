@@ -81,7 +81,7 @@
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.466.0.1.4"
+	VERSAO="2.0.467.0.1.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1834,6 +1834,15 @@ func_help()
         apt install nautilus-dropbox -y
     }
 
+    install_gnome_calculator()
+    {
+        printf "\n"
+        printf "\n[+] Instalando Gnome Calculator"
+        printf "\n[+] Instalando Gnome Calculator" >> /tmp/log.txt
+
+        apt install gnome-calculator -y
+    }
+
 # # # # # # # # # #
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1969,13 +1978,14 @@ func_instala()
     install_espeak      
     install_tree        
     install_chkrootkit    
-    install_firewall_basic        
-    install_gnome_disk_utility
-    install_gnome_system_monitor    
+    install_firewall_basic            
     install_htop         
     install_hardinfo
     install_nmap    
     install_figlet           
+    install_gnome_disk_utility
+    install_gnome_system_monitor    
+    install_gnome_calculator
 
 	if [[ $V_HOSTNAME == 'notebook' ]]; then		
         install_cheese
