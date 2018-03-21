@@ -73,6 +73,7 @@
 #
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
+#               - II  - [VETOR]  - Verificar vetor funcoes
 #
 # 	f = desenvolver
 #		# DEBIAN
@@ -81,7 +82,7 @@
 #				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.470.0.1.4"
+	VERSAO="2.0.480.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -134,13 +135,147 @@
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
-# ATUALIZAR
-# CORRIGIR
-# LIMPAR
-# INSTALAR
-#   INSTALA_OUTROS # funcoes que necessitam de interaçao(usuario-computador)
-# REMOVER
-# SAIR
+# vetor de atualizacao
+ATUALIZA=(update upgrade)
+
+# vetor de correcao
+CORRIGE=(apt_check apt_install apt_remove \
+         apt_clean apt_auto apt_update_local \
+         swap prelink_preload_deborphan \
+         pacotes_quebrados fonts config_ntp \
+         apport log_sudo repositorios_padrao \
+         arquivo_hosts chaveiro atualiza_db \
+         autologin icones_temas)
+
+# vetor de limpeza
+LIMPA=(kernel arquivos_temporarios pacotes_orfaos \
+       funcao_chkrootkit func_localepurge)
+
+# vetor instala
+INSTALA=(install_firefox install_chromium install_vivaldi \
+        install_steam install_spotify install_codecs \
+        install_funcao_gimp install_xfce4 install_wine \
+        install_playonlinux install_redshift install_libreoffice \
+        install_vlc install_clementine install_gparted \
+        install_tlp install_git install_lm-sensors \
+        install_stellarium install_texmaker install_kstars \
+        install_reaver install_tor install_dolphin \
+        install_visual_game_boy install_screenfetch \
+        install_kdenlive install_sweethome3d install_kate \
+        install_cheese install_plank install_gnome_system_monitor \
+        install_nautilus install_wireshark install_gnome_disk_utility \
+        install_audacity install_simple_screen_recorder \
+        install_mega install_openssh install_figlet install_chkrootkit \
+        install_localepurge install_firewall_basic install_hardinfo \
+        install_nvidia install_virtualbox install_ristretto install_tree \
+        install_pulseeffects install_terminator install_aircrack \
+        install_snap install_ntp install_xclip install_espeak \
+        install_ibus install_nmap install_htop install_sudo \
+        install_gnome_calculator install_tuxguitar install_muse_score \
+        install_zsh install_docker install_sublime install_firmware)
+
+# vetor instala outros
+INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
+                install_python install_dropbox)
+
+func_vetor()
+{
+    printf "\nDigite a funcao escolhida: "
+    read ESCOLHA_VETOR    
+
+    # echo "Valor 1: $1"
+    # echo "Valor 2: $2"
+    # echo "Valor 3: $3"
+
+    # if [[ $1 -eq "mudo" ]]; then
+    #     ESCOLHA_VETOR=$($3)
+    # else
+    #     ESCOLHA_VETOR=$($2)
+    # fi    
+
+    # while [[ $ESCOLHA_VETOR  ]]; do    
+        # percorrendo vetor atualiza
+        for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+            # saindo do script
+            if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
+                # mostrando funcao encontrada
+                # echo ${ATUALIZA[$i]}
+
+                # executando funcao encontrada
+                ${ATUALIZA[$i]}
+
+                # saindo do script
+                exit 1                
+            fi
+        done
+
+        # percorrendo vetor corrige
+        for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
+            # saindo do script
+            if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
+                # mostrando funcao encontrada
+                # echo ${CORRIGE[$i]}
+
+                # executando funcao encontrada
+                ${CORRIGE[$i]}
+
+                # saindo do script
+                exit 1                
+            fi
+        done
+
+        # percorrendo vetor limpa
+        for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
+            # saindo do script
+            if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
+                # mostrando funcao encontrada
+                # echo ${LIMPA[$i]}
+
+                # executando funcao encontrada
+                ${LIMPA[$i]}
+
+                # saindo do script
+                exit 1                
+            fi
+        done
+
+        # percorrendo vetor instala
+        for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
+            # saindo do script
+            if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
+                # mostrando funcao encontrada
+                # echo ${INSTALA[$i]}
+
+                # executando funcao encontrada
+                ${INSTALA[$i]}
+
+                # saindo do script
+                exit 1                
+            fi
+        done
+
+        # percorrendo vetor outros
+        for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do 
+            # saindo do script
+            if [[ ${INSTALA_OUTROS[$i]} = "$ESCOLHA_VETOR" ]]; then
+                # mostrando funcao encontrada
+                # echo ${INSTALA_OUTROS[$i]}
+
+                # executando funcao encontrada
+                ${INSTALA_OUTROS[$i]}
+
+                # saindo do script
+                exit 1                
+            fi
+        done
+    # done
+}
+
+# # vetor do programa
+# SAI=(exit)
+
+# # vetor ajuda
+# AJUDA=(func_help)
 #
 # # # # # # # # # #
 #
@@ -1644,36 +1779,6 @@ func_help()
         apt install espeak -y	
     }
 
-# # # # # # # # # #
-# # PROGRAMAS NÃO ESSENCIAIS
-    install_apache()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Apache"
-        printf "\n[+] Instalando o Apache" >> /tmp/log.txt
-
-        apt install apache2 -y
-        service apache2 restart
-    }
-
-    install_mysql()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Mysql Server"
-        printf "\n[+] Instalando o Mysql Server" >> /tmp/log.txt
-
-        apt install mysql-server mysql-server -y
-    }
-
-    install_phpmyadmin()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o PhpMyAdmin"
-        printf "\n[+] Instalando o PhpMyAdmin" >> /tmp/log.txt
-
-        apt install php phpmyadmin -y
-    }
-
     install_ibus()
     {
         printf "\n"
@@ -1720,6 +1825,15 @@ func_help()
         fi
     }
 
+    install_gnome_calculator()
+    {
+        printf "\n"
+        printf "\n[+] Instalando Gnome Calculator"
+        printf "\n[+] Instalando Gnome Calculator" >> /tmp/log.txt
+
+        apt install gnome-calculator -y
+    }
+
     install_tuxguitar()
     {
         # variavel de verificação
@@ -1731,11 +1845,11 @@ func_help()
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
 
-			snap install tuxguitar-vs
-		else
-			printf "[+] TuxGuitar já está instalado \n"
-		fi
-	}
+            snap install tuxguitar-vs
+        else
+            printf "[+] TuxGuitar já está instalado \n"
+        fi
+    }
 
     install_muse_score()
     {
@@ -1810,26 +1924,56 @@ func_help()
             apt install sublime-text -y
 
         elif [ $DISTRO == "Debian" ]; then
-        	# apt-get install snapd snapd-xdg-open
-        	snap install sublime-text-3 --classic --candidate
-        	# snap refresh sublime-text-3
+            # apt-get install snapd snapd-xdg-open
+            snap install sublime-text-3 --classic --candidate
+            # snap refresh sublime-text-3
         fi
     }
 
     install_firmware()
     {
-    	printf "\n"
+        printf "\n"
         printf "\n[+] Instalando firmware's non-free" >> /tmp/log.txt        
-    	apt install firmware-linux firmware-linux-nonfree -y
+        apt install firmware-linux firmware-linux-nonfree -y
 
-    	#verificando variavel
+        #verificando variavel
         if [[ $V_HOSTNAME == 'notebook' ]]; then
             printf "\n"
             printf "\n[+] Instalando firmware Wifi" >> /tmp/log.txt
 
             apt install firmware-brcm80211 -y
         fi
-	}	
+    }   
+
+# # # # # # # # # #
+# # PROGRAMAS NÃO ESSENCIAIS
+    install_apache()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Apache"
+        printf "\n[+] Instalando o Apache" >> /tmp/log.txt
+
+        apt install apache2 -y
+        service apache2 restart
+    }
+
+    install_mysql()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Mysql Server"
+        printf "\n[+] Instalando o Mysql Server" >> /tmp/log.txt
+
+        apt install mysql-server mysql-server -y
+    }
+
+    install_phpmyadmin()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o PhpMyAdmin"
+        printf "\n[+] Instalando o PhpMyAdmin" >> /tmp/log.txt
+
+        apt install php phpmyadmin -y
+    }    
 
     install_python()
     {
@@ -1847,16 +1991,6 @@ func_help()
 
         apt install nautilus-dropbox -y
     }
-
-    install_gnome_calculator()
-    {
-        printf "\n"
-        printf "\n[+] Instalando Gnome Calculator"
-        printf "\n[+] Instalando Gnome Calculator" >> /tmp/log.txt
-
-        apt install gnome-calculator -y
-    }
-
 # # # # # # # # # #
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -2371,6 +2505,7 @@ do
         nvidia) nvidia;;
         texmaker) texmaker;;
 		-v|-version) version;;
+        vetor) func_vetor;;
     esac    
 
     # alterando valor - funcoes em silencio
