@@ -79,10 +79,10 @@
 #		# DEBIAN
 #				- I    - [LOGIN]     - Habilitar login automatico usuario 
 #				- II   - [REMOVER]   - _imagemmagick
-#				- III  - [VERIFICAR] - Nvidia/Zsh - Notebook
+#				- III  - [VERIFICAR] - Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.480.0.2.4"
+	VERSAO="2.0.485.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -178,99 +178,6 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
 INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
                 install_python install_dropbox)
 
-func_vetor()
-{
-    printf "\nDigite a funcao escolhida: "
-    read ESCOLHA_VETOR    
-
-    # echo "Valor 1: $1"
-    # echo "Valor 2: $2"
-    # echo "Valor 3: $3"
-
-    # if [[ $1 -eq "mudo" ]]; then
-    #     ESCOLHA_VETOR=$($3)
-    # else
-    #     ESCOLHA_VETOR=$($2)
-    # fi    
-
-    # while [[ $ESCOLHA_VETOR  ]]; do    
-        # percorrendo vetor atualiza
-        for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-            # saindo do script
-            if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
-                # mostrando funcao encontrada
-                # echo ${ATUALIZA[$i]}
-
-                # executando funcao encontrada
-                ${ATUALIZA[$i]}
-
-                # saindo do script
-                exit 1                
-            fi
-        done
-
-        # percorrendo vetor corrige
-        for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
-            # saindo do script
-            if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
-                # mostrando funcao encontrada
-                # echo ${CORRIGE[$i]}
-
-                # executando funcao encontrada
-                ${CORRIGE[$i]}
-
-                # saindo do script
-                exit 1                
-            fi
-        done
-
-        # percorrendo vetor limpa
-        for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
-            # saindo do script
-            if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
-                # mostrando funcao encontrada
-                # echo ${LIMPA[$i]}
-
-                # executando funcao encontrada
-                ${LIMPA[$i]}
-
-                # saindo do script
-                exit 1                
-            fi
-        done
-
-        # percorrendo vetor instala
-        for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
-            # saindo do script
-            if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
-                # mostrando funcao encontrada
-                # echo ${INSTALA[$i]}
-
-                # executando funcao encontrada
-                ${INSTALA[$i]}
-
-                # saindo do script
-                exit 1                
-            fi
-        done
-
-        # percorrendo vetor outros
-        for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do 
-            # saindo do script
-            if [[ ${INSTALA_OUTROS[$i]} = "$ESCOLHA_VETOR" ]]; then
-                # mostrando funcao encontrada
-                # echo ${INSTALA_OUTROS[$i]}
-
-                # executando funcao encontrada
-                ${INSTALA_OUTROS[$i]}
-
-                # saindo do script
-                exit 1                
-            fi
-        done
-    # done
-}
-
 # # vetor do programa
 # SAI=(exit)
 
@@ -302,30 +209,9 @@ func_help()
         - Instalação de programas,
         - Remoção de programas desnecessários,
 
-    Exemplos:
-        - Lendo instruções de funcionamento:
-            ~ v4.sh
-
-        - Atualizando o Sistema:
-            ~ v4.sh atualiza
-
-        - Corrigindo o Sistema:
-            ~ v4.sh corrige
-
-        - Limpando o Sistema:
-            ~ v4.sh limpa
-
-        - Instalando programas:
-            ~ v4.sh instala
-
-        - Instalando outros programas:
-            ~ v4.sh instala_outros
-
-        - Removendo programas:
-            ~ v4.sh remove
-
-        - Visualizando o menu de ações:
-            ~ v4.sh menu
+    Exemplos:        
+        - Funcoes do script:
+            ~ v4.sh [atualiza/corrige/limpa/instala/instala_outros/menu]
 
         - Após a maquina ser formatada(apenas as funções automáticas e depois desliga a máquina)
             ~ v4.sh formatado
@@ -333,7 +219,12 @@ func_help()
         - Para executar todas as funções(semi-automático)
             ~ v4.sh todas
 
-        - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outra ao iniciar o script.  
+        - Para executar um funcao especifica basta:
+            ~ v4.sh vetor nomefuncao
+                [BUSCANDO FUNCAO]
+                ~v4.sh vetor help [atualiza/corrige/limpa/instala]
+
+        - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outro ao iniciar o script.  
 
     **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
 
@@ -1999,6 +1890,8 @@ func_atualiza()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Atualizando"
+    else
+        notify-send -u normal "Atualizando sistema" -t 10000
     fi
 
     clear
@@ -2012,6 +1905,8 @@ func_corrige()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Corrigindo"
+    else
+        notify-send -u normal "Corrigindo sistema" -t 10000
     fi
 
     apt_check
@@ -2061,6 +1956,8 @@ func_limpa()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Limpando"
+    else
+        notify-send -u normal "Limpando sistema" -t 10000
     fi
 
     clear   
@@ -2075,6 +1972,8 @@ func_instala()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Instalando"
+    else
+        notify-send -u normal "Instalando programas no sistema" -t 10000
     fi
 
 	install_firefox
@@ -2170,6 +2069,8 @@ func_instala_outros()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Instalando outros"
+    else
+        notify-send -u normal "Instalando outros programas no sistema" -t 10000
     fi
 	
     install_apache
@@ -2193,6 +2094,8 @@ func_remove()
     ## verificando valor variavel
     if [ $VAR_MUDO == "0" ]; then
         espeak -vpt-br "Removendo programas"
+    else
+        notify-send -u normal "Removendo programas no sistema" -t 10000
     fi
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
@@ -2256,6 +2159,162 @@ func_todas()
 
     # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
+}
+
+func_vetor()
+{
+    # percorrendo vetor atualiza
+    for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+        # saindo do script
+        if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${ATUALIZA[$i]}
+
+            # executando funcao encontrada
+            ${ATUALIZA[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # percorrendo vetor corrige
+    for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${CORRIGE[$i]}
+
+            # executando funcao encontrada
+            ${CORRIGE[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # percorrendo vetor limpa
+    for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${LIMPA[$i]}
+
+            # executando funcao encontrada
+            ${LIMPA[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # percorrendo vetor instala
+    for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${INSTALA[$i]}
+
+            # executando funcao encontrada
+            ${INSTALA[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # percorrendo vetor outros
+    for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${INSTALA_OUTROS[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${INSTALA_OUTROS[$i]}
+
+            # executando funcao encontrada
+            ${INSTALA_OUTROS[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # mostrando ajuda para o usuario
+    if [[ "$ESCOLHA_VETOR" = "help" ]]; then
+        if [[ "$HELP_VETOR" = "atualiza" ]]; then
+            printf "\nATUALIZAR\n"
+            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+                echo ${ATUALIZA[$i]}
+            done    
+
+            exit 1
+        fi
+        
+        if [[ "$HELP_VETOR" = "corrige" ]]; then
+            printf "\nCORRIGE\n"
+            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+                echo ${CORRIGE[$i]}
+            done
+
+            exit 1
+        fi
+
+        if [[ "$HELP_VETOR" = "limpa" ]]; then
+            printf "\nLIMPA\n"
+            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+                echo ${LIMPA[$i]}
+            done
+
+            exit 1
+        fi
+
+        if [[ "$HELP_VETOR" = "instala" ]]; then
+            printf "\nINSTALA\n"
+            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+                echo ${INSTALA[$i]}
+            done
+
+            exit 1
+        fi
+
+        if [[ "$HELP_VETOR" = "instala_outros" ]]; then
+            printf "\nINSTALA OUTROS\n"
+            for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
+                echo ${INSTALA_OUTROS[$i]}
+            done
+
+            exit 1
+        fi
+
+        if [[ "$HELP_VETOR" -eq "help" ]]; then
+            printf "\nATUALIZAR\n"
+            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+                echo ${ATUALIZA[$i]}
+            done
+
+            printf "\nCORRIGE\n"
+            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+                echo ${CORRIGE[$i]}
+            done
+
+            printf "\nLIMPA\n"
+            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+                echo ${LIMPA[$i]}
+            done
+
+            printf "\nINSTALA\n"
+            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+                echo ${INSTALA[$i]}
+            done
+
+            printf "\nINSTALA OUTROS\n"
+            for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
+                echo ${INSTALA_OUTROS[$i]}
+            done
+
+            # saindo do script
+            exit 1               
+        fi
+    fi
 }
 
 version()
@@ -2484,9 +2543,28 @@ menu()
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # INICIANDO SCRIPT
 # menu
+# tratando saidas
 if [ $# -eq 0 ]; then
     func_help
+elif [[ $* -eq "mudo" ]]; then
+    func_help
+else
+    printf ""
 fi
+
+# passando parametro ao vetor
+if [[ $1 -eq "mudo" ]]; then
+    ESCOLHA_VETOR=$3
+else
+    ESCOLHA_VETOR=$2
+fi  
+
+# passando sessao para variavel
+if [[ $1 -eq "mudo" ]]; then
+    HELP_VETOR=$4
+else
+    HELP_VETOR=$3
+fi  
 
 ## manipulando parametros - parametro acao/mudo(boolean)
 for i in "$@"; 
@@ -2509,10 +2587,17 @@ do
     esac    
 
     # alterando valor - funcoes em silencio
-    if [ $i == "mudo" ]; then
+    if [ $1 == "mudo" ]; then
         VAR_MUDO=1
     fi
 done
+
+# mostrando mensagem ao usuario - BOAS VINDAS
+if [ $VAR_MUDO == "0" ]; then
+    espeak -vpt-br "Bem vindo!!"
+else
+    notify-send -u normal "Bem vindo ao script" -t 10000
+fi
 
 # mostrando data/hora log inicilização script	
 date > /tmp/log.txt
@@ -2520,9 +2605,11 @@ date > /tmp/log.txt
 # mostrando informacoes da distro
 lsb_release -a >> /tmp/log.txt
 
-## verificando valor VAR_MUDO 
+# mostrando mensangem usuario - ATE LOGO
 if [ $VAR_MUDO == "0" ]; then
     espeak -vpt-br "Finalizado!!"
+else
+    notify-send -u normal "Script finalizado" -t 10000
 fi
 
 # mostrando data/hora log finalização script
