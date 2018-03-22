@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [21/03/18]      #
+# # ultima ediçao realizada:      [22/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,7 +82,7 @@
 #				- III  - [VERIFICAR] - Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.485.0.2.4"
+	VERSAO="2.0.490.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -112,7 +112,6 @@
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
     PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
-#	$HOME 
 
 # verificando distro
     DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -125,7 +124,6 @@
 
 # usuario virtualbox
     USUARIO="lenonr"                    # personalizavel
-#	$USER
 
 # personalizacao
     VAR_ICONES_MACOS="/usr/share/themes/MacBuntu-OS/"
@@ -333,6 +331,7 @@ func_help()
         background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
         ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
         printf "\n [+] Diminuindo a Prioridade de uso da memória SWAP"
+
         if [[ $memoswap == "vm.swappiness=10" ]]; then
                 printf "\n[*] Otimizando..." 
                 /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf"
@@ -2432,53 +2431,53 @@ auto_config_debian()
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### ATUALIZA SISTEMA
         1) printf
-                func_atualiza
+			func_atualiza
 
-                auto_config
+			auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### CORRINDO PROBLEMAS
         2) printf
-                func_corrige
+            func_corrige
 
-                auto_config
+            auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REALIZANDO LIMPEZA
         3) printf
-                auto_config
+            auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALANDO PROGRAMAS
         4) printf
-                func_instala
+            func_instala
 
-                auto_config
+            auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### PROGRAMAS NAO ESSENCIAIS
         5) printf
-                func_instala_outros                
+            func_instala_outros                
 
-                auto_config
+            auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVENDO PROGRAMAS
         6) printf
-                func_remove		               
+            func_remove		               
 
-                auto_config
+            auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
         7) echo
-                exit
+            exit
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -2544,9 +2543,9 @@ menu()
 # INICIANDO SCRIPT
 # menu
 # tratando saidas
-if [ $# -eq 0 ]; then
-    func_help
-elif [[ $* -eq "mudo" ]]; then
+# se script for chamado sem parametro ou
+# com apenas o parametro "mudo", sem outro
+if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] && [[ -e $2 ]]; then
     func_help
 else
     printf ""
@@ -2555,16 +2554,23 @@ fi
 # passando parametro ao vetor
 if [[ $1 -eq "mudo" ]]; then
     ESCOLHA_VETOR=$3
-else
-    ESCOLHA_VETOR=$2
-fi  
-
-# passando sessao para variavel
-if [[ $1 -eq "mudo" ]]; then
     HELP_VETOR=$4
 else
+    ESCOLHA_VETOR=$2
     HELP_VETOR=$3
 fi  
+
+# echo $1
+# echo $2
+# echo $3
+# echo $4
+
+# # passando sessao para variavel
+# if [[ $1 -eq "mudo" ]]; then
+    
+# else
+    
+# fi  
 
 ## manipulando parametros - parametro acao/mudo(boolean)
 for i in "$@"; 
