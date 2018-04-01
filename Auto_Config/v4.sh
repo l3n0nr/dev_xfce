@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [29/03/18]      #
+# # ultima ediçao realizada:      [31/03/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,7 +82,7 @@
 #				- III  - [VERIFICAR] - Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.492.0.2.4"
+	VERSAO="2.0.493.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2541,12 +2541,6 @@ menu()
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # INICIANDO SCRIPT
-# mostrando mensagem ao usuario - BOAS VINDAS
-if [ $VAR_MUDO == "0" ]; then
-    espeak -vpt-br "Bem vindo!!"
-else
-    notify-send -u normal "Bem vindo ao script" -t 10000
-fi
 
 # menu
 # tratando saidas
