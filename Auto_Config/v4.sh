@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [31/03/18]      #
+# # ultima ediçao realizada:      [03/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,7 +82,7 @@
 #				- III  - [VERIFICAR] - Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.493.0.2.4"
+	VERSAO="2.0.495.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -111,25 +111,25 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    PASTA_HOME="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
+    pasta_home="/home/lenonr/"          		    # script em determinados momento não identifica corretamente o pasta home, diretamente com a instrução $HOME
 
 # verificando distro
-    DISTRO=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
+    distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
 # capturando hostname da maquina
-    V_HOSTNAME=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
+    v_hostname=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
 
 # espeak habilitado
-    VAR_MUDO=0                          # valor padrao = mudo desativado
+    var_mudo=0                          # valor padrao = mudo desativado
 
 # usuario virtualbox
-    USUARIO="lenonr"                    # personalizavel
+    usuario="lenonr"                    # personalizavel
 
 # personalizacao
-    VAR_ICONES_MACOS="/usr/share/themes/MacBuntu-OS/"
-	VAR_BREEZE="/usr/share/icons/Breeze"
-	VAR_FLATREMIX="/usr/share/icons/Flat_Remix_Light"
-	VAR_PAPIRUS="/usr/share/icons/Papirus_Light"
+    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+	var_breeze="/usr/share/icons/Breeze"
+	var_flatremix="/usr/share/icons/Flat_Remix_Light"
+	var_papirus="/usr/share/icons/Papirus_Light"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -478,12 +478,12 @@ func_help()
     repositorios_padrao()
     {
         # verificando distribuição
-        if [ $DISTRO == "Ubuntu" ]; then
+        if [ $distro == "Ubuntu" ]; then
             printf "\n[+] Alterando lista de repositórios padrão"
             printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
             cat base/ubuntu/sources.list > /etc/apt/sources.list
-        elif [ $DISTRO == "Debian" ]; then
+        elif [ $distro == "Debian" ]; then
             printf "\n[+] Alterando lista de repositórios padrão"
             printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
@@ -500,9 +500,9 @@ func_help()
         printf "\n[+] Alterando arquivo Hosts" >> /tmp/log.txt
 
         # verificando computador
-        if [[ $V_HOSTNAME == 'desktop' ]]; then
+        if [[ $v_hostname == 'desktop' ]]; then
             cat base/hosts_desktop > /etc/hosts
-        elif [[ $V_HOSTNAME == 'notebook' ]]; then
+        elif [[ $v_hostname == 'notebook' ]]; then
             cat base/hosts_notebook > /etc/hosts
         else
             printf "\n[-] Verificar arquivo hosts"
@@ -540,17 +540,17 @@ func_help()
 
     autologin()
     {
-        # verificando se existe "autologin-user=$USUARIO" no arquivo '/etc/lightdm/lightdm.conf'
-        VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$USUARIO")
+        # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
+        VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")
 
-        if [[ $DISTRO == "Debian" ]]; then             
+        if [[ $distro == "Debian" ]]; then             
             if [ -e "$VAR_AUTOLOGIN" ]; then  
                 printf "\n[+] Habilitando login automatico" 
                 printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
-                echo "autologin-user=$USUARIO" >> /etc/lightdm/lightdm.conf
+                echo "autologin-user=$usuario" >> /etc/lightdm/lightdm.conf
             fi
-        elif [[ $DISTRO == "Ubuntu" ]]; then 
+        elif [[ $distro == "Ubuntu" ]]; then 
             printf "\n[+] Iniciando sessão automaticamente"
             printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
 
@@ -563,7 +563,7 @@ func_help()
 
     icones_temas()
     {    	
-		if [ -e "$VAR_BREEZE" ]; then 
+		if [ -e "$var_breeze" ]; then 
 			printf "\n[+] Copiando icones Breeze"
 			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
 
@@ -573,7 +573,7 @@ func_help()
     		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
     	fi
 
-    	if [ -e "$VAR_FLATREMIX" ]; then 
+    	if [ -e "$var_flatremix" ]; then 
     		printf "\n[+] Copiando icones Flat_Remix_Light"
     		printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
 
@@ -583,7 +583,7 @@ func_help()
     		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
     	fi
 
-		if [ -e "$VAR_PAPIRUS" ]; then 
+		if [ -e "$var_papirus" ]; then 
 			printf "\n[+] Copiando icones Papirus_Light"
 			printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
 
@@ -593,7 +593,7 @@ func_help()
 	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
     	fi
 
-    	if [ -e "$VAR_ICONES_MACOS" ]; then 
+    	if [ -e "$var_icones_macos" ]; then 
     		printf "\n[+] Copiando icones MacOS X"
     		printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
 
@@ -678,7 +678,7 @@ func_help()
 
         # apt install firefox -y
 
-        # if [[ $DISTRO == "Debian" ]]; then
+        # if [[ $distro == "Debian" ]]; then
         #     # apt install -t sid firefox -y
         # fi
 
@@ -698,14 +698,14 @@ func_help()
 
     install_chromium()
     {
-    	# if [[ $DISTRO == "Ubuntu" ]]; then
+    	# if [[ $distro == "Ubuntu" ]]; then
 	    #     printf "\n"
 	    #     printf "\n[+] Instalando o Chromium"
 	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
 	    #     apt install chromium-browser -y
 
-     #    elif [[ $DISTRO == "Debian" ]]; then
+     #    elif [[ $distro == "Debian" ]]; then
      #    	printf "\n"
 	    #     printf "\n[+] Instalando o Chromium"
 	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
@@ -720,7 +720,7 @@ func_help()
         var_chromium=$(which chromium)        
         var_chromium1=$(which chromium-browser)
 
-        if [[ $DISTRO == "Debian" ]]; then 
+        if [[ $distro == "Debian" ]]; then 
 	        if [[ ! -e $var_chromium ]]; then
 	            printf "\n[+] Instalando o Chromium"
 	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
@@ -730,7 +730,7 @@ func_help()
 	            printf "\n[+] Chromium ja esta instalado"
 	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
 	        fi	
-        elif [[ $DISTRO == "Ubuntu" ]]; then 
+        elif [[ $distro == "Ubuntu" ]]; then 
 	        if [[ ! -e $var_chromium1 ]]; then
 	            printf "\n[+] Instalando o Chromium"
 	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
@@ -776,7 +776,7 @@ func_help()
         printf "\n[+] Instalando Steam" >> /tmp/log.txt
 
 		# instalando dependencias steam - DEBIAN 9
-		if [[ $DISTRO == "Debian" ]]; then 
+		if [[ $distro == "Debian" ]]; then 
 			# adicionando arquitetura/dependencia      	
 			dpkg --add-architecture i386		
 
@@ -801,7 +801,7 @@ func_help()
 
             snap install spotify
 
-			# if [[ $DISTRO == "Ubuntu" ]]; then            
+			# if [[ $distro == "Ubuntu" ]]; then            
 	  #           # #baixando pacote
 	  #           # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
 
@@ -816,7 +816,7 @@ func_help()
 
 	  #           snap install spotify
 	            
-			# elif [[ $DISTRO == "Debian" ]]; then
+			# elif [[ $distro == "Debian" ]]; then
    #      		# adicionando dependencia
    #      		apt install dirmngr -y
 
@@ -849,7 +849,7 @@ func_help()
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)"
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)" >> /tmp/log.txt
 
-        if [[ $DISTRO == "Ubuntu" ]]; then
+        if [[ $distro == "Ubuntu" ]]; then
             #instalando pacotes multimidias
             apt install ubuntu-restricted-extras -y
         fi
@@ -885,10 +885,10 @@ func_help()
             # printf "[+] Instalando o PhotoGimp \n"
 
 #             printf "[*] Removendo arquivo existente \n"
-#             rm -r $PASTA_HOME/.gimp-2.8
+#             rm -r $pasta_home/.gimp-2.8
 
             # printf "[*] Inserindo novo arquivo \n"
-            # cp -r base/.gimp-2.8/ $PASTA_HOME
+            # cp -r base/.gimp-2.8/ $pasta_home
 
             # printf "[+] Novo arquivo adicionado! \n"
         else
@@ -965,7 +965,7 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando o Wine" >> /tmp/log.txt
 
-            if [[ $DISTRO == "Ubuntu" ]]; then
+            if [[ $distro == "Ubuntu" ]]; then
                 # adicionado o repositorio
                 add-apt-repository ppa:ubuntu-wine/ppa -y
 
@@ -1000,7 +1000,7 @@ func_help()
         apt install redshift gtk-redshift -y
 
         # criando link
-        cat base/redshift.conf > $PASTA_HOME/.config/redshift.conf 
+        cat base/redshift.conf > $pasta_home/.config/redshift.conf 
     }
 
     install_libreoffice()
@@ -1016,7 +1016,7 @@ func_help()
             printf "\n[+] Instalando o Libreoffice"
             printf "\n[+] Instalando o Libreoffice" >> /tmp/log.txt
 
-            if [[ $DISTRO == "Ubuntu" ]]; then
+            if [[ $distro == "Ubuntu" ]]; then
                 #adicionando ppa
                 add-apt-repository ppa:libreoffice/ppa -y
 
@@ -1092,7 +1092,7 @@ func_help()
 
         if [[ ! -e $var_stellarium ]]; then
             # verificando distribuição
-            if [ $DISTRO == "Ubuntu" ]; then
+            if [ $distro == "Ubuntu" ]; then
                 printf "\n"
                 printf "\n[+] Instalando o Stellarium"
                 printf "\n[+] Instalando o Stellarium" >> /tmp/log.txt
@@ -1150,7 +1150,7 @@ func_help()
             printf "\n[+] Instalando o Tor" >> /tmp/log.txt
 
             # verificando distribuição
-            if [ $DISTRO == "Ubuntu" ]; then
+            if [ $distro == "Ubuntu" ]; then
                 # ubuntu 16.04
 	            #adicionando repositorio
 	            add-apt-repository ppa:webupd8team/tor-browser -y
@@ -1162,7 +1162,7 @@ func_help()
 	            apt-get install tor tor-browser -y
                 # apt install tor torbrowser-launcher -y
 
-            elif [ $DISTRO == "Debian" ]; then
+            elif [ $distro == "Debian" ]; then
                 # debian 9                
                 # adicionando repositorio
                 printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
@@ -1189,7 +1189,7 @@ func_help()
         printf "\n[+] Instalando o Dolphin"
         printf "\n[+] Instalando o Dolphin" >> /tmp/log.txt
 
-        if [[ $DISTRO == "Ubuntu" ]]; then
+        if [[ $distro == "Ubuntu" ]]; then
             #adicionando repositorio do dolphin
             add-apt-repository ppa:glennric/dolphin-emu -y
 
@@ -1232,7 +1232,7 @@ func_help()
             printf "\n[+] Instalando o Kdenlive"
             printf "\n[+] Instalando o Kdenlive" >> /tmp/log.txt
 
-            if [[ $DISTRO == "Ubuntu" ]]; then
+            if [[ $distro == "Ubuntu" ]]; then
                 #adicionando ppa
                 add-apt-repository ppa:sunab/kdenlive-release -y
 
@@ -1285,7 +1285,7 @@ func_help()
             printf "\n[+] Instalando o Plank Dock" >> /tmp/log.txt
 
             # verificando distribuição
-            if [ $DISTRO == "Ubuntu" ]; then
+            if [ $distro == "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
 
@@ -1323,7 +1323,7 @@ func_help()
             printf "\n[+] Instalando o Nautilus" >> /tmp/log.txt
 
             # verificando distribuição
-            if [ $DISTRO == "Ubuntu" ]; then
+            if [ $distro == "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:gnome3-team/gnome3 -y
 
@@ -1376,7 +1376,7 @@ func_help()
             printf "\n[*] Instalando o Simple Screen Recorder"
             printf "\n[*] Instalando o Simple Screen Recorder" >> /tmp/log.txt
 
-            if [[ $DISTRO == "Ubuntu" ]]; then
+            if [[ $distro == "Ubuntu" ]]; then
                 #adicionando fonte
                 add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
 
@@ -1474,7 +1474,7 @@ func_help()
         VAR_NVIDIA=$(which nvidia-settings)
 
         if [[ ! -e $VAR_NVIDIA ]]; then
-            if [ $DISTRO == "Ubuntu" ]; then
+            if [ $distro == "Ubuntu" ]; then
     		    printf "\n"
     		    printf "\n[+] Instalando o driver da Placa Nvidia"
     		    printf "\n[+] Instalando o driver da Placa Nvidia" >> /tmp/log.txt
@@ -1485,7 +1485,7 @@ func_help()
     		    update
 
     		    apt install nvidia-current nvidia-settings -y  
-            elif [[ $DISTRO == "Debian" ]]; then
+            elif [[ $distro == "Debian" ]]; then
                 # adicionando repositorio
         		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
@@ -1509,7 +1509,7 @@ func_help()
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $VAR_VIRTUALBOX ]]; then
-            # if [[ $DISTRO == "Ubuntu" ]]; then
+            # if [[ $distro == "Ubuntu" ]]; then
             #     printf "\n"
             #     printf "[*] Realizando download \n"
             #     wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
@@ -1523,7 +1523,7 @@ func_help()
 
             #     printf "[*] Removendo Virtualbox \n"
             #     rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-            # elif [[ $DISTRO == "Debian" ]]; then
+            # elif [[ $distro == "Debian" ]]; then
             #     # adicionando repositorio
             #     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
@@ -1537,7 +1537,7 @@ func_help()
             #     apt install virtualbox-5.1 -y
 
             #     # adicionando usuario ao grupo 
-            #     gpasswd -a $USUARIO vboxusers
+            #     gpasswd -a $usuario vboxusers
             # fi
 
             printf "\n"
@@ -1707,7 +1707,7 @@ func_help()
 
             apt install sudo -y
 
-            echo "$USUARIO   ALL=(ALL:ALL) ALL" >> /etc/sudoers
+            echo "$usuario   ALL=(ALL:ALL) ALL" >> /etc/sudoers
         else
             printf "\n"
             printf "\n[+] Sudo ja esta instalado"
@@ -1772,7 +1772,7 @@ func_help()
         chsh -s $(which zsh)
 
         printf "\n[*] Copiando arquivo padrao ZSH"
-        cat base/.zshrc > $PASTA_HOME/.zshrc
+        cat base/.zshrc > $pasta_home/.zshrc
         
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
@@ -1804,7 +1804,7 @@ func_help()
         printf "\n[+] Instalando o Sublime"
         printf "\n[+] Instalando o Sublime" >> /tmp/log.txt
 
-        if [ $DISTRO == "Ubuntu" ]; then
+        if [ $distro == "Ubuntu" ]; then
             wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
             apt install apt-transport-https -y 
             echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
@@ -1813,7 +1813,7 @@ func_help()
             
             apt install sublime-text -y
 
-        elif [ $DISTRO == "Debian" ]; then
+        elif [ $distro == "Debian" ]; then
             # apt-get install snapd snapd-xdg-open
             snap install sublime-text-3 --classic --candidate
             # snap refresh sublime-text-3
@@ -1827,7 +1827,7 @@ func_help()
         apt install firmware-linux firmware-linux-nonfree -y
 
         #verificando variavel
-        if [[ $V_HOSTNAME == 'notebook' ]]; then
+        if [[ $v_hostname == 'notebook' ]]; then
             printf "\n"
             printf "\n[+] Instalando firmware Wifi" >> /tmp/log.txt
 
@@ -1887,7 +1887,7 @@ func_help()
 func_atualiza()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Atualizando"
     else
         notify-send -u normal "Atualizando sistema" -t 10000
@@ -1902,7 +1902,7 @@ func_atualiza()
 func_corrige()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Corrigindo"
     else
         notify-send -u normal "Corrigindo sistema" -t 10000
@@ -1928,18 +1928,18 @@ func_corrige()
 
     icones_temas
 
-	if [[ $V_HOSTNAME == 'notebook' ]]; then               
-        if [ $DISTRO == "Ubuntu" ]; then        
+	if [[ $v_hostname == 'notebook' ]]; then               
+        if [ $distro == "Ubuntu" ]; then        
             apt_update_local
             apt_auto
-        elif [ $DISTRO == "Debian" ]; then              
+        elif [ $distro == "Debian" ]; then              
             printf ""   
         fi
-    elif [[ $V_HOSTNAME == 'desktop' ]]; then        
-        if [ $DISTRO == "Ubuntu" ]; then           
+    elif [[ $v_hostname == 'desktop' ]]; then        
+        if [ $distro == "Ubuntu" ]; then           
             apt_update_local
             apt_auto
-        elif [ $DISTRO == "Debian" ]; then      
+        elif [ $distro == "Debian" ]; then      
             printf ""   
         fi
     else
@@ -1953,7 +1953,7 @@ func_corrige()
 func_limpa()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Limpando"
     else
         notify-send -u normal "Limpando sistema" -t 10000
@@ -1969,7 +1969,7 @@ func_limpa()
 func_instala()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Instalando"
     else
         notify-send -u normal "Instalando programas no sistema" -t 10000
@@ -2034,17 +2034,17 @@ func_instala()
     install_gnome_system_monitor    
     install_gnome_calculator
 
-	if [[ $V_HOSTNAME == 'notebook' ]]; then		
+	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
         install_aircrack  	
 
-		if [ $DISTRO == "Ubuntu" ]; then		
+		if [ $distro == "Ubuntu" ]; then		
 	        install_visual_game_boy
 	        install_wine
-		elif [ $DISTRO == "Debian" ]; then				
+		elif [ $distro == "Debian" ]; then				
 	    	install_firmware  	
 		fi
-	elif [[ $V_HOSTNAME == 'desktop' ]]; then
+	elif [[ $v_hostname == 'desktop' ]]; then
         install_kstars
 		install_audacity
     	install_kdenlive
@@ -2053,9 +2053,9 @@ func_instala()
         install_playonlinux
         install_nvidia        
 
-		if [ $DISTRO == "Ubuntu" ]; then		
+		if [ $distro == "Ubuntu" ]; then		
             install_pulseeffects       	        
-		elif [ $DISTRO == "Debian" ]; then		
+		elif [ $distro == "Debian" ]; then		
 			printf ""	
 		fi
 	else
@@ -2066,7 +2066,7 @@ func_instala()
 func_instala_outros()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Instalando outros"
     else
         notify-send -u normal "Instalando outros programas no sistema" -t 10000
@@ -2082,7 +2082,7 @@ func_instala_outros()
     install_localepurge
 
     # verificando computador
-    if [[ $V_HOSTNAME == 'desktop' ]]; then
+    if [[ $v_hostname == 'desktop' ]]; then
         install_virtualbox
         install_steam
     fi
@@ -2091,7 +2091,7 @@ func_instala_outros()
 func_remove()
 {
     ## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Removendo programas"
     else
         notify-send -u normal "Removendo programas no sistema" -t 10000
@@ -2101,7 +2101,7 @@ func_remove()
     apt purge xfburn thunderbird parole inkscape* blender* \
     exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* -y
     
-    if [[ $V_HOSTNAME == 'notebook' ]]; then
+    if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
     	transmission* smartgit* gitg* -y
     else
@@ -2319,7 +2319,7 @@ func_vetor()
 version()
 {
 	## verificando valor variavel
-    if [ $VAR_MUDO == "0" ]; then
+    if [ $var_mudo == "0" ]; then
         espeak -vpt-br "Versao do script: $VERSAO"
     else
 		echo "Versao do script: $VERSAO"
@@ -2327,7 +2327,7 @@ version()
 }
 
 ##REALIZANDO VERIFICAÇÕES
-    ######VERIFICANDO USUARIO ROOT
+    ######VERIFICANDO usuario ROOT
     if [[ `id -u` -ne 0 ]]; then
         clear
         printf "############################################################################\n"
@@ -2517,11 +2517,11 @@ auto_config()
     read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
 
     #executando ações para a distribuição Ubuntu
-    if [ $DISTRO == "Ubuntu" ]; then
+    if [ $distro == "Ubuntu" ]; then
         clear
         auto_config_ubuntu
     #executando ações para a distribuição Fedora
-    elif [ $DISTRO == "Debian" ]; then
+    elif [ $distro == "Debian" ]; then
         clear
         auto_config_debian
     else
@@ -2595,7 +2595,7 @@ do
 
     # alterando valor - funcoes em silencio
     if [ $1 == "mudo" ]; then
-        VAR_MUDO=1
+        var_mudo=1
     fi
 done
 
@@ -2606,7 +2606,7 @@ date > /tmp/log.txt
 lsb_release -a >> /tmp/log.txt
 
 # mostrando mensangem usuario - ATE LOGO
-if [ $VAR_MUDO == "0" ]; then
+if [ $var_mudo == "0" ]; then
     espeak -vpt-br "Finalizado!!"
 else
     notify-send -u normal "Script finalizado" -t 10000
