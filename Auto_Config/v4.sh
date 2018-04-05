@@ -43,6 +43,9 @@
 # por kskarthik - How to enable auto-login in Debian 9 Xfce
 #	<https://steemit.com/software/@kskarthik/how-to-enable-auto-login-in-lightdm>
 #
+# por Edpsblog - How-To :: Wine Development no Debian e derivados
+#	<https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -199,13 +202,14 @@ func_help()
     printf "\n"
     printf "############################################################################
 
-    Bem vindo ao script de automação de tarefas no Linux ele poderá realizar
+    Bem vindo ao script de automação de tarefas no Linux. 
 
-        - Atualização do sistema,
-        - Correção de erros,
-        - Limpeza geral do sistema,
-        - Instalação de programas,
-        - Remoção de programas desnecessários,
+    Ele poderá realizar:
+        - Atualização do sistema;
+        - Correção de erros;
+        - Limpeza geral do sistema;
+        - Instalação de programas;
+        - Remoção de programas desnecessários;
 
     Exemplos:        
         - Funcoes do script:
@@ -224,7 +228,7 @@ func_help()
 
         - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outro ao iniciar o script.  
 
-    **      SCRIPT TESTADO NO UBUNTU 16.04 | DEBIAN 8 | DEBIAN 9    **
+    **      SCRIPT COMPATIVEL COM UBUNTU 16.04 | DEBIAN 9    **
 
 ############################################################################
 "
@@ -948,6 +952,18 @@ func_help()
                 update
 
                 apt install wine -y
+            elif [[ $distro == "Debian" ]]; then
+            	# adicionando sistema multi-arch
+            	dpkg --add-architecture i386
+		
+				# atualizando repositorios
+				update
+
+				# instalando wine
+            	apt install wine-development ttf-mscorefonts-installer -y
+            else
+            	printf "\n[-] Erro ao instalar Wine"
+            	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt
             fi
 
             # verificar funcao debian
@@ -2523,7 +2539,7 @@ menu()
 # tratando saidas
 # se script for chamado sem parametro ou
 # com apenas o parametro "mudo", sem outro
-if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] && [[ -e $2 ]]; then
+if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] || [[ -e $2 ]]; then
     func_help
 else
     printf ""
@@ -2537,18 +2553,6 @@ else
     ESCOLHA_VETOR=$2
     HELP_VETOR=$3
 fi  
-
-# echo $1
-# echo $2
-# echo $3
-# echo $4
-
-# # passando sessao para variavel
-# if [[ $1 -eq "mudo" ]]; then
-    
-# else
-    
-# fi  
 
 ## manipulando parametros - parametro acao/mudo(boolean)
 for i in "$@"; 
