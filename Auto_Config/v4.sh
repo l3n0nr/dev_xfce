@@ -80,15 +80,14 @@
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #               - II  - [VETOR]  - Verificar vetor funcoes
-#
-# 	f = desenvolver
-#		# DEBIAN
-#				- I   - [REMOVER]   - _imagemmagick
-#				- II  - [VERIFICAR] - Zsh - Notebook
-#               - III - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
+#				- III - [REMOVER]   - _imagemmagick
+#				- IV  - [VERIFICAR] - Zsh - Notebook
+#               - V   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 #						- Verificar repo sid - wifi
+# 	f = desenvolver
+#				
 # versao do script
-	VERSAO="2.0.500.0.2.3"
+	VERSAO="2.0.500.0.5.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
