@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [04/04/18]      #
+# # ultima ediçao realizada:      [05/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -77,12 +77,11 @@
 #
 # 	f = desenvolver
 #		# DEBIAN
-#				- I    - [LOGIN]     - Habilitar login automatico usuario 
-#				- II   - [REMOVER]   - _imagemmagick
-#				- III  - [VERIFICAR] - Zsh - Notebook
-#               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
+#				- I   - [REMOVER]   - _imagemmagick
+#				- II  - [VERIFICAR] - Zsh - Notebook
+#               - III - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.495.0.2.4"
+	VERSAO="2.0.500.0.2.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -111,8 +110,8 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    pasta_home="/home/lenonr/"          # script em determinados momento não identifica 
-                                        # corretamente o pasta home, diretamente com a instrução $HOME
+    pasta_home="/home/lenonr/"          # pasta home usuario sistema 
+
 # verificando distro
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
 
@@ -123,13 +122,10 @@
     var_mudo=0                          # valor padrao = mudo desativado
 
 # usuario virtualbox
-    usuario="lenonr"                    # personalizavel
+    usuario="lenonr"                    # nome usuario sistema
 
-# personalizacao
-    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
-	var_breeze="/usr/share/icons/Breeze"
-	var_flatremix="/usr/share/icons/Flat_Remix_Light"
-	var_papirus="/usr/share/icons/Papirus_Light"
+# login automatico distros
+	boolean_autologin=1					# login automatico, caso queria desativar basta alterar para 0
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -326,10 +322,10 @@ func_help()
         printf "\n[+] Configurando a Swap"
         printf "\n[+] Configurando a Swap" >> /tmp/log.txt
 
-        memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
-        memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
-        background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
-        ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
+        local memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
+        local memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
+        local background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
+        local ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
         printf "\n [+] Diminuindo a Prioridade de uso da memória SWAP"
 
         if [[ $memoswap == "vm.swappiness=10" ]]; then
@@ -522,9 +518,9 @@ func_help()
     atualiza_db()
     {
     	# variavel de verificação
-        VAR_LOCATE=$(which locate)
+        local var_locate=$(which locate)
 
-        if [[ ! -e $VAR_LOCATE ]]; then
+        if [[ ! -e $var_locate ]]; then
             printf "\n"
             printf "[+] Instalando Locate"
             printf "[+] Instalando Locate" >> /tmp/log.txt
@@ -539,30 +535,62 @@ func_help()
     }
 
     autologin()
-    {
-        # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
-        VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")
+    {    	
+    	if [[ $boolean_autologin == "1" ]]; then
+    		local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
 
-        if [[ $distro == "Debian" ]]; then             
-            if [ -e "$VAR_AUTOLOGIN" ]; then  
-                printf "\n[+] Habilitando login automatico" 
-                printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
+	        # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
+	        # var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")        
+	        # cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario" > /dev/null        
 
-                echo "autologin-user=$usuario" >> /etc/lightdm/lightdm.conf
-            fi
-        elif [[ $distro == "Ubuntu" ]]; then 
-            printf "\n[+] Iniciando sessão automaticamente"
-            printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
+	        cat $var_autologin | grep "autologin-user=$usuario" > /dev/null
 
-            cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
-        else
-            printf "\n[+] Login ja esta habilitado"
-            printf "\n[+] Login ja esta habilitado" >> /tmp/log.txt
-        fi
+	        # se saida do echo $? for 1, entao realiza modificacao
+	        # if [[ $var_autologin == "1" ]]; then
+	        if [[ $? == "1" ]]; then	
+	        	if [[ $distro == "Debian" ]]; then             
+	                printf "\n[+] Habilitando login automatico" 
+	                printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
+
+	                echo "autologin-user=$usuario" >> $var_autologin
+	                echo "autologin-user-timeout=0" >> $var_autologin
+
+	                printf "\n[*] Reconfigurando lightdm, aguarde!" 
+	                dpkg-reconfigure lightdm 
+
+	                if [[ $? == "0" ]]; then
+	                	printf "\n[+] Configuraçao atualizada com sucesso"
+	                else
+	                	printf "\n[-] Erro na configuracao - Autologin"
+	                fi
+
+		        elif [[ $distro == "Ubuntu" ]]; then 
+		            printf "\n[+] Iniciando sessão automaticamente"
+		            printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
+
+		            cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
+		        else
+		        	printf "\n[-] Erro autologin"
+		        	printf "\n[-] Erro autologin" >> /tmp/log.txt
+		        fi  
+	        else
+				printf "[-] Login ja esta habilitado"
+	            printf "[-] Login ja esta habilitado" >> /tmp/log.txt
+	        fi
+    	else
+    		printf "\n[-] O login automatico esta desabilitado! Verificar script."
+    		printf "\n[-] O login automatico esta desabilitado! Verificar script. " >> /tmp/log.txt
+    	fi    	
     }
 
     icones_temas()
     {    	
+		# personalizacao
+	    local var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+		local var_breeze="/usr/share/icons/Breeze"
+		local var_flatremix="/usr/share/icons/Flat_Remix_Light"
+		local var_papirus="/usr/share/icons/Papirus_Light"
+
 		if [ -e "$var_breeze" ]; then 
 			printf "\n[+] Copiando icones Breeze"
 			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
@@ -697,28 +725,9 @@ func_help()
     }
 
     install_chromium()
-    {
-    	# if [[ $distro == "Ubuntu" ]]; then
-	    #     printf "\n"
-	    #     printf "\n[+] Instalando o Chromium"
-	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-
-	    #     apt install chromium-browser -y
-
-     #    elif [[ $distro == "Debian" ]]; then
-     #    	printf "\n"
-	    #     printf "\n[+] Instalando o Chromium"
-	    #     printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-
-     #    	apt install chromium chromium-l10n -y
-
-    	# else
-    	# 	printf "\n[-] ERRO CHROMIUM!"
-    	# 	printf "\n[-] ERRO CHROMIUM!" >> /tmp/log.txt
-    	# fi
-        
-        var_chromium=$(which chromium)        
-        var_chromium1=$(which chromium-browser)
+    {      
+        local var_chromium=$(which chromium)        
+        local var_chromium1=$(which chromium-browser)
 
         if [[ $distro == "Debian" ]]; then 
 	        if [[ ! -e $var_chromium ]]; then
@@ -748,7 +757,7 @@ func_help()
 
     install_vivaldi()
     {
-    	var_vivaldi=$(which vivaldi)        
+    	local var_vivaldi=$(which vivaldi)        
 
         if [[ ! -e $var_vivaldi ]]; then
             printf "\n"
@@ -793,51 +802,13 @@ func_help()
     install_spotify()
     {
         # variavel de verificação
-        var_spotify=$(which spotify)
+        local var_spotify=$(which spotify)
 
         if [[ ! -e $var_spotify ]]; then
             printf "\n"
             printf "\n[+] Instalando Spotify" >> /tmp/log.txt
 
-            snap install spotify
-
-			# if [[ $distro == "Ubuntu" ]]; then            
-	  #           # #baixando pacote
-	  #           # sh -c "printf 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
-
-	  #           # #baixando chave
-	  #           # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D2C19886
-
-	  #           # #chamando função update
-	  #           # update
-
-	  #           # #instalando o spotify
-	  #           # apt install spotify-client -y --allow-unauthenticated
-
-	  #           snap install spotify
-	            
-			# elif [[ $distro == "Debian" ]]; then
-   #      		# adicionando dependencia
-   #      		apt install dirmngr -y
-
-   #      		# adicionando chave
-   #      		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410
-
-   #      		# adicionando repositorio
-   #      		echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
-
-   #      		# atualizando a lista de repositorios
-   #      		update
-
-   #      		# baixando lib
-   #      		wget ftp.us.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb 
-
-   #      		# instalando lib
-			# 	dpkg -i libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb -y
-
-			# 	# instalando spotify
-			# 	apt install spotify-client -y          		
-   #      	fi
+            snap install spotify		
         else
             printf "[+] Spofity já está instalado! \n"
         fi
@@ -873,7 +844,7 @@ func_help()
     install_funcao_gimp()
     {
      	# variavel de verificação
-        var_gimp=$(which gimp)
+        local var_gimp=$(which gimp)
 
         if [[ ! -e $var_gimp ]]; then
             printf "\n"
@@ -911,7 +882,7 @@ func_help()
 
         ## xfpanel-switch
         # variavel de verificação
-        var_xfpanel=$(which xfpanel-switch)
+        local var_xfpanel=$(which xfpanel-switch)
 
         if [[ ! -e $var_xfpanel ]]; then
             printf "\n"
@@ -934,7 +905,7 @@ func_help()
 
         ## whisker-menu
         ## variavel de verificacao
-        var_whiskermenu=$(which xfce4-popup-whiskermenu)
+        local var_whiskermenu=$(which xfce4-popup-whiskermenu)
 
         if [[ ! -e $var_whiskermenu ]]; then
             printf "\n"
@@ -959,7 +930,7 @@ func_help()
     install_wine()
     {
     	# variavel de verificação
-        var_wine=$(which wine)
+        local var_wine=$(which wine)
 
         if [[ ! -e $var_wine ]]; then
             printf "\n"
@@ -1088,7 +1059,7 @@ func_help()
     install_stellarium()
     {
         # variavel de verificação
-        var_stellarium=$(which stellarium)
+        local var_stellarium=$(which stellarium)
 
         if [[ ! -e $var_stellarium ]]; then
             # verificando distribuição
@@ -1142,7 +1113,7 @@ func_help()
     install_tor()
     {
         # variavel de verificação
-        var_tor=$(which tor)
+        local var_tor=$(which tor)
 
         if [[ ! -e $var_tor ]]; then
             printf "\n"
@@ -1225,7 +1196,7 @@ func_help()
     install_kdenlive()
     {
         # variavel de verificação
-        var_kdenlive=$(which kdenlive)
+        local var_kdenlive=$(which kdenlive)
 
         if [[ ! -e $var_kdenlive ]]; then
             printf "\n"
@@ -1277,7 +1248,7 @@ func_help()
     install_plank()
     {
         # variavel de verificação
-        var_plank=$(which plank)
+        local var_plank=$(which plank)
 
         if [[ ! -e $var_plank ]]; then
             printf "\n"
@@ -1315,7 +1286,7 @@ func_help()
     install_nautilus()
     {
         # variavel de verificação
-        var_nautilus=$(which nautilus)
+        local var_nautilus=$(which nautilus)
 
         if [[ ! -e $var_nautilus ]]; then
             printf "\n"
@@ -1369,7 +1340,7 @@ func_help()
     install_simple_screen_recorder()
     {
         # variavel de verificação
-        var_simplescreenrecorder=$(which simplescreenrecorder)
+        local var_simplescreenrecorder=$(which simplescreenrecorder)
 
         if [[ ! -e $var_simplescreenrecorder ]]; then
             printf "\n"
@@ -1395,7 +1366,7 @@ func_help()
     install_mega()
     {       
         # variavel de verificação
-        var_mega=$(which megasync)
+        local var_mega=$(which megasync)
 
         if [[ ! -e $var_mega ]]; then        
             printf "\n"
@@ -1471,9 +1442,9 @@ func_help()
     install_nvidia()
     {
         # variavel de verificação
-        VAR_NVIDIA=$(which nvidia-settings)
+        local var_nvidia=$(which nvidia-settings)
 
-        if [[ ! -e $VAR_NVIDIA ]]; then
+        if [[ ! -e $var_nvidia ]]; then
             if [ $distro == "Ubuntu" ]; then
     		    printf "\n"
     		    printf "\n[+] Instalando o driver da Placa Nvidia"
@@ -1505,10 +1476,10 @@ func_help()
     install_virtualbox()
     {
         # variavel de verificação
-        VAR_VIRTUALBOX=$(which virtualbox)
+        local var_virtualbox=$(which virtualbox)
 
         # criando verificação para instalar o virtualbox
-        if [[ ! -e $VAR_VIRTUALBOX ]]; then
+        if [[ ! -e $var_virtualbox ]]; then
             # if [[ $distro == "Ubuntu" ]]; then
             #     printf "\n"
             #     printf "[*] Realizando download \n"
@@ -1570,10 +1541,9 @@ func_help()
     install_pulseeffects()
     {
         # variavel de verificação
-        VAR_PULSEEFFECTS=$(which pulseeffects)
+        local var_pulseeeffects=$(which pulseeffects)
 
-        if [[ ! -e $VAR_PULSEEFFECTS ]]; then
-
+        if [[ ! -e $var_pulseeeffects ]]; then
             printf " \n"
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
@@ -1698,10 +1668,10 @@ func_help()
     install_sudo()
     {
         # variavel de verificação
-        VAR_SUDO=$(which /usr/bin/sudo)
+        local var_sudo=$(which /usr/bin/sudo)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $VAR_SUDO ]]; then
+        if [[ ! -e $var_sudo ]]; then
             printf "\n"
             printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
 
@@ -1727,10 +1697,10 @@ func_help()
     install_tuxguitar()
     {
         # variavel de verificação
-        VAR_TUXGUITAR=$(which tuxguitar-vs)
+        local var_tuxguitar=$(which tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $VAR_TUXGUITAR ]]; then
+        if [[ ! -e $var_tuxguitar ]]; then
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
@@ -1744,10 +1714,10 @@ func_help()
     install_muse_score()
     {
         # variavel de verificação
-        VAR_MUSESCORE=$(which musescore)
+        local var_musescore=$(which musescore)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $VAR_MUSESCORE ]]; then
+        if [[ ! -e $var_musescore ]]; then
             printf "\n"
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
@@ -1781,14 +1751,17 @@ func_help()
     install_docker()
     {
         # variavel de verificação
-        VAR_DOCKER=$(which docker)
+        local var_docker=$(which docker)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $VAR_DOCKER ]]; then
+        if [[ ! -e $var_docker ]]; then
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
-            curl -fsSL https://get.docker.com/ | sh
+            # uso do processador de forma desnecessaria
+            # curl -fsSL https://get.docker.com/ | sh
+
+            apt install docker-io -y
         else
             printf "\n"
             printf "\n[+] O Docker já está instalado no seu sistema."
