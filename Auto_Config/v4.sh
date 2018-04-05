@@ -40,6 +40,9 @@
 # por Sandro de Castro - Guia de pós-instalação do Debian 9 Stretch
 #	<https://www.blogopcaolinux.com.br/2017/06/Guia-de-pos-instalacao-do-Debian-9-Stretch.html>
 #
+# por kskarthik - How to enable auto-login in Debian 9 Xfce
+#	<https://steemit.com/software/@kskarthik/how-to-enable-auto-login-in-lightdm>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -80,6 +83,7 @@
 #				- I   - [REMOVER]   - _imagemmagick
 #				- II  - [VERIFICAR] - Zsh - Notebook
 #               - III - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
+#						- Verificar repo sid - wifi
 # versao do script
 	VERSAO="2.0.500.0.2.3"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -100,7 +104,7 @@
 #
 # # Compativel com
 #   - Xubuntu 16.04 - LTS -	[SCRIPT ESTAVEL]
-#   - Debian 9			  -	[SCRIPT EM OTIMIZAÇÃO]
+#   - Debian 9			  -	[SCRIPT ESTAVEL]
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -110,7 +114,10 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
-    pasta_home="/home/lenonr/"          # pasta home usuario sistema 
+# usuario sistema
+    usuario="lenonr"                    # nome usuario sistema
+
+    pasta_home="/home/$usuario/"        # pasta home usuario do sistema 
 
 # verificando distro
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -120,9 +127,6 @@
 
 # espeak habilitado
     var_mudo=0                          # valor padrao = mudo desativado
-
-# usuario virtualbox
-    usuario="lenonr"                    # nome usuario sistema
 
 # login automatico distros
 	boolean_autologin=1					# login automatico, caso queria desativar basta alterar para 0
