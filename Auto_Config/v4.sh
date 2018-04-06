@@ -59,7 +59,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [04/04/18]      #
+# # ultima ediçao realizada:      [06/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -522,9 +522,9 @@ func_help()
     atualiza_db()
     {
     	# variavel de verificação
-        VAR_LOCATE=$(which locate)
+        var_locate=$(which locate)
 
-        if [[ ! -e $VAR_LOCATE ]]; then
+        if [[ ! -e $var_locate ]]; then
             printf "\n"
             printf "[+] Instalando Locate"
             printf "[+] Instalando Locate" >> /tmp/log.txt
