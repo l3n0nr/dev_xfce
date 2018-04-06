@@ -82,7 +82,7 @@
 #				- III  - [VERIFICAR] - Zsh - Notebook
 #               - IV   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
 # versao do script
-	VERSAO="2.0.495.0.2.4"
+	VERSAO="2.0.500.0.2.4"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -541,10 +541,10 @@ func_help()
     autologin()
     {
         # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
-        VAR_AUTOLOGIN=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")
+        var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")
 
         if [[ $distro == "Debian" ]]; then             
-            if [ -e "$VAR_AUTOLOGIN" ]; then  
+            if [ -e "$var_autologin" ]; then  
                 printf "\n[+] Habilitando login automatico" 
                 printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
@@ -1471,9 +1471,9 @@ func_help()
     install_nvidia()
     {
         # variavel de verificação
-        VAR_NVIDIA=$(which nvidia-settings)
+        var_nvidia=$(which nvidia-settings)
 
-        if [[ ! -e $VAR_NVIDIA ]]; then
+        if [[ ! -e $var_nvidia ]]; then
             if [ $distro == "Ubuntu" ]; then
     		    printf "\n"
     		    printf "\n[+] Instalando o driver da Placa Nvidia"
@@ -1505,10 +1505,10 @@ func_help()
     install_virtualbox()
     {
         # variavel de verificação
-        VAR_VIRTUALBOX=$(which virtualbox)
+        var_virtualbox=$(which virtualbox)
 
         # criando verificação para instalar o virtualbox
-        if [[ ! -e $VAR_VIRTUALBOX ]]; then
+        if [[ ! -e $var_virtualbox ]]; then
             # if [[ $distro == "Ubuntu" ]]; then
             #     printf "\n"
             #     printf "[*] Realizando download \n"
@@ -1570,9 +1570,9 @@ func_help()
     install_pulseeffects()
     {
         # variavel de verificação
-        VAR_PULSEEFFECTS=$(which pulseeffects)
+        var_pulseeffects=$(which pulseeffects)
 
-        if [[ ! -e $VAR_PULSEEFFECTS ]]; then
+        if [[ ! -e $var_pulseeffects ]]; then
 
             printf " \n"
             printf "\n[+] Instalando o Pulse Effects"
@@ -1698,10 +1698,10 @@ func_help()
     install_sudo()
     {
         # variavel de verificação
-        VAR_SUDO=$(which /usr/bin/sudo)
+        var_sudo=$(which /usr/bin/sudo)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $VAR_SUDO ]]; then
+        if [[ ! -e $var_sudo ]]; then
             printf "\n"
             printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
 
@@ -1727,10 +1727,10 @@ func_help()
     install_tuxguitar()
     {
         # variavel de verificação
-        VAR_TUXGUITAR=$(which tuxguitar-vs)
+        var_tuxguitar=$(which tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $VAR_TUXGUITAR ]]; then
+        if [[ ! -e $var_tuxguitar ]]; then
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
@@ -1744,10 +1744,10 @@ func_help()
     install_muse_score()
     {
         # variavel de verificação
-        VAR_MUSESCORE=$(which musescore)
+        var_musescore=$(which musescore)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $VAR_MUSESCORE ]]; then
+        if [[ ! -e $var_musescore ]]; then
             printf "\n"
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
@@ -1781,10 +1781,10 @@ func_help()
     install_docker()
     {
         # variavel de verificação
-        VAR_DOCKER=$(which docker)
+        var_docker=$(which docker)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $VAR_DOCKER ]]; then
+        if [[ ! -e $var_docker ]]; then
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
