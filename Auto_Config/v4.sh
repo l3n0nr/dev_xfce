@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [06/04/18]      #
+# # ultima ediçao realizada:      [08/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -246,7 +246,7 @@ func_help()
     upgrade()
     {
         # verificando distribuição
-        if [ $ == "Ubuntu" ]; then            
+        if [ $distro == "Ubuntu" ]; then            
         	#atualizando lista de programas do sistema
         	printf "\n[+] Atualizando lista de programas do sistema \n"
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> /tmp/log.txt
