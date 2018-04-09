@@ -190,6 +190,31 @@ LOCAL_HOME='/home/lenonr'
 LOCAL_WRT='10.0.0.87'
 LOCAL_HDD='/media/lenonr/BACKUP/Arquivos/Filmes'
 
+## Alias diversos
+# alias para verificar os log's do servidor dev_web
+alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
+
+# alias para reiniciar swap
+alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap/reinicia_swap.sh'
+
+# criando apelido para realizar backup do bashrc
+alias backup_zsh='clear; cd $LOCAL_HOME; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
+
+# testando configuracao do teclado
+setxkbmap -model abnt2 -layout br -variant abnt2
+
+# calculando tempo lançamento foguetes
+alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/calc_lancamento.sh'
+
+# autocompletar 
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# reiniciando o dropbox
+alias reboot_dropbox="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/dropbox/dropbox.sh"
+
 # Trabalhando com funcoes de diretorios
 dev_xfce() 
 {	
@@ -499,25 +524,3 @@ status_git()
 	  	cd $LOCAL_HOME
 	fi	
 }
-
-## Alias diversos
-# alias para verificar os log's do servidor dev_web
-alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
-
-# alias para reiniciar swap
-alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap/reinicia_swap.sh'
-
-# criando apelido para realizar backup do bashrc
-alias backup_zsh='clear; cd $LOCAL_HOME; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
-
-# testando configuracao do teclado
-setxkbmap -model abnt2 -layout br -variant abnt2
-
-# calculando tempo lançamento foguetes
-alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/calc_lancamento.sh'
-
-# autocompletar 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
