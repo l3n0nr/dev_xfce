@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/04/18]      #
+# # ultima ediçao realizada:      [09/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -87,7 +87,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.501.0.5.0"
+	VERSAO="2.0.502.0.5.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2571,6 +2571,7 @@ do
         texmaker) texmaker;;
 		-v|-version) version;;
         vetor) func_vetor;;
+        *) echo "Parametro desconhecido"
     esac    
 
     # alterando valor - funcoes em silencio
@@ -2583,7 +2584,7 @@ done
 date > /tmp/log.txt
 
 # mostrando informacoes da distro
-lsb_release -a >> /tmp/log.txt
+# lsb_release -a >> /tmp/log.txt
 
 # mostrando mensangem usuario - ATE LOGO
 if [ $var_mudo == "0" ]; then
@@ -2593,7 +2594,7 @@ else
 fi
 
 # mostrando data/hora log finalização script
-echo >> /tmp/log.txt
+# echo >> /tmp/log.txt
 date >> /tmp/log.txt
 
 #
