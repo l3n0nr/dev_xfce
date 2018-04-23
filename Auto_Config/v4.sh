@@ -726,7 +726,8 @@ func_help()
 	            printf "\n[+] Instalando o Chromium"
 	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-	            snap install chromium
+	            apt install chromium* -y
+	            # snap install chromium
 	        else
 	            printf "\n[+] Chromium ja esta instalado"
 	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
