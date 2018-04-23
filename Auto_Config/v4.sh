@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.505.0.4.0"
+	VERSAO="2.0.510.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -159,7 +159,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_stellarium install_texmaker install_kstars \
         install_reaver install_tor install_dolphin \
         install_visual_game_boy install_screenfetch \
-        install_kdenlive install_sweethome3d install_kate \
+        install_kdenlive install_sweethome3d \
         install_cheese install_plank install_gnome_system_monitor \
         install_nautilus install_wireshark install_gnome_disk_utility \
         install_audacity install_simple_screen_recorder \
@@ -704,19 +704,47 @@ func_help()
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
     install_firefox()
-    {    
+    {   
+        printf "\n"
         printf "\n[+] Instalando Firefox"
         printf "\n[+] Instalando Firefox" >> /tmp/log.txt
-        
-        snap install firefox       
+
+		if [[ $distro == "Ubuntu" ]]; then
+        	apt install firefox -y
+        elif [[ $distro == "Debian" ]]; then
+            apt install -t sid firefox -y
+        fi            
     }
 
     install_chromium()
     {              
-        printf "\n[+] Instalando o Chromium"
-        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+        local var_chromium=$(which chromium)        
+        local var_chromium1=$(which chromium-browser)
 
-        snap install chromium	        
+        if [[ $distro == "Debian" ]]; then 
+	        if [[ ! -e $var_chromium ]]; then
+	            printf "\n[+] Instalando o Chromium"
+	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
+	            snap install chromium
+	        else
+	            printf "\n[+] Chromium ja esta instalado"
+	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+	        fi	
+        elif [[ $distro == "Ubuntu" ]]; then 
+	        if [[ ! -e $var_chromium1 ]]; then
+	            printf "\n[+] Instalando o Chromium"
+	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
+	            snap install chromium
+	        else
+	            printf "\n[+] Chromium ja esta instalado"
+	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+	        fi	
+	    else
+	    	printf "\n[-] Erro instalação Chromium"
+	    	printf "\n[-] Erro instalação Chromium" >> /tmp/log.txt
+fi 	        
     }
 
     install_vivaldi()
@@ -740,6 +768,50 @@ func_help()
 		else
 			printf "\n[+] Vivaldi ja esta instalado" >> /tmp/log.txt			  	
 		fi
+    }
+
+    install_tor()
+    {
+        # variavel de verificação
+        local var_tor=$(which tor)
+
+        if [[ ! -e $var_tor ]]; then
+            printf "\n"
+            printf "\n[+] Instalando o Tor"
+            printf "\n[+] Instalando o Tor" >> /tmp/log.txt
+
+            # verificando distribuição
+            if [ $distro == "Ubuntu" ]; then
+                # ubuntu 16.04
+	            #adicionando repositorio
+	            add-apt-repository ppa:webupd8team/tor-browser -y
+
+	            #atualizando lista de pacotes
+	            update
+
+	            #instalando tor
+	            apt-get install tor tor-browser -y
+                # apt install tor torbrowser-launcher -y
+
+            elif [ $distro == "Debian" ]; then
+                # debian 9                
+                # adicionando repositorio
+                printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
+
+                # atualizando sistema
+                update
+
+                # instalando tor
+                apt install tor torbrowser-launcher -t stretch-backports
+            else
+            	printf "\n[-] ERRO TOR"
+            	printf "\n[-] ERRO TOR" >> /tmp/log.txt
+            fi
+
+        else
+            printf "\n"
+            printf "[+] Tor já está instalado! \n" 
+        fi           
     }
 
     install_steam()
@@ -814,18 +886,8 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando o Gimp"
             printf "\n[+] Instalando o Gimp" >> /tmp/log.txt
+
             apt install gimp -y
-
-            # printf "\n"
-            # printf "[+] Instalando o PhotoGimp \n"
-
-#             printf "[*] Removendo arquivo existente \n"
-#             rm -r $pasta_home/.gimp-2.8
-
-            # printf "[*] Inserindo novo arquivo \n"
-            # cp -r base/.gimp-2.8/ $pasta_home
-
-            # printf "[+] Novo arquivo adicionado! \n"
         else
             printf "\n"
             printf "[+] Gimp já está instalado na sua máquina! \n"
@@ -1084,51 +1146,7 @@ func_help()
         printf "\n[+] Instalando o Reaver" >> /tmp/log.txt
 
         apt install reaver -y
-    }
-
-    install_tor()
-    {
-        # variavel de verificação
-        local var_tor=$(which tor)
-
-        if [[ ! -e $var_tor ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o Tor"
-            printf "\n[+] Instalando o Tor" >> /tmp/log.txt
-
-            # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
-                # ubuntu 16.04
-	            #adicionando repositorio
-	            add-apt-repository ppa:webupd8team/tor-browser -y
-
-	            #atualizando lista de pacotes
-	            update
-
-	            #instalando tor
-	            apt-get install tor tor-browser -y
-                # apt install tor torbrowser-launcher -y
-
-            elif [ $distro == "Debian" ]; then
-                # debian 9                
-                # adicionando repositorio
-                printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
-
-                # atualizando sistema
-                update
-
-                # instalando tor
-                apt install tor torbrowser-launcher -t stretch-backports
-            else
-            	printf "\n[-] ERRO TOR"
-            	printf "\n[-] ERRO TOR" >> /tmp/log.txt
-            fi
-
-        else
-            printf "\n"
-            printf "[+] Tor já está instalado! \n" 
-        fi           
-    }
+    }  
 
     install_dolphin()
     {
@@ -1201,15 +1219,6 @@ func_help()
         printf "\n[+] Instalando Sweet Home 3D" >> /tmp/log.txt
 
         apt install sweethome3d -y
-    }
-
-    install_kate()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Kate"
-        printf "\n[+] Instalando o Kate" >> /tmp/log.txt
-
-        apt install kate -y
     }
 
     install_cheese()
@@ -1763,9 +1772,7 @@ func_help()
             apt install sublime-text -y
 
         elif [ $distro == "Debian" ]; then
-            # apt-get install snapd snapd-xdg-open
-            snap install sublime-text-3 --classic --candidate
-            # snap refresh sublime-text-3
+            snap install sublime-text --classic
         fi
     }
 
@@ -1940,7 +1947,6 @@ func_instala()
 	install_tuxguitar 
 	install_muse_score                
 
-	install_kate
 	install_git
 	install_python    
 	install_sublime
