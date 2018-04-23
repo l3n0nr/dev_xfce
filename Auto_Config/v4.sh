@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [09/04/18]      #
+# # ultima ediçao realizada:      [23/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,12 +82,10 @@
 #               - II  - [VETOR]  - Verificar vetor funcoes
 #				- III - [REMOVER]   - _imagemmagick
 #				- IV  - [VERIFICAR] - Zsh - Notebook
-#               - V   - [WIFI] -    - Wifi cai ao tentar conectar em um rede wifi oculta
-#						- Verificar repo sid - wifi
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.502.0.5.0"
+	VERSAO="2.0.505.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -706,60 +704,19 @@ func_help()
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
     install_firefox()
-    {
-        # printf "\n"
-        # printf "\n[+] Instalando Firefox"
-        # printf "\n[+] Instalando Firefox" >> /tmp/log.txt
-
-        # apt install firefox -y
-
-        # if [[ $distro == "Debian" ]]; then
-        #     # apt install -t sid firefox -y
-        # fi
-
-        var_firefox=$(which firefox)        
-
-        if [[ ! -e $var_firefox ]]; then        
-            printf "\n[+] Instalando Firefox"
-            printf "\n[+] Instalando Firefox" >> /tmp/log.txt
-            
-            snap install firefox
-        else
-            printf "\n[+] Firefox ja esta instalado"
-            printf "\n[+] Firefox ja esta instalado" >> /tmp/log.txt                
-        fi
-
+    {    
+        printf "\n[+] Instalando Firefox"
+        printf "\n[+] Instalando Firefox" >> /tmp/log.txt
+        
+        snap install firefox       
     }
 
     install_chromium()
-    {      
-        local var_chromium=$(which chromium)        
-        local var_chromium1=$(which chromium-browser)
+    {              
+        printf "\n[+] Instalando o Chromium"
+        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-        if [[ $distro == "Debian" ]]; then 
-	        if [[ ! -e $var_chromium ]]; then
-	            printf "\n[+] Instalando o Chromium"
-	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-
-	            snap install chromium
-	        else
-	            printf "\n[+] Chromium ja esta instalado"
-	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
-	        fi	
-        elif [[ $distro == "Ubuntu" ]]; then 
-	        if [[ ! -e $var_chromium1 ]]; then
-	            printf "\n[+] Instalando o Chromium"
-	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-
-	            snap install chromium
-	        else
-	            printf "\n[+] Chromium ja esta instalado"
-	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
-	        fi	
-	    else
-	    	printf "\n[-] Erro instalação Chromium"
-	    	printf "\n[-] Erro instalação Chromium" >> /tmp/log.txt
-        fi      
+        snap install chromium	        
     }
 
     install_vivaldi()
