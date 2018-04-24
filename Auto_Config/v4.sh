@@ -1735,7 +1735,7 @@ fi
 
         printf "\n[*] Modificando bash padrao para zsh"
         # chsh -s /usr/bin/zsh
-        chsh -s $(which zsh)
+        chsh -s $(which zsh) $usuario
 
         printf "\n[*] Copiando arquivo padrao ZSH"
         cat base/.zshrc > $pasta_home/.zshrc
