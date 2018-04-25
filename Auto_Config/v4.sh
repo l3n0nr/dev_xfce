@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.515.0.4.0"
+	VERSAO="2.0.520.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -327,10 +327,10 @@ func_help()
         printf "\n[+] Configurando a Swap"
         printf "\n[+] Configurando a Swap" >> /tmp/log.txt
 
-        local memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
-        local memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
-        local background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
-        local ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
+        memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
+        memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
+        background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
+        ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
         printf "\n [+] Diminuindo a Prioridade de uso da memória SWAP"
 
         if [[ $memoswap == "vm.swappiness=10" ]]; then
@@ -639,32 +639,6 @@ func_help()
 
 # # # # # # # # # #
 # # LIMPA SISTEMA
-    kernel()
-    {
-        printf "\n[+] Removendo os kernel's temporários do sistema" >> /tmp/log.txt
-
-        #removendo kernel's antigos
-        # dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge
-
-        ### REMOVENDO KERNEL ESPECIFICO - VERIFICAR
-  #       # listando kernel's
-		# dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' > /tmp/kernels.txt
-
-		# # contando linhas
-		# wc /tmp/kernels.txt > /tmp/quantidade.txt  	
-
-		# # capturando valor total
-  #       valor=$(cut -c3 /tmp/quantidade.txt)
-
-  #       # pegando penultimo valor
-  #       valor=$(($valor-1))
-
-  #       # listando kernel especifico - mais velho
-  #       cat -n /tmp/kernels.txt | grep -n ^ | grep ^$valor: | cut -d: -f2 > /tmp/kernel.txt
-
-  #       cut -d' ' -f2 /tmp/kernel.txt
-    }
-
     arquivos_temporarios()
     {
         printf "\n"
@@ -926,10 +900,6 @@ fi
             printf "\n[+] Instalando Xfpanel-switch"
             printf "\n[+] Instalando Xfpanel-switch" >> /tmp/log.txt
 
-            # wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
-
-            # dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
-
             dpkg -i base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
             # corrigindo problemas de dependencias
@@ -948,10 +918,6 @@ fi
             printf "\n"
             printf "\n[+] Instalando Whisker-menu"
             printf "\n[+] Instalando Whisker-menu" >> /tmp/log.txt
-
-            # wget mirrors.kernel.org/ubuntu/pool/universe/x/xfpanel-switch/xfpanel-switch_1.0.4-0ubuntu1_all.deb
-
-            # dpkg -i xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
             dpkg -i base/deb/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
 
@@ -1017,10 +983,7 @@ fi
         printf "\n[+] Instalando o Redshift"
         printf "\n[+] Instalando o Redshift" >> /tmp/log.txt
 
-        apt install redshift gtk-redshift -y
-
-        # criando link
-        cat base/redshift.conf > $pasta_home/.config/redshift.conf 
+        apt install redshift gtk-redshift -y        
     }
 
     install_libreoffice()
@@ -1449,6 +1412,7 @@ fi
     		    apt-add-repository ppa:graphics-drivers/ppa -y
     		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
     		    apt-add-repository ppa:xorg-edgers/ppa -y
+
     		    update
 
     		    apt install nvidia-current nvidia-settings -y  
@@ -1475,38 +1439,7 @@ fi
         local var_virtualbox=$(which virtualbox)
 
         # criando verificação para instalar o virtualbox
-        if [[ ! -e $var_virtualbox ]]; then
-            # if [[ $distro == "Ubuntu" ]]; then
-            #     printf "\n"
-            #     printf "[*] Realizando download \n"
-            #     wget -c download.virtualbox.org/virtualbox/5.1.28/virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-
-            #     printf "\n[*] Instalando o VirtualBox" 
-            #     printf "\n[*] Instalando o VirtualBox" >> /tmp/log.txt
-            #     dpkg -i virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-
-            #     printf "[*] Corrigindo problemas de dependências \n"
-            #     apt install -f
-
-            #     printf "[*] Removendo Virtualbox \n"
-            #     rm virtualbox-5.1_5.1.28-117968~Ubuntu~xenial_amd64.deb
-            # elif [[ $distro == "Debian" ]]; then
-            #     # adicionando repositorio
-            #     sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list'
-
-            #     # obtendo chave
-            #     wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
-
-            #     # atualizando sistema
-            #     update
-
-            #     # baixando virtualbox
-            #     apt install virtualbox-5.1 -y
-
-            #     # adicionando usuario ao grupo 
-            #     gpasswd -a $usuario vboxusers
-            # fi
-
+        if [[ ! -e $var_virtualbox ]]; then          
             printf "\n"
             printf "[*] Instalando Virtualbox \n"
 
@@ -1543,30 +1476,6 @@ fi
             printf " \n"
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
-            # #instalando mega
-            # dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
-
-            # printf "[*] Resolvendo dependencias \n"
-            # apt install -fy
-
-            # printf "[*] Instalando o Pulse Effects \n"
-            # # dpkg -i base/deb/pulseeffects_1.313entornosgnulinuxenial-1ubuntu1_amd64.deb
-
-            # printf "[+] Será necessário voce ativar o Pulse Effects na inicialização do sistema \n"
-            # sleep 5s
-
-            # debian
-            # # adicionando repositorio
-            # echo "deb http://ppa.launchpad.net/mikhailnov/pulseeffects/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/mikhailnov-ubuntu-pulseeffects-bionic.list
-
-            # # adicionando chave de segurança
-            # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FE3AE55CF74041EAA3F0AD10D5B19A73A8ECB754
-
-            # # atualizando sistema
-            # update
-
-            # # instalando pulseeffects
-            # apt install pulseeffects -y
 
             # adicionando via flatpak
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -1604,7 +1513,7 @@ fi
         printf "\n[+] Instalando Snap"
         printf "\n[+] Instalando Snap" >> /tmp/log.txt
 
-        apt install snapd        
+        apt install snapd -y      
     }
 
     install_ntp()
@@ -1736,10 +1645,7 @@ fi
         printf "\n[*] Modificando bash padrao para zsh"
         # chsh -s /usr/bin/zsh
         chsh -s $(which zsh) $usuario
-
-        printf "\n[*] Copiando arquivo padrao ZSH"
-        cat base/.zshrc > $pasta_home/.zshrc
-        
+            
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
 
@@ -1761,14 +1667,6 @@ fi
 
         # instalando zsh-completions
         apt install zsh-completions -y
-
-        # verificar
-        ################	AUTOSUGGESTIONS
-        # entrando na pasta home do usuario
-        cd $pasta_home
-
-        # baixando autosuggestions
-        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     }
 
     install_docker()
