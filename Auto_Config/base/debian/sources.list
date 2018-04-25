@@ -51,3 +51,6 @@ deb [arch=i386,amd64] http://repo.vivaldi.com/stable/deb/ stable main
 
 ###Wine
 deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ sid main
+
+###Zsh-completions
+deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/

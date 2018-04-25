@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [24/04/18]      #
+# # ultima ediçao realizada:      [25/04/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.512.0.4.0"
+	VERSAO="2.0.515.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -591,49 +591,49 @@ func_help()
     icones_temas()
     {    	
 		# personalizacao
-	    local var_icones_macos="/usr/share/themes/MacBuntu-OS/"
-		local var_breeze="/usr/share/icons/Breeze"
-		local var_flatremix="/usr/share/icons/Flat_Remix_Light"
-		local var_papirus="/usr/share/icons/Papirus_Light"
+	    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+		var_breeze="/usr/share/icons/Breeze"
+		var_flatremix="/usr/share/icons/Flat_Remix_Light"
+		var_papirus="/usr/share/icons/Papirus_Light"
 
-		if [ -e "$var_breeze" ]; then 
-			printf "\n[+] Copiando icones Breeze"
+		if [ -e $var_breeze ]; then 			
+			printf "\n[-] Voce ja possui os arquivos Breeze!"
+    		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
+    	else    		
+    		printf "\n[+] Copiando icones Breeze"
 			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
 
     		cp -r ../Configuracoes/Interface/icons/Breeze /usr/share/icons
-    	else
-    		printf "\n[-] Voce ja possui os arquivos Breeze!"
-    		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
     	fi
 
-    	if [ -e "$var_flatremix" ]; then 
+    	if [ -e $var_flatremix ]; then 
+    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
+    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
+    	else    		
     		printf "\n[+] Copiando icones Flat_Remix_Light"
     		printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
 
     		cp -r ../Configuracoes/Interface/icons/Flat_Remix_Light /usr/share/icons
-    	else
-    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
-    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
     	fi
 
-		if [ -e "$var_papirus" ]; then 
-			printf "\n[+] Copiando icones Papirus_Light"
+		if [ -e $var_papirus ]; then 
+			printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
+	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
+	    else	    	
+	    	printf "\n[+] Copiando icones Papirus_Light"
 			printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
 
 	    	cp -r ../Configuracoes/Interface/icons/Papirus_Light /usr/share/icons
-	    else
-	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
-	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
     	fi
 
-    	if [ -e "$var_icones_macos" ]; then 
-    		printf "\n[+] Copiando icones MacOS X"
+    	if [ -e $var_icones_macos ]; then 
+    		printf "\n[-] Voce ja possui os arquivos MacOS X!"
+			printf "\n[-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
+		else	
+			printf "\n[+] Copiando icones MacOS X"
     		printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
 
 			cp -r ../Configuracoes/Interface/themes/* /usr/share/themes
-		else
-			printf "\n[-] Voce ja possui os arquivos MacOS X!"
-			printf "\n[-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
 		fi
     }
 
@@ -1742,6 +1742,33 @@ fi
         
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
         printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
+
+		#################	ZSH-COMPLETIONS
+		printf "\n[+] Instalando o Zsh-completitions"
+        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
+
+        # adicionando repositorio
+        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
+
+        # baixando chave
+		wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
+		
+		# adicionando chave
+		apt-key add - < Release.key
+
+		# atualizando repositorios
+        update
+
+        # instalando zsh-completions
+        apt install zsh-completions -y
+
+        # verificar
+        ################	AUTOSUGGESTIONS
+        # entrando na pasta home do usuario
+        cd $pasta_home
+
+        # baixando autosuggestions
+        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     }
 
     install_docker()
