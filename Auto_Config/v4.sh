@@ -1477,11 +1477,27 @@ fi
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> /tmp/log.txt
 
-            # adicionando via flatpak
-            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+            if [ $distro == "Ubuntu" ]; then
+	            # adicionando via flatpak
+	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-            # instalando via flatpak
-            flatpak install flathub com.github.wwmm.pulseeffects
+	            # instalando via flatpak
+	            flatpak install flathub com.github.wwmm.pulseeffects
+	        fi
+	        
+	        # elif [ $distro == "Debian" ]; then
+	        # 	# adicionando repositorio
+	        # 	echo "deb http://ppa.launchpad.net/mikhailnov/pulseeffects/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/mikhailnov-ubuntu-pulseeffects-bionic.list
+
+	        # 	# adicionando chave
+	        # 	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FE3AE55CF74041EAA3F0AD10D5B19A73A8ECB754 
+
+	        # 	# atualizando chave
+	        # 	update
+
+	        # 	# instalando
+	        # 	apt install pulseeffects -y
+	        # fi
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"
@@ -1908,7 +1924,10 @@ func_instala()
     install_ristretto    
     install_screenfetch
     install_lm-sensors    
-    install_tlp	    
+    install_tlp	   
+
+    install_mega
+    install_pulseeffects
 
     install_zsh          
     install_ibus
@@ -1949,12 +1968,6 @@ func_instala()
         install_wine
         install_playonlinux
         install_nvidia        
-
-		if [ $distro == "Ubuntu" ]; then		
-            install_pulseeffects       	        
-		elif [ $distro == "Debian" ]; then		
-			printf ""	
-		fi
 	else
 		printf "\n[-] ERRO INSTALA!"
 	fi
