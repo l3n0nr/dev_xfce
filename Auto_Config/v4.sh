@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [25/04/18]      #
+# # ultima ediçao realizada:      [01/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -80,12 +80,11 @@
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #               - II  - [VETOR]  - Verificar vetor funcoes
-#				- III - [REMOVER]   - _imagemmagick
-#				- IV  - [VERIFICAR] - Zsh - Notebook
+#				- III  - [VERIFICAR] - Zsh - Notebook
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.520.0.4.0"
+	VERSAO="2.0.522.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1652,37 +1651,43 @@ fi
 
     install_zsh()
     {
+        # variavel de verificação
+        local var_zsh=$(which zsh)
+
         printf "\n"
         printf "\n[+] Instalando o ZSH"
         printf "\n[+] Instalando o ZSH" >> /tmp/log.txt
 
-        apt install zsh -y
+		# criando verificação para instalar zsh
+        if [[ ! -e $var_zsh ]]; then
+	        apt install zsh -y
 
-        printf "\n[*] Modificando bash padrao para zsh"
-        # chsh -s /usr/bin/zsh
-        chsh -s $(which zsh) $usuario
-            
-        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
-        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
+	        printf "\n[*] Modificando bash padrao para zsh"
+	        # chsh -s /usr/bin/zsh
+	        chsh -s $(which zsh) $usuario
+	            
+	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
+	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
 
-		#################	ZSH-COMPLETIONS
-		printf "\n[+] Instalando o Zsh-completitions"
-        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
+			#################	ZSH-COMPLETIONS
+			printf "\n[+] Instalando o Zsh-completitions"
+	        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
 
-        # adicionando repositorio
-        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
+	        # adicionando repositorio
+	        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
 
-        # baixando chave
-		wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
-		
-		# adicionando chave
-		apt-key add - < Release.key
+	        # baixando chave
+			wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
+			
+			# adicionando chave
+			apt-key add - < Release.key
 
-		# atualizando repositorios
-        update
+			# atualizando repositorios
+	        update
 
-        # instalando zsh-completions
-        apt install zsh-completions -y
+	        # instalando zsh-completions
+	        apt install zsh-completions -y
+	    fi
     }
 
     install_docker()
@@ -2009,7 +2014,7 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge xfburn thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* -y
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
