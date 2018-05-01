@@ -84,7 +84,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.522.0.4.0"
+	VERSAO="2.0.525.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -173,7 +173,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
 
 # vetor instala outros
 INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
-                install_python install_dropbox)
+                install_python install_dropbox install_transmission)
 
 # # vetor do programa
 # SAI=(exit)
@@ -899,12 +899,12 @@ fi
             printf "\n[+] Instalando Xfpanel-switch"
             printf "\n[+] Instalando Xfpanel-switch" >> /tmp/log.txt
 
-            dpkg -i base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/deb/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
             # corrigindo problemas de dependencias
             apt --fix-broken install -y
 
-            dpkg -i base/deb/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/deb/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
         else
             printf "[+] Xfpanel-switch ja esta instalado \n"            
         fi
@@ -918,12 +918,12 @@ fi
             printf "\n[+] Instalando Whisker-menu"
             printf "\n[+] Instalando Whisker-menu" >> /tmp/log.txt
 
-            dpkg -i base/deb/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+            dpkg -i base/deb/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
 
             # corrigindo problemas de dependencias
             apt --fix-broken install -y
 
-            dpkg -i base/deb/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+            dpkg -i base/deb/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
         else
             printf "[+] Whisker-menu ja esta instalado \n"            
         fi
@@ -1332,13 +1332,13 @@ fi
             printf "\n[+] Instalando o MEGA" >> /tmp/log.txt
             
             # instalando mega
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+            dpkg -i base/deb/mega/*.deb
 
             # corrigindo dependencias
             apt install -fy
 
             # instalando mega
-            dpkg -i /home/lenonr/MEGA/LifeStyle/Linux/Config/deb/mega/*.deb
+            dpkg -i base/deb/mega/*.deb
         else
             printf "[+] MEGA Sync já está instalado! \n"
         fi
@@ -1658,6 +1658,7 @@ fi
         printf "\n[+] Instalando o ZSH"
         printf "\n[+] Instalando o ZSH" >> /tmp/log.txt
 
+
 		# criando verificação para instalar zsh
         if [[ ! -e $var_zsh ]]; then
 	        apt install zsh -y
@@ -1669,24 +1670,26 @@ fi
 	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
 	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
 
-			#################	ZSH-COMPLETIONS
-			printf "\n[+] Instalando o Zsh-completitions"
-	        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
+			if [ $distro == "Debian" ]; then
+				#################	ZSH-COMPLETIONS
+				printf "\n[+] Instalando o Zsh-completitions"
+		        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
 
-	        # adicionando repositorio
-	        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
+		        # adicionando repositorio
+		        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
 
-	        # baixando chave
-			wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
-			
-			# adicionando chave
-			apt-key add - < Release.key
+		        # baixando chave
+				wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
+				
+				# adicionando chave
+				apt-key add - < Release.key
 
-			# atualizando repositorios
-	        update
+				# atualizando repositorios
+		        update
 
-	        # instalando zsh-completions
-	        apt install zsh-completions -y
+		        # instalando zsh-completions
+		        apt install zsh-completions -y
+		    fi
 	    fi
     }
 
@@ -1752,7 +1755,7 @@ fi
 		apt install xserver-xorg-input-synaptics -y
         	apt install firmware-brcm80211 -y
         fi
-    }   
+    }     
 
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
@@ -1799,6 +1802,20 @@ fi
         printf "\n[+] Instalando Dropbox" >> /tmp/log.txt
 
         apt install nautilus-dropbox -y
+    }
+
+    install_transmission()
+    {
+    	local var_transmission=$(which transmission-gtk)
+
+    	# verificando se transmission está instalado
+		if [[ ! -e $var_transmission ]];     	
+	    	printf "\n"
+	        printf "\n[+] Instalando o Transmission"
+	        printf "\n[+] Instalando o Transmission" >> /tmp/log.txt	
+
+	        apt install transmission-gtk -y
+	    fi
     }
 # # # # # # # # # #
 
@@ -2000,6 +2017,7 @@ func_instala_outros()
     if [[ $v_hostname == 'desktop' ]]; then
         install_virtualbox
         install_steam
+        install_transmission
     fi
 }
 
