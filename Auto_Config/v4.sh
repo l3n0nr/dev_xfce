@@ -1809,7 +1809,7 @@ fi
     	local var_transmission=$(which transmission-gtk)
 
     	# verificando se transmission está instalado
-		if [[ ! -e $var_transmission ]];     	
+		if [[ ! -e $var_transmission ]]; then
 	    	printf "\n"
 	        printf "\n[+] Instalando o Transmission"
 	        printf "\n[+] Instalando o Transmission" >> /tmp/log.txt	
