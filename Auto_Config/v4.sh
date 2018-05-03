@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [01/05/18]      #
+# # ultima ediçao realizada:      [03/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -84,7 +84,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.525.0.4.0"
+	VERSAO="2.0.530.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -899,12 +899,12 @@ fi
             printf "\n[+] Instalando Xfpanel-switch"
             printf "\n[+] Instalando Xfpanel-switch" >> /tmp/log.txt
 
-            dpkg -i base/deb/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/packages/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
             # corrigindo problemas de dependencias
             apt --fix-broken install -y
 
-            dpkg -i base/deb/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
+            dpkg -i base/packages/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
         else
             printf "[+] Xfpanel-switch ja esta instalado \n"            
         fi
@@ -918,12 +918,12 @@ fi
             printf "\n[+] Instalando Whisker-menu"
             printf "\n[+] Instalando Whisker-menu" >> /tmp/log.txt
 
-            dpkg -i base/deb/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+            dpkg -i base/packages/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
 
             # corrigindo problemas de dependencias
             apt --fix-broken install -y
 
-            dpkg -i base/deb/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
+            dpkg -i base/packages/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
         else
             printf "[+] Whisker-menu ja esta instalado \n"            
         fi
@@ -1332,13 +1332,13 @@ fi
             printf "\n[+] Instalando o MEGA" >> /tmp/log.txt
             
             # instalando mega
-            dpkg -i base/deb/mega/*.deb
+            dpkg -i base/packages/mega/*.deb
 
             # corrigindo dependencias
             apt install -fy
 
             # instalando mega
-            dpkg -i base/deb/mega/*.deb
+            dpkg -i base/packages/mega/*.deb
         else
             printf "[+] MEGA Sync já está instalado! \n"
         fi
