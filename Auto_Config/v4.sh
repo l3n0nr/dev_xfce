@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [03/05/18]      #
+# # ultima ediçao realizada:      [06/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -84,7 +84,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.530.0.4.0"
+	VERSAO="2.0.540.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1484,19 +1484,9 @@ fi
 	            flatpak install flathub com.github.wwmm.pulseeffects
 	        fi
 	        
-	        # elif [ $distro == "Debian" ]; then
-	        # 	# adicionando repositorio
-	        # 	echo "deb http://ppa.launchpad.net/mikhailnov/pulseeffects/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/mikhailnov-ubuntu-pulseeffects-bionic.list
-
-	        # 	# adicionando chave
-	        # 	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FE3AE55CF74041EAA3F0AD10D5B19A73A8ECB754 
-
-	        # 	# atualizando chave
-	        # 	update
-
-	        # 	# instalando
-	        # 	apt install pulseeffects -y
-	        # fi
+	        elif [ $distro == "Debian" ]; then
+                printf "\n"
+	        fi
         else
             printf "\n"
             printf "[+] Pulse Effects já está instalado"
@@ -1661,7 +1651,7 @@ fi
 
 		# criando verificação para instalar zsh
         if [[ ! -e $var_zsh ]]; then
-	        apt install zsh -y
+	        apt install zsh zsh-completions -y
 
 	        printf "\n[*] Modificando bash padrao para zsh"
 	        # chsh -s /usr/bin/zsh
@@ -1669,27 +1659,6 @@ fi
 	            
 	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
 	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
-
-			if [ $distro == "Debian" ]; then
-				#################	ZSH-COMPLETIONS
-				printf "\n[+] Instalando o Zsh-completitions"
-		        printf "\n[+] Instalando o Zsh-completitions" >> /tmp/log.txt
-
-		        # adicionando repositorio
-		        echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/Debian_9.0/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
-
-		        # baixando chave
-				wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Debian_9.0/Release.key -O Release.key
-				
-				# adicionando chave
-				apt-key add - < Release.key
-
-				# atualizando repositorios
-		        update
-
-		        # instalando zsh-completions
-		        apt install zsh-completions -y
-		    fi
 	    fi
     }
 
@@ -1731,8 +1700,8 @@ fi
             
             apt install sublime-text -y
         elif [ $distro == "Debian" ]; then
-			echo "deb https://download.sublimetext.com/ apt/dev/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-			wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+			echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
+			wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
 			
 			update
 
@@ -1792,7 +1761,7 @@ fi
         printf "\n"
         printf "\n[+] Instalando pip" >> /tmp/log.txt        
 
-        apt-get install python3.5 python-pip -y
+        apt install python3.5 python-pip -y
     }
 
     install_dropbox()
