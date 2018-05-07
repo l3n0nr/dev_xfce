@@ -87,7 +87,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.550.0.4.0"
+	VERSAO="2.0.551.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1464,8 +1464,8 @@ fi
     install_ristretto()
     {
     	printf "\n"
-        printf "\n[+] Instalando Ristretto"
-        printf "\n[+] Instalando Ristretto" >> /tmp/log.txt	
+        printf "\n[+] Instalando o Ristretto"
+        printf "\n[+] Instalando o Ristretto" >> /tmp/log.txt	
 
         apt install ristretto -y
     }
@@ -1473,8 +1473,8 @@ fi
     install_tree()
     {
         printf "\n"
-        printf "\n[+] Instalando Tree"
-        printf "\n[+] Instalando Tree" >> /tmp/log.txt
+        printf "\n[+] Instalando o Tree"
+        printf "\n[+] Instalando o Tree" >> /tmp/log.txt
 
         apt install tree -y
     }
@@ -1526,8 +1526,8 @@ fi
     install_snap()
     {
         printf "\n"
-        printf "\n[+] Instalando Snap"
-        printf "\n[+] Instalando Snap" >> /tmp/log.txt
+        printf "\n[+] Instalando o Snap"
+        printf "\n[+] Instalando o Snap" >> /tmp/log.txt
 
         apt install snapd -y      
     }
@@ -1545,8 +1545,8 @@ fi
     install_xclip()
     {
         printf "\n"
-        printf "\n[+] Instalando Xclip"
-        printf "\n[+] Instalando Xclip" >> /tmp/log.txt
+        printf "\n[+] Instalando o Xclip"
+        printf "\n[+] Instalando o Xclip" >> /tmp/log.txt
 
         apt install xclip -y
     }
@@ -1554,8 +1554,8 @@ fi
     install_espeak()
     {
     	printf "\n"
-        printf "\n[+] Instalando speak"
-        printf "\n[+] Instalando speak" >> /tmp/log.txt
+        printf "\n[+] Instalando o Speak"
+        printf "\n[+] Instalando o Speak" >> /tmp/log.txt
 
         apt install espeak -y	
     }
@@ -1609,8 +1609,8 @@ fi
     install_gnome_calculator()
     {
         printf "\n"
-        printf "\n[+] Instalando Gnome Calculator"
-        printf "\n[+] Instalando Gnome Calculator" >> /tmp/log.txt
+        printf "\n[+] Instalando o Gnome Calculator"
+        printf "\n[+] Instalando o Gnome Calculator" >> /tmp/log.txt
 
         apt install gnome-calculator -y
     }
@@ -1769,7 +1769,7 @@ fi
     install_python()
     {
         printf "\n"
-        printf "\n[+] Instalando pip" >> /tmp/log.txt        
+        printf "\n[+] Instalando o Pip" >> /tmp/log.txt        
 
         apt install python3.5 python-pip -y
     }
