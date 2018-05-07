@@ -1331,14 +1331,24 @@ fi
             printf "\n[+] Instalando o MEGA"
             printf "\n[+] Instalando o MEGA" >> /tmp/log.txt
             
-            # instalando mega
-            dpkg -i base/packages/mega/*.deb
+            if [[ $distro == "Ubuntu" ]]; then
+	            # instalando mega
+	            dpkg -i base/packages/mega/*.deb
 
-            # corrigindo dependencias
-            apt install -fy
+	            # corrigindo dependencias
+	            apt install -fy
 
-            # instalando mega
-            dpkg -i base/packages/mega/*.deb
+	            # instalando mega
+	            dpkg -i base/packages/mega/*.deb
+	        elif [[ $distro == "Debian" ]]; then
+	        	# adicionando chaves
+	        	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 4B4E7A9523ACD201
+				apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 74A941BA219EC810
+				apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 818A435C5FCBF54A
+
+				# instalando megasync
+				apt install megasync -y
+	        fi
         else
             printf "[+] MEGA Sync já está instalado! \n"
         fi
@@ -1904,8 +1914,7 @@ func_instala()
 	install_xfce4
     install_lm-sensors    
     install_nautilus
-    install_openssh
-    install_plank    
+    install_openssh    
     install_reaver
     install_redshift
     install_ristretto    
