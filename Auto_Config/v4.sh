@@ -140,7 +140,7 @@ CORRIGE=(apt_check apt_install apt_remove \
          apt_clean apt_auto apt_update_local \
          swap prelink_preload_deborphan \
          pacotes_quebrados fonts config_ntp \
-         apport log_sudo repositorios_padrao \
+         apport repositorios_padrao \
          arquivo_hosts chaveiro atualiza_db \
          autologin icones_temas)
 
@@ -167,7 +167,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_nvidia install_virtualbox install_ristretto install_tree \
         install_pulseeffects install_terminator install_aircrack \
         install_snap install_ntp install_xclip install_espeak \
-        install_ibus install_nmap install_htop install_sudo \
+        install_ibus install_nmap install_htop  \
         install_gnome_calculator install_tuxguitar install_muse_score \
         install_zsh install_docker install_sublime install_firmware)
 
@@ -365,7 +365,7 @@ func_help()
         apt-get install deborphan -y
 
         echo "[*] Configurando Deborphan... " 
-        deborphan | xargs sudo apt-get -y remove --purge &&
+        deborphan | xargs apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
         #configurando o prelink e o preload
@@ -823,7 +823,7 @@ fi
 			elif [[ $distro == "Debian" ]]; then 
 				apt install dirmngr -y
 				apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410	
-				echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+				echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
 
 				update
 
@@ -1824,7 +1824,7 @@ func_corrige()
     config_ntp
     apport
 
-    log_sudo
+    # log_sudo
     atualiza_db   
 
     autologin
@@ -1925,7 +1925,7 @@ func_instala()
     install_openssh
     install_figlet        
     install_xclip 
-    install_sudo
+    # install_sudo
     install_nmap
     install_snap    
     install_gparted
