@@ -5,17 +5,12 @@
 #
 ## ZSH
 printf "Entrando na pasta do usuario"
-
 printf "\n[*] Copiando arquivo padrao ZSH\n"
 cat base/.zshrc > $HOME/.zshrc
 
-if [ -e "$HOME/.oh-my-zsh" ]; then
-	printf "\nVoce ja possui o zsh-autosuggestions"
-else
-	printf "\nBaixando zsh-autosuggestions\n"
-	# git clone https://github.com/zsh-users/zsh-autosuggestions ~/$HOME/.zsh/zsh-autosuggestions
-	git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
-fi
+printf "\nBaixando zsh-autosuggestions\n"
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/$HOME/.zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.zsh/zsh-autosuggestions
 
 if [ -e "$HOME/.oh-my-zsh" ]; then
 	printf "\nVoce ja possui o Oh-my-zsh"
