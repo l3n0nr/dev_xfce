@@ -2001,7 +2001,7 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge xfburn thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* -y
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* firefox-esr -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
