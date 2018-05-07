@@ -1717,7 +1717,8 @@ fi
         if [[ $v_hostname == 'notebook' ]]; then
             printf "\n"
             printf "\n[+] Instalando firmware Wifi" >> /tmp/log.txt
-		apt install xserver-xorg-input-synaptics -y
+			
+			apt install xserver-xorg-input-synaptics -y
         	apt install firmware-brcm80211 -y
         fi
     }     
@@ -1996,7 +1997,7 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge xfburn thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* -y
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* owncloud* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
