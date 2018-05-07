@@ -46,6 +46,9 @@
 # por Edpsblog - How-To :: Wine Development no Debian e derivados
 #	<https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
 #
+# por Debian Sources List Generator
+#	<https://debgen.simplylinux.ch/index.php>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -84,7 +87,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.545.0.4.0"
+	VERSAO="2.0.550.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1946,13 +1949,14 @@ func_instala()
     install_gnome_system_monitor    
     install_gnome_calculator
 
+    install_wine
+
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
         install_aircrack  	
 
 		if [ $distro == "Ubuntu" ]; then		
-	        install_visual_game_boy
-	        install_wine
+	        install_visual_game_boy	        
 		elif [ $distro == "Debian" ]; then				
 	    	install_firmware  	
 		fi
@@ -1961,7 +1965,6 @@ func_instala()
 		install_audacity
     	install_kdenlive
     	install_visual_game_boy
-        install_wine
         install_playonlinux
         install_nvidia        
 	else
