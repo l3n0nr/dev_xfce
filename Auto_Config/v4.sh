@@ -1481,9 +1481,7 @@ fi
 	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	            # instalando via flatpak
-	            flatpak install flathub com.github.wwmm.pulseeffects
-	        fi
-	        
+	            flatpak install flathub com.github.wwmm.pulseeffects	        
 	        elif [ $distro == "Debian" ]; then
                 printf "\n"
 	        fi
