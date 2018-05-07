@@ -65,7 +65,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [06/05/18]      #
+# # ultima ediçao realizada:      [07/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -84,7 +84,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.540.0.4.0"
+	VERSAO="2.0.545.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -139,7 +139,7 @@ ATUALIZA=(update upgrade)
 CORRIGE=(apt_check apt_install apt_remove \
          apt_clean apt_auto apt_update_local \
          swap prelink_preload_deborphan \
-         pacotes_quebrados fonts config_ntp \
+         pacotes_quebrados config_ntp \
          apport repositorios_padrao \
          arquivo_hosts chaveiro atualiza_db \
          autologin icones_temas)
@@ -1717,8 +1717,6 @@ fi
         if [[ $v_hostname == 'notebook' ]]; then
             printf "\n"
             printf "\n[+] Instalando firmware Wifi" >> /tmp/log.txt
-
-		apt install firmware-linux-nonfree -y
 		apt install xserver-xorg-input-synaptics -y
         	apt install firmware-brcm80211 -y
         fi
@@ -1817,8 +1815,7 @@ func_corrige()
     apt_clean        
 
     prelink_preload_deborphan
-    pacotes_quebrados
-    fonts
+    pacotes_quebrados    
     config_ntp
     apport
 
@@ -1999,7 +1996,7 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge xfburn thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* firefox-esr -y
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
@@ -2019,6 +2016,9 @@ func_formatado()
 
     # texmaker - trabalhos academicos
     texmaker
+
+    # fonts
+    fonts
     
     # removendo programas pré-instalados, desnecessários
     func_remove
