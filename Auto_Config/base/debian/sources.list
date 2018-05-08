@@ -17,5 +17,21 @@ deb http://deb.debian.org/debian-security testing/updates main
 deb http://deb.debian.org/debian/ unstable main contrib non-free
 
 #------------------------------------------------------------------------------#
+#                      UNOFFICIAL  REPOS                       
+#------------------------------------------------------------------------------#
+
+###### 3rd Party Binary Repos
+###MEGA Sync Client
+deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
+
+###TOR
+deb [arch=i386,amd64,armel,armhf] http://deb.torproject.org/torproject.org unstable main
+deb-src [arch=i386,amd64,armel,armhf] http://deb.torproject.org/torproject.org unstable main
+
+###Wine
+deb [arch=i386] https://dl.winehq.org/wine-builds/debian/ sid main
+
+
+#------------------------------------------------------------------------------#
 #                           DEBIAN REPOS TESTING/UNSTABLE                      #
 #------------------------------------------------------------------------------#

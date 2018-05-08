@@ -410,15 +410,17 @@ func_help()
         printf "\n[+] Instalando pacotes de fontes"
         printf "\n[+] Instalando pacotes de fontes" >> /tmp/log.txt
 
-        #baixando pacote
-        wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
+        # #baixando pacote
+        # wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
 
-        #instalando pacote
-        dpkg -i ttf-mscorefonts-installer_3.6_all.deb
+        # #instalando pacote
+        # dpkg -i ttf-mscorefonts-installer_3.6_all.deb
 
-        #removendo pacote
-        rm -f ttf-mscorefonts-installer_3.6_all.deb
-        rm -f ttf-mscorefonts-installer_3.6_all.deb.1
+        # #removendo pacote
+        # rm -f ttf-mscorefonts-installer_3.6_all.deb
+        # rm -f ttf-mscorefonts-installer_3.6_all.deb.1
+
+        apt install ttf-mscorefonts-installer fonts-noto ttf-freefont -f 
     }    
 
     config_ntp()
@@ -858,7 +860,7 @@ fi
         libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
         libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
         libxine1-misc-plugins libxine1-plugins libxine1-x \
-        nautilus-script-audio-convert nautilus-scripts-manager tagtool \
+        nautilus-script-audio-convert nautilus-scripts-manager tagtool libavcodec-extra ffmpeg \
         spotify-client prelink deborphan oracle-java7-installer -y --force-yes    
 
         apt install lame libavcodec-extra libav-tools -y	
@@ -1598,7 +1600,8 @@ fi
 
             apt install sudo -y
 
-            echo "$usuario   ALL=(ALL:ALL) ALL" >> /etc/sudoers
+            # echo "$usuario   ALL=(ALL:ALL) ALL" >> /etc/sudoers
+            gpasswd -a $usuario sudo
         else
             printf "\n"
             printf "\n[+] Sudo ja esta instalado"
@@ -1725,17 +1728,10 @@ fi
         printf "\n"
         printf "\n[+] Instalando os firmware's non-free"        
         printf "\n[+] Instalando os firmware's non-free" >> /tmp/log.txt        
-        apt install firmware-linux firmware-linux-nonfree -y
-
-        #verificando variavel
-        if [[ $v_hostname == 'notebook' ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o firmware Wifi"
-            printf "\n[+] Instalando o firmware Wifi" >> /tmp/log.txt
-			
-			apt install xserver-xorg-input-synaptics -y
-        	apt install firmware-brcm80211 -y
-        fi
+        
+        apt install firmware-linux firmware-linux-nonfree \
+        			xserver-xorg-input-synaptics blueman  \
+        			firmware-brcm80211 -y			
     }     
 
 # # # # # # # # # #
@@ -1952,6 +1948,7 @@ func_instala()
     install_gnome_calculator
 
     install_wine
+    install_playonlinux
 
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
@@ -1966,8 +1963,7 @@ func_instala()
         install_kstars
 		install_audacity
     	install_kdenlive
-    	install_visual_game_boy
-        install_playonlinux
+    	install_visual_game_boy        
         install_nvidia        
 	else
 		printf "\n[-] ERRO INSTALA!"
@@ -1991,6 +1987,8 @@ func_instala_outros()
     install_wireshark  
     install_ntp 
     install_localepurge
+
+    fonts
 
     # verificando computador
     if [[ $v_hostname == 'desktop' ]]; then
@@ -2033,7 +2031,7 @@ func_formatado()
     texmaker
 
     # fonts
-    fonts
+    # fonts
     
     # removendo programas pré-instalados, desnecessários
     func_remove
