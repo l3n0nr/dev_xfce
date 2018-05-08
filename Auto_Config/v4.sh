@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [07/05/18]      #
+# # ultima ediçao realizada:      [08/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -87,7 +87,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.551.0.4.0"
+	VERSAO="2.0.552.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1723,13 +1723,15 @@ fi
     install_firmware()
     {
         printf "\n"
-        printf "\n[+] Instalando firmware's non-free" >> /tmp/log.txt        
+        printf "\n[+] Instalando os firmware's non-free"        
+        printf "\n[+] Instalando os firmware's non-free" >> /tmp/log.txt        
         apt install firmware-linux firmware-linux-nonfree -y
 
         #verificando variavel
         if [[ $v_hostname == 'notebook' ]]; then
             printf "\n"
-            printf "\n[+] Instalando firmware Wifi" >> /tmp/log.txt
+            printf "\n[+] Instalando o firmware Wifi"
+            printf "\n[+] Instalando o firmware Wifi" >> /tmp/log.txt
 			
 			apt install xserver-xorg-input-synaptics -y
         	apt install firmware-brcm80211 -y
@@ -1958,7 +1960,7 @@ func_instala()
 		if [ $distro == "Ubuntu" ]; then		
 	        install_visual_game_boy	        
 		elif [ $distro == "Debian" ]; then				
-	    	install_firmware  	
+	    	install_firmware  		    
 		fi
 	elif [[ $v_hostname == 'desktop' ]]; then
         install_kstars
