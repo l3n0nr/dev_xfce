@@ -2433,11 +2433,12 @@ auto_config()
 
     # se valor igual a 1, sai do programa
     [ $? -eq 1 ] && break
-
+    
     # tratando saida - forma de execucao do script
     case $valor in 
+    	# modo automatico
         0) 
-            ESCOLHAAUTO_CONFIG=$(
+            escolha=$(
                 dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
                     --ok-label "Executar" --cancel-label "Cancelar" \
                     --menu "O que voce deseja fazer?" \
@@ -2451,22 +2452,8 @@ auto_config()
                     "6" "Remover programas" \
             )
 
-            case $ESCOLHAAUTO_CONFIG in
-                0) 
-                    #executando ações para a distribuição Ubuntu
-                    if [ $distro == "Ubuntu" ]; then
-                        clear
-                        auto_config_ubuntu
-                    #executando ações para a distribuição Debian
-                    elif [ $distro == "Debian" ]; then
-                        clear
-                        auto_config_debian
-                    else
-                        printf "Disponivel para Debian ou Ubuntu!!! \n"
-                        printf "Script incompativel infelizmente \n"
-                    fi
-                ;;
-
+            case $escolha in
+                0) func_todas ;;
                 1) func_atualiza ;;
                 2) func_corrige ;;
                 3) func_limpa ;;
@@ -2476,40 +2463,27 @@ auto_config()
             esac
             ;;
 
+        # modo manual
+        1) 
+			escolha=$(
+                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
+                    --ok-label "Executar" --cancel-label "Cancelar" \
+                    --menu "O que voce deseja fazer?" \
+                    0 0 0 \
+                    "0" "Executar todas funçoes abaixo" \
+                    "1" "Atualizar Sistema" \
+                    "2" "Corrigir Sistema" \
+                    "3" "Limpar Sistema" \
+                    "4" "Instalar programas" \
+                    "5" "Instalar outros programas" \
+                    "6" "Remover programas" \
+            )
 
-        1) echo "manual";;
-    esac   
+            
+	
 
-    ####################
-
-    # # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    # printf "
-    #             AUTOCONFIG - V5
-    #     Versao do script: $VERSAO
-    #             \n"
-    # echo "-------------------------------------------------"
-    # echo "Digite 1 para atualizar o sistema,"
-    # echo "Digite 2 para corrigir possíveis erros,"
-    # echo "Digite 3 para realizar uma limpeza,"
-    # echo "Digite 4 para instalar alguns programas,"
-    # echo "Digite 5 para instalar programas não essenciais,"
-    # echo "Digite 6 para remover alguns programas,"
-    # echo "Digite 7 para sair do script,"
-    # echo "-------------------------------------------------"
-    # read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
-
-    # #executando ações para a distribuição Ubuntu
-    # if [ $distro == "Ubuntu" ]; then
-    #     clear
-    #     auto_config_ubuntu
-    # #executando ações para a distribuição Fedora
-    # elif [ $distro == "Debian" ]; then
-    #     clear
-    #     auto_config_debian
-    # else
-    #     printf "Disponivel para Debian ou Ubuntu!!! \n"
-    #     printf "Script incompativel infelizmente \n"
-    # fi
+		;;
+    esac      
 }
 
 #mostrando mensagem inicial
