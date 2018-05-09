@@ -86,7 +86,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="3.0.553.0.2.0"
+	VERSAO="3.0.555.0.2.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -1739,7 +1739,7 @@ fi
         printf "\n[+] Instalando o compton"        
         printf "\n[+] Instalando o compton" >> /tmp/log.txt        
 
-    	apt install compton -y
+    	apt install compton compton-conf -y
     }
 
 # # # # # # # # # #
