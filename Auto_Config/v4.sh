@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [08/05/18]      #
+# # ultima ediçao realizada:      [09/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -87,7 +87,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.552.0.4.0"
+	VERSAO="2.0.553.0.4.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -170,9 +170,9 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_nvidia install_virtualbox install_ristretto install_tree \
         install_pulseeffects install_terminator install_aircrack \
         install_snap install_ntp install_xclip install_espeak \
-        install_ibus install_nmap install_htop  \
-        install_gnome_calculator install_tuxguitar install_muse_score \
-        install_zsh install_docker install_sublime install_firmware)
+        install_ibus install_nmap install_htop install_gnome_calculator \
+        install_tuxguitar install_muse_score install_zsh\
+        install_docker install_sublime install_firmware install_compton)
 
 # vetor instala outros
 INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
@@ -1734,6 +1734,15 @@ fi
         			firmware-brcm80211 -y			
     }     
 
+    install_compton()
+    {
+    	printf "\n"
+        printf "\n[+] Instalando o compton"        
+        printf "\n[+] Instalando o compton" >> /tmp/log.txt        
+
+    	apt install compton -y
+    }
+
 # # # # # # # # # #
 # # PROGRAMAS NÃO ESSENCIAIS
     install_apache()
@@ -1946,6 +1955,7 @@ func_instala()
     install_gnome_disk_utility
     install_gnome_system_monitor    
     install_gnome_calculator
+    install_compton
 
     install_wine
     install_playonlinux
