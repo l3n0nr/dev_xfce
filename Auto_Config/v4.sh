@@ -83,11 +83,10 @@
 # 	e = pendencias
 # 				- I   - [KERNEL] - Melhorar script para remover kernel mais antigo
 #               - II  - [VETOR]  - Verificar vetor funcoes
-#				- III  - [VERIFICAR] - Zsh - Notebook
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="2.0.553.0.4.0"
+	VERSAO="3.0.553.0.2.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
