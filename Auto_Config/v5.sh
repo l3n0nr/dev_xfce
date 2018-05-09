@@ -2470,18 +2470,62 @@ auto_config()
                     --ok-label "Executar" --cancel-label "Cancelar" \
                     --menu "O que voce deseja fazer?" \
                     0 0 0 \
-                    "0" "Executar todas funçoes abaixo" \
-                    "1" "Atualizar Sistema" \
-                    "2" "Corrigir Sistema" \
-                    "3" "Limpar Sistema" \
-                    "4" "Instalar programas" \
-                    "5" "Instalar outros programas" \
-                    "6" "Remover programas" \
+                    "0" "Atualizar Sistema" \
+                    "1" "Corrigir Sistema" \
+                    "2" "Limpar Sistema" \
+                    "3" "Instalar programas" \
+                    "4" "Instalar outros programas" \
             )
 
-            
-	
+            # vetor de açoes
+            vetor=(atualiza corrige limpa instala instala_outros)
 
+            for (( i = 0; i <= ${#vetor[@]}; i++ )); do 
+                # if [[ ${vetor[$i]} == $escolha ]]; then    
+                if [[ $i == $escolha ]]; then    
+                    # echo ${vetor[$i]}
+
+                    if [[ $escolha == 0 ]]; then    
+                        # printf "atualiza"
+
+                        for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
+                            # echo ${ATUALIZA[$i]}
+
+                            dialog  --stdout --separate-output \
+                                    --checklist "Escolha algo" \
+                                    0 0 0 \
+                                "$i" "${ATUALIZA[$i]}" off \
+                                "$i" "${ATUALIZA[$i]}" off \
+
+                            break;
+                        done                                                                    
+
+                    elif [[ $escolha == 1 ]]; then                    
+                        printf ""
+                    elif [[ $escolha == 2 ]]; then
+                        printf ""
+                    elif [[ $escolha == 3 ]]; then
+                        printf ""
+                    elif [[ $escolha == 4 ]]; then
+                        printf ""
+                    else
+                        printf ""
+                    fi                                                            
+                fi
+            done
+            # for (( i = 0; i <= ${#repos[@]}; i++ )); do 
+            #     # verify local repo disk
+            #     if [[ $LOCAL${repos[$i]} != $LOCAL ]]; then
+            #         # verify local repo
+            #         if [ -e "$LOCAL${repos[$i]}" ]; then         
+            #             printf ""
+            #             echo "[+] - Found:" $LOCAL${repos[$i]}
+
+            #             # into folder location
+            #             ls $LOCAL${repos[$i]}                               
+            #         fi
+            #     fi
+            # done
 		;;
     esac      
 }
@@ -2534,7 +2578,7 @@ menu
 #         todas) func_todas;;
 #         nvidia) nvidia;;
 #         texmaker) texmaker;;
-# 		-v|-version) version;;
+# 		  -v|-version) version;;
 #         vetor) func_vetor;;
 #         *) echo "Parametro desconhecido"
 #     esac    
