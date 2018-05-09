@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="0.0.1.0.1.0"
+	VERSAO="0.0.10.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2423,39 +2423,62 @@ auto_config()
 
     ####################
     valor=$(
-        dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - V5"  \
-            --ok-label "Executar" --cancel-label "Cancelar" \
-            --menu "Executar script no modo..." \
-            0 0 0 \
-            "Automatico" "Script realizara todas tarefas automaticamente" \
-            "Manual" "Seleçao das tarefas a serem executadas" \
+        dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
+                --ok-label "Executar" --cancel-label "Cancelar" \
+                --menu "Modo de execucao do script..." \
+                0 0 0 \
+                "0" "Modo Automatico" \
+                "1" "Modo Manual" \
+    )
 
-        # se valor igual a 1, sai do programa
-        [ $? -eq 1 ] && break
+    # se valor igual a 1, sai do programa
+    [ $? -eq 1 ] && break
 
-        # deixando toda saidas em minusculo
-        valor=${valor,,}
+    # tratando saida - forma de execucao do script
+    case $valor in 
+        0) 
+            ESCOLHAAUTO_CONFIG=$(
+                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
+                    --ok-label "Executar" --cancel-label "Cancelar" \
+                    --menu "O que voce deseja fazer?" \
+                    0 0 0 \
+                    "0" "Executar todas funçoes abaixo" \
+                    "1" "Atualizar Sistema" \
+                    "2" "Corrigir Sistema" \
+                    "3" "Limpar Sistema" \
+                    "4" "Instalar programas" \
+                    "5" "Instalar outros programas" \
+                    "6" "Remover programas" \
+            )
 
-        # tratando saidas
-        case $valor in 
-            automatico) 
-                # escolha=$(
-                    dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - V5"  \
-                        --ok-label "Executar" --cancel-label "Cancelar" \
-                        --menu "O que voce deseja fazer?" \
-                        0 0 0 \
-                        "Tudo" "Executar todas funçoes abaixo" \
-                        "Atualizar" "Atualizar Sistema" \
-                        "Instalar" "Instalar Programas essenciais" \
-                        "Instalar Outros" "Instalar outros programas" \
-                        "Corrigir" "Corrigir Sistema" \
-                        "Limpar" "Limpar Sistema" \
-                )
+            case $ESCOLHAAUTO_CONFIG in
+                0) 
+                    #executando ações para a distribuição Ubuntu
+                    if [ $distro == "Ubuntu" ]; then
+                        clear
+                        auto_config_ubuntu
+                    #executando ações para a distribuição Debian
+                    elif [ $distro == "Debian" ]; then
+                        clear
+                        auto_config_debian
+                    else
+                        printf "Disponivel para Debian ou Ubuntu!!! \n"
+                        printf "Script incompativel infelizmente \n"
+                    fi
                 ;;
-            manual) 
-                echo "manual";;
-        esac        
-    )    
+
+                1) func_atualiza ;;
+                2) func_corrige ;;
+                3) func_limpa ;;
+                4) func_instala  ;;
+                5) func_instala_outros ;;        
+                6) func_remove ;;
+            esac
+            ;;
+
+
+        1) echo "manual";;
+    esac   
 
     ####################
 
