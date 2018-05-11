@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="0.0.10.0.1.0"
+	VERSAO="0.0.15.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2488,24 +2488,38 @@ auto_config()
                     if [[ $escolha == 0 ]]; then    
                         # printf "atualiza"
 
-                        for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
-                            # echo ${ATUALIZA[$i]}
+                        # for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
+                        #     # echo ${ATUALIZA[$i]}
 
-                            dialog  --stdout --separate-output \
-                                    --checklist "Escolha algo" \
-                                    0 0 0 \
-                                "$i" "${ATUALIZA[$i]}" off \
-                                "$i" "${ATUALIZA[$i]}" off \
+						for chave in ${!ATUALIZA[@]}; do 
 
-                            break;
-                        done                                                                    
+							copy[$chave]=${original[$chave]}
+
+							# tamanho=${#array[@]}
+							# echo "$chave = ${ATUALIZA[$chave]}"; 
+
+							# copy=${$ATUALIZA[*]}
+							# echo "$chave"; 
+
+							# escolha=$(
+							# 	dialog  --stdout --separate-output \
+       #                              --checklist "Escolha algo" \
+       #                              0 0 0 \
+       #                          	"$chave" "${ATUALIZA[$chave]}" off \
+       #                          )
+                        done     
+
+                        echo ${copy[*]}
 
                     elif [[ $escolha == 1 ]]; then                    
                         printf ""
                     elif [[ $escolha == 2 ]]; then
                         printf ""
                     elif [[ $escolha == 3 ]]; then
-                        printf ""
+                        for chave in ${INSTALA[@]}; do 
+							# echo "$chave = ${INSTALA[$chave]}"; 
+							echo "$chave";
+						done
                     elif [[ $escolha == 4 ]]; then
                         printf ""
                     else
