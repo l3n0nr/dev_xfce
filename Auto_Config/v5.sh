@@ -2493,10 +2493,10 @@ auto_config()
 
 						for chave in ${!ATUALIZA[@]}; do 
 
-							copy[$chave]=${original[$chave]}
+							# copy[$chave]=${original[$chave]}
 
 							# tamanho=${#array[@]}
-							# echo "$chave = ${ATUALIZA[$chave]}"; 
+							echo "$chave = ${ATUALIZA[$chave]}"; 
 
 							# copy=${$ATUALIZA[*]}
 							# echo "$chave"; 
@@ -2509,7 +2509,7 @@ auto_config()
        #                          )
                         done     
 
-                        echo ${copy[*]}
+                        # echo ${copy[*]}
 
                     elif [[ $escolha == 1 ]]; then                    
                         printf ""
