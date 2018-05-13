@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [09/05/18]      #
+# # ultima ediçao realizada:      [13/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -86,7 +86,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="3.0.555.0.2.0"
+	VERSAO="3.0.556.0.2.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -2036,11 +2036,14 @@ func_formatado()
     # instalando programas
     func_instala
 
+    # instalando outros programas
+    func_instala_outros
+
     # texmaker - trabalhos academicos
     texmaker
 
-    # fonts
-    # fonts
+    # instalando fontes
+    fonts
     
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2067,7 +2070,7 @@ func_todas()
     func_instala
 
     # necessario interação com o usuario, se ativa não irá fazer tudo automatico
-    func_instala_outros
+    # func_instala_outros
 
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2512,9 +2515,6 @@ done
 
 # mostrando data/hora log inicilização script	
 date > /tmp/log.txt
-
-# mostrando informacoes da distro
-# lsb_release -a >> /tmp/log.txt
 
 # mostrando mensangem usuario - ATE LOGO
 if [ $var_mudo == "0" ]; then
