@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #
-# # ultima ediçao realizada:      [09/05/18]      #
+# # ultima ediçao realizada:      [13/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -85,7 +85,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="0.0.15.0.1.0"
+	VERSAO="0.0.20.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -117,6 +117,7 @@
 # usuario sistema
     usuario="lenonr"                    # nome usuario sistema
 
+# pasta do usuario
     pasta_home="/home/$usuario/"        # pasta home usuario do sistema 
 
 # verificando distro
@@ -146,7 +147,7 @@ CORRIGE=(apt_check apt_install apt_remove \
          autologin icones_temas)
 
 # vetor de limpeza
-LIMPA=(kernel arquivos_temporarios pacotes_orfaos \
+LIMPA=(arquivos_temporarios pacotes_orfaos \
        funcao_chkrootkit func_localepurge)
 
 # vetor instala
@@ -1586,27 +1587,6 @@ fi
         apt install htop -y
     }
 
-    install_sudo()
-    {
-        # variavel de verificação
-        local var_sudo=$(which /usr/bin/sudo)
-
-        # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_sudo ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o Sudo" >> /tmp/log.txt
-
-            apt install sudo -y
-
-            # echo "$usuario   ALL=(ALL:ALL) ALL" >> /etc/sudoers
-            gpasswd -a $usuario sudo
-        else
-            printf "\n"
-            printf "\n[+] Sudo ja esta instalado"
-            printf "\n[+] Sudo ja esta instalado" >> /tmp/log.txt            
-        fi
-    }
-
     install_gnome_calculator()
     {
         printf "\n"
@@ -1838,7 +1818,6 @@ func_corrige()
     config_ntp
     apport
 
-    # log_sudo
     atualiza_db   
 
     autologin
@@ -1938,7 +1917,6 @@ func_instala()
     install_openssh
     install_figlet        
     install_xclip 
-    # install_sudo
     install_nmap
     install_snap    
     install_gparted
@@ -2038,8 +2016,8 @@ func_formatado()
     # texmaker - trabalhos academicos
     texmaker
 
-    # fonts
-    # fonts
+    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
+    func_instala_outros
     
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2064,9 +2042,6 @@ func_todas()
 
     # instalando programas
     func_instala
-
-    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
-    func_instala_outros
 
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2561,46 +2536,32 @@ menu
 # tratando saidas
 # se script for chamado sem parametro ou
 # com apenas o parametro "mudo", sem outro
-# if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] || [[ -e $2 ]]; then
-#     func_help
-# else
-#     printf ""
-# fi
-
-# # passando parametro ao vetor
-# if [[ $1 -eq "mudo" ]]; then
-#     ESCOLHA_VETOR=$3
-#     HELP_VETOR=$4
-# else
-#     ESCOLHA_VETOR=$2
-#     HELP_VETOR=$3
-# fi  
+if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] || [[ -e $2 ]]; then
+    func_help
+else
+    printf ""
+fi
 
 # ## manipulando parametros - parametro acao/mudo(boolean)
-# for i in "$@"; 
-# do
-#     # verificando o que foi digitado
-#     case $i in
-#         menu) auto_config;;
-#         atualiza) func_atualiza;;
-#         corrige) func_corrige;;
-#         limpa) func_limpa;;
-#         instala) func_instala;;
-#         instala_outros) func_instala_outros;;
-#         remove) func_remove;;
-#         formatado) func_formatado;;
-#         todas) func_todas;;
-#         nvidia) nvidia;;
-#         texmaker) texmaker;;
-# 		  -v|-version) version;;
-#         vetor) func_vetor;;
-#         *) echo "Parametro desconhecido"
-#     esac    
-
-#     # alterando valor - funcoes em silencio
-#     if [ $1 == "mudo" ]; then
-#         var_mudo=1
-#     fi
+for i in "$@"; 
+do
+    # verificando o que foi digitado
+    case $i in
+        menu) auto_config;;
+        atualiza) func_atualiza;;
+        corrige) func_corrige;;
+        limpa) func_limpa;;
+        instala) func_instala;;
+        instala_outros) func_instala_outros;;
+        remove) func_remove;;
+        formatado) func_formatado;;
+        todas) func_todas;;
+        nvidia) nvidia;;
+        texmaker) texmaker;;
+		  -v|-version) version;;
+        vetor) func_vetor;;
+        *) echo "Parametro desconhecido"
+    esac    
 # done
 
 # mostrando data/hora log inicilização script	

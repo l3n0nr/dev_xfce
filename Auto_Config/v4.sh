@@ -2520,7 +2520,7 @@ date > /tmp/log.txt
 if [ $var_mudo == "0" ]; then
     espeak -vpt-br "Finalizado!!"
 else
-    notify-send -u normal "Script finalizado" -t 10000
+    notify-send -u normal "Script finalizado"
 fi
 
 # mostrando data/hora log finalização script
