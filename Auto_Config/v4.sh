@@ -49,6 +49,9 @@
 # por Debian Sources List Generator
 #	<https://debgen.simplylinux.ch/index.php>
 #
+# por Lubos Rendek - How to install Docker engine on Debian 9 Stretch Linux
+#   <https://linuxconfig.org/how-to-install-docker-engine-on-debian-9-stretch-linux>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -68,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [28/09/17]      #
-# # ultima ediçao realizada:      [13/05/18]      #
+# # ultima ediçao realizada:      [14/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -86,7 +89,7 @@
 # 	f = desenvolver
 #				
 # versao do script
-	VERSAO="3.0.556.0.2.0"
+	VERSAO="3.0.600.0.2.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -261,6 +264,7 @@ func_help()
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> /tmp/log.txt
 		        apt upgrade -y
 		        apt dist-upgrade -y
+                apt full-upgrade -y
 		fi
     }
 
@@ -861,9 +865,8 @@ fi
         libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
         libxine1-misc-plugins libxine1-plugins libxine1-x \
         nautilus-script-audio-convert nautilus-scripts-manager tagtool libavcodec-extra ffmpeg \
-        spotify-client prelink deborphan oracle-java7-installer -y --force-yes    
-
-        apt install lame libavcodec-extra libav-tools -y	
+        spotify-client prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools \
+        mugshot simple-scan xfburn -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -890,7 +893,14 @@ fi
         printf "\n[+] Instalando adicionais do XFCE" >> /tmp/log.txt
 
         #instalando componentes do XFCE
-        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
+        apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin \
+                    xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin \
+                    xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin \
+                    xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin \
+                    xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin \
+                    xfce4-smartbookmark-plugin xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin \
+                    xfce4-wavelan-plugin xfce4-weather-plugin xfce4-whiskermenu-plugin xfce4-wmdock-plugin \
+                    xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp
@@ -1689,26 +1699,24 @@ fi
             if [[ $distro == "Ubuntu" ]]; then
         		apt install docker-io -y
         	elif [[ $distro == "Debian" ]]; then            
-				# baixando dependencias            	
-				printf "\n[*] Instalando dependencias"
-            	apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
+                # baixando dependencias               
+                printf "\n[*] Instalando dependencias"
+                apt-get install apt-transport-https dirmngr -y
 
-            	# baixando chave 
-            	printf "\n[*] Baixando chaves"
-			    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+                # baixando chave 
+                printf "\n[*] Baixando chaves"
+                echo 'deb https://apt.dockerproject.org/repo debian-stretch main' >> /etc/apt/sources.list
 
-			    # adicionando repositorio
-			    printf "\n[*] Adicionando repositorio"
-			    # add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) \ stable"
-			    add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) \ testing"
+                # adicionando repositorio
+                printf "\n[*] Adicionando repositorio"
+                apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
 
-			    # atualizando sistema
-			    printf "\n[*] Atualizando sistema"
-			    update
+                # atualizando sistema
+                update
 
-			    # instalando docker
-			    printf "\n[*] Instalando docker"
-			    apt install docker-ce -y
+                # instalando docker
+                printf "\n[*] Instalando docker"
+                apt install docker-engine -y            
             else
             	printf "\n"
             fi
@@ -2039,7 +2047,8 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge xfburn thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* owncloud* -y
+    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* \
+    imagemagick* xsane* chromium-bsu* owncloud* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
