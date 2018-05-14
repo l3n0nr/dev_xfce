@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #
-# #             VERSAO="0.1.37.0.1.0"             #
+# #             VERSAO="0.0.40.0.1.0"             #
 # # ultima ediçao realizada:      [14/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -76,7 +76,7 @@
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
 #
 # 	b = erros na execução;
-#				- I  - [BEGIN]	- Verificar inicializaçao do script
+#
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
@@ -172,8 +172,9 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_pulseeffects install_terminator install_aircrack \
         install_snap install_ntp install_xclip install_espeak \
         install_ibus install_nmap install_htop install_gnome_calculator \
-        install_tuxguitar install_muse_score install_zsh\
-        install_docker install_sublime install_firmware install_compton)
+        install_tuxguitar install_muse_score install_zsh \
+        install_docker install_sublime install_firmware \
+        install_compton install_xfburn)
 
 # vetor instala outros
 INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
@@ -770,16 +771,16 @@ fi
 	            apt-get install tor tor-browser -y
                 # apt install tor torbrowser-launcher -y
 
-            elif [ $distro == "Debian" ]; then
-                # debian 9                
-                # adicionando repositorio
-                printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
+            # elif [ $distro == "Debian" ]; then
+            #     # debian 9                
+            #     # adicionando repositorio
+            #     printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
 
-                # atualizando sistema
-                update
+            #     # atualizando sistema
+            #     update
 
-                # instalando tor
-                apt install tor torbrowser-launcher -t stretch-backports
+            #     # instalando tor
+            #     apt install tor torbrowser-launcher -t stretch-backports
             else
             	printf "\n[-] ERRO TOR"
             	printf "\n[-] ERRO TOR" >> /tmp/log.txt
@@ -860,7 +861,7 @@ fi
         libxine1-misc-plugins libxine1-plugins libxine1-x \
         nautilus-script-audio-convert nautilus-scripts-manager tagtool libavcodec-extra ffmpeg \
         spotify-client prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools \
-        mugshot simple-scan xfburn -y --force-yes    
+        mugshot simple-scan -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -1740,8 +1741,8 @@ fi
     install_compton()
     {
     	printf "\n"
-        printf "\n[+] Instalando o compton"        
-        printf "\n[+] Instalando o compton" >> /tmp/log.txt        
+        printf "\n[+] Instalando o Compton"        
+        printf "\n[+] Instalando o Compton" >> /tmp/log.txt        
 
     	apt install compton -y
     }
@@ -1805,6 +1806,15 @@ fi
 
 	        apt install transmission-gtk -y
 	    fi
+    }
+
+    install_xfburn()
+    {
+        printf "\n"
+        printf "\n[+] Instalando XFBurn"
+        printf "\n[+] Instalando XFBurn" >> /tmp/log.txt
+
+        apt install xfburn -y
     }
 # # # # # # # # # #
 
@@ -1958,6 +1968,7 @@ func_instala()
     install_gnome_system_monitor    
     install_gnome_calculator
     install_compton
+    install_xfburn
 
     install_wine
     install_playonlinux
@@ -2020,7 +2031,7 @@ func_remove()
     fi
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
-    apt purge xfburn thunderbird parole inkscape* blender* \
+    apt purge thunderbird parole inkscape* blender* \
     exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* owncloud* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
@@ -2583,6 +2594,9 @@ menu()
 # INICIANDO SCRIPT
 # menu
 
+# mostrando data/hora log inicilização script   
+date > /tmp/log.txt
+
 # tratando saidas
 # se script for chamado sem parametro ou
 # com apenas o parametro "mudo", sem outro
@@ -2613,9 +2627,6 @@ do
         *) echo "Parametro desconhecido"
     esac    
 done
-
-# mostrando data/hora log inicilização script	
-date > /tmp/log.txt
 
 # mostrando informacoes da distro
 # lsb_release -a >> /tmp/log.txt

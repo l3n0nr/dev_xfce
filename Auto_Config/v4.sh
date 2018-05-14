@@ -2046,7 +2046,7 @@ func_remove()
     fi
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
-    apt purge xfburn thunderbird parole inkscape* blender* \
+    apt purge thunderbird parole inkscape* blender* \
     exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* \
     imagemagick* xsane* chromium-bsu* owncloud* -y
     
