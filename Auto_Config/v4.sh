@@ -969,7 +969,7 @@ fi
 				update
 
 				# instalando wine
-            	apt install wine-development ttf-mscorefonts-installer -y
+            	apt install wine-development wine32 ttf-mscorefonts-installer -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt

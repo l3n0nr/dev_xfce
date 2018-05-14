@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #
-# #             VERSAO="0.0.40.0.1.0"             #
+# #             VERSAO="0.0.42.0.1.0"             #
 # # ultima ediçao realizada:      [14/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -180,11 +180,6 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
 INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
                 install_python install_dropbox install_transmission)
 
-# # vetor do programa
-# SAI=(exit)
-
-# # vetor ajuda
-# AJUDA=(func_help)
 #
 # # # # # # # # # #
 #
