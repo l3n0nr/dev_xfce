@@ -319,6 +319,7 @@ func_help()
         printf "\n[+] Corrigindo repositório local de dependências automaticamente" >> /tmp/log.txt
         
         auto-apt update-local
+        apt list --upgradable
     }
 
     swap()
@@ -1685,17 +1686,37 @@ fi
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
-            # uso do processador de forma desnecessaria
-            # curl -fsSL https://get.docker.com/ | sh
+            if [[ $distro == "Ubuntu" ]]; then
+        		apt install docker-io -y
+        	elif [[ $distro == "Debian" ]]; then            
+				# baixando dependencias            	
+				printf "\n[*] Instalando dependencias"
+            	apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
 
-            apt install docker-io -y
+            	# baixando chave 
+            	printf "\n[*] Baixando chaves"
+			    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+
+			    # adicionando repositorio
+			    printf "\n[*] Adicionando repositorio"
+			    # add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) \ stable"
+			    add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) \ testing"
+
+			    # atualizando sistema
+			    printf "\n[*] Atualizando sistema"
+			    update
+
+			    # instalando docker
+			    printf "\n[*] Instalando docker"
+			    apt install docker-ce -y
+            else
+            	printf "\n"
+            fi
         else
             printf "\n"
             printf "\n[+] O Docker já está instalado no seu sistema."
         fi
 
-        # removendo docker 
-        # apt purge docker-ce -y
     }
 
     install_sublime()

@@ -75,7 +75,7 @@
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
 #
 # 	b = erros na execução;
-#
+#				- I  - [BEGIN]	- Verificar inicializaçao do script
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
@@ -84,8 +84,6 @@
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
 #				
-# versao do script
-	VERSAO="0.0.20.0.1.0"
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # Mensagens de Status
@@ -131,6 +129,12 @@
 
 # login automatico distros
 	boolean_autologin=1					# login automatico, caso queria desativar basta alterar para 0
+
+# logo para ser mostrado no script
+	logo="figlet AUTOCONFIG-V5"			# logo do script
+
+# versao do script
+	VERSAO="0.1.35.0.1.0"				# versao
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -189,15 +193,10 @@ INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
 func_help()
 {
     clear
-    clear
     printf "############################################################################\n"
-    printf "
-   / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |
-  / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_
- / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
-/_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
-    "
     printf "\n"
+	$logo
+	printf "\n"
     printf "############################################################################
 
     Bem vindo ao script de automação de tarefas no Linux. 
@@ -319,6 +318,7 @@ func_help()
         printf "\n[+] Corrigindo repositório local de dependências automaticamente" >> /tmp/log.txt
         
         auto-apt update-local
+        apt list --upgradable
     }
 
     swap()
@@ -1618,7 +1618,7 @@ fi
         # variavel de verificação
         local var_musescore=$(which musescore)
 
-        # criando verificação para instalar o docker
+        # criando verificação para instalar o musescore
         if [[ ! -e $var_musescore ]]; then
             printf "\n"
             printf "\n[+] Instalando Muse Score"
@@ -1664,10 +1664,31 @@ fi
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
-            # uso do processador de forma desnecessaria
-            # curl -fsSL https://get.docker.com/ | sh
+            if [[ $distro == "Ubuntu" ]]; then
+        		apt install docker-io -y
+        	elif [[ $distro == "Debian" ]]; then            
+				# baixando dependencias            	
+				printf "\n[*] Instalando dependencias"
+            	apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
 
-            apt install docker-io -y
+            	# baixando chave 
+            	printf "\n[*] Baixando chaves"
+			    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+
+			    # adicionando repositorio
+			    printf "\n[*] Adicionando repositorio"
+			    add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) \ testing"
+
+			    # atualizando sistema
+			    printf "\n[*] Atualizando sistema"
+			    update
+
+			    # instalando docker
+			    printf "\n[*] Instalando docker"
+			    apt install docker-ce -y
+            else
+            	printf "\n"
+            fi
         else
             printf "\n"
             printf "\n[+] O Docker já está instalado no seu sistema."
@@ -1815,8 +1836,7 @@ func_corrige()
 
     prelink_preload_deborphan
     pacotes_quebrados    
-    config_ntp
-    apport
+    config_ntp    
 
     atualiza_db   
 
@@ -1830,6 +1850,7 @@ func_corrige()
         if [ $distro == "Ubuntu" ]; then        
             apt_update_local
             apt_auto
+            apport
         elif [ $distro == "Debian" ]; then              
             printf ""   
         fi
@@ -1837,6 +1858,7 @@ func_corrige()
         if [ $distro == "Ubuntu" ]; then           
             apt_update_local
             apt_auto
+            apport
         elif [ $distro == "Debian" ]; then      
             printf ""   
         fi
@@ -2227,13 +2249,9 @@ version()
     if [[ `id -u` -ne 0 ]]; then
         clear
         printf "############################################################################\n"
-        printf "
-   / \ | | | |_   _/ _ \ / ___/ _ \| \ | |  ___|_ _/ ___|   \ \   / / || |
-  / _ \| | | | | || | | | |  | | | |  \| | |_   | | |  _ ____\ \ / /| || |_
- / ___ \ |_| | | || |_| | |__| |_| | |\  |  _|  | | |_| |_____\ V / |__   _|
-/_/   \_\___/  |_| \___/ \____\___/|_| \_|_|   |___\____|      \_/     |_|
-    "
-    printf "\n"
+   		printf "\n"
+   		$logo
+    	printf "\n"
         printf "############################################################################ \n"
         printf "[!] O script para funcionar, precisa estar sendo executado como root! \n"
         printf "[!] Favor, logar na conta root e executar o script novamente. \n"
@@ -2396,127 +2414,156 @@ auto_config()
 {
     clear
 
-    ####################
-    valor=$(
-        dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
-                --ok-label "Executar" --cancel-label "Cancelar" \
-                --menu "Modo de execucao do script..." \
-                0 0 0 \
-                "0" "Modo Automatico" \
-                "1" "Modo Manual" \
-    )
+    # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    printf "
+                AUTOCONFIG - V4
+        Versao do script: $VERSAO
+                \n"
+    echo "-------------------------------------------------"
+    echo "Digite 1 para atualizar o sistema,"
+    echo "Digite 2 para corrigir possíveis erros,"
+    echo "Digite 3 para realizar uma limpeza,"
+    echo "Digite 4 para instalar alguns programas,"
+    echo "Digite 5 para instalar programas não essenciais,"
+    echo "Digite 6 para remover alguns programas,"
+    echo "Digite 7 para sair do script,"
+    echo "-------------------------------------------------"
+    read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
 
-    # se valor igual a 1, sai do programa
-    [ $? -eq 1 ] && break
+    #executando ações para a distribuição Ubuntu
+    if [ $distro == "Ubuntu" ]; then
+        clear
+        auto_config_ubuntu
+    #executando ações para a distribuição Fedora
+    elif [ $distro == "Debian" ]; then
+        clear
+        auto_config_debian
+    else
+        printf "Disponivel para Debian ou Ubuntu!!! \n"
+        printf "Script incompativel infelizmente \n"
+    fi
+
+  #   ####################
+  #   valor=$(
+  #       dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
+  #               --ok-label "Executar" --cancel-label "Cancelar" \
+  #               --menu "Modo de execucao do script..." \
+  #               0 0 0 \
+  #               "0" "Modo Automatico" \
+  #               "1" "Modo Manual" \
+  #   )
+
+  #   # se valor igual a 1, sai do programa
+  #   [ $? -eq 1 ] && break
     
-    # tratando saida - forma de execucao do script
-    case $valor in 
-    	# modo automatico
-        0) 
-            escolha=$(
-                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
-                    --ok-label "Executar" --cancel-label "Cancelar" \
-                    --menu "O que voce deseja fazer?" \
-                    0 0 0 \
-                    "0" "Executar todas funçoes abaixo" \
-                    "1" "Atualizar Sistema" \
-                    "2" "Corrigir Sistema" \
-                    "3" "Limpar Sistema" \
-                    "4" "Instalar programas" \
-                    "5" "Instalar outros programas" \
-                    "6" "Remover programas" \
-            )
+  #   # tratando saida - forma de execucao do script
+  #   case $valor in 
+  #   	# modo automatico
+  #       0) 
+  #           escolha=$(
+  #               dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
+  #                   --ok-label "Executar" --cancel-label "Cancelar" \
+  #                   --menu "O que voce deseja fazer?" \
+  #                   0 0 0 \
+  #                   "0" "Executar todas funçoes abaixo" \
+  #                   "1" "Atualizar Sistema" \
+  #                   "2" "Corrigir Sistema" \
+  #                   "3" "Limpar Sistema" \
+  #                   "4" "Instalar programas" \
+  #                   "5" "Instalar outros programas" \
+  #                   "6" "Remover programas" \
+  #           )
 
-            case $escolha in
-                0) func_todas ;;
-                1) func_atualiza ;;
-                2) func_corrige ;;
-                3) func_limpa ;;
-                4) func_instala  ;;
-                5) func_instala_outros ;;        
-                6) func_remove ;;
-            esac
-            ;;
+  #           case $escolha in
+  #               0) func_todas ;;
+  #               1) func_atualiza ;;
+  #               2) func_corrige ;;
+  #               3) func_limpa ;;
+  #               4) func_instala  ;;
+  #               5) func_instala_outros ;;        
+  #               6) func_remove ;;
+  #           esac
+  #           ;;
 
-        # modo manual
-        1) 
-			escolha=$(
-                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
-                    --ok-label "Executar" --cancel-label "Cancelar" \
-                    --menu "O que voce deseja fazer?" \
-                    0 0 0 \
-                    "0" "Atualizar Sistema" \
-                    "1" "Corrigir Sistema" \
-                    "2" "Limpar Sistema" \
-                    "3" "Instalar programas" \
-                    "4" "Instalar outros programas" \
-            )
+  #       # modo manual
+  #       1) 
+		# 	escolha=$(
+  #               dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
+  #                   --ok-label "Executar" --cancel-label "Cancelar" \
+  #                   --menu "O que voce deseja fazer?" \
+  #                   0 0 0 \
+  #                   "0" "Atualizar Sistema" \
+  #                   "1" "Corrigir Sistema" \
+  #                   "2" "Limpar Sistema" \
+  #                   "3" "Instalar programas" \
+  #                   "4" "Instalar outros programas" \
+  #           )
 
-            # vetor de açoes
-            vetor=(atualiza corrige limpa instala instala_outros)
+  #           # vetor de açoes
+  #           vetor=(atualiza corrige limpa instala instala_outros)
 
-            for (( i = 0; i <= ${#vetor[@]}; i++ )); do 
-                # if [[ ${vetor[$i]} == $escolha ]]; then    
-                if [[ $i == $escolha ]]; then    
-                    # echo ${vetor[$i]}
+  #           for (( i = 0; i <= ${#vetor[@]}; i++ )); do 
+  #               # if [[ ${vetor[$i]} == $escolha ]]; then    
+  #               if [[ $i == $escolha ]]; then    
+  #                   # echo ${vetor[$i]}
 
-                    if [[ $escolha == 0 ]]; then    
-                        # printf "atualiza"
+  #                   if [[ $escolha == 0 ]]; then    
+  #                       # printf "atualiza"
 
-                        # for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
-                        #     # echo ${ATUALIZA[$i]}
+  #                       # for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
+  #                       #     # echo ${ATUALIZA[$i]}
 
-						for chave in ${!ATUALIZA[@]}; do 
+		# 				for chave in ${!ATUALIZA[@]}; do 
 
-							# copy[$chave]=${original[$chave]}
+		# 					# copy[$chave]=${original[$chave]}
 
-							# tamanho=${#array[@]}
-							echo "$chave = ${ATUALIZA[$chave]}"; 
+		# 					# tamanho=${#array[@]}
+		# 					echo "$chave = ${ATUALIZA[$chave]}"; 
 
-							# copy=${$ATUALIZA[*]}
-							# echo "$chave"; 
+		# 					# copy=${$ATUALIZA[*]}
+		# 					# echo "$chave"; 
 
-							# escolha=$(
-							# 	dialog  --stdout --separate-output \
-       #                              --checklist "Escolha algo" \
-       #                              0 0 0 \
-       #                          	"$chave" "${ATUALIZA[$chave]}" off \
-       #                          )
-                        done     
+		# 					# escolha=$(
+		# 					# 	dialog  --stdout --separate-output \
+  #      #                              --checklist "Escolha algo" \
+  #      #                              0 0 0 \
+  #      #                          	"$chave" "${ATUALIZA[$chave]}" off \
+  #      #                          )
+  #                       done     
 
-                        # echo ${copy[*]}
+  #                       # echo ${copy[*]}
 
-                    elif [[ $escolha == 1 ]]; then                    
-                        printf ""
-                    elif [[ $escolha == 2 ]]; then
-                        printf ""
-                    elif [[ $escolha == 3 ]]; then
-                        for chave in ${INSTALA[@]}; do 
-							# echo "$chave = ${INSTALA[$chave]}"; 
-							echo "$chave";
-						done
-                    elif [[ $escolha == 4 ]]; then
-                        printf ""
-                    else
-                        printf ""
-                    fi                                                            
-                fi
-            done
-            # for (( i = 0; i <= ${#repos[@]}; i++ )); do 
-            #     # verify local repo disk
-            #     if [[ $LOCAL${repos[$i]} != $LOCAL ]]; then
-            #         # verify local repo
-            #         if [ -e "$LOCAL${repos[$i]}" ]; then         
-            #             printf ""
-            #             echo "[+] - Found:" $LOCAL${repos[$i]}
+  #                   elif [[ $escolha == 1 ]]; then                    
+  #                       printf ""
+  #                   elif [[ $escolha == 2 ]]; then
+  #                       printf ""
+  #                   elif [[ $escolha == 3 ]]; then
+  #                       for chave in ${INSTALA[@]}; do 
+		# 					# echo "$chave = ${INSTALA[$chave]}"; 
+		# 					echo "$chave";
+		# 				done
+  #                   elif [[ $escolha == 4 ]]; then
+  #                       printf ""
+  #                   else
+  #                       printf ""
+  #                   fi                                                            
+  #               fi
+  #           done
+  #           # for (( i = 0; i <= ${#repos[@]}; i++ )); do 
+  #           #     # verify local repo disk
+  #           #     if [[ $LOCAL${repos[$i]} != $LOCAL ]]; then
+  #           #         # verify local repo
+  #           #         if [ -e "$LOCAL${repos[$i]}" ]; then         
+  #           #             printf ""
+  #           #             echo "[+] - Found:" $LOCAL${repos[$i]}
 
-            #             # into folder location
-            #             ls $LOCAL${repos[$i]}                               
-            #         fi
-            #     fi
-            # done
-		;;
-    esac      
+  #           #             # into folder location
+  #           #             ls $LOCAL${repos[$i]}                               
+  #           #         fi
+  #           #     fi
+  #           # done
+		# ;;
+  #   esac      
 }
 
 #mostrando mensagem inicial
@@ -2530,9 +2577,8 @@ menu()
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # INICIANDO SCRIPT
-menu
-
 # menu
+
 # tratando saidas
 # se script for chamado sem parametro ou
 # com apenas o parametro "mudo", sem outro
@@ -2562,7 +2608,7 @@ do
         vetor) func_vetor;;
         *) echo "Parametro desconhecido"
     esac    
-# done
+done
 
 # mostrando data/hora log inicilização script	
 date > /tmp/log.txt
