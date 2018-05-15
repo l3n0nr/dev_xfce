@@ -2622,26 +2622,13 @@ do
         todas) func_todas;;
         nvidia) nvidia;;
         texmaker) texmaker;;
-		  -v|-version) version;;
+		-v|-version) version;;
         vetor) func_vetor;;
-        *) echo "Parametro desconhecido"
+        *) echo "Parametro desconhecido";;
     esac    
 done
 
-# mostrando informacoes da distro
-# lsb_release -a >> /tmp/log.txt
-
-# # mostrando mensangem usuario - ATE LOGO
-# if [ $var_mudo == "0" ]; then
-#     espeak -vpt-br "Finalizado!!"
-# else
-#     notify-send -u normal "Script finalizado" -t 10000
-# fi
-
-# mostrando data/hora log finalização script
-# echo >> /tmp/log.txt
 date >> /tmp/log.txt
-
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
