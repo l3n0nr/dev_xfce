@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #
-# #             VERSAO="0.0.42.0.1.0"             #
+# #             VERSAO="0.0.45.1.1.0"             #
 # # ultima ediçao realizada:      [14/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -80,7 +80,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#
+#				- I  - [VERIFICAR-DEBIAN]: Transmission, Wine, Playonlinux, Tor
 # 	e = pendencias
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
@@ -294,7 +294,12 @@ func_help()
         printf "\n[+] Limpando arquivos sobressalentes"
         printf "\n[+] Limpando arquivos sobressalentes" >> /tmp/log.txt
         
-        apt-get clean -y
+        rm -rf /var/lib/dpkg/info/*.*
+
+        apt-get clean 
+        apt-get install -f
+
+        update
     }
 
     apt_auto()
