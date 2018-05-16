@@ -67,8 +67,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-# # data de criação do script:    [09/05/18]      #
-# #             VERSAO="0.0.50.1.1.0"             #
+# # data de criação do script:    [09/05/18]      #             
 # # ultima ediçao realizada:      [15/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -80,7 +79,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I  - [VERIFICAR-DEBIAN]: Transmission, Wine, Playonlinux, Tor, VisualGame Boy
+#				- I  - [VERIFICAR-DEBIAN]: Wine, Tor, VisualGame Boy
 # 	e = pendencias
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
@@ -134,6 +133,9 @@
 # logo para ser mostrado no script
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
+# versao do script
+VERSAO="0.0.55.0.1.0"             
+
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
 # vetor de atualizacao
@@ -174,11 +176,11 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_ibus install_nmap install_htop install_gnome_calculator \
         install_tuxguitar install_muse_score install_zsh \
         install_docker install_sublime install_firmware \
-        install_compton install_xfburn)
+        install_compton install_xfburn install_dropbox install_transmission \
+        install_python)
 
 # vetor instala outros
-INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin \
-                install_python install_dropbox install_transmission)
+INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin)
 
 #
 # # # # # # # # # #
@@ -1697,7 +1699,13 @@ fi
 
                 # instalando docker
                 printf "\n[*] Instalando docker"
-                apt install docker-engine -y            
+                printf "\n[*] Instalando docker" >> /tmp/log.txt
+                apt install docker-engine docker-compose -y            
+
+                # adicionando usuario ao grupo
+                printf "\n[*] Adicionando usuario ao grupo no docker"
+                printf "\n[*] Adicionando usuario ao grupo no docker" >> /tmp/log.txt
+                gpasswd -a $usuario docker
             else
             	printf "\n"
             fi
@@ -1980,6 +1988,13 @@ func_instala()
     install_wine
     install_playonlinux
 
+    install_python       
+	install_wireshark  
+	install_ntp 
+	install_localepurge  
+
+	install_transmission
+
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
         install_aircrack  	
@@ -1996,7 +2011,7 @@ func_instala()
         install_kstars
 		install_audacity
     	install_kdenlive
-        install_nvidia        
+        install_nvidia              
 	else
 		printf "\n[-] ERRO INSTALA!"
 	fi
@@ -2014,19 +2029,13 @@ func_instala_outros()
     install_apache
     install_mysql
     install_phpmyadmin
-    install_python       
-
-    install_wireshark  
-    install_ntp 
-    install_localepurge
-
+    
     fonts
 
     # verificando computador
     if [[ $v_hostname == 'desktop' ]]; then
         install_virtualbox
-        install_steam
-        install_transmission
+        install_steam        
     fi
 }
 
@@ -2618,6 +2627,15 @@ if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] || [[ -e $2 ]]; then
 else
     printf ""
 fi
+
+# passando parametro ao vetor
+if [[ $1 -eq "mudo" ]]; then
+    ESCOLHA_VETOR=$3
+    HELP_VETOR=$4
+else
+    ESCOLHA_VETOR=$2
+    HELP_VETOR=$3
+fi  
 
 # ## manipulando parametros - parametro acao/mudo(boolean)
 for i in "$@"; 
