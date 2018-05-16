@@ -134,7 +134,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.55.0.1.0"             
+VERSAO="0.0.56.0.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -449,19 +449,25 @@ func_help()
         printf "\n[*] NIC.BR\n"
             ntpdate -q pool.ntp.br
      
-        printf "\n[*] Observatorio Nacional\n"
-            ntpdate -q ntp.on.br
+        # printf "\n[*] Observatorio Nacional\n"
+        #     ntpdate -q ntp.on.br
 
-        printf "\n[*] RNP\n"
-            ntpdate -q ntp.cert-rs.tche.br
+        # printf "\n[*] RNP\n"
+        #     ntpdate -q ntp.cert-rs.tche.br
 
-        printf "\n[*] UFRJ\n"
-            ntpdate -q ntps1.pads.ufrj.br
+        # printf "\n[*] UFRJ\n"
+        #     ntpdate -q ntps1.pads.ufrj.br
 
-        printf "\n[*] USP\n"
-            ntpdate -q ntp.usp.br
+        # printf "\n[*] USP\n"
+        #     ntpdate -q ntp.usp.br
 
-        printf "\n[+] Hora do servidor atualizada!\n"
+		if [[ $? == "0" ]]; then
+        	printf "\n[+] Hora do servidor atualizada!\n"
+        	printf "\n[+] Hora do servidor atualizada!\n" >> /tmp/log.txt
+        else
+        	printf "\n[-] Erro - Hora do servidor!\n"
+        	printf "\n[-] Erro - Hora do servidor!\n" >> /tmp/log.txt
+        fi    
     }
 
     apport()
