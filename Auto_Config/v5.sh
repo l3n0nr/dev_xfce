@@ -68,7 +68,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [15/05/18]      #
+# # ultima ediçao realizada:      [17/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -134,7 +134,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.56.0.1.0"             
+VERSAO="0.0.60.0.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -478,14 +478,6 @@ func_help()
         #corrige apport - ubuntu 16.04
         cat base/ubuntu/apport > /etc/default/apport
     }   
-
-    log_sudo()
-    {
-        printf "\n[+] Ativando log's do sudo"
-        printf "\n[+] Ativando log's do sudo" >> /tmp/log.txt
-    
-    	cat base/ubuntu/login.defs > /etc/login.defs
-    }
 
     repositorios_padrao()
     {
@@ -1666,12 +1658,12 @@ fi
         if [[ ! -e $var_zsh ]]; then
 	        apt install zsh zsh-completions -y
 
-	        printf "\n[*] Modificando bash padrao para zsh"
+	        # printf "\n[*] Modificando bash padrao para zsh"
 	        # chsh -s /usr/bin/zsh
-	        chsh -s $(which zsh) $usuario
+	        # chsh -s $(which zsh) $usuario
 	            
-	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
-	        printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
+	        # printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
+	        # printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
 	    fi
     }
 
@@ -1711,7 +1703,7 @@ fi
                 # adicionando usuario ao grupo
                 printf "\n[*] Adicionando usuario ao grupo no docker"
                 printf "\n[*] Adicionando usuario ao grupo no docker" >> /tmp/log.txt
-                gpasswd -a $usuario docker
+                # gpasswd -a $usuario docker
             else
             	printf "\n"
             fi
@@ -1994,8 +1986,7 @@ func_instala()
     install_wine
     install_playonlinux
 
-    install_python       
-	install_wireshark  
+    install_python       	
 	install_ntp 
 	install_localepurge  
 
@@ -2032,10 +2023,7 @@ func_instala_outros()
         notify-send -u normal "Instalando outros programas no sistema" -t 10000
     fi
 	
-    install_apache
-    install_mysql
-    install_phpmyadmin
-    
+    install_wireshark    
     fonts
 
     # verificando computador
@@ -2072,13 +2060,7 @@ func_formatado()
     func_atualiza
 
     # instalando programas
-    func_instala
-
-    # texmaker - trabalhos academicos
-    texmaker
-
-    # necessario interação com o usuario, se ativa não irá fazer tudo automatico
-    func_instala_outros
+    func_instala    
     
     # removendo programas pré-instalados, desnecessários
     func_remove
@@ -2088,6 +2070,9 @@ func_formatado()
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
+
+    # texmaker - trabalhos academicos
+    texmaker
 
     # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
