@@ -134,7 +134,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.60.0.1.0"             
+VERSAO="0.0.70.0.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -254,9 +254,7 @@ func_help()
         	#atualizando lista de programas do sistem
         	printf "\n[+] Atualizando lista de programas do sistema \n"
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> /tmp/log.txt
-		        apt upgrade -y
-		        apt dist-upgrade -y
-                apt full-upgrade -y
+		        apt upgrade dist-upgrade full-upgrade -y
 		fi
     }
 
@@ -411,16 +409,6 @@ func_help()
         printf "\n[+] Instalando pacotes de fontes"
         printf "\n[+] Instalando pacotes de fontes" >> /tmp/log.txt
 
-        # #baixando pacote
-        # wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
-
-        # #instalando pacote
-        # dpkg -i ttf-mscorefonts-installer_3.6_all.deb
-
-        # #removendo pacote
-        # rm -f ttf-mscorefonts-installer_3.6_all.deb
-        # rm -f ttf-mscorefonts-installer_3.6_all.deb.1
-
         apt install ttf-mscorefonts-installer fonts-noto ttf-freefont -f 
     }    
 
@@ -448,18 +436,6 @@ func_help()
         printf "\n[+] Atualizando servidores, aguarde..."
         printf "\n[*] NIC.BR\n"
             ntpdate -q pool.ntp.br
-     
-        # printf "\n[*] Observatorio Nacional\n"
-        #     ntpdate -q ntp.on.br
-
-        # printf "\n[*] RNP\n"
-        #     ntpdate -q ntp.cert-rs.tche.br
-
-        # printf "\n[*] UFRJ\n"
-        #     ntpdate -q ntps1.pads.ufrj.br
-
-        # printf "\n[*] USP\n"
-        #     ntpdate -q ntp.usp.br
 
 		if [[ $? == "0" ]]; then
         	printf "\n[+] Hora do servidor atualizada!\n"
@@ -859,9 +835,8 @@ fi
         libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
         libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
         libxine1-misc-plugins libxine1-plugins libxine1-x \
-        nautilus-script-audio-convert nautilus-scripts-manager tagtool libavcodec-extra ffmpeg \
-        spotify-client prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools \
-        mugshot simple-scan -y --force-yes    
+        tagtool libavcodec-extra ffmpeg \
+        prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -1656,14 +1631,7 @@ fi
 
 		# criando verificação para instalar zsh
         if [[ ! -e $var_zsh ]]; then
-	        apt install zsh zsh-completions -y
-
-	        # printf "\n[*] Modificando bash padrao para zsh"
-	        # chsh -s /usr/bin/zsh
-	        # chsh -s $(which zsh) $usuario
-	            
-	        # printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!"
-	        # printf "\n[+] Seu interpretador de comandos foi alterado para o ZSH!" >> /tmp/log.txt
+	        apt install zsh zsh-common -y
 	    fi
     }
 
@@ -1760,36 +1728,6 @@ fi
     	apt install compton -y
     }
 
-# # # # # # # # # #
-# # PROGRAMAS NÃO ESSENCIAIS
-    install_apache()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Apache"
-        printf "\n[+] Instalando o Apache" >> /tmp/log.txt
-
-        apt install apache2 -y
-        service apache2 restart
-    }
-
-    install_mysql()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Mysql Server"
-        printf "\n[+] Instalando o Mysql Server" >> /tmp/log.txt
-
-        apt install mysql-server -y
-    }
-
-    install_phpmyadmin()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o PhpMyAdmin"
-        printf "\n[+] Instalando o PhpMyAdmin" >> /tmp/log.txt
-
-        apt install php phpmyadmin -y
-    }    
-
     install_python()
     {
         printf "\n"
@@ -1809,16 +1747,16 @@ fi
 
     install_transmission()
     {
-    	local var_transmission=$(which transmission-gtk)
+        local var_transmission=$(which transmission-gtk)
 
-    	# verificando se transmission está instalado
-		if [[ ! -e $var_transmission ]]; then
-	    	printf "\n"
-	        printf "\n[+] Instalando o Transmission"
-	        printf "\n[+] Instalando o Transmission" >> /tmp/log.txt	
+        # verificando se transmission está instalado
+        if [[ ! -e $var_transmission ]]; then
+            printf "\n"
+            printf "\n[+] Instalando o Transmission"
+            printf "\n[+] Instalando o Transmission" >> /tmp/log.txt    
 
-	        apt install transmission-gtk -y
-	    fi
+            apt install transmission-gtk -y
+        fi
     }
 
     install_xfburn()
@@ -1828,6 +1766,44 @@ fi
         printf "\n[+] Instalando XFBurn" >> /tmp/log.txt
 
         apt install xfburn -y
+    }
+
+    install_wavemon()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Wavemon"        
+        printf "\n[+] Instalando o Wavemon" >> /tmp/log.txt        
+
+        apt install wavemon -y
+    }
+
+    install_mugshot()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Mugshot"        
+        printf "\n[+] Instalando o Mugshot" >> /tmp/log.txt        
+
+        apt install mugshot -y
+    }
+
+    install_simplescan()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Simple-scan"        
+        printf "\n[+] Instalando o Simple-scan" >> /tmp/log.txt        
+
+        apt install simple-scan -y
+    }   
+
+# # # # # # # # # #
+# # PROGRAMAS NÃO ESSENCIAIS
+    install_wireshark()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Wireshark"
+        printf "\n[+] Instalando o Wireshark" >> /tmp/log.txt
+
+        apt install wireshark -y
     }
 # # # # # # # # # #
 
@@ -1982,6 +1958,8 @@ func_instala()
     install_gnome_calculator
     install_compton
     install_xfburn
+    install_mugshot
+    install_simplescan    
 
     install_wine
     install_playonlinux
@@ -1994,7 +1972,8 @@ func_instala()
 
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
-        install_aircrack  	
+        install_aircrack  
+        install_wavemon	
 
 		if [ $distro == "Ubuntu" ]; then		
 			printf "\n"
