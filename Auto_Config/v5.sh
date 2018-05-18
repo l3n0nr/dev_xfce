@@ -49,6 +49,9 @@
 # por Debian Sources List Generator
 #	<https://debgen.simplylinux.ch/index.php>
 #
+# por How-To :: Wine Development no Debian e derivados
+#   <https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -68,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [17/05/18]      #
+# # ultima ediçao realizada:      [18/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -134,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.70.0.1.0"             
+VERSAO="0.0.85.0.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -470,6 +473,9 @@ func_help()
             printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
             cat base/debian/sources.list > /etc/apt/sources.list
+
+            # adicionando chaves
+            ./base/debian/keys.sh
         else
             printf "\n[!] Não realizou nada, distro não identificada!"
             printf "\n[!] Não realizou nada, distro não identificada!" >> /tmp/log.txt
@@ -785,7 +791,8 @@ fi
 			update
 
 			# instalando nvidia
-			apt install libgl1-nvidia-glx:i386 -y		
+			apt install libgl1-nvidia-glx:i386 libc6-i386 -y
+            apt install steam-launcher -y		
 		fi		
 
         apt install steam -y
@@ -940,8 +947,8 @@ fi
 				# atualizando repositorios
 				update
 
-				# instalando wine
-            	apt install wine-development ttf-mscorefonts-installer -y
+                sudo apt-get install wine-development:i386 ttf-mscorefonts-installer:i386 -y		
+
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt
