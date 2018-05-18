@@ -254,7 +254,9 @@ func_help()
         	#atualizando lista de programas do sistem
         	printf "\n[+] Atualizando lista de programas do sistema \n"
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> /tmp/log.txt
-		        apt upgrade dist-upgrade full-upgrade -y
+		        apt upgrade -y
+                apt dist-upgrade -y
+                apt full-upgrade -y
 		fi
     }
 
@@ -285,7 +287,7 @@ func_help()
         printf "\n[+] Removendo possíveis dependências obsoletas" >> /tmp/log.txt
 
         apt-get remove -fy
-        apt-get autoremove -y
+        # apt-get autoremove -y
     }
 
     apt_clean()
@@ -2622,7 +2624,7 @@ do
         formatado) func_formatado;;
         todas) func_todas;;
         nvidia) nvidia;;
-        texmaker) texmaker;;
+        texmaker) install_texmaker;;
 		-v|-version) version;;
         vetor) func_vetor;;
 		interface) func_interface_dialog;;
