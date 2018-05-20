@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [18/05/18]      #
+# # ultima ediçao realizada:      [19/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -1675,7 +1675,7 @@ fi
                 # instalando docker
                 printf "\n[*] Instalando docker"
                 printf "\n[*] Instalando docker" >> /tmp/log.txt
-                apt install docker-engine docker-compose -y            
+                apt install docker-engine docker-compose docker.io -y            
 
                 # adicionando usuario ao grupo
                 printf "\n[*] Adicionando usuario ao grupo no docker"
