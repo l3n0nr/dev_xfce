@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [19/05/18]      #
+# # ultima ediçao realizada:      [21/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.85.0.1.0"             
+VERSAO="0.0.86.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1695,25 +1695,35 @@ fi
 
     install_sublime()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Sublime"
-        printf "\n[+] Instalando o Sublime" >> /tmp/log.txt
+         # variavel de verificação
+        local var_sublime=$(which subl)
 
-        if [ $distro == "Ubuntu" ]; then
-            wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
-            apt install apt-transport-https -y 
-            echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-            
-            update  
-            
-            apt install sublime-text -y
-        elif [ $distro == "Debian" ]; then
-			echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
-			wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
-			
-			update
+        # criando verificação para instalar o docker
+        if [[ ! -e $var_sublime ]]; then
+            printf "\n"
+            printf "\n[+] Instalando o Sublime"
+            printf "\n[+] Instalando o Sublime" >> /tmp/log.txt
 
-			apt install sublime-text -y
+            if [ $distro == "Ubuntu" ]; then
+                wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
+                apt install apt-transport-https -y 
+                echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
+                
+                update  
+                
+                apt install sublime-text -y
+            elif [ $distro == "Debian" ]; then
+    			echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
+    			wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
+    			
+    			update
+
+    			apt install sublime-text -y
+            fi
+        else
+            printf "\n"
+            printf "\n[-] Sublime ja esta instalado"
+            printf "\n[-] Sublime ja esta instalado" >> /tmp/log.txt            
         fi
     }
 
