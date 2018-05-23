@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [21/05/18]      #
+# # ultima ediçao realizada:      [23/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.86.0.0.0"             
+VERSAO="0.0.90.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1448,12 +1448,27 @@ fi
         # variavel de verificação
         local var_virtualbox=$(which virtualbox)
 
-        # criando verificação para instalar o virtualbox
-        if [[ ! -e $var_virtualbox ]]; then          
-            printf "\n"
-            printf "[*] Instalando Virtualbox \n"
 
-            apt install virtualbox-5.1 -y
+        # criando verificação para instalar o virtualbox
+        if [[ ! -e $var_virtualbox ]]; then    
+            if [ $distro == "Ubuntu" ]; then
+                printf "\n"
+                printf "[*] Instalando Virtualbox \n"
+
+                apt install virtualbox-5.1 -y
+            elif [ $distro == "Debian" ]; then      
+                # baixando chave
+                wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
+
+                # adicionando chave
+                apt-key add oracle_vbox_2016.asc
+
+                # atualizando sistema
+                apt update
+
+                # instalando virtualbox
+                apt install virtualbox-5.1 -y              
+            fi            
         else
             printf "[+] VirtualBox já está instalado! \n"
         fi
