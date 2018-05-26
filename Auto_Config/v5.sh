@@ -82,7 +82,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I  - [VERIFICAR-DEBIAN]: Wine, Tor, VisualGame Boy
+#				- I  - [VERIFICAR-DEBIAN]: Wine, Tor, VisualGame Boy, TorBrowser
 # 	e = pendencias
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
