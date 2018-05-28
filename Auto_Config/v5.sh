@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [28/05/18]      #
+# # ultima ediçao realizada:      [29/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.100.0.0.0"             
+VERSAO="0.0.102.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1737,6 +1737,19 @@ func_help()
         printf "\n[+] Instalando o Compton" >> /tmp/log.txt        
 
     	apt install compton -y
+
+        printf "\n[*] Configurando Compton"        
+        printf "\n[*] Configurando Compton" >> /tmp/log.txt                
+
+        cat base/compton.conf >> $HOME/.config/compton.conf
+
+        if [[ $? == "0" ]]; then
+            printf "\n[*] Configuraçao atualizada Compton"        
+            printf "\n[*] Configuraçao atualizada Compton" >> /tmp/log.txt                            
+        else
+            printf "\n[-] ERRO - Configuraçao atualizada Compton"        
+            printf "\n[-] ERRO - Configuraçao atualizada Compton" >> /tmp/log.txt                            
+        fi
     }
 
     install_python()
