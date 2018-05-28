@@ -687,10 +687,31 @@ func_help()
         local var_chromium=$(which chromium)        
         local var_chromium1=$(which chromium-browser)
 
-        printf "\n[+] Instalando o Chromium"
-        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+        if [[ $distro == "Debian" ]]; then 
+            if [[ ! -e $var_chromium ]]; then
+                printf "\n[+] Instalando o Chromium"
+                printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-        snap install chromium
+                apt install chromium* -y
+                # snap install chromium
+            else
+                printf "\n[+] Chromium ja esta instalado"
+                printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+            fi  
+        elif [[ $distro == "Ubuntu" ]]; then 
+            if [[ ! -e $var_chromium1 ]]; then
+                printf "\n[+] Instalando o Chromium"
+                printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+
+                snap install chromium
+            else
+                printf "\n[+] Chromium ja esta instalado"
+                printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
+            fi  
+        else
+            printf "\n[-] Erro instalação Chromium"
+            printf "\n[-] Erro instalação Chromium" >> /tmp/log.txt
+        fi 
     }
 
     install_vivaldi()
@@ -769,8 +790,8 @@ func_help()
 			update
 
 			# instalando nvidia
-			apt install libgl1-nvidia-glx:i386 libc6-i386 -y
-            apt install steam-launcher -y		
+			apt install libgl1-nvidia-glx:i386 libc6-i386 libgl1-mesa-dev \
+                        steam-launcher -y		                        
 		fi		
 
         apt install steam -y
@@ -927,7 +948,9 @@ func_help()
 
                 apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386  \
                                 wine:i386 wine-bin:i386 libwine-bin:i386 libwine-alsa:i386 \
-                                winehq-stable:i386 ttf-mscorefonts-installer:i386 -y
+                                ttf-mscorefonts-installer:i386 \
+                                wine-development 2.0-3 -y
+                                # winehq-stable:i386
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt
