@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [23/05/18]      #
+# # ultima ediçao realizada:      [28/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,7 +82,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I  - [VERIFICAR-DEBIAN]: Wine, Tor, VisualGame Boy, TorBrowser
+#				- I  - [VERIFICAR-DEBIAN]: Wine, VisualGame Boy, VirtualBox, 
 # 	e = pendencias
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.90.0.0.0"             
+VERSAO="0.0.100.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -472,9 +472,14 @@ func_help()
             printf "\n[+] Alterando lista de repositórios padrão"
             printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
 
+            # copiando arquivo para /etc/apt/sources.list
             cat base/debian/sources.list > /etc/apt/sources.list
 
-            # adicionando chaves
+            ## adicionando chaves
+            # dando permissao de execucao
+            chmod +x ./base/debian/keys.sh
+
+            # executando arquivo
             ./base/debian/keys.sh
         else
             printf "\n[!] Não realizou nada, distro não identificada!"
@@ -641,7 +646,7 @@ func_help()
         printf "\n[+] Removendo Pacotes Órfãos" >> /tmp/log.txt
 
         apt-get remove $(deborphan) -y 
-        apt-get autoremove -y
+        # apt-get autoremove -y
     }
 
     funcao_chkrootkit()
@@ -673,7 +678,7 @@ func_help()
 		if [[ $distro == "Ubuntu" ]]; then
         	apt install firefox -y
         elif [[ $distro == "Debian" ]]; then
-            apt install -t sid firefox -y
+            snap install firefox
         fi            
     }
 
@@ -682,31 +687,10 @@ func_help()
         local var_chromium=$(which chromium)        
         local var_chromium1=$(which chromium-browser)
 
-        if [[ $distro == "Debian" ]]; then 
-	        if [[ ! -e $var_chromium ]]; then
-	            printf "\n[+] Instalando o Chromium"
-	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
+        printf "\n[+] Instalando o Chromium"
+        printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
-	            apt install chromium* -y
-	            # snap install chromium
-	        else
-	            printf "\n[+] Chromium ja esta instalado"
-	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
-	        fi	
-        elif [[ $distro == "Ubuntu" ]]; then 
-	        if [[ ! -e $var_chromium1 ]]; then
-	            printf "\n[+] Instalando o Chromium"
-	            printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
-
-	            snap install chromium
-	        else
-	            printf "\n[+] Chromium ja esta instalado"
-	            printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
-	        fi	
-	    else
-	    	printf "\n[-] Erro instalação Chromium"
-	    	printf "\n[-] Erro instalação Chromium" >> /tmp/log.txt
-fi 	        
+        snap install chromium
     }
 
     install_vivaldi()
@@ -755,16 +739,10 @@ fi
 	            apt-get install tor tor-browser -y
                 # apt install tor torbrowser-launcher -y
 
-            # elif [ $distro == "Debian" ]; then
-            #     # debian 9                
-            #     # adicionando repositorio
-            #     printf "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
-
-            #     # atualizando sistema
-            #     update
-
-            #     # instalando tor
-            #     apt install tor torbrowser-launcher -t stretch-backports
+            elif [ $distro == "Debian" ]; then
+                # modo manual - baixar o arquivo e pa... \o
+                ## verificar comandos
+                printf ""                
             else
             	printf "\n[-] ERRO TOR"
             	printf "\n[-] ERRO TOR" >> /tmp/log.txt
@@ -835,17 +813,17 @@ fi
         fi
 
         apt install faac faad ffmpeg gstreamer0.10-ffmpeg \
-        flac icedax id3v2 lame libflac++6 libjpeg-progs \
-        libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec \
-        mpeg3-utils mpegdemux mpg123 mpg321 regionset sox \
-        uudeview vorbis-tools x264 arj p7zip p7zip-full \
-        unace-nonfree sharutils uudeview \
-        mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 \
-        libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
-        libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
-        libxine1-misc-plugins libxine1-plugins libxine1-x \
-        tagtool libavcodec-extra ffmpeg \
-        prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
+                    flac icedax id3v2 lame libflac++6 libjpeg-progs \
+                    libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec \
+                    mpeg3-utils mpegdemux mpg123 mpg321 regionset sox \
+                    uudeview vorbis-tools x264 arj p7zip p7zip-full \
+                    unace-nonfree sharutils uudeview \
+                    mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 \
+                    libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
+                    libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
+                    libxine1-misc-plugins libxine1-plugins libxine1-x \
+                    tagtool libavcodec-extra ffmpeg \
+                    prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -947,14 +925,13 @@ fi
 				# atualizando repositorios
 				update
 
-                sudo apt-get install wine-development:i386 ttf-mscorefonts-installer:i386 -y		
-
+                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386  \
+                                wine:i386 wine-bin:i386 libwine-bin:i386 libwine-alsa:i386 \
+                                winehq-stable:i386 ttf-mscorefonts-installer:i386 -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt
             fi
-
-            # verificar funcao debian
         else
             printf "\n"
             printf "[+] Wine já está instalado na sua máquina! \n"
@@ -1690,11 +1667,11 @@ fi
                 # instalando docker
                 printf "\n[*] Instalando docker"
                 printf "\n[*] Instalando docker" >> /tmp/log.txt
-                apt install docker-engine docker-compose docker.io -y            
+                apt install docker-engine docker-compose docker.io docker-ce -y            
 
                 # adicionando usuario ao grupo
-                printf "\n[*] Adicionando usuario ao grupo no docker"
-                printf "\n[*] Adicionando usuario ao grupo no docker" >> /tmp/log.txt
+                # printf "\n[*] Adicionando usuario ao grupo no docker"
+                # printf "\n[*] Adicionando usuario ao grupo no docker" >> /tmp/log.txt
                 # gpasswd -a $usuario docker
             else
             	printf "\n"
