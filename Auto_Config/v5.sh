@@ -1690,7 +1690,8 @@ func_help()
                 # instalando docker
                 printf "\n[*] Instalando docker"
                 printf "\n[*] Instalando docker" >> /tmp/log.txt
-                apt install docker-engine docker-compose docker.io docker-ce -y            
+                # apt install docker-engine docker-compose docker.io docker-ce -y            
+                apt install docker-engine docker-compose -y            
 
                 # adicionando usuario ao grupo
                 # printf "\n[*] Adicionando usuario ao grupo no docker"
