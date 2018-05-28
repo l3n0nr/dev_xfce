@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.102.0.0.0"             
+VERSAO="0.0.110.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1760,7 +1760,7 @@ func_help()
         printf "\n[+] Instalando o Compton"        
         printf "\n[+] Instalando o Compton" >> /tmp/log.txt        
 
-    	apt install compton -y
+    	apt install compton compton-conf -y
 
         printf "\n[*] Configurando Compton"        
         printf "\n[*] Configurando Compton" >> /tmp/log.txt                
