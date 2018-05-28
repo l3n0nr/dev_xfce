@@ -1,1 +1,1 @@
-Script usado para automatizar configurações, instalações de programas no Linux.
+Execute v5.sh file!
