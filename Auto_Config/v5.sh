@@ -2016,8 +2016,6 @@ func_instala()
 	install_ntp 
 	install_localepurge  
 
-	install_transmission
-
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
         install_aircrack  
@@ -2035,7 +2033,9 @@ func_instala()
         install_kstars
 		install_audacity
     	install_kdenlive
-        install_nvidia              
+        install_nvidia      
+                
+        install_transmission
 	else
 		printf "\n[-] ERRO INSTALA!"
 	fi
