@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [29/05/18]      #
+# # ultima ediçao realizada:      [31/05/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -137,7 +137,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.110.0.0.0"             
+VERSAO="0.0.120.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -595,7 +595,7 @@ func_help()
     		printf "\n[+] Copiando icones Breeze"
 			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
 
-    		cp -r ../Configuracoes/Interface/icons/Breeze /usr/share/icons
+    		cp -r ../Config/Interface/icons/Breeze /usr/share/icons
     	fi
 
     	if [ -e $var_flatremix ]; then 
@@ -605,7 +605,7 @@ func_help()
     		printf "\n[+] Copiando icones Flat_Remix_Light"
     		printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
 
-    		cp -r ../Configuracoes/Interface/icons/Flat_Remix_Light /usr/share/icons
+    		cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
     	fi
 
 		if [ -e $var_papirus ]; then 
@@ -615,7 +615,7 @@ func_help()
 	    	printf "\n[+] Copiando icones Papirus_Light"
 			printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
 
-	    	cp -r ../Configuracoes/Interface/icons/Papirus_Light /usr/share/icons
+	    	cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
     	fi
 
     	if [ -e $var_icones_macos ]; then 
@@ -625,7 +625,7 @@ func_help()
 			printf "\n[+] Copiando icones MacOS X"
     		printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
 
-			cp -r ../Configuracoes/Interface/themes/* /usr/share/themes
+			cp -r ../Config/Interface/themes/* /usr/share/themes
 		fi
     }
 
@@ -789,8 +789,11 @@ func_help()
 			# atualizando sistema			
 			update
 
-			# instalando nvidia
+			# instalando nvidia - dependencias debian
 			apt install libgl1-nvidia-glx:i386 libc6-i386 libgl1-mesa-dev \
+                        libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 \
+                        libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 -y \
+
                         steam-launcher -y		                        
 		fi		
 
