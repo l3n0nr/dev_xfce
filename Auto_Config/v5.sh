@@ -950,10 +950,8 @@ func_help()
 				update
 
                 apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386  \
-                                wine:i386 wine-bin:i386 libwine-bin:i386 libwine-alsa:i386 \
                                 ttf-mscorefonts-installer:i386 \
-                                wine-development 2.0-3 -y
-                                # winehq-stable:i386
+                                wine-development -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> /tmp/log.txt
