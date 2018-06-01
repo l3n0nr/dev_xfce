@@ -100,12 +100,16 @@
 # # Script testado em
 #	- Xubuntu 16.04
 #   - Xubuntu 17.10 - OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
+#
 #   - Debian 8		- OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
-#   - Debian 9
+#   - Debian 9 
+#   - Debian 10
+#   - Debian Sid
 #
 # # Compativel com
-#   - Xubuntu 16.04 - LTS -	[SCRIPT ESTAVEL]
-#   - Debian 9			  -	[SCRIPT ESTAVEL]
+#   - Xubuntu 16.04       -	[SCRIPT ESTAVEL]   =    LTS
+#   - Debian 9			  -	[SCRIPT ESTAVEL]   =   Stable
+#   - Debian 10           - [SCRIPT ESTAVEL]   =   Testing
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -196,38 +200,11 @@ func_help()
     printf "\n"
 	$logo
 	printf "\n"
-    printf "############################################################################
+    printf "############################################################################\n"
 
-    Bem vindo ao script de automação de tarefas no Linux. 
-
-    Ele poderá realizar:
-        - Atualização do sistema;
-        - Correção de erros;
-        - Limpeza geral do sistema;
-        - Instalação de programas;
-        - Remoção de programas desnecessários;
-
-    Exemplos:        
-        - Funcoes do script:
-            ~ v4.sh [atualiza/corrige/limpa/instala/instala_outros/menu]
-
-        - Após a maquina ser formatada(apenas as funções automáticas e depois desliga a máquina)
-            ~ v4.sh formatado
-
-        - Para executar todas as funções(semi-automático)
-            ~ v4.sh todas
-
-        - Para executar um funcao especifica basta:
-            ~ v4.sh vetor nomefuncao
-                [BUSCANDO FUNCAO]
-                ~v4.sh vetor help [atualiza/corrige/limpa/instala]
-
-        - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outro ao iniciar o script.  
-
-    **      SCRIPT COMPATIVEL COM UBUNTU 16.04 | DEBIAN 9    **
-
-############################################################################
-"
+    cat README.md
+    printf "\n"
+    printf "############################################################################\n"
 }
 
 #
