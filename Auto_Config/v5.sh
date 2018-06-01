@@ -71,7 +71,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [31/05/18]      #
+# # ultima ediçao realizada:      [01/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -82,7 +82,7 @@
 # 	c = interações com o script;
 #
 # 	d = correções necessárias;
-#				- I  - [VERIFICAR-DEBIAN]: Wine, VisualGame Boy, VirtualBox, 
+#				- I  - [VERIFICAR-DEBIAN]: VisualGame Boy 
 # 	e = pendencias
 #               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
@@ -141,7 +141,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.130.0.0.0"             
+VERSAO="0.0.131.1.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -176,7 +176,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_nautilus install_wireshark install_gnome_disk_utility \
         install_audacity install_simple_screen_recorder \
         install_mega install_openssh install_figlet install_chkrootkit \
-        install_localepurge install_firewall_basic install_hardinfo \
+        install_localepurge install_hardinfo \
         install_nvidia install_virtualbox install_ristretto install_tree \
         install_pulseeffects install_terminator install_aircrack \
         install_snap install_ntp install_xclip install_espeak \
@@ -1364,14 +1364,6 @@ func_help()
         apt-get install localepurge -y
     }
 
-    install_firewall_basic()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Firewall UFW + GUFW" >> /tmp/log.txt
-
-        apt install ufw gufw -y
-    }
-
     install_hardinfo()
     {
         printf "\n"
@@ -1948,7 +1940,6 @@ func_instala()
     install_espeak      
     install_tree        
     install_chkrootkit    
-    install_firewall_basic            
     install_htop         
     install_hardinfo
     install_nmap    
