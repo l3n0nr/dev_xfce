@@ -1320,11 +1320,6 @@ func_help()
 	            # instalando mega
 	            dpkg -i base/packages/mega/*.deb
 	        elif [[ $distro == "Debian" ]]; then
-	        	# adicionando chaves
-	        	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 4B4E7A9523ACD201
-				apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 74A941BA219EC810
-				apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 818A435C5FCBF54A
-
 				# instalando megasync
 				apt install megasync -y
 	        fi
@@ -1426,7 +1421,6 @@ func_help()
         # variavel de verificação
         local var_virtualbox=$(which virtualbox)
 
-
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_virtualbox ]]; then    
             if [ $distro == "Ubuntu" ]; then
@@ -1435,17 +1429,17 @@ func_help()
 
                 apt install virtualbox-5.1 -y
             elif [ $distro == "Debian" ]; then      
-                # baixando chave
-                wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
+                # # baixando chave
+                # wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
 
-                # adicionando chave
-                apt-key add oracle_vbox_2016.asc
+                # # adicionando chave
+                # apt-key add oracle_vbox_2016.asc
 
-                # atualizando sistema
-                apt update
+                # # atualizando sistema
+                # apt update
 
                 # instalando virtualbox
-                apt install virtualbox-5.1 -y              
+                apt install virtualbox -y              
             fi            
         else
             printf "[+] VirtualBox já está instalado! \n"
