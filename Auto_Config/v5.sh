@@ -141,7 +141,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.120.0.0.0"             
+VERSAO="0.0.130.0.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1644,31 +1644,11 @@ func_help()
             if [[ $distro == "Ubuntu" ]]; then
         		apt install docker-io -y
         	elif [[ $distro == "Debian" ]]; then            
-				# baixando dependencias               
-                printf "\n[*] Instalando dependencias"
-                apt-get install apt-transport-https dirmngr -y
-
-                # baixando chave 
-                printf "\n[*] Baixando chaves"
-                echo 'deb https://apt.dockerproject.org/repo debian-stretch main' >> /etc/apt/sources.list
-
-                # adicionando repositorio
-                printf "\n[*] Adicionando repositorio"
-                apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys F76221572C52609D
-
-                # atualizando sistema
-                update
-
                 # instalando docker
                 printf "\n[*] Instalando docker"
                 printf "\n[*] Instalando docker" >> /tmp/log.txt
-                # apt install docker-engine docker-compose docker.io docker-ce -y            
-                apt install docker-engine docker-compose -y            
-
-                # adicionando usuario ao grupo
-                # printf "\n[*] Adicionando usuario ao grupo no docker"
-                # printf "\n[*] Adicionando usuario ao grupo no docker" >> /tmp/log.txt
-                # gpasswd -a $usuario docker
+    
+                curl -fsSL https://get.docker.com/ | sh
             else
             	printf "\n"
             fi
