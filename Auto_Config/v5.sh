@@ -102,7 +102,7 @@
 #   - Xubuntu 17.10 - OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
 #
 #   - Debian 8		- OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
-#   - Debian 9 
+#   - Debian 9
 #   - Debian 10
 #   - Debian Sid
 #
