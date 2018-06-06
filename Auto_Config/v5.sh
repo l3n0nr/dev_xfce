@@ -52,6 +52,9 @@
 # por How-To :: Wine Development no Debian e derivados
 #   <https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
 #
+# por Slackjeff - [HOWTO] Instalação do Sublime Text no Debian
+#   <http://slackjeff.com.br/artigos/debian/desktop/instalacao_sublime_text_debian.html>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -71,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [01/06/18]      #
+# # ultima ediçao realizada:      [06/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -141,7 +144,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.131.1.1.0"             
+VERSAO="0.0.134.1.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1661,25 +1664,51 @@ func_help()
         # criando verificação para instalar o docker
         if [[ ! -e $var_sublime ]]; then
             printf "\n"
-            printf "\n[+] Instalando o Sublime"
-            printf "\n[+] Instalando o Sublime" >> /tmp/log.txt
+
+            # printf "\n[*] Baixando o Sublime"
+            # printf "\n[*] Baixando o Sublime" >> /tmp/log.txt
+
+            # wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
+
+            # printf "\n[*] Instalando o Sublime"
+            # printf "\n[*] Instalando o Sublime" >> /tmp/log.txt
+
+            # dpkg -i sublime-text_build-3083_amd64.deb
+
+            # # removendo arquivo da pasta posinstalacao - caso nao exista problemas na instalacao do programa            
+            # rm sublime-text_build-3083_amd64.deb
+
 
             if [ $distro == "Ubuntu" ]; then
-                wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
-                apt install apt-transport-https -y 
-                echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
+                # wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - 
+                # apt install apt-transport-https -y 
+                # echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
                 
-                update  
+                # update  
                 
-                apt install sublime-text -y
+                # apt install sublime-text -y
+
+                printf "\n[*] Baixando o Sublime"
+                printf "\n[*] Baixando o Sublime" >> /tmp/log.txt
+
+                wget http://c758482.r82.cf2.rackcdn.com/sublime-text_build-3083_amd64.deb
+
+                printf "\n[*] Instalando o Sublime"
+                printf "\n[*] Instalando o Sublime" >> /tmp/log.txt
+
+                dpkg -i sublime-text_build-3083_amd64.deb
+
+                # removendo arquivo da pasta posinstalacao - caso nao exista problemas na instalacao do programa            
+                rm sublime-text_build-3083_amd64.deb
+                
             elif [ $distro == "Debian" ]; then
-    			echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
-    			wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
+    			# echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
+    			# wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
     			
-    			update
+    			# update
 
     			apt install sublime-text -y
-            fi
+            fi            
         else
             printf "\n"
             printf "\n[-] Sublime ja esta instalado"
@@ -2518,21 +2547,21 @@ auto_config()
 {
     clear
 
-    # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    printf "
-                AUTOCONFIG - V4
-        Versao do script: $VERSAO
-                \n"
-    echo "-------------------------------------------------"
-    echo "Digite 1 para atualizar o sistema,"
-    echo "Digite 2 para corrigir possíveis erros,"
-    echo "Digite 3 para realizar uma limpeza,"
-    echo "Digite 4 para instalar alguns programas,"
-    echo "Digite 5 para instalar programas não essenciais,"
-    echo "Digite 6 para remover alguns programas,"
-    echo "Digite 7 para sair do script,"
-    echo "-------------------------------------------------"
-    read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
+    # # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    # printf "
+    #             AUTOCONFIG - V4
+    #     Versao do script: $VERSAO
+    #             \n"
+    # echo "-------------------------------------------------"
+    # echo "Digite 1 para atualizar o sistema,"
+    # echo "Digite 2 para corrigir possíveis erros,"
+    # echo "Digite 3 para realizar uma limpeza,"
+    # echo "Digite 4 para instalar alguns programas,"
+    # echo "Digite 5 para instalar programas não essenciais,"
+    # echo "Digite 6 para remover alguns programas,"
+    # echo "Digite 7 para sair do script,"
+    # echo "-------------------------------------------------"
+    # read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
 
     #executando ações para a distribuição Ubuntu
     if [ $distro == "Ubuntu" ]; then
