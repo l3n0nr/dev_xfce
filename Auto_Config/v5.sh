@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [06/06/18]      #
+# # ultima ediçao realizada:      [07/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -144,7 +144,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.134.1.1.0"             
+VERSAO="0.0.135.1.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -171,7 +171,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_playonlinux install_redshift install_libreoffice \
         install_vlc install_clementine install_gparted \
         install_tlp install_git install_lm-sensors \
-        install_stellarium install_texmaker install_kstars \
+        install_stellarium install_texmaker \
         install_reaver install_tor install_dolphin \
         install_visualgameboy install_screenfetch \
         install_kdenlive install_sweethome3d \
@@ -1076,15 +1076,6 @@ func_help()
 
         apt install texmaker* texlive-full* texlive-latex-extra* -y
         apt install aspell aspell-pt-br -y
-    }
-
-    install_kstars()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Kstars"
-        printf "\n[+] Instalando o Kstars" >> /tmp/log.txt
-
-        apt install kstars* -y
     }
 
     install_reaver()
@@ -2002,7 +1993,6 @@ func_instala()
 		install_visualgameboy
 	    install_dolphin
 
-        install_kstars
 		install_audacity
     	install_kdenlive
         install_nvidia      
