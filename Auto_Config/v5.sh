@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [07/06/18]      #
+# # ultima ediçao realizada:      [08/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -144,7 +144,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.135.1.1.0"             
+VERSAO="0.0.136.1.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -187,11 +187,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_tuxguitar install_muse_score install_zsh \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox install_transmission \
-        install_python)
-
-# vetor instala outros
-INSTALA_OUTROS=(install_apache install_mysql install_phpmyadmin)
-
+        install_python )
 #
 # # # # # # # # # #
 #
