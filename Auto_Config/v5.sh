@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [08/06/18]      #
+# # ultima ediçao realizada:      [09/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -144,7 +144,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.136.1.1.0"             
+VERSAO="0.0.140.1.1.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -233,9 +233,11 @@ func_help()
         	#atualizando lista de programas do sistem
         	printf "\n[+] Atualizando lista de programas do sistema \n"
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> /tmp/log.txt
+                ## atualizacao segura
 		        apt upgrade -y
-                apt dist-upgrade -y
-                apt full-upgrade -y
+
+                ## atualizacoes com mudanças - atualizacoes completas                
+                apt dist-upgrade -y || apt full-upgrade -y
 		fi
     }
 
