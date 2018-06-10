@@ -140,7 +140,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.145.1.0.0"             
+VERSAO="0.0.146.1.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -2554,11 +2554,9 @@ menu()
 # mostrando data/hora log inicilização script   
 date > /tmp/log.txt
 
-# se script for chamado sem parametro ou
-# com apenas o parametro "mudo", sem outro
-if  [[ $# -eq 0 ]]; then    
-    func_interface_dialog
-elif [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]]; then
+## verificacao de parametros
+if  [[ $# -eq 0 ]] || # se script for chamado sem parametro ou
+    [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]]; then # com apenas o parametro "mudo" ou "vetor", sem outro
     func_help    
 fi
 

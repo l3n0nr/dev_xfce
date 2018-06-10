@@ -22,4 +22,8 @@ Bem vindo ao script de automação de tarefas no Linux.
                 [BUSCANDO FUNCAO]
                 ~v5.sh vetor help [atualiza/corrige/limpa/instala]
 
+        - Interface em dialog  
+            ~ v5.sh interface
+                [EM DESENVOLVIMENTO]
+
     **    SCRIPT COMPATIVEL COM UBUNTU 16.04 LTS | DEBIAN TESTING    **
