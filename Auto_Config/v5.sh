@@ -74,20 +74,16 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [09/06/18]      #
+# # ultima ediçao realizada:      [10/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
-#
 # 	b = erros na execução;
-#
 # 	c = interações com o script;
-#
 # 	d = correções necessárias;
 #				- I  - [VERIFICAR-DEBIAN]: VisualGame Boy 
 # 	e = pendencias
-#               - I  - [VETOR]  - Verificar vetor funcoes
 # 	f = desenvolver
 #				
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -102,17 +98,17 @@
 #
 # # Script testado em
 #	- Xubuntu 16.04
-#   - Xubuntu 17.10 - OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
+#   - Xubuntu 17.10 - OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.
 #
-#   - Debian 8		- OBS: Não aconselhável utilização, pois há incompatibilidades de softwares.
-#   - Debian 9
-#   - Debian 10
-#   - Debian Sid
+#   - Debian 8		- OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.
+#   - Debian 9      - OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.      
+#   - Debian 10     - Testing
+#   - Debian        - Sid
 #
 # # Compativel com
-#   - Xubuntu 16.04       -	[SCRIPT ESTAVEL]   =    LTS
-#   - Debian 9			  -	[SCRIPT ESTAVEL]   =   Stable
-#   - Debian 10           - [SCRIPT ESTAVEL]   =   Testing
+#   - Xubuntu 16.04       -	    [SCRIPT ESTAVEL]
+#   - Debian Testing      -     [SCRIPT ESTAVEL]
+#   - Debian Sid          -     [SCRIPT ESTAVEL]
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -144,7 +140,7 @@
 	logo="figlet AUTOCONFIG-V5"			# logo do script
 
 # versao do script
-VERSAO="0.0.140.1.1.0"             
+VERSAO="0.0.142.1.0.0"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -155,8 +151,7 @@ ATUALIZA=(update upgrade)
 CORRIGE=(apt_check apt_install apt_remove \
          apt_clean apt_auto apt_update_local \
          swap prelink_preload_deborphan \
-         pacotes_quebrados config_ntp \
-         apport repositorios_padrao \
+         pacotes_quebrados config_ntp apport \
          arquivo_hosts chaveiro atualiza_db \
          autologin icones_temas)
 
@@ -184,7 +179,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_pulseeffects install_terminator install_aircrack \
         install_snap install_ntp install_xclip install_espeak \
         install_ibus install_nmap install_htop install_gnome_calculator \
-        install_tuxguitar install_muse_score install_zsh \
+        install_tuxguitar install_musescore install_zsh \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox install_transmission \
         install_python )
@@ -378,8 +373,14 @@ func_help()
 
         #corrige possiveis erros na instalação de softwares
         dpkg --configure -a
+
+        # corrigindo problema nos pacotes
         apt install -f 
+        apt update --fix-missing 
         apt-get --fix-broken install
+
+        # atualizando versao dos pacotes instalados
+        apt list --upgradable
 
         #VERIFICAR AÇÕES
         rm -r /var/lib/apt/lists
@@ -437,33 +438,6 @@ func_help()
         #corrige apport - ubuntu 16.04
         cat base/ubuntu/apport > /etc/default/apport
     }   
-
-    repositorios_padrao()
-    {
-        # verificando distribuição
-        if [ $distro == "Ubuntu" ]; then
-            printf "\n[+] Alterando lista de repositórios padrão"
-            printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
-
-            cat base/ubuntu/sources.list > /etc/apt/sources.list
-        elif [ $distro == "Debian" ]; then
-            printf "\n[+] Alterando lista de repositórios padrão"
-            printf "\n[+] Alterando lista de repositórios padrão" >> /tmp/log.txt
-
-            # copiando arquivo para /etc/apt/sources.list
-            cat base/debian/sources.list > /etc/apt/sources.list
-
-            ## adicionando chaves
-            # dando permissao de execucao
-            chmod +x ./base/debian/keys.sh
-
-            # executando arquivo
-            ./base/debian/keys.sh
-        else
-            printf "\n[!] Não realizou nada, distro não identificada!"
-            printf "\n[!] Não realizou nada, distro não identificada!" >> /tmp/log.txt
-        fi
-    }
 
     arquivo_hosts()
     {
@@ -1574,14 +1548,15 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
-
-            snap install tuxguitar-vs
+            
+            #snap install tuxguitar-vs
+            apt install tuxguitar timidity -y # debian
         else
             printf "[+] TuxGuitar já está instalado \n"
         fi
     }
 
-    install_muse_score()
+    install_musescore()
     {
         # variavel de verificação
         local var_musescore=$(which musescore)
@@ -1592,7 +1567,8 @@ func_help()
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
 
-            snap install musescore
+            #snap install musescore
+            apt install musescore -y # debian
         else
             printf "\n"
             printf "\n[+] O Musescore já está instalado no seu sistema."
@@ -1909,20 +1885,17 @@ func_instala()
     fi
 
 	install_firefox
-	install_chromium
-	install_vivaldi
-	install_tor  
+	install_chromium	
 
 	install_codecs
 	install_vlc
 	install_clementine
 	install_spotify	   
 	install_funcao_gimp
-	install_muse_score
+	install_musescore
 	install_simple_screen_recorder
 	install_sweethome3d   
-	install_tuxguitar 
-	install_muse_score                
+	install_tuxguitar                
 
 	install_git
 	install_python    
@@ -1988,6 +1961,9 @@ func_instala()
 	    	install_firmware  		    
 		fi
 	elif [[ $v_hostname == 'desktop' ]]; then
+        install_vivaldi
+        install_tor  
+
 		install_visualgameboy
 	    install_dolphin
 
@@ -2031,7 +2007,8 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge thunderbird parole inkscape* blender* \
-    exfalso* quodlibet* xterm* pidgin* meld* gtkhash* xsane* imagemagick* xsane* chromium-bsu* owncloud* -y
+            exfalso* quodlibet* xterm* pidgin* meld* gtkhash* \
+            xsane* imagemagick* chromium-bsu* owncloud* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
@@ -2149,22 +2126,7 @@ func_vetor()
             # saindo do script
             exit 1                
         fi
-    done
-
-    # percorrendo vetor outros
-    for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do 
-        # saindo do script
-        if [[ ${INSTALA_OUTROS[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${INSTALA_OUTROS[$i]}
-
-            # executando funcao encontrada
-            ${INSTALA_OUTROS[$i]}
-
-            # saindo do script
-            exit 1                
-        fi
-    done
+    done   
 
     # mostrando ajuda para o usuario
     if [[ "$ESCOLHA_VETOR" = "help" ]]; then
@@ -2232,11 +2194,6 @@ func_vetor()
             printf "\nINSTALA\n"
             for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
                 echo ${INSTALA[$i]}
-            done
-
-            printf "\nINSTALA OUTROS\n"
-            for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
-                echo ${INSTALA_OUTROS[$i]}
             done
 
             # saindo do script
@@ -2597,17 +2554,17 @@ menu()
 # mostrando data/hora log inicilização script   
 date > /tmp/log.txt
 
-# tratando saidas
 # se script for chamado sem parametro ou
 # com apenas o parametro "mudo", sem outro
-if [ $# -eq 0 ] || [[ $1 -eq "mudo" ]] || [[ -e $2 ]]; then
+if  [[ $# -eq 0 ]] || [[ $1 == "mudo" ]] && [[ $2 == "" ]]; then
     func_help
 else
-    printf ""
+    printf ""    
 fi
 
+# tratando saidas
 # passando parametro ao vetor
-if [[ $1 -eq "mudo" ]]; then
+if [[ $1 == "mudo" ]]; then
     ESCOLHA_VETOR=$3
     HELP_VETOR=$4
 else
@@ -2634,7 +2591,7 @@ do
 		-v|-version) version;;
         vetor) func_vetor;;
 		interface) func_interface_dialog;;
-        *) echo "Parametro desconhecido";;
+        # *) echo "Parametro desconhecido";;
     esac    
 done
 

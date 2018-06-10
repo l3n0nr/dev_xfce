@@ -22,6 +22,4 @@ Bem vindo ao script de automação de tarefas no Linux.
                 [BUSCANDO FUNCAO]
                 ~v5.sh vetor help [atualiza/corrige/limpa/instala]
 
-        - Para executar todas as funções em silêncio, basta adicionar o parametro 'mudo' antes de qualquer outro ao iniciar o script.  
-
-    **      SCRIPT COMPATIVEL COM UBUNTU 16.04 | DEBIAN 9    **
+    **    SCRIPT COMPATIVEL COM UBUNTU 16.04 LTS | DEBIAN TESTING    **
