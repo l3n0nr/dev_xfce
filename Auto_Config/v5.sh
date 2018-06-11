@@ -148,7 +148,7 @@
     twitter="twitter.com/lenonr1"
 
 # versao do script
-VERSAO="0.0.150.1.0.1"             
+VERSAO="0.0.151.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -807,6 +807,7 @@ func_help()
                     libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
                     libxine1-misc-plugins libxine1-plugins libxine1-x \
                     tagtool libavcodec-extra ffmpeg \
+                    rar unrar \
                     prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
