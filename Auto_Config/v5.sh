@@ -82,9 +82,10 @@
 # 	b = erros na execução;
 # 	c = interações com o script;
 # 	d = correções necessárias;
-#				- I  - [VERIFICAR-DEBIAN]: VisualGame Boy 
+#		I  - [VERIFICAR-DEBIAN]: VisualGame Boy 
 # 	e = pendencias
 # 	f = desenvolver
+#       I - Melhorar condicoes de comparacoes - remover "if" do negocio!
 #				
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -119,10 +120,10 @@
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
 # usuario sistema
-    usuario="lenonr"                    # nome usuario sistema
+    autor="lenonr"                    # nome usuario sistema
 
 # pasta do usuario
-    pasta_home="/home/$usuario/"        # pasta home usuario do sistema 
+    pasta_home="/home/$autor/"        # pasta home usuario do sistema 
 
 # verificando distro
     distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
@@ -136,11 +137,18 @@
 # login automatico distros
 	boolean_autologin=1					# login automatico, caso queria desativar basta alterar para 0
 
+# nome do script
+    nome="AUTOCONFIG-V5"                # apelido do script
+
 # logo para ser mostrado no script
-	logo="figlet AUTOCONFIG-V5"			# logo do script
+	logo="figlet $nome"			        # logo do script
+
+# contatos do autor
+    email="lenonrmsouza@gmail.com"
+    twitter="twitter.com/lenonr1"
 
 # versao do script
-VERSAO="0.0.146.1.0.0"             
+VERSAO="0.0.151.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -492,7 +500,7 @@ func_help()
 	        # var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")        
 	        # cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario" > /dev/null        
 
-	        cat $var_autologin | grep "autologin-user=$usuario" > /dev/null
+	        cat $var_autologin | grep "autologin-user=$autor" > /dev/null
 
 	        # se saida do echo $? for 1, entao realiza modificacao
 	        # if [[ $var_autologin == "1" ]]; then
@@ -501,7 +509,7 @@ func_help()
 	                printf "\n[+] Habilitando login automatico" 
 	                printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
-	                echo "autologin-user=$usuario" >> $var_autologin
+	                echo "autologin-user=$autor" >> $var_autologin
 	                echo "autologin-user-timeout=0" >> $var_autologin
 
 	                printf "\n[*] Reconfigurando lightdm, aguarde!" 
@@ -764,13 +772,13 @@ func_help()
             if [[ $distro == "Ubuntu" ]]; then 
 				snap install spotify -y 		         
 			elif [[ $distro == "Debian" ]]; then 
-				apt install dirmngr -y
-				apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410	
-				echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
+				# apt install dirmngr -y
+				# apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410	
+				# echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
 
-				update
+				# update
 
-				apt install spotify-client -y
+				apt install dirmngr spotify-client -y
 			fi			            	
         else
             printf "[+] Spofity já está instalado! \n"
@@ -799,6 +807,7 @@ func_help()
                     libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
                     libxine1-misc-plugins libxine1-plugins libxine1-x \
                     tagtool libavcodec-extra ffmpeg \
+                    rar unrar \
                     prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
@@ -2209,6 +2218,8 @@ version()
         espeak -vpt-br "Versao do script: $VERSAO"
     else
 		echo "Versao do script: $VERSAO"
+        echo "Autor do script: $autor"
+        echo "Contato: Email: '$email'; Twitter: '$twitter'"
 	fi
 }
 
@@ -2269,16 +2280,8 @@ auto_config_ubuntu()
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### PROGRAMAS NÃO ESSENCIAIS
-        5) echo
-            func_instala_outros
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVES PROGRAMAS
-        6) echo
+        5) echo
             func_remove
 
             auto_config
@@ -2286,7 +2289,10 @@ auto_config_ubuntu()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
-        7) echo
+        6) echo
+            printf "\nSaindo do script..."
+            sleep 3
+            clear
         	exit
         ;;
 
@@ -2338,19 +2344,11 @@ auto_config_debian()
             func_instala
 
             auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### PROGRAMAS NAO ESSENCIAIS
-        5) printf
-            func_instala_outros                
-
-            auto_config
-        ;;
+        ;;        
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVENDO PROGRAMAS
-        6) printf
+        5) printf
             func_remove		               
 
             auto_config
@@ -2358,7 +2356,10 @@ auto_config_debian()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
-        7) echo
+        6) echo
+            printf "\nSaindo do script..."
+            sleep 3
+            clear
             exit
         ;;
 
@@ -2492,22 +2493,25 @@ auto_config()
 {
     clear
 
-    # # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    # printf "
-    #             AUTOCONFIG - V4
-    #     Versao do script: $VERSAO
-    #             \n"
-    # echo "-------------------------------------------------"
-    # echo "Digite 1 para atualizar o sistema,"
-    # echo "Digite 2 para corrigir possíveis erros,"
-    # echo "Digite 3 para realizar uma limpeza,"
-    # echo "Digite 4 para instalar alguns programas,"
-    # echo "Digite 5 para instalar programas não essenciais,"
-    # echo "Digite 6 para remover alguns programas,"
-    # echo "Digite 7 para sair do script,"
-    # echo "-------------------------------------------------"
-    # read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
+    # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
+    printf "
+                $nome
+        Versao do script: $VERSAO
+                \n"
+    echo "-------------------------------------------------"
+    echo "Digite 1 para atualizar o sistema,"
+    echo "Digite 2 para corrigir possíveis erros,"
+    echo "Digite 3 para realizar uma limpeza,"
+    echo "Digite 4 para instalar alguns programas,"
+    echo "Digite 5 para remover alguns programas,"
+    echo "Digite 6 para sair do script,"
+    echo "-------------------------------------------------"
+    read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
 
+    ###################################################
+    ## condicao de teste suja, eu sei, vou deixar assim
+    ## pois nao tenho como testar no ubuntu!
+    ###################################################
     #executando ações para a distribuição Ubuntu
     if [ $distro == "Ubuntu" ]; then
         clear
@@ -2554,21 +2558,17 @@ menu()
 # mostrando data/hora log inicilização script   
 date > /tmp/log.txt
 
-## verificacao de parametros
-if  [[ $# -eq 0 ]] || # se script for chamado sem parametro ou
-    [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]]; then # com apenas o parametro "mudo" ou "vetor", sem outro
-    func_help    
-fi
+## verificacao de parametros - funcao ajuda
+[[ $# -eq 0 ]] || # ou, se script for chamado sem parametro 
+[[ $1 == "mudo" ]] && [[ $2 == "vetor" ]] || # ou,se com apenas o parametro "mudo" e "vetor"
+# [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
+# [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
+    func_help   # executa funcao ajuda
 
 # tratando saidas
 # passando parametro ao vetor
-if [[ $1 == "mudo" ]]; then
-    ESCOLHA_VETOR=$3
-    HELP_VETOR=$4
-else
-    ESCOLHA_VETOR=$2
-    HELP_VETOR=$3
-fi  
+[[ $1 == "mudo" ]] && ESCOLHA_VETOR=$3 HELP_VETOR=$4 ||        # com mudo - executa funcoes de acordo com os parametros passados = vetor($3) + acao($4)
+                      ESCOLHA_VETOR=$2 HELP_VETOR=$3           # sem mudo - executa funcoes de acordo com os parametros passados = vetor($2) + acao($3)
 
 # ## manipulando parametros - parametro acao/mudo(boolean)
 for i in "$@"; 
@@ -2586,7 +2586,7 @@ do
         todas) func_todas;;
         nvidia) nvidia;;
         texmaker) install_texmaker;;
-		-v|-version) version;;
+		versao) version;;
         vetor) func_vetor;;
 		interface) func_interface_dialog;;
         # *) echo "Parametro desconhecido";;

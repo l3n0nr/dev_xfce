@@ -9,13 +9,13 @@ Bem vindo ao script de automação de tarefas no Linux.
 
     Exemplos:        
         - Funcoes do script:
-            ~ v5.sh [atualiza/corrige/limpa/instala/instala_outros/menu]
+            ~ v5.sh [atualiza/corrige/limpa/instala/menu]
 
         - Após a maquina ser formatada(apenas as funções automáticas e depois desliga a máquina)
-            ~ v5.sh formatado
+            ~ v5.sh formatado(desliga a máquina, após finalização do script)
 
         - Para executar todas as funções(semi-automático)
-            ~ v5.sh todas
+            ~ v5.sh todas(contém funcões que necessitam de interação do usuário)
 
         - Para executar um funcao especifica basta:
             ~ v5.sh vetor nomefuncao
