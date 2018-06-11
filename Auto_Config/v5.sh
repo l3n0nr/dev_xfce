@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [10/06/18]      #
+# # ultima ediçao realizada:      [11/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -147,8 +147,14 @@
     email="lenonrmsouza@gmail.com"
     twitter="twitter.com/lenonr1"
 
+# personalizacao icones
+    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+    var_breeze="/usr/share/icons/Breeze"
+    var_flatremix="/usr/share/icons/Flat_Remix_Light"
+    var_papirus="/usr/share/icons/Papirus_Light"
+
 # versao do script
-VERSAO="0.0.151.1.0.1"             
+VERSAO="0.0.155.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -168,14 +174,14 @@ LIMPA=(arquivos_temporarios pacotes_orfaos \
        funcao_chkrootkit func_localepurge)
 
 # vetor instala
-INSTALA=(install_firefox install_chromium install_vivaldi \
+INSTALA=(install_firefox install_chromium install_tor \
         install_steam install_spotify install_codecs \
         install_funcao_gimp install_xfce4 install_wine \
         install_playonlinux install_redshift install_libreoffice \
         install_vlc install_clementine install_gparted \
         install_tlp install_git install_lm-sensors \
         install_stellarium install_texmaker \
-        install_reaver install_tor install_dolphin \
+        install_reaver install_dolphin \
         install_visualgameboy install_screenfetch \
         install_kdenlive install_sweethome3d \
         install_cheese install_plank install_gnome_system_monitor \
@@ -190,7 +196,7 @@ INSTALA=(install_firefox install_chromium install_vivaldi \
         install_tuxguitar install_musescore install_zsh \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox install_transmission \
-        install_python )
+        install_python)
 #
 # # # # # # # # # #
 #
@@ -271,7 +277,6 @@ func_help()
         printf "\n[+] Removendo possíveis dependências obsoletas" >> /tmp/log.txt
 
         apt-get remove -fy
-        # apt-get autoremove -y
     }
 
     apt_clean()
@@ -542,12 +547,6 @@ func_help()
 
     icones_temas()
     {    	
-		# personalizacao
-	    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
-		var_breeze="/usr/share/icons/Breeze"
-		var_flatremix="/usr/share/icons/Flat_Remix_Light"
-		var_papirus="/usr/share/icons/Papirus_Light"
-
 		if [ -e $var_breeze ]; then 			
 			printf "\n[-] Voce ja possui os arquivos Breeze!"
     		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
@@ -606,7 +605,6 @@ func_help()
         printf "\n[+] Removendo Pacotes Órfãos" >> /tmp/log.txt
 
         apt-get remove $(deborphan) -y 
-        # apt-get autoremove -y
     }
 
     funcao_chkrootkit()
@@ -653,7 +651,6 @@ func_help()
                 printf "\n[+] Instalando o Chromium" >> /tmp/log.txt
 
                 apt install chromium* -y
-                # snap install chromium
             else
                 printf "\n[+] Chromium ja esta instalado"
                 printf "\n[+] Chromium ja esta instalado" >> /tmp/log.txt                
@@ -674,29 +671,6 @@ func_help()
         fi 
     }
 
-    install_vivaldi()
-    {
-    	local var_vivaldi=$(which vivaldi)        
-
-        if [[ ! -e $var_vivaldi ]]; then
-            printf "\n"
-            printf "\n[+] Instalando Vivaldi"
-            printf "\n[+] Instalando Vivaldi" >> /tmp/log.txt
-
-	    	wget https://downloads.vivaldi.com/stable/vivaldi-stable_1.14.1077.55-1_amd64.deb
-
-	    	dpkg -i vivaldi-stable_1.14.1077.55-1_amd64.deb
-
-	    	apt --fix-broken install -y
-
-			dpkg -i vivaldi-stable_1.14.1077.55-1_amd64.deb  
-
-			rm vivaldi-stable_1.14.1077.55-1_amd64.deb  
-		else
-			printf "\n[+] Vivaldi ja esta instalado" >> /tmp/log.txt			  	
-		fi
-    }
-
     install_tor()
     {
         # variavel de verificação
@@ -710,23 +684,24 @@ func_help()
             # verificando distribuição
             if [ $distro == "Ubuntu" ]; then
                 # ubuntu 16.04
-	            #adicionando repositorio
-	            add-apt-repository ppa:webupd8team/tor-browser -y
+                #adicionando repositorio
+                add-apt-repository ppa:webupd8team/tor-browser -y
 
-	            #atualizando lista de pacotes
-	            update
+                #atualizando lista de pacotes
+                update
 
-	            #instalando tor
-	            apt-get install tor tor-browser -y
-                # apt install tor torbrowser-launcher -y
+                #instalando tor
+                apt-get install tor tor-browser -y
 
             elif [ $distro == "Debian" ]; then
                 # modo manual - baixar o arquivo e pa... \o
                 ## verificar comandos
+                ## manualmente - funciona de boas! 
+                ## elaborando script
                 printf ""                
             else
-            	printf "\n[-] ERRO TOR"
-            	printf "\n[-] ERRO TOR" >> /tmp/log.txt
+                printf "\n[-] ERRO TOR"
+                printf "\n[-] ERRO TOR" >> /tmp/log.txt
             fi
 
         else
@@ -753,7 +728,6 @@ func_help()
 			apt install libgl1-nvidia-glx:i386 libc6-i386 libgl1-mesa-dev \
                         libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 \
                         libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 -y \
-
                         steam-launcher -y		                        
 		fi		
 
@@ -770,15 +744,9 @@ func_help()
             printf "\n[+] Instalando Spotify" >> /tmp/log.txt
 
             if [[ $distro == "Ubuntu" ]]; then 
-				snap install spotify -y 		         
+				snap install spotify 		         
 			elif [[ $distro == "Debian" ]]; then 
-				# apt install dirmngr -y
-				# apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0DF731E45CE24F27EEEB1450EFDC8610341D9410	
-				# echo deb http://repository.spotify.com stable non-free | tee /etc/apt/sources.list.d/spotify.list
-
-				# update
-
-				apt install dirmngr spotify-client -y
+                snap install spotify                  
 			fi			            	
         else
             printf "[+] Spofity já está instalado! \n"
@@ -1055,8 +1023,8 @@ func_help()
         printf "\n[+] Instalando o Texmaker"
         printf "\n[+] Instalando o Texmaker" >> /tmp/log.txt
 
-        apt install texmaker* texlive-full* texlive-latex-extra* -y
-        apt install aspell aspell-pt-br -y
+        apt install texmaker* texlive-full* texlive-latex-extra* \
+                    aspell aspell-pt-br -y
     }
 
     install_reaver()
@@ -1268,8 +1236,7 @@ func_help()
             fi
 
             #instalando simplescreenrecorder
-            apt-get install simplescreenrecorder -y
-            apt-get install simplescreenrecorder-lib:i386 -y
+            apt-get install simplescreenrecorder simplescreenrecorder-lib:i386 -y
         else
             printf "[+] Simple Screen Recorder já está instalado! \n"
         fi
@@ -1390,21 +1357,12 @@ func_help()
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_virtualbox ]]; then    
-            if [ $distro == "Ubuntu" ]; then
-                printf "\n"
-                printf "[*] Instalando Virtualbox \n"
+            printf "\n"
+            printf "[*] Instalando Virtualbox \n"
 
+            if [ $distro == "Ubuntu" ]; then
                 apt install virtualbox-5.1 -y
             elif [ $distro == "Debian" ]; then      
-                # # baixando chave
-                # wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
-
-                # # adicionando chave
-                # apt-key add oracle_vbox_2016.asc
-
-                # # atualizando sistema
-                # apt update
-
                 # instalando virtualbox
                 apt install virtualbox -y              
             fi            
@@ -1556,10 +1514,13 @@ func_help()
         if [[ ! -e $var_tuxguitar ]]; then
             printf "\n"
             printf "\n[+] Instalando Tux Guitar"
-            printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt
-            
-            #snap install tuxguitar-vs
-            apt install tuxguitar timidity -y # debian
+            printf "\n[+] Instalando Tux Guitar" >> /tmp/log.txt                
+
+            if [ $distro == "Ubuntu" ]; then
+              snap install tuxguitar-vs
+            elif [ $distro == "Debian" ]; then
+                apt install tuxguitar timidity -y
+            fi
         else
             printf "[+] TuxGuitar já está instalado \n"
         fi
@@ -1576,8 +1537,11 @@ func_help()
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> /tmp/log.txt
 
-            #snap install musescore
-            apt install musescore -y # debian
+            if [ $distro == "Ubuntu" ]; then
+              snap install musescore
+            elif [ $distro == "Debian" ]; then
+                apt install musescore -y 
+            fi
         else
             printf "\n"
             printf "\n[+] O Musescore já está instalado no seu sistema."
@@ -1625,9 +1589,6 @@ func_help()
             printf "\n"
             printf "\n[+] O Docker já está instalado no seu sistema."
         fi
-
-        # removendo docker 
-        # apt purge docker-ce -y
     }
 
     install_sublime()
@@ -1676,12 +1637,7 @@ func_help()
                 rm sublime-text_build-3083_amd64.deb
                 
             elif [ $distro == "Debian" ]; then
-    			# echo "deb https://download.sublimetext.com/ apt/dev/" | tee /etc/apt/sources.list.d/sublime-text.list
-    			# wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
-    			
-    			# update
-
-    			apt install sublime-text -y
+     			apt install sublime-text -y
             fi            
         else
             printf "\n"
@@ -2016,12 +1972,12 @@ func_remove()
 
 	printf "\n\n[+] Removendo programas" >> /tmp/log.txt
     apt purge thunderbird parole inkscape* blender* \
-            exfalso* quodlibet* xterm* pidgin* meld* gtkhash* \
-            xsane* imagemagick* chromium-bsu* owncloud* -y
+              exfalso* quodlibet* xterm* pidgin* meld* gtkhash* \
+              xsane* imagemagick* chromium-bsu* owncloud* -y
     
     if [[ $v_hostname == 'notebook' ]]; then
     	apt purge kstars* steam* kdenlive* \
-    	transmission* smartgit* gitg* -y
+    	          transmission* smartgit* gitg* -y
     else
     	printf "\n"	   
     fi
