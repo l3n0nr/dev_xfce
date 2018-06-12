@@ -23,8 +23,5 @@ deb http://repository.spotify.com stable non-free
 ###Steam
 deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 
-###Vivaldi Browser
-deb [arch=i386,amd64] http://repo.vivaldi.com/stable/deb/ stable main
-
 ###Mega
 deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
