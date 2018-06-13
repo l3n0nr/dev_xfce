@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [12/06/18]      #
+# # ultima ediçao realizada:      [13/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -158,7 +158,7 @@
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-    VERSAO="0.0.158.1.0.1"             
+    VERSAO="0.0.160.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -186,7 +186,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_tlp install_git install_lm-sensors \
         install_stellarium install_texmaker \
         install_reaver install_dolphin \
-        install_visualgameboy install_screenfetch \
+        install_visualgameboy install_neofetch \
         install_kdenlive install_sweethome3d \
         install_cheese install_plank install_gnome_system_monitor \
         install_nautilus install_wireshark install_gnome_disk_utility \
@@ -1077,13 +1077,13 @@ func_help()
         fi
     }
 
-    install_screenfetch()
+    install_neofetch()
     {
         printf "\n"
-        printf "\n[+] Instalando o Screenfetch"
-        printf "\n[+] Instalando o Screenfetch" >> /tmp/log.txt
+        printf "\n[+] Instalando o neofetch"
+        printf "\n[+] Instalando o neofetch" >> /tmp/log.txt
 
-        apt install screenfetch -y
+        apt install neofetch -y
     }
 
     install_kdenlive()
@@ -1886,7 +1886,7 @@ func_instala()
     install_reaver
     install_redshift
     install_ristretto    
-    install_screenfetch
+    install_neofetch
     install_lm-sensors    
     install_tlp	   
 
