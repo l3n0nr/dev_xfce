@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [11/06/18]      #
+# # ultima ediçao realizada:      [12/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -145,16 +145,20 @@
 
 # contatos do autor
     email="lenonrmsouza@gmail.com"
+    
     twitter="twitter.com/lenonr1"
 
 # personalizacao icones
     var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+
     var_breeze="/usr/share/icons/Breeze"
+
     var_flatremix="/usr/share/icons/Flat_Remix_Light"
+
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-VERSAO="0.0.155.1.0.1"             
+    VERSAO="0.0.156.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
