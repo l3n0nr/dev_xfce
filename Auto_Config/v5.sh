@@ -158,7 +158,7 @@
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-    VERSAO="0.0.156.1.0.1"             
+    VERSAO="0.0.158.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -1689,6 +1689,10 @@ func_help()
         printf "\n[+] Instalando o Pip" >> /tmp/log.txt        
 
         apt install python3.5 python-pip -y
+
+    	if [ $distro == "Debian" ]; then
+ 			apt install pipsi -y
+        fi   
     }
 
     install_dropbox()
