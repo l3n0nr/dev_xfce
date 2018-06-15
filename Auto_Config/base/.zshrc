@@ -123,7 +123,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 alias reboot_dropbox="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/dropbox/dropbox.sh"
 
 # download videos - youtubedl
-alias yt="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/youtubedl.sh"
+alias yt="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/zenity/youtubedl.sh"
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"

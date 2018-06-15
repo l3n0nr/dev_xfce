@@ -442,8 +442,8 @@ func_help()
         	printf "\n[+] Hora do servidor atualizada!\n"
         	printf "\n[+] Hora do servidor atualizada!\n" >> /tmp/log.txt
         else
-        	printf "\n[-] Erro - Hora do servidor!\n"
-        	printf "\n[-] Erro - Hora do servidor!\n" >> /tmp/log.txt
+        	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n"
+        	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> /tmp/log.txt
         fi    
     }
 
