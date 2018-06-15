@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [13/06/18]      #
+# # ultima ediçao realizada:      [14/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -158,7 +158,7 @@
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-    VERSAO="0.0.160.1.0.1"             
+    VERSAO="0.0.161.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -200,7 +200,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_tuxguitar install_musescore install_zsh \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox install_transmission \
-        install_python)
+        install_python install_youtubedl)
 #
 # # # # # # # # # #
 #
@@ -1684,8 +1684,9 @@ func_help()
     }
 
     install_python()
-    {
+    {        
         printf "\n"
+        printf "\n[+] Instalando o Pip" 
         printf "\n[+] Instalando o Pip" >> /tmp/log.txt        
 
         apt install python3.5 python-pip -y
@@ -1693,6 +1694,15 @@ func_help()
     	if [ $distro == "Debian" ]; then
  			apt install pipsi -y
         fi   
+    }
+
+    install_youtubedl()
+    {
+        printf "\n"
+        printf "\n[+] Instalando o Youtube-DL" 
+        printf "\n[+] Instalando o Youtube-DL" >> /tmp/log.txt 
+
+        apt install youtube-dl -y
     }
 
     install_dropbox()
@@ -1874,6 +1884,7 @@ func_instala()
 	install_python    
 	install_sublime
     install_terminator
+    install_youtubedl
 
     install_stellarium
 
@@ -1918,8 +1929,7 @@ func_instala()
 
     install_wine
     install_playonlinux
-
-    install_python       	
+    	
 	install_ntp 
 	install_localepurge  
 
