@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh -f
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -2355,71 +2355,79 @@ auto_config_debian()
     clear
 }
 
-func_interface_dialog()
+func_interface_zenity()
 {
-    valor=$(
-        dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
-                --ok-label "Executar" --cancel-label "Cancelar" \
-                --menu "Modo de execucao do script..." \
-                0 0 0 \
-                "0" "Modo Automatico" \
-                "1" "Modo Manual" \
-    )
+ #    valor=$(
+ #        dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
+ #                --ok-label "Executar" --cancel-label "Cancelar" \
+ #                --menu "Modo de execucao do script..." \
+ #                0 0 0 \
+ #                "0" "Modo Automatico" \
+ #                "1" "Modo Manual" \
+	# )
 
-    # se valor igual a 1, sai do programa
-    [ $? -eq 1 ] && break
+	## status
+	f_verifica()
+	{
+		[[ $? == "1" ]] && \
+			zenity --notification \
+				   --text "Script finalizado, antes do esperado!" && exit 1
+	}
+
+
+	valor=$(
+        zenity --list --title="Automatizar de tarefas" \
+        	   --text="Deseja executar o script, de forma..."  \
+        	   --column="Marque" --column="Modo" \
+        	   --radiolist \
+        	   TRUE Automatica \
+        	   FALSE Manual \
+    )
     
-    # tratando saida - forma de execucao do script
-    case $valor in 
-    	# modo automatico
-        0) 
+    if [[ $valor == "Automatico" ]]; then
             escolha=$(
-                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
-                    --ok-label "Executar" --cancel-label "Cancelar" \
-                    --menu "O que voce deseja fazer?" \
-                    0 0 0 \
-                    "0" "Executar todas funçoes abaixo" \
-                    "1" "Atualizar Sistema" \
-                    "2" "Corrigir Sistema" \
-                    "3" "Limpar Sistema" \
-                    "4" "Instalar programas" \
-                    "5" "Instalar outros programas" \
-                    "6" "Remover programas" \
+            	zenity --list --title="Automatizar de tarefas" \
+	        	   --text="O que deseja fazer?"  \
+	        	   --width "150" \
+	        	   --height "300" \
+	        	   --column="Select" --column="Acao" \
+	        	   --radiolist \
+	        	   	TRUE Todas \
+                    FALSE Atualizar \
+                    FALSE Corrigir \
+                    FALSE Limpar \
+                    FALSE Instalar \
+                    FALSE Remover \
             )
 
-            case $escolha in
-                0) func_todas ;;
-                1) func_atualiza ;;
-                2) func_corrige ;;
-                3) func_limpa ;;
-                4) func_instala  ;;
-                5) func_instala_outros ;;        
-                6) func_remove ;;
-            esac
-        ;;
+			[[ $escolha == "Todas" ]] && func_todas ||
+			[[ $escolha == "Atualizar" ]] && func_atualiza ||
+			[[ $escolha == "Corrigir" ]] && func_corrige ||
+			[[ $escolha == "Limpar" ]] && func_limpa ||
+			[[ $escolha == "Instalar" ]] && func_instala ||
+			[[ $escolha == "Remover" ]] && func_remove
 
-        # modo manual
-        1) 
+		else
 			escolha=$(
-                dialog  --stdout --title "Automatizador de tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO"  \
-                    --ok-label "Executar" --cancel-label "Cancelar" \
-                    --menu "O que voce deseja fazer?" \
-                    0 0 0 \
-                    "0" "Atualizar Sistema" \
-                    "1" "Corrigir Sistema" \
-                    "2" "Limpar Sistema" \
-                    "3" "Instalar programas" \
-                    "4" "Instalar outros programas" \
+                zenity --list --title="Automatizar de tarefas" \
+	        	   --text="O que deseja fazer?"  \
+	        	   --width "150" \
+	        	   --height "200" \
+	        	   --column="Marque" --column="Acao" \
+	        	   --radiolist \
+                    FALSE atualiza \
+                    FALSE corrige \
+                    FALSE limpa \
+                    FALSE instala \
             )
 
             # vetor de açoes
-            vetor=(atualiza corrige limpa instala instala_outros)
+            vetor=(atualiza corrige limpa instala)
 
+            # echo "\o"
             for (( i = 0; i <= ${#vetor[@]}; i++ )); do 
                 # if [[ ${vetor[$i]} == $escolha ]]; then    
-                if [[ $i == $escolha ]]; then    
-                    # echo ${vetor[$i]}
-
+                if [[ ${vetor[$i]} == $escolha ]]; then   
                     if [[ $escolha == 0 ]]; then    
                         # printf "atualiza"
 
@@ -2436,6 +2444,21 @@ func_interface_dialog()
 							# copy=${$ATUALIZA[*]}
 							# echo "$chave"; 
 
+							escolha=$(
+							zenity --title="Modo manual" \
+								--width="300" --height=250 \
+								--list \
+								--text="Selecione as açoes" \
+								--column=" " \
+								--column="ID" \
+								--column="Distribuicoes" \
+								--checklist FALSE "$chave" "${ATUALIZA[$chave]}" \
+								# --checklist FALSE "Arch" \
+								# --checklist FALSE "Slackware" \
+								# --checklist FALSE "Gentoo" \
+								--separator=" " \
+
+							)
 							# escolha=$(
 							# 	dialog  --stdout --separate-output \
        #                              --checklist "Escolha algo" \
@@ -2462,7 +2485,8 @@ func_interface_dialog()
                     fi                                                            
                 fi
             done        
-        esac
+        # esac
+    fi
 }
 
 
@@ -2565,8 +2589,7 @@ do
         texmaker) install_texmaker;;
 		versao) version;;
         vetor) func_vetor;;
-		interface) func_interface_dialog;;
-        # *) echo "Parametro desconhecido";;
+		interface) func_interface_zenity;;
     esac    
 done
 
