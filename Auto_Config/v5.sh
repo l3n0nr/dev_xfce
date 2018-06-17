@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [14/06/18]      #
+# # ultima ediçao realizada:      [17/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # Legenda: a.b.c.d.e.f
@@ -158,7 +158,7 @@
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-    VERSAO="0.0.161.1.0.1"             
+    VERSAO="0.0.162.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -200,7 +200,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_tuxguitar install_musescore install_zsh \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox install_transmission \
-        install_python install_youtubedl)
+        install_python install_youtubedl install_yad)
 #
 # # # # # # # # # #
 #
@@ -1705,6 +1705,15 @@ func_help()
         apt install youtube-dl -y
     }
 
+    install_yad()
+    {
+		printf "\n"
+        printf "\n[+] Instalando o YAD" 
+        printf "\n[+] Instalando o YAD" >> /tmp/log.txt 
+
+        apt install yad -y    	
+    }
+
     install_dropbox()
     {
         printf "\n"
@@ -1869,6 +1878,7 @@ func_instala()
 
 	install_firefox
 	install_chromium	
+	install_tor
 
 	install_codecs
 	install_vlc
@@ -1878,16 +1888,10 @@ func_instala()
 	install_musescore
 	install_simple_screen_recorder
 	install_sweethome3d   
-	install_tuxguitar                
-
-	install_git
-	install_python    
-	install_sublime
-    install_terminator
-    install_youtubedl
-
+	install_tuxguitar  
+	install_wine
+    install_playonlinux              
     install_stellarium
-
     install_libreoffice 
 
 	install_xfce4
@@ -1925,11 +1929,13 @@ func_instala()
     install_compton
     install_xfburn
     install_mugshot
-    install_simplescan    
-
-    install_wine
-    install_playonlinux
-    	
+    install_simplescan 
+    install_git
+	install_python    
+	install_sublime
+    install_terminator
+    install_youtubedl
+    install_yad       
 	install_ntp 
 	install_localepurge  
 
@@ -1939,14 +1945,11 @@ func_instala()
         install_wavemon	
 
 		if [ $distro == "Ubuntu" ]; then		
-			printf "\n"
+			echo
 		elif [ $distro == "Debian" ]; then				
 	    	install_firmware  		    
 		fi
-	elif [[ $v_hostname == 'desktop' ]]; then
-        install_vivaldi
-        install_tor  
-
+	elif [[ $v_hostname == 'desktop' ]]; then         
 		install_visualgameboy
 	    install_dolphin
 
