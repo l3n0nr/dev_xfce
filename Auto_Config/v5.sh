@@ -158,7 +158,7 @@
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # versao do script
-    VERSAO="0.0.162.1.0.1"             
+    VERSAO="0.0.165.1.0.1"             
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -2357,15 +2357,6 @@ auto_config_debian()
 
 func_interface_zenity()
 {
- #    valor=$(
- #        dialog  --stdout --title "Automatizador de Tarefas" --backtitle "AUTOCONFIG - Versao $VERSAO" \
- #                --ok-label "Executar" --cancel-label "Cancelar" \
- #                --menu "Modo de execucao do script..." \
- #                0 0 0 \
- #                "0" "Modo Automatico" \
- #                "1" "Modo Manual" \
-	# )
-
 	## status
 	f_verifica()
 	{
@@ -2373,7 +2364,6 @@ func_interface_zenity()
 			zenity --notification \
 				   --text "Script finalizado, antes do esperado!" && exit 1
 	}
-
 
 	valor=$(
         zenity --list --title="Automatizar de tarefas" \
@@ -2384,7 +2374,7 @@ func_interface_zenity()
         	   FALSE Manual \
     )
     
-    if [[ $valor == "Automatico" ]]; then
+    if [[ $valor == "Automatica" ]]; then
             escolha=$(
             	zenity --list --title="Automatizar de tarefas" \
 	        	   --text="O que deseja fazer?"  \
@@ -2392,12 +2382,12 @@ func_interface_zenity()
 	        	   --height "300" \
 	        	   --column="Select" --column="Acao" \
 	        	   --radiolist \
-	        	   	TRUE Todas \
-                    FALSE Atualizar \
-                    FALSE Corrigir \
-                    FALSE Limpar \
-                    FALSE Instalar \
-                    FALSE Remover \
+    	        	   	TRUE Todas \
+                        FALSE Atualizar \
+                        FALSE Corrigir \
+                        FALSE Limpar \
+                        FALSE Instalar \
+                        FALSE Remover \
             )
 
 			[[ $escolha == "Todas" ]] && func_todas ||
@@ -2406,83 +2396,90 @@ func_interface_zenity()
 			[[ $escolha == "Limpar" ]] && func_limpa ||
 			[[ $escolha == "Instalar" ]] && func_instala ||
 			[[ $escolha == "Remover" ]] && func_remove
-
 		else
 			escolha=$(
                 zenity --list --title="Automatizar de tarefas" \
 	        	   --text="O que deseja fazer?"  \
 	        	   --width "150" \
 	        	   --height "200" \
-	        	   --column="Marque" --column="Acao" \
+	        	   --column "" --column="Marque" \
 	        	   --radiolist \
-                    FALSE atualiza \
-                    FALSE corrige \
-                    FALSE limpa \
-                    FALSE instala \
-            )
+                        TRUE atualiza \
+                        FALSE corrige \
+                        FALSE limpa \
+                        FALSE instala \
+            ) 
 
             # vetor de açoes
             vetor=(atualiza corrige limpa instala)
 
             # echo "\o"
-            for (( i = 0; i <= ${#vetor[@]}; i++ )); do 
-                # if [[ ${vetor[$i]} == $escolha ]]; then    
+            for (( i = 0; i <= ${#vetor[@]}; i++ )); do  
                 if [[ ${vetor[$i]} == $escolha ]]; then   
-                    if [[ $escolha == 0 ]]; then    
-                        # printf "atualiza"
+                    # echo ${vetor[$i]}
 
-                        # for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
-                        #     # echo ${ATUALIZA[$i]}
+                    if [[ $escolha == "atualiza" ]]; then    
+      #                   # printf "atualiza"
 
-						for chave in ${!ATUALIZA[@]}; do 
+      #                   # for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do
+      #                   #     # echo ${ATUALIZA[$i]}
 
-							# copy[$chave]=${original[$chave]}
+                        zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                             "{ATUALIZA[$@]}"                              
+                         # --checklist FALSE "$i" "${vetor[$i]}" \
+                    fi
+
+                        # for chave in ${!ATUALIZA[@]}; do 
+                        # for chave in ${vetor[$i]}; do                                                                                
+
+                        # done              
+							
+                            # copy[$chave]=${original[$chave]}
 
 							# tamanho=${#array[@]}
-							echo "$chave = ${ATUALIZA[$chave]}"; 
+							# echo "$chave = ${ATUALIZA[$chave]}"; 
 
 							# copy=${$ATUALIZA[*]}
 							# echo "$chave"; 
 
-							escolha=$(
-							zenity --title="Modo manual" \
-								--width="300" --height=250 \
-								--list \
-								--text="Selecione as açoes" \
-								--column=" " \
-								--column="ID" \
-								--column="Distribuicoes" \
-								--checklist FALSE "$chave" "${ATUALIZA[$chave]}" \
-								# --checklist FALSE "Arch" \
-								# --checklist FALSE "Slackware" \
-								# --checklist FALSE "Gentoo" \
-								--separator=" " \
-
-							)
+							# escolha=$(
+    			# 				zenity --title="Modo manual" \
+    			# 					--width="300" --height=250 \
+    			# 					--list \
+    			# 					--text="Selecione as açoes" \
+       #                              --column "" --column="Marque" --column="Acao" \                                    
+    								# --separator=" " \
+                                    # --checklist FALSE 1 "atualiza" \
+							# )
 							# escolha=$(
 							# 	dialog  --stdout --separate-output \
        #                              --checklist "Escolha algo" \
        #                              0 0 0 \
        #                          	"$chave" "${ATUALIZA[$chave]}" off \
        #                          )
-                        done     
+                        # done     
 
-                        # echo ${copy[*]}
+      #                   # echo ${copy[*]}
 
-                    elif [[ $escolha == 1 ]]; then                    
-                        printf ""
-                    elif [[ $escolha == 2 ]]; then
-                        printf ""
-                    elif [[ $escolha == 3 ]]; then
-                        for chave in ${INSTALA[@]}; do 
-							# echo "$chave = ${INSTALA[$chave]}"; 
-							echo "$chave";
-						done
-                    elif [[ $escolha == 4 ]]; then
-                        printf ""
-                    else
-                        printf ""
-                    fi                                                            
+      #               elif [[ $escolha == 1 ]]; then                    
+      #                   printf ""
+      #               elif [[ $escolha == 2 ]]; then
+      #                   printf ""
+      #               elif [[ $escolha == 3 ]]; then
+      #                   for chave in ${INSTALA[@]}; do 
+						# 	# echo "$chave = ${INSTALA[$chave]}"; 
+						# 	echo "$chave";
+						# done
+      #               elif [[ $escolha == 4 ]]; then
+      #                   printf ""
+      #               else
+      #                   printf ""
+      #               fi        
+                    break;                                                    
                 fi
             done        
         # esac
