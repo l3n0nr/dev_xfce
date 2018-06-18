@@ -1,4 +1,4 @@
-#!/bin/zsh -f
+#!/bin/bash
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -74,18 +74,21 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [17/06/18]      #
+# # ultima ediçao realizada:      [18/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
+# versao do script
+    VERSAO="1.0.166.1.1.0"             
+#    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
 # 	b = erros na execução;
 # 	c = interações com o script;
-# 	d = correções necessárias;
-#		I  - [VERIFICAR-DEBIAN]: VisualGame Boy 
+# 	d = correções necessárias; 
 # 	e = pendencias
+#       I - [VERIFICAR-DEBIAN]: VisualGame Boy
 # 	f = desenvolver
-#       I - Melhorar condicoes de comparacoes - remover "if" do negocio!
+#       I - [CONDICAO IF]: Melhorar condicoes de comparacoes - remover "if" do negocio!
 #				
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -157,9 +160,6 @@
 
     var_papirus="/usr/share/icons/Papirus_Light"
 
-# versao do script
-    VERSAO="0.0.165.1.0.1"             
-
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
 # vetor de atualizacao
@@ -184,7 +184,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_playonlinux install_redshift install_libreoffice \
         install_vlc install_clementine install_gparted \
         install_tlp install_git install_lm-sensors \
-        install_stellarium install_texmaker \
+        install_stellarium \
         install_reaver install_dolphin \
         install_visualgameboy install_neofetch \
         install_kdenlive install_sweethome3d \
@@ -1021,16 +1021,6 @@ func_help()
         fi
     }
 
-    install_texmaker()
-    {
-        printf "\n"
-        printf "\n[+] Instalando o Texmaker"
-        printf "\n[+] Instalando o Texmaker" >> /tmp/log.txt
-
-        apt install texmaker* texlive-full* texlive-latex-extra* \
-                    aspell aspell-pt-br -y
-    }
-
     install_reaver()
     {
         printf "\n"
@@ -1410,7 +1400,7 @@ func_help()
 	            # instalando via flatpak
 	            flatpak install flathub com.github.wwmm.pulseeffects	        
 	        elif [ $distro == "Debian" ]; then
-                printf "\n"
+                echo
 	        fi
         else
             printf "\n"
@@ -1692,7 +1682,7 @@ func_help()
         apt install python3.5 python-pip -y
 
     	if [ $distro == "Debian" ]; then
- 			apt install pipsi -y
+ 			apt install pipsi -y # instalando pip
         fi   
     }
 
@@ -2021,9 +2011,6 @@ func_formatado()
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
 
-    # texmaker - trabalhos academicos
-    texmaker
-
     # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
 
@@ -2052,141 +2039,141 @@ func_todas()
     func_atualiza
 }
 
-func_vetor()
-{
-    # percorrendo vetor atualiza
-    for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-        # saindo do script
-        if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${ATUALIZA[$i]}
+# func_vetor()
+# {
+#     # percorrendo vetor atualiza
+#     for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+#         # saindo do script
+#         if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
+#             # mostrando funcao encontrada
+#             # echo ${ATUALIZA[$i]}
 
-            # executando funcao encontrada
-            ${ATUALIZA[$i]}
+#             # executando funcao encontrada
+#             ${ATUALIZA[$i]}
 
-            # saindo do script
-            exit 1                
-        fi
-    done
+#             # saindo do script
+#             exit 1                
+#         fi
+#     done
 
-    # percorrendo vetor corrige
-    for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
-        # saindo do script
-        if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${CORRIGE[$i]}
+#     # percorrendo vetor corrige
+#     for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
+#         # saindo do script
+#         if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
+#             # mostrando funcao encontrada
+#             # echo ${CORRIGE[$i]}
 
-            # executando funcao encontrada
-            ${CORRIGE[$i]}
+#             # executando funcao encontrada
+#             ${CORRIGE[$i]}
 
-            # saindo do script
-            exit 1                
-        fi
-    done
+#             # saindo do script
+#             exit 1                
+#         fi
+#     done
 
-    # percorrendo vetor limpa
-    for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
-        # saindo do script
-        if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${LIMPA[$i]}
+#     # percorrendo vetor limpa
+#     for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
+#         # saindo do script
+#         if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
+#             # mostrando funcao encontrada
+#             # echo ${LIMPA[$i]}
 
-            # executando funcao encontrada
-            ${LIMPA[$i]}
+#             # executando funcao encontrada
+#             ${LIMPA[$i]}
 
-            # saindo do script
-            exit 1                
-        fi
-    done
+#             # saindo do script
+#             exit 1                
+#         fi
+#     done
 
-    # percorrendo vetor instala
-    for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
-        # saindo do script
-        if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${INSTALA[$i]}
+#     # percorrendo vetor instala
+#     for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
+#         # saindo do script
+#         if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
+#             # mostrando funcao encontrada
+#             # echo ${INSTALA[$i]}
 
-            # executando funcao encontrada
-            ${INSTALA[$i]}
+#             # executando funcao encontrada
+#             ${INSTALA[$i]}
 
-            # saindo do script
-            exit 1                
-        fi
-    done   
+#             # saindo do script
+#             exit 1                
+#         fi
+#     done   
 
-    # mostrando ajuda para o usuario
-    if [[ "$ESCOLHA_VETOR" = "help" ]]; then
-        if [[ "$HELP_VETOR" = "atualiza" ]]; then
-            printf "\nATUALIZAR\n"
-            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-                echo ${ATUALIZA[$i]}
-            done    
+#     # mostrando ajuda para o usuario
+#     if [[ "$ESCOLHA_VETOR" = "help" ]]; then
+#         if [[ "$HELP_VETOR" = "atualiza" ]]; then
+#             printf "\nATUALIZAR\n"
+#             for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+#                 echo ${ATUALIZA[$i]}
+#             done    
 
-            exit 1
-        fi
+#             exit 1
+#         fi
         
-        if [[ "$HELP_VETOR" = "corrige" ]]; then
-            printf "\nCORRIGE\n"
-            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
-                echo ${CORRIGE[$i]}
-            done
+#         if [[ "$HELP_VETOR" = "corrige" ]]; then
+#             printf "\nCORRIGE\n"
+#             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+#                 echo ${CORRIGE[$i]}
+#             done
 
-            exit 1
-        fi
+#             exit 1
+#         fi
 
-        if [[ "$HELP_VETOR" = "limpa" ]]; then
-            printf "\nLIMPA\n"
-            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
-                echo ${LIMPA[$i]}
-            done
+#         if [[ "$HELP_VETOR" = "limpa" ]]; then
+#             printf "\nLIMPA\n"
+#             for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+#                 echo ${LIMPA[$i]}
+#             done
 
-            exit 1
-        fi
+#             exit 1
+#         fi
 
-        if [[ "$HELP_VETOR" = "instala" ]]; then
-            printf "\nINSTALA\n"
-            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
-                echo ${INSTALA[$i]}
-            done
+#         if [[ "$HELP_VETOR" = "instala" ]]; then
+#             printf "\nINSTALA\n"
+#             for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+#                 echo ${INSTALA[$i]}
+#             done
 
-            exit 1
-        fi
+#             exit 1
+#         fi
 
-        if [[ "$HELP_VETOR" = "instala_outros" ]]; then
-            printf "\nINSTALA OUTROS\n"
-            for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
-                echo ${INSTALA_OUTROS[$i]}
-            done
+#         if [[ "$HELP_VETOR" = "instala_outros" ]]; then
+#             printf "\nINSTALA OUTROS\n"
+#             for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
+#                 echo ${INSTALA_OUTROS[$i]}
+#             done
 
-            exit 1
-        fi
+#             exit 1
+#         fi
 
-        if [[ "$HELP_VETOR" -eq "help" ]]; then
-            printf "\nATUALIZAR\n"
-            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-                echo ${ATUALIZA[$i]}
-            done
+#         if [[ "$HELP_VETOR" -eq "help" ]]; then
+#             printf "\nATUALIZAR\n"
+#             for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+#                 echo ${ATUALIZA[$i]}
+#             done
 
-            printf "\nCORRIGE\n"
-            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
-                echo ${CORRIGE[$i]}
-            done
+#             printf "\nCORRIGE\n"
+#             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+#                 echo ${CORRIGE[$i]}
+#             done
 
-            printf "\nLIMPA\n"
-            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
-                echo ${LIMPA[$i]}
-            done
+#             printf "\nLIMPA\n"
+#             for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+#                 echo ${LIMPA[$i]}
+#             done
 
-            printf "\nINSTALA\n"
-            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
-                echo ${INSTALA[$i]}
-            done
+#             printf "\nINSTALA\n"
+#             for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+#                 echo ${INSTALA[$i]}
+#             done
 
-            # saindo do script
-            exit 1               
-        fi
-    fi
-}
+#             # saindo do script
+#             exit 1               
+#         fi
+#     fi
+# }
 
 version()
 {
@@ -2270,6 +2257,7 @@ auto_config_ubuntu()
             printf "\nSaindo do script..."
             sleep 3
             clear
+
         	exit
         ;;
 
@@ -2279,6 +2267,7 @@ auto_config_ubuntu()
             printf "\nAlternativa incorreta!!"
             sleep 1s #1 segundo
             menu
+
             exit
         ;;
     esac
@@ -2337,6 +2326,7 @@ auto_config_debian()
             printf "\nSaindo do script..."
             sleep 3
             clear
+
             exit
         ;;
 
@@ -2346,12 +2336,14 @@ auto_config_debian()
             printf Alternativa incorreta!!
             sleep 1s
             menu
+
             exit
         ;;
     esac
 
     printf "TAREFAS FINALIZADAS, SAINDO..\n"
     sleep 5s
+
     clear
 }
 
@@ -2388,14 +2380,14 @@ func_interface_zenity()
                         FALSE Limpar \
                         FALSE Instalar \
                         FALSE Remover \
-            )
+            ) ;
 
 			[[ $escolha == "Todas" ]] && func_todas ||
 			[[ $escolha == "Atualizar" ]] && func_atualiza ||
 			[[ $escolha == "Corrigir" ]] && func_corrige ||
 			[[ $escolha == "Limpar" ]] && func_limpa ||
 			[[ $escolha == "Instalar" ]] && func_instala ||
-			[[ $escolha == "Remover" ]] && func_remove
+			[[ $escolha == "Remover" ]] && func_remove 
 		else
 			escolha=$(
                 zenity --list --title="Automatizar de tarefas" \
@@ -2574,19 +2566,18 @@ do
     # verificando o que foi digitado
     case $i in
         menu) auto_config;;
+        todas) func_todas;;
+        formatado) func_formatado;;
         atualiza) func_atualiza;;
         corrige) func_corrige;;
         limpa) func_limpa;;
         instala) func_instala;;
-        instala_outros) func_instala_outros;;
         remove) func_remove;;
-        formatado) func_formatado;;
-        todas) func_todas;;
         nvidia) nvidia;;
-        texmaker) install_texmaker;;
 		versao) version;;
         vetor) func_vetor;;
 		interface) func_interface_zenity;;
+        *) echo
     esac    
 done
 
