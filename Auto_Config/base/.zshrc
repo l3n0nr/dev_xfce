@@ -102,7 +102,7 @@ LOCAL_HDD='/media/lenonr/BACKUP/Arquivos/Filmes'
 alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
 
 # alias para reiniciar swap
-alias clearmemory='sudo /home/lenonr/Github/dev_scripts/Scripts/ShellScript/reboot/swap/reinicia_swap.sh'
+alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
 
 # criando apelido para realizar backup do bashrc
 alias backup_zsh='clear; cd $LOCAL_HOME; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
