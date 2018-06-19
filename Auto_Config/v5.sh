@@ -74,11 +74,11 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [18/06/18]      #
+# # ultima ediçao realizada:      [19/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    VERSAO="1.0.166.1.1.0"             
+    VERSAO="1.0.168.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -2351,10 +2351,9 @@ func_interface_zenity()
 {
 	f_verifica()
 	{
-		[[ $? == "1" ]] && 
+		[[ $? == "1" ]] && \
 			zenity --notification \
-				   --text "Script finalizado, antes do esperado!" && 
-			exit 1
+				   --text "Script finalizado, antes do esperado!" && exit 1
 	}
 
 	valor=$(zenity --list --title="Automatizar de tarefas" \
@@ -2388,118 +2387,120 @@ func_interface_zenity()
 			[[ $escolha == "Limpar" ]] && func_limpa && exit 0 ||
 			[[ $escolha == "Instalar" ]] && func_instala && exit 0 ||
 			[[ $escolha == "Remover" ]] && func_remove && exit 0
-		else
-			escolha=$(zenity --list --title="Automatizar de tarefas" \
-	        	   --text="O que deseja fazer?"  \
-	        	   --width "150" \
-	        	   --height "200" \
-	        	   --column "" --column="Marque" \
-	        	   --radiolist \
-                        TRUE atualiza \
-                        FALSE corrige \
-                        FALSE limpa \
-                        FALSE instala \
-            ) ; f_verifica
+	elif [[ $valor == "Manual" ]]; then
+		escolha=$(zenity --list --title="Automatizar de tarefas" \
+        	   --text="O que deseja fazer?"  \
+        	   --width "150" \
+        	   --height "200" \
+        	   --column "" --column="Marque" \
+        	   --radiolist \
+                    TRUE atualiza \
+                    FALSE corrige \
+                    FALSE limpa \
+                    FALSE instala \
+        ) ; f_verifica
 
-            # vetor de açoes
-            vetor=(atualiza corrige limpa instala)
+        # vetor de açoes
+        vetor=(atualiza corrige limpa instala)
 
-            for (( i = 0; i <= ${#vetor[@]}; i++ )); do  
-                if [[ ${vetor[$i]} == $escolha ]]; then   
-                    if [[ $escolha == "atualiza" ]]; then                        	
-                        for (( i = 0; i < ${#ATUALIZA[@]}; i++ )); do	                        	                       
-                        	acoes=$(zenity --title="Modo manual" \
-	                            --width="300" --height=250 \
-	                            --list \
-	                            --text="Selecione as açoes" \
-	                            --column "" --column="Marque" --column="Acao" \
-	                            --checklist FALSE "$i" "${ATUALIZA[$i]}"
-	                        ) ; f_verifica
-                        done
-                    elif [[ $escolha == "corrige" ]]; then
-                    	for (( i = 0; i < ${#CORRIGE[@]}; i++ )); do
-	                        acoes=$(zenity --title="Modo manual" \
-	                            --width="300" --height=250 \
-	                            --list \
-	                            --text="Selecione as açoes" \
-	                            --column "" --column="Marque" --column="Acao" \
-	                            --checklist FALSE "$i" "${CORRIGE[$i]}"                                        	
-	                        ) ; f_verifica
-                        done
-                    elif [[ $escolha == "limpa" ]]; then
-                    	for (( i = 0; i < ${#LIMPA[@]}; i++ )); do
-	                        acoes=$(zenity --title="Modo manual" \
-	                            --width="300" --height=250 \
-	                            --list \
-	                            --text="Selecione as açoes" \
-	                            --column "" --column="Marque" --column="Acao" \
-	                            --checklist FALSE "$i" "${LIMPA[$i]}"                                        	
-	                        ) ; f_verifica
-                        done
-                    elif [[ $escolha == "instala" ]]; then
-                    	for (( i = 0; i < ${#INSTALA[@]}; i++ )); do
-	                        acoes=$(zenity --title="Modo manual" \
-	                            --width="300" --height=250 \
-	                            --list \
-	                            --text="Selecione as açoes" \
-	                            --column "" --column="Marque" --column="Acao" \
-	                            --checklist FALSE "$i" "${INSTALA[$i]}"                                        	
-	                        ) ; f_verifica
-                        done
-                    else
-                    	echo "ERRO"
-                    fi
-
-                        # for chave in ${!ATUALIZA[@]}; do 
-                        # for chave in ${vetor[$i]}; do                                                                                
-
-                        # done              
-							
-                            # copy[$chave]=${original[$chave]}
-
-							# tamanho=${#array[@]}
-							# echo "$chave = ${ATUALIZA[$chave]}"; 
-
-							# copy=${$ATUALIZA[*]}
-							# echo "$chave"; 
-
-							# escolha=$(
-    			# 				zenity --title="Modo manual" \
-    			# 					--width="300" --height=250 \
-    			# 					--list \
-    			# 					--text="Selecione as açoes" \
-       #                              --column "" --column="Marque" --column="Acao" \                                    
-    								# --separator=" " \
-                                    # --checklist FALSE 1 "atualiza" \
-							# )
-							# escolha=$(
-							# 	dialog  --stdout --separate-output \
-       #                              --checklist "Escolha algo" \
-       #                              0 0 0 \
-       #                          	"$chave" "${ATUALIZA[$chave]}" off \
-       #                          )
-                        # done     
-
-      #                   # echo ${copy[*]}
-
-      #               elif [[ $escolha == 1 ]]; then                    
-      #                   printf ""
-      #               elif [[ $escolha == 2 ]]; then
-      #                   printf ""
-      #               elif [[ $escolha == 3 ]]; then
-      #                   for chave in ${INSTALA[@]}; do 
-						# 	# echo "$chave = ${INSTALA[$chave]}"; 
-						# 	echo "$chave";
-						# done
-      #               elif [[ $escolha == 4 ]]; then
-      #                   printf ""
-      #               else
-      #                   printf ""
-      #               fi        
-                    break;                                                    
+        for (( i = 0; i <= ${#vetor[@]}; i++ )); do  
+            if [[ ${vetor[$i]} == $escolha ]]; then   
+                if [[ $escolha == "atualiza" ]]; then                        	
+                    for (( i = 0; i < ${#ATUALIZA[@]}; i++ )); do	                        	                       
+                    	acoes=$(zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                            --checklist FALSE "$i" "${ATUALIZA[$i]}"
+                        ) ; f_verifica
+                    done
+                elif [[ $escolha == "corrige" ]]; then
+                	for (( i = 0; i < ${#CORRIGE[@]}; i++ )); do
+                        acoes=$(zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                            --checklist FALSE "$i" "${CORRIGE[$i]}"                                        	
+                        ) ; f_verifica
+                    done
+                elif [[ $escolha == "limpa" ]]; then
+                	for (( i = 0; i < ${#LIMPA[@]}; i++ )); do
+                        acoes=$(zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                            --checklist FALSE "$i" "${LIMPA[$i]}"                                        	
+                        ) ; f_verifica
+                    done
+                elif [[ $escolha == "instala" ]]; then
+                	for (( i = 0; i < ${#INSTALA[@]}; i++ )); do
+                        acoes=$(zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                            --checklist FALSE "$i" "${INSTALA[$i]}"                                        	
+                        ) ; f_verifica
+                    done
+                else
+                	echo "ERRO"
                 fi
-            done        
+
+                    # for chave in ${!ATUALIZA[@]}; do 
+                    # for chave in ${vetor[$i]}; do                                                                                
+
+                    # done              
+						
+                        # copy[$chave]=${original[$chave]}
+
+						# tamanho=${#array[@]}
+						# echo "$chave = ${ATUALIZA[$chave]}"; 
+
+						# copy=${$ATUALIZA[*]}
+						# echo "$chave"; 
+
+						# escolha=$(
+			# 				zenity --title="Modo manual" \
+			# 					--width="300" --height=250 \
+			# 					--list \
+			# 					--text="Selecione as açoes" \
+   #                              --column "" --column="Marque" --column="Acao" \                                    
+								# --separator=" " \
+                                # --checklist FALSE 1 "atualiza" \
+						# )
+						# escolha=$(
+						# 	dialog  --stdout --separate-output \
+   #                              --checklist "Escolha algo" \
+   #                              0 0 0 \
+   #                          	"$chave" "${ATUALIZA[$chave]}" off \
+   #                          )
+                    # done     
+
+  #                   # echo ${copy[*]}
+
+  #               elif [[ $escolha == 1 ]]; then                    
+  #                   printf ""
+  #               elif [[ $escolha == 2 ]]; then
+  #                   printf ""
+  #               elif [[ $escolha == 3 ]]; then
+  #                   for chave in ${INSTALA[@]}; do 
+					# 	# echo "$chave = ${INSTALA[$chave]}"; 
+					# 	echo "$chave";
+					# done
+  #               elif [[ $escolha == 4 ]]; then
+  #                   printf ""
+  #               else
+  #                   printf ""
+  #               fi        
+                break;                                                    
+            fi
+        done        
         # esac
+    else
+        echo
     fi
 }
 
