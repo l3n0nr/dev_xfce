@@ -111,7 +111,7 @@ alias backup_zsh='clear; cd $LOCAL_HOME; printf "[*] Realizado backup do zshrc\n
 setxkbmap -model abnt2 -layout br -variant abnt2
 
 # calculando tempo lançamento foguetes
-alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/calc_lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
 # autocompletar 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -119,11 +119,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# reiniciando o dropbox
-alias reboot_dropbox="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/dropbox/dropbox.sh"
-
 # download videos - youtubedl
-alias yt="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/zenity/youtubedl.sh"
+alias yt="/home/lenonr/Github/dev_sysadmin/others/youtubedl.sh"
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
@@ -170,7 +167,7 @@ verificahd()
 
   	# verificando se diretorio existe 
   	if [ -e "$LOCAL_HDD" ]; then 
-	  	/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/verifica_midias.sh
+	  	/home/lenonr/Github/dev_syadmin/others/verifica_midias.sh
   	else
 		echo "Conecte o HDD ao computador!"
 	fi
