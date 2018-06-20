@@ -105,7 +105,7 @@ alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; k
 alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
 
 # criando apelido para realizar backup do bashrc
-alias backup_zsh='clear; cd $LOCAL_HOME; printf "[*] Realizado backup do zshrc\n"; cat .zshrc > /home/lenonr/Github/dev_xfce/Auto_Config/base/.zshrc ; printf "[+] Backup realizado! \n"'
+alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 
 # testando configuracao do teclado
 setxkbmap -model abnt2 -layout br -variant abnt2
@@ -167,7 +167,7 @@ verificahd()
 
   	# verificando se diretorio existe 
   	if [ -e "$LOCAL_HDD" ]; then 
-	  	/home/lenonr/Github/dev_syadmin/others/verifica_midias.sh
+      /home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh
   	else
 		echo "Conecte o HDD ao computador!"
 	fi
