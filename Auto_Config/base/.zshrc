@@ -129,46 +129,46 @@ alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pul
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
 
 home()
-{	
-  	clear 
+{ 
+    clear 
 
-  	# verificando se diretorio existe 
-  	if [ -e "$LOCAL_HOME" ]; then 
-	  	echo "########## LISTA DE ARQUIVOS ##########" 
-	  	cd $LOCAL_HOME
-	  	ls
-	  	echo "######################################"
-  	else
-		echo "Diretorio '$LOCAL_HOME' nao existe"
-	fi
+    # verificando se diretorio existe 
+    if [ -e "$LOCAL_HOME" ]; then 
+      echo "########## LISTA DE ARQUIVOS ##########" 
+      cd $LOCAL_HOME
+      ls
+      echo "######################################"
+    else
+    echo "Diretorio '$LOCAL_HOME' nao existe"
+  fi
 }
 
 wrt()
 {
-  	# verificando conexao
-  	ping -c1 $LOCAL_WRT
+    # verificando conexao
+    ping -c1 $LOCAL_WRT
 
-  	clear 
+    clear 
 
-  	# verificando se diretorio existe 
-  	if [ $? -eq 0 ]; then
-  		echo "########################"
-  		printf "CONECTANDO AO SERVIDOR\n"
-  		echo "########################\n"
-	  	telnet $LOCAL_WRT
-  	else
-		echo "IP do servidor '$LOCAL_WRT' nao encontrado"
-	fi
+    # verificando se diretorio existe 
+    if [ $? -eq 0 ]; then
+      echo "########################"
+      printf "CONECTANDO AO SERVIDOR\n"
+      echo "########################\n"
+      telnet $LOCAL_WRT
+    else
+    echo "IP do servidor '$LOCAL_WRT' nao encontrado"
+  fi
 }
 
 verificahd()
-{	
-  	clear 
+{ 
+    clear 
 
-  	# verificando se diretorio existe 
-  	if [ -e "$LOCAL_HDD" ]; then 
+    # verificando se diretorio existe 
+    if [ -e "$LOCAL_HDD" ]; then 
       /home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh
-  	else
-		echo "Conecte o HDD ao computador!"
-	fi
+    else
+    echo "Conecte o HDD ao computador!"
+  fi
 }
