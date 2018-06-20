@@ -78,7 +78,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    VERSAO="1.0.168.1.1.0"             
+    versao="1.0.170.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -88,7 +88,7 @@
 # 	e = pendencias
 #       I - [VERIFICAR-DEBIAN]: VisualGame Boy
 # 	f = desenvolver
-#       I - [CONDICAO IF]: Melhorar condicoes de comparacoes - remover "if" do negocio!
+#       I - [CONDICAO IF]: Melhorar condicoes de comparacoes - remover condicao "if" do negocio()!
 #				
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
@@ -2175,9 +2175,9 @@ version()
 {
 	## verificando valor variavel
     if [ $var_mudo == "0" ]; then
-        espeak -vpt-br "Versao do script: $VERSAO"
+        espeak -vpt-br "versao do script: $versao"
     else
-		echo "Versao do script: $VERSAO"
+		echo "versao do script: $versao"
         echo "Autor do script: $autor"
         echo "Contato: Email: '$email'; Twitter: '$twitter'"
 	fi
@@ -2508,7 +2508,7 @@ auto_config()
     # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
     printf "
                 $nome
-        Versao do script: $VERSAO
+        versao do script: $versao
                 \n"
     echo "-------------------------------------------------"
     echo "Digite 1 para atualizar o sistema,"
@@ -2563,49 +2563,53 @@ menu()
     auto_config
 }
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# INICIANDO SCRIPT
-# menu
+main()
+{
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # INICIANDO SCRIPT
+    # menu
 
-# mostrando data/hora log inicilização script   
-date > /tmp/log.txt
+    # mostrando data/hora log inicilização script   
+    date > /tmp/log.txt
 
-## verificacao de parametros - funcao ajuda
-[[ $# -eq 0 ]] || # ou, se script for chamado sem parametro 
-[[ $1 == "mudo" ]] && [[ $2 == "vetor" ]] || # ou,se com apenas o parametro "mudo" e "vetor"
-# [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
-# [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
-    func_help   # executa funcao ajuda
+    ## verificacao de parametros - funcao ajuda
+    [[ $# -eq 0 ]] || # ou, se script for chamado sem parametro 
+    [[ $1 == "mudo" ]] && [[ $2 == "vetor" ]] || # ou,se com apenas o parametro "mudo" e "vetor"
+    # [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
+    # [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
+        func_help   # executa funcao ajuda
 
-# tratando saidas
-# passando parametro ao vetor
-[[ $1 == "mudo" ]] && ESCOLHA_VETOR=$3 HELP_VETOR=$4 ||        # com mudo - executa funcoes de acordo com os parametros passados = vetor($3) + acao($4)
-                      ESCOLHA_VETOR=$2 HELP_VETOR=$3           # sem mudo - executa funcoes de acordo com os parametros passados = vetor($2) + acao($3)
+    # tratando saidas
+    # passando parametro ao vetor
+    [[ $1 == "mudo" ]] && ESCOLHA_VETOR=$3 HELP_VETOR=$4 ||        # com mudo - executa funcoes de acordo com os parametros passados = vetor($3) + acao($4)
+                          ESCOLHA_VETOR=$2 HELP_VETOR=$3           # sem mudo - executa funcoes de acordo com os parametros passados = vetor($2) + acao($3)
 
-# ## manipulando parametros - parametro acao/mudo(boolean)
-for i in "$@"; 
-do
-    # verificando o que foi digitado
-    case $i in
-        menu) auto_config;;
-        todas) func_todas;;
-        formatado) func_formatado;;
-        atualiza) func_atualiza;;
-        corrige) func_corrige;;
-        limpa) func_limpa;;
-        instala) func_instala;;
-        remove) func_remove;;
-        nvidia) nvidia;;
-		versao) version;;
-        vetor) func_vetor;;
-		interface) func_interface_zenity;;
-        *) echo
-    esac    
-done
+    # ## manipulando parametros - parametro acao/mudo(boolean)
+    for i in "$@"; 
+    do
+        # verificando o que foi digitado
+        case $i in
+            menu) auto_config;;
+            todas) func_todas;;
+            formatado) func_formatado;;
+            atualiza) func_atualiza;;
+            corrige) func_corrige;;
+            limpa) func_limpa;;
+            instala) func_instala;;
+            remove) func_remove;;
+            nvidia) nvidia;;
+    		versao) version;;
+            vetor) func_vetor;;
+    		interface) func_interface_zenity;;
+            *) echo
+        esac    
+    done
 
-date >> /tmp/log.txt
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    date >> /tmp/log.txt
+}
+
+## chamando script
+main $@
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                               #
