@@ -74,7 +74,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [19/06/18]      #
+# # ultima ediçao realizada:      [20/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
@@ -125,6 +125,10 @@
 # usuario sistema
     autor="lenonr"                    # nome usuario sistema
 
+# contatos do autor
+    email="lenonrmsouza@gmail.com"    
+    twitter="twitter.com/lenonr1"
+
 # pasta do usuario
     pasta_home="/home/$autor/"        # pasta home usuario do sistema 
 
@@ -138,7 +142,7 @@
     var_mudo=1                          # valor padrao = mudo desativado
 
 # login automatico distros
-	boolean_autologin=1					# login automatico, caso queria desativar basta alterar para 0
+	boolean_autologin=1					# login automatico, caso queria desativar(pede a senha na inicilizacao do sistema) basta alterar para 0
 
 # nome do script
     nome="AUTOCONFIG-V5"                # apelido do script
@@ -146,18 +150,10 @@
 # logo para ser mostrado no script
 	logo="figlet $nome"			        # logo do script
 
-# contatos do autor
-    email="lenonrmsouza@gmail.com"
-    
-    twitter="twitter.com/lenonr1"
-
 # personalizacao icones
     var_icones_macos="/usr/share/themes/MacBuntu-OS/"
-
     var_breeze="/usr/share/icons/Breeze"
-
     var_flatremix="/usr/share/icons/Flat_Remix_Light"
-
     var_papirus="/usr/share/icons/Papirus_Light"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
@@ -439,8 +435,8 @@ func_help()
             ntpdate -q pool.ntp.br
 
 		if [[ $? == "0" ]]; then
-        	printf "\n[+] Hora do servidor atualizada!\n"
-        	printf "\n[+] Hora do servidor atualizada!\n" >> /tmp/log.txt
+        	printf "\n[+] Hora do computador sinconizada!\n"
+        	printf "\n[+] Hora do computador sinconizada!\n" >> /tmp/log.txt
         else
         	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n"
         	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> /tmp/log.txt
