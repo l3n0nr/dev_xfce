@@ -112,6 +112,9 @@ alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
 # criando apelido para realizar backup do bashrc
 alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 
+# reinicia dropbox
+alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
+
 # calculando tempo lançamento foguetes
 alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
