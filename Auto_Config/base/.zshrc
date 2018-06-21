@@ -118,9 +118,6 @@ alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 # download videos - youtubedl
 alias yt="/home/lenonr/Github/dev_sysadmin/others/youtubedl.sh"
 
-## chamando git.conf para "alias git" funcionar!! \'o'/
-#source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/git.conf
-
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
