@@ -93,9 +93,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-LOCAL_HOME='/home/lenonr'
-LOCAL_WRT='10.0.0.87'
-LOCAL_HDD='/media/lenonr/BACKUP/Arquivos/Filmes'
+# autocompletar 
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# testando configuracao do teclado
+setxkbmap -model abnt2 -layout br -variant abnt2
 
 ## Alias diversos
 # alias para verificar os log's do servidor dev_web - apache
@@ -107,46 +112,45 @@ alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
 # criando apelido para realizar backup do bashrc
 alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 
-# testando configuracao do teclado
-setxkbmap -model abnt2 -layout br -variant abnt2
-
 # calculando tempo lançamento foguetes
 alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
-# autocompletar 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 # download videos - youtubedl
 alias yt="/home/lenonr/Github/dev_sysadmin/others/youtubedl.sh"
+
+## chamando git.conf para "alias git" funcionar!! \'o'/
+#source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/git.conf
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
 alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
+alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/check_push.sh"
 
 home()
 {	
+    local_home='/home/lenonr'
+
   	clear 
 
   	# verificando se diretorio existe 
-  	if [ -e "$LOCAL_HOME" ]; then 
+  	if [ -e "$local_home" ]; then 
 	  	echo "########## LISTA DE ARQUIVOS ##########" 
-	  	cd $LOCAL_HOME
+	  	cd $local_home
 	  	ls
 	  	echo "######################################"
   	else
-		echo "Diretorio '$LOCAL_HOME' nao existe"
+		echo "Diretorio '$local_home' nao existe"
 	fi
 }
 
 wrt()
 {
+    local_wrt='10.0.0.87'
+
   	# verificando conexao
-  	ping -c1 $LOCAL_WRT
+  	ping -c1 $local_wrt
 
   	clear 
 
@@ -155,18 +159,20 @@ wrt()
   		echo "########################"
   		printf "CONECTANDO AO SERVIDOR\n"
   		echo "########################\n"
-	  	telnet $LOCAL_WRT
+	  	telnet $local_wrt
   	else
-		echo "IP do servidor '$LOCAL_WRT' nao encontrado"
+		echo "IP do servidor '$local_wrt' nao encontrado"
 	fi
 }
 
 verificahd()
 {	
+    local_hdd='/media/lenonr/BACKUP/Arquivos/Filmes'
+
   	clear 
 
   	# verificando se diretorio existe 
-  	if [ -e "$LOCAL_HDD" ]; then 
+  	if [ -e "$local_hdd" ]; then 
       /home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh
   	else
 		echo "Conecte o HDD ao computador!"
