@@ -74,11 +74,11 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [20/06/18]      #
+# # ultima ediçao realizada:      [21/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    versao="1.0.170.1.1.0"             
+    versao="1.0.171.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -2035,141 +2035,141 @@ func_todas()
     func_atualiza
 }
 
-# func_vetor()
-# {
-#     # percorrendo vetor atualiza
-#     for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-#         # saindo do script
-#         if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
-#             # mostrando funcao encontrada
-#             # echo ${ATUALIZA[$i]}
+func_vetor()
+{
+    # percorrendo vetor atualiza
+    for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+        # saindo do script
+        if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${ATUALIZA[$i]}
 
-#             # executando funcao encontrada
-#             ${ATUALIZA[$i]}
+            # executando funcao encontrada
+            ${ATUALIZA[$i]}
 
-#             # saindo do script
-#             exit 1                
-#         fi
-#     done
+            # saindo do script
+            exit 1                
+        fi
+    done
 
-#     # percorrendo vetor corrige
-#     for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
-#         # saindo do script
-#         if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
-#             # mostrando funcao encontrada
-#             # echo ${CORRIGE[$i]}
+    # percorrendo vetor corrige
+    for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${CORRIGE[$i]}
 
-#             # executando funcao encontrada
-#             ${CORRIGE[$i]}
+            # executando funcao encontrada
+            ${CORRIGE[$i]}
 
-#             # saindo do script
-#             exit 1                
-#         fi
-#     done
+            # saindo do script
+            exit 1                
+        fi
+    done
 
-#     # percorrendo vetor limpa
-#     for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
-#         # saindo do script
-#         if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
-#             # mostrando funcao encontrada
-#             # echo ${LIMPA[$i]}
+    # percorrendo vetor limpa
+    for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${LIMPA[$i]}
 
-#             # executando funcao encontrada
-#             ${LIMPA[$i]}
+            # executando funcao encontrada
+            ${LIMPA[$i]}
 
-#             # saindo do script
-#             exit 1                
-#         fi
-#     done
+            # saindo do script
+            exit 1                
+        fi
+    done
 
-#     # percorrendo vetor instala
-#     for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
-#         # saindo do script
-#         if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
-#             # mostrando funcao encontrada
-#             # echo ${INSTALA[$i]}
+    # percorrendo vetor instala
+    for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # mostrando funcao encontrada
+            # echo ${INSTALA[$i]}
 
-#             # executando funcao encontrada
-#             ${INSTALA[$i]}
+            # executando funcao encontrada
+            ${INSTALA[$i]}
 
-#             # saindo do script
-#             exit 1                
-#         fi
-#     done   
+            # saindo do script
+            exit 1                
+        fi
+    done   
 
-#     # mostrando ajuda para o usuario
-#     if [[ "$ESCOLHA_VETOR" = "help" ]]; then
-#         if [[ "$HELP_VETOR" = "atualiza" ]]; then
-#             printf "\nATUALIZAR\n"
-#             for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-#                 echo ${ATUALIZA[$i]}
-#             done    
+    # mostrando ajuda para o usuario
+    if [[ "$ESCOLHA_VETOR" = "ajuda" ]]; then
+        if [[ "$HELP_VETOR" = "atualiza" ]]; then
+            printf "\nATUALIZAR\n"
+            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+                echo ${ATUALIZA[$i]}
+            done    
 
-#             exit 1
-#         fi
+            exit 1
+        fi
         
-#         if [[ "$HELP_VETOR" = "corrige" ]]; then
-#             printf "\nCORRIGE\n"
-#             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
-#                 echo ${CORRIGE[$i]}
-#             done
+        if [[ "$HELP_VETOR" = "corrige" ]]; then
+            printf "\nCORRIGE\n"
+            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+                echo ${CORRIGE[$i]}
+            done
 
-#             exit 1
-#         fi
+            exit 1
+        fi
 
-#         if [[ "$HELP_VETOR" = "limpa" ]]; then
-#             printf "\nLIMPA\n"
-#             for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
-#                 echo ${LIMPA[$i]}
-#             done
+        if [[ "$HELP_VETOR" = "limpa" ]]; then
+            printf "\nLIMPA\n"
+            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+                echo ${LIMPA[$i]}
+            done
 
-#             exit 1
-#         fi
+            exit 1
+        fi
 
-#         if [[ "$HELP_VETOR" = "instala" ]]; then
-#             printf "\nINSTALA\n"
-#             for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
-#                 echo ${INSTALA[$i]}
-#             done
+        if [[ "$HELP_VETOR" = "instala" ]]; then
+            printf "\nINSTALA\n"
+            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+                echo ${INSTALA[$i]}
+            done
 
-#             exit 1
-#         fi
+            exit 1
+        fi
 
-#         if [[ "$HELP_VETOR" = "instala_outros" ]]; then
-#             printf "\nINSTALA OUTROS\n"
-#             for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
-#                 echo ${INSTALA_OUTROS[$i]}
-#             done
+        if [[ "$HELP_VETOR" = "instala_outros" ]]; then
+            printf "\nINSTALA OUTROS\n"
+            for (( i = 0; i <= ${#INSTALA_OUTROS[@]}; i++ )); do             
+                echo ${INSTALA_OUTROS[$i]}
+            done
 
-#             exit 1
-#         fi
+            exit 1
+        fi
 
-#         if [[ "$HELP_VETOR" -eq "help" ]]; then
-#             printf "\nATUALIZAR\n"
-#             for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
-#                 echo ${ATUALIZA[$i]}
-#             done
+        if [[ "$HELP_VETOR" -eq "help" ]]; then
+            printf "\nATUALIZAR\n"
+            for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
+                echo ${ATUALIZA[$i]}
+            done
 
-#             printf "\nCORRIGE\n"
-#             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
-#                 echo ${CORRIGE[$i]}
-#             done
+            printf "\nCORRIGE\n"
+            for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
+                echo ${CORRIGE[$i]}
+            done
 
-#             printf "\nLIMPA\n"
-#             for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
-#                 echo ${LIMPA[$i]}
-#             done
+            printf "\nLIMPA\n"
+            for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do             
+                echo ${LIMPA[$i]}
+            done
 
-#             printf "\nINSTALA\n"
-#             for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
-#                 echo ${INSTALA[$i]}
-#             done
+            printf "\nINSTALA\n"
+            for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do             
+                echo ${INSTALA[$i]}
+            done
 
-#             # saindo do script
-#             exit 1               
-#         fi
-#     fi
-# }
+            # saindo do script
+            exit 1               
+        fi
+    fi
+}
 
 version()
 {
@@ -2535,23 +2535,7 @@ auto_config()
     else
         printf "Disponivel para Debian ou Ubuntu!!! \n"
         printf "Script incompativel infelizmente \n"
-    fi
-
-            #     for (( i = 0; i <= ${#repos[@]}; i++ )); do 
-            #     # verify local repo disk
-            #     if [[ $LOCAL${repos[$i]} != $LOCAL ]]; then
-            #         # verify local repo
-            #         if [ -e "$LOCAL${repos[$i]}" ]; then         
-            #             printf ""
-            #             echo "[+] - Found:" $LOCAL${repos[$i]}
-
-            #             # into folder location
-            #             ls $LOCAL${repos[$i]}                               
-            #         fi
-            #     fi
-            # done
-		# ;;
-  #   esac      
+    fi    
 }
 
 #mostrando mensagem inicial
@@ -2581,8 +2565,8 @@ main()
 
     # tratando saidas
     # passando parametro ao vetor
-    [[ $1 == "mudo" ]] && ESCOLHA_VETOR=$3 HELP_VETOR=$4 ||        # com mudo - executa funcoes de acordo com os parametros passados = vetor($3) + acao($4)
-                          ESCOLHA_VETOR=$2 HELP_VETOR=$3           # sem mudo - executa funcoes de acordo com os parametros passados = vetor($2) + acao($3)
+    [[ $1 == "mudo" ]] && ESCOLHA_VETOR=$3 && HELP_VETOR=$4 ||        # com mudo - executa funcoes de acordo com os parametros passados = vetor($3) + acao($4)
+                          ESCOLHA_VETOR=$2 && HELP_VETOR=$3           # sem mudo - executa funcoes de acordo com os parametros passados = vetor($2) + acao($3)
 
     # ## manipulando parametros - parametro acao/mudo(boolean)
     for i in "$@"; 
@@ -2601,7 +2585,7 @@ main()
     		versao) version;;
             vetor) func_vetor;;
     		interface) func_interface_zenity;;
-            *) echo
+            *) echo "nao entendi o comando"
         esac    
     done
 
