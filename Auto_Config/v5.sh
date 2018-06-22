@@ -435,8 +435,8 @@ func_help()
             ntpdate -q pool.ntp.br
 
 		if [[ $? == "0" ]]; then
-        	printf "\n[+] Hora do computador sinconizada!\n"
-        	printf "\n[+] Hora do computador sinconizada!\n" >> /tmp/log.txt
+        	printf "\n[+] Hora do computador sincronizada!\n"
+        	printf "\n[+] Hora do computador sincronizada!\n" >> /tmp/log.txt
         else
         	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n"
         	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> /tmp/log.txt
