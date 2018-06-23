@@ -74,11 +74,11 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [21/06/18]      #
+# # ultima ediçao realizada:      [22/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    versao="1.0.171.1.1.0"             
+    versao="1.0.175.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -456,17 +456,15 @@ func_help()
     {
         printf "\n[+] Alterando arquivo Hosts"
         printf "\n[+] Alterando arquivo Hosts" >> /tmp/log.txt
+        echo; echo
 
-        # verificando computador
-        if [[ $v_hostname == 'desktop' ]]; then
-            cat base/hosts_desktop > /etc/hosts
-        elif [[ $v_hostname == 'notebook' ]]; then
-            cat base/hosts_notebook > /etc/hosts
-        else
-            printf "\n[-] Verificar arquivo hosts"
-            printf "\n[-] Verificar arquivo hosts" >> /tmp/log.txt
-        fi
-                
+        ## gerando arquivo
+        echo "127.0.0.1   $(hostname)" > base/hosts/hosts
+        cat base/hosts/base >> base/hosts/hosts
+        cat base/hosts/spotify >> base/hosts/hosts
+
+        ## copiando arquivo para /etc/hosts
+        cat base/hosts/hosts > /etc/hosts               
     }
 
     chaveiro()
