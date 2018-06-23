@@ -78,7 +78,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    versao="1.0.175.1.1.0"             
+    versao="1.0.176.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -1562,6 +1562,8 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando o Docker" >> /tmp/log.txt
 
+            apt install docker-compose -y
+
             if [[ $distro == "Ubuntu" ]]; then
         		apt install docker-io -y
         	elif [[ $distro == "Debian" ]]; then            
@@ -1569,7 +1571,7 @@ func_help()
                 printf "\n[*] Instalando docker"
                 printf "\n[*] Instalando docker" >> /tmp/log.txt
     
-                curl -fsSL https://get.docker.com/ | sh
+                curl -fsSL https://get.docker.com/ | sh                
             else
             	printf "\n"
             fi
