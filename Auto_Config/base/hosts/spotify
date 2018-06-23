@@ -1,0 +1,14 @@
+## SPOTIFY
+#
+###########################
+## Atualizado em 22/06/18
+###########################
+#
+# Ate agora, o mais simples para bloquear as propagandas
+#
+###########################
+#
+0.0.0.0 securepubads.g.doubleclick.net
+0.0.0.0 gads.pubmatic.com
+0.0.0.0 ads.pubmatic.com
+0.0.0.0 spclient.wg.spotify.com
