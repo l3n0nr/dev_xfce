@@ -55,6 +55,9 @@
 # por Slackjeff - [HOWTO] Instalação do Sublime Text no Debian
 #   <http://slackjeff.com.br/artigos/debian/desktop/instalacao_sublime_text_debian.html>
 #
+# por Hugo Cisneiros (Eitch) - O que diabos é o swap no Linux?
+#   <http://www.devin.com.br/linux-swap/>
+#
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
@@ -78,7 +81,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    versao="1.0.190.1.1.0"             
+    versao="1.0.195.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -159,6 +162,9 @@
 # configuraçao de linguagem do sistema - debian
     language="en_US.utf8"
     arq_language="/etc/default/locale"
+
+# valor de swap
+    swappiness="50"
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -252,7 +258,8 @@ func_help()
 		        apt upgrade -y
 
                 ## atualizacoes com mudanças - atualizacoes completas                
-                apt dist-upgrade -y || apt full-upgrade -y
+                apt dist-upgrade -y 
+                apt full-upgrade -y
 		fi
     }
 
@@ -318,36 +325,92 @@ func_help()
         apt list --upgradable
     }
 
-    swap()
+    pacotes_quebrados()
     {
-        #configurando a swap para uma melhor performance
-        printf "\n"
-        printf "\n[+] Configurando a Swap"
-        printf "\n[+] Configurando a Swap" >> /tmp/log.txt
+        #corrigindo pacotes quebrados
+        printf "\n[+] Corrigindo pacotes quebrados"
+        printf "\n[+] Corrigindo pacotes quebrados" >> /tmp/log.txt
 
-        memoswap=$(grep "vm.swappiness=10" /etc/sysctl.conf)
-        memocache=$(grep "vm.vfs_cache_pressure=60" /etc/sysctl.conf)
+        #corrige possiveis erros na instalação de softwares
+        dpkg --configure -a
+
+        # corrigindo problema nos pacotes
+        apt install -f 
+        apt update --fix-missing 
+        apt-get --fix-broken install
+
+        # atualizando versao dos pacotes instalados
+        apt list --upgradable
+
+        #VERIFICAR AÇÕES
+        rm -r /var/lib/apt/lists
+        mkdir -p /var/lib/apt/lists/partial
+    }    
+
+    atualiza_db()
+    {
+    	# variavel de verificação
+        local var_locate=$(which locate)
+
+        if [[ ! -e $var_locate ]]; then
+            printf "\n"
+            printf "[+] Instalando Locate"
+            printf "[+] Instalando Locate" >> /tmp/log.txt
+
+        	apt install locate -y
+        fi
+
+        printf "\n[+] Atualizando base de dados do sistema"        
+        printf "\n[+] Atualizando base de dados do sistema" >> /tmp/log.txt
+
+    	updatedb
+    }
+
+# # # # # # # # # #
+# # CONFIG SISTEMA    
+    swap()
+    {        
+        ## realizando testes em /etc/sysctl.conf
+        memoswap=$(grep vm.swappiness=$swappiness /etc/sysctl.conf)
+        memocache=$(grep vm.vfs_cache_pressure=$swappiness /etc/sysctl.conf)
         background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
         ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
-        printf "\n [+] Diminuindo a Prioridade de uso da memória SWAP"
 
-        if [[ $memoswap == "vm.swappiness=10" ]]; then
-                printf "\n[*] Otimizando..." 
-                /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf"
-        elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-                printf "\n[*] Otimizando..." 
-                /bin/su -c "printf 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
-        elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-                printf "\n[*] Otimizando..." >> /tmp/log.txt
-                /bin/su -c "printf 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
-        elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-                printf "\n[*] Otimizando... "
-                /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
-        else
-                printf "\n[-] Não há nada para ser otimizado"
-                printf "\n[!] Isso porque já foi otimizado anteriormente!"
-        fi
-        printf "\n"
+        [[ $memoswap == "" ]] && echo vm.swappiness=$swappiness >> /etc/sysctl.conf && \
+        [[ $memocache == "" ]] && echo vm.vfs_cache_pressure=$swappiness >> /etc/sysctl.conf && \
+        [[ $background == "" ]] && echo vm.dirty_background_ratio=15 >> /etc/sysctl.conf && \
+        [[ $ratio == "" ]] && echo vm.dirty_ratio=25 >> /etc/sysctl.conf && \
+                printf "\n[+] Swap otimizada \n" && printf "\n[+] Swap otimizada \n" >> /tmp/log.txt || \
+                printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> /tmp/log.txt
+
+        # [[ $(grep "vm.swappiness=" /etc/sysctl.conf) == "" ]] \
+        #     && printf "\n[*]Configurando Swap, com valor $swappiness!"&& echo vm.swappiness=$swappiness >> /etc/sysctl.conf \
+        #     || printf "\n[-]Configuraçao de Swap ja realizada"
+
+        # printf "\n"
+
+        #configurando a swap para uma melhor performance
+        # printf "\n"
+        # printf "\n[+] Configurando a Swap"
+        # printf "\n[+] Configurando a Swap" >> /tmp/log.txt        
+
+        # if [[ $memoswap == "vm.swappiness=10" ]]; then
+        #         printf "\n[*] Otimizando..." 
+        #         /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf"
+        # elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
+        #         printf "\n[*] Otimizando..." 
+        #         /bin/su -c "printf 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
+        # elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
+        #         printf "\n[*] Otimizando..." >> /tmp/log.txt
+        #         /bin/su -c "printf 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
+        # elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
+        #         printf "\n[*] Otimizando... "
+        #         /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
+        # else
+        #         printf "\n[-] Não há nada para ser otimizado"
+        #         printf "\n[!] Isso porque já foi otimizado anteriormente!"
+        # fi
+        # printf "\n"
     }
 
     prelink_preload_deborphan()
@@ -384,27 +447,6 @@ func_help()
         fi
     }
 
-    pacotes_quebrados()
-    {
-        #corrigindo pacotes quebrados
-        printf "\n[+] Corrigindo pacotes quebrados"
-        printf "\n[+] Corrigindo pacotes quebrados" >> /tmp/log.txt
-
-        #corrige possiveis erros na instalação de softwares
-        dpkg --configure -a
-
-        # corrigindo problema nos pacotes
-        apt install -f 
-        apt update --fix-missing 
-        apt-get --fix-broken install
-
-        # atualizando versao dos pacotes instalados
-        apt list --upgradable
-
-        #VERIFICAR AÇÕES
-        rm -r /var/lib/apt/lists
-        mkdir -p /var/lib/apt/lists/partial
-    }
 
     fonts()
     {
@@ -422,7 +464,7 @@ func_help()
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
         printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"           
-        	service ntp stop
+            service ntp stop
 
         #configurando script base - NTP
         printf "\n[*] Realizando alteraçao no arquivo base "
@@ -430,7 +472,7 @@ func_help()
 
         #ativando servico novamente
         printf "\n[+] Ativando serviço NTP"        
-        	service ntp start
+            service ntp start
 
         #realizando atualizacao hora/data
         printf "\n[+] Atualizando hora do servidor"
@@ -440,12 +482,12 @@ func_help()
         printf "\n[*] NIC.BR\n"
             ntpdate -q pool.ntp.br
 
-		if [[ $? == "0" ]]; then
-        	printf "\n[+] Hora do computador sincronizada!\n"
-        	printf "\n[+] Hora do computador sincronizada!\n" >> /tmp/log.txt
+        if [[ $? == "0" ]]; then
+            printf "\n[+] Hora do computador sincronizada!\n"
+            printf "\n[+] Hora do computador sincronizada!\n" >> /tmp/log.txt
         else
-        	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n"
-        	printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> /tmp/log.txt
+            printf "\n[-] Nao foi possivel sincronizar com o servidor!\n"
+            printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> /tmp/log.txt
         fi    
     }
 
@@ -478,120 +520,101 @@ func_help()
         printf "\n[+] Removendo o chaveiro da sessão"
         printf "\n[+] Removendo o chaveiro da sessão" >> /tmp/log.txt
 
-    	apt-get remove gnome-keyring -y
-    }    
-
-    atualiza_db()
-    {
-    	# variavel de verificação
-        local var_locate=$(which locate)
-
-        if [[ ! -e $var_locate ]]; then
-            printf "\n"
-            printf "[+] Instalando Locate"
-            printf "[+] Instalando Locate" >> /tmp/log.txt
-
-        	apt install locate -y
-        fi
-
-        printf "\n[+] Atualizando base de dados do sistema"        
-        printf "\n[+] Atualizando base de dados do sistema" >> /tmp/log.txt
-
-    	updatedb
-    }
+        apt-get remove gnome-keyring -y
+    }   
 
     autologin()
-    {    	
-    	if [[ $boolean_autologin == "1" ]]; then
-    		local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
+    {       
+        if [[ $boolean_autologin == "1" ]]; then
+            local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
 
-	        # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
-	        # var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")        
-	        # cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario" > /dev/null        
+            # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
+            # var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")        
+            # cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario" > /dev/null        
 
-	        cat $var_autologin | grep "autologin-user=$autor" > /dev/null
+            cat $var_autologin | grep "autologin-user=$autor" > /dev/null
 
-	        # se saida do echo $? for 1, entao realiza modificacao
-	        # if [[ $var_autologin == "1" ]]; then
-	        if [[ $? == "1" ]]; then	
-	        	if [[ $distro == "Debian" ]]; then             
-	                printf "\n[+] Habilitando login automatico" 
-	                printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
+            # se saida do echo $? for 1, entao realiza modificacao
+            # if [[ $var_autologin == "1" ]]; then
+            if [[ $? == "1" ]]; then    
+                if [[ $distro == "Debian" ]]; then             
+                    printf "\n[+] Habilitando login automatico" 
+                    printf "\n[+] Habilitando login automatico" >> /tmp/log.txt
 
-	                echo "autologin-user=$autor" >> $var_autologin
-	                echo "autologin-user-timeout=0" >> $var_autologin
+                    echo "autologin-user=$autor" >> $var_autologin
+                    echo "autologin-user-timeout=0" >> $var_autologin
 
-	                printf "\n[*] Reconfigurando lightdm, aguarde!" 
-	                dpkg-reconfigure lightdm 
+                    printf "\n[*] Reconfigurando lightdm, aguarde!" 
+                    dpkg-reconfigure lightdm 
 
-	                if [[ $? == "0" ]]; then
-	                	printf "\n[+] Configuraçao atualizada com sucesso"
-	                else
-	                	printf "\n[-] Erro na configuracao - Autologin"
-	                fi
+                    if [[ $? == "0" ]]; then
+                        printf "\n[+] Configuraçao atualizada com sucesso"
+                    else
+                        printf "\n[-] Erro na configuracao - Autologin"
+                    fi
 
-		        elif [[ $distro == "Ubuntu" ]]; then 
-		            printf "\n[+] Iniciando sessão automaticamente"
-		            printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
+                elif [[ $distro == "Ubuntu" ]]; then 
+                    printf "\n[+] Iniciando sessão automaticamente"
+                    printf "\n[+] Iniciando sessão automaticamente" >> /tmp/log.txt
 
-		            cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
-		        else
-		        	printf "\n[-] Erro autologin"
-		        	printf "\n[-] Erro autologin" >> /tmp/log.txt
-		        fi  
-	        else
-				printf "[-] Login ja esta habilitado"
-	            printf "[-] Login ja esta habilitado" >> /tmp/log.txt
-	        fi
-    	else
-    		printf "\n[-] O login automatico esta desabilitado! Verificar script."
-    		printf "\n[-] O login automatico esta desabilitado! Verificar script. " >> /tmp/log.txt
-    	fi    	
-    }
+                    cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
+                else
+                    printf "\n[-] Erro autologin"
+                    printf "\n[-] Erro autologin" >> /tmp/log.txt
+                fi  
+            else
+                printf "[-] Login ja esta habilitado"
+                printf "[-] Login ja esta habilitado" >> /tmp/log.txt
+            fi
+        else
+            printf "\n[-] O login automatico esta desabilitado! Verificar script."
+            printf "\n[-] O login automatico esta desabilitado! Verificar script. " >> /tmp/log.txt
+        fi      
+    }    
 
     icones_temas()
-    {    	
-		if [ -e $var_breeze ]; then 			
-			printf "\n[-] Voce ja possui os arquivos Breeze!"
-    		printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
-    	else    		
-    		printf "\n[+] Copiando icones Breeze"
-			printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
+    {       
+        if [ -e $var_breeze ]; then             
+            printf "\n[-] Voce ja possui os arquivos Breeze!"
+            printf "\n[-] Voce ja possui os arquivos Breeze!" >> /tmp/log.txt
+        else            
+            printf "\n[+] Copiando icones Breeze"
+            printf "\n[+] Copiando icones Breeze" >> /tmp/log.txt
 
-    		cp -r ../Config/Interface/icons/Breeze /usr/share/icons
-    	fi
+            cp -r ../Config/Interface/icons/Breeze /usr/share/icons
+        fi
 
-    	if [ -e $var_flatremix ]; then 
-    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
-    		printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
-    	else    		
-    		printf "\n[+] Copiando icones Flat_Remix_Light"
-    		printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
+        if [ -e $var_flatremix ]; then 
+            printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
+            printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> /tmp/log.txt
+        else            
+            printf "\n[+] Copiando icones Flat_Remix_Light"
+            printf "\n[+] Copiando icones Flat_Remix_Light" >> /tmp/log.txt
 
-    		cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
-    	fi
+            cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
+        fi
 
-		if [ -e $var_papirus ]; then 
-			printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
-	    	printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
-	    else	    	
-	    	printf "\n[+] Copiando icones Papirus_Light"
-			printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
+        if [ -e $var_papirus ]; then 
+            printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
+            printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> /tmp/log.txt
+        else            
+            printf "\n[+] Copiando icones Papirus_Light"
+            printf "\n[+] Copiando icones Papirus_Light" >> /tmp/log.txt
 
-	    	cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
-    	fi
+            cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
+        fi
 
-    	if [ -e $var_icones_macos ]; then 
-    		printf "\n[-] Voce ja possui os arquivos MacOS X!"
-			printf "\n[-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
-		else	
-			printf "\n[+] Copiando icones MacOS X"
-    		printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
+        if [ -e $var_icones_macos ]; then 
+            printf "\n[-] Voce ja possui os arquivos MacOS X!"
+            printf "\n[-] Voce ja possui os arquivos MacOS X!" >> /tmp/log.txt
+        else    
+            printf "\n[+] Copiando icones MacOS X"
+            printf "\n[+] Copiando icones MacOS X" >> /tmp/log.txt
 
-			cp -r ../Config/Interface/themes/* /usr/share/themes
-		fi
-    }
-
+            cp -r ../Config/Interface/themes/* /usr/share/themes
+        fi
+    }    
+    
     config_idioma()
     {   
         if [[ $distro == "Debian" ]]; then    
@@ -790,8 +813,7 @@ func_help()
                     libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
                     libxine1-misc-plugins libxine1-plugins libxine1-x \
                     tagtool libavcodec-extra ffmpeg \
-                    rar unrar \
-                    prelink deborphan oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
+                    rar unrar oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -1856,6 +1878,8 @@ func_config()
 
     apport
     config_ntp  
+
+    swap
     prelink_preload_deborphan
 
     autologin
@@ -2433,6 +2457,7 @@ func_interface_zenity()
     	        	   	TRUE Todas \
                         FALSE Atualizar \
                         FALSE Corrigir \
+                        FALSE Configurar \
                         FALSE Limpar \
                         FALSE Instalar \
                         FALSE Remover \
@@ -2442,7 +2467,7 @@ func_interface_zenity()
 			[[ $escolha == "Todas" ]] && func_todas && exit 0 ||
 			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
 			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
-            [[ $escolha == "Config" ]] && func_config && exit 0 ||
+            [[ $escolha == "Configurar" ]] && func_config && exit 0 ||
 			[[ $escolha == "Limpar" ]] && func_limpa && exit 0 ||
 			[[ $escolha == "Instalar" ]] && func_instala && exit 0 ||
 			[[ $escolha == "Remover" ]] && func_remove && exit 0
@@ -2617,9 +2642,7 @@ main()
 
     ## verificacao de parametros - funcao ajuda
     [[ $# -eq 0 ]] || # ou, se script for chamado sem parametro 
-    [[ $1 == "mudo" ]] && [[ $2 == "vetor" ]] || # ou,se com apenas o parametro "mudo" e "vetor"
-    # [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
-    # [[ $1 == "mudo" ]] || [[ $1 == "vetor" ]] && [[ $2 == "" ]] ||  # ou, se com apenas o parametro "mudo" ou "vetor" e sem segundo parametro
+    [[ $1 == "mudo" ]] && [[ $2 == "vetor" ]] || # ou,se com apenas o parametro "mudo" e "vetor"    
         func_help   # executa funcao ajuda
 
     # tratando saidas
