@@ -74,11 +74,11 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [22/06/18]      #
+# # ultima ediçao realizada:      [23/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # versao do script
-    versao="1.0.176.1.1.0"             
+    versao="1.0.190.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -156,6 +156,10 @@
     var_flatremix="/usr/share/icons/Flat_Remix_Light"
     var_papirus="/usr/share/icons/Papirus_Light"
 
+# configuraçao de linguagem do sistema - debian
+    language="en_US.utf8"
+    arq_language="/etc/default/locale"
+
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
 # vetor de atualizacao
@@ -164,10 +168,12 @@ ATUALIZA=(update upgrade)
 # vetor de correcao
 CORRIGE=(apt_check apt_install apt_remove \
          apt_clean apt_auto apt_update_local \
-         swap prelink_preload_deborphan \
-         pacotes_quebrados config_ntp apport \
-         arquivo_hosts chaveiro atualiza_db \
-         autologin icones_temas)
+         pacotes_quebrados atualiza_db)
+
+## vetor de configuracao
+CONFIG=(swap prelink_preload_deborphan \
+        config_ntp apport arquivo_hosts chaveiro \
+        autologin icones_temas config_idioma)
 
 # vetor de limpeza
 LIMPA=(arquivos_temporarios pacotes_orfaos \
@@ -180,7 +186,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_playonlinux install_redshift install_libreoffice \
         install_vlc install_clementine install_gparted \
         install_tlp install_git install_lm-sensors \
-        install_stellarium \
+        install_stellarium install_transmission\
         install_reaver install_dolphin \
         install_visualgameboy install_neofetch \
         install_kdenlive install_sweethome3d \
@@ -195,7 +201,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_ibus install_nmap install_htop install_gnome_calculator \
         install_tuxguitar install_musescore install_zsh \
         install_docker install_sublime install_firmware \
-        install_compton install_xfburn install_dropbox install_transmission \
+        install_compton install_xfburn install_dropbox \
         install_python install_youtubedl install_yad)
 #
 # # # # # # # # # #
@@ -584,6 +590,17 @@ func_help()
 
 			cp -r ../Config/Interface/themes/* /usr/share/themes
 		fi
+    }
+
+    config_idioma()
+    {   
+        if [[ $distro == "Debian" ]]; then    
+            [[ $(grep $language /etc/default/locale) == "" ]] \
+                && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
+                || printf "\n\n[-] Configuraçao do idioma ja realizada anteriormente!"
+        fi
+
+        printf "\n"
     }
 
 # # # # # # # # # #
@@ -1800,24 +1817,15 @@ func_corrige()
     apt_install
     apt_remove
     apt_clean        
-
-    prelink_preload_deborphan
-    pacotes_quebrados    
-    config_ntp    
+    
+    pacotes_quebrados      
 
     atualiza_db   
-
-    autologin
-    arquivo_hosts
-    chaveiro
-
-    icones_temas
 
 	if [[ $v_hostname == 'notebook' ]]; then               
         if [ $distro == "Ubuntu" ]; then        
             apt_update_local
-            apt_auto
-            apport
+            apt_auto            
         elif [ $distro == "Debian" ]; then              
             printf ""   
         fi
@@ -1835,6 +1843,27 @@ func_corrige()
 
     # realizando atualização
     update
+}
+
+func_config()
+{
+    ## verificando valor variavel
+    if [ $var_mudo == "0" ]; then
+        espeak -vpt-br "Configurando"
+    else
+        notify-send -u normal "Configurando o sistema" -t 10000
+    fi
+
+    apport
+    config_ntp  
+    prelink_preload_deborphan
+
+    autologin
+    arquivo_hosts
+    chaveiro
+
+    icones_temas
+    config_idioma
 }
 
 func_limpa()
@@ -2028,6 +2057,9 @@ func_todas()
     # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
     func_corrige
 
+    # configurando o sistema
+    func_config
+
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
 
@@ -2041,9 +2073,6 @@ func_vetor()
     for (( i = 0; i <= ${#ATUALIZA[@]}; i++ )); do             
         # saindo do script
         if [[ ${ATUALIZA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${ATUALIZA[$i]}
-
             # executando funcao encontrada
             ${ATUALIZA[$i]}
 
@@ -2056,11 +2085,20 @@ func_vetor()
     for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do 
         # saindo do script
         if [[ ${CORRIGE[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${CORRIGE[$i]}
-
             # executando funcao encontrada
             ${CORRIGE[$i]}
+
+            # saindo do script
+            exit 1                
+        fi
+    done
+
+    # percorrendo vetor config
+    for (( i = 0; i <= ${#CONFIG[@]}; i++ )); do 
+        # saindo do script
+        if [[ ${CONFIG[$i]} = "$ESCOLHA_VETOR" ]]; then
+            # executando funcao encontrada
+            ${CONFIG[$i]}
 
             # saindo do script
             exit 1                
@@ -2071,9 +2109,6 @@ func_vetor()
     for (( i = 0; i <= ${#LIMPA[@]}; i++ )); do 
         # saindo do script
         if [[ ${LIMPA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${LIMPA[$i]}
-
             # executando funcao encontrada
             ${LIMPA[$i]}
 
@@ -2086,9 +2121,6 @@ func_vetor()
     for (( i = 0; i <= ${#INSTALA[@]}; i++ )); do 
         # saindo do script
         if [[ ${INSTALA[$i]} = "$ESCOLHA_VETOR" ]]; then
-            # mostrando funcao encontrada
-            # echo ${INSTALA[$i]}
-
             # executando funcao encontrada
             ${INSTALA[$i]}
 
@@ -2112,6 +2144,15 @@ func_vetor()
             printf "\nCORRIGE\n"
             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
                 echo ${CORRIGE[$i]}
+            done
+
+            exit 1
+        fi
+
+        if [[ "$HELP_VETOR" = "config" ]]; then
+            printf "\nCONFIG\n"
+            for (( i = 0; i <= ${#CONFIG[@]}; i++ )); do             
+                echo ${CONFIG[$i]}
             done
 
             exit 1
@@ -2153,6 +2194,11 @@ func_vetor()
             printf "\nCORRIGE\n"
             for (( i = 0; i <= ${#CORRIGE[@]}; i++ )); do             
                 echo ${CORRIGE[$i]}
+            done
+
+            printf "\nCONFIG\n"
+            for (( i = 0; i <= ${#CONFIG[@]}; i++ )); do             
+                echo ${CONFIG[$i]}
             done
 
             printf "\nLIMPA\n"
@@ -2224,8 +2270,16 @@ auto_config_ubuntu()
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### LIMPA SISTEMA
+    ###### CONFIG SISTEMA
         3) echo
+            func_config
+
+            auto_config
+        ;;    
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    ###### LIMPA SISTEMA
+        4) echo
             func_limpa
 
             auto_config
@@ -2233,7 +2287,7 @@ auto_config_ubuntu()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALA PROGRAMAS
-        4) echo
+        5) echo
             func_instala
 
             auto_config
@@ -2241,7 +2295,7 @@ auto_config_ubuntu()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVES PROGRAMAS
-        5) echo
+        6) echo
             func_remove
 
             auto_config
@@ -2249,7 +2303,7 @@ auto_config_ubuntu()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
-        6) echo
+        7) echo
             printf "\nSaindo do script..."
             sleep 3
             clear
@@ -2295,14 +2349,22 @@ auto_config_debian()
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    ###### CONFIG SISTEMA
+        3) echo
+            func_config
+
+            auto_config
+        ;;
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REALIZANDO LIMPEZA
-        3) printf
+        4) printf
             auto_config
         ;;
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### INSTALANDO PROGRAMAS
-        4) printf
+        5) printf
             func_instala
 
             auto_config
@@ -2310,7 +2372,7 @@ auto_config_debian()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### REMOVENDO PROGRAMAS
-        5) printf
+        6) printf
             func_remove		               
 
             auto_config
@@ -2318,7 +2380,7 @@ auto_config_debian()
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     ###### SAINDO DO SCRIPT
-        6) echo
+        7) echo
             printf "\nSaindo do script..."
             sleep 3
             clear
@@ -2380,6 +2442,7 @@ func_interface_zenity()
 			[[ $escolha == "Todas" ]] && func_todas && exit 0 ||
 			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
 			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
+            [[ $escolha == "Config" ]] && func_config && exit 0 ||
 			[[ $escolha == "Limpar" ]] && func_limpa && exit 0 ||
 			[[ $escolha == "Instalar" ]] && func_instala && exit 0 ||
 			[[ $escolha == "Remover" ]] && func_remove && exit 0
@@ -2392,6 +2455,7 @@ func_interface_zenity()
         	   --radiolist \
                     TRUE atualiza \
                     FALSE corrige \
+                    FALSE config \
                     FALSE limpa \
                     FALSE instala \
         ) ; f_verifica
@@ -2419,6 +2483,16 @@ func_interface_zenity()
                             --text="Selecione as açoes" \
                             --column "" --column="Marque" --column="Acao" \
                             --checklist FALSE "$i" "${CORRIGE[$i]}"                                        	
+                        ) ; f_verifica
+                    done
+                elif [[ $escolha == "config" ]]; then
+                    for (( i = 0; i < ${#CONFIG[@]}; i++ )); do
+                        acoes=$(zenity --title="Modo manual" \
+                            --width="300" --height=250 \
+                            --list \
+                            --text="Selecione as açoes" \
+                            --column "" --column="Marque" --column="Acao" \
+                            --checklist FALSE "$i" "${CONFIG[$i]}"                                         
                         ) ; f_verifica
                     done
                 elif [[ $escolha == "limpa" ]]; then
@@ -2501,42 +2575,27 @@ func_interface_zenity()
 }
 
 
-auto_config()
-{
-    clear
+# auto_config()
+# {
+#     clear
 
-    # chama as funções para serem realizadas[pergunta ao usuário quais ações ele deseja realizar]
-    printf "
-                $nome
-        versao do script: $versao
-                \n"
-    echo "-------------------------------------------------"
-    echo "Digite 1 para atualizar o sistema,"
-    echo "Digite 2 para corrigir possíveis erros,"
-    echo "Digite 3 para realizar uma limpeza,"
-    echo "Digite 4 para instalar alguns programas,"
-    echo "Digite 5 para remover alguns programas,"
-    echo "Digite 6 para sair do script,"
-    echo "-------------------------------------------------"
-    read -n1 -p "Número da ação:" ESCOLHAAUTO_CONFIG
-
-    ###################################################
-    ## condicao de teste suja, eu sei, vou deixar assim
-    ## pois nao tenho como testar no ubuntu!
-    ###################################################
-    #executando ações para a distribuição Ubuntu
-    if [ $distro == "Ubuntu" ]; then
-        clear
-        auto_config_ubuntu
-    #executando ações para a distribuição Fedora
-    elif [ $distro == "Debian" ]; then
-        clear
-        auto_config_debian
-    else
-        printf "Disponivel para Debian ou Ubuntu!!! \n"
-        printf "Script incompativel infelizmente \n"
-    fi    
-}
+#     ###################################################
+#     ## condicao de teste suja, eu sei, vou deixar assim
+#     ## pois nao tenho como testar no ubuntu!
+#     ###################################################
+#     #executando ações para a distribuição Ubuntu
+#     if [ $distro == "Ubuntu" ]; then
+#         clear
+#         auto_config_ubuntu
+#     #executando ações para a distribuição Fedora
+#     elif [ $distro == "Debian" ]; then
+#         clear
+#         auto_config_debian
+#     else
+#         printf "Disponivel para Debian ou Ubuntu!!! \n"
+#         printf "Script incompativel infelizmente \n"
+#     fi    
+# }
 
 #mostrando mensagem inicial
 menu()
@@ -2578,6 +2637,7 @@ main()
             formatado) func_formatado;;
             atualiza) func_atualiza;;
             corrige) func_corrige;;
+            config) func_config;;
             limpa) func_limpa;;
             instala) func_instala;;
             remove) func_remove;;
