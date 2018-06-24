@@ -7,61 +7,7 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
 # # # # # # # # # # # # #
-#   FONTES DE PESQUISA  #
-# # # # # # # # # # # # #
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# por oliveiradeflavio(Flávio Oliveira)
-# 	<github.com/oliveiradeflavio/scripts-linux>
-#
-# por gmanson(Gabriel Manson)
-# 	<github.com/gmasson/welcome-debian>
-#
-# por Fabiano de Oliveira e Souza
-# 	<vivaolinux.com.br/script/Mantendo-hora-do-servidor-atualizada-com-NTP>
-#
-# por Lucas Novo Silva
-# 	<vivaolinux.com.br/dica/Erro-de-apt-get-update-no-Ubuntu-1604-Xenial-problemas-nos-repositorios-RESOLVIDO>
-#
-# por Ricardo Ferreira
-# 	<linuxdescomplicado.com.br/2014/11/saiba-como-acessar-uma-maquina-ubuntu.html>
-#
-# por Dionatan Simioni
-# 	<diolinux.com.br/2016/12/drivers-mesa-ubuntu-ppa-update.html>
-# 	<diolinux.com.br/2014/08/versao-nova-kdenlive-ppa.html>
-#   <diolinux.com.br/2015/09/como-instalar-drivers-de-video-no-ubuntu-linux.html>
-#
-# por Cláudio Novais
-#   <ubuntued.info/ganhe-espaco-removendo-kernels-antigos>
-#
-# por Wiki Debian - Tor Browser
-#	<wiki.debian.org/TorBrowser#Debian_9_.22Stretch.22>
-#
-# por Sandro de Castro - Guia de pós-instalação do Debian 9 Stretch
-#	<https://www.blogopcaolinux.com.br/2017/06/Guia-de-pos-instalacao-do-Debian-9-Stretch.html>
-#
-# por kskarthik - How to enable auto-login in Debian 9 Xfce
-#	<https://steemit.com/software/@kskarthik/how-to-enable-auto-login-in-lightdm>
-#
-# por Edpsblog - How-To :: Wine Development no Debian e derivados
-#	<https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
-#
-# por Debian Sources List Generator
-#	<https://debgen.simplylinux.ch/index.php>
-#
-# por How-To :: Wine Development no Debian e derivados
-#   <https://edpsblog.wordpress.com/2015/10/24/how-to-wine-development-no-debian-e-derivados/>
-#
-# por Slackjeff - [HOWTO] Instalação do Sublime Text no Debian
-#   <http://slackjeff.com.br/artigos/debian/desktop/instalacao_sublime_text_debian.html>
-#
-# por Hugo Cisneiros (Eitch) - O que diabos é o swap no Linux?
-#   <http://www.devin.com.br/linux-swap/>
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# # # # # # # # # # # # #
-#   DESENVOLVIDO POR    #
+#     DEVELOPMENT BY    #
 # # # # # # # # # # # # #
 #
 # por lenonr(Lenon Ricardo)
@@ -75,23 +21,16 @@
 #									      									  #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # #
-# # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [24/06/18]      #
-# # # # # # # # # # # # # # # # # # # # # # # # # #
-#    
-# Legenda: a.b.c.d.e.f
-# 	a = alpha[0], beta[1], stable[2], freeze[3];
-# 	b = erros na execução;
-# 	c = interações com o script;
-# 	d = correções necessárias; 
-# 	e = pendencias
-#       I - [VERIFICAR-DEBIAN]: VisualGame Boy
-# 	f = desenvolver
-#       I - [CONDICAO IF]: Melhorar condicoes de comparacoes - remover condicao "if" do negocio()!
-#				
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # ARQUIVOS EXTERNOS
+# resources used
+# Read file config/references.conf
 #
+# script compatibility
+# Read file /config/compatibility.conf
+
+# variaveis de ambiente
+source config/variables.conf
+
 # # Mensagens de Status
 #       [+] - Ação realizada;
 #       [*] - Processamento;
@@ -99,75 +38,12 @@
 #       [!] - Mensagem de aviso;
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# # Script testado em
-#	- Xubuntu 16.04
-#   - Xubuntu 17.10 - OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.
-#
-#   - Debian 8		- OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.
-#   - Debian 9      - OBS: Utilização não aconselhável, pois há incompatibilidades de softwares.      
-#   - Debian 10     - Testing
-#   - Debian        - Sid
-#
-# # Compativel com
-#   - Xubuntu 16.04       -	    [SCRIPT ESTAVEL]
-#   - Debian Testing      -     [SCRIPT ESTAVEL]
-#   - Debian Sid          -     [SCRIPT ESTAVEL]
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
 #                               CORPO DO SCRIPT                               #
 #                                                                             #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #
-# # VARIAVEIS DE AMBIENTE
-# Criando variavel com localização da raiz do usuario
-# versao do script
-    versao="1.0.197.1.1.0"             
-
-# usuario sistema
-    autor="lenonr"                    # nome usuario sistema
-
-# contatos do autor
-    email="lenonrmsouza@gmail.com"    
-    twitter="twitter.com/lenonr1"
-
-# pasta do usuario
-    pasta_home="/home/$autor/"        # pasta home usuario do sistema 
-
-# verificando distro
-    distro=$(lsb_release -i | cut -f2)  # Ubuntu ou Debian
-
-# capturando hostname da maquina
-    v_hostname=$(hostname)              # Funções configuradas a partir de valores -desktop ou notebook-
-
-# espeak habilitado
-    var_mudo=1                          # valor padrao = mudo desativado
-
-# login automatico distros
-	boolean_autologin=1					# login automatico, caso queria desativar(pede a senha na inicilizacao do sistema) basta alterar para 0
-
-# nome do script
-    nome="AUTOCONFIG-V5"                # apelido do script
-
-# logo para ser mostrado no script
-	logo="figlet $nome"			        # logo do script
-
-# personalizacao icones
-    var_icones_macos="/usr/share/themes/MacBuntu-OS/"
-    var_breeze="/usr/share/icons/Breeze"
-    var_flatremix="/usr/share/icons/Flat_Remix_Light"
-    var_papirus="/usr/share/icons/Papirus_Light"
-
-# configuraçao de linguagem do sistema - debian
-    language="en_US.utf8"
-    arq_language="/etc/default/locale"
-
-# valor de swap
-    swappiness="50"
-
-## TESTES DO SCRIPT
-######VERIFICANDO usuario ROOT
+## testando usuario
 if [[ `id -u` -ne 0 ]]; then
     clear
     printf "############################################################################\n"
@@ -182,7 +58,6 @@ if [[ `id -u` -ne 0 ]]; then
 fi
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
-#
 # vetor de atualizacao
 ATUALIZA=(update upgrade)
 
@@ -224,9 +99,7 @@ INSTALA=(install_firefox install_chromium install_tor \
         install_docker install_sublime install_firmware \
         install_compton install_xfburn install_dropbox \
         install_python install_youtubedl install_yad)
-#
-# # # # # # # # # #
-#
+
 # criando funcoes para serem executadas como parametros
 func_help()
 {
@@ -386,60 +259,24 @@ func_help()
     swap()
     {        
         ## realizando testes em /etc/sysctl.conf
-        memoswap=$(grep vm.swappiness=$swappiness /etc/sysctl.conf)
-        memocache=$(grep vm.vfs_cache_pressure=$swappiness /etc/sysctl.conf)
-        background=$(grep "vm.dirty_background_ratio=15" /etc/sysctl.conf)
-        ratio=$(grep "vm.dirty_ratio=25" /etc/sysctl.conf)
+        memoswap=$(grep vm.swappiness /etc/sysctl.conf)
+        memocache=$(grep vm.vfs_cache_pressure /etc/sysctl.conf)
+        background=$(grep "vm.dirty_background_ratio" /etc/sysctl.conf)
+        ratio=$(grep "vm.dirty_ratio" /etc/sysctl.conf)
 
         [[ $memoswap == "" ]] && echo vm.swappiness=$swappiness >> /etc/sysctl.conf && \
-        [[ $memocache == "" ]] && echo vm.vfs_cache_pressure=$swappiness >> /etc/sysctl.conf && \
-        [[ $background == "" ]] && echo vm.dirty_background_ratio=15 >> /etc/sysctl.conf && \
-        [[ $ratio == "" ]] && echo vm.dirty_ratio=25 >> /etc/sysctl.conf && \
+        [[ $memocache == "" ]] && echo vm.vfs_cache_pressure=$cache_pressure >> /etc/sysctl.conf && \
+        [[ $background == "" ]] && echo vm.dirty_background_ratio=$dirty_background_ratio >> /etc/sysctl.conf && \
+        [[ $ratio == "" ]] && echo vm.dirty_ratio=$dirty_ratio >> /etc/sysctl.conf && \
                 printf "\n[+] Swap otimizada \n" && printf "\n[+] Swap otimizada \n" >> /tmp/log.txt || \
-                printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> /tmp/log.txt
-
-        # [[ $(grep "vm.swappiness=" /etc/sysctl.conf) == "" ]] \
-        #     && printf "\n[*]Configurando Swap, com valor $swappiness!"&& echo vm.swappiness=$swappiness >> /etc/sysctl.conf \
-        #     || printf "\n[-]Configuraçao de Swap ja realizada"
-
-        # printf "\n"
-
-        #configurando a swap para uma melhor performance
-        # printf "\n"
-        # printf "\n[+] Configurando a Swap"
-        # printf "\n[+] Configurando a Swap" >> /tmp/log.txt        
-
-        # if [[ $memoswap == "vm.swappiness=10" ]]; then
-        #         printf "\n[*] Otimizando..." 
-        #         /bin/su -c "printf 'vm.swappiness=10' >> /etc/sysctl.conf"
-        # elif [[ $memocache == "vm.vfs_cache_pressure=60" ]]; then
-        #         printf "\n[*] Otimizando..." 
-        #         /bin/su -c "printf 'vm.vfs_cache_pressure=60' >> /etc/sysctl.conf"
-        # elif [[ $background == "vm.dirty_background_ratio=15" ]]; then
-        #         printf "\n[*] Otimizando..." >> /tmp/log.txt
-        #         /bin/su -c "printf 'vm.dirty_background_ratio=15' >> /etc/sysctl.conf"
-        # elif [[ $ratio == "vm.dirty_ratio=25" ]]; then
-        #         printf "\n[*] Otimizando... "
-        #         /bin/su -c "printf 'vm.dirty_ratio=25' >> /etc/sysctl.conf"
-        # else
-        #         printf "\n[-] Não há nada para ser otimizado"
-        #         printf "\n[!] Isso porque já foi otimizado anteriormente!"
-        # fi
-        # printf "\n"
+                printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> /tmp/log.txt        
     }
 
     prelink_preload_deborphan()
     {
         #prelink    = otimiza o tempo de boot
         #preload    = reduz o tempo de inicialização das aplicações
-        #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas
-
-        #instalando prelink, preload, deborphan para um melhor performance do sistema
-        printf "\n[*] Instalando Prelink, Preload e Deborphan"
-        printf "\n[*] Instalando Prelink, Preload e Deborphan" >> /tmp/log.txt
-
-        apt install prelink preload -y 1>/dev/null 2>/dev/stdout
-        apt-get install deborphan -y
+        #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas        
 
         echo "[*] Configurando Deborphan... " 
         deborphan | xargs apt-get -y remove --purge &&
@@ -1811,10 +1648,8 @@ func_help()
         printf "\n[+] Instalando o Simple-scan" >> /tmp/log.txt        
 
         apt install simple-scan -y
-    }   
+    }
 
-# # # # # # # # # #
-# # PROGRAMAS NÃO ESSENCIAIS
     install_wireshark()
     {
         printf "\n"
@@ -1823,7 +1658,32 @@ func_help()
 
         apt install wireshark -y
     }
-# # # # # # # # # #
+
+    install_prelink()
+    {
+        printf "\n[*] Instalando Prelink"
+        printf "\n[*] Instalando Prelink" >> /tmp/log.txt
+
+        apt install prelink -y         
+    }   
+
+    install_prelink()
+    {
+        #instalando prelink, preload, deborphan para um melhor performance do sistema
+        printf "\n[*] Instalando Preload"
+        printf "\n[*] Instalando Preload" >> /tmp/log.txt
+
+        apt install preload -y         
+    }   
+
+    install_deborphan()
+    {
+        printf "\n[*] Instalando Deborphan"
+        printf "\n[*] Instalando Deborphan" >> /tmp/log.txt
+
+        apt-get install deborphan -y
+    }
+
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
@@ -1992,6 +1852,10 @@ func_instala()
     install_yad       
 	install_ntp 
 	install_localepurge  
+
+    install_prelink
+    install_preload
+    install_deborphan
 
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
@@ -2268,167 +2132,6 @@ version()
 	fi
 }
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#criando função global, que inicia todas as outras
-auto_config_ubuntu()
-{  
-    clear
-    ##CHAMANDOS FUNCOES
-    #
-    case $ESCOLHAAUTO_CONFIG in
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### ATUALIZA SISTEMA
-        1) echo
-            func_atualiza
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### CORRIGE SISTEMA
-        2) echo
-            func_corrige
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### CONFIG SISTEMA
-        3) echo
-            func_config
-
-            auto_config
-        ;;    
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### LIMPA SISTEMA
-        4) echo
-            func_limpa
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### INSTALA PROGRAMAS
-        5) echo
-            func_instala
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### REMOVES PROGRAMAS
-        6) echo
-            func_remove
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### SAINDO DO SCRIPT
-        7) echo
-            printf "\nSaindo do script..."
-            sleep 3
-            clear
-
-        	exit
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ######ENTRADA INVALIDA
-        *) echo
-            printf "\nAlternativa incorreta!!"
-            sleep 1s #1 segundo
-            menu
-
-            exit
-        ;;
-    esac
-
-    printf "TAREFAS FINALIZADAS, SAINDO.. \n"
-    clear
-}
-
-auto_config_debian()
-{
-    ##CHAMANDOS FUNCOES
-    #
-    case $ESCOLHAAUTO_CONFIG in
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### ATUALIZA SISTEMA
-        1) printf
-			func_atualiza
-
-			auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### CORRINDO PROBLEMAS
-        2) printf
-            func_corrige
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### CONFIG SISTEMA
-        3) echo
-            func_config
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### REALIZANDO LIMPEZA
-        4) printf
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### INSTALANDO PROGRAMAS
-        5) printf
-            func_instala
-
-            auto_config
-        ;;        
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### REMOVENDO PROGRAMAS
-        6) printf
-            func_remove		               
-
-            auto_config
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ###### SAINDO DO SCRIPT
-        7) echo
-            printf "\nSaindo do script..."
-            sleep 3
-            clear
-
-            exit
-        ;;
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    ######ENTRADA INVALIDA
-        *) echo
-            printf Alternativa incorreta!!
-            sleep 1s
-            menu
-
-            exit
-        ;;
-    esac
-
-    printf "TAREFAS FINALIZADAS, SAINDO..\n"
-    sleep 5s
-
-    clear
-}
-
 func_interface_zenity()
 {
 	f_verifica()
@@ -2600,28 +2303,6 @@ func_interface_zenity()
 }
 
 
-# auto_config()
-# {
-#     clear
-
-#     ###################################################
-#     ## condicao de teste suja, eu sei, vou deixar assim
-#     ## pois nao tenho como testar no ubuntu!
-#     ###################################################
-#     #executando ações para a distribuição Ubuntu
-#     if [ $distro == "Ubuntu" ]; then
-#         clear
-#         auto_config_ubuntu
-#     #executando ações para a distribuição Fedora
-#     elif [ $distro == "Debian" ]; then
-#         clear
-#         auto_config_debian
-#     else
-#         printf "Disponivel para Debian ou Ubuntu!!! \n"
-#         printf "Script incompativel infelizmente \n"
-#     fi    
-# }
-
 #mostrando mensagem inicial
 menu()
 {
@@ -2635,7 +2316,6 @@ main()
 {
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # INICIANDO SCRIPT
-    # menu
 
     # mostrando data/hora log inicilização script   
     date > /tmp/log.txt
@@ -2655,7 +2335,6 @@ main()
     do
         # verificando o que foi digitado
         case $i in
-            menu) auto_config;;
             todas) func_todas;;
             formatado) func_formatado;;
             atualiza) func_atualiza;;
