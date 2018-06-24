@@ -1,4 +1,4 @@
-#/usr/bin/env bash
+#!/usr/bin/env bash
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                                             #
@@ -77,11 +77,8 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
 # # data de criação do script:    [09/05/18]      #             
-# # ultima ediçao realizada:      [23/06/18]      #
+# # ultima ediçao realizada:      [24/06/18]      #
 # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-# versao do script
-    versao="1.0.195.1.1.0"             
 #    
 # Legenda: a.b.c.d.e.f
 # 	a = alpha[0], beta[1], stable[2], freeze[3];
@@ -125,6 +122,9 @@
 #
 # # VARIAVEIS DE AMBIENTE
 # Criando variavel com localização da raiz do usuario
+# versao do script
+    versao="1.0.197.1.1.0"             
+
 # usuario sistema
     autor="lenonr"                    # nome usuario sistema
 
@@ -165,6 +165,21 @@
 
 # valor de swap
     swappiness="50"
+
+## TESTES DO SCRIPT
+######VERIFICANDO usuario ROOT
+if [[ `id -u` -ne 0 ]]; then
+    clear
+    printf "############################################################################\n"
+    printf "\n"
+    $logo
+    printf "\n"
+    printf "############################################################################ \n"
+    printf "[!] O script para funcionar, precisa estar sendo executado como root! \n"
+    printf "[!] Favor, logar na conta root e executar o script novamente. \n"
+    printf "############################################################################ \n"
+    exit 1
+fi
 
 # # # # # CRIANDO FUNÇÕES PARA EXECUÇÃO
 #
@@ -2252,21 +2267,6 @@ version()
         echo "Contato: Email: '$email'; Twitter: '$twitter'"
 	fi
 }
-
-##REALIZANDO VERIFICAÇÕES
-    ######VERIFICANDO usuario ROOT
-    if [[ `id -u` -ne 0 ]]; then
-        clear
-        printf "############################################################################\n"
-   		printf "\n"
-   		$logo
-    	printf "\n"
-        printf "############################################################################ \n"
-        printf "[!] O script para funcionar, precisa estar sendo executado como root! \n"
-        printf "[!] Favor, logar na conta root e executar o script novamente. \n"
-        printf "############################################################################ \n"
-    exit
-    fi
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #criando função global, que inicia todas as outras
