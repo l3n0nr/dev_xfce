@@ -290,7 +290,7 @@ func_help()
 
         printf "\n[+] atualizando servidores, aguarde..."
         printf "\n[*] NIC.BR\n"
-            ntpdate -q pool.ntp.br
+            ntpdate -q $ntp_server
 
         if [[ $? == "0" ]]; then
             printf "\n[+] Hora do computador sincronizada!\n"
@@ -2296,12 +2296,20 @@ menu()
 
 main()
 {
+	clear
+	echo "Iniciando script, aguarde..."
+
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # INICIANDO SCRIPT
     # paramentros iniciais
     escolha_vetor=$2 # recebe para vetor
     help_vetor=$3	 # recebe para ajuda
   
+  	# verificando internet
+  	# se nao tiver internet, fecha script
+  	ping -c1 $ping_server >> /dev/null
+  	[[ ! $? -eq 0 ]] && clear && echo "Sem internet, fechando script!" && exit 1
+
   	## mostra intro e sai
   	[[ $# -eq 0 ]] && func_help && exit 0
 
