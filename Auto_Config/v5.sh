@@ -195,19 +195,8 @@ func_help()
 
     atualiza_db()
     {
-    	# variavel de verificação
-        local var_locate=$(which locate)
-
-        if [[ ! -e $var_locate ]]; then
-            printf "\n"
-            printf "[+] instalando Locate"
-            printf "[+] instalando Locate" >> $arquivo_log
-
-        	apt install locate -y
-        fi
-
-        printf "\n[+] atualizando base de dados do sistema"        
-        printf "\n[+] atualizando base de dados do sistema" >> $arquivo_log
+        printf "\n[+] Atualizando base de dados do sistema"        
+        printf "\n[+] Atualizando base de dados do sistema" >> $arquivo_log
 
     	updatedb
     }
@@ -474,7 +463,7 @@ func_help()
     }
 
 # # # # # # # # # #
-# # instala PROGRAMAS
+# # INSTALA PROGRAMAS
     install_firefox()
     {   
         printf "\n"
@@ -1642,11 +1631,187 @@ func_help()
         apt-get install deborphan -y
     }
 
+    install_locate()
+    {
+    	# variavel de verificação
+        local var_locate=$(which locate)
+
+        if [[ ! -e $var_locate ]]; then
+            printf "\n"
+            printf "[+] Instalando Locate"
+            printf "[+] Instalando Locate" >> $arquivo_log
+
+        	apt install locate -y
+        fi
+    }
+
+# # # # # # # # # #
+# # REMOVE PROGRAMAS
+	remove_thunderbird()
+	{
+		printf "\n[*] Removendo o Thunderbird"
+        printf "\n[*] Removendo o Thunderbird" >> $arquivo_log
+
+        apt purge thunderbird* -y
+	}
+
+	remove_inkspace()
+	{
+		printf "\n[*] Removendo o Inkscape "
+        printf "\n[*] Removendo o Inkscape " >> $arquivo_log
+		
+		apt purge inkscape* -y
+	}
+
+	remove_blender()
+	{
+		printf "\n[*] Removendo o Blender"
+        printf "\n[*] Removendo o Blender" >> $arquivo_log
+		
+		apt purge blender* -y
+	}
+
+	remove_parole()
+	{
+		printf "\n[*] Removendo o Parole"
+        printf "\n[*] Removendo o Parole" >> $arquivo_log
+		
+		apt purge parole* -y
+	}
+
+	remove_exfalso()
+	{
+		printf "\n[*] Removendo o Exfalso"
+        printf "\n[*] Removendo o Exfalso" >> $arquivo_log
+		
+		apt purge exfalso* -y
+	}
+
+	remove_quolibet()
+	{
+		printf "\n[*] Removendo o Quolibet"
+        printf "\n[*] Removendo o Quolibet" >> $arquivo_log
+		
+		apt purge qoulibet* -y
+	}
+
+	remove_xterm()
+	{
+		printf "\n[*] Removendo o Xterm"
+        printf "\n[*] Removendo o Xterm" >> $arquivo_log
+		
+		apt purge xterm* -y
+	}
+
+	remove_xsane()
+	{
+		printf "\n[*] Removendo o XSane"
+        printf "\n[*] Removendo o XSane" >> $arquivo_log
+		
+		apt purge xsane* -y
+	}
+
+	remove_pidgin()
+	{
+		printf "\n[*] Removendo o Pidgin"
+        printf "\n[*] Removendo o Pidgin" >> $arquivo_log
+
+		apt purge pidgin* -y
+	}
+
+	remove_meld()
+	{
+		printf "\n[*] Removendo o Meld"
+        printf "\n[*] Removendo o Meld" >> $arquivo_log
+		
+		apt purge meld* -y
+	}
+
+	remove_gtkhash()
+	{
+		printf "\n[*] Removendo o Gtkhash"
+        printf "\n[*] Removendo o Gtkhash" >> $arquivo_log
+	
+		apt purge gtkhash* -y	
+	}
+
+	remove_imagemagick()
+	{
+		printf "\n[*] Removendo o Imagemagick"
+        printf "\n[*] Removendo o Imagemagick" >> $arquivo_log
+		
+		apt purge imagemagick* -y
+	}
+
+	remove_chromium-bsu()
+	{
+		printf "\n[*] Removendo o Chromium-BSU"
+        printf "\n[*] Removendo o Chromium-BSU" >> $arquivo_log
+		
+		apt purge chromium-bsu* -y
+	}
+
+	remove_owncloud()
+	{
+		printf "\n[*] Removendo o Owncloud"
+        printf "\n[*] Removendo o Owncloud" >> $arquivo_log
+		
+		apt purge owncloud* -y
+	}
+
+	remove_kstars()
+	{
+		printf "\n[*] Removendo o Pidgin"
+        printf "\n[*] Removendo o Pidgin" >> $arquivo_log
+		
+		apt purge kstars* -y
+	}
+
+	remove_steam()
+	{
+		printf "\n[*] Removendo o Steam"
+        printf "\n[*] Removendo o Steam" >> $arquivo_log
+		
+		apt purge steam* -y
+	}
+
+	remove_kdenlive()
+	{
+		printf "\n[*] Removendo o Kdenlive"
+        printf "\n[*] Removendo o Kdenlive" >> $arquivo_log
+		
+		apt purge kdenlive* -y
+	}
+
+	remove_transmission()
+	{
+		printf "\n[*] Removendo o Transmission"
+        printf "\n[*] Removendo o Transmission" >> $arquivo_log
+		
+		apt purge transmission* -y
+	}
+
+	remove_smartgit()
+	{
+		printf "\n[*] Removendo o Smartgit"
+        printf "\n[*] Removendo o Smartgit" >> $arquivo_log
+		
+		apt purge smartgit* -y
+	}
+
+	remove_gitg()
+	{
+		printf "\n[*] Removendo o Gitg"
+        printf "\n[*] Removendo o Gitg" >> $arquivo_log
+		
+		apt purge gitg* -y
+	}
+
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
 {
-    notify-send -u normal "atualizando sistema" -t 10000
+    notify-send -u normal "Atualizando sistema" -t 10000
 
     clear
 
@@ -1788,7 +1953,8 @@ func_instala()
 
     install_prelink
     install_preload
-    install_deborphan    
+    install_deborphan   
+    install_locate
 
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
@@ -1829,19 +1995,30 @@ func_instala_outros()
 
 func_remove()
 {
-	notify-send -u normal "Removendo programas no sistema" -t 10000
-
-	printf "\n\n[+] Removendo programas" >> $arquivo_log
-    apt purge thunderbird parole inkscape* blender* \
-              exfalso* quodlibet* xterm* pidgin* meld* gtkhash* \
-              xsane* imagemagick* chromium-bsu* owncloud* -y
-    
-    if [[ $v_hostname == 'notebook' ]]; then
-    	apt purge kstars* steam* kdenlive* \
-    	          transmission* smartgit* gitg* -y
-    else
-    	printf "\n"	   
+	if [[ $v_hostname == 'notebook' ]]; then    	
+    	remove_kstars
+    	remove_steam
+    	remove_kdenlive
+    	remove_transmission
+    	remove_smartgit
+    	remove_gitg
     fi
+
+	remove_thunderbird
+	remove_parole
+	remove_inkspace
+	remove_inkspace
+	remove_blender
+	remove_exfalso
+	remove_quolibet
+	remove_xterm
+	remove_pidgin
+	remove_meld
+	remove_gtkhash
+	remove_xsane
+	remove_imagemagick
+	remove_chromium-bsu
+	remove_owncloud      
 }
 
 func_formatado()
@@ -2049,6 +2226,19 @@ func_vetor()
             exit 0
         fi
 
+        if [[ "$help_vetor" = "remove" ]]; then
+            printf "\n-----------------"
+            printf "\nRemove programas"
+            printf "\n----------------\n"
+            for (( i = 0; i <= ${#remove[@]}; i++ )); do             
+                echo ${remove[$i]}
+            done
+
+            sleep $aguarda
+
+            exit 0
+        fi
+
         # vetores agrupados
         if [[ "$help_vetor" -eq "help" ]]; then
             printf "\n--------"
@@ -2105,6 +2295,15 @@ func_vetor()
 
 			sleep $aguarda
 
+            printf "\n----------------"
+            printf "\nRemove programas"
+            printf "\n----------------\n"
+            for (( i = 0; i <= ${#remove[@]}; i++ )); do             
+                echo ${remove[$i]}
+            done
+
+			sleep $aguarda
+
             exit 0               
         fi
     fi
@@ -2143,21 +2342,21 @@ func_interface_zenity()
 	        	   --column="Select" --column="Acao" \
 	        	   --radiolist \
     	        	   	TRUE Todas \
-                        FALSE atualizar \
+                        FALSE Atualizar \
                         FALSE Corrigir \
-                        FALSE configurar \
-                        FALSE limpar \
-                        FALSE instalar \
+                        FALSE Configurar \
+                        FALSE Limpar \
+                        FALSE Instalar \
                         FALSE Remover \
             ) ; f_verifica
 
             # executa funcao X e saida do script
 			[[ $escolha == "Todas" ]] && func_todas && exit 0 ||
-			[[ $escolha == "atualizar" ]] && func_atualiza && exit 0 ||
+			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
 			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
-            [[ $escolha == "configurar" ]] && func_config && exit 0 ||
-			[[ $escolha == "limpar" ]] && func_limpa && exit 0 ||
-			[[ $escolha == "instalar" ]] && func_instala && exit 0 ||
+            [[ $escolha == "Configurar" ]] && func_config && exit 0 ||
+			[[ $escolha == "Limpar" ]] && func_limpa && exit 0 ||
+			[[ $escolha == "Instalar" ]] && func_instala && exit 0 ||
 			[[ $escolha == "Remover" ]] && func_remove && exit 0
 	elif [[ $valor == "Manual" ]]; then
 		escolha=$(zenity --list --title="Automatizar de tarefas" \
@@ -2166,11 +2365,12 @@ func_interface_zenity()
         	   --height "200" \
         	   --column "" --column="Marque" \
         	   --radiolist \
-                    TRUE atualiza \
-                    FALSE corrige \
-                    FALSE config \
-                    FALSE limpa \
-                    FALSE instala \
+                    TRUE Atualizar \
+                    FALSE Corrigir \
+                    FALSE Configurar \
+                    FALSE Limpar \
+                    FALSE Instalar \
+                    FALSE Remover \
         ) ; f_verifica        
 
         for (( i = 0; i <= ${#vetor[@]}; i++ )); do  
@@ -2225,7 +2425,17 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${instala[$i]}"                                        	
                         ) ; f_verifica
                     done
-                else
+            	elif [[ $escolha == "remove" ]]; then
+            	for (( i = 0; i < ${#remove[@]}; i++ )); do
+                    acoes=$(zenity --title="Modo manual" \
+                        --width="300" --height=250 \
+                        --list \
+                        --text="Selecione as açoes" \
+                        --column "" --column="Marque" --column="Acao" \
+                        --checklist FALSE "$i" "${remove[$i]}"                                        	
+                    ) ; f_verifica
+                done
+            	else
                 	echo "ERRO"
                 fi
 
@@ -2284,6 +2494,13 @@ func_interface_zenity()
     fi
 }
 
+func_verifica_internet()
+{
+	# verificando internet
+  	# se nao tiver internet, fecha script
+  	ping -c1 $ping_server >> /dev/null
+  	[[ ! $? -eq 0 ]] && clear && notify-send -u normal "Sem internet, saindo do script." -t 10000 && exit 1
+}
 
 #mostrando mensagem inicial
 menu()
@@ -2298,17 +2515,13 @@ main()
 {
 	clear
 	echo "Iniciando script, aguarde..."
+	func_verifica_internet
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # INICIANDO SCRIPT
     # paramentros iniciais
     escolha_vetor=$2 # recebe para vetor
-    help_vetor=$3	 # recebe para ajuda
-  
-  	# verificando internet
-  	# se nao tiver internet, fecha script
-  	ping -c1 $ping_server >> /dev/null
-  	[[ ! $? -eq 0 ]] && clear && echo "Sem internet, fechando script!" && exit 1
+    help_vetor=$3	 # recebe para ajuda	    
 
   	## mostra intro e sai
   	[[ $# -eq 0 ]] && func_help && exit 0
