@@ -68,7 +68,7 @@ func_help()
 }
 
 #
-# # atualiza SISTEMA
+# # Atualiza sistema
     update()
     {
         #atualizando lista de repositorios
@@ -219,12 +219,12 @@ func_help()
         #preload    = reduz o tempo de inicialização das aplicações
         #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas        
 
-        echo "[*] configurando Deborphan... " 
+        echo "[*] Configurando Deborphan... " 
         deborphan | xargs apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
-        #configurando o prelink e o preload
-        echo "[*] configurando Prelink e Preload... "
+        #Configurando o prelink e o preload
+        echo "[*] Configurando Prelink e Preload... "
                 memfree=$(grep "memfree = 50" /etc/preload.conf)
                 memcached=$(grep "memcached = 0" /etc/preload.conf)
                 processes=$(grep "processes = 30" /etc/preload.conf)
@@ -252,14 +252,14 @@ func_help()
 
     config_ntp()
     {
-        printf "\n[+] configurando o NTP"
-        printf "\n[+] configurando o NTP" >> $arquivo_log
+        printf "\n[+] Configurando o NTP"
+        printf "\n[+] Configurando o NTP" >> $arquivo_log
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
         printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"           
             service ntp stop
 
-        #configurando script base - NTP
+        #Configurando script base - NTP
         printf "\n[*] Realizando alteraçao no arquivo base "
         cat base/ntp.txt > /etc/ntp.conf
 
@@ -337,7 +337,7 @@ func_help()
                     echo "autologin-user=$autor" >> $var_autologin
                     echo "autologin-user-timeout=0" >> $var_autologin
 
-                    printf "\n[*] Reconfigurando lightdm, aguarde!" 
+                    printf "\n[*] ReConfigurando lightdm, aguarde!" 
                     dpkg-reconfigure lightdm 
 
                     if [[ $? == "0" ]]; then
@@ -1406,8 +1406,8 @@ func_help()
 
     	apt install compton compton-conf -y
 
-        printf "\n[*] configurando Compton"        
-        printf "\n[*] configurando Compton" >> $arquivo_log                
+        printf "\n[*] Configurando Compton"        
+        printf "\n[*] Configurando Compton" >> $arquivo_log                
 
         cat base/compton.conf >> $HOME/.config/compton.conf
 
@@ -1770,7 +1770,7 @@ func_corrige()
 
 func_config()
 {
-    notify-send -u normal "configurando o sistema" -t 10000	
+    notify-send -u normal "Configurando o sistema" -t 10000	
 
     apport
     config_ntp  
@@ -1975,7 +1975,7 @@ func_todas()
     # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
     func_corrige
 
-    # configurando o sistema
+    # Configurando o sistema
     func_config
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
@@ -2180,43 +2180,43 @@ func_vetor()
 	func_vetor_remove          
 
     # mostrando ajuda para o usuario - vetores individuais
-    if [[ "$escolha_vetor" = "ajuda" ]]; then
-        if [[ "$help_vetor" = "atualiza" ]]; then
+    if [[ $@ = "ajuda" ]]; then
+        if [[ $@ = "atualiza" ]]; then
             func_vetor_atualiza_ajuda
 
 			sleep $aguarda
             exit 0                    
-        elif [[ "$help_vetor" = "corrige" ]]; then
+        elif [[ $@ = "corrige" ]]; then
             func_vetor_corrige_ajuda
 
             sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "config" ]]; then
+        elif [[ $@ = "config" ]]; then
             func_vetor_config_ajuda
 
 			sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "limpa" ]]; then
+        elif [[ $@ = "limpa" ]]; then
             func_vetor_limpa_ajuda            
 
             sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "instala" ]]; then
+        elif [[ $@ = "instala" ]]; then
             func_vetor_instala_ajuda
 
             sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "instala_outros" ]]; then
+        elif [[ $@ = "instala_outros" ]]; then
             func_vetor_instala_outros_ajuda
 
             sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "remove" ]]; then
+        elif [[ $@ = "remove" ]]; then
             func_vetor_remove_ajuda
 
             sleep $aguarda
             exit 0
-        elif [[ "$help_vetor" = "ajuda" ]]; then
+        elif [[ $@ = "ajuda" ]]; then
             func_vetor_instala_ajuda
             func_vetor_corrige_ajuda
             func_vetor_config_ajuda
@@ -2447,7 +2447,7 @@ main()
 		# 	exit 0
 
     	# armazena log no arquivo
-	    [[ $? = 0 ]] && date > $arquivo_log
+	    [[ $? == 0 ]] && date > $arquivo_log
 
         # verificando o que foi digitado
         case $i in
