@@ -1192,9 +1192,15 @@ func_help()
 
 	            # Instalando via flatpak
 	            flatpak install flathub com.github.wwmm.pulseeffects	        
-	        elif [ $distro == "Debian" ]; then
-	        	## encontrar uma maneira - i love he
-                echo
+	        elif [ $distro == "Debian" ]; then	        	
+	        	## baixando arquivo para instalacao
+	        	wget flathub.org/repo/appstream/com.github.wwmm.pulseeffects.flatpakref
+
+	        	# instalando
+	        	flatpak install com.github.wwmm.pulseeffects.flatpakref -y
+
+	        	# removendo
+	        	rm com.github.wwmm.pulseeffects.flatpakref
 	        fi
         else
             printf "\n[-] Pulse Effects já está instalado"
