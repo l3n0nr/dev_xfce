@@ -306,6 +306,9 @@ func_help()
 
         ## copiando arquivo para /etc/hosts
         cat base/hosts/hosts > /etc/hosts               
+
+        ## removendo hosts apos configuracao
+        rm base/hosts/hosts
     }
 
     chaveiro()
@@ -2168,6 +2171,16 @@ func_vetor_remove_ajuda()
     done
 }
 
+func_vetor_ajuda()
+{
+    func_vetor_instala_ajuda 
+    func_vetor_corrige_ajuda
+    func_vetor_config_ajuda
+    func_vetor_limpa_ajuda
+    func_vetor_instala_ajuda
+    func_vetor_instala_outros_ajuda
+    func_vetor_remove_ajuda
+}
 
 func_vetor()
 {
@@ -2424,32 +2437,31 @@ func_verifica_internet()
 
 main()
 {
-	clear
+    clear
+    
+    escolha_vetor=$1 # vetor
+    help_vetor=$2    # ajuda
+
 	echo "Iniciando script, aguarde..."
 	[[ $verifica_internet == "1" ]] && func_verifica_internet
 
-  	## mostra intro e sai
+  	## se nao for digitado parametros na chamada
   	[[ $# -eq 0 ]] && func_help && exit 0
 
+    # se o primeiro parametro for igual a vetor, o segundo vazio.
+    [[ $1 == "vetor" ]] && [[ $2 == "" ]] && 
+        clear && echo $mensagem_ajuda && exit 0
+
+    # se o primeiro paramento for igual a vetor, o segundo igual a ajuda e o terceiro vazio.
+    [[ $1 == "vetor" ]] && [[ $2 == "ajuda" ]] && [[ $3 == "" ]] && 
+        func_vetor_ajuda && exit 0
+
+    # armazena log no arquivo
+    [[ $? == 0 ]] && date > $arquivo_log
+
     for i in "$@"; 
-    do    	
-    	## mostra mensagem e sai
-    	[[ $1 == "vetor" ]] && [[ $2 == "" ]] && clear && echo $mensagem_ajuda && exit 0
-
-		# [[ $1 == "vetor" ]] && [[ $2 == "ajuda" ]] && [[ $3 == "" ]] && 
-  #           func_vetor_instala_ajuda 
-  #           func_vetor_corrige_ajuda
-  #           func_vetor_config_ajuda
-  #           func_vetor_limpa_ajuda
-  #           func_vetor_instala_ajuda
-  #           func_vetor_instala_outros_ajuda
-  #           func_vetor_remove_ajuda
-		# 	exit 0
-
-    	# armazena log no arquivo
-	    [[ $? == 0 ]] && date > $arquivo_log
-
-        # verificando o que foi digitado
+    do    	  	
+    	# verificando o que foi digitado
         case $i in
             todas) func_todas;;
             formatado) func_formatado;;
