@@ -523,8 +523,8 @@ func_help()
                 apt-get install tor tor-browser -y
 
             elif [ $distro == "Debian" ]; then
-                # modo manual - baixar o arquivo e paa... \o
-                ## manualmente - funciona de boas! 
+                # manualmente - funciona de boas -
+                # baixar do site, pasta /opt! 
                 ## elaborando script - daqui a pouco ele aparece aqui! hehehe
                 echo
             else
@@ -1193,14 +1193,8 @@ func_help()
 	            # Instalando via flatpak
 	            flatpak install flathub com.github.wwmm.pulseeffects	        
 	        elif [ $distro == "Debian" ]; then	        	
-	        	## baixando arquivo para instalacao
-	        	wget flathub.org/repo/appstream/com.github.wwmm.pulseeffects.flatpakref
-
-	        	# instalando
-	        	flatpak install com.github.wwmm.pulseeffects.flatpakref -y
-
-	        	# removendo
-	        	rm com.github.wwmm.pulseeffects.flatpakref
+	        	## procurando uma forma para instalar esse bagaça no debian
+	        	echo
 	        fi
         else
             printf "\n[-] Pulse Effects já está instalado"
