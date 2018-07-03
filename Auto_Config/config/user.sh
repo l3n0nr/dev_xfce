@@ -3,6 +3,14 @@
 # por lenonr(Lenon Ricardo)
 #       contato: <lenonrmsouza@gmail.com>
 #
+##########################################
+# 
+# [MODO MANUAL]: 
+# Ativar o UFW no modo padrao, para ter uma
+#  camada de segurança a mais no sistema!
+#
+##########################################
+#
 output_file="/tmp/config_user.txt"
 
 f_redshift()
