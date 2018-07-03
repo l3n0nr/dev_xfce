@@ -465,13 +465,7 @@ func_help()
     	printf "\n[+] Checkando por virus com o ClamAV" 
     	printf "\n[+] Checkando por virus com o ClamAV" >> $arquivo_log
 
-		printf "\n[*] Verificando a raiz do sistema" 
-		printf "\n[*] Verificando a raiz do sistema" >> $arquivo_log
     	clamscan -r --remove /
-
-    	printf "\n[*] Verificando a pasta do usuario do sistema" 
-    	printf "\n[*] Verificando a pasta do usuario do sistema" >> $arquivo_log
-        clamscan -r --remove /home
     }
 
 # # # # # # # # # #
