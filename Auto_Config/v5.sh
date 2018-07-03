@@ -465,7 +465,9 @@ func_help()
     	printf "\n[+] Checkando por virus com o ClamAV" 
     	printf "\n[+] Checkando por virus com o ClamAV" >> $arquivo_log
 
-    	clamscan -r --remove /
+    	# se variavel esta ativada, entao realiza procedimento
+    	# demora bastante a verificacao, por isso a variavel
+    	[[ $var_clamAV == "1" ]] && clamscan -r --remove /
     }
 
 # # # # # # # # # #
