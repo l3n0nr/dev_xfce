@@ -71,9 +71,9 @@ func_help()
 # # Atualiza sistema
     update()
     {
-        #atualizando lista de repositorios
-        printf "\n[+] atualizando lista de repositorios do sistema"
-        printf "\n[+] atualizando lista de repositorios do sistema" >> $arquivo_log
+        #Atualizando lista de repositorios
+        printf "\n[+] Atualizando lista de repositorios do sistema"
+        printf "\n[+] Atualizando lista de repositorios do sistema" >> $arquivo_log
         	apt update
     }
 
@@ -81,19 +81,19 @@ func_help()
     {
         # verificando distribuição
         if [ $distro == "Ubuntu" ]; then            
-        	#atualizando lista de programas do sistema
-        	printf "\n[+] atualizando lista de programas do sistema \n"
-	        printf "\n[+] atualizando lista de programas do sistema \n" >> $arquivo_log
+        	#Atualizando lista de programas do sistema
+        	printf "\n[+] Atualizando lista de programas do sistema \n"
+	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
 	        	apt upgrade -y
 
-	        #atualizando repositorio local
-	        printf "\n[+] atualizando repositório local dos programas \n"
-	        printf "\n[+] atualizando repositório local dos programas \n" >> $arquivo_log
+	        #Atualizando repositorio local
+	        printf "\n[+] Atualizando repositório local dos programas \n"
+	        printf "\n[+] Atualizando repositório local dos programas \n" >> $arquivo_log
 	        	auto-apt updatedb
 		else
-        	#atualizando lista de programas do sistem
-        	printf "\n[+] atualizando lista de programas do sistema \n"
-	        printf "\n[+] atualizando lista de programas do sistema \n" >> $arquivo_log
+        	#Atualizando lista de programas do sistem
+        	printf "\n[+] Atualizando lista de programas do sistema \n"
+	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
                 ## atualizacao segura
 		        apt upgrade -y
 
@@ -179,7 +179,7 @@ func_help()
         apt update --fix-missing 
         apt-get --fix-broken install
 
-        # atualizando versao dos pacotes instalados
+        # Atualizando versao dos pacotes instalados
         apt list --upgradable
 
         #VERIFICAR AÇÕES
@@ -268,10 +268,10 @@ func_help()
             service ntp start
 
         #realizando atualizacao hora/data
-        printf "\n[+] atualizando hora do servidor"
+        printf "\n[+] Atualizando hora do servidor"
         printf "\n[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
-        printf "\n[+] atualizando servidores, aguarde..."
+        printf "\n[+] Atualizando servidores, aguarde..."
         printf "\n[*] NIC.BR\n"
             ntpdate -q $ntp_server
 
@@ -460,6 +460,20 @@ func_help()
         localepurge
     }
 
+    func_check_clamav()
+    {
+    	printf "\n[+] Checkando por virus com o ClamAV" 
+    	printf "\n[+] Checkando por virus com o ClamAV" >> $arquivo_log
+
+		printf "\n[*] Verificando a raiz do sistema" 
+		printf "\n[*] Verificando a raiz do sistema" >> $arquivo_log
+    	clamscan -r --remove /
+
+    	printf "\n[*] Verificando a pasta do usuario do sistema" 
+    	printf "\n[*] Verificando a pasta do usuario do sistema" >> $arquivo_log
+        clamscan -r --remove /home
+    }
+
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
     install_firefox()
@@ -519,7 +533,7 @@ func_help()
                 #adicionando repositorio
                 add-apt-repository ppa:webupd8team/tor-browser -y
 
-                #atualizando lista de pacotes
+                #Atualizando lista de pacotes
                 update
 
                 #Instalando tor
@@ -554,7 +568,7 @@ func_help()
 				# adicionando arquitetura/dependencia      	
 				dpkg --add-architecture i386		
 
-				# atualizando sistema			
+				# Atualizando sistema			
 				update
 
 				# Instalando nvidia - dependencias debian
@@ -709,7 +723,7 @@ func_help()
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
 		
-				# atualizando repositorios
+				# Atualizando repositorios
 				update
 
                 apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386  \
@@ -820,7 +834,7 @@ func_help()
                 #adicinando ppa
                 add-apt-repository ppa:stellarium/stellarium-releases -y
 
-                #atualizando sistema
+                #Atualizando sistema
                 update
             fi
 
@@ -849,7 +863,7 @@ func_help()
             #adicionando repositorio do dolphin
             add-apt-repository ppa:glennric/dolphin-emu -y
 
-            #atualizando lista de repositorios
+            #Atualizando lista de repositorios
             update
 
             #corrigindo problemas de dependencias
@@ -896,7 +910,7 @@ func_help()
                 #adicionando ppa
                 add-apt-repository ppa:sunab/kdenlive-release -y
 
-                #atualizando sistema
+                #Atualizando sistema
                 update
             fi
 
@@ -938,7 +952,7 @@ func_help()
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
 
-                #atualizando lista repositorios
+                #Atualizando lista repositorios
                 update
 
                 #Instalando plank
@@ -975,7 +989,7 @@ func_help()
                 #adicionando ppa
                 add-apt-repository ppa:gnome3-team/gnome3 -y
 
-                #atualizando lista repositorio
+                #Atualizando lista repositorio
                 update                
             fi
 
@@ -1025,7 +1039,7 @@ func_help()
                 #adicionando fonte
                 add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
 
-                #atualizando lista de repositorios
+                #Atualizando lista de repositorios
                 apt-get update
             fi
 
@@ -1127,7 +1141,7 @@ func_help()
                 # adicionando repositorio
         		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
-                # atualizando sistema
+                # Atualizando sistema
         	    update
 
                 # Instalando driver
@@ -1560,6 +1574,22 @@ func_help()
         fi
     }
 
+    install_arpscan()
+    {
+    	printf "[+] Instalando ARP Scan"
+        printf "[+] Instalando ARP Scan" >> $arquivo_log
+
+        apt install arp-scan -y
+    }
+
+    install_clamav()
+    {
+    	printf "[+] Instalando o ClamAV"
+        printf "[+] Instalando o ClamAV" >> $arquivo_log
+
+        apt install clamav clamtk freshclam -y
+    }
+
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
 	remove_thunderbird()
@@ -1798,6 +1828,7 @@ func_limpa()
     pacotes_orfaos
     funcao_chkrootkit
     func_localepurge
+    func_check_clamav
 }
 
 func_instala()
@@ -1871,6 +1902,9 @@ func_instala()
     install_preload
     install_deborphan   
     install_locate
+    install_arpscan
+
+    install_clamav
 
 	if [[ $v_hostname == 'notebook' ]]; then		
         install_cheese
@@ -1939,7 +1973,7 @@ func_remove()
 
 func_formatado()
 {
-    # atualizando sistema
+    # Atualizando sistema
     func_atualiza
 
     # Instalando programas
@@ -1948,13 +1982,13 @@ func_formatado()
     # removendo programas pré-instalados, desnecessários
     func_remove
 
-    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
 
-    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
 
     # desligando a maquina apos configuração
@@ -1963,7 +1997,7 @@ func_formatado()
 
 func_todas()
 {
-# atualizando sistema
+# Atualizando sistema
     func_atualiza
 
     # Instalando programas
@@ -1984,7 +2018,7 @@ func_todas()
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
 
-    # atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
 }
 
