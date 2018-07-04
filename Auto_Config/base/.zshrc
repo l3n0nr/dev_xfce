@@ -121,6 +121,9 @@ alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 # download videos - youtubedl
 alias yt="/home/lenonr/Github/dev_sysadmin/others/youtubedl.sh"
 
+# clamav - virus
+alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
+
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
