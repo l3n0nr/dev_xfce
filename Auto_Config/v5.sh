@@ -1993,7 +1993,7 @@ func_formatado()
 
 func_todas()
 {
-# Atualizando sistema
+	# Atualizando sistema
     func_atualiza
 
     # Instalando programas
@@ -2013,6 +2013,30 @@ func_todas()
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
+
+    # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
+    func_atualiza
+}
+
+func_geral()
+{
+	# Atualizando sistema
+    func_atualiza
+
+    # Instalando programas
+    func_instala
+
+    # Instalando programas extras - talvez precise da interacao do usuario
+    func_instala_outros
+
+    # removendo programas pré-instalados, desnecessários
+    func_remove
+
+    # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
+    func_corrige
+
+    # Configurando o sistema
+    func_config
 
     # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
@@ -2304,7 +2328,7 @@ func_interface_zenity()
 	        	   --height "300" \
 	        	   --column="Select" --column="Acao" \
 	        	   --radiolist \
-    	        	   	TRUE Todas \
+    	        	   	FALSE Geral \
                         FALSE Atualizar \
                         FALSE Corrigir \
                         FALSE Configurar \
@@ -2314,7 +2338,7 @@ func_interface_zenity()
             ) ; f_verifica
 
             # executa funcao X e saida do script
-			[[ $escolha == "Todas" ]] && func_todas && exit 0 ||
+			[[ $escolha == "Geral" ]] && func_geral && exit 0 ||
 			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
 			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
             [[ $escolha == "Configurar" ]] && func_config && exit 0 ||
@@ -2494,6 +2518,7 @@ main()
     	# verificando o que foi digitado
         case $i in
             todas) func_todas;;
+			geral) func_geral;;
             formatado) func_formatado;;
             atualiza) func_atualiza;;
             corrige) func_corrige;;
