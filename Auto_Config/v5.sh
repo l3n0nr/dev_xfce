@@ -2328,7 +2328,8 @@ func_interface_zenity()
 	        	   --height "300" \
 	        	   --column="Select" --column="Acao" \
 	        	   --radiolist \
-    	        	   	FALSE Geral \
+    	        	   	FALSE Todas \
+						TRUE Geral \
                         FALSE Atualizar \
                         FALSE Corrigir \
                         FALSE Configurar \
@@ -2338,7 +2339,8 @@ func_interface_zenity()
             ) ; f_verifica
 
             # executa funcao X e saida do script
-			[[ $escolha == "Geral" ]] && func_geral && exit 0 ||
+            [[ $escolha == "Todas" ]] && func_todas && exit 0 ||
+			[[ $escolha == "Geral" ]] && func_geral && exit 0 ||			
 			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
 			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
             [[ $escolha == "Configurar" ]] && func_config && exit 0 ||
