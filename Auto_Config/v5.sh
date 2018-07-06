@@ -712,9 +712,7 @@ func_help()
                 add-apt-repository ppa:ubuntu-wine/ppa -y
 
                 # chamando funcao já criada
-                update
-
-                apt install wine -y
+                update                
             elif [[ $distro == "Debian" ]]; then
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
@@ -729,6 +727,8 @@ func_help()
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> $arquivo_log
             fi
+
+            apt install wine winetricks -y
         else
             printf "\n[-] Wine já está instalado na sua máquina!"
             printf "\n[-] Wine já está instalado na sua máquina!" >> $arquivo_log
