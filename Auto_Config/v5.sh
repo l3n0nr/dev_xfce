@@ -722,8 +722,8 @@ func_help()
 				# Atualizando repositorios
 				update
 
-                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386  \
-                                ttf-mscoreinstall_fonts-installer:i386 \
+				# instalando wine
+                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386 \
                                 wine-development -y
             else
             	printf "\n[-] Erro ao instalar Wine"
@@ -1363,21 +1363,8 @@ func_help()
         if [[ ! -e $var_docker ]]; then
         	printf "\n[+] Instalando o Docker"
             printf "\n[+] Instalando o Docker" >> $arquivo_log
-
-            apt install docker-compose -y
-
-            if [[ $distro == "Ubuntu" ]]; then
-        		apt install docker-io -y
-        	elif [[ $distro == "Debian" ]]; then            
-                # Instalando docker
-                printf "\n[*] Instalando docker"
-                printf "\n[*] Instalando docker" >> $arquivo_log
     
-                curl -fsSL https://get.docker.com/ | sh                
-            else
-            	printf "\n[-] ERRO - DOCKER"
-            	printf "\n[-] ERRO - DOCKER" >> $arquivo_log
-            fi
+            curl -fsSL https://get.docker.com/ | sh                
         else
             printf "\n[-] O Docker já está instalado no seu sistema."
             printf "\n[-] O Docker já está instalado no seu sistema." >> $arquivo_log
