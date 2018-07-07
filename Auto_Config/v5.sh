@@ -721,8 +721,7 @@ func_help()
 				update
 
 				# instalando wine
-                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386 \
-                                wine-development -y
+                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386 -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> $arquivo_log
