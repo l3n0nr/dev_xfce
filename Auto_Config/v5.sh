@@ -80,7 +80,7 @@ func_help()
     upgrade()
     {
         # verificando distribuição
-        if [ $distro == "Ubuntu" ]; then            
+        if [ $distro = "Ubuntu" ]; then            
         	#Atualizando lista de programas do sistema
         	printf "\n[+] Atualizando lista de programas do sistema \n"
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
@@ -205,10 +205,10 @@ func_help()
         background=$(grep "vm.dirty_background_ratio" /etc/sysctl.conf)
         ratio=$(grep "vm.dirty_ratio" /etc/sysctl.conf)
 
-        [[ $memoswap == "" ]] && echo vm.swappiness=$swappiness >> /etc/sysctl.conf && \
-        [[ $memocache == "" ]] && echo vm.vfs_cache_pressure=$cache_pressure >> /etc/sysctl.conf && \
-        [[ $background == "" ]] && echo vm.dirty_background_ratio=$dirty_background_ratio >> /etc/sysctl.conf && \
-        [[ $ratio == "" ]] && echo vm.dirty_ratio=$dirty_ratio >> /etc/sysctl.conf && \
+        [[ $memoswap = "" ]] && echo vm.swappiness=$swappiness >> /etc/sysctl.conf && \
+        [[ $memocache = "" ]] && echo vm.vfs_cache_pressure=$cache_pressure >> /etc/sysctl.conf && \
+        [[ $background = "" ]] && echo vm.dirty_background_ratio=$dirty_background_ratio >> /etc/sysctl.conf && \
+        [[ $ratio = "" ]] && echo vm.dirty_ratio=$dirty_ratio >> /etc/sysctl.conf && \
                 printf "\n[+] Swap otimizada \n" && printf "\n[+] Swap otimizada \n" >> $arquivo_log || \
                 printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> $arquivo_log        
     }
@@ -232,7 +232,7 @@ func_help()
 
         printf "[*] Ativando o PRELINK "
 
-        if [[ $prelink == "PRELINKING=unknown" ]]; then
+        if [[ $prelink = "PRELINKING=unknown" ]]; then
             printf "adicionando ... \n"
             sed -i 's/unknown/yes/g' /etc/default/prelink
         else
@@ -275,7 +275,7 @@ func_help()
         printf "\n[*] NIC.BR\n"
             ntpdate -q $ntp_server
 
-        if [[ $? == "0" ]]; then
+        if [[ $? = "0" ]]; then
             printf "\n[+] Hora do computador sincronizada!\n"
             printf "\n[+] Hora do computador sincronizada!\n" >> $arquivo_log
         else
@@ -321,7 +321,7 @@ func_help()
 
     autologin()
     {       
-        if [[ $boolean_autologin == "1" ]]; then
+        if [[ $boolean_autologin = "1" ]]; then
             local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
 
             # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
@@ -331,9 +331,9 @@ func_help()
             cat $var_autologin | grep "autologin-user=$autor" > /dev/null
 
             # se saida do echo $? for 1, entao realiza modificacao
-            # if [[ $var_autologin == "1" ]]; then
-            if [[ $? == "1" ]]; then    
-                if [[ $distro == "Debian" ]]; then             
+            # if [[ $var_autologin = "1" ]]; then
+            if [[ $? = "1" ]]; then    
+                if [[ $distro = "Debian" ]]; then             
                     printf "\n[+] Habilitando login automatico" 
                     printf "\n[+] Habilitando login automatico" >> $arquivo_log
 
@@ -343,13 +343,13 @@ func_help()
                     printf "\n[*] ReConfigurando lightdm, aguarde!" 
                     dpkg-reconfigure lightdm 
 
-                    if [[ $? == "0" ]]; then
+                    if [[ $? = "0" ]]; then
                         printf "\n[+] configuraçao atualizada com sucesso"
                     else
                         printf "\n[-] Erro na Configuracao - Autologin"
                     fi
 
-                elif [[ $distro == "Ubuntu" ]]; then 
+                elif [[ $distro = "Ubuntu" ]]; then 
                     printf "\n[+] Iniciando sessão automaticamente"
                     printf "\n[+] Iniciando sessão automaticamente" >> $arquivo_log
 
@@ -419,8 +419,8 @@ func_help()
     
     config_idioma()
     {   
-        if [[ $distro == "Debian" ]]; then    
-            [[ $(grep $language /etc/default/locale) == "" ]] \
+        if [[ $distro = "Debian" ]]; then    
+            [[ $(grep $language /etc/default/locale) = "" ]] \
                 && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
                 || printf "\n\n[-] configuraçao do idioma ja realizada anteriormente!"
         fi
@@ -467,7 +467,7 @@ func_help()
 
     	# se variavel esta ativada, entao realiza procedimento
     	# demora bastante a verificacao, por isso a variavel
-    	[[ $var_clamAV == "1" ]] && clamscan -r --remove /
+    	[[ $var_clamAV = "1" ]] && clamscan -r --remove /
     }
 
 # # # # # # # # # #
@@ -477,9 +477,9 @@ func_help()
         printf "\n[+] Instalando Firefox"
         printf "\n[+] Instalando Firefox" >> $arquivo_log
 
-		if [[ $distro == "Ubuntu" ]]; then
+		if [[ $distro = "Ubuntu" ]]; then
         	apt install firefox -y
-        elif [[ $distro == "Debian" ]]; then
+        elif [[ $distro = "Debian" ]]; then
             snap install firefox
         fi            
     }
@@ -489,7 +489,7 @@ func_help()
         local var_chromium=$(which chromium)        
         local var_chromium1=$(which chromium-browser)
 
-        if [[ $distro == "Debian" ]]; then 
+        if [[ $distro = "Debian" ]]; then 
             if [[ ! -e $var_chromium ]]; then
                 printf "\n[+] Instalando o Chromium"
                 printf "\n[+] Instalando o Chromium" >> $arquivo_log
@@ -499,7 +499,7 @@ func_help()
                 printf "\n[+] Chromium ja esta instalado"
                 printf "\n[+] Chromium ja esta instalado" >> $arquivo_log                
             fi  
-        elif [[ $distro == "Ubuntu" ]]; then 
+        elif [[ $distro = "Ubuntu" ]]; then 
             if [[ ! -e $var_chromium1 ]]; then
                 printf "\n[+] Instalando o Chromium"
                 printf "\n[+] Instalando o Chromium" >> $arquivo_log
@@ -524,7 +524,7 @@ func_help()
             printf "\n[+] Instalando o Tor" >> $arquivo_log
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
                 # ubuntu 16.04
                 #adicionando repositorio
                 add-apt-repository ppa:webupd8team/tor-browser -y
@@ -535,7 +535,7 @@ func_help()
                 #Instalando tor
                 apt-get install tor tor-browser -y
 
-            elif [ $distro == "Debian" ]; then
+            elif [ $distro = "Debian" ]; then
                 # manualmente - funciona de boas -
                 # baixar do site, pasta /opt! 
                 ## elaborando script - daqui a pouco ele aparece aqui! hehehe
@@ -560,7 +560,7 @@ func_help()
 	        printf "\n[+] Instalando Steam" >> $arquivo_log
 
 			# Instalando dependencias steam - DEBIAN 9
-			if [[ $distro == "Debian" ]]; then 
+			if [[ $distro = "Debian" ]]; then 
 				# adicionando arquitetura/dependencia      	
 				dpkg --add-architecture i386		
 
@@ -590,9 +590,9 @@ func_help()
             printf "\n"
             printf "\n[+] Instalando Spotify" >> $arquivo_log
 
-            if [[ $distro == "Ubuntu" ]]; then 
+            if [[ $distro = "Ubuntu" ]]; then 
 				snap install spotify 		         
-			elif [[ $distro == "Debian" ]]; then 
+			elif [[ $distro = "Debian" ]]; then 
                 snap install spotify                  
 			fi			            	
         else
@@ -606,7 +606,7 @@ func_help()
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)"
         printf "\n[+] Instalando Pacotes Multimidias (Codecs)" >> $arquivo_log
 
-        if [[ $distro == "Ubuntu" ]]; then
+        if [[ $distro = "Ubuntu" ]]; then
             #Instalando pacotes multimidias
             apt install ubuntu-restricted-extras -y
         fi
@@ -707,13 +707,13 @@ func_help()
         if [[ ! -e $var_wine ]]; then
             printf "\n[+] Instalando o Wine" >> $arquivo_log
 
-            if [[ $distro == "Ubuntu" ]]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 # adicionado o repositorio
                 add-apt-repository ppa:ubuntu-wine/ppa -y
 
                 # chamando funcao já criada
                 update                
-            elif [[ $distro == "Debian" ]]; then
+            elif [[ $distro = "Debian" ]]; then
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
 		
@@ -756,7 +756,7 @@ func_help()
         printf "\n[+] Instalando o Libreoffice"
         printf "\n[+] Instalando o Libreoffice" >> $arquivo_log
 
-        if [[ $distro == "Ubuntu" ]]; then
+        if [[ $distro = "Ubuntu" ]]; then
             #adicionando ppa
             add-apt-repository ppa:libreoffice/ppa -y
 
@@ -823,7 +823,7 @@ func_help()
 
         if [[ ! -e $var_stellarium ]]; then
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
                 printf "\n[+] Instalando o Stellarium"
                 printf "\n[+] Instalando o Stellarium" >> $arquivo_log
 
@@ -855,7 +855,7 @@ func_help()
         printf "\n[+] Instalando o Dolphin"
         printf "\n[+] Instalando o Dolphin" >> $arquivo_log
 
-        if [[ $distro == "Ubuntu" ]]; then
+        if [[ $distro = "Ubuntu" ]]; then
             #adicionando repositorio do dolphin
             add-apt-repository ppa:glennric/dolphin-emu -y
 
@@ -875,9 +875,9 @@ func_help()
         printf "\n[+] Instalando o Visual Game Boy"
         printf "\n[+] Instalando o Visual Game Boy" >> $arquivo_log 
 
-        if [[ $distro == "Ubuntu" ]]; then
+        if [[ $distro = "Ubuntu" ]]; then
         	apt install visualboyadvance-gtk -y
-        elif [[ $distro == "Debian" ]]; then
+        elif [[ $distro = "Debian" ]]; then
         	apt install visualboyadvance -y
         else
         	printf "[-] ERRO - VisualGame"
@@ -902,7 +902,7 @@ func_help()
             printf "\n[+] Instalando o Kdenlive"
             printf "\n[+] Instalando o Kdenlive" >> $arquivo_log
 
-            if [[ $distro == "Ubuntu" ]]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 #adicionando ppa
                 add-apt-repository ppa:sunab/kdenlive-release -y
 
@@ -944,7 +944,7 @@ func_help()
             printf "\n[+] Instalando o Plank Dock" >> $arquivo_log
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
 
@@ -981,7 +981,7 @@ func_help()
             printf "\n[+] Instalando o Nautilus" >> $arquivo_log
 
             # verificando distribuição
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
                 #adicionando ppa
                 add-apt-repository ppa:gnome3-team/gnome3 -y
 
@@ -1031,7 +1031,7 @@ func_help()
             printf "\n[*] Instalando o Simple Screen Recorder"
             printf "\n[*] Instalando o Simple Screen Recorder" >> $arquivo_log
 
-            if [[ $distro == "Ubuntu" ]]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 #adicionando fonte
                 add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
 
@@ -1056,7 +1056,7 @@ func_help()
             printf "\n[+] Instalando o MEGA"
             printf "\n[+] Instalando o MEGA" >> $arquivo_log
             
-            if [[ $distro == "Ubuntu" ]]; then
+            if [[ $distro = "Ubuntu" ]]; then
 	            # Instalando mega
 	            dpkg -i base/packages/mega/*.deb
 
@@ -1065,7 +1065,7 @@ func_help()
 
 	            # Instalando mega
 	            dpkg -i base/packages/mega/*.deb
-	        elif [[ $distro == "Debian" ]]; then
+	        elif [[ $distro = "Debian" ]]; then
 				# Instalando megasync
 				apt install megasync -y
 	        fi
@@ -1122,7 +1122,7 @@ func_help()
         local var_nvidia=$(which nvidia-settings)
 
         if [[ ! -e $var_nvidia ]]; then
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
     		    printf "\n[+] Instalando o driver da Placa Nvidia"
     		    printf "\n[+] Instalando o driver da Placa Nvidia" >> $arquivo_log
 
@@ -1133,7 +1133,7 @@ func_help()
     		    update
 
     		    apt install nvidia-current nvidia-settings -y  
-            elif [[ $distro == "Debian" ]]; then
+            elif [[ $distro = "Debian" ]]; then
                 # adicionando repositorio
         		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
 
@@ -1162,9 +1162,9 @@ func_help()
         	printf "\n[*] Instalando Virtualbox \n"
             printf "\n[*] Instalando Virtualbox \n" >> $arquivo_log
 
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
                 apt install virtualbox-5.1 -y
-            elif [ $distro == "Debian" ]; then      
+            elif [ $distro = "Debian" ]; then      
                 # Instalando virtualbox
                 apt install virtualbox -y              
             fi            
@@ -1199,13 +1199,13 @@ func_help()
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
 
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
 	            # adicionando via flatpak
 	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	            # Instalando via flatpak
 	            flatpak install flathub com.github.wwmm.pulseeffects	        
-	        elif [ $distro == "Debian" ]; then	        	
+	        elif [ $distro = "Debian" ]; then	        	
 	        	## procurando uma forma para instalar esse bagaça no debian
 	        	echo
 	        fi
@@ -1305,9 +1305,9 @@ func_help()
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> $arquivo_log                
 
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
               snap install tuxguitar-vs
-            elif [ $distro == "Debian" ]; then
+            elif [ $distro = "Debian" ]; then
                 apt install tuxguitar timidity -y
             fi
         else
@@ -1326,9 +1326,9 @@ func_help()
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> $arquivo_log
 
-            if [ $distro == "Ubuntu" ]; then
+            if [ $distro = "Ubuntu" ]; then
 				snap install musescore
-            elif [ $distro == "Debian" ]; then
+            elif [ $distro = "Debian" ]; then
                 apt install musescore -y 
             fi
         else
@@ -1411,7 +1411,7 @@ func_help()
 
         cat base/compton.conf >> $HOME/.config/compton.conf
 
-        if [[ $? == "0" ]]; then
+        if [[ $? = "0" ]]; then
             printf "\n[*] Configuraçao atualizada Compton"        
             printf "\n[*] Configuraçao atualizada Compton" >> $arquivo_log                            
         else
@@ -1428,7 +1428,7 @@ func_help()
 
         apt install python3.5 python-pip -y
 
-    	if [ $distro == "Debian" ]; then
+    	if [ $distro = "Debian" ]; then
  			apt install pipsi -y # Instalando pip no debian
         fi   
     }
@@ -1760,19 +1760,19 @@ func_corrige()
 
     atualiza_db   
 
-	if [[ $v_hostname == 'notebook' ]]; then               
-        if [ $distro == "Ubuntu" ]; then        
+	if [[ $v_hostname = 'notebook' ]]; then               
+        if [ $distro = "Ubuntu" ]; then        
             apt_update_local
             apt_auto            
-        elif [ $distro == "Debian" ]; then              
+        elif [ $distro = "Debian" ]; then              
             printf ""   
         fi
-    elif [[ $v_hostname == 'desktop' ]]; then        
-        if [ $distro == "Ubuntu" ]; then           
+    elif [[ $v_hostname = 'desktop' ]]; then        
+        if [ $distro = "Ubuntu" ]; then           
             apt_update_local
             apt_auto
             apport
-        elif [ $distro == "Debian" ]; then      
+        elif [ $distro = "Debian" ]; then      
             printf ""   
         fi
     else
@@ -1889,17 +1889,17 @@ func_instala()
 
     install_clamav
 
-	if [[ $v_hostname == 'notebook' ]]; then		
+	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
         install_aircrack  
         install_wavemon	   
 
-		if [ $distro == "Ubuntu" ]; then					
+		if [ $distro = "Ubuntu" ]; then					
 			echo 	# nenhuma acao, por enquanto
-		elif [ $distro == "Debian" ]; then				
+		elif [ $distro = "Debian" ]; then				
 	    	install_firmware  		    
 		fi
-	elif [[ $v_hostname == 'desktop' ]]; then         
+	elif [[ $v_hostname = 'desktop' ]]; then         
 		install_visualgameboy
 	    install_dolphin
 
@@ -1920,7 +1920,7 @@ func_instala_outros()
     install_wireshark 
 
     # verificando computador
-    if [[ $v_hostname == 'desktop' ]]; then
+    if [[ $v_hostname = 'desktop' ]]; then
         install_virtualbox
         install_steam        
     fi
@@ -1928,7 +1928,7 @@ func_instala_outros()
 
 func_remove()
 {
-	if [[ $v_hostname == 'notebook' ]]; then    	
+	if [[ $v_hostname = 'notebook' ]]; then    	
 		remove_kstars
 		remove_steam
 		remove_kdenlive
@@ -2294,7 +2294,7 @@ func_interface_zenity()
 {
 	f_verifica()
 	{
-		[[ $? == "1" ]] && \
+		[[ $? = "1" ]] && \
 			zenity --notification \
 				   --text "Script finalizado, antes do esperado!" && exit 1
 	}
@@ -2307,7 +2307,7 @@ func_interface_zenity()
         	   FALSE Manual \
     ) ; f_verifica	
     
-    if [[ $valor == "Automatica" ]]; then
+    if [[ $valor = "Automatica" ]]; then
             escolha=$(
             	zenity --list --title="Automatizar de tarefas" \
 	        	   --text="O que deseja fazer?"  \
@@ -2326,15 +2326,15 @@ func_interface_zenity()
             ) ; f_verifica
 
             # executa funcao X e saida do script
-            [[ $escolha == "Todas" ]] && func_todas && exit 0 ||
-			[[ $escolha == "Geral" ]] && func_geral && exit 0 ||			
-			[[ $escolha == "Atualizar" ]] && func_atualiza && exit 0 ||
-			[[ $escolha == "Corrigir" ]] && func_corrige && exit 0 ||
-            [[ $escolha == "Configurar" ]] && func_config && exit 0 ||
-			[[ $escolha == "Limpar" ]] && func_limpa && exit 0 ||
-			[[ $escolha == "Instalar" ]] && func_instala && exit 0 ||
-			[[ $escolha == "Remover" ]] && func_remove && exit 0
-	elif [[ $valor == "Manual" ]]; then
+            [[ $escolha = "Todas" ]] && func_todas && exit 0 ||
+			[[ $escolha = "Geral" ]] && func_geral && exit 0 ||			
+			[[ $escolha = "Atualizar" ]] && func_atualiza && exit 0 ||
+			[[ $escolha = "Corrigir" ]] && func_corrige && exit 0 ||
+            [[ $escolha = "Configurar" ]] && func_config && exit 0 ||
+			[[ $escolha = "Limpar" ]] && func_limpa && exit 0 ||
+			[[ $escolha = "Instalar" ]] && func_instala && exit 0 ||
+			[[ $escolha = "Remover" ]] && func_remove && exit 0
+	elif [[ $valor = "Manual" ]]; then
 		escolha=$(zenity --list --title="Automatizar de tarefas" \
         	   --text="O que deseja fazer?"  \
         	   --width "150" \
@@ -2350,8 +2350,8 @@ func_interface_zenity()
         ) ; f_verifica        
 
         for (( i = 0; i <= ${#vetor[@]}; i++ )); do  
-            if [[ ${vetor[$i]} == $escolha ]]; then   
-                if [[ $escolha == "atualiza" ]]; then                        	
+            if [[ ${vetor[$i]} = $escolha ]]; then   
+                if [[ $escolha = "atualiza" ]]; then                        	
                     for (( i = 0; i < ${#atualiza[@]}; i++ )); do	                        	                       
                     	acoes=$(zenity --title="Modo manual" \
                             --width="300" --height=250 \
@@ -2361,7 +2361,7 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${atualiza[$i]}"
                         ) ; f_verifica
                     done
-                elif [[ $escolha == "corrige" ]]; then
+                elif [[ $escolha = "corrige" ]]; then
                 	for (( i = 0; i < ${#corrige[@]}; i++ )); do
                         acoes=$(zenity --title="Modo manual" \
                             --width="300" --height=250 \
@@ -2371,7 +2371,7 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${corrige[$i]}"                                        	
                         ) ; f_verifica
                     done
-                elif [[ $escolha == "config" ]]; then
+                elif [[ $escolha = "config" ]]; then
                     for (( i = 0; i < ${#config[@]}; i++ )); do
                         acoes=$(zenity --title="Modo manual" \
                             --width="300" --height=250 \
@@ -2381,7 +2381,7 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${config[$i]}"                                         
                         ) ; f_verifica
                     done
-                elif [[ $escolha == "limpa" ]]; then
+                elif [[ $escolha = "limpa" ]]; then
                 	for (( i = 0; i < ${#limpa[@]}; i++ )); do
                         acoes=$(zenity --title="Modo manual" \
                             --width="300" --height=250 \
@@ -2391,7 +2391,7 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${limpa[$i]}"                                        	
                         ) ; f_verifica
                     done
-                elif [[ $escolha == "instala" ]]; then
+                elif [[ $escolha = "instala" ]]; then
                 	for (( i = 0; i < ${#instala[@]}; i++ )); do
                         acoes=$(zenity --title="Modo manual" \
                             --width="300" --height=250 \
@@ -2401,7 +2401,7 @@ func_interface_zenity()
                             --checklist FALSE "$i" "${instala[$i]}"                                        	
                         ) ; f_verifica
                     done
-            	elif [[ $escolha == "remove" ]]; then
+            	elif [[ $escolha = "remove" ]]; then
             	for (( i = 0; i < ${#remove[@]}; i++ )); do
                     acoes=$(zenity --title="Modo manual" \
                         --width="300" --height=250 \
@@ -2447,16 +2447,16 @@ func_interface_zenity()
 
   #                   # echo ${copy[*]}
 
-  #               elif [[ $escolha == 1 ]]; then                    
+  #               elif [[ $escolha = 1 ]]; then                    
   #                   printf ""
-  #               elif [[ $escolha == 2 ]]; then
+  #               elif [[ $escolha = 2 ]]; then
   #                   printf ""
-  #               elif [[ $escolha == 3 ]]; then
+  #               elif [[ $escolha = 3 ]]; then
   #                   for chave in ${instala[@]}; do 
 					# 	# echo "$chave = ${instala[$chave]}"; 
 					# 	echo "$chave";
 					# done
-  #               elif [[ $escolha == 4 ]]; then
+  #               elif [[ $escolha = 4 ]]; then
   #                   printf ""
   #               else
   #                   printf ""
@@ -2486,21 +2486,21 @@ main()
     help_vetor=$2    # ajuda
 
 	echo "Iniciando script, aguarde..."
-	[[ $verifica_internet == "1" ]] && func_verifica_internet
+	[[ $verifica_internet = "1" ]] && func_verifica_internet
 
   	## se nao for digitado parametros na chamada
   	[[ $# -eq 0 ]] && func_help && exit 0
 
     # se o primeiro parametro for igual a vetor, o segundo vazio.
-    [[ $1 == "vetor" ]] && [[ $2 == "" ]] && 
+    [[ $1 = "vetor" ]] && [[ $2 = "" ]] && 
         clear && echo $mensagem_ajuda && exit 0
 
     # se o primeiro paramento for igual a vetor, o segundo igual a ajuda e o terceiro vazio.
-    [[ $1 == "vetor" ]] && [[ $2 == "ajuda" ]] && [[ $3 == "" ]] && 
+    [[ $1 = "vetor" ]] && [[ $2 = "ajuda" ]] && [[ $3 = "" ]] && 
         func_vetor_ajuda && exit 0
 
     # armazena log no arquivo
-    [[ $? == 0 ]] && date > $arquivo_log
+    [[ $? = 0 ]] && date > $arquivo_log
 
     for i in "$@"; 
     do    	  	
