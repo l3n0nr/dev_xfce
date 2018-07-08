@@ -7,7 +7,7 @@
 # 
 # [MODO MANUAL]: 
 # Ativar o UFW no modo padrao, para ter uma
-#  camada de segurança a mais no sistema!
+#  camada de segurança extra no sistema!
 #
 ##########################################
 #
@@ -18,7 +18,7 @@ f_redshift()
 	printf "[*] Copiando configuracao padrao do Redshift \n"
 	printf "[*] Copiando configuracao padrao do Redshift \n" >> $output_file
 
-	cat base/redshift.conf > $HOME/.config/redshift.conf 
+	cat ../base/redshift.conf > $HOME/.config/redshift.conf 
 }
 
 f_zsh()
@@ -81,7 +81,7 @@ f_mega()
 	if [ -e $var_mega ]; then 		
 		### imagens - /home/$USER/Images
 		# lista pasta e monta vetor
-		arq_pasta=($(ls -C $var_mega_img))	# verifica vetor zsh
+		arq_pasta=($(ls -C $var_mega_img))
 			
 		# percorre lista de arquivos na pasta $var_mega_img
 		for (( i = 0; i <= ${#arq_pasta[@]}; i++ )); do	
