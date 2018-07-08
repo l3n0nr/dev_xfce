@@ -40,7 +40,7 @@ f_zsh()
 	printf "[*] Copiando arquivo padrao ZSH \n"
 	printf "[*] Copiando arquivo padrao ZSH \n" >> $output_file
 
-	cat base/.zshrc > $HOME/.zshrc
+	cat ../base/.zshrc > $HOME/.zshrc
 
 	## commands as you type, based on command history
 	if [ -e "$HOME/.zsh/zsh-autosuggestions" ]; then
