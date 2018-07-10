@@ -1202,7 +1202,7 @@ func_help()
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
             # Instalando via flatpak
-            flatpak install flathub com.github.wwmm.pulseeffects	        
+            flatpak install flathub com.github.wwmm.pulseeffects -y
         else
             printf "\n[-] Pulse Effects já está instalado"
             printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
