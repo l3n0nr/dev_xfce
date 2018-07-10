@@ -1198,16 +1198,11 @@ func_help()
             printf "\n[+] Instalando o Pulse Effects"
             printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
 
-            if [ $distro = "Ubuntu" ]; then
-	            # adicionando via flatpak
-	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+            # adicionando via flatpak
+            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-	            # Instalando via flatpak
-	            flatpak install flathub com.github.wwmm.pulseeffects	        
-	        elif [ $distro = "Debian" ]; then	        	
-	        	## procurando uma forma para instalar esse bagaça no debian
-	        	echo
-	        fi
+            # Instalando via flatpak
+            flatpak install flathub com.github.wwmm.pulseeffects	        
         else
             printf "\n[-] Pulse Effects já está instalado"
             printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
