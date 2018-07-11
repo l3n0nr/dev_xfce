@@ -96,10 +96,13 @@ func_help()
 	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
                 ## atualizacao segura
 		        apt upgrade -y
-
-                ## atualizacoes com mudanças - atualizacoes completas                
-                apt dist-upgrade -y 
-                apt full-upgrade -y
+                
+                if [[ $agressive_mode == "1" ]]; then
+	                ## atualizacoes com mudanças - atualizacoes completas                
+	                # MODE VIDA LOKA ON - Os usuarios do ~Debian Stable~, podem pirar na batatinha... huehuehue
+	                apt dist-upgrade -y 
+	                apt full-upgrade -y	
+                fi
 		fi
     }
 
@@ -486,8 +489,8 @@ func_help()
 
     install_chromium()
     {              
-        local var_chromium=$(which chromium)        
-        local var_chromium1=$(which chromium-browser)
+        local var_chromium=$(type chromium)        
+        local var_chromium1=$(type chromium-browser)
 
         if [[ $distro = "Debian" ]]; then 
             if [[ ! -e $var_chromium ]]; then
@@ -517,7 +520,7 @@ func_help()
 
     install_tor()
     {
-        local var_tor=$(which tor)
+        local var_tor=$(type tor)
 
         if [[ ! -e $var_tor ]]; then
             printf "\n[+] Instalando o Tor"
@@ -553,7 +556,7 @@ func_help()
 
     install_steam()
     {
-    	local var_steam=$(which steam)
+    	local var_steam=$(type steam)
 
         if [[ ! -e $var_steam ]]; then
 	        printf "\n[+] Instalando Steam"
@@ -584,7 +587,7 @@ func_help()
     install_spotify()
     {
         # variavel de verificação
-        local var_spotify=$(which spotify)
+        local var_spotify=$(type spotify)
 
         if [[ ! -e $var_spotify ]]; then
             printf "\n"
@@ -628,7 +631,7 @@ func_help()
     install_funcao_gimp()
     {
      	# variavel de verificação
-        local var_gimp=$(which gimp)
+        local var_gimp=$(type gimp)
 
         if [[ ! -e $var_gimp ]]; then
             printf "\n[+] Instalando o Gimp"
@@ -662,7 +665,7 @@ func_help()
 
         ## xfpanel-switch
         # variavel de verificação
-        local var_xfpanel=$(which xfpanel-switch)
+        local var_xfpanel=$(type xfpanel-switch)
 
         if [[ ! -e $var_xfpanel ]]; then
             printf "\n[+] Instalando Xfpanel-switch"
@@ -680,7 +683,7 @@ func_help()
         fi
 
         ## whisker-menu
-        local var_whiskermenu=$(which xfce4-popup-whiskermenu)
+        local var_whiskermenu=$(type xfce4-popup-whiskermenu)
 
         if [[ ! -e $var_whiskermenu ]]; then
             printf "\n"
@@ -702,7 +705,7 @@ func_help()
     install_wine()
     {
     	# variavel de verificação
-        local var_wine=$(which wine)
+        local var_wine=$(type wine)
 
         if [[ ! -e $var_wine ]]; then
             printf "\n[+] Instalando o Wine" >> $arquivo_log
@@ -818,7 +821,7 @@ func_help()
     install_stellarium()
     {
         # variavel de verificação
-        local var_stellarium=$(which stellarium)
+        local var_stellarium=$(type stellarium)
 
         if [[ ! -e $var_stellarium ]]; then
             # verificando distribuição
@@ -895,7 +898,7 @@ func_help()
     install_kdenlive()
     {
         # variavel de verificação
-        local var_kdenlive=$(which kdenlive)
+        local var_kdenlive=$(type kdenlive)
 
         if [[ ! -e $var_kdenlive ]]; then
             printf "\n[+] Instalando o Kdenlive"
@@ -936,7 +939,7 @@ func_help()
     install_plank()
     {
         # variavel de verificação
-        local var_plank=$(which plank)
+        local var_plank=$(type plank)
 
         if [[ ! -e $var_plank ]]; then
             printf "\n[+] Instalando o Plank Dock"
@@ -973,7 +976,7 @@ func_help()
     install_nautilus()
     {
         # variavel de verificação
-        local var_nautilus=$(which nautilus)
+        local var_nautilus=$(type nautilus)
 
         if [[ ! -e $var_nautilus ]]; then
             printf "\n[+] Instalando o Nautilus"
@@ -1024,7 +1027,7 @@ func_help()
     install_simple_screen_recorder()
     {
         # variavel de verificação
-        local var_simplescreenrecorder=$(which simplescreenrecorder)
+        local var_simplescreenrecorder=$(type simplescreenrecorder)
 
         if [[ ! -e $var_simplescreenrecorder ]]; then
             printf "\n[*] Instalando o Simple Screen Recorder"
@@ -1049,7 +1052,7 @@ func_help()
     install_mega()
     {       
         # variavel de verificação
-        local var_mega=$(which megasync)
+        local var_mega=$(type megasync)
 
         if [[ ! -e $var_mega ]]; then        
             printf "\n[+] Instalando o MEGA"
@@ -1118,7 +1121,7 @@ func_help()
     install_nvidia()
     {
         # variavel de verificação
-        local var_nvidia=$(which nvidia-settings)
+        local var_nvidia=$(type nvidia-settings)
 
         if [[ ! -e $var_nvidia ]]; then
             if [ $distro = "Ubuntu" ]; then
@@ -1154,7 +1157,7 @@ func_help()
     install_virtualbox()
     {
         # variavel de verificação
-        local var_virtualbox=$(which virtualbox)
+        local var_virtualbox=$(type virtualbox)
 
         # criando verificação para instalar o virtualbox
         if [[ ! -e $var_virtualbox ]]; then    
@@ -1192,21 +1195,28 @@ func_help()
     install_pulseeffects()
     {
         # variavel de verificação
-        local var_pulseeeffects=$(which pulseeffects)
+        local var_pulseeeffects=$(type pulseeffects)
+		local var_flatpak=$(type flatpak)
 
-        if [[ ! -e $var_pulseeeffects ]]; then
-            printf "\n[+] Instalando o Pulse Effects"
-            printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
+        # criando verificação para instalar o docker
+        if [[ ! -e $var_flatpak ]]; then
+	        if [[ ! -e $var_pulseeeffects ]]; then
+	            printf "\n[+] Instalando o Pulse Effects"
+	            printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
 
-            # adicionando via flatpak
-            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	            # adicionando via flatpak
+	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-            # Instalando via flatpak
-            flatpak install flathub com.github.wwmm.pulseeffects -y
-        else
-            printf "\n[-] Pulse Effects já está instalado"
-            printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
-        fi
+	            # Instalando via flatpak
+	            flatpak install flathub com.github.wwmm.pulseeffects -y
+	        else
+	            printf "\n[-] Pulse Effects já está instalado"
+	            printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
+	        fi
+	    else
+			printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!"
+            printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!" >> $arquivo_log
+	    fi
     }
     
     install_terminator()
@@ -1292,7 +1302,7 @@ func_help()
     install_tuxguitar()
     {
         # variavel de verificação
-        local var_tuxguitar=$(which tuxguitar-vs)
+        local var_tuxguitar=$(type tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
         if [[ ! -e $var_tuxguitar ]]; then
@@ -1313,7 +1323,7 @@ func_help()
     install_musescore()
     {
         # variavel de verificação
-        local var_musescore=$(which musescore)
+        local var_musescore=$(type musescore)
 
         # criando verificação para instalar o musescore
         if [[ ! -e $var_musescore ]]; then
@@ -1334,7 +1344,7 @@ func_help()
     install_zsh()
     {
         # variavel de verificação
-        local var_zsh=$(which zsh)
+        local var_zsh=$(type zsh)
 
         printf "\n[+] Instalando o ZSH"
         printf "\n[+] Instalando o ZSH" >> $arquivo_log
@@ -1351,7 +1361,7 @@ func_help()
     install_docker()
     {
         # variavel de verificação
-        local var_docker=$(which docker)
+        local var_docker=$(type docker)
 
         # criando verificação para instalar o docker
         if [[ ! -e $var_docker ]]; then
@@ -1368,7 +1378,7 @@ func_help()
     install_sublime()
     {
          # variavel de verificação
-        local var_sublime=$(which subl)
+        local var_sublime=$(type subl)
 
         # criando verificação para instalar o docker
         if [[ ! -e $var_sublime ]]; then
@@ -1451,16 +1461,24 @@ func_help()
         printf "\n[+] Instalando Dropbox"
         printf "\n[+] Instalando Dropbox" >> $arquivo_log
 
-        # adicionando via flatpak
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+		local var_flatpak=$(type flatpak)
 
-        # instalando dropbox
-        flatpak install flathub com.dropbox.Client -y
+        # criando verificação para instalar o docker
+        if [[ ! -e $var_flatpak ]]; then
+	        # adicionando via flatpak
+	        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+	        # instalando dropbox
+	        flatpak install flathub com.dropbox.Client -y
+	    else
+	    	printf "\n[-] O Dropbox, necessita do flatpak para ser instalado!"
+        	printf "\n[-] O Dropbox, necessita do flatpak para ser instalado!" >> $arquivo_log
+	    fi
     }
 
     install_transmission()
     {
-        local var_transmission=$(which transmission-gtk)
+        local var_transmission=$(type transmission-gtk)
 
         # verificando se transmission está instalado
         if [[ ! -e $var_transmission ]]; then
@@ -1545,7 +1563,7 @@ func_help()
     install_locate()
     {
     	# variavel de verificação
-        local var_locate=$(which locate)
+        local var_locate=$(type locate)
 
         if [[ ! -e $var_locate ]]; then
             printf "[+] Instalando Locate"
