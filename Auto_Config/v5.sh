@@ -134,9 +134,9 @@ func_help()
 
     apt_clean()
     {
-        #limpando lista arquivos sobressalentes
-        printf "\n[+] limpando arquivos sobressalentes"
-        printf "\n[+] limpando arquivos sobressalentes" >> $arquivo_log
+        #Limpando lista arquivos sobressalentes
+        printf "\n[+] Limpando arquivos sobressalentes"
+        printf "\n[+] Limpando arquivos sobressalentes" >> $arquivo_log
         
         rm -rf /var/lib/dpkg/info/*.*
 
@@ -1451,7 +1451,11 @@ func_help()
         printf "\n[+] Instalando Dropbox"
         printf "\n[+] Instalando Dropbox" >> $arquivo_log
 
-        apt install nautilus-dropbox -y
+        # adicionando via flatpak
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+        # instalando dropbox
+        flatpak install flathub com.dropbox.Client -y
     }
 
     install_transmission()
@@ -1553,16 +1557,16 @@ func_help()
 
     install_arpscan()
     {
-    	printf "[+] Instalando ARP Scan"
-        printf "[+] Instalando ARP Scan" >> $arquivo_log
+    	printf "\n[*] Instalando ARP Scan"
+        printf "\n[*] Instalando ARP Scan" >> $arquivo_log
 
         apt install arp-scan -y
     }
 
     install_clamav()
     {
-    	printf "[+] Instalando o ClamAV"
-        printf "[+] Instalando o ClamAV" >> $arquivo_log
+    	printf "\n[*] Instalando o ClamAV"
+        printf "\n[*] Instalando o ClamAV" >> $arquivo_log
 
         apt install clamav clamtk freshclam -y
     }
@@ -1574,7 +1578,7 @@ func_help()
 		printf "\n[*] Removendo o Thunderbird"
         printf "\n[*] Removendo o Thunderbird" >> $arquivo_log
 
-        apt purge thunderbird* -y
+        apt purge thunderbird -y
 	}
 
 	remove_inkspace()
@@ -1582,7 +1586,7 @@ func_help()
 		printf "\n[*] Removendo o Inkscape "
         printf "\n[*] Removendo o Inkscape " >> $arquivo_log
 		
-		apt purge inkscape* -y
+		apt purge inkscape -y
 	}
 
 	remove_blender()
@@ -1590,7 +1594,7 @@ func_help()
 		printf "\n[*] Removendo o Blender"
         printf "\n[*] Removendo o Blender" >> $arquivo_log
 		
-		apt purge blender* -y
+		apt purge blender -y
 	}
 
 	remove_parole()
@@ -1598,7 +1602,7 @@ func_help()
 		printf "\n[*] Removendo o Parole"
         printf "\n[*] Removendo o Parole" >> $arquivo_log
 		
-		apt purge parole* -y
+		apt purge parole -y
 	}
 
 	remove_exfalso()
@@ -1606,7 +1610,7 @@ func_help()
 		printf "\n[*] Removendo o Exfalso"
         printf "\n[*] Removendo o Exfalso" >> $arquivo_log
 		
-		apt purge exfalso* -y
+		apt purge exfalso -y
 	}
 
 	remove_quolibet()
@@ -1614,7 +1618,7 @@ func_help()
 		printf "\n[*] Removendo o Quolibet"
         printf "\n[*] Removendo o Quolibet" >> $arquivo_log
 		
-		apt purge qoulibet* -y
+		apt purge qoulibet -y
 	}
 
 	remove_xterm()
@@ -1622,7 +1626,7 @@ func_help()
 		printf "\n[*] Removendo o Xterm"
         printf "\n[*] Removendo o Xterm" >> $arquivo_log
 		
-		apt purge xterm* -y
+		apt purge xterm -y
 	}
 
 	remove_xsane()
@@ -1630,7 +1634,7 @@ func_help()
 		printf "\n[*] Removendo o XSane"
         printf "\n[*] Removendo o XSane" >> $arquivo_log
 		
-		apt purge xsane* -y
+		apt purge xsane -y
 	}
 
 	remove_pidgin()
@@ -1638,7 +1642,7 @@ func_help()
 		printf "\n[*] Removendo o Pidgin"
         printf "\n[*] Removendo o Pidgin" >> $arquivo_log
 
-		apt purge pidgin* -y
+		apt purge pidgin -y
 	}
 
 	remove_meld()
@@ -1646,7 +1650,7 @@ func_help()
 		printf "\n[*] Removendo o Meld"
         printf "\n[*] Removendo o Meld" >> $arquivo_log
 		
-		apt purge meld* -y
+		apt purge meld -y
 	}
 
 	remove_gtkhash()
@@ -1654,7 +1658,7 @@ func_help()
 		printf "\n[*] Removendo o Gtkhash"
         printf "\n[*] Removendo o Gtkhash" >> $arquivo_log
 	
-		apt purge gtkhash* -y	
+		apt purge gtkhash -y	
 	}
 
 	remove_imagemagick()
@@ -1662,7 +1666,7 @@ func_help()
 		printf "\n[*] Removendo o Imagemagick"
         printf "\n[*] Removendo o Imagemagick" >> $arquivo_log
 		
-		apt purge imagemagick* -y
+		apt purge imagemagick -y
 	}
 
 	remove_chromium-bsu()
@@ -1670,7 +1674,7 @@ func_help()
 		printf "\n[*] Removendo o Chromium-BSU"
         printf "\n[*] Removendo o Chromium-BSU" >> $arquivo_log
 		
-		apt purge chromium-bsu* -y
+		apt purge chromium-bsu -y
 	}
 
 	remove_owncloud()
@@ -1678,7 +1682,7 @@ func_help()
 		printf "\n[*] Removendo o Owncloud"
         printf "\n[*] Removendo o Owncloud" >> $arquivo_log
 		
-		apt purge owncloud* -y
+		apt purge owncloud -y
 	}
 
 	remove_kstars()
@@ -1686,7 +1690,7 @@ func_help()
 		printf "\n[*] Removendo o Pidgin"
         printf "\n[*] Removendo o Pidgin" >> $arquivo_log
 		
-		apt purge kstars* -y
+		apt purge kstars -y
 	}
 
 	remove_steam()
@@ -1694,7 +1698,7 @@ func_help()
 		printf "\n[*] Removendo o Steam"
         printf "\n[*] Removendo o Steam" >> $arquivo_log
 		
-		apt purge steam* -y
+		apt purge steam -y
 	}
 
 	remove_kdenlive()
@@ -1702,7 +1706,7 @@ func_help()
 		printf "\n[*] Removendo o Kdenlive"
         printf "\n[*] Removendo o Kdenlive" >> $arquivo_log
 		
-		apt purge kdenlive* -y
+		apt purge kdenlive -y
 	}
 
 	remove_transmission()
@@ -1710,7 +1714,7 @@ func_help()
 		printf "\n[*] Removendo o Transmission"
         printf "\n[*] Removendo o Transmission" >> $arquivo_log
 		
-		apt purge transmission* -y
+		apt purge transmission -y
 	}
 
 	remove_smartgit()
@@ -1718,7 +1722,7 @@ func_help()
 		printf "\n[*] Removendo o Smartgit"
         printf "\n[*] Removendo o Smartgit" >> $arquivo_log
 		
-		apt purge smartgit* -y
+		apt purge smartgit -y
 	}
 
 	remove_gitg()
@@ -1726,7 +1730,7 @@ func_help()
 		printf "\n[*] Removendo o Gitg"
         printf "\n[*] Removendo o Gitg" >> $arquivo_log
 		
-		apt purge gitg* -y
+		apt purge gitg -y
 	}
 
 
@@ -1798,7 +1802,7 @@ func_config()
 
 func_limpa()
 {
-    notify-send -u normal "limpando sistema" -t 10000
+    notify-send -u normal "Limpando sistema" -t 10000
 
     clear   
 
