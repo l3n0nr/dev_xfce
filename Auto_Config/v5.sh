@@ -1461,19 +1461,8 @@ func_help()
         printf "\n[+] Instalando Dropbox"
         printf "\n[+] Instalando Dropbox" >> $arquivo_log
 
-		local var_flatpak=$(type flatpak)
-
-        # criando verificação para instalar o docker
-        if [[ ! -e $var_flatpak ]]; then
-	        # adicionando via flatpak
-	        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-	        # instalando dropbox
-	        flatpak install flathub com.dropbox.Client -y
-	    else
-	    	printf "\n[-] O Dropbox, necessita do flatpak para ser instalado!"
-        	printf "\n[-] O Dropbox, necessita do flatpak para ser instalado!" >> $arquivo_log
-	    fi
+        ## instalando dropbox
+        apt install nautilus-dropbox -y
     }
 
     install_transmission()
