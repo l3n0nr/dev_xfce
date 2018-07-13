@@ -379,7 +379,7 @@ func_help()
 	    local var_flatremix="/usr/share/icons/Flat_Remix_Light"
 	    local var_papirus="/usr/share/icons/Papirus_Light"
 
-        if [ -e $var_breeze ]; then             
+        if [ -z $var_breeze ]; then             
             printf "\n[-] Voce ja possui os arquivos Breeze!"
             printf "\n[-] Voce ja possui os arquivos Breeze!" >> $arquivo_log
         else            
@@ -389,7 +389,7 @@ func_help()
             cp -r ../config/Interface/icons/Breeze /usr/share/icons
         fi
 
-        if [ -e $var_flatremix ]; then 
+        if [ -z $var_flatremix ]; then 
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> $arquivo_log
         else            
@@ -399,7 +399,7 @@ func_help()
             cp -r ../config/Interface/icons/Flat_Remix_Light /usr/share/icons
         fi
 
-        if [ -e $var_papirus ]; then 
+        if [ -z $var_papirus ]; then 
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> $arquivo_log
         else            
@@ -409,7 +409,7 @@ func_help()
             cp -r ../config/Interface/icons/Papirus_Light /usr/share/icons
         fi
 
-        if [ -e $var_icones_macos ]; then 
+        if [ -z $var_icones_macos ]; then 
             printf "\n[-] Voce ja possui os arquivos MacOS X!"
             printf "\n[-] Voce ja possui os arquivos MacOS X!" >> $arquivo_log
         else    
@@ -493,7 +493,7 @@ func_help()
         local var_chromium1=$(type chromium-browser)
 
         if [[ $distro = "Debian" ]]; then 
-            if [[ ! -e $var_chromium ]]; then
+            if [[ -z $var_chromium ]]; then
                 printf "\n[+] Instalando o Chromium"
                 printf "\n[+] Instalando o Chromium" >> $arquivo_log
 
@@ -503,7 +503,7 @@ func_help()
                 printf "\n[+] Chromium ja esta instalado" >> $arquivo_log                
             fi  
         elif [[ $distro = "Ubuntu" ]]; then 
-            if [[ ! -e $var_chromium1 ]]; then
+            if [[ -z $var_chromium1 ]]; then
                 printf "\n[+] Instalando o Chromium"
                 printf "\n[+] Instalando o Chromium" >> $arquivo_log
 
@@ -522,7 +522,7 @@ func_help()
     {
         local var_tor=$(type tor)
 
-        if [[ ! -e $var_tor ]]; then
+        if [[ -z $var_tor ]]; then
             printf "\n[+] Instalando o Tor"
             printf "\n[+] Instalando o Tor" >> $arquivo_log
 
@@ -558,7 +558,7 @@ func_help()
     {
     	local var_steam=$(type steam)
 
-        if [[ ! -e $var_steam ]]; then
+        if [[ -z $var_steam ]]; then
 	        printf "\n[+] Instalando Steam"
 	        printf "\n[+] Instalando Steam" >> $arquivo_log
 
@@ -589,15 +589,11 @@ func_help()
         # variavel de verificação
         local var_spotify=$(type spotify)
 
-        if [[ ! -e $var_spotify ]]; then
+        if [[ -z $var_spotify ]]; then
             printf "\n"
             printf "\n[+] Instalando Spotify" >> $arquivo_log
 
-            if [[ $distro = "Ubuntu" ]]; then 
-				snap install spotify 		         
-			elif [[ $distro = "Debian" ]]; then 
-                snap install spotify                  
-			fi			            	
+            snap install spotify                  
         else
             printf "[-] Spofity já está instalado! \n"
             printf "[-] Spofity já está instalado! \n" >> $arquivo_log
@@ -633,7 +629,7 @@ func_help()
      	# variavel de verificação
         local var_gimp=$(type gimp)
 
-        if [[ ! -e $var_gimp ]]; then
+        if [[ -z $var_gimp ]]; then
             printf "\n[+] Instalando o Gimp"
             printf "\n[+] Instalando o Gimp" >> $arquivo_log
 
@@ -667,7 +663,7 @@ func_help()
         # variavel de verificação
         local var_xfpanel=$(type xfpanel-switch)
 
-        if [[ ! -e $var_xfpanel ]]; then
+        if [[ -z $var_xfpanel ]]; then
             printf "\n[+] Instalando Xfpanel-switch"
             printf "\n[+] Instalando Xfpanel-switch" >> $arquivo_log
 
@@ -685,7 +681,7 @@ func_help()
         ## whisker-menu
         local var_whiskermenu=$(type xfce4-popup-whiskermenu)
 
-        if [[ ! -e $var_whiskermenu ]]; then
+        if [[ -z $var_whiskermenu ]]; then
             printf "\n"
             printf "\n[+] Instalando Whisker-menu"
             printf "\n[+] Instalando Whisker-menu" >> $arquivo_log
@@ -707,7 +703,7 @@ func_help()
     	# variavel de verificação
         local var_wine=$(type wine)
 
-        if [[ ! -e $var_wine ]]; then
+        if [[ -z $var_wine ]]; then
             printf "\n[+] Instalando o Wine" >> $arquivo_log
 
             if [[ $distro = "Ubuntu" ]]; then
@@ -823,7 +819,7 @@ func_help()
         # variavel de verificação
         local var_stellarium=$(type stellarium)
 
-        if [[ ! -e $var_stellarium ]]; then
+        if [[ -z $var_stellarium ]]; then
             # verificando distribuição
             if [ $distro = "Ubuntu" ]; then
                 printf "\n[+] Instalando o Stellarium"
@@ -900,7 +896,7 @@ func_help()
         # variavel de verificação
         local var_kdenlive=$(type kdenlive)
 
-        if [[ ! -e $var_kdenlive ]]; then
+        if [[ -z $var_kdenlive ]]; then
             printf "\n[+] Instalando o Kdenlive"
             printf "\n[+] Instalando o Kdenlive" >> $arquivo_log
 
@@ -941,7 +937,7 @@ func_help()
         # variavel de verificação
         local var_plank=$(type plank)
 
-        if [[ ! -e $var_plank ]]; then
+        if [[ -z $var_plank ]]; then
             printf "\n[+] Instalando o Plank Dock"
             printf "\n[+] Instalando o Plank Dock" >> $arquivo_log
 
@@ -978,7 +974,7 @@ func_help()
         # variavel de verificação
         local var_nautilus=$(type nautilus)
 
-        if [[ ! -e $var_nautilus ]]; then
+        if [[ -z $var_nautilus ]]; then
             printf "\n[+] Instalando o Nautilus"
             printf "\n[+] Instalando o Nautilus" >> $arquivo_log
 
@@ -1029,7 +1025,7 @@ func_help()
         # variavel de verificação
         local var_simplescreenrecorder=$(type simplescreenrecorder)
 
-        if [[ ! -e $var_simplescreenrecorder ]]; then
+        if [[ -z $var_simplescreenrecorder ]]; then
             printf "\n[*] Instalando o Simple Screen Recorder"
             printf "\n[*] Instalando o Simple Screen Recorder" >> $arquivo_log
 
@@ -1054,7 +1050,7 @@ func_help()
         # variavel de verificação
         local var_mega=$(type megasync)
 
-        if [[ ! -e $var_mega ]]; then        
+        if [[ -z $var_mega ]]; then        
             printf "\n[+] Instalando o MEGA"
             printf "\n[+] Instalando o MEGA" >> $arquivo_log
             
@@ -1123,7 +1119,7 @@ func_help()
         # variavel de verificação
         local var_nvidia=$(type nvidia-settings)
 
-        if [[ ! -e $var_nvidia ]]; then
+        if [[ -z $var_nvidia ]]; then
             if [ $distro = "Ubuntu" ]; then
     		    printf "\n[+] Instalando o driver da Placa Nvidia"
     		    printf "\n[+] Instalando o driver da Placa Nvidia" >> $arquivo_log
@@ -1160,7 +1156,7 @@ func_help()
         local var_virtualbox=$(type virtualbox)
 
         # criando verificação para instalar o virtualbox
-        if [[ ! -e $var_virtualbox ]]; then    
+        if [[ -z $var_virtualbox ]]; then    
         	printf "\n[*] Instalando Virtualbox \n"
             printf "\n[*] Instalando Virtualbox \n" >> $arquivo_log
 
@@ -1199,7 +1195,7 @@ func_help()
 		local var_flatpak=$(type flatpak)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $var_flatpak ]]; then
+        if [[ -z $var_flatpak ]]; then
 	        if [[ ! -e $var_pulseeeffects ]]; then
 	            printf "\n[+] Instalando o Pulse Effects"
 	            printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
@@ -1305,7 +1301,7 @@ func_help()
         local var_tuxguitar=$(type tuxguitar-vs)
 
         # criando verificação para instalar o tuxguitar
-        if [[ ! -e $var_tuxguitar ]]; then
+        if [[ -z $var_tuxguitar ]]; then
             printf "\n[+] Instalando Tux Guitar"
             printf "\n[+] Instalando Tux Guitar" >> $arquivo_log                
 
@@ -1326,7 +1322,7 @@ func_help()
         local var_musescore=$(type musescore)
 
         # criando verificação para instalar o musescore
-        if [[ ! -e $var_musescore ]]; then
+        if [[ -z $var_musescore ]]; then
             printf "\n[+] Instalando Muse Score"
             printf "\n[+] Instalando Muse Score" >> $arquivo_log
 
@@ -1350,7 +1346,7 @@ func_help()
         printf "\n[+] Instalando o ZSH" >> $arquivo_log
 
 		# criando verificação para instalar zsh
-        if [[ ! -e $var_zsh ]]; then
+        if [[ -z $var_zsh ]]; then
 	        apt install zsh zsh-common -y
 	    else
 	    	printf"\n[-] O ZSH ja esta instalado no seu sistema."
@@ -1364,7 +1360,7 @@ func_help()
         local var_docker=$(type docker)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $var_docker ]]; then
+        if [[ -z $var_docker ]]; then
         	printf "\n[+] Instalando o Docker"
             printf "\n[+] Instalando o Docker" >> $arquivo_log
     
@@ -1381,7 +1377,7 @@ func_help()
         local var_sublime=$(type subl)
 
         # criando verificação para instalar o docker
-        if [[ ! -e $var_sublime ]]; then
+        if [[ -z $var_sublime ]]; then
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
@@ -1470,7 +1466,7 @@ func_help()
         local var_transmission=$(type transmission-gtk)
 
         # verificando se transmission está instalado
-        if [[ ! -e $var_transmission ]]; then
+        if [[ -z $var_transmission ]]; then
             printf "\n"
             printf "\n[+] Instalando o Transmission"
             printf "\n[+] Instalando o Transmission" >> $arquivo_log    
@@ -1554,7 +1550,7 @@ func_help()
     	# variavel de verificação
         local var_locate=$(type locate)
 
-        if [[ ! -e $var_locate ]]; then
+        if [[ -z $var_locate ]]; then
             printf "[+] Instalando Locate"
             printf "[+] Instalando Locate" >> $arquivo_log
 
