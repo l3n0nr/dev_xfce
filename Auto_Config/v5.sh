@@ -489,8 +489,8 @@ func_help()
 
     install_chromium()
     {              
-        local var_chromium=$(which chromium >> /dev/null)        
-        local var_chromium1=$(which chromium-browser >> /dev/null)
+        local var_chromium=$(which chromium)        
+        local var_chromium1=$(which chromium-browser)
 
         if [[ $distro = "Debian" ]]; then 
             if [[ -z $var_chromium ]]; then
@@ -593,7 +593,13 @@ func_help()
             printf "\n[*] Instalando Spotify"
             printf "\n[*] Instalando Spotify" >> $arquivo_log
 
-            snap install spotify                  
+            if [[ $distro = "Ubuntu" ]]; then 
+                snap install spotify
+            elif [[ $distro = "Debian" ]]; then 
+                apt-get install spotify-client -y              
+            else
+                printf "\n[-] ERRO - Spofity"
+            fi
         else
             printf "\n[-] Spofity já está instalado! \n"
             printf "\n[-] Spofity já está instalado! \n" >> $arquivo_log
@@ -652,7 +658,7 @@ func_help()
 
         #Instalando componentes do XFCE
         apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin \
-                    xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-eyes-plugin xfce4-fsguard-plugin \
+                    xfce4-datetime-plugin xfce4-diskperf-plugin xfce4-fsguard-plugin \
                     xfce4-genmon-plugin xfce4-indicator-plugin xfce4-linelight-plugin xfce4-mailwatch-plugin \
                     xfce4-mpc-plugin xfce4-notes-plugin xfce4-places-plugin xfce4-netload-plugin \
                     xfce4-quicklauncher-plugin xfce4-radio-plugin xfce4-screenshooter-plugin xfce4-sensors-plugin \
@@ -1125,9 +1131,27 @@ func_help()
             printf "\n[*] Instalando Virtualbox \n" >> $arquivo_log
 
             if [ $distro = "Ubuntu" ]; then
+                #instalando virtualbox
                 apt install virtualbox-5.1 -y
-            elif [ $distro = "Debian" ]; then      
-                apt install virtualbox -y              
+                
+            elif [ $distro = "Debian" ]; then     
+                # adicionando repositorio
+                sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list' 
+
+                # baixando chave
+                wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+
+                # atualizando sistema
+                update
+                
+                # instalando dependencias necessarias
+                apt install dkms build-essential linux-headers-$(uname -r)
+
+                # instalando virtualbox
+                apt install virtualbox-5.2 -y    
+
+                # adicionando usuario
+                gpasswd -a $autor vboxusers          
             fi            
         else
             printf "[-] VirtualBox já está instalado! \n"
@@ -1356,9 +1380,16 @@ func_help()
         printf "\n[*] Instalando os firmware's non-free"        
         printf "\n[*] Instalando os firmware's non-free" >> $arquivo_log        
         
-        apt install firmware-linux firmware-linux-nonfree \
-        			xserver-xorg-input-synaptics blueman  \
-        			firmware-brcm80211 -y			
+        if [ $distro = "Ubuntu" ]; then
+            apt install xserver-xorg-input-synaptics \
+                        blueman  firmware-brcm80211 -y		
+        elif [ $distro = "Debian" ]; then
+            apt install firmware-linux \
+                        firmware-linux-nonfree -y
+        else
+            printf "\n[-] ERRO - firmware"
+            printf "\n[-] ERRO - firmware" >> $arquivo_log
+        fi
     }     
 
     install_compton()
@@ -1840,6 +1871,7 @@ func_instala()
 
     install_clamav
     install_ufw
+    install_firmware
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
@@ -1847,11 +1879,11 @@ func_instala()
         install_wavemon	
 	    install_reaver   
 
-		if [ $distro = "Ubuntu" ]; then					
-			echo 	# nenhuma acao, por enquanto
-		elif [ $distro = "Debian" ]; then				
-	    	install_firmware  		    
-		fi
+		# if [ $distro = "Ubuntu" ]; then					
+		# 	echo 	# nenhuma acao, por enquanto
+		# elif [ $distro = "Debian" ]; then				
+	 #    	echo    # nenhuma acao, por enquanto
+		# fi
 	elif [[ $v_hostname = 'desktop' ]]; then         
 		install_visualgameboy
 	    install_dolphin
