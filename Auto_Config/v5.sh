@@ -1521,6 +1521,17 @@ func_help()
         apt install clamav clamtk freshclam -y
     }
 
+    install_ufw()
+    {
+        printf "\n[*] Instalando o UFW"
+        printf "\n[*] Instalando o UFW" >> $arquivo_log
+
+        apt install ufw gufw -y
+
+        ## iniciando o ufw automaticamente no sistema
+        ufw enable && systemctl enable ufw && systemctl start ufw
+    }
+
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
 	remove_thunderbird()
@@ -1834,6 +1845,7 @@ func_instala()
     install_arpscan
 
     install_clamav
+    install_ufw
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
