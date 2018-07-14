@@ -72,8 +72,8 @@ func_help()
     update()
     {
         #Atualizando lista de repositorios
-        printf "\n[+] Atualizando lista de repositorios do sistema"
-        printf "\n[+] Atualizando lista de repositorios do sistema" >> $arquivo_log
+        printf "\n[*] Atualizando lista de repositorios do sistema"
+        printf "\n[*] Atualizando lista de repositorios do sistema" >> $arquivo_log
         	apt update
     }
 
@@ -82,18 +82,18 @@ func_help()
         # verificando distribuição
         if [ $distro = "Ubuntu" ]; then            
         	#Atualizando lista de programas do sistema
-        	printf "\n[+] Atualizando lista de programas do sistema \n"
-	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
+        	printf "\n[*] Atualizando lista de programas do sistema \n"
+	        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
 	        	apt upgrade -y
 
 	        #Atualizando repositorio local
-	        printf "\n[+] Atualizando repositório local dos programas \n"
-	        printf "\n[+] Atualizando repositório local dos programas \n" >> $arquivo_log
+	        printf "\n[*] Atualizando repositório local dos programas \n"
+	        printf "\n[*] Atualizando repositório local dos programas \n" >> $arquivo_log
 	        	auto-apt updatedb
 		else
         	#Atualizando lista de programas do sistem
-        	printf "\n[+] Atualizando lista de programas do sistema \n"
-	        printf "\n[+] Atualizando lista de programas do sistema \n" >> $arquivo_log
+        	printf "\n[*] Atualizando lista de programas do sistema \n"
+	        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
                 ## atualizacao segura
 		        apt upgrade -y
                 
@@ -111,8 +111,8 @@ func_help()
     apt_check()
     {
         #verificando lista do apt
-        printf "\n[+] Verificando lista do apt"
-        printf "\n[+] Verificando lista do apt" >> $arquivo_log
+        printf "\n[*] Verificando lista do apt"
+        printf "\n[*] Verificando lista do apt" >> $arquivo_log
         
         apt-get check -y
     }
@@ -120,8 +120,8 @@ func_help()
     apt_install()
     {
         #Instalando possiveis dependencias
-        printf "\n[+] Instalando dependências pendentes"
-        printf "\n[+] Instalando dependências pendentes" >> $arquivo_log
+        printf "\n[*] Instalando dependências pendentes"
+        printf "\n[*] Instalando dependências pendentes" >> $arquivo_log
 
         apt-get install -fy
     }
@@ -129,8 +129,8 @@ func_help()
     apt_remove()
     {
         #removendo possiveis dependencias
-        printf "\n[+] Removendo possíveis dependências obsoletas"
-        printf "\n[+] Removendo possíveis dependências obsoletas" >> $arquivo_log
+        printf "\n[*] Removendo possíveis dependências obsoletas"
+        printf "\n[*] Removendo possíveis dependências obsoletas" >> $arquivo_log
 
         apt-get remove -fy
     }
@@ -138,8 +138,8 @@ func_help()
     apt_clean()
     {
         #Limpando lista arquivos sobressalentes
-        printf "\n[+] Limpando arquivos sobressalentes"
-        printf "\n[+] Limpando arquivos sobressalentes" >> $arquivo_log
+        printf "\n[*] Limpando arquivos sobressalentes"
+        printf "\n[*] Limpando arquivos sobressalentes" >> $arquivo_log
         
         rm -rf /var/lib/dpkg/info/*.*
 
@@ -152,8 +152,8 @@ func_help()
     apt_auto()
     {
         #corrigindo problemas de dependencias
-        printf "\n[+] Corrigindo problemas de dependências"
-        printf "\n[+] Corrigindo problemas de dependências" >> $arquivo_log
+        printf "\n[*] Corrigindo problemas de dependências"
+        printf "\n[*] Corrigindo problemas de dependências" >> $arquivo_log
         
         apt-get install auto-apt -y
     }
@@ -161,8 +161,8 @@ func_help()
     apt_update_local()
     {
         #corrigindo repositorio local de dependencias automaticamente
-        printf "\n[+] Corrigindo repositório local de dependências automaticamente"
-        printf "\n[+] Corrigindo repositório local de dependências automaticamente" >> $arquivo_log
+        printf "\n[*] Corrigindo repositório local de dependências automaticamente"
+        printf "\n[*] Corrigindo repositório local de dependências automaticamente" >> $arquivo_log
         
         auto-apt update-local
         apt list --upgradable
@@ -171,8 +171,8 @@ func_help()
     pacotes_quebrados()
     {
         #corrigindo pacotes quebrados
-        printf "\n[+] Corrigindo pacotes quebrados"
-        printf "\n[+] Corrigindo pacotes quebrados" >> $arquivo_log
+        printf "\n[*] Corrigindo pacotes quebrados"
+        printf "\n[*] Corrigindo pacotes quebrados" >> $arquivo_log
 
         #corrige possiveis erros na instalação de softwares
         dpkg --configure -a
@@ -192,8 +192,8 @@ func_help()
 
     atualiza_db()
     {
-        printf "\n[+] Atualizando base de dados do sistema"        
-        printf "\n[+] Atualizando base de dados do sistema" >> $arquivo_log
+        printf "\n[*] Atualizando base de dados do sistema"        
+        printf "\n[*] Atualizando base de dados do sistema" >> $arquivo_log
 
     	updatedb
     }
@@ -247,16 +247,16 @@ func_help()
     install_fonts()
     {
         #corrigindo erros fontes
-        printf "\n[+] Instalando pacotes de fontes"
-        printf "\n[+] Instalando pacotes de fontes" >> $arquivo_log
+        printf "\n[*] Instalando pacotes de fontes"
+        printf "\n[*] Instalando pacotes de fontes" >> $arquivo_log
 
         apt install ttf-mscoreinstall_fonts-installer install_fonts-noto ttf-freefont -f 
     }    
 
     config_ntp()
     {
-        printf "\n[+] Configurando o NTP"
-        printf "\n[+] Configurando o NTP" >> $arquivo_log
+        printf "\n[*] Configurando o NTP"
+        printf "\n[*] Configurando o NTP" >> $arquivo_log
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
         printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"           
@@ -267,14 +267,14 @@ func_help()
         cat base/ntp.txt > /etc/ntp.conf
 
         #ativando servico novamente
-        printf "\n[+] Ativando serviço NTP"        
+        printf "\n[*] Ativando serviço NTP"        
             service ntp start
 
         #realizando atualizacao hora/data
-        printf "\n[+] Atualizando hora do servidor"
+        printf "\n[*] Atualizando hora do servidor"
         printf "\n[*] Data e hora atual: `date +%d/%m/%Y" "%H:%M:%S`"
 
-        printf "\n[+] Atualizando servidores, aguarde..."
+        printf "\n[*] Atualizando servidores, aguarde..."
         printf "\n[*] NIC.BR\n"
             ntpdate -q $ntp_server
 
@@ -289,8 +289,8 @@ func_help()
 
     apport()
     {
-        printf "\n[+] Removendo possiveis erros com o apport \n"
-        printf "\n[+] Removendo possiveis erros com o apport \n" >> $arquivo_log
+        printf "\n[*] Removendo possiveis erros com o apport \n"
+        printf "\n[*] Removendo possiveis erros com o apport \n" >> $arquivo_log
 
         #corrige apport - ubuntu 16.04
         cat base/ubuntu/apport > /etc/default/apport
@@ -298,8 +298,8 @@ func_help()
 
     arquivo_hosts()
     {
-        printf "\n[+] Alterando arquivo Hosts"
-        printf "\n[+] Alterando arquivo Hosts" >> $arquivo_log
+        printf "\n[*] Alterando arquivo Hosts"
+        printf "\n[*] Alterando arquivo Hosts" >> $arquivo_log
         echo; echo
 
         ## gerando arquivo
@@ -316,8 +316,8 @@ func_help()
 
     chaveiro()
     {
-        printf "\n[+] Removendo o chaveiro da sessão"
-        printf "\n[+] Removendo o chaveiro da sessão" >> $arquivo_log
+        printf "\n[*] Removendo o chaveiro da sessão"
+        printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
 
         apt-get remove gnome-keyring -y
     }   
@@ -337,24 +337,24 @@ func_help()
             # if [[ $var_autologin = "1" ]]; then
             if [[ $? = "1" ]]; then    
                 if [[ $distro = "Debian" ]]; then             
-                    printf "\n[+] Habilitando login automatico" 
-                    printf "\n[+] Habilitando login automatico" >> $arquivo_log
+                    printf "\n[*] Habilitando login automatico" 
+                    printf "\n[*] Habilitando login automatico" >> $arquivo_log
 
                     echo "autologin-user=$autor" >> $var_autologin
                     echo "autologin-user-timeout=0" >> $var_autologin
 
-                    printf "\n[*] ReConfigurando lightdm, aguarde!" 
+                    printf "\n[*] Reconfigurando lightdm, aguarde!" 
                     dpkg-reconfigure lightdm 
 
                     if [[ $? = "0" ]]; then
-                        printf "\n[+] configuraçao atualizada com sucesso"
+                        printf "\n[*] Configuracao atualizada com sucesso"
                     else
                         printf "\n[-] Erro na Configuracao - Autologin"
                     fi
 
                 elif [[ $distro = "Ubuntu" ]]; then 
-                    printf "\n[+] Iniciando sessão automaticamente"
-                    printf "\n[+] Iniciando sessão automaticamente" >> $arquivo_log
+                    printf "\n[*] Iniciando sessão automaticamente"
+                    printf "\n[*] Iniciando sessão automaticamente" >> $arquivo_log
 
                     cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
                 else
@@ -383,40 +383,40 @@ func_help()
             printf "\n[-] Voce ja possui os arquivos Breeze!"
             printf "\n[-] Voce ja possui os arquivos Breeze!" >> $arquivo_log
         else            
-            printf "\n[+] Copiando icones Breeze"
-            printf "\n[+] Copiando icones Breeze" >> $arquivo_log
+            printf "\n[*] Copiando icones Breeze"
+            printf "\n[*] Copiando icones Breeze" >> $arquivo_log
 
-            cp -r ../config/Interface/icons/Breeze /usr/share/icons
+            cp -r ../Config/Interface/icons/Breeze /usr/share/icons
         fi
 
         if [ -z $var_flatremix ]; then 
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> $arquivo_log
         else            
-            printf "\n[+] Copiando icones Flat_Remix_Light"
-            printf "\n[+] Copiando icones Flat_Remix_Light" >> $arquivo_log
+            printf "\n[*] Copiando icones Flat_Remix_Light"
+            printf "\n[*] Copiando icones Flat_Remix_Light" >> $arquivo_log
 
-            cp -r ../config/Interface/icons/Flat_Remix_Light /usr/share/icons
+            cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
         fi
 
         if [ -z $var_papirus ]; then 
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> $arquivo_log
         else            
-            printf "\n[+] Copiando icones Papirus_Light"
-            printf "\n[+] Copiando icones Papirus_Light" >> $arquivo_log
+            printf "\n[*] Copiando icones Papirus_Light"
+            printf "\n[*] Copiando icones Papirus_Light" >> $arquivo_log
 
-            cp -r ../config/Interface/icons/Papirus_Light /usr/share/icons
+            cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
         fi
 
         if [ -z $var_icones_macos ]; then 
             printf "\n[-] Voce ja possui os arquivos MacOS X!"
             printf "\n[-] Voce ja possui os arquivos MacOS X!" >> $arquivo_log
         else    
-            printf "\n[+] Copiando icones MacOS X"
-            printf "\n[+] Copiando icones MacOS X" >> $arquivo_log
+            printf "\n[*] Copiando icones MacOS X"
+            printf "\n[*] Copiando icones MacOS X" >> $arquivo_log
 
-            cp -r ../config/Interface/themes/* /usr/share/themes
+            cp -r ../Config/Interface/themes/* /usr/share/themes
         fi
     }    
     
@@ -425,7 +425,7 @@ func_help()
         if [[ $distro = "Debian" ]]; then    
             [[ $(grep $language /etc/default/locale) = "" ]] \
                 && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
-                || printf "\n\n[-] configuraçao do idioma ja realizada anteriormente!"
+                || printf "\n\n[-] Configuracao do idioma ja realizada anteriormente!"
         fi
     }
 
@@ -433,40 +433,40 @@ func_help()
 # # limpa SISTEMA
     arquivos_temporarios()
     {
-        printf "\n[+] Removendo arquivos temporários do sistema" 
-        printf "\n[+] Removendo arquivos temporários do sistema" >> $arquivo_log
+        printf "\n[*] Removendo arquivos temporários do sistema" 
+        printf "\n[*] Removendo arquivos temporários do sistema" >> $arquivo_log
 
     	find ~/.thumbnails -type f -atime +2 -exec rm -Rf {} \+
     }
 
     pacotes_orfaos()
     {
-        printf "\n[+] Removendo Pacotes Órfãos"
-        printf "\n[+] Removendo Pacotes Órfãos" >> $arquivo_log
+        printf "\n[*] Removendo Pacotes Órfãos"
+        printf "\n[*] Removendo Pacotes Órfãos" >> $arquivo_log
 
         apt-get remove $(deborphan) -y 
     }
 
     funcao_chkrootkit()
     {
-        printf "\n[+] Verificando Chkrootkit"
-        printf "\n[+] Verificando Chkrootkit" >> $arquivo_log
+        printf "\n[*] Verificando Chkrootkit"
+        printf "\n[*] Verificando Chkrootkit" >> $arquivo_log
 
         chkrootkit
     }
 
     func_localepurge()
     {
-        printf "\n[+] Removendo idiomas extras" 
-        printf "\n[+] Removendo idiomas extras" >> $arquivo_log
+        printf "\n[*] Removendo idiomas extras" 
+        printf "\n[*] Removendo idiomas extras" >> $arquivo_log
 
         localepurge
     }
 
     func_check_clamav()
     {
-    	printf "\n[+] Checkando por virus com o ClamAV" 
-    	printf "\n[+] Checkando por virus com o ClamAV" >> $arquivo_log
+    	printf "\n[*] Checkando por virus com o ClamAV" 
+    	printf "\n[*] Checkando por virus com o ClamAV" >> $arquivo_log
 
     	# se variavel esta ativada, entao realiza procedimento
     	# demora bastante a verificacao, por isso a variavel
@@ -477,8 +477,8 @@ func_help()
 # # INSTALA PROGRAMAS
     install_firefox()
     {   
-        printf "\n[+] Instalando Firefox"
-        printf "\n[+] Instalando Firefox" >> $arquivo_log
+        printf "\n[*] Instalando Firefox"
+        printf "\n[*] Instalando Firefox" >> $arquivo_log
 
 		if [[ $distro = "Ubuntu" ]]; then
         	apt install firefox -y
@@ -489,28 +489,28 @@ func_help()
 
     install_chromium()
     {              
-        local var_chromium=$(type chromium)        
-        local var_chromium1=$(type chromium-browser)
+        local var_chromium=$(type chromium >> /dev/null)        
+        local var_chromium1=$(type chromium-browser >> /dev/null)
 
         if [[ $distro = "Debian" ]]; then 
             if [[ -z $var_chromium ]]; then
-                printf "\n[+] Instalando o Chromium"
-                printf "\n[+] Instalando o Chromium" >> $arquivo_log
+                printf "\n[*] Instalando o Chromium"
+                printf "\n[*] Instalando o Chromium" >> $arquivo_log
 
                 apt install chromium* -y
             else
-                printf "\n[+] Chromium ja esta instalado"
-                printf "\n[+] Chromium ja esta instalado" >> $arquivo_log                
+                printf "\n[*] Chromium ja esta instalado"
+                printf "\n[*] Chromium ja esta instalado" >> $arquivo_log                
             fi  
         elif [[ $distro = "Ubuntu" ]]; then 
             if [[ -z $var_chromium1 ]]; then
-                printf "\n[+] Instalando o Chromium"
-                printf "\n[+] Instalando o Chromium" >> $arquivo_log
+                printf "\n[*] Instalando o Chromium"
+                printf "\n[*] Instalando o Chromium" >> $arquivo_log
 
                 snap install chromium
             else
-                printf "\n[+] Chromium ja esta instalado"
-                printf "\n[+] Chromium ja esta instalado" >> $arquivo_log                
+                printf "\n[-] Chromium ja esta instalado"
+                printf "\n[-] Chromium ja esta instalado" >> $arquivo_log                
             fi  
         else
             printf "\n[-] Erro instalação Chromium"
@@ -523,8 +523,8 @@ func_help()
         local var_tor=$(type tor)
 
         if [[ -z $var_tor ]]; then
-            printf "\n[+] Instalando o Tor"
-            printf "\n[+] Instalando o Tor" >> $arquivo_log
+            printf "\n[*] Instalando o Tor"
+            printf "\n[*] Instalando o Tor" >> $arquivo_log
 
             # verificando distribuição
             if [ $distro = "Ubuntu" ]; then
@@ -559,8 +559,8 @@ func_help()
     	local var_steam=$(type steam)
 
         if [[ -z $var_steam ]]; then
-	        printf "\n[+] Instalando Steam"
-	        printf "\n[+] Instalando Steam" >> $arquivo_log
+	        printf "\n[*] Instalando Steam"
+	        printf "\n[*] Instalando Steam" >> $arquivo_log
 
 			# Instalando dependencias steam - DEBIAN 9
 			if [[ $distro = "Debian" ]]; then 
@@ -590,20 +590,20 @@ func_help()
         local var_spotify=$(type spotify)
 
         if [[ -z $var_spotify ]]; then
-            printf "\n"
-            printf "\n[+] Instalando Spotify" >> $arquivo_log
+            printf "\n[*] Instalando Spotify"
+            printf "\n[*] Instalando Spotify" >> $arquivo_log
 
             snap install spotify                  
         else
-            printf "[-] Spofity já está instalado! \n"
-            printf "[-] Spofity já está instalado! \n" >> $arquivo_log
+            printf "\n[-] Spofity já está instalado! \n"
+            printf "\n[-] Spofity já está instalado! \n" >> $arquivo_log
         fi
     }   
 
     install_codecs()
     {
-        printf "\n[+] Instalando Pacotes Multimidias (Codecs)"
-        printf "\n[+] Instalando Pacotes Multimidias (Codecs)" >> $arquivo_log
+        printf "\n[*] Instalando Pacotes Multimidias (Codecs)"
+        printf "\n[*] Instalando Pacotes Multimidias (Codecs)" >> $arquivo_log
 
         if [[ $distro = "Ubuntu" ]]; then
             #Instalando pacotes multimidias
@@ -630,21 +630,25 @@ func_help()
         local var_gimp=$(type gimp)
 
         if [[ -z $var_gimp ]]; then
-            printf "\n[+] Instalando o Gimp"
-            printf "\n[+] Instalando o Gimp" >> $arquivo_log
+            printf "\n[*] Instalando o Gimp"
+            printf "\n[*] Instalando o Gimp" >> $arquivo_log
 
             apt install gimp -y
         else
-            printf "[-] Gimp já está instalado na sua máquina!"
-            printf "[-] Gimp já está instalado na sua máquina!" >> $arquivo_log
+            printf "\n[-] Gimp já está instalado na sua máquina!"
+            printf "\n[-] Gimp já está instalado na sua máquina!" >> $arquivo_log
         fi
     }
 
     install_xfce4()
     {
-        printf "\n"
-        printf "\n[+] Instalando adicionais do XFCE" 
-        printf "\n[+] Instalando adicionais do XFCE" >> $arquivo_log
+        # variaveis
+        local var_xfpanel=$(type xfpanel-switch)        
+        local var_whiskermenu=$(type xfce4-popup-whiskermenu)
+
+
+        printf "\n[*] Instalando adicionais do XFCE" 
+        printf "\n[*] Instalando adicionais do XFCE" >> $arquivo_log
 
         #Instalando componentes do XFCE
         apt install xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin xfce4-cpugraph-plugin \
@@ -657,15 +661,11 @@ func_help()
                     xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
 
         #dando permissão de leitura, para verificar temperatura do HDD
-        chmod u+s /usr/sbin/hddtemp
-
-        ## xfpanel-switch
-        # variavel de verificação
-        local var_xfpanel=$(type xfpanel-switch)
+        chmod u+s /usr/sbin/hddtemp        
 
         if [[ -z $var_xfpanel ]]; then
-            printf "\n[+] Instalando Xfpanel-switch"
-            printf "\n[+] Instalando Xfpanel-switch" >> $arquivo_log
+            printf "\n[*] Instalando Xfpanel-switch"
+            printf "\n[*] Instalando Xfpanel-switch" >> $arquivo_log
 
             dpkg -i base/packages/xfce/xfpanel-switch_1.0.4-0ubuntu1_all.deb
 
@@ -676,15 +676,11 @@ func_help()
         else
             printf "\n[-] Xfpanel-switch ja esta instalado"
             printf "\n[-] Xfpanel-switch ja esta instalado" >> $arquivo_log
-        fi
-
-        ## whisker-menu
-        local var_whiskermenu=$(type xfce4-popup-whiskermenu)
+        fi      
 
         if [[ -z $var_whiskermenu ]]; then
-            printf "\n"
-            printf "\n[+] Instalando Whisker-menu"
-            printf "\n[+] Instalando Whisker-menu" >> $arquivo_log
+            printf "\n[*] Instalando Whisker-menu"
+            printf "\n[*] Instalando Whisker-menu" >> $arquivo_log
 
             dpkg -i base/packages/xfce/xfce4-whiskermenu-plugin_1.6.2-1_amd64.deb
 
@@ -704,7 +700,7 @@ func_help()
         local var_wine=$(type wine)
 
         if [[ -z $var_wine ]]; then
-            printf "\n[+] Instalando o Wine" >> $arquivo_log
+            printf "\n[*] Instalando o Wine" >> $arquivo_log
 
             if [[ $distro = "Ubuntu" ]]; then
                 # adicionado o repositorio
@@ -735,24 +731,24 @@ func_help()
 
     install_playonlinux()
     {
-        printf "\n[+] Instalando o PlayonLinux"
-        printf "\n[+] Instalando o PlayonLinux" >> $arquivo_log
+        printf "\n[*] Instalando o PlayonLinux"
+        printf "\n[*] Instalando o PlayonLinux" >> $arquivo_log
 
         apt install playonlinux -y
     }
 
     install_redshift()
     {
-        printf "\n[+] Instalando o Redshift"
-        printf "\n[+] Instalando o Redshift" >> $arquivo_log
+        printf "\n[*] Instalando o Redshift"
+        printf "\n[*] Instalando o Redshift" >> $arquivo_log
 
         apt install redshift gtk-redshift -y        
     }
 
     install_libreoffice()
     {
-        printf "\n[+] Instalando o Libreoffice"
-        printf "\n[+] Instalando o Libreoffice" >> $arquivo_log
+        printf "\n[*] Instalando o Libreoffice"
+        printf "\n[*] Instalando o Libreoffice" >> $arquivo_log
 
         if [[ $distro = "Ubuntu" ]]; then
             #adicionando ppa
@@ -768,48 +764,48 @@ func_help()
 
     install_vlc()
     {
-        printf "\n[+] Instalando o VLC"
-        printf "\n[+] Instalando o VLC" >> $arquivo_log
+        printf "\n[*] Instalando o VLC"
+        printf "\n[*] Instalando o VLC" >> $arquivo_log
 
         apt install vlc -y
     }
 
     install_clementine()
     {
-        printf "\n[+] Instalando o Clementine"
-        printf "\n[+] Instalando o Clementine" >> $arquivo_log
+        printf "\n[*] Instalando o Clementine"
+        printf "\n[*] Instalando o Clementine" >> $arquivo_log
 
         apt install clementine -y
     }
 
     install_gparted()
     {
-        printf "\n[+] Instalando o Gparted"
-        printf "\n[+] Instalando o Gparted" >> $arquivo_log
+        printf "\n[*] Instalando o Gparted"
+        printf "\n[*] Instalando o Gparted" >> $arquivo_log
 
         apt install gparted -y
     }
 
     install_tlp()
     {
-        printf "\n[+] Instalando o Tlp"
-        printf "\n[+] Instalando o Tlp" >> $arquivo_log
+        printf "\n[*] Instalando o Tlp"
+        printf "\n[*] Instalando o Tlp" >> $arquivo_log
 
         apt install tlp -y
     }
 
     install_git()
     {
-        printf "\n[+] Instalando o Git"
-        printf "\n[+] Instalando o Git" >> $arquivo_log
+        printf "\n[*] Instalando o Git"
+        printf "\n[*] Instalando o Git" >> $arquivo_log
 
         apt install git-core git -y
     }
 
     install_lm-sensors()
     {
-        printf "\n[+] Instalando o Lm-sensors"
-        printf "\n[+] Instalando o Lm-sensors" >> $arquivo_log
+        printf "\n[*] Instalando o Lm-sensors"
+        printf "\n[*] Instalando o Lm-sensors" >> $arquivo_log
 
         apt install lm-sensors -y
     }
@@ -822,8 +818,8 @@ func_help()
         if [[ -z $var_stellarium ]]; then
             # verificando distribuição
             if [ $distro = "Ubuntu" ]; then
-                printf "\n[+] Instalando o Stellarium"
-                printf "\n[+] Instalando o Stellarium" >> $arquivo_log
+                printf "\n[*] Instalando o Stellarium"
+                printf "\n[*] Instalando o Stellarium" >> $arquivo_log
 
                 #adicinando ppa
                 add-apt-repository ppa:stellarium/stellarium-releases -y
@@ -835,23 +831,23 @@ func_help()
             #Instalando o stellarium
             apt install stellarium* -y
         else
-            printf "[-] Stellarium já está instalado!"
-            printf "[-] Stellarium já está instalado!" >> $arquivo_log
+            printf "\n[-] Stellarium já está instalado!"
+            printf "\n[-] Stellarium já está instalado!" >> $arquivo_log
         fi
     }
 
     install_reaver()
     {
-        printf "\n[+] Instalando o Reaver"
-        printf "\n[+] Instalando o Reaver" >> $arquivo_log
+        printf "\n[*] Instalando o Reaver"
+        printf "\n[*] Instalando o Reaver" >> $arquivo_log
 
         apt install reaver -y
     }  
 
     install_dolphin()
     {
-        printf "\n[+] Instalando o Dolphin"
-        printf "\n[+] Instalando o Dolphin" >> $arquivo_log
+        printf "\n[*] Instalando o Dolphin"
+        printf "\n[*] Instalando o Dolphin" >> $arquivo_log
 
         if [[ $distro = "Ubuntu" ]]; then
             #adicionando repositorio do dolphin
@@ -870,8 +866,8 @@ func_help()
 
     install_visualgameboy()
     {
-        printf "\n[+] Instalando o Visual Game Boy"
-        printf "\n[+] Instalando o Visual Game Boy" >> $arquivo_log 
+        printf "\n[*] Instalando o Visual Game Boy"
+        printf "\n[*] Instalando o Visual Game Boy" >> $arquivo_log 
 
         if [[ $distro = "Ubuntu" ]]; then
         	apt install visualboyadvance-gtk -y
@@ -885,49 +881,24 @@ func_help()
 
     install_neofetch()
     {
-        printf "\n[+] Instalando o Neofetch"
-        printf "\n[+] Instalando o Neofetch" >> $arquivo_log
+        printf "\n[*] Instalando o Neofetch"
+        printf "\n[*] Instalando o Neofetch" >> $arquivo_log
 
         apt install neofetch -y
     }
 
-    install_kdenlive()
-    {
-        # variavel de verificação
-        local var_kdenlive=$(type kdenlive)
-
-        if [[ -z $var_kdenlive ]]; then
-            printf "\n[+] Instalando o Kdenlive"
-            printf "\n[+] Instalando o Kdenlive" >> $arquivo_log
-
-            if [[ $distro = "Ubuntu" ]]; then
-                #adicionando ppa
-                add-apt-repository ppa:sunab/kdenlive-release -y
-
-                #Atualizando sistema
-                update
-            fi
-
-            #Instalando kdenlive
-            apt install kdenlive -y
-        else
-            printf "\n[-] Kdenlive já está instalado!"
-            printf "\n[-] Kdenlive já está instalado!" >> $arquivo_log
-        fi
-    }
-
     install_sweethome3d()
     {
-        printf "\n[+] Instalando Sweet Home 3D"
-        printf "\n[+] Instalando Sweet Home 3D" >> $arquivo_log
+        printf "\n[*] Instalando Sweet Home 3D"
+        printf "\n[*] Instalando Sweet Home 3D" >> $arquivo_log
 
         apt install sweethome3d -y
     }
 
     install_cheese()
     {
-        printf "\n[+] Instalando o Cheese"
-        printf "\n[+] Instalando o Cheese" >> $arquivo_log
+        printf "\n[*] Instalando o Cheese"
+        printf "\n[*] Instalando o Cheese" >> $arquivo_log
 
         apt install cheese -y
     }
@@ -938,8 +909,8 @@ func_help()
         local var_plank=$(type plank)
 
         if [[ -z $var_plank ]]; then
-            printf "\n[+] Instalando o Plank Dock"
-            printf "\n[+] Instalando o Plank Dock" >> $arquivo_log
+            printf "\n[*] Instalando o Plank Dock"
+            printf "\n[*] Instalando o Plank Dock" >> $arquivo_log
 
             # verificando distribuição
             if [ $distro = "Ubuntu" ]; then
@@ -963,8 +934,8 @@ func_help()
 
     install_gnome_system_monitor()
     {
-        printf "\n[+] Instalando o Gnome System Monitor"
-        printf "\n[+] Instalando o Gnome System Monitor" >> $arquivo_log
+        printf "\n[*] Instalando o Gnome System Monitor"
+        printf "\n[*] Instalando o Gnome System Monitor" >> $arquivo_log
 
         apt install gnome-system-monitor -y
     }
@@ -975,8 +946,8 @@ func_help()
         local var_nautilus=$(type nautilus)
 
         if [[ -z $var_nautilus ]]; then
-            printf "\n[+] Instalando o Nautilus"
-            printf "\n[+] Instalando o Nautilus" >> $arquivo_log
+            printf "\n[*] Instalando o Nautilus"
+            printf "\n[*] Instalando o Nautilus" >> $arquivo_log
 
             # verificando distribuição
             if [ $distro = "Ubuntu" ]; then
@@ -998,24 +969,24 @@ func_help()
 
     install_wireshark()
     {
-        printf "\n[+] Instalando o Wireshark"
-        printf "\n[+] Instalando o Wireshark" >> $arquivo_log
+        printf "\n[*] Instalando o Wireshark"
+        printf "\n[*] Instalando o Wireshark" >> $arquivo_log
 
         apt install wireshark wireshark-gtk -y
     }
 
     install_gnome_disk_utility()
     {
-        printf "\n[+] Instalando o Gnome Disk Utility"
-        printf "\n[+] Instalando o Gnome Disk Utility" >> $arquivo_log
+        printf "\n[*] Instalando o Gnome Disk Utility"
+        printf "\n[*] Instalando o Gnome Disk Utility" >> $arquivo_log
 
         apt install gnome-disk-utility -y
     }
 
     install_audacity()
     {
-        printf "\n[+] Instalando o Audacity"
-        printf "\n[+] Instalando o Audacity" >> $arquivo_log
+        printf "\n[*] Instalando o Audacity"
+        printf "\n[*] Instalando o Audacity" >> $arquivo_log
 
         apt install audacity -y
     }
@@ -1051,8 +1022,8 @@ func_help()
         local var_mega=$(type megasync)
 
         if [[ -z $var_mega ]]; then        
-            printf "\n[+] Instalando o MEGA"
-            printf "\n[+] Instalando o MEGA" >> $arquivo_log
+            printf "\n[*] Instalando o MEGA"
+            printf "\n[*] Instalando o MEGA" >> $arquivo_log
             
             if [[ $distro = "Ubuntu" ]]; then
 	            # Instalando mega
@@ -1075,41 +1046,40 @@ func_help()
 
     install_openssh()
     {
-        printf "\n"
-        printf "\n[+] Instalando o OpenSSH"
-        printf "\n[+] Instalando o OpenSSH" >> $arquivo_log
+        printf "\n[*] Instalando o OpenSSH"
+        printf "\n[*] Instalando o OpenSSH" >> $arquivo_log
 
         apt install openssh-client openssh-server -y
     }
 
     install_figlet()
     {
-        printf "\n[+] Instalando o Figlet"
-        printf "\n[+] Instalando o Figlet" >> $arquivo_log
+        printf "\n[*] Instalando o Figlet"
+        printf "\n[*] Instalando o Figlet" >> $arquivo_log
 
         apt install figlet -y
     }
 
     install_chkrootkit()
     {
-        printf "\n[+] Instalando o Chkrootkit"
-        printf "\n[+] Instalando o Chkrootkit" >> $arquivo_log
+        printf "\n[*] Instalando o Chkrootkit"
+        printf "\n[*] Instalando o Chkrootkit" >> $arquivo_log
 
         apt install chkrootkit -y
     }
 
     install_localepurge()
     {
-        printf "\n[+] Instalando o Localepurge"
-        printf "\n[+] Instalando o Localepurge" >> $arquivo_log
+        printf "\n[*] Instalando o Localepurge"
+        printf "\n[*] Instalando o Localepurge" >> $arquivo_log
 
         apt-get install localepurge -y
     }
 
     install_hardinfo()
     {
-        printf "\n[+] Instalando o Hardinfo"
-        printf "\n[+] Instalando o Hardinfo" >> $arquivo_log
+        printf "\n[*] Instalando o Hardinfo"
+        printf "\n[*] Instalando o Hardinfo" >> $arquivo_log
 
         apt install hardinfo -y
     }
@@ -1121,8 +1091,8 @@ func_help()
 
         if [[ -z $var_nvidia ]]; then
             if [ $distro = "Ubuntu" ]; then
-    		    printf "\n[+] Instalando o driver da Placa Nvidia"
-    		    printf "\n[+] Instalando o driver da Placa Nvidia" >> $arquivo_log
+    		    printf "\n[*] Instalando o driver da Placa Nvidia"
+    		    printf "\n[*] Instalando o driver da Placa Nvidia" >> $arquivo_log
 
     		    apt-add-repository ppa:graphics-drivers/ppa -y
     		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
@@ -1163,7 +1133,6 @@ func_help()
             if [ $distro = "Ubuntu" ]; then
                 apt install virtualbox-5.1 -y
             elif [ $distro = "Debian" ]; then      
-                # Instalando virtualbox
                 apt install virtualbox -y              
             fi            
         else
@@ -1174,16 +1143,16 @@ func_help()
 
     install_ristretto()
     {
-        printf "\n[+] Instalando o Ristretto"
-        printf "\n[+] Instalando o Ristretto" >> $arquivo_log
+        printf "\n[*] Instalando o Ristretto"
+        printf "\n[*] Instalando o Ristretto" >> $arquivo_log
 
         apt install ristretto -y
     }
 
     install_tree()
     {
-        printf "\n[+] Instalando o Tree"
-        printf "\n[+] Instalando o Tree" >> $arquivo_log
+        printf "\n[*] Instalando o Tree"
+        printf "\n[*] Instalando o Tree" >> $arquivo_log
 
         apt install tree -y
     }
@@ -1197,8 +1166,8 @@ func_help()
         # criando verificação para instalar o docker
         if [[ -z $var_flatpak ]]; then
 	        if [[ ! -e $var_pulseeeffects ]]; then
-	            printf "\n[+] Instalando o Pulse Effects"
-	            printf "\n[+] Instalando o Pulse Effects" >> $arquivo_log
+	            printf "\n[*] Instalando o Pulse Effects"
+	            printf "\n[*] Instalando o Pulse Effects" >> $arquivo_log
 
 	            # adicionando via flatpak
 	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -1217,80 +1186,80 @@ func_help()
     
     install_terminator()
     {
-        printf "\n[+] Instalando o Terminator"
-        printf "\n[+] Instalando o Terminator" >> $arquivo_log
+        printf "\n[*] Instalando o Terminator"
+        printf "\n[*] Instalando o Terminator" >> $arquivo_log
         
         apt install terminator -y
     }
 
     install_aircrack()
     {
-        printf "\n[+] Instalando o Aircrack-ng"
-        printf "\n[+] Instalando o Aircrack-ng" >> $arquivo_log
+        printf "\n[*] Instalando o Aircrack-ng"
+        printf "\n[*] Instalando o Aircrack-ng" >> $arquivo_log
 
         apt install aircrack-ng -y
     }
 
     install_snap()
     {
-        printf "\n[+] Instalando o Snap"
-        printf "\n[+] Instalando o Snap" >> $arquivo_log
+        printf "\n[*] Instalando o Snap"
+        printf "\n[*] Instalando o Snap" >> $arquivo_log
 
         apt install snapd -y      
     }
 
     install_ntp()
     {
-        printf "\n[+] Instalando o NTP"
-        printf "\n[+] Instalando o NTP" >> $arquivo_log
+        printf "\n[*] Instalando o NTP"
+        printf "\n[*] Instalando o NTP" >> $arquivo_log
 
         apt install ntp ntpdate -y
     }
 
     install_xclip()
     {
-        printf "\n[+] Instalando o Xclip"
-        printf "\n[+] Instalando o Xclip" >> $arquivo_log
+        printf "\n[*] Instalando o Xclip"
+        printf "\n[*] Instalando o Xclip" >> $arquivo_log
 
         apt install xclip -y
     }
 
     install_espeak()
     {
-        printf "\n[+] Instalando o Speak"
-        printf "\n[+] Instalando o Speak" >> $arquivo_log
+        printf "\n[*] Instalando o Speak"
+        printf "\n[*] Instalando o Speak" >> $arquivo_log
 
         apt install espeak -y	
     }
 
     install_ibus()
     {
-        printf "\n[+] Instalando o Ibus"
-        printf "\n[+] Instalando o Ibus" >> $arquivo_log
+        printf "\n[*] Instalando o Ibus"
+        printf "\n[*] Instalando o Ibus" >> $arquivo_log
 
         apt install ibus -y
     }
 
     install_nmap()
     {
-        printf "\n[+] Instalando o Nmap"
-        printf "\n[+] Instalando o Nmap" >> $arquivo_log
+        printf "\n[*] Instalando o Nmap"
+        printf "\n[*] Instalando o Nmap" >> $arquivo_log
 
         apt install nmap -y
     }
 
     install_htop()
     {
-    	printf "\n[+] Instalando o Htop"
-        printf "\n[+] Instalando o Htop" >> $arquivo_log
+    	printf "\n[*] Instalando o Htop"
+        printf "\n[*] Instalando o Htop" >> $arquivo_log
 
         apt install htop -y
     }
 
     install_gnome_calculator()
     {
-        printf "\n[+] Instalando o Gnome Calculator"
-        printf "\n[+] Instalando o Gnome Calculator" >> $arquivo_log
+        printf "\n[*] Instalando o Gnome Calculator"
+        printf "\n[*] Instalando o Gnome Calculator" >> $arquivo_log
 
         apt install gnome-calculator -y
     }
@@ -1302,8 +1271,8 @@ func_help()
 
         # criando verificação para instalar o tuxguitar
         if [[ -z $var_tuxguitar ]]; then
-            printf "\n[+] Instalando Tux Guitar"
-            printf "\n[+] Instalando Tux Guitar" >> $arquivo_log                
+            printf "\n[*] Instalando Tux Guitar"
+            printf "\n[*] Instalando Tux Guitar" >> $arquivo_log                
 
             if [ $distro = "Ubuntu" ]; then
               snap install tuxguitar-vs
@@ -1323,8 +1292,8 @@ func_help()
 
         # criando verificação para instalar o musescore
         if [[ -z $var_musescore ]]; then
-            printf "\n[+] Instalando Muse Score"
-            printf "\n[+] Instalando Muse Score" >> $arquivo_log
+            printf "\n[*] Instalando Muse Score"
+            printf "\n[*] Instalando Muse Score" >> $arquivo_log
 
             if [ $distro = "Ubuntu" ]; then
 				snap install musescore
@@ -1342,8 +1311,8 @@ func_help()
         # variavel de verificação
         local var_zsh=$(type zsh)
 
-        printf "\n[+] Instalando o ZSH"
-        printf "\n[+] Instalando o ZSH" >> $arquivo_log
+        printf "\n[*] Instalando o ZSH"
+        printf "\n[*] Instalando o ZSH" >> $arquivo_log
 
 		# criando verificação para instalar zsh
         if [[ -z $var_zsh ]]; then
@@ -1361,8 +1330,8 @@ func_help()
 
         # criando verificação para instalar o docker
         if [[ -z $var_docker ]]; then
-        	printf "\n[+] Instalando o Docker"
-            printf "\n[+] Instalando o Docker" >> $arquivo_log
+        	printf "\n[*] Instalando o Docker"
+            printf "\n[*] Instalando o Docker" >> $arquivo_log
     
             curl -fsSL https://get.docker.com/ | sh                
         else
@@ -1390,9 +1359,8 @@ func_help()
 
     install_firmware()
     {
-        printf "\n"
-        printf "\n[+] Instalando os firmware's non-free"        
-        printf "\n[+] Instalando os firmware's non-free" >> $arquivo_log        
+        printf "\n[*] Instalando os firmware's non-free"        
+        printf "\n[*] Instalando os firmware's non-free" >> $arquivo_log        
         
         apt install firmware-linux firmware-linux-nonfree \
         			xserver-xorg-input-synaptics blueman  \
@@ -1401,8 +1369,8 @@ func_help()
 
     install_compton()
     {
-        printf "\n[+] Instalando o Compton"        
-        printf "\n[+] Instalando o Compton" >> $arquivo_log        
+        printf "\n[*] Instalando o Compton"        
+        printf "\n[*] Instalando o Compton" >> $arquivo_log        
 
     	apt install compton compton-conf -y
 
@@ -1422,9 +1390,8 @@ func_help()
 
     install_python()
     {        
-        printf "\n"
-        printf "\n[+] Instalando o Pip" 
-        printf "\n[+] Instalando o Pip" >> $arquivo_log        
+        printf "\n[*] Instalando o Pip" 
+        printf "\n[*] Instalando o Pip" >> $arquivo_log        
 
         apt install python3.5 python-pip -y
 
@@ -1435,27 +1402,24 @@ func_help()
 
     install_youtubedl()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Youtube-DL" 
-        printf "\n[+] Instalando o Youtube-DL" >> $arquivo_log 
+        printf "\n[*] Instalando o Youtube-DL" 
+        printf "\n[*] Instalando o Youtube-DL" >> $arquivo_log 
 
         apt install youtube-dl -y
     }
 
     install_yad()
     {
-		printf "\n"
-        printf "\n[+] Instalando o YAD" 
-        printf "\n[+] Instalando o YAD" >> $arquivo_log 
+        printf "\n[*] Instalando o YAD" 
+        printf "\n[*] Instalando o YAD" >> $arquivo_log 
 
         apt install yad -y    	
     }
 
     install_dropbox()
     {
-        printf "\n"
-        printf "\n[+] Instalando Dropbox"
-        printf "\n[+] Instalando Dropbox" >> $arquivo_log
+        printf "\n[*] Instalando Dropbox"
+        printf "\n[*] Instalando Dropbox" >> $arquivo_log
 
         ## instalando dropbox
         apt install nautilus-dropbox -y
@@ -1467,9 +1431,8 @@ func_help()
 
         # verificando se transmission está instalado
         if [[ -z $var_transmission ]]; then
-            printf "\n"
-            printf "\n[+] Instalando o Transmission"
-            printf "\n[+] Instalando o Transmission" >> $arquivo_log    
+            printf "\n[*] Instalando o Transmission"
+            printf "\n[*] Instalando o Transmission" >> $arquivo_log    
 
             apt install transmission-gtk -y
         fi
@@ -1477,45 +1440,40 @@ func_help()
 
     install_xfburn()
     {
-        printf "\n"
-        printf "\n[+] Instalando XFBurn"
-        printf "\n[+] Instalando XFBurn" >> $arquivo_log
+        printf "\n[*] Instalando XFBurn"
+        printf "\n[*] Instalando XFBurn" >> $arquivo_log
 
         apt install xfburn -y
     }
 
     install_wavemon()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Wavemon"        
-        printf "\n[+] Instalando o Wavemon" >> $arquivo_log        
+        printf "\n[*] Instalando o Wavemon"        
+        printf "\n[*] Instalando o Wavemon" >> $arquivo_log        
 
         apt install wavemon -y
     }
 
     install_mugshot()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Mugshot"        
-        printf "\n[+] Instalando o Mugshot" >> $arquivo_log        
+        printf "\n[*] Instalando o Mugshot"        
+        printf "\n[*] Instalando o Mugshot" >> $arquivo_log        
 
         apt install mugshot -y
     }
 
     install_simplescan()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Simple-scan"        
-        printf "\n[+] Instalando o Simple-scan" >> $arquivo_log        
+        printf "\n[*] Instalando o Simple-scan"        
+        printf "\n[*] Instalando o Simple-scan" >> $arquivo_log        
 
         apt install simple-scan -y
     }
 
     install_wireshark()
     {
-        printf "\n"
-        printf "\n[+] Instalando o Wireshark"
-        printf "\n[+] Instalando o Wireshark" >> $arquivo_log
+        printf "\n[*] Instalando o Wireshark"
+        printf "\n[*] Instalando o Wireshark" >> $arquivo_log
 
         apt install wireshark -y
     }
@@ -1530,7 +1488,6 @@ func_help()
 
     install_prelink()
     {
-        #Instalando prelink, preload, deborphan para um melhor performance do sistema
         printf "\n[*] Instalando Preload"
         printf "\n[*] Instalando Preload" >> $arquivo_log
 
@@ -1551,10 +1508,13 @@ func_help()
         local var_locate=$(type locate)
 
         if [[ -z $var_locate ]]; then
-            printf "[+] Instalando Locate"
-            printf "[+] Instalando Locate" >> $arquivo_log
+            printf "\n[*] Instalando Locate"
+            printf "\n[*] Instalando Locate" >> $arquivo_log
 
         	apt install locate -y
+        else
+            printf "\n[-] Locate ja esta instalado!"
+            printf "\n[-] Locate ja esta instalado!" >> $arquivo_log            
         fi
     }
 
@@ -1781,7 +1741,6 @@ func_corrige()
         printf "\n[-] ERRO corrige!" >> $arquivo_log
     fi
 
-    # realizando atualização
     update
 }
 
@@ -1841,7 +1800,6 @@ func_instala()
     install_lm-sensors    
     install_nautilus
     install_openssh    
-    install_reaver
     install_redshift
     install_ristretto    
     install_neofetch
@@ -1893,7 +1851,8 @@ func_instala()
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
         install_aircrack  
-        install_wavemon	   
+        install_wavemon	
+	    install_reaver   
 
 		if [ $distro = "Ubuntu" ]; then					
 			echo 	# nenhuma acao, por enquanto
@@ -1905,7 +1864,6 @@ func_instala()
 	    install_dolphin
 
 		install_audacity
-    	install_kdenlive
         install_nvidia      
                 
         install_transmission        
