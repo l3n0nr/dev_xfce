@@ -497,7 +497,7 @@ func_help()
                 printf "\n[*] Instalando o Chromium"
                 printf "\n[*] Instalando o Chromium" >> $arquivo_log
 
-                apt install chromium* -y
+                apt install chromium chromium-l10n -y
             else
                 printf "\n[*] Chromium ja esta instalado"
                 printf "\n[*] Chromium ja esta instalado" >> $arquivo_log                
@@ -1102,12 +1102,6 @@ func_help()
 
     		    apt install nvidia-current nvidia-settings -y  
             elif [[ $distro = "Debian" ]]; then
-                # adicionando repositorio
-        		echo "deb http://httpredir.debian.org/debian/ stretch main contrib non-free" >> /etc/apt/sources.list
-
-                # Atualizando sistema
-        	    update
-
                 # Instalando driver
         	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver
             else
@@ -1409,7 +1403,7 @@ func_help()
         printf "\n[*] Instalando Dropbox" >> $arquivo_log
 
         ## instalando dropbox
-        apt install nautilus-dropbox -y
+        apt install nautilus-dropbox -y        
     }
 
     install_transmission()

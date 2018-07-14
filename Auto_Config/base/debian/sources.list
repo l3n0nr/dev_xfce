@@ -1,36 +1,31 @@
 #------------------------------------------------------------------------------#
 #                   OFFICIAL DEBIAN REPOS                    
 #------------------------------------------------------------------------------#
-
-###### Debian Main Repos
-## MAIN
-#deb http://ftp.br.debian.org/debian/ testing main contrib non-free
-
-## UPDATES
-#deb http://ftp.br.debian.org/debian/ testing-updates main contrib non-free
-
-## SECURITY
-#deb http://ftp.br.debian.org/debian-security testing/updates main
-
-## STABLE - VERIFICAR
+# Main
 deb http://deb.debian.org/debian/ stable main contrib non-free
 
-# UPDATES
+# Updates
 deb http://deb.debian.org/debian/ stable-updates main contrib non-free
 
-# SECURITY
+# Security
 deb http://deb.debian.org/debian-security stable/updates main
+
+# Backports
+#deb http://ftp.debian.org/debian stretch-backports main
 
 #------------------------------------------------------------------------------#
 #                      UNOFFICIAL  REPOS                       
 #------------------------------------------------------------------------------#
-
-###### 3rd Party Binary Repos
-###Spotify
+# Spotify
 deb http://repository.spotify.com stable non-free
 
-###Steam
+# Steam
 deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 
-###Mega
+# Mega
 deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
+
+# Nvidia
+deb http://httpredir.debian.org/debian/ stretch main contrib non-free
+
+#------------------------------------------------------------------------------#
