@@ -4,13 +4,22 @@
 
 ###### Debian Main Repos
 ## MAIN
-deb http://ftp.br.debian.org/debian/ testing main contrib non-free
+#deb http://ftp.br.debian.org/debian/ testing main contrib non-free
 
 ## UPDATES
-deb http://ftp.br.debian.org/debian/ testing-updates main contrib non-free
+#deb http://ftp.br.debian.org/debian/ testing-updates main contrib non-free
 
 ## SECURITY
-deb http://ftp.br.debian.org/debian-security testing/updates main
+#deb http://ftp.br.debian.org/debian-security testing/updates main
+
+## STABLE - VERIFICAR
+deb http://deb.debian.org/debian/ stable main contrib non-free
+
+# UPDATES
+deb http://deb.debian.org/debian/ stable-updates main contrib non-free
+
+# SECURITY
+deb http://deb.debian.org/debian-security stable/updates main
 
 #------------------------------------------------------------------------------#
 #                      UNOFFICIAL  REPOS                       
