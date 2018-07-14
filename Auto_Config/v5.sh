@@ -1133,7 +1133,7 @@ func_help()
             if [ $distro = "Ubuntu" ]; then
                 #instalando virtualbox
                 apt install virtualbox-5.1 -y
-                
+
             elif [ $distro = "Debian" ]; then     
                 # adicionando repositorio
                 sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list' 
@@ -1191,11 +1191,24 @@ func_help()
 	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 	            # Instalando via flatpak
-	            flatpak install flathub com.github.wwmm.pulseeffects -y
+	            flatpak install flathub com.github.wwmm.pulseeffects -y                
+
+                if [ $distro = "Debian" ]; then                  
+                    if [[ $v_hostname = 'desktop' ]]; then        
+                        local pulse_audio="/etc/pulse/daemon.conf"
+                        local flat_volume="flat-volumes = no"
+                        local verifica_pulse=$(grep $flat_volume $pulse_audio)        
+
+                        # executando caso nao encontre $flat_volume
+                        [[ $verifica_pulse = "" ]] && echo $flat_volume > $pulse_audio && \
+                                                      printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $arquivo_log || \
+                                                      printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $arquivo_log
+                    fi
+                fi
 	        else
 	            printf "\n[-] Pulse Effects já está instalado"
 	            printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
-	        fi
+	        fi            
 	    else
 			printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!"
             printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!" >> $arquivo_log
@@ -1498,7 +1511,7 @@ func_help()
         apt install prelink -y         
     }   
 
-    install_prelink()
+    install_preload()
     {
         printf "\n[*] Instalando Preload"
         printf "\n[*] Instalando Preload" >> $arquivo_log
