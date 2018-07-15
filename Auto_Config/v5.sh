@@ -1735,6 +1735,14 @@ func_help()
 		apt purge gitg -y
 	}
 
+    remove_mpv()
+    {
+        printf "\n[*] Removendo o Mpv"
+        printf "\n[*] Removendo o Mpv" >> $arquivo_log
+
+        apt purge mpv -y
+    }
+
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
@@ -1951,7 +1959,8 @@ func_remove()
 	remove_xsane
 	remove_imagemagick
 	remove_chromium-bsu
-	remove_owncloud      
+	remove_owncloud   
+    remove_mpv   
 }
 
 func_formatado()
