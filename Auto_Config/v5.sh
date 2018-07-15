@@ -374,7 +374,7 @@ func_help()
     icones_temas()
     {       
     	# personalizacao icones
-	    local var_icones_macos="/usr/share/themes/MacBuntu-OS/"
+	    local var_icones_macos="/usr/share/themes/MacBuntu-OS"
 	    local var_breeze="/usr/share/icons/Breeze"
 	    local var_flatremix="/usr/share/icons/Flat_Remix_Light"
 	    local var_papirus="/usr/share/icons/Papirus_Light"
@@ -470,7 +470,7 @@ func_help()
 
     	# se variavel esta ativada, entao realiza procedimento
     	# demora bastante a verificacao, por isso a variavel
-    	[[ $var_clamAV = "1" ]] && clamscan -r --remove /
+    	[[ $agressive_mode = "1" ]] && clamscan -r --remove /
     }
 
 # # # # # # # # # #
