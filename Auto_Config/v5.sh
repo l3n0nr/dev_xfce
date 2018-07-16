@@ -731,7 +731,8 @@ func_help()
             	printf "\n[-] Erro ao instalar Wine" >> $arquivo_log
             fi
 
-            apt install wine winetricks -y
+            apt install wine winetricks wine-development \
+                        libwine* windbind -y
         else
             printf "\n[-] Wine já está instalado na sua máquina!"
             printf "\n[-] Wine já está instalado na sua máquina!" >> $arquivo_log
