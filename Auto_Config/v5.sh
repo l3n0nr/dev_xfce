@@ -1574,6 +1574,14 @@ func_help()
         ufw enable && systemctl enable ufw && systemctl start ufw
     }
 
+    install_mypaint()
+    {
+        printf "\n[*] Instalando o MyPaint"
+        printf "\n[*] Instalando o MyPaint" >> $arquivo_log
+
+        apt install mypaint -y
+    }
+
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
 	remove_thunderbird()
@@ -1886,7 +1894,8 @@ func_instala()
     install_youtubedl
     install_yad       
 	install_ntp 
-	install_localepurge  
+	install_localepurge 
+    install_mypaint 
 
     install_prelink
     install_preload
@@ -1896,7 +1905,7 @@ func_instala()
 
     install_clamav
     install_ufw
-    install_firmware
+    install_firmware     
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
