@@ -198,6 +198,8 @@ func_help()
     	updatedb
     }
 
+    ## LAST_ATUALIZA
+
 # # # # # # # # # #
 # # config SISTEMA    
     swap()
@@ -419,6 +421,8 @@ func_help()
             cp -r ../Config/Interface/themes/* /usr/share/themes
         fi
     }    
+
+    ## LAST_CONFIG
     
     config_idioma()
     {   
@@ -472,6 +476,8 @@ func_help()
     	# demora bastante a verificacao, por isso a variavel
     	[[ $agressive_mode = "1" ]] && clamscan -r --remove /
     }
+
+    ## LAST_LIMPA
 
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
@@ -1606,8 +1612,10 @@ func_help()
         printf "\n[*] Instalando o Notify-send" >> $arquivo_log
 
         apt install notify-osd -y
-        apt --reinstall install libnotify-bin notify-osd
+        apt --reinstall install libnotify-bin notify-osd -y
     }
+
+    ## LAST_INSTALL
 
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
@@ -1779,6 +1787,7 @@ func_help()
         apt purge mpv -y
     }
 
+    ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
