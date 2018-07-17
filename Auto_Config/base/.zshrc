@@ -69,7 +69,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-#export LANGUAGE=en_US.UTF-8  
+export LANGUAGE=en_US.UTF-8  
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -100,7 +100,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # testando configuracao do teclado
-setxkbmap -model abnt2 -layout br -variant abnt2
+#setxkbmap -model abnt2 -layout br -variant abnt2
+setxkbmap -model pc105 -layout br -variant abnt2
 
 ## Alias diversos
 # alias para verificar os log's do servidor dev_web - apache
