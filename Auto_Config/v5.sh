@@ -1588,6 +1588,14 @@ func_help()
         apt install mypaint -y
     }
 
+    install_flatpak()
+    {
+        printf "\n[*] Instalando o Flatpak"
+        printf "\n[*] Instalando o Flatpak" >> $arquivo_log
+
+        apt install flatpak -y
+    }
+
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
 	remove_thunderbird()
