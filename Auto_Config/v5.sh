@@ -597,7 +597,7 @@ func_help()
             if [[ $distro = "Ubuntu" ]]; then 
                 snap install spotify
             elif [[ $distro = "Debian" ]]; then 
-                apt-get install spotify-client -y              
+                apt-get install spotify* -y              
             else
                 printf "\n[-] ERRO - Spofity"
             fi
@@ -1857,8 +1857,7 @@ func_instala()
 	install_clementine
 	install_spotify	   
 	install_funcao_gimp	
-	install_simple_screen_recorder
-	install_sweethome3d   
+	install_simple_screen_recorder   
 	
     install_stellarium
     install_libreoffice 
@@ -1934,6 +1933,7 @@ func_instala()
         install_wine
         install_playonlinux  
         install_musescore
+	install_sweethome3d
 
 		install_visualgameboy
 	    install_dolphin
