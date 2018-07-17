@@ -668,7 +668,7 @@ func_help()
                     xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
 
         # adicionais para serem utilizados
-        apt install hddtemp notify-osd -y
+        apt install hddtemp         
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp        
@@ -1208,6 +1208,10 @@ func_help()
                         [[ $verifica_pulse = "" ]] && echo $flat_volume > $pulse_audio && \
                                                       printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $arquivo_log || \
                                                       printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $arquivo_log
+
+                        ######## COMENTARIO                        
+                        ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
+                        # apt install --reinstall pulseaudio
                     fi
                 fi
 	        else
@@ -1596,6 +1600,15 @@ func_help()
         apt install flatpak -y
     }
 
+    install_notify()
+    {
+        printf "\n[*] Instalando o Notify-send"
+        printf "\n[*] Instalando o Notify-send" >> $arquivo_log
+
+        apt install notify-osd -y
+        apt --reinstall install libnotify-bin notify-osd
+    }
+
 # # # # # # # # # #
 # # REMOVE PROGRAMAS
 	remove_thunderbird()
@@ -1906,6 +1919,7 @@ func_instala()
 	install_localepurge 
     install_mypaint 
     install_flatpak
+    install_notify
 
     install_prelink
     install_preload
