@@ -1906,6 +1906,7 @@ func_instala()
 	install_ntp 
 	install_localepurge 
     install_mypaint 
+    install_flatpak
 
     install_prelink
     install_preload
