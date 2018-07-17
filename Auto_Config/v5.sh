@@ -1398,7 +1398,10 @@ func_help()
 
 			# apt install sublime-text -y                          
             ## flatpak
-            flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref
+            # flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref
+
+            # snap
+            snap install sublime-text
 
         else
             printf "\n[-] Sublime ja esta instalado"
@@ -1466,7 +1469,6 @@ func_help()
         printf "\n[*] Instalando Dropbox"
         printf "\n[*] Instalando Dropbox" >> $arquivo_log
 
-        ## instalando dropbox
         apt install nautilus-dropbox -y        
     }
 
@@ -1613,6 +1615,14 @@ func_help()
 
         apt install notify-osd -y
         apt --reinstall install libnotify-bin notify-osd -y
+    }
+
+    install_minecraft()
+    {
+        printf "\n[*] Instalando o Minecraft"
+        printf "\n[*] Instalando o Minecraft" >> $arquivo_log
+
+        snap install minecraft 
     }
 
     ## LAST_INSTALL
@@ -1956,10 +1966,11 @@ func_instala()
         install_wine
         install_playonlinux  
         install_musescore
-	install_sweethome3d
+        install_sweethome3d
 
 		install_visualgameboy
 	    install_dolphin
+        install_minecraft
 
 		install_audacity
         install_nvidia      
