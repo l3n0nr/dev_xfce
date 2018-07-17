@@ -497,6 +497,7 @@ func_help()
                 printf "\n[*] Instalando o Chromium"
                 printf "\n[*] Instalando o Chromium" >> $arquivo_log
 
+                # navegador + pacotes de idiomas
                 apt install chromium chromium-l10n -y
             else
                 printf "\n[*] Chromium ja esta instalado"
@@ -1385,7 +1386,10 @@ func_help()
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
-			apt install sublime-text -y                          
+			# apt install sublime-text -y                          
+            ## flatpak
+            flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref
+
         else
             printf "\n[-] Sublime ja esta instalado"
             printf "\n[-] Sublime ja esta instalado" >> $arquivo_log            
@@ -1395,18 +1399,20 @@ func_help()
     install_firmware()
     {
         printf "\n[*] Instalando os firmware's non-free"        
-        printf "\n[*] Instalando os firmware's non-free" >> $arquivo_log        
-        
-        if [ $distro = "Ubuntu" ]; then
-            apt install xserver-xorg-input-synaptics \
-                        blueman  firmware-brcm80211 -y		
-        elif [ $distro = "Debian" ]; then
+        printf "\n[*] Instalando os firmware's non-free" >> $arquivo_log                        
+
+        if [ $distro = "Debian" ]; then
+            if [[ $v_hostname = 'notebook' ]]; then   
+                apt install xserver-xorg-input-synaptics \
+                    blueman  firmware-brcm80211 -y      
+            fi
+
             apt install firmware-linux \
                         firmware-linux-nonfree -y
         else
             printf "\n[-] ERRO - firmware"
             printf "\n[-] ERRO - firmware" >> $arquivo_log
-        fi
+        fi        
     }     
 
     install_compton()
@@ -1842,13 +1848,10 @@ func_instala()
 	install_vlc
 	install_clementine
 	install_spotify	   
-	install_funcao_gimp
-	install_musescore
+	install_funcao_gimp	
 	install_simple_screen_recorder
 	install_sweethome3d   
-	install_tuxguitar  
-	install_wine
-    install_playonlinux              
+	
     install_stellarium
     install_libreoffice 
 
@@ -1861,7 +1864,6 @@ func_instala()
     install_neofetch
     install_lm-sensors    
     install_tlp	   
-
     install_mega
     install_pulseeffects
 
@@ -1913,12 +1915,17 @@ func_instala()
         install_wavemon	
 	    install_reaver   
 
-		# if [ $distro = "Ubuntu" ]; then					
-		# 	echo 	# nenhuma acao, por enquanto
-		# elif [ $distro = "Debian" ]; then				
-	 #    	echo    # nenhuma acao, por enquanto
-		# fi
-	elif [[ $v_hostname = 'desktop' ]]; then         
+		if [ $distro = "Ubuntu" ]; then					
+			echo 	# nenhuma acao, por enquanto
+		elif [ $distro = "Debian" ]; then				
+	    	echo    # nenhuma acao, por enquanto
+		fi
+	elif [[ $v_hostname = 'desktop' ]]; then     
+        install_tuxguitar  
+        install_wine
+        install_playonlinux  
+        install_musescore
+
 		install_visualgameboy
 	    install_dolphin
 

@@ -22,7 +22,7 @@ deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 # Mega
 deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
 
-# Nvidia
-deb http://httpredir.debian.org/debian/ stretch main contrib non-free
+# Nvidia - Utilizar apenas com a placa de video(no desktop)
+#deb http://httpredir.debian.org/debian/ stretch main contrib non-free
 
 #------------------------------------------------------------------------------#
