@@ -1388,7 +1388,7 @@ func_help()
 
 			# apt install sublime-text -y                          
             ## flatpak
-            flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref
+            flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref -y
 
         else
             printf "\n[-] Sublime ja esta instalado"
