@@ -732,22 +732,31 @@ func_help()
 
                 # chamando funcao já criada
                 update                
+
+                # instalando wine
+                apt install wine -y
             elif [[ $distro = "Debian" ]]; then
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
 		
-				# Atualizando repositorios
+					# baixando chave
+					wget -nc https://dl.winehq.org/wine-builds/Release.key
+
+					# instalando chave
+					apt-key add Release.key
+
+					# removendo chave
+					rm Release.key
+
+				# atualizando sistema
 				update
 
 				# instalando wine
-                apt-get install libgl1-mesa-glx:i386 libasound2:i386 libasound2-plugins:i386 -y
+				apt install --install-recommends winehq-stable -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> $arquivo_log
-            fi
-
-            apt install wine winetricks wine-development \
-                        libwine* windbind -y
+            fi            
         else
             printf "\n[-] Wine já está instalado na sua máquina!"
             printf "\n[-] Wine já está instalado na sua máquina!" >> $arquivo_log
