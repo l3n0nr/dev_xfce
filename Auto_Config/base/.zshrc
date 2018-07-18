@@ -70,6 +70,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANGUAGE=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -103,31 +104,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 #setxkbmap -model abnt2 -layout br -variant abnt2
 setxkbmap -model pc105 -layout br -variant abnt2
 
-## Alias diversos
-# alias para verificar os log's do servidor dev_web - apache
-alias loginservidor='cat /var/log/apache2/access.log > /tmp/loginservidor.txt; kate /tmp/loginservidor.txt'
-
-# alias para reiniciar swap
-alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
-
-# criando apelido para realizar backup do bashrc
-alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
-
-# reinicia dropbox
-alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
-
-# calculando tempo lançamento foguetes
-alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
-
-# download videos - youtubedl
-alias yt="/home/lenonr/Github/dev_sysadmin/others/youtubedl.sh"
-
-# clamav - virus
-alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
-
-# sublime - chamando arquivo direto do /opt
-alias subl="/opt/sublime_text/sublime_text"
-
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
@@ -135,6 +111,38 @@ alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pul
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
 alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/check_push.sh"
 
+# outros
+## limpa memoria 
+alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
+
+## backup do arquivo zshrc
+alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
+
+## reinicia dropbox
+alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
+
+## calcula lancamento do foguetes
+alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
+
+## chama funcao para verificar virus com o clamAV
+alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
+
+## chama sublime via alias
+alias subl="/opt/sublime_text/sublime_text"
+
+## mostra informacoes do sistema
+alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
+
+## realiza backup via dispositivo externo
+alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
+
+## chama telnet roteador
+alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
+
+## hibernando sistema via alias
+alias hiber="/home/lenonr/Github/dev_sysadmin/others/hibernate_system.sh"
+
+## chama home personalizado
 home()
 {	
     local_home='/home/lenonr'
@@ -149,39 +157,5 @@ home()
 	  	echo "######################################"
   	else
 		echo "Diretorio '$local_home' nao existe"
-	fi
-}
-
-wrt()
-{
-    local_wrt='10.0.0.87'
-
-  	# verificando conexao
-  	ping -c1 $local_wrt
-
-  	clear 
-
-  	# verificando se diretorio existe 
-  	if [ $? -eq 0 ]; then
-  		echo "########################"
-  		printf "CONECTANDO AO SERVIDOR\n"
-  		echo "########################\n"
-	  	telnet $local_wrt
-  	else
-		echo "IP do servidor '$local_wrt' nao encontrado"
-	fi
-}
-
-verificahd()
-{	
-    local_hdd='/media/lenonr/BACKUP/Arquivos/Filmes'
-
-  	clear 
-
-  	# verificando se diretorio existe 
-  	if [ -e "$local_hdd" ]; then 
-      /home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh
-  	else
-		echo "Conecte o HDD ao computador!"
 	fi
 }
