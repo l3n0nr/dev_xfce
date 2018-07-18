@@ -610,7 +610,7 @@ func_help()
             if [[ $distro = "Ubuntu" ]]; then 
                 snap install spotify
             elif [[ $distro = "Debian" ]]; then 
-                apt-get install spotify* -y              
+                apt install spotify* -y              
             else
                 printf "\n[-] ERRO - Spofity"
             fi
