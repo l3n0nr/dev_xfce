@@ -224,24 +224,29 @@ func_help()
         #preload    = reduz o tempo de inicialização das aplicações
         #deborphan  = remove pacotes obsoletos do sistema, principalmente após as atualizações de programas        
 
-        echo "[*] Configurando Deborphan... " 
+		echo "[*] Configurando Deborphan... "
+        echo "[*] Configurando Deborphan... " >> $arquivo_log
+
         deborphan | xargs apt-get -y remove --purge &&
         deborphan --guess-data | xargs apt-get -y remove --purge
 
         #Configurando o prelink e o preload
         echo "[*] Configurando Prelink e Preload... "
+        echo "[*] Configurando Prelink e Preload... " >> $arquivo_log        
                 memfree=$(grep "memfree = 50" /etc/preload.conf)
                 memcached=$(grep "memcached = 0" /etc/preload.conf)
                 processes=$(grep "processes = 30" /etc/preload.conf)
                 prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
 
-        printf "[*] Ativando o PRELINK "
+		printf "[*] Ativando o PRELINK"
+        printf "[*] Ativando o PRELINK" >> $arquivo_log
 
         if [[ $prelink = "PRELINKING=unknown" ]]; then
             printf "adicionando ... \n"
             sed -i 's/unknown/yes/g' /etc/default/prelink
         else
-            printf "\n[-] Otimização já adicionada anteriormente."
+        	printf "\n[-] Otimização já adicionada anteriormente."
+            printf "\n[-] Otimização já adicionada anteriormente." >> $arquivo_log
         fi
     }
 
@@ -349,9 +354,11 @@ func_help()
                     dpkg-reconfigure lightdm 
 
                     if [[ $? = "0" ]]; then
-                        printf "\n[*] Configuracao atualizada com sucesso"
+                    	printf "\n[*] Configuracao atualizada com sucesso" 
+                        printf "\n[*] Configuracao atualizada com sucesso" >> $arquivo_log
                     else
-                        printf "\n[-] Erro na Configuracao - Autologin"
+                    	printf "\n[-] Erro na Configuracao - Autologin"
+                        printf "\n[-] Erro na Configuracao - Autologin" >> $arquivo_log
                     fi
 
                 elif [[ $distro = "Ubuntu" ]]; then 
@@ -716,6 +723,7 @@ func_help()
         local var_wine=$(type wine > /dev/null)
 
         if [[ $var_wine = "1" ]]; then
+        	printf "\n[*] Instalando o Wine"
             printf "\n[*] Instalando o Wine" >> $arquivo_log
 
             if [[ $distro = "Ubuntu" ]]; then
@@ -1576,7 +1584,7 @@ func_help()
     	printf "\n[*] Instalando o ClamAV"
         printf "\n[*] Instalando o ClamAV" >> $arquivo_log
 
-        apt install clamav clamtk freshclam -y
+        apt install clamav* clamtk clamtk-nautilus -y
     }
 
     install_ufw()
@@ -1613,14 +1621,6 @@ func_help()
 
         apt install notify-osd -y
         apt --reinstall install libnotify-bin notify-osd -y
-    }
-
-    install_minecraft()
-    {
-        printf "\n[*] Instalando o Minecraft"
-        printf "\n[*] Instalando o Minecraft" >> $arquivo_log
-
-        snap install minecraft 
     }
 
     ## LAST_INSTALL
@@ -1968,7 +1968,6 @@ func_instala()
 
 		install_visualgameboy
 	    install_dolphin
-        install_minecraft
 
 		install_audacity
         install_nvidia      
