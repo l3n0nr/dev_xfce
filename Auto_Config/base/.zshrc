@@ -140,7 +140,7 @@ alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
 ## hibernando sistema via alias
-alias hiber="/home/lenonr/Github/dev_sysadmin/others/hibernate_system.sh"
+alias hiber="systemctl hibernate"
 
 ## chama home personalizado
 home()
