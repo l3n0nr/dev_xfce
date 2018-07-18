@@ -1200,7 +1200,7 @@ func_help()
         local var_pulseeeffects=$(type pulseeffects > /dev/null)
 		local var_flatpak=$(type flatpak > /dev/null)
 
-        # criando verificação para instalar o docker
+        # criando verificação para instalar o pulseeffects
         if [[ $var_flatpak = "1" ]]; then
 	        if [[ $var_pulseeeffects = "1" ]]; then
 	            printf "\n[*] Instalando o Pulse Effects"
@@ -1397,7 +1397,7 @@ func_help()
          # variavel de verificação
         local var_sublime=$(type subl > /dev/null)
 
-        # criando verificação para instalar o docker
+        # criando verificação para instalar o sublime
         if [[ $var_sublime = "1" ]]; then
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
