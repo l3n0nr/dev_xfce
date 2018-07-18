@@ -1402,10 +1402,6 @@ func_help()
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
-			# apt install sublime-text -y                          
-            ## flatpak
-            # flatpak install --user https://flathub.org/repo/appstream/com.sublimetext.three.flatpakref
-
             # snap
             snap install sublime-text
 
