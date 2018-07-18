@@ -1205,20 +1205,18 @@ func_help()
 	            flatpak install flathub com.github.wwmm.pulseeffects -y                
 
                 if [ $distro = "Debian" ]; then                  
-                    if [[ $v_hostname = 'desktop' ]]; then        
-                        local pulse_audio="/etc/pulse/daemon.conf"
-                        local flat_volume="flat-volumes = no"
-                        local verifica_pulse=$(grep $flat_volume $pulse_audio)        
+                    local pulse_audio="/etc/pulse/daemon.conf"
+                    local flat_volume="flat-volumes = no"
+                    local verifica_pulse=$(grep $flat_volume $pulse_audio)        
 
-                        # executando caso nao encontre $flat_volume
-                        [[ $verifica_pulse = "" ]] && echo $flat_volume > $pulse_audio && \
-                                                      printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $arquivo_log || \
-                                                      printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $arquivo_log
+                    # executando caso nao encontre $flat_volume
+                    [[ $verifica_pulse = "" ]] && echo $flat_volume > $pulse_audio && \
+                                                  printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $arquivo_log || \
+                                                  printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $arquivo_log
 
-                        ######## COMENTARIO                        
-                        ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-                        # apt install --reinstall pulseaudio
-                    fi
+                    ######## COMENTARIO                        
+                    ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
+                    # apt install --reinstall pulseaudio
                 fi
 	        else
 	            printf "\n[-] Pulse Effects já está instalado"
