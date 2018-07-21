@@ -641,7 +641,7 @@ func_help()
                     libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
                     libxine1-misc-plugins libxine1-plugins libxine1-x \
                     tagtool libavcodec-extra ffmpeg \
-                    rar unrar oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
+                    oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
     install_funcao_gimp()
@@ -1628,6 +1628,22 @@ func_help()
         apt --reinstall install libnotify-bin notify-osd -y
     }
 
+    install_evince()
+    {
+        printf "\n[*] Instalando o Evince"
+        printf "\n[*] Instalando o Evince" >> $arquivo_log
+
+        apt install evince evince-common unrar -y
+    }
+
+    install_rar()
+    {
+        printf "\n[*] Instalando o Rar"
+        printf "\n[*] Instalando o Rar" >> $arquivo_log
+
+        apt install rar unrar -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1942,6 +1958,8 @@ func_instala()
     install_mypaint 
     install_flatpak
     install_notify
+    install_evince
+    install_rar
 
     install_prelink
     install_preload
