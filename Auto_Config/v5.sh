@@ -1633,7 +1633,7 @@ func_help()
         printf "\n[*] Instalando o Evince"
         printf "\n[*] Instalando o Evince" >> $arquivo_log
 
-        apt install evince evince-common unrar -y
+        apt install evince* -y
     }
 
     install_rar()
