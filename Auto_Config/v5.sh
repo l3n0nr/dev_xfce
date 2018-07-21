@@ -1043,7 +1043,7 @@ func_help()
             fi
 
             #Instalando simplescreenrecorder
-            apt-get install simplescreenrecorder simplescreenrecorder-lib:i386 -y
+            apt-get install simplescreenrecorder -y
         else
             printf "\n[-] Simple Screen Recorder já está instalado!"
             printf "\n[-] Simple Screen Recorder já está instalado!" >> $arquivo_log
