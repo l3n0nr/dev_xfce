@@ -371,8 +371,8 @@ func_help()
                     printf "\n[-] Erro autologin" >> $arquivo_log
                 fi  
             else
-                printf "[-] Login ja esta habilitado"
-                printf "[-] Login ja esta habilitado" >> $arquivo_log
+                printf "\n[-] Login ja esta habilitado"
+                printf "\n[-] Login ja esta habilitado" >> $arquivo_log
             fi
         else
             printf "\n[-] O login automatico esta desabilitado! Verificar script."
