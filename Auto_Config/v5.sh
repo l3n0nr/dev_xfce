@@ -1967,7 +1967,6 @@ func_instala()
     install_locate
     install_arpscan
 
-    install_clamav
     install_ufw
     install_firmware     
 
@@ -1995,7 +1994,8 @@ func_instala()
 		install_audacity
         install_nvidia      
                 
-        install_transmission        
+        install_transmission
+        install_clamav        
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $arquivo_log
