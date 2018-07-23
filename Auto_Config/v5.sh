@@ -1235,9 +1235,11 @@ func_help()
                     ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
                     # apt install --reinstall pulseaudio
                 fi
-	        else
-	            printf "\n[-] Pulse Effects já está instalado"
-	            printf "\n[-] Pulse Effects já está instalado" >> $arquivo_log
+	        else                
+	            printf "\n[*] Atualizando pulseeffects"
+	            printf "\n[*] Atualizando pulseeffects" >> $arquivo_log
+
+                flatpak update com.github.wwmm.pulseeffects -y                
 	        fi            
 	    else
 			printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!"
