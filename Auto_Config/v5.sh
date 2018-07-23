@@ -1227,7 +1227,7 @@ func_help()
                     local verifica_pulse=$(grep $flat_volume $pulse_audio)        
 
                     # executando caso nao encontre $flat_volume
-                    [[ $verifica_pulse = "" ]] && echo $flat_volume > $pulse_audio && \
+                    [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
                                                   printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $arquivo_log || \
                                                   printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $arquivo_log
 
