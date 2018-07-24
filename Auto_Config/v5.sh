@@ -474,16 +474,6 @@ func_help()
         localepurge
     }
 
-    func_check_clamav()
-    {
-    	printf "\n[*] Checkando por virus com o ClamAV" 
-    	printf "\n[*] Checkando por virus com o ClamAV" >> $arquivo_log
-
-    	# se variavel esta ativada, entao realiza procedimento
-    	# demora bastante a verificacao, por isso a variavel
-    	[[ $agressive_mode = "1" ]] && clamscan -r --remove /
-    }
-
     ## LAST_LIMPA
 
 # # # # # # # # # #
@@ -1586,14 +1576,6 @@ func_help()
         apt install arp-scan -y
     }
 
-    install_clamav()
-    {
-    	printf "\n[*] Instalando o ClamAV"
-        printf "\n[*] Instalando o ClamAV" >> $arquivo_log
-
-        apt install clamav* clamtk clamtk-nautilus -y
-    }
-
     install_ufw()
     {
         printf "\n[*] Instalando o UFW"
@@ -1818,6 +1800,14 @@ func_help()
         apt purge mpv -y
     }
 
+    remove_clamav()
+    {
+        printf "\n[*] Removendo o clamAV"
+        printf "\n[*] Removendo o clamAV"
+
+        apt purge clamav* clamtk clamtk-nautilus -y
+    }
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1894,7 +1884,6 @@ func_limpa()
     pacotes_orfaos
     funcao_chkrootkit
     func_localepurge
-    func_check_clamav
 }
 
 func_instala()
@@ -1996,8 +1985,7 @@ func_instala()
 		install_audacity
         install_nvidia      
                 
-        install_transmission
-        install_clamav        
+        install_transmission    
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $arquivo_log
