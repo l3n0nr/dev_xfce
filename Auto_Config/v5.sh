@@ -483,10 +483,16 @@ func_help()
         printf "\n[*] Instalando Firefox"
         printf "\n[*] Instalando Firefox" >> $arquivo_log
 
+        local var_firefox=$(type firefox > /dev/null)
+        
 		if [[ $distro = "Ubuntu" ]]; then
         	apt install firefox -y
         elif [[ $distro = "Debian" ]]; then
-            snap install firefox
+            if [[ $var_firefox = "1" ]]; then        
+                snap install firefox
+            else
+                snap refresh firefox
+            fi
         fi            
     }
 
