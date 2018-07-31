@@ -519,8 +519,7 @@ func_help()
 
                 snap install chromium
             else
-                printf "\n[-] Chromium ja esta instalado"
-                printf "\n[-] Chromium ja esta instalado" >> $arquivo_log                
+                snap refresh chromium
             fi  
         else
             printf "\n[-] Erro instalação Chromium"
@@ -1413,8 +1412,7 @@ func_help()
             snap install sublime-text
 
         else
-            printf "\n[-] Sublime ja esta instalado"
-            printf "\n[-] Sublime ja esta instalado" >> $arquivo_log            
+            snap refresh sublime-text
         fi
     }
 
