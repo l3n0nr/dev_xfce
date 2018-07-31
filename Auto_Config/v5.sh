@@ -1343,27 +1343,6 @@ func_help()
         fi
     }
 
-    install_musescore()
-    {
-        # variavel de verificação
-        local var_musescore=$(type musescore > /dev/null)
-
-        # criando verificação para instalar o musescore
-        if [[ $var_musescore = "1" ]]; then
-            printf "\n[*] Instalando Muse Score"
-            printf "\n[*] Instalando Muse Score" >> $arquivo_log
-
-            if [ $distro = "Ubuntu" ]; then
-				snap install musescore
-            elif [ $distro = "Debian" ]; then
-                apt install musescore -y 
-            fi
-        else
-            printf "\n[-] O Musescore já está instalado no seu sistema."
-            printf "\n[-] O Musescore já está instalado no seu sistema." >> $arquivo_log
-        fi
-    }
-
     install_zsh()
     {
         # variavel de verificação
@@ -1729,7 +1708,7 @@ func_help()
 		printf "\n[*] Removendo o Imagemagick"
         printf "\n[*] Removendo o Imagemagick" >> $arquivo_log
 		
-		apt purge imagemagick -y
+		apt purge imagemagick* -y
 	}
 
 	remove_chromium-bsu()
@@ -1745,7 +1724,7 @@ func_help()
 		printf "\n[*] Removendo o Owncloud"
         printf "\n[*] Removendo o Owncloud" >> $arquivo_log
 		
-		apt purge owncloud -y
+		apt purge owncloud* -y
 	}
 
 	remove_kstars()
@@ -1980,7 +1959,6 @@ func_instala()
         install_tuxguitar  
         install_wine
         install_playonlinux  
-        install_musescore
         install_sweethome3d
 
 		install_visualgameboy
