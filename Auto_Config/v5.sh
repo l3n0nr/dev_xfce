@@ -756,10 +756,17 @@ func_help()
 
     install_playonlinux()
     {
-        printf "\n[*] Instalando o PlayonLinux"
-        printf "\n[*] Instalando o PlayonLinux" >> $arquivo_log
+        local var_playonlinux=$(type playonlinux > /dev/null)
 
-        apt install playonlinux -y
+        if [[ $var_playonlinux = "1" ]]; then
+            printf "\n[*] Instalando o PlayonLinux"
+            printf "\n[*] Instalando o PlayonLinux" >> $arquivo_log
+
+            apt install playonlinux -y
+        else
+            printf "\n[*] PlayonLinux ja esta instalado"
+            printf "\n[*] PlayonLinux ja esta instalado" >> $arquivo_log
+        fi        
     }
 
     install_redshift()
