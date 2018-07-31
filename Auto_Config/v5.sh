@@ -602,16 +602,12 @@ func_help()
             printf "\n[*] Instalando Spotify"
             printf "\n[*] Instalando Spotify" >> $arquivo_log
 
-            if [[ $distro = "Ubuntu" ]]; then 
-                snap install spotify
-            elif [[ $distro = "Debian" ]]; then 
-                apt install spotify-client -y              
-            else
-                printf "\n[-] ERRO - Spofity"
-            fi
-        else
-            printf "\n[-] Spofity já está instalado! \n"
-            printf "\n[-] Spofity já está instalado! \n" >> $arquivo_log
+            snap install spotify
+        else            
+            printf "\n[-] Atualizando Spofity! \n"
+            printf "\n[-] Atualizando Spofity! \n" >> $arquivo_log
+
+            snap refresh spotify
         fi
     }   
 
