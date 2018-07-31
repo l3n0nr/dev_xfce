@@ -13,9 +13,6 @@ deb http://deb.debian.org/debian-security stable/updates main
 #------------------------------------------------------------------------------#
 #                      UNOFFICIAL  REPOS                       
 #------------------------------------------------------------------------------#
-# Spotify
-deb http://repository.spotify.com stable non-free
-
 # Steam
 deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 

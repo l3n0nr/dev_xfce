@@ -11,13 +11,6 @@ if [[ `id -u` -ne 0 ]]; then
 	exit 1
 fi
 
-spotify()
-{
-	printf "\n[*] Adicionando chave SPOTIFY\n"
-	
-	apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys EFDC8610341D9410 > /dev/null
-}
-
 steam()
 {
 	printf "\n[*] Adicionando chave STEAM\n"
@@ -37,7 +30,6 @@ main()
 	# chamando funcoes
 	printf "[*] Adicionando chave dos repositorios\n"
 	printf "########################################"
-	spotify
 	steam
 	mega
 	printf "########################################\n"
