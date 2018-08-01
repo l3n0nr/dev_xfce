@@ -580,10 +580,9 @@ func_help()
 				update
 
 				# Instalando nvidia - dependencias debian
-				apt install libgl1-nvidia-glx:i386 libc6-i386 libgl1-mesa-dev \
-	                        libxtst6:i386 libxrandr2:i386 libglib2.0-0:i386 \
-	                        libgtk2.0-0:i386 libpulse0:i386 libgdk-pixbuf2.0-0:i386 -y \
-	                        steam-launcher -y		                        
+				apt install libgl1-mesa-dev libxtst6:i386 libxrandr2:i386 \
+							libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 \
+							libgdk-pixbuf2.0-0:i386 steam-launcher -y		                        
 			fi		
 
 	        apt install steam -y
