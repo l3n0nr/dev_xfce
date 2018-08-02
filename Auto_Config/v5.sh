@@ -1373,7 +1373,7 @@ func_help()
         	printf "\n[*] Instalando o Docker"
             printf "\n[*] Instalando o Docker" >> $arquivo_log
     
-            curl -fsSL https://get.docker.com/ | sh                
+            curl -fsSL https://get.docker.com/ | sh
         else
             printf "\n[-] O Docker já está instalado no seu sistema."
             printf "\n[-] O Docker já está instalado no seu sistema." >> $arquivo_log
