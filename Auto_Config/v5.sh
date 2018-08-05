@@ -1134,7 +1134,7 @@ func_help()
     		    apt install nvidia-current nvidia-settings -y  
             elif [[ $distro = "Debian" ]]; then
                 # Instalando driver
-        	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver
+        	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
             else
                 printf "\n[-] ERRO - NVIDIA"
                 printf "\n[-] ERRO - NVIDIA" >> $arquivo_log
