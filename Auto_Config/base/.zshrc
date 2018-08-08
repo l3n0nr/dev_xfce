@@ -113,7 +113,7 @@ alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/ch
 
 # outros
 ## limpa memoria 
-alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
+alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reboot_swap.sh'
 
 ## backup do arquivo zshrc
 alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
@@ -123,9 +123,6 @@ alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
 alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
-
-## chama funcao para verificar virus com o clamAV
-alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
 
 ## chama sublime via alias
 alias subl="/opt/sublime_text/sublime_text"
@@ -138,9 +135,6 @@ alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
 
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
-
-## hibernando sistema via alias
-alias hiber="systemctl hibernate"
 
 ## chama home personalizado
 home()
