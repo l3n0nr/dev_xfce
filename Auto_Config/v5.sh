@@ -969,34 +969,7 @@ func_help()
         printf "\n[*] Instalando o Gnome System Monitor" >> $arquivo_log
 
         apt install gnome-system-monitor -y
-    }
-
-    install_nautilus()
-    {
-        # variavel de verificação
-        local var_nautilus=$(type nautilus > /dev/null)
-
-        if [[ $var_nautilus = "1" ]]; then
-            printf "\n[*] Instalando o Nautilus"
-            printf "\n[*] Instalando o Nautilus" >> $arquivo_log
-
-            # verificando distribuição
-            if [ $distro = "Ubuntu" ]; then
-                #adicionando ppa
-                add-apt-repository ppa:gnome3-team/gnome3 -y
-
-                #Atualizando lista repositorio
-                update                
-            fi
-
-            #Instalando o nautilus
-            apt install nautilus* -y
-
-        else
-            printf "\n[-] Nautilus já está instalado!"
-            printf "\n[-] Nautilus já está instalado!" >> $arquivo_log
-        fi
-    }
+    }    
 
     install_wireshark()
     {
@@ -1458,7 +1431,7 @@ func_help()
         printf "\n[*] Instalando Dropbox"
         printf "\n[*] Instalando Dropbox" >> $arquivo_log
 
-        apt install nautilus-dropbox -y        
+        apt install nemo-dropbox -y        
     }
 
     install_transmission()
@@ -1591,11 +1564,19 @@ func_help()
 
     install_notify()
     {
-        printf "\n[*] Instalando o Notify-send"
-        printf "\n[*] Instalando o Notify-send" >> $arquivo_log
+		# variavel de verificação
+        local var_notify=$(type notify-osd > /dev/null)
 
-        apt install notify-osd -y
-        apt --reinstall install libnotify-bin notify-osd -y
+        if [[ $var_notify = "1" ]]; then
+        	printf "\n[*] Instalando o Notify-send"
+	        printf "\n[*] Instalando o Notify-send" >> $arquivo_log
+
+	        apt install notify-osd -y
+	        apt --reinstall install libnotify-bin notify-osd -y
+        else    
+        	printf "\n[-] Notify-send ja esta instalado"
+	        printf "\n[-] Notify-send ja esta instalado" >> $arquivo_log
+	    fi
     }
 
     install_evince()
@@ -1612,6 +1593,38 @@ func_help()
         printf "\n[*] Instalando o Rar" >> $arquivo_log
 
         apt install rar unrar -y
+    }
+
+    install_nemo()
+    {
+    	# variavel de verificação
+        local var_nemo=$(type nemo > /dev/null)
+
+        if [[ $var_nemo = "1" ]]; then
+        	printf "\n[*] Instalando o Nemo"
+	        printf "\n[*] Instalando o Nemo" >> $arquivo_log
+
+	        apt install nemo* -y
+
+	        if [ $distro = "Debian" ]; then
+	        	printf "\n[+] Corrigindo possivel problema com a GLIB"
+	        	printf "\n[*] Corrigindo possivel problema com a GLIB" >> $arquivo_log	        	
+
+	        	/usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
+	        fi
+        else    
+        	printf "\n[-] Nemo ja esta instalado"
+	        printf "\n[-] Nemo ja esta instalado" >> $arquivo_log
+	    fi
+
+    }
+
+    install_ntfs()
+    {
+    	printf "\n[*] Instalando o NTFS-3g"
+    	printf "\n[*] Instalando o NTFS-3g" >> $arquivo_log
+
+    	apt install ntfs-3g -y
     }
 
     ## LAST_INSTALL
@@ -1892,7 +1905,7 @@ func_instala()
 
 	install_xfce4
     install_lm-sensors    
-    install_nautilus
+    install_nemo
     install_openssh    
     install_redshift
     install_ristretto    
@@ -1945,7 +1958,8 @@ func_instala()
     install_arpscan
 
     install_ufw
-    install_firmware     
+    install_firmware    
+    install_ntfs 
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
