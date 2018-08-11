@@ -1,0 +1,31 @@
+# Control media keys 
+Volume 
+	Up: Ctrl + PageDown
+		Command: amixer set Master 6%+
+	Down: Ctrl + Delete
+		Command: amixer set Master 6%-
+	Mute: Ctrl + End
+		Command: 
+
+Player music
+	Play/Pause: Ctrl + Home
+		Command: dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+	Next Track: Ctrl + PageUp
+		Command: dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+	Previous Track: Ctrl + 	Insert
+		Command: dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+Others:
+	Terminator: Alt + Enter
+		Command: terminator
+
+	Hibernate: Alt + Esc
+		Command: systemctl hibernate
+
+	Whisker menu: Super(Left|Right)
+		Command: xfce4-popup-whiskermenu
+
+	Terminal(Drop Menu): Context Key
+		Command: xfce4-terminal --drop-down
