@@ -1407,7 +1407,10 @@ func_help()
 
     	if [ $distro = "Debian" ]; then
  			apt install pipsi -y # Instalando pip no debian
-        fi   
+
+            # instalando krpc - kerbal space program
+            pip install krpc
+        fi           
     }
 
     install_youtubedl()
