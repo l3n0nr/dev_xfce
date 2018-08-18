@@ -80,7 +80,7 @@ func_help()
     upgrade()
     {
         # verificando distribuição
-        if [ $distro = "Ubuntu" ]; then            
+        if [[ $distro = "Ubuntu" ]]; then            
         	#Atualizando lista de programas do sistema
         	printf "\n[*] Atualizando lista de programas do sistema \n"
 	        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
@@ -388,7 +388,7 @@ func_help()
 	    local var_flatremix="/usr/share/icons/Flat_Remix_Light"
 	    local var_papirus="/usr/share/icons/Papirus_Light"
 
-        if [ -z $var_breeze ]; then             
+        if [[ -z $var_breeze ]]; then             
             printf "\n[-] Voce ja possui os arquivos Breeze!"
             printf "\n[-] Voce ja possui os arquivos Breeze!" >> $arquivo_log
         else            
@@ -398,7 +398,7 @@ func_help()
             cp -r ../Config/Interface/icons/Breeze /usr/share/icons
         fi
 
-        if [ -z $var_flatremix ]; then 
+        if [[ -z $var_flatremix ]]; then 
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> $arquivo_log
         else            
@@ -408,7 +408,7 @@ func_help()
             cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
         fi
 
-        if [ -z $var_papirus ]; then 
+        if [[ -z $var_papirus ]]; then 
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> $arquivo_log
         else            
@@ -418,7 +418,7 @@ func_help()
             cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
         fi
 
-        if [ -z $var_icones_macos ]; then 
+        if [[ -z $var_icones_macos ]]; then 
             printf "\n[-] Voce ja possui os arquivos MacOS X!"
             printf "\n[-] Voce ja possui os arquivos MacOS X!" >> $arquivo_log
         else    
@@ -536,7 +536,7 @@ func_help()
             printf "\n[*] Instalando o Tor" >> $arquivo_log
 
             # verificando distribuição
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 # ubuntu 16.04
                 #adicionando repositorio
                 add-apt-repository ppa:webupd8team/tor-browser -y
@@ -547,7 +547,7 @@ func_help()
                 #Instalando tor
                 apt-get install tor tor-browser -y
 
-            elif [ $distro = "Debian" ]; then
+            elif [[ $distro = "Debian" ]]; then
                 # manualmente - funciona de boas -
                 # baixar do site, pasta /opt! 
                 ## elaborando script - daqui a pouco ele aparece aqui! hehehe
@@ -848,7 +848,7 @@ func_help()
 
         if [[ $var_stellarium = "1" ]]; then
             # verificando distribuição
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 printf "\n[*] Instalando o Stellarium"
                 printf "\n[*] Instalando o Stellarium" >> $arquivo_log
 
@@ -944,7 +944,7 @@ func_help()
             printf "\n[*] Instalando o Plank Dock" >> $arquivo_log
 
             # verificando distribuição
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 #adicionando ppa
                 add-apt-repository ppa:noobslab/apps -y
 
@@ -1094,7 +1094,7 @@ func_help()
         local var_nvidia=$(type nvidia-settings > /dev/null)
 
         if [[ $var_nvidia = "1" ]]; then
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
     		    printf "\n[*] Instalando o driver da Placa Nvidia"
     		    printf "\n[*] Instalando o driver da Placa Nvidia" >> $arquivo_log
 
@@ -1128,11 +1128,11 @@ func_help()
         	printf "\n[*] Instalando Virtualbox \n"
             printf "\n[*] Instalando Virtualbox \n" >> $arquivo_log
 
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
                 #instalando virtualbox
                 apt install virtualbox-5.1 -y
 
-            elif [ $distro = "Debian" ]; then     
+            elif [[ $distro = "Debian" ]]; then     
                 # adicionando repositorio
                 sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list' 
 
@@ -1191,7 +1191,7 @@ func_help()
 	            # Instalando via flatpak
 	            flatpak install flathub com.github.wwmm.pulseeffects -y                
 
-                if [ $distro = "Debian" ]; then                  
+                if [[ $distro = "Debian" ]]; then                  
                     local pulse_audio="/etc/pulse/daemon.conf"
                     local flat_volume="flat-volumes = no"
                     local verifica_pulse=$(grep $flat_volume $pulse_audio)        
@@ -1307,9 +1307,9 @@ func_help()
             printf "\n[*] Instalando Tux Guitar"
             printf "\n[*] Instalando Tux Guitar" >> $arquivo_log                
 
-            if [ $distro = "Ubuntu" ]; then
+            if [[ $distro = "Ubuntu" ]]; then
               snap install tuxguitar-vs
-            elif [ $distro = "Debian" ]; then
+            elif [[ $distro = "Debian" ]]; then
                 apt install tuxguitar timidity -y
             fi
         else
@@ -1405,7 +1405,7 @@ func_help()
 
         apt install python3.5 python-pip -y
 
-    	if [ $distro = "Debian" ]; then
+    	if [[ $distro = "Debian" ]]; then
  			apt install pipsi -y # Instalando pip no debian
 
             # instalando krpc - kerbal space program
@@ -1609,7 +1609,7 @@ func_help()
 
 	        apt install nemo* -y
 
-	        if [ $distro = "Debian" ]; then
+	        if [[ $distro = "Debian" ]]; then
 	        	printf "\n[+] Corrigindo possivel problema com a GLIB"
 	        	printf "\n[*] Corrigindo possivel problema com a GLIB" >> $arquivo_log	        	
 
@@ -1837,18 +1837,18 @@ func_corrige()
     atualiza_db   
 
 	if [[ $v_hostname = 'notebook' ]]; then               
-        if [ $distro = "Ubuntu" ]; then        
+        if [[ $distro = "Ubuntu" ]]; then        
             apt_update_local
             apt_auto            
-        elif [ $distro = "Debian" ]; then              
+        elif [[ $distro = "Debian" ]]; then              
             printf ""   
         fi
     elif [[ $v_hostname = 'desktop' ]]; then        
-        if [ $distro = "Ubuntu" ]; then           
+        if [[ $distro = "Ubuntu" ]]; then           
             apt_update_local
             apt_auto
             apport
-        elif [ $distro = "Debian" ]; then      
+        elif [[ $distro = "Debian" ]]; then      
             printf ""   
         fi
     else
@@ -1970,9 +1970,9 @@ func_instala()
         install_wavemon	
 	    install_reaver   
 
-		if [ $distro = "Ubuntu" ]; then					
+		if [[ $distro = "Ubuntu" ]]; then					
 			echo 	# nenhuma acao, por enquanto
-		elif [ $distro = "Debian" ]; then				
+		elif [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
 		fi
 	elif [[ $v_hostname = 'desktop' ]]; then     
