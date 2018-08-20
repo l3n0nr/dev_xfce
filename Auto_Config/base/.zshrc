@@ -113,7 +113,7 @@ alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/ch
 
 # outros
 ## limpa memoria 
-alias clearmemory='su /home/lenonr/Github/dev_sysadmin/others/reinicia_swap.sh'
+alias clearmemory='su root /home/lenonr/Github/dev_sysadmin/others/reboot_swap.sh'
 
 ## backup do arquivo zshrc
 alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
@@ -128,7 +128,8 @@ alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
 
 ## chama sublime via alias
-alias subl="/snap/bin/sublime-text.subl"
+#alias subl="/snap/bin/sublime-text.subl"
+alias subl="/opt/sublime_text/sublime_text"
 
 ## mostra informacoes do sistema
 alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
