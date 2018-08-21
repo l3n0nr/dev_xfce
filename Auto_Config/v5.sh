@@ -98,10 +98,10 @@ func_help()
 		        apt upgrade -y
                 
                 if [[ $agressive_mode == "1" ]]; then
-	                ## atualizacoes com mudanças - atualizacoes completas                
-	                # MODE VIDA LOKA ON - Os usuarios do ~Debian Stable~, podem pirar na batatinha... huehuehue
-	                apt dist-upgrade -y 
-	                apt full-upgrade -y	
+	                ## atualizacoes completas                
+	                # MODE VIDA LOKA ON 
+                    # Os usuarios do ~Debian Stable~, podem pirar na batatinha... 
+	                apt dist-upgrade -y && apt full-upgrade -y	
                 fi
 		fi
     }
@@ -320,14 +320,6 @@ func_help()
         ## removendo hosts apos configuracao
         rm base/hosts/hosts
     }
-
-    chaveiro()
-    {
-        printf "\n[*] Removendo o chaveiro da sessão"
-        printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
-
-        apt-get remove gnome-keyring -y
-    }   
 
     autologin()
     {       
@@ -1810,6 +1802,14 @@ func_help()
         apt purge clamav* clamtk clamtk-nautilus -y
     }
 
+    remove_chaveiro()
+    {
+        printf "\n[*] Removendo o chaveiro da sessão"
+        printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
+
+        apt-get remove gnome-keyring -y
+    }  
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1871,7 +1871,6 @@ func_config()
 
     autologin
     arquivo_hosts
-    chaveiro
 
     icones_temas
     config_idioma
@@ -2033,6 +2032,7 @@ func_remove()
 	remove_chromium-bsu
 	remove_owncloud   
     remove_mpv   
+    remove_chaveiro
 }
 
 func_formatado()
