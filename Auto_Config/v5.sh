@@ -380,7 +380,7 @@ func_help()
 	    local var_flatremix="/usr/share/icons/Flat_Remix_Light"
 	    local var_papirus="/usr/share/icons/Papirus_Light"
 
-        if [[ -z $var_breeze ]]; then             
+        if [[ -e $var_breeze ]]; then             
             printf "\n[-] Voce ja possui os arquivos Breeze!"
             printf "\n[-] Voce ja possui os arquivos Breeze!" >> $arquivo_log
         else            
@@ -390,7 +390,7 @@ func_help()
             cp -r ../Config/Interface/icons/Breeze /usr/share/icons
         fi
 
-        if [[ -z $var_flatremix ]]; then 
+        if [[ -e $var_flatremix ]]; then 
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!"
             printf "\n[-] Voce ja possui os arquivos Flat_Remix_Light!" >> $arquivo_log
         else            
@@ -400,7 +400,7 @@ func_help()
             cp -r ../Config/Interface/icons/Flat_Remix_Light /usr/share/icons
         fi
 
-        if [[ -z $var_papirus ]]; then 
+        if [[ -e $var_papirus ]]; then 
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!"
             printf "\n[-] Voce ja possui os arquivos Papirus_Light!" >> $arquivo_log
         else            
@@ -410,7 +410,7 @@ func_help()
             cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
         fi
 
-        if [[ -z $var_icones_macos ]]; then 
+        if [[ -e $var_icones_macos ]]; then 
             printf "\n[-] Voce ja possui os arquivos MacOS X!"
             printf "\n[-] Voce ja possui os arquivos MacOS X!" >> $arquivo_log
         else    
