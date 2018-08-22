@@ -1704,7 +1704,7 @@ func_help()
 		printf "\n[*] Removendo o Meld"
         printf "\n[*] Removendo o Meld" >> $arquivo_log
 		
-		apt purge meld -y
+		apt purge meld* -y
 	}
 
 	remove_gtkhash()
@@ -1712,7 +1712,7 @@ func_help()
 		printf "\n[*] Removendo o Gtkhash"
         printf "\n[*] Removendo o Gtkhash" >> $arquivo_log
 	
-		apt purge gtkhash -y	
+		apt purge gtkhash* -y	
 	}
 
 	remove_imagemagick()
