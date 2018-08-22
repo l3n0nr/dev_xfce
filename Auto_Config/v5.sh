@@ -192,8 +192,8 @@ func_help()
 
     atualiza_db()
     {
-        printf "\n[*] Atualizando base de dados do sistema"        
-        printf "\n[*] Atualizando base de dados do sistema" >> $arquivo_log
+        printf "\n[*] Atualizando base de dados do sistema \n"        
+        printf "\n[*] Atualizando base de dados do sistema \n" >> $arquivo_log
 
     	updatedb
     }
@@ -1615,6 +1615,14 @@ func_help()
     	apt install ntfs-3g -y
     }
 
+    install_catfish()
+    {
+        printf "\n[*] Instalando o Catfish"
+        printf "\n[*] Instalando o Catfish" >> $arquivo_log
+
+        apt install catfish* -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1955,6 +1963,7 @@ func_instala()
     install_ufw
     install_firmware    
     install_ntfs 
+    install_catfish
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
