@@ -663,7 +663,7 @@ func_help()
                     xfce4-xkb-plugin xfce4-mount-plugin smartmontools -fyq
 
         # adicionais para serem utilizados
-        apt install hddtemp         
+        apt install hddtemp -y     
 
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp        
