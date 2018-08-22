@@ -1348,16 +1348,16 @@ func_help()
     install_sublime()
     {
          # variavel de verificação
-        local var_sublime=$(type subl > /dev/null)
+        local var_sublime="/opt/sublime_text"
+        local var_sublime1=""
 
         # criando verificação para instalar o sublime
-        if [[ $var_sublime = "1" ]]; then
+        if [[ -e $var_sublime ]] || [[ -e $var_sublime1 ]] ; then
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
             # snap
             snap install sublime-text
-
         else
             snap refresh sublime-text
         fi
