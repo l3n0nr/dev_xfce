@@ -1808,8 +1808,16 @@ func_help()
         printf "\n[*] Removendo o chaveiro da sessão"
         printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
 
-        apt-get remove gnome-keyring -y
+        apt purge gnome-keyring -y
     }  
+
+    remove_zathura()
+    {
+        printf "\n[*] Removendo o zathura"
+        printf "\n[*] Removendo o zathura" >> $arquivo_log
+
+        apt purge zathura -y
+    }
 
     ## LAST_REMOVE
 
@@ -2035,6 +2043,7 @@ func_remove()
 	remove_owncloud   
     remove_mpv   
     remove_chaveiro
+    remove_zathura
 }
 
 func_formatado()
