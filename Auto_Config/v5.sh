@@ -1426,7 +1426,7 @@ func_help()
         printf "\n[*] Instalando Dropbox"
         printf "\n[*] Instalando Dropbox" >> $arquivo_log
 
-        apt install nemo-dropbox -y        
+        apt install nautilus-dropbox -y
     }
 
     install_transmission()
@@ -1590,26 +1590,19 @@ func_help()
         apt install rar unrar -y
     }
 
-    install_nemo()
+    install_nautilus()
     {
     	# variavel de verificação
-        local var_nemo=$(type nemo > /dev/null)
+        local var_nautilus=$(type nautilus > /dev/null)
 
-        if [[ $var_nemo = "1" ]]; then
-        	printf "\n[*] Instalando o Nemo"
-	        printf "\n[*] Instalando o Nemo" >> $arquivo_log
+        if [[ $var_nautilus = "1" ]]; then
+        	printf "\n[*] Instalando o Nautilus"
+	        printf "\n[*] Instalando o Nautilus" >> $arquivo_log
 
-	        apt install nemo* -y
-
-	        if [[ $distro = "Debian" ]]; then
-	        	printf "\n[+] Corrigindo possivel problema com a GLIB"
-	        	printf "\n[*] Corrigindo possivel problema com a GLIB" >> $arquivo_log	        	
-
-	        	/usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas/
-	        fi
+	        apt install nautilus* -y
         else    
-        	printf "\n[-] Nemo ja esta instalado"
-	        printf "\n[-] Nemo ja esta instalado" >> $arquivo_log
+        	printf "\n[-] Nautilus ja esta instalado"
+	        printf "\n[-] Nautilus ja esta instalado" >> $arquivo_log
 	    fi
 
     }
@@ -1907,7 +1900,7 @@ func_instala()
 
 	install_xfce4
     install_lm-sensors    
-    install_nemo
+    install_nautilus
     install_openssh    
     install_redshift
     install_ristretto    
