@@ -143,8 +143,7 @@ func_help()
         
         rm -rf /var/lib/dpkg/info/*.*
 
-        apt-get clean 
-        apt-get install -f
+        apt-get clean
 
         update
     }
