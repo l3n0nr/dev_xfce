@@ -1356,9 +1356,9 @@ func_help()
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
             # snap
-            snap install sublime-text
+            snap install sublime-text --classic
         else
-            snap refresh sublime-text
+            snap refresh sublime-text --classic
         fi
     }
 
