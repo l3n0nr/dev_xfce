@@ -46,7 +46,7 @@ if [[ `id -u` -ne 0 ]]; then
     printf "\n"
     printf "############################################################################ \n"
     printf "[!] O script para funcionar, precisa estar sendo executado como root! \n"
-    printf "[!] Favor, logar na conta root e executar o script novamente. \n"
+    printf "[!] Favor, logar na conta de super usuario!! \n"
     printf "############################################################################ \n"
     exit 1
 fi
