@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
-# Arquivo de referencia
-cd Auto_Config
+dir="/home/lenonr/Github/dev_xfce/Auto_Config"
 
 interface()
 {
@@ -23,12 +22,20 @@ default()
 
 main()
 {
-	if [[ $1 == "interface" ]]; then
-		interface	
+	# Arquivo de referencia
+	cd $dir
+
+	if [[ $? == 0 ]]; then
+		if [[ $1 == "interface" ]]; then
+			interface	
+		else
+			default
+		fi
 	else
-		default
-	fi
-	
+		clear
+		printf "[-] ERRO ao acessar pasta $dir!!\n"
+		exit 1
+	fi		
 }
 
 # chamando funcao principal
