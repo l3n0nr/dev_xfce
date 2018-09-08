@@ -1822,13 +1822,29 @@ func_help()
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_atualiza()
-{
-    notify-send -u normal "Atualizando sistema" -t 10000
+{    
+    # notify-send -u normal "Atualizando sistema" -t 10000
 
-    clear
+    # clear
 
-    update
-    upgrade
+    # update
+    # upgrade
+
+    check_atualiza=$(grep "UPDATE" $file_check | tail -1 | sed -e "s;UPDATE:;;g")
+
+    if [[ "$key" != "$check_atualiza" ]]; then
+        notify-send -u normal "Atualizando sistema" -t 10000
+
+        clear
+
+        update
+        upgrade     
+
+        echo "UPDATE:"$key >> $file_check   
+    else
+        notify-send -u normal "Sistema ja esta atualizado" -t 10000
+        printf "Funcao atualiza ja realizada, anteriormente! \n"
+    fi
 }
 
 func_corrige()
@@ -2570,7 +2586,7 @@ func_verifica_internet()
 }
 
 main()
-{
+{    
     clear
     
     escolha_vetor=$1 # vetor
