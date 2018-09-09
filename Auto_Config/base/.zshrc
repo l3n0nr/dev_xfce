@@ -124,11 +124,7 @@ alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 ## calcula lancamento do foguetes
 alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
-## chama funcao para verificar virus com o clamAV
-alias clamav="su root /home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/clamAV.sh"
-
 ## chama sublime via alias
-#alias subl="/snap/bin/sublime-text.subl"
 alias subl="/opt/sublime_text/sublime_text"
 
 ## mostra informacoes do sistema
@@ -145,6 +141,9 @@ alias hiber="systemctl hibernate"
 
 ## verificando maiores arquivos da particao
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
+
+## checa servicos iniciados no sistema
+alias check_services="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/check_services.sh"
 
 ## chama home personalizado
 home()
