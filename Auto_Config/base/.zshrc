@@ -125,7 +125,8 @@ alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
 ## chama sublime via alias
-alias subl="/opt/sublime_text/sublime_text"
+# alias subl="/opt/sublime_text/sublime_text"
+alias subl="/snap/bin/sublime-text.subl"
 
 ## mostra informacoes do sistema
 alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
@@ -144,6 +145,9 @@ alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 
 ## checa servicos iniciados no sistema
 alias check_services="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/check_services.sh"
+
+## zoeira da DC
+alias dc="echo 'Prefiro a Marvel...'"
 
 ## chama home personalizado
 home()
