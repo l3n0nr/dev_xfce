@@ -1821,30 +1821,38 @@ func_help()
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
+func_keycheck()
+{
+	# verificando se arquivo existe
+	check_arq=$(cat $file_check >> /dev/null)
+
+	# echo $checa_arq
+
+	if [[ $check_arq != "0" ]]; then
+		touch $file_check
+	fi
+
+	check_func=$(grep "AUTOCONFIG" $file_check | tail -1 | sed -e "s;AUTOCONFIG:;;g")
+
+    if [[ "$key" != "$check_func" ]]; then
+        echo "AUTOCONFIG:"$key >> $file_check   
+    else
+        printf "Esta com TOC amigo, voce ja rodou o script agora a pouco!! $check_func \n"
+
+        sleep $aguarda
+
+        exit 1
+    fi
+}
+
 func_atualiza()
 {    
-    # notify-send -u normal "Atualizando sistema" -t 10000
+    notify-send -u normal "Atualizando sistema" -t 10000
 
-    # clear
+    clear
 
-    # update
-    # upgrade
-
-    check_atualiza=$(grep "UPDATE" $file_check | tail -1 | sed -e "s;UPDATE:;;g")
-
-    if [[ "$key" != "$check_atualiza" ]]; then
-        notify-send -u normal "Atualizando sistema" -t 10000
-
-        clear
-
-        update
-        upgrade     
-
-        echo "UPDATE:"$key >> $file_check   
-    else
-        notify-send -u normal "Sistema ja esta atualizado" -t 10000
-        printf "Funcao atualiza ja realizada, anteriormente! \n"
-    fi
+    update
+    upgrade
 }
 
 func_corrige()
@@ -2589,6 +2597,8 @@ main()
 {    
     clear
     
+    func_keycheck
+
     escolha_vetor=$1 # vetor
     help_vetor=$2    # ajuda
 
