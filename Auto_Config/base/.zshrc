@@ -143,6 +143,9 @@ alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 ## checa servicos iniciados no sistema
 alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
 
+## executa arquivo pomodo
+alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
+
 ## zoeira da DC
 alias dc="echo 'Prefiro a Marvel...'"
 
