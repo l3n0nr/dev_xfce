@@ -137,14 +137,11 @@ alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
-## hibernando sistema via alias
-alias hiber="systemctl hibernate"
-
 ## verificando maiores arquivos da particao
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 
 ## checa servicos iniciados no sistema
-alias check_services="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/check_services.sh"
+alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
 
 ## zoeira da DC
 alias dc="echo 'Prefiro a Marvel...'"
