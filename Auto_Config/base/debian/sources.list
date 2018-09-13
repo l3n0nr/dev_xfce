@@ -1,27 +1,27 @@
 #------------------------------------------------------------------------------#
 #                   OFFICIAL DEBIAN REPOS                    
 #------------------------------------------------------------------------------#
-# Main
+# MAIN
 deb http://deb.debian.org/debian/ stable main contrib non-free
 
-# Updates
+# UPDATES
 deb http://deb.debian.org/debian/ stable-updates main contrib non-free
 
-# Security
+# SECURITY
 deb http://deb.debian.org/debian-security stable/updates main
 
 #------------------------------------------------------------------------------#
 #                      UNOFFICIAL  REPOS                       
 #------------------------------------------------------------------------------#
-# Steam
+# STEAM
 deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 
-# Mega
+# MEGA
 deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
 
-# Wine
+# WINE
 deb https://dl.winehq.org/wine-builds/debian/ stretch main
 
-# Nvidia
+# NVIDIA
 deb http://httpredir.debian.org/debian/ stretch main contrib non-free
 #------------------------------------------------------------------------------#
