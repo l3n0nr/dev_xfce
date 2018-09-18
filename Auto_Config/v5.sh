@@ -469,24 +469,6 @@ func_help()
 
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
-    install_firefox()
-    {   
-        printf "\n[*] Instalando Firefox"
-        printf "\n[*] Instalando Firefox" >> $arquivo_log
-
-        local var_firefox=$(type firefox > /dev/null)
-        
-		if [[ $distro = "Ubuntu" ]]; then
-        	apt install firefox -y
-        elif [[ $distro = "Debian" ]]; then
-            if [[ $var_firefox = "1" ]]; then        
-                snap install firefox
-            else
-                snap refresh firefox
-            fi
-        fi            
-    }
-
     install_chromium()
     {              
         local var_chromium=$(type chromium > /dev/null)        
@@ -1923,7 +1905,6 @@ func_instala()
 {
     notify-send -u normal "Instalando programas no sistema" -t 10000	
 
-	install_firefox
 	install_chromium	
 	install_tor
 
