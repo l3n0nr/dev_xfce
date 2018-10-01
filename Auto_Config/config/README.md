@@ -8,7 +8,7 @@ O script esta sendo desenvolvido no Debian Stable(Stretch), através dos reposit
 
 ## ESPECIFICAS
 - Função Atualiza: Atualiza completamente o sistema.
-- Função Corrige: Corrige programas recorrentes no sistema.
+- Função Corrige: Corrige problemas recorrentes no sistema.
 - Função Configura: Realiza configurações na máquina de forma automática.
 - Função Limpa: Limpa o sistema, removendo arquivos desnecessários.
 - Função Instala: Instala programas no sistema(configuraçao personalizada).
@@ -16,3 +16,5 @@ O script esta sendo desenvolvido no Debian Stable(Stretch), através dos reposit
 - Função Remove: Remove programas que não são necessários no sistema(configuraçao personalizada).
 
 ### RODAPÉ
+
+O objetivo desse repositorio consiste em automatizar diversas tarefas, envolvendo o sistema operacional utilizado. Busca-se tambem, aumentar os conhecimentos na linguagem de programacao Shell Script juntamente com outras co-relacionadas.

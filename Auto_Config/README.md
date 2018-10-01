@@ -23,6 +23,5 @@ Bem vindo ao script de automação de tarefas no Linux.
 
         - Interface em dialog  
             ~ v5.sh interface
-                [Zenity - EM DESENVOLVIMENTO]
-
-    **    SCRIPT COMPATIVEL COM UBUNTU 16.04 LTS | DEBIAN STABLE    **
+                - Funcoes automaticas: Funcionando
+                - Funcoes manuais: Em desenvolvimento
