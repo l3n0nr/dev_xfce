@@ -15,8 +15,8 @@ output_file="/tmp/config_user.txt"
 
 f_redshift()
 {
-	printf "[*] Copiando configuracao padrao do Redshift \n"
-	printf "[*] Copiando configuracao padrao do Redshift \n" >> $output_file
+	printf "[*] Configuracao padrao do redshift atualizada! \n"
+	printf "[*] Configuracao padrao do redshift atualizada!" >> $output_file
 
 	cat ../base/redshift.conf > $HOME/.config/redshift.conf 
 }
@@ -133,10 +133,26 @@ f_mega()
 
 main()
 {
-	f_redshift
-	f_zsh
-	f_mega
+	clear
+
+	if [[ $1 == "redshift" ]]; then
+		f_redshift
+	elif [[ $1 == "zsh" ]]; then
+		f_zsh
+	elif [[ $1 == "mega" ]]; then
+		f_mega
+	elif [[ $1 == "ajuda" ]]; then
+		echo "Voce pode chamar como paramentros:"
+		echo "f_redshift, ou"
+		echo "f_zsh, ou"
+		echo "f_mega"
+		echo "Por enquanto, e isso!!"
+	else
+		f_redshift
+		f_zsh
+		f_mega
+	fi		
 }
 
 # chamando script
-main
+main $1
