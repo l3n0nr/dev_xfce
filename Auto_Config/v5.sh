@@ -2396,23 +2396,6 @@ func_interface_dialog()
             dialog --timeout 2 --backtitle "$nome" --msgbox "\n Finalizando programa...!" 8 40 && exit 1
     }
 
-    valor=$(dialog \
-            --stdout --title "Automatizador de Tarefas" --backtitle "$nome"  \
-            --ok-label "Executar" --cancel-label "Cancelar" \
-            --menu "Modo de execucao:" \
-            0 0 0 \
-            "AUT" "Automatico" \
-            "MAN" "Manual" ); f_verifica
-
-    # if [[ $valor = "AUT" ]]; then
-    #     echo "Automatico"
-    # elif [[ $valor = "MAN" ]]; then
-    #     echo "Manual"
-    # else
-    #     f_verifica
-    #     clear
-    # fi
-
     escolha=$(dialog \
             --stdout --ok-label "Executar" --cancel-label "Cancelar" \
             --menu "O que voce deseja fazer?" \
