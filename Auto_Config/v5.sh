@@ -1805,25 +1805,27 @@ func_help()
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
 func_keycheck()
 {
-	# verificando se arquivo existe
-	check_arq=$(cat $file_check >> /dev/null)
+    if [[ $file_check_on == "1" ]]; then    
+    	# verificando se arquivo existe
+    	check_arq=$(cat $file_check >> /dev/null)
 
-	# echo $checa_arq
+    	# echo $checa_arq
 
-	if [[ $check_arq != "0" ]]; then
-		touch $file_check
-	fi
+    	if [[ $check_arq != "0" ]]; then
+    		touch $file_check
+    	fi
 
-	check_func=$(grep "AUTOCONFIG" $file_check | tail -1 | sed -e "s;AUTOCONFIG:;;g")
+    	check_func=$(grep "AUTOCONFIG" $file_check | tail -1 | sed -e "s;AUTOCONFIG:;;g")
 
-    if [[ "$key" != "$check_func" ]]; then
-        echo "AUTOCONFIG:"$key >> $file_check   
-    else
-        printf "Esta com TOC amigo, voce ja rodou o script agora a pouco!! $check_func \n"
+        if [[ "$key" != "$check_func" ]]; then
+            echo "AUTOCONFIG:"$key >> $file_check   
+        else
+            printf "Esta com TOC amigo, voce ja rodou o script agora a pouco!! $check_func \n"
 
-        sleep $aguarda
+            sleep $aguarda
 
-        exit 1
+            exit 1
+        fi
     fi
 }
 
@@ -2386,6 +2388,55 @@ version()
     echo "Contato: Email: '$email'; Twitter: '$twitter'"
 }
 
+func_interface_dialog()
+{
+    f_verifica()
+    {
+        [[ $? = "1" ]] && \
+            dialog --timeout 2 --backtitle "$nome" --msgbox "\n Finalizando programa...!" 8 40 && exit 1
+    }
+
+    valor=$(dialog \
+            --stdout --title "Automatizador de Tarefas" --backtitle "$nome"  \
+            --ok-label "Executar" --cancel-label "Cancelar" \
+            --menu "Modo de execucao:" \
+            0 0 0 \
+            "AUT" "Automatico" \
+            "MAN" "Manual" ); f_verifica
+
+    # if [[ $valor = "AUT" ]]; then
+    #     echo "Automatico"
+    # elif [[ $valor = "MAN" ]]; then
+    #     echo "Manual"
+    # else
+    #     f_verifica
+    #     clear
+    # fi
+
+    escolha=$(dialog \
+            --stdout --ok-label "Executar" --cancel-label "Cancelar" \
+            --menu "O que voce deseja fazer?" \
+            0 0 0 \
+            "ALL" "Todas" \
+            "NOR" "Geral" \
+            "UPD" "Atualizar" \
+            "FIX" "Corrigir" \
+            "CON" "Configurar" \
+            "CLE" "Limpar" \
+            "INS" "Instalar" \
+            "REM" "Remover") ; f_verifica
+
+            # executa funcao X e saida do script
+            [[ $escolha = "ALL" ]] && func_todas && exit 0 ||
+            [[ $escolha = "NOR" ]] && func_geral && exit 0 ||         
+            [[ $escolha = "UPD" ]] && func_atualiza && exit 0 ||
+            [[ $escolha = "FIX" ]] && func_corrige && exit 0 ||
+            [[ $escolha = "CON" ]] && func_config && exit 0 ||
+            [[ $escolha = "CLE" ]] && func_limpa && exit 0 ||
+            [[ $escolha = "INS" ]] && func_instala && exit 0 ||
+            [[ $escolha = "REM" ]] && func_remove && exit 0           
+}
+
 func_interface_zenity()
 {
 	f_verifica()
@@ -2616,7 +2667,7 @@ main()
             nvidia) nvidia;;
     		versao) version;;
             vetor) func_vetor;;
-    		interface) func_interface_zenity;;
+    		interface) func_interface_dialog;;
             *) clear && echo $mensagem_erro && exit 1
         esac    
 
