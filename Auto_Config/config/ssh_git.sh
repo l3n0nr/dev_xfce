@@ -3,10 +3,11 @@
 ##################################################################
 ### DESCRICAO
 # 	Trabalhando com chave publica no git
-# 			github.com/articles/connecting-to-github-with-ssh/
+# 			help.github.com/articles/connecting-to-github-with-ssh/
 # 
 ## INI_MOD: 08/10/18
 ## ULT_MOD: 08/10/18
+## VERSAO : 0.10
 ##################################################################
 #
 # VARIAVEIS
@@ -18,24 +19,27 @@ f_checkkeyssh()
 	ls -la ~/.ssh | grep id_rsa >> 2
 
 	if [[ $? -eq 0 ]]; then
-		echo "Voce ja possui a chave SSH... "
+		echo "Voce ja possui a chave SSH no seu diretorio $HOME... "
 		exit 1
 	fi
 }
 
 f_localhome()
 {
+	echo "[*] Entrando no diretorio do usuario"
 	cd $HOME
 }
 
 f_ssh_key()
 {
 	## generate key
+	echo "[*] Gerando chave SSH"
 	ssh-keygen -t rsa -b 4096 -C "$email"
 }
 
 f_eval()
 {
+	echo "[*] Adicionando chave ao agente em plano de fundo"
 	eval "$(ssh-agent -s)"
 }
 
@@ -46,6 +50,7 @@ f_ssh_add()
 
 f_xclip()
 {
+	echo "[*] Copiando chave"
 	xclip -sel clip < ~/.ssh/id_rsa.pub
 }
 
@@ -56,6 +61,7 @@ f_help()
 
 f_checkssh()
 {
+	echo "[*] Testando conexao"
 	ssh -T git@github.com
 }
 
@@ -64,9 +70,11 @@ main()
 {
 	clear 
 
+	# executando acoes na forma de vetor
     for (( i = 0; i <= ${#vetor[@]}; i++ )); do             
-        # executando acoes
         ${vetor[$i]} 
+        sleep 2
+        echo
     done
 }
 
