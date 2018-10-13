@@ -418,17 +418,34 @@ func_help()
 
             cp -r ../Config/Interface/themes/* /usr/share/themes
         fi
-    }    
-
-    ## LAST_CONFIG
+    }        
     
     config_idioma()
     {   
-        if [[ $distro = "Debian" ]]; then    
+        # if [[ $distro = "Debian" ]]; then    
+        #     [[ $(grep $language /etc/default/locale) = "" ]] \
+        #         && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
+        #         || printf "\n\n[-] Configuracao do idioma ja realizada anteriormente!"
+        # fi
+
+        if [[ $distro = "Debian" ]]; then
+            ## configurando dependencias de linguagem
             [[ $(grep $language /etc/default/locale) = "" ]] \
                 && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
                 || printf "\n\n[-] Configuracao do idioma ja realizada anteriormente!"
+
+            ## configurando linguagem do sistema
+            if [[ $v_hostname = "Desktop" ]]; then
+                echo "# Language system: English" > /etc/default/locale
+                echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+            elif [[ $v_hostname = "Notebook" ]]; then
+                echo "# Language system: Portugues" > /etc/default/locale
+                echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+            fi
         fi
+
+    ## LAST_CONFIG
+
     }
 
 # # # # # # # # # #
