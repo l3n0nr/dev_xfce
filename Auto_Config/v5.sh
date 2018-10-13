@@ -429,11 +429,6 @@ func_help()
         # fi
 
         if [[ $distro = "Debian" ]]; then
-            ## configurando dependencias de linguagem
-            [[ $(grep $language /etc/default/locale) = "" ]] \
-                && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
-                || printf "\n\n[-] Configuracao do idioma ja realizada anteriormente!"
-
             ## configurando linguagem do sistema
             if [[ $v_hostname = "Desktop" ]]; then
                 echo "# Language system: English" > /etc/default/locale
