@@ -1,5 +1,5 @@
 [limiter]
-input gain = -12.0
+input gain = -11.0
 limit = 0.0
 release time = 1.0
 
@@ -30,4 +30,3 @@ band6 = 0.0
 band7 = 0.0
 band8 = 0.0
 band9 = 0.0
-
