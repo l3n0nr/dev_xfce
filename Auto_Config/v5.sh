@@ -429,7 +429,7 @@ func_help()
         # fi
 
         [[ $(tail -1 /etc/locale.gen | grep $language) = "" ]] \
-            && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+            && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
             || printf "\n\n[-] Configuracao do idioma ja realizada!"
 
         if [[ $distro = "Debian" ]]; then
