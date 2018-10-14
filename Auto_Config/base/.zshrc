@@ -69,8 +69,10 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANGUAGE=en_US.UTF-8  
-export LANG=en_US.UTF-8
+# export LANGUAGE=en_US.UTF-8  
+# export LANG=en_US.UTF-8
+# export LANGUAGE="pt_BR:pt:en"
+# LANG="pt_BR.UTF-8"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -132,7 +134,7 @@ alias subl="/snap/bin/sublime-text.subl"
 alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
 
 ## realiza backup via dispositivo externo
-alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
+alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
 
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
@@ -166,9 +168,3 @@ home()
 		echo "Diretorio '$local_home' nao existe"
 	fi
 }
-
-## definindo o idioma automaticamente
-LANGUAGE=en_US.UTF-8
-LANG=en_US.UTF-8
-LC_CTYPE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
