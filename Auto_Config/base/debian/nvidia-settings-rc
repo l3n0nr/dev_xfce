@@ -1,0 +1,67 @@
+#
+# /home/lenonr/.nvidia-settings-rc
+#
+# Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
+# Generated on Wed Oct 17 13:55:25 2018
+#
+
+# ConfigProperties:
+
+RcFileLocale = C
+DisplayStatusBar = Yes
+SliderTextEntries = Yes
+IncludeDisplayNameInConfigFile = Yes
+ShowQuitDialog = No
+UpdateRulesOnProfileNameChange = Yes
+Timer = PowerMizer_Monitor_(GPU_0),Yes,100
+Timer = Thermal_Monitor_(GPU_0),Yes,100
+Timer = Memory_Used_(GPU_0),Yes,100
+
+# Attributes:
+
+desktop:0.0/SyncToVBlank=0
+desktop:0.0/LogAniso=0
+desktop:0.0/FSAA=0
+desktop:0.0/TextureClamping=0
+desktop:0.0/FXAA=0
+desktop:0.0/AllowFlipping=0
+desktop:0.0/FSAAAppControlled=1
+desktop:0.0/LogAnisoAppControlled=1
+desktop:0.0/OpenGLImageSettings=3
+desktop:0.0/FSAAAppEnhanced=0
+desktop:0[DPY:DVI-I-0]/RedBrightness=0.000000
+desktop:0[DPY:DVI-I-0]/GreenBrightness=0.000000
+desktop:0[DPY:DVI-I-0]/BlueBrightness=0.000000
+desktop:0[DPY:DVI-I-0]/RedContrast=0.000000
+desktop:0[DPY:DVI-I-0]/GreenContrast=0.000000
+desktop:0[DPY:DVI-I-0]/BlueContrast=0.000000
+desktop:0[DPY:DVI-I-0]/RedGamma=1.000000
+desktop:0[DPY:DVI-I-0]/GreenGamma=1.000000
+desktop:0[DPY:DVI-I-0]/BlueGamma=1.000000
+desktop:0[DPY:DVI-I-0]/Dithering=0
+desktop:0[DPY:DVI-I-0]/DitheringMode=0
+desktop:0[DPY:DVI-I-0]/DitheringDepth=0
+desktop:0[DPY:DVI-I-0]/DigitalVibrance=0
+desktop:0[DPY:DVI-I-0]/SynchronousPaletteUpdates=0
+desktop:0[DPY:DVI-I-1]/Dithering=0
+desktop:0[DPY:DVI-I-1]/DitheringMode=0
+desktop:0[DPY:DVI-I-1]/DitheringDepth=0
+desktop:0[DPY:DVI-I-1]/SynchronousPaletteUpdates=0
+desktop:0[DPY:DVI-I-2]/Dithering=0
+desktop:0[DPY:DVI-I-2]/DitheringMode=0
+desktop:0[DPY:DVI-I-2]/DitheringDepth=0
+desktop:0[DPY:DVI-I-2]/ColorSpace=0
+desktop:0[DPY:DVI-I-2]/ColorRange=0
+desktop:0[DPY:DVI-I-2]/SynchronousPaletteUpdates=0
+desktop:0[DPY:DVI-I-3]/Dithering=0
+desktop:0[DPY:DVI-I-3]/DitheringMode=0
+desktop:0[DPY:DVI-I-3]/DitheringDepth=0
+desktop:0[DPY:DVI-I-3]/ColorSpace=0
+desktop:0[DPY:DVI-I-3]/ColorRange=0
+desktop:0[DPY:DVI-I-3]/SynchronousPaletteUpdates=0
+desktop:0[DPY:HDMI-0]/Dithering=0
+desktop:0[DPY:HDMI-0]/DitheringMode=0
+desktop:0[DPY:HDMI-0]/DitheringDepth=0
+desktop:0[DPY:HDMI-0]/ColorSpace=0
+desktop:0[DPY:HDMI-0]/ColorRange=0
+desktop:0[DPY:HDMI-0]/SynchronousPaletteUpdates=0
