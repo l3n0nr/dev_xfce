@@ -422,12 +422,6 @@ func_help()
     
     config_idioma()
     {   
-        # if [[ $distro = "Debian" ]]; then    
-        #     [[ $(grep $language /etc/default/locale) = "" ]] \
-        #         && printf "\n\n[*] Realizando configuraçao de idioma" && cat base/language > $arq_language && locale-gen \
-        #         || printf "\n\n[-] Configuracao do idioma ja realizada anteriormente!"
-        # fi
-
         [[ $(tail -1 /etc/locale.gen | grep $language) = "" ]] \
             && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
             || printf "\n\n[-] Configuracao do idioma ja realizada!"
@@ -440,8 +434,14 @@ func_help()
             elif [[ $v_hostname = "Notebook" ]]; then
                 echo "# Language system: Portugues" > /etc/default/locale
                 echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+            else
+                echo "[-] Linguagem nao alterada"
             fi
-        fi
+
+            locale-gen
+
+            dpkg-reconfigure locales
+        fi        
 
     ## LAST_CONFIG
 
