@@ -2133,8 +2133,8 @@ func_geral()
     # removendo programas pré-instalados, desnecessários
     func_remove
 
-    # corrige possiveis problemas no sistema, se ativa não irá fazer tudo automaticamente
-    func_corrige
+    # realiza uma limpeza no sistema, removendo coisas desnecessárias
+    func_limpa
 
     # Configurando o sistema
     func_config
