@@ -151,10 +151,16 @@ alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
 ## zoeira da DC
 alias dc="echo 'Prefiro a Marvel...'"
 
+## reinicia interface xfce
+alias reboot_interface="xfwm4 --replace"
+
+## reinicia sessao xfce
+alias reboot_sessao="xfce4-session-logout"
+
 ## chama home personalizado
 home()
 {	
-    local_home='/home/lenonr'
+    local_home=$HOME
 
   	clear 
 
