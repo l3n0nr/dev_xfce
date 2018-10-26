@@ -592,8 +592,8 @@ func_help()
 
             snap install spotify
         else            
-            printf "\n[-] Atualizando Spofity! \n"
-            printf "\n[-] Atualizando Spofity! \n" >> $arquivo_log
+            printf "\n[+] Atualizando o Spofity! \n"
+            printf "\n[+] Atualizando o Spofity! \n" >> $arquivo_log
 
             snap refresh spotify
         fi
