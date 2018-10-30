@@ -422,8 +422,10 @@ func_help()
     
     config_idioma()
     {   
-        [[ $(tail -1 /etc/locale.gen | grep $language) = "" ]] \
-            && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+        ## verificando linguagem
+        tail -1 /etc/locale.gen | grep $language 
+
+        [[ $? = "0" ]] && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
             || printf "\n\n[-] Configuracao do idioma ja realizada!"
 
         if [[ $distro = "Debian" ]]; then
@@ -435,7 +437,7 @@ func_help()
                 echo "# Language system: Portugues" > /etc/default/locale
                 echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
             else
-                echo "[-] Linguagem nao alterada"
+                printf "\n[-] Linguagem nao alterada\n"
             fi
 
             locale-gen
