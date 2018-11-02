@@ -586,18 +586,18 @@ func_help()
     install_spotify()
     {
         # variavel de verificação
-        local var_spotify=$(type spotify > /dev/null)
+        local var_spotify=$(snap list | grep spotify)
 
-        if [[ $var_spotify = "1" ]]; then
-            printf "\n[*] Instalando Spotify"
-            printf "\n[*] Instalando Spotify" >> $arquivo_log
-
-            snap install spotify
-        else            
+        if [[ $var_spotify = "0" ]]; then            
             printf "\n[+] Atualizando o Spofity! \n"
             printf "\n[+] Atualizando o Spofity! \n" >> $arquivo_log
 
             snap refresh spotify
+        else
+            printf "\n[*] Instalando Spotify"
+            printf "\n[*] Instalando Spotify" >> $arquivo_log
+
+            snap install spotify
         fi
     }   
 
