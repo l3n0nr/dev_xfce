@@ -3,9 +3,9 @@ Bem vindo ao script de automação de tarefas no Linux.
     Ele poderá realizar no sistema:
         - Atualizaçao;
         - Corrigiçao de erros;
-        - Configuraçao automatica;
+        - Configuraçoes personalizadas;
         - Limpeza geral;
-        - Instalação de programas;
+        - Instalação de programas padroes e opcionais;
         - Remoção de programas desnecessários;
 
     Exemplos:        

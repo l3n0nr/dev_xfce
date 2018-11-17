@@ -4,14 +4,14 @@
 ### INFORMAÇÕES
 ## GERAIS
 
-O script esta sendo desenvolvido no Debian Stable(Stretch), através dos repositórios padrões do sistema. Assim, poderão haver inconsistências caso seja utilizada outra distribuição.
+O script esta sendo desenvolvido no Debian Stable(Stretch), através dos repositórios padrões do sistema. Assim, poderão haver inconsistências caso seja utilizada outra versao/distribuição.
 
 ## ESPECIFICAS
-- Função Atualiza: Atualiza completamente o sistema.
+- Função Atualiza: Auto intitulada.
 - Função Corrige: Corrige problemas recorrentes no sistema.
-- Função Configura: Realiza configurações na máquina de forma automática.
-- Função Limpa: Limpa o sistema, removendo arquivos desnecessários.
-- Função Instala: Instala programas no sistema(configuraçao personalizada).
+- Função Configura: Realiza configurações pessoais na máquina de forma automática.
+- Função Limpa: Auto intitulada.
+- Função Instala: Instala de forma automatica programas no sistema(configuraçao personalizada).
 - Função Instala outros: Instala programas que precisam de interação do usuário para o prosseguimento do processo.
 - Função Remove: Remove programas que não são necessários no sistema(configuraçao personalizada).
 
