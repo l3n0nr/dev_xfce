@@ -362,8 +362,8 @@ func_help()
                     printf "\n[-] Erro autologin" >> $arquivo_log
                 fi  
             else
-                printf "\n[-] Login ja esta habilitado"
-                printf "\n[-] Login ja esta habilitado" >> $arquivo_log
+                printf "\n[-] Login automatico na inicializacao, ja esta habilitado!!"
+                printf "\n[-] Login automatico na inicializacao, ja esta habilitado!!" >> $arquivo_log
             fi
         else
             printf "\n[-] O login automatico esta desabilitado! Verificar script."
@@ -636,8 +636,8 @@ func_help()
 
             apt install gimp -y
         else
-            printf "\n[-] Gimp já está instalado na sua máquina!"
-            printf "\n[-] Gimp já está instalado na sua máquina!" >> $arquivo_log
+            printf "\n[-] GIMP já está instalado na sua máquina!"
+            printf "\n[-] GIMP já está instalado na sua máquina!" >> $arquivo_log
         fi
     }
 
