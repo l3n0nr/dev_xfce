@@ -866,41 +866,6 @@ func_help()
         apt install reaver -y
     }  
 
-    install_dolphin()
-    {
-        printf "\n[*] Instalando o Dolphin"
-        printf "\n[*] Instalando o Dolphin" >> $arquivo_log
-
-        if [[ $distro = "Ubuntu" ]]; then
-            #adicionando repositorio do dolphin
-            add-apt-repository ppa:glennric/dolphin-emu -y
-
-            #Atualizando lista de repositorios
-            update
-
-            #corrigindo problemas de dependencias
-            apt-get install -f
-        fi
-
-        #Instalando dolphin
-        apt install dolphin-emu -y
-    }
-
-    install_visualgameboy()
-    {
-        printf "\n[*] Instalando o Visual Game Boy"
-        printf "\n[*] Instalando o Visual Game Boy" >> $arquivo_log 
-
-        if [[ $distro = "Ubuntu" ]]; then
-        	apt install visualboyadvance-gtk -y
-        elif [[ $distro = "Debian" ]]; then
-        	apt install visualboyadvance -y
-        else
-        	printf "[-] ERRO - VisualGame"
-        	printf "[-] ERRO - VisualGame" >> $arquivo_log
-        fi
-    }
-
     install_neofetch()
     {
         printf "\n[*] Instalando o Neofetch"
@@ -2013,9 +1978,6 @@ func_instala()
         install_wine
         install_playonlinux  
         install_sweethome3d
-
-		install_visualgameboy
-	    install_dolphin
 
 		install_audacity
         install_nvidia      
