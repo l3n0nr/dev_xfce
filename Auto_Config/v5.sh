@@ -1587,6 +1587,22 @@ func_help()
         apt install catfish* -y
     }
 
+    install_mpg123()
+    {
+        printf "\n[*] Instalando o MPG13"
+        printf "\n[*] Instalando o MPG13" >> $arquivo_log
+
+        apt install mpg123 -y
+    }
+
+    install_links()
+    {
+        printf "\n[*] Instalando o Links2"
+        printf "\n[*] Instalando o Links2" >> $arquivo_log
+
+        apt install links -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1961,6 +1977,8 @@ func_instala()
     install_firmware    
     install_ntfs 
     install_catfish
+    install_mpg123
+    install_links
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
