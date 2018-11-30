@@ -432,7 +432,8 @@ func_help()
             ## configurando linguagem do sistema
             if [[ $v_hostname = "Desktop" ]]; then
                 echo "# Language system: English" > /etc/default/locale
-                echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+                # echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+                echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
             elif [[ $v_hostname = "Notebook" ]]; then
                 echo "# Language system: Portugues" > /etc/default/locale
                 echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
@@ -442,7 +443,7 @@ func_help()
 
             locale-gen
 
-            dpkg-reconfigure locales
+            # dpkg-reconfigure locales
         fi        
 
     ## LAST_CONFIG
@@ -2398,8 +2399,8 @@ func_interface_dialog()
             --stdout --ok-label "Executar" --cancel-label "Cancelar" \
             --menu "O que voce deseja fazer?" \
             0 0 0 \
-            "ALL" "Todas" \
             "NOR" "Geral" \
+            "ALL" "Todas" \
             "UPD" "Atualizar" \
             "FIX" "Corrigir" \
             "CON" "Configurar" \
@@ -2407,9 +2408,9 @@ func_interface_dialog()
             "INS" "Instalar" \
             "REM" "Remover") ; f_verifica
 
-            # executa funcao X e saida do script
-            [[ $escolha = "ALL" ]] && func_todas && exit 0 ||
+            # executa funcao X e saida do script            
             [[ $escolha = "NOR" ]] && func_geral && exit 0 ||         
+            [[ $escolha = "ALL" ]] && func_todas && exit 0 ||
             [[ $escolha = "UPD" ]] && func_atualiza && exit 0 ||
             [[ $escolha = "FIX" ]] && func_corrige && exit 0 ||
             [[ $escolha = "CON" ]] && func_config && exit 0 ||
