@@ -2119,7 +2119,7 @@ func_geral()
     func_limpa
 
     # Configurando o sistema
-    func_config
+    # func_config
 
     # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
