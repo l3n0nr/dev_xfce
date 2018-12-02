@@ -1800,6 +1800,14 @@ func_help()
         apt purge zathura -y
     }
 
+    remove_synaptic()
+    {
+        printf "\n[*] Removendo Synaptic"
+        printf "\n[*] Removendo Synaptic" >> $arquivo_log
+
+        apt purge synaptic -y
+    }
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -2049,6 +2057,7 @@ func_remove()
     remove_mpv   
     remove_chaveiro
     remove_zathura
+    remove_synaptic
 }
 
 func_formatado()
