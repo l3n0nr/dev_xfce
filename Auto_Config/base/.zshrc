@@ -70,7 +70,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANGUAGE=en_US.UTF-8  
-# export LANG=en_US.UTF-8
+# export LANG="en_US.UTF-8"
 # export LANGUAGE="pt_BR:pt:en"
 # LANG="pt_BR.UTF-8"
 
@@ -155,6 +155,9 @@ alias reboot_interface="xfwm4 --replace"
 
 ## reinicia sessao xfce
 alias reboot_sessao="xfce4-session-logout"
+
+## missioes ksp
+alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
 
 ## chama home personalizado
 home()
