@@ -1363,9 +1363,6 @@ func_help()
         apt install python3.5 python-pip -y
 
     	if [[ $distro = "Debian" ]]; then
- 			apt install pipsi -y # Instalando pip no debian
-
-            # instalando krpc - kerbal space program
             pip install krpc
         fi           
     }
