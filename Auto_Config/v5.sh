@@ -425,17 +425,17 @@ func_help()
         ## verificando linguagem
         tail -1 /etc/locale.gen | grep $language 
 
-        [[ $? = "0" ]] && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+        [[ $? = "0" ]] && echo "pt_BR.UTF-8 UTF-8" >> /etc/locale.gen \
             || printf "\n\n[-] Configuracao do idioma ja realizada!"
 
         if [[ $distro = "Debian" ]]; then
-            ## configurando linguagem do sistema
-            if [[ $v_hostname = "Desktop" ]]; then
-                echo "# Language system: English" > /etc/default/locale
-                # echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
-                echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
-            elif [[ $v_hostname = "Notebook" ]]; then
-                echo "# Language system: Portugues" > /etc/default/locale
+            # ## configurando linguagem do sistema
+            # if [[ $v_hostname = "Desktop" ]]; then
+            #     echo "# Language system: English" > /etc/default/locale
+            #     echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
+            #     # echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale
+            # elif [[ $v_hostname = "Notebook" ]]; then
+                echo "# Linguagem do sistema: Portugues" > /etc/default/locale
                 echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
             else
                 printf "\n[-] Linguagem nao alterada\n"
@@ -1894,7 +1894,9 @@ func_config()
     arquivo_hosts
 
     icones_temas
-    config_idioma
+
+    ## verificar troca de idioma automatica(portugues) - testar em uma VM antes de habilitar novamente!
+    # config_idioma
 }
 
 func_limpa()
