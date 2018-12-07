@@ -1598,7 +1598,7 @@ func_help()
         printf "\n[*] Instalando o Links2"
         printf "\n[*] Instalando o Links2" >> $arquivo_log
 
-        apt install links -y
+        apt install links links2 -y
     }
 
     ## LAST_INSTALL
