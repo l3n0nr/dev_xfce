@@ -437,9 +437,9 @@ func_help()
             # elif [[ $v_hostname = "Notebook" ]]; then
                 echo "# Linguagem do sistema: Portugues" > /etc/default/locale
                 echo "LC_ALL=pt_BR.UTF-8" >> /etc/default/locale
-            else
-                printf "\n[-] Linguagem nao alterada\n"
-            fi
+            # else
+            #     printf "\n[-] Linguagem nao alterada\n"
+            # fi
 
             locale-gen
 
