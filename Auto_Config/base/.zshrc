@@ -159,6 +159,9 @@ alias reboot_sessao="xfce4-session-logout"
 ## missioes ksp
 alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
 
+## packages install
+alias packages="dpkg --get-selections > /tmp/packages.txt ; mousepad /tmp/packages.txt"
+
 ## chama home personalizado
 home()
 {	
