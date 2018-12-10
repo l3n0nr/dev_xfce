@@ -1469,14 +1469,6 @@ func_help()
         ufw enable && systemctl enable ufw && systemctl start ufw
     }
 
-    install_mypaint()
-    {
-        printf "\n[*] Instalando o MyPaint"
-        printf "\n[*] Instalando o MyPaint" >> $arquivo_log
-
-        apt install mypaint -y
-    }
-
     install_flatpak()
     {
         printf "\n[*] Instalando o Flatpak"
@@ -1932,8 +1924,7 @@ func_instala()
     install_youtubedl
     install_yad       
 	install_ntp 
-	install_localepurge 
-    install_mypaint 
+	install_localepurge     
     install_flatpak
     install_notify
     install_evince
