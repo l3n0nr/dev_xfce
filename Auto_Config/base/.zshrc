@@ -138,7 +138,7 @@ alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
-## verificando maiores arquivos da particao
+## verificando maiores arquivos do disco
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 
 ## checa servicos iniciados no sistema
@@ -151,7 +151,7 @@ alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
 alias dc="echo 'Prefiro a Marvel...'"
 
 ## reinicia interface xfce
-alias reboot_interface="xfce4-panel -r &&"
+alias reboot_interface="xfce4-panel -r &"
 
 ## reinicia sessao xfce
 alias reboot_sessao="xfce4-session-logout"
@@ -160,7 +160,7 @@ alias reboot_sessao="xfce4-session-logout"
 alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
 
 ## packages install
-alias packages="dpkg --get-selections > /tmp/packages.txt ; mousepad /tmp/packages.txt"
+alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 
 ## "apt search"
 alias procura="apt search ^$1"
