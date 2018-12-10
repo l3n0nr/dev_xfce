@@ -1319,14 +1319,6 @@ func_help()
         fi        
     }     
 
-    install_compton()
-    {
-        printf "\n[*] Instalando o Compton"        
-        printf "\n[*] Instalando o Compton" >> $arquivo_log        
-
-    	apt install compton compton-conf -y
-    }
-
     install_python()
     {        
         printf "\n[*] Instalando o Pip" 
@@ -1549,14 +1541,6 @@ func_help()
     	printf "\n[*] Instalando o NTFS-3g" >> $arquivo_log
 
     	apt install ntfs-3g -y
-    }
-
-    install_catfish()
-    {
-        printf "\n[*] Instalando o Catfish"
-        printf "\n[*] Instalando o Catfish" >> $arquivo_log
-
-        apt install catfish* -y
     }
 
     install_mpg123()
@@ -1938,7 +1922,6 @@ func_instala()
     install_gnome_disk_utility
     install_gnome_system_monitor    
     install_gnome_calculator
-    install_compton
     install_xfburn
     install_mugshot
     install_simplescan 
@@ -1965,7 +1948,6 @@ func_instala()
     install_ufw
     install_firmware    
     install_ntfs 
-    install_catfish
     install_mpg123
     install_links
 
