@@ -1757,10 +1757,12 @@ func_help()
 
     remove_chaveiro()
     {
-        printf "\n[*] Removendo o chaveiro da sessão"
-        printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
+        if [[ $v_hostname = 'desktop' ]]; then
+            printf "\n[*] Removendo o chaveiro da sessão"
+            printf "\n[*] Removendo o chaveiro da sessão" >> $arquivo_log
 
-        apt purge gnome-keyring -y
+            apt purge gnome-keyring -y  
+        fi        
     }  
 
     remove_zathura()
@@ -1777,6 +1779,14 @@ func_help()
         printf "\n[*] Removendo Synaptic" >> $arquivo_log
 
         apt purge synaptic -y
+    }
+
+    remove_youtubedl()
+    {
+        printf "\n[*] Removendo youtube-dl"
+        printf "\n[*] Removendo youtube-dl" >> $arquivo_log
+
+        apt purge youtube-dl -y
     }
 
     ## LAST_REMOVE
