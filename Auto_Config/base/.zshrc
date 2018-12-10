@@ -151,7 +151,7 @@ alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
 alias dc="echo 'Prefiro a Marvel...'"
 
 ## reinicia interface xfce
-alias reboot_interface="xfwm4 --replace"
+alias reboot_interface="xfce4-panel -r &&"
 
 ## reinicia sessao xfce
 alias reboot_sessao="xfce4-session-logout"
