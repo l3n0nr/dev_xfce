@@ -1344,7 +1344,9 @@ func_help()
         printf "\n[*] Instalando o Youtube-DL" 
         printf "\n[*] Instalando o Youtube-DL" >> $arquivo_log 
 
-        apt install youtube-dl -y
+        pip install youtube-dl 
+
+        pip install --upgrade youtube-dl 
     }
 
     install_yad()
