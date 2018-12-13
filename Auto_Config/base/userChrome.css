@@ -7,5 +7,39 @@ com o seguinte codigo:
 
 */
 
-/*centraliza o texto na bar de pesquisa */
+@import "global/variables.css";
+@import "global/global.css";
+@import "tabbar/tabbar.css";
+@import "navbar/navbar.css";
+@import "personalbar/personalbar.css";
+
+/* Reference: https://www.reddit.com/r/FirefoxCSS/comments/8h81bv/material_safari_windows_10 */
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/* tabs --- rotate close button - put the code in userChrome.css*/
+
+.titlebar-button > .toolbarbutton-icon {
+
+}
+
+/* Height */
+#nav-bar {
+  min-height: 40px !important;
+  z-index: 3
+}
+
+/* Autohide Tabs */
+#TabsToolbar {
+  min-height: 40px !important;
+    margin-top: -40px !important;
+  transition: all 0.3s ease 0s !important;
+    -moz-box-ordinal-group: 2 !important;
+}
+
+#navigator-toolbox:hover > #TabsToolbar {
+  margin-top: -1px !important;
+  transition: all 0.3s ease 0s !important;
+}
+ 
+/* center align */
 #urlbar {text-align: center;}
