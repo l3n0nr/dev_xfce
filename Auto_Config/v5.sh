@@ -598,7 +598,7 @@ func_help()
                     oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
     }
 
-    install_funcao_gimp()
+    install_gimp()
     {
      	# variavel de verificação
         local var_gimp=$(type gimp > /dev/null)
@@ -1870,7 +1870,7 @@ func_instala()
 	install_vlc
 	install_clementine
 	install_spotify	   
-	install_funcao_gimp	
+	install_gimp	
 	install_simple_screen_recorder   
 	
     install_stellarium
