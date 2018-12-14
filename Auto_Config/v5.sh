@@ -1402,14 +1402,6 @@ func_help()
         apt install simple-scan -y
     }
 
-    install_wireshark()
-    {
-        printf "\n[*] Instalando o Wireshark"
-        printf "\n[*] Instalando o Wireshark" >> $arquivo_log
-
-        apt install wireshark -y
-    }
-
     install_prelink()
     {
         printf "\n[*] Instalando Prelink"
