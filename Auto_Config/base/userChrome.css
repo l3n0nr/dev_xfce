@@ -1,0 +1,11 @@
+/*
+
+Busca por "about:support",
+criar o arquivo "userChrome.css",
+na pasta "chrome",
+com o seguinte codigo:
+
+*/
+
+/*centraliza o texto na bar de pesquisa */
+#urlbar {text-align: center;}

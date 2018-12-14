@@ -1,2 +1,2 @@
 ## Atualiza o sistema as 20:00, segunda, quarta e sexta.
-00 20 * * 1,3,5 apt update ; apt upgrade
+00 20 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt && date >> /tmp/crontab.txt
