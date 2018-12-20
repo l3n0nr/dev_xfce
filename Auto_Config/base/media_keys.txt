@@ -4,8 +4,6 @@ Volume
 		Command: amixer set Master 6%+
 	Down: Ctrl + Delete
 		Command: amixer set Master 6%-
-	Mute: Ctrl + End
-		Command: 
 
 Player music
 	Play/Pause: Ctrl + Home
@@ -21,8 +19,8 @@ Others:
 	Terminator: Alt + Enter
 		Command: terminator
 
-	Hibernate: Alt + Esc
-		Command: systemctl hibernate
+	Menu Logout: Alt + Esc
+		Command: xfce4-session-logout
 
 	Whisker menu: Super(Left|Right)
 		Command: xfce4-popup-whiskermenu
