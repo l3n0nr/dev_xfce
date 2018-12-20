@@ -907,7 +907,7 @@ func_help()
         printf "\n[*] Instalando o Wireshark"
         printf "\n[*] Instalando o Wireshark" >> $arquivo_log
 
-        apt install wireshark wireshark-gtk -y
+        apt install wireshark -y
     }
 
     install_gnome_disk_utility()
