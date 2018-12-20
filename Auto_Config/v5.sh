@@ -1388,14 +1388,6 @@ func_help()
         apt install wavemon -y
     }
 
-    install_mugshot()
-    {
-        printf "\n[*] Instalando o Mugshot"        
-        printf "\n[*] Instalando o Mugshot" >> $arquivo_log        
-
-        apt install mugshot -y
-    }
-
     install_simplescan()
     {
         printf "\n[*] Instalando o Simple-scan"        
@@ -1909,7 +1901,6 @@ func_instala()
     install_gnome_system_monitor    
     install_gnome_calculator
     install_xfburn
-    install_mugshot
     install_simplescan 
     install_git
 	install_python    
