@@ -1751,6 +1751,14 @@ func_help()
         apt purge youtube-dl -y
     }
 
+    remove_simplescan()
+    {
+        printf "\n[*] Removendo o Simple-scan"
+        printf "\n[*] Removendo o Simple-scan" >> $arquivo_log
+
+        apt purge simple-scan -y
+    }
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1996,6 +2004,8 @@ func_remove()
     remove_chaveiro
     remove_zathura
     remove_synaptic
+    remove_youtubedl
+    remove_simplescan
 }
 
 func_formatado()
