@@ -18,28 +18,53 @@ com o seguinte codigo:
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 /* tabs --- rotate close button - put the code in userChrome.css*/
 
-.titlebar-button > .toolbarbutton-icon {
-
-}
-
 /* Height */
 #nav-bar {
-  min-height: 40px !important;
+  min-height: 30px !important;
   z-index: 3
 }
 
+/*center align */
+#urlbar {text-align: center;}
+
+/*OPTION 01
+/*.titlebar-button > .toolbarbutton-icon {
+}*/
+
 /* Autohide Tabs */
-#TabsToolbar {
+/*#TabsToolbar {
   min-height: 40px !important;
-    margin-top: -40px !important;
-  transition: all 0.3s ease 0s !important;
+  margin-top: -40px !important;
+  transition: all 0.2s ease 0s !important;
     -moz-box-ordinal-group: 2 !important;
 }
 
 #navigator-toolbox:hover > #TabsToolbar {
   margin-top: -1px !important;
   transition: all 0.3s ease 0s !important;
+}*/
+
+/*OPTION 02*/
+/*Tabs on bottom*/
+.tabbrowser-tab .tab-line,
+#TabsToolbar,
+.tabbrowser-tab .tab-bottom-line {
+	 -moz-box-ordinal-group: 2;
 }
- 
-/* center align */
-#urlbar {text-align: center;}
+
+.tabbrowser-tab[first-tab="true"] .tab-background {
+	border-left-width:0px !important;
+}
+
+/*Fatten selected line when hovered*/
+.tabbrowser-tab[selected]:hover .tab-line {
+	height: 3px !important;
+}
+
+/*OTHERS
+/*full-width tabs*/
+/*#TabsToolbar .tabbrowser-tab[fadein]:not([pinned]) {
+  flex-grow: 1 !important;
+  min-width: 11em !important;
+  max-width: 100% !important;
+}*/
