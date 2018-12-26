@@ -1288,10 +1288,9 @@ func_help()
     {
          # variavel de verificação
         local var_sublime="/opt/sublime_text"
-        local var_sublime1=""
 
         # criando verificação para instalar o sublime
-        if [[ -e $var_sublime ]] || [[ -e $var_sublime1 ]] ; then
+        if [[ -e $var_sublime ]]; then
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $arquivo_log
 
