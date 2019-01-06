@@ -1387,14 +1387,6 @@ func_help()
         apt install wavemon -y
     }
 
-    install_simplescan()
-    {
-        printf "\n[*] Instalando o Simple-scan"        
-        printf "\n[*] Instalando o Simple-scan" >> $arquivo_log        
-
-        apt install simple-scan -y
-    }
-
     install_prelink()
     {
         printf "\n[*] Instalando Prelink"
