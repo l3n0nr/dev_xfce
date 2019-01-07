@@ -114,7 +114,7 @@ func_help()
         printf "\n[*] Limpando arquivos sobressalentes"
         printf "\n[*] Limpando arquivos sobressalentes" >> $arquivo_log
         
-        rm -rf /var/lib/dpkg/info/*.*
+        # rm -rf /var/lib/dpkg/info/*.*
 
         apt-get clean
 
@@ -128,7 +128,7 @@ func_help()
         printf "\n[*] Corrigindo pacotes quebrados" >> $arquivo_log
 
         #corrige possiveis erros na instalação de softwares
-        dpkg --configure -a
+        # dpkg --configure -a
 
         # corrigindo problema nos pacotes
         apt install -f 
@@ -287,7 +287,7 @@ func_help()
                     echo "autologin-user-timeout=0" >> $var_autologin
 
                     printf "\n[*] Reconfigurando lightdm, aguarde!" 
-                    dpkg-reconfigure lightdm 
+                    # dpkg-reconfigure lightdm 
 
                     if [[ $? = "0" ]]; then
                     	printf "\n[*] Configuracao atualizada com sucesso" 
@@ -1330,14 +1330,6 @@ func_help()
         printf "\n[*] Instalando o Wavemon" >> $arquivo_log        
 
         apt install wavemon -y
-    }
-
-    install_simplescan()
-    {
-        printf "\n[*] Instalando o Simple-scan"        
-        printf "\n[*] Instalando o Simple-scan" >> $arquivo_log        
-
-        apt install simple-scan -y
     }
 
     install_prelink()
