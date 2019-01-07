@@ -108,33 +108,6 @@ func_help()
 
 # # # # # # # # # #
 # # corrige SISTEMA
-    apt_check()
-    {
-        #verificando lista do apt
-        printf "\n[*] Verificando lista do apt"
-        printf "\n[*] Verificando lista do apt" >> $arquivo_log
-        
-        apt-get check -y
-    }
-
-    apt_install()
-    {
-        #Instalando possiveis dependencias
-        printf "\n[*] Instalando dependências pendentes"
-        printf "\n[*] Instalando dependências pendentes" >> $arquivo_log
-
-        apt-get install -fy
-    }
-
-    apt_remove()
-    {
-        #removendo possiveis dependencias
-        printf "\n[*] Removendo possíveis dependências obsoletas"
-        printf "\n[*] Removendo possíveis dependências obsoletas" >> $arquivo_log
-
-        apt-get remove -fy
-    }
-
     apt_clean()
     {
         #Limpando lista arquivos sobressalentes
@@ -146,25 +119,6 @@ func_help()
         apt-get clean
 
         update
-    }
-
-    apt_auto()
-    {
-        #corrigindo problemas de dependencias
-        printf "\n[*] Corrigindo problemas de dependências"
-        printf "\n[*] Corrigindo problemas de dependências" >> $arquivo_log
-        
-        apt-get install auto-apt -y
-    }
-
-    apt_update_local()
-    {
-        #corrigindo repositorio local de dependencias automaticamente
-        printf "\n[*] Corrigindo repositório local de dependências automaticamente"
-        printf "\n[*] Corrigindo repositório local de dependências automaticamente" >> $arquivo_log
-        
-        auto-apt update-local
-        apt list --upgradable
     }
 
     pacotes_quebrados()
@@ -197,7 +151,7 @@ func_help()
     	updatedb
     }
 
-    ## LAST_ATUALIZA
+    ## LAST_CORRIGE
 
 # # # # # # # # # #
 # # config SISTEMA    
@@ -292,15 +246,6 @@ func_help()
             printf "\n[-] Nao foi possivel sincronizar com o servidor!\n" >> $arquivo_log
         fi    
     }
-
-    apport()
-    {
-        printf "\n[*] Removendo possiveis erros com o apport \n"
-        printf "\n[*] Removendo possiveis erros com o apport \n" >> $arquivo_log
-
-        #corrige apport - ubuntu 16.04
-        cat base/ubuntu/apport > /etc/default/apport
-    }   
 
     arquivo_hosts()
     {
@@ -1821,7 +1766,6 @@ func_corrige()
         if [[ $distro = "Ubuntu" ]]; then           
             apt_update_local
             apt_auto
-            apport
         elif [[ $distro = "Debian" ]]; then      
             printf ""   
         fi
@@ -1837,7 +1781,6 @@ func_config()
 {
     notify-send -u normal "Configurando o sistema" -t 10000	
 
-    apport
     config_ntp  
 
     swap
