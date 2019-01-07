@@ -101,7 +101,8 @@ func_help()
 	                ## atualizacoes completas                
 	                # MODE VIDA LOKA ON 
                     # Os usuarios do ~Debian Stable~, podem pirar na batatinha... 
-	                apt dist-upgrade -y && apt full-upgrade -y	
+	                apt dist-upgrade -y && \
+                    apt full-upgrade -y	
                 fi
 		fi
     }
@@ -113,8 +114,6 @@ func_help()
         #Limpando lista arquivos sobressalentes
         printf "\n[*] Limpando arquivos sobressalentes"
         printf "\n[*] Limpando arquivos sobressalentes" >> $arquivo_log
-        
-        # rm -rf /var/lib/dpkg/info/*.*
 
         apt-get clean
 
@@ -457,9 +456,9 @@ func_help()
                 apt-get install tor tor-browser -y
 
             elif [[ $distro = "Debian" ]]; then
-                # manualmente - funciona de boas -
-                # baixar do site, pasta /opt! 
-                ## elaborando script - daqui a pouco ele aparece aqui! hehehe
+                ## verificar script
+                # repo sysadmin/others/install_tor.sh
+                
                 echo
             else
                 printf "\n[-] ERRO TOR"
@@ -529,18 +528,18 @@ func_help()
             apt install ubuntu-restricted-extras -y
         fi
 
-        apt install faac faad ffmpeg gstreamer0.10-ffmpeg \
+        apt install faac faad ffmpeg gstreamer0.10-ffmpeg lame \
                     flac icedax id3v2 lame libflac++6 libjpeg-progs \
                     libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec \
                     mpeg3-utils mpegdemux mpg123 mpg321 regionset sox \
                     uudeview vorbis-tools x264 arj p7zip p7zip-full \
-                    unace-nonfree sharutils uudeview \
+                    unace-nonfree sharutils uudeview libav-tools \
                     mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 \
                     libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
                     libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
                     libxine1-misc-plugins libxine1-plugins libxine1-x \
-                    tagtool libavcodec-extra ffmpeg \
-                    oracle-java7-installer lame libavcodec-extra libav-tools -y --force-yes    
+                    tagtool libavcodec-extra ffmpeg libavcodec-extra \
+                    oracle-java7-installer -y --force-yes    
     }
 
     install_gimp()
@@ -810,35 +809,6 @@ func_help()
         apt install cheese -y
     }
 
-    install_plank()
-    {
-        # variavel de verificação
-        local var_plank=$(type plank > /dev/null)
-
-        if [[ $var_plank = "1" ]]; then
-            printf "\n[*] Instalando o Plank Dock"
-            printf "\n[*] Instalando o Plank Dock" >> $arquivo_log
-
-            # verificando distribuição
-            if [[ $distro = "Ubuntu" ]]; then
-                #adicionando ppa
-                add-apt-repository ppa:noobslab/apps -y
-
-                #Atualizando lista repositorios
-                update
-
-                #Instalando plank
-            	apt-get install plank* plank-themer -y
-            fi
-
-            #Instalando plank
-            apt-get install plank* -y
-        else
-            printf "\n[-] Plank já está instalado!"
-            printf "\n[-] Plank já está instalado!" >> $arquivo_log
-        fi
-    }
-
     install_gnome_system_monitor()
     {
         printf "\n[*] Instalando o Gnome System Monitor"
@@ -877,18 +847,6 @@ func_help()
         local var_simplescreenrecorder=$(type simplescreenrecorder > /dev/null)
 
         if [[ $var_simplescreenrecorder = "1" ]]; then
-            printf "\n[*] Instalando o Simple Screen Recorder"
-            printf "\n[*] Instalando o Simple Screen Recorder" >> $arquivo_log
-
-            if [[ $distro = "Ubuntu" ]]; then
-                #adicionando fonte
-                add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
-
-                #Atualizando lista de repositorios
-                apt-get update
-            fi
-
-            #Instalando simplescreenrecorder
             apt-get install simplescreenrecorder -y
         else
             printf "\n[-] Simple Screen Recorder já está instalado!"
@@ -905,19 +863,7 @@ func_help()
             printf "\n[*] Instalando o MEGA"
             printf "\n[*] Instalando o MEGA" >> $arquivo_log
             
-            if [[ $distro = "Ubuntu" ]]; then
-	            # Instalando mega
-	            dpkg -i base/packages/mega/*.deb
-
-	            # corrigindo dependencias
-	            apt install -fy
-
-	            # Instalando mega
-	            dpkg -i base/packages/mega/*.deb
-	        elif [[ $distro = "Debian" ]]; then
-				# Instalando megasync
-				apt install megasync -y
-	        fi
+			apt install megasync -y
         else
             printf "\n[-] MEGA Sync já está instalado!"
             printf "\n[-] MEGA Sync já está instalado!" >> $arquivo_log
@@ -970,19 +916,6 @@ func_help()
         local var_nvidia=$(type nvidia-settings > /dev/null)
 
         if [[ $var_nvidia = "1" ]]; then
-            if [[ $distro = "Ubuntu" ]]; then
-    		    printf "\n[*] Instalando o driver da Placa Nvidia"
-    		    printf "\n[*] Instalando o driver da Placa Nvidia" >> $arquivo_log
-
-    		    apt-add-repository ppa:graphics-drivers/ppa -y
-    		    apt-add-repository ppa:ubuntu-x-swat/x-updates -y
-    		    apt-add-repository ppa:xorg-edgers/ppa -y
-
-    		    update
-
-    		    apt install nvidia-current nvidia-settings -y  
-            elif [[ $distro = "Debian" ]]; then
-                # Instalando driver
         	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
             else
                 printf "\n[-] ERRO - NVIDIA"
@@ -1000,16 +933,8 @@ func_help()
         local var_virtualbox=$(type virtualbox > /dev/null)
 
         # criando verificação para instalar o virtualbox
-        if [[ $var_virtualbox = "1" ]]; then    
-        	printf "\n[*] Instalando Virtualbox \n"
-            printf "\n[*] Instalando Virtualbox \n" >> $arquivo_log
-
-            if [[ $distro = "Ubuntu" ]]; then
-                #instalando virtualbox
-                apt install virtualbox-5.1 -y
-
-            elif [[ $distro = "Debian" ]]; then     
-                # adicionando repositorio
+        if [[ $var_virtualbox = "1" ]]; then 
+                # adicionando repositorio   
                 sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list' 
 
                 # baixando chave
@@ -1183,11 +1108,7 @@ func_help()
             printf "\n[*] Instalando Tux Guitar"
             printf "\n[*] Instalando Tux Guitar" >> $arquivo_log                
 
-            if [[ $distro = "Ubuntu" ]]; then
-              snap install tuxguitar-vs
-            elif [[ $distro = "Debian" ]]; then
-                apt install tuxguitar timidity -y
-            fi
+            apt install tuxguitar timidity -y
         else
             printf "\n[-] TuxGuitar já está instalado"
             printf "\n[-] TuxGuitar já está instalado" >> $arquivo_log
