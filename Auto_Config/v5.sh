@@ -917,10 +917,6 @@ func_help()
 
         if [[ $var_nvidia = "1" ]]; then
         	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
-            else
-                printf "\n[-] ERRO - NVIDIA"
-                printf "\n[-] ERRO - NVIDIA" >> $arquivo_log
-            fi
         else
             printf "\n[-] Nvidia já está instalado no sistema!"
             printf "\n[-] Nvidia já está instalado no sistema!" >> $arquivo_log
@@ -950,8 +946,7 @@ func_help()
                 apt install virtualbox-5.2 -y    
 
                 # adicionando usuario
-                gpasswd -a $autor vboxusers          
-            fi            
+                gpasswd -a $autor vboxusers                    
         else
             printf "[-] VirtualBox já está instalado! \n"
             printf "[-] VirtualBox já está instalado! \n" >> $arquivo_log
