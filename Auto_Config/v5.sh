@@ -1389,6 +1389,14 @@ func_help()
         apt install links links2 -y
     }
 
+    install_cpupower()
+    {
+        printf "\n[*] Instalando o CPU power"
+        printf "\n[*] Instalando o CPU power" >> $arquivo_log
+
+        apt install linux_cpupower -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1789,7 +1797,8 @@ func_instala()
         install_cheese
         install_aircrack  
         install_wavemon	
-	    install_reaver   
+	    install_reaver  
+        install_cpupower 
 
 		if [[ $distro = "Ubuntu" ]]; then					
 			echo 	# nenhuma acao, por enquanto
