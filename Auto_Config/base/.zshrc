@@ -162,6 +162,9 @@ alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
 ## packages install
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 
+## verifica ip externo
+alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
+
 ## chama home personalizado
 home()
 {	
