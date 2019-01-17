@@ -69,10 +69,8 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANGUAGE=en_US.UTF-8  
-# export LANG="en_US.UTF-8"
-# export LANGUAGE="pt_BR:pt:en"
-# LANG="pt_BR.UTF-8"
+# export LC_ALL="pt_BR.UTF-8"
+# export LC_ALL="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -111,6 +109,7 @@ alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
 alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
+alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/check_push.sh"
 
 # outros
 ## limpa memoria 
@@ -123,7 +122,7 @@ alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
 
 ## chama sublime via alias
 # alias subl="/opt/sublime_text/sublime_text"
@@ -133,12 +132,12 @@ alias subl="/snap/bin/sublime-text.subl"
 alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
 
 ## realiza backup via dispositivo externo
-alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
+alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
 
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
-## verificando maiores arquivos do disco
+## verificando maiores arquivos da particao
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 
 ## checa servicos iniciados no sistema
@@ -150,25 +149,10 @@ alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
 ## zoeira da DC
 alias dc="echo 'Prefiro a Marvel...'"
 
-## reinicia interface xfce
-alias reboot_interface="xfce4-panel -r &"
-
-## reinicia sessao xfce
-alias reboot_sessao="xfce4-session-logout"
-
-## missioes ksp
-alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
-
-## packages install
-alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
-
-## verifica ip externo
-alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
-
 ## chama home personalizado
 home()
 {	
-    local_home=$HOME
+    local_home='/home/lenonr'
 
   	clear 
 
