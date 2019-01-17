@@ -392,14 +392,6 @@ func_help()
         chkrootkit
     }
 
-    func_localepurge()
-    {
-        printf "\n[*] Removendo idiomas extras" 
-        printf "\n[*] Removendo idiomas extras" >> $arquivo_log
-
-        localepurge
-    }
-
     ## LAST_LIMPA
 
 # # # # # # # # # #
@@ -586,7 +578,7 @@ func_help()
         #dando permissão de leitura, para verificar temperatura do HDD
         chmod u+s /usr/sbin/hddtemp        
 
-        if [[ -z $var_xfpanel ]]; then
+        if [[ $var_xfpanel = "1" ]]; then
             printf "\n[*] Instalando Xfpanel-switch"
             printf "\n[*] Instalando Xfpanel-switch" >> $arquivo_log
 
@@ -601,7 +593,7 @@ func_help()
             printf "\n[-] Xfpanel-switch ja esta instalado" >> $arquivo_log
         fi      
 
-        if [[ -z $var_whiskermenu ]]; then
+        if [[ $var_whiskermenu = "1" ]]; then
             printf "\n[*] Instalando Whisker-menu"
             printf "\n[*] Instalando Whisker-menu" >> $arquivo_log
 
@@ -892,14 +884,6 @@ func_help()
         printf "\n[*] Instalando o Chkrootkit" >> $arquivo_log
 
         apt install chkrootkit -y
-    }
-
-    install_localepurge()
-    {
-        printf "\n[*] Instalando o Localepurge"
-        printf "\n[*] Instalando o Localepurge" >> $arquivo_log
-
-        apt-get install localepurge -y
     }
 
     install_hardinfo()
@@ -1716,7 +1700,6 @@ func_limpa()
 
     pacotes_orfaos
     funcao_chkrootkit
-    func_localepurge
 }
 
 func_instala()
@@ -1766,16 +1749,14 @@ func_instala()
     install_gnome_disk_utility
     install_gnome_system_monitor    
     install_gnome_calculator
-    install_xfburn
-    install_simplescan 
+    install_xfburn 
     install_git
 	install_python    
 	install_sublime
     install_terminator
     install_youtubedl
     install_yad       
-	install_ntp 
-	install_localepurge     
+	install_ntp      
     install_flatpak
     install_notify
     install_evince
