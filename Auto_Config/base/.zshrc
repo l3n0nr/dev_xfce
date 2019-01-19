@@ -69,15 +69,15 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LC_ALL="pt_BR.UTF-8"
-# export LC_ALL="en_US.UTF-8"
+export LANGUAGE="pt_BR.UFT-8"
+export LANG="pt_BR.UTF-8"
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='nano'
+else
+   export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -101,20 +101,17 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # testando configuracao do teclado
-#setxkbmap -model abnt2 -layout br -variant abnt2
-setxkbmap -model pc105 -layout br -variant abnt2
+# setxkbmap -model abnt2 -layout br -variant abnt2
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
 alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
-alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/check_push.sh"
 
-# outros
-## limpa memoria 
-alias clearmemory='su root /home/lenonr/Github/dev_sysadmin/others/reboot_swap.sh'
-
+#################
+## ALIAS DIVERSOS
+#################
 ## backup do arquivo zshrc
 alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 
@@ -122,47 +119,42 @@ alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
 ## chama sublime via alias
-# alias subl="/opt/sublime_text/sublime_text"
 alias subl="/snap/bin/sublime-text.subl"
 
 ## mostra informacoes do sistema
 alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
 
 ## realiza backup via dispositivo externo
-alias verificahd="/home/lenonr/Github/dev_sysadmin/others/hdd.sh"
+alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
 
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
-## verificando maiores arquivos da particao
+## verificando maiores arquivos do disco
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 
 ## checa servicos iniciados no sistema
 alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
 
 ## executa arquivo pomodo
-alias pomodoro="/home/lenonr/Github/dev_sysadmin/others/pomodoro.sh"
+alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
 
 ## zoeira da DC
 alias dc="echo 'Prefiro a Marvel...'"
 
-## chama home personalizado
-home()
-{	
-    local_home='/home/lenonr'
+## reinicia interface xfce
+alias reboot_interface="xfce4-panel -r &"
 
-  	clear 
+## missioes ksp
+alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
 
-  	# verificando se diretorio existe 
-  	if [ -e "$local_home" ]; then 
-	  	echo "########## LISTA DE ARQUIVOS ##########" 
-	  	cd $local_home
-	  	ls
-	  	echo "######################################"
-  	else
-		echo "Diretorio '$local_home' nao existe"
-	fi
-}
+## packages install
+alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
+
+## verifica ip externo
+alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
+
+## alias home="/home/lenonr/Github/dev_sysadmin/others/home.sh"
