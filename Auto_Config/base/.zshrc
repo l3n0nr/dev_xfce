@@ -157,4 +157,5 @@ alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packa
 ## verifica ip externo
 alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
 
-## alias home="/home/lenonr/Github/dev_sysadmin/others/home.sh"
+## chamando o home
+alias home="cd ~ && clear && ls"
