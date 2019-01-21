@@ -1,0 +1,8 @@
+# Reference: https://docs.docker.com/install/linux/linux-postinstall/ #
+
+######### 
+# Creating new group for use
+# groupadd docker
+
+# Actived user non-root in new group
+# usermod -aG docker '$USER'
