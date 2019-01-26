@@ -71,6 +71,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 #export LANGUAGE="pt_BR.UFT-8"
 #export LANG="pt_BR.UTF-8"
+setxkbmap -model pc105 -layout br -variant abnt2
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -159,3 +160,6 @@ alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
 
 ## chamando o home
 alias home="cd ~ && clear && ls"
+
+## tocando radiozinho
+alias radio="/home/lenonr/Github/dev_sysadmin/others/radio.sh"
