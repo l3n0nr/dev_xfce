@@ -932,8 +932,8 @@ func_help()
                 # adicionando usuario
                 gpasswd -a $autor vboxusers                    
         else
-            printf "[-] VirtualBox já está instalado! \n"
-            printf "[-] VirtualBox já está instalado! \n" >> $arquivo_log
+            printf "\n[-] VirtualBox já está instalado! \n"
+            printf "\n[-] VirtualBox já está instalado! \n" >> $arquivo_log
         fi
     }
 
