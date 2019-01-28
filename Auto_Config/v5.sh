@@ -2427,7 +2427,7 @@ main()
         func_vetor_ajuda && exit 0
 
     # armazena log no arquivo
-    [[ $? = 0 ]] && date > $arquivo_log
+    date > $arquivo_log
 
     for i in "$@"; 
     do    	  	
@@ -2447,10 +2447,11 @@ main()
             vetor) func_vetor;;
     		interface) func_interface_dialog;;
             *) clear && echo $mensagem_erro && exit 1
-        esac    
-
-        [[ $? = 0 ]] && date >> $arquivo_log
+        esac            
     done
+
+    # armazena log no arquivo
+    date >> $arquivo_log
 }
 
 ## chamando script
