@@ -75,9 +75,11 @@ setxkbmap -model pc105 -layout br -variant abnt2
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nano'
+   # export EDITOR='nano'
+   export EDITOR=$(which nano)
 else
-   export EDITOR='vim'
+   # export EDITOR='vim'
+   export EDITOR=$(which vim)
 fi
 
 # Compilation flags
@@ -162,4 +164,4 @@ alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
 alias home="cd ~ && clear && ls"
 
 ## tocando radiozinho
-alias radio="/home/lenonr/Github/dev_sysadmin/others/radio.sh"
+alias radio="/home/lenonr/Github/dev_sysadmin/others/radio/main.sh"
