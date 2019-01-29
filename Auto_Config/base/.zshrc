@@ -71,7 +71,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 #export LANGUAGE="pt_BR.UFT-8"
 #export LANG="pt_BR.UTF-8"
-setxkbmap -model pc105 -layout br -variant abnt2
+#setxkbmap -model pc105 -layout br -variant abnt2
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -102,9 +102,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# testando configuracao do teclado
-# setxkbmap -model abnt2 -layout br -variant abnt2
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
@@ -163,5 +160,8 @@ alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
 ## chamando o home
 alias home="cd ~ && clear && ls"
 
-## tocando radiozinho
+## tocando radiozinhos personalizadas
 alias radio="/home/lenonr/Github/dev_sysadmin/others/radio/main.sh"
+
+## procura imagem area de trabalho
+alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_wallhaven/procuraimagem2.sh"
