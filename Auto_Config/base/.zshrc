@@ -168,3 +168,6 @@ alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_
 
 ## alias rotina
 alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
+
+## alias pulseeffects
+alias pulseeffects="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=pulseeffects com.github.wwmm.pulseeffects --gapplication-service &"
