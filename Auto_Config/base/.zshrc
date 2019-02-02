@@ -165,3 +165,6 @@ alias radio="/home/lenonr/Github/dev_sysadmin/others/radio/main.sh"
 
 ## procura imagem area de trabalho
 alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_wallhaven/procuraimagem2.sh"
+
+## alias rotina
+alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
