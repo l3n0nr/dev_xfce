@@ -3,6 +3,7 @@
 ## REMOVE INSTALATION VIA APT
 # rm -r /usr/bin/docker
 # apt purge docker docker-ce
+# apt autoremove
 
 ## POST-INSTALL
 # Creating new group for use
