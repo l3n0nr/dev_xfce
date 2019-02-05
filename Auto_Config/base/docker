@@ -1,6 +1,10 @@
 # Reference: https://docs.docker.com/install/linux/linux-postinstall/ #
 
-######### 
+## REMOVE INSTALATION VIA APT
+# rm -r /usr/bin/docker
+# apt purge docker docker-ce
+
+## POST-INSTALL
 # Creating new group for use
 # groupadd docker
 
