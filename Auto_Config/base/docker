@@ -11,3 +11,9 @@
 
 # Actived user non-root in new group
 # usermod -aG docker '$USER'
+
+### DOCKER SERVICES
+	- Debian
+		- PHP
+		- Apache
+		- Python
