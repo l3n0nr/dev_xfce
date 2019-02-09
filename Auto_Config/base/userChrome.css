@@ -60,11 +60,3 @@ com o seguinte codigo:
 .tabbrowser-tab[selected]:hover .tab-line {
 	height: 3px !important;
 }
-
-/*OTHERS
-/*full-width tabs*/
-/*#TabsToolbar .tabbrowser-tab[fadein]:not([pinned]) {
-  flex-grow: 1 !important;
-  min-width: 11em !important;
-  max-width: 100% !important;
-}*/
