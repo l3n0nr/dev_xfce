@@ -79,32 +79,19 @@ func_help()
 
     upgrade()
     {
-        # verificando distribuição
-        if [[ $distro = "Ubuntu" ]]; then            
-        	#Atualizando lista de programas do sistema
-        	printf "\n[*] Atualizando lista de programas do sistema \n"
-	        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
-	        	apt upgrade -y
-
-	        #Atualizando repositorio local
-	        printf "\n[*] Atualizando repositório local dos programas \n"
-	        printf "\n[*] Atualizando repositório local dos programas \n" >> $arquivo_log
-	        	auto-apt updatedb
-		else
-        	#Atualizando lista de programas do sistem
-        	printf "\n[*] Atualizando lista de programas do sistema \n"
-	        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
-                ## atualizacao segura
-		        apt upgrade -y
-                
-                if [[ $agressive_mode == "1" ]]; then
-	                ## atualizacoes completas                
-	                # MODE VIDA LOKA ON 
-                    # Os usuarios do ~Debian Stable~, podem pirar na batatinha... 
-	                apt dist-upgrade -y && \
-                    apt full-upgrade -y	
-                fi
-		fi
+    	#Atualizando lista de programas do sistem
+    	printf "\n[*] Atualizando lista de programas do sistema \n"
+        printf "\n[*] Atualizando lista de programas do sistema \n" >> $arquivo_log
+            ## atualizacao segura
+	        apt upgrade -y
+            
+            if [[ $agressive_mode == "1" ]]; then
+                ## atualizacoes completas                
+                # MODE VIDA LOKA ON 
+                # Os usuarios do ~Debian Stable~, podem pirar na batatinha... 
+                apt dist-upgrade -y && \
+                apt full-upgrade -y	
+            fi
     }
 
 # # # # # # # # # #
@@ -295,12 +282,6 @@ func_help()
                     	printf "\n[-] Erro na Configuracao - Autologin"
                         printf "\n[-] Erro na Configuracao - Autologin" >> $arquivo_log
                     fi
-
-                elif [[ $distro = "Ubuntu" ]]; then 
-                    printf "\n[*] Iniciando sessão automaticamente"
-                    printf "\n[*] Iniciando sessão automaticamente" >> $arquivo_log
-
-                    cat base/ubuntu/lightdm.conf > /etc/lightdm/lightdm.conf
                 else
                     printf "\n[-] Erro autologin"
                     printf "\n[-] Erro autologin" >> $arquivo_log
@@ -399,7 +380,6 @@ func_help()
     install_chromium()
     {              
         local var_chromium=$(type chromium > /dev/null)        
-        local var_chromium1=$(type chromium-browser > /dev/null)
 
         if [[ $distro = "Debian" ]]; then 
             if [[ $var_chromium = "1" ]]; then
@@ -411,15 +391,6 @@ func_help()
             else
                 printf "\n[*] Chromium ja esta instalado"
                 printf "\n[*] Chromium ja esta instalado" >> $arquivo_log                
-            fi  
-        elif [[ $distro = "Ubuntu" ]]; then 
-            if [[ $var_chromium1 = "1" ]]; then
-                printf "\n[*] Instalando o Chromium"
-                printf "\n[*] Instalando o Chromium" >> $arquivo_log
-
-                snap install chromium
-            else
-                snap refresh chromium
             fi  
         else
             printf "\n[-] Erro instalação Chromium"
@@ -436,18 +407,7 @@ func_help()
             printf "\n[*] Instalando o Tor" >> $arquivo_log
 
             # verificando distribuição
-            if [[ $distro = "Ubuntu" ]]; then
-                # ubuntu 16.04
-                #adicionando repositorio
-                add-apt-repository ppa:webupd8team/tor-browser -y
-
-                #Atualizando lista de pacotes
-                update
-
-                #Instalando tor
-                apt-get install tor tor-browser -y
-
-            elif [[ $distro = "Debian" ]]; then
+            if [[ $distro = "Debian" ]]; then
                 ## verificar script
                 # repo sysadmin/others/install_tor.sh
                 
@@ -514,11 +474,6 @@ func_help()
     {
         printf "\n[*] Instalando Pacotes Multimidias (Codecs)"
         printf "\n[*] Instalando Pacotes Multimidias (Codecs)" >> $arquivo_log
-
-        if [[ $distro = "Ubuntu" ]]; then
-            #Instalando pacotes multimidias
-            apt install ubuntu-restricted-extras -y
-        fi
 
         apt install faac faad ffmpeg gstreamer0.10-ffmpeg lame \
                     flac icedax id3v2 lame libflac++6 libjpeg-progs \
@@ -618,16 +573,7 @@ func_help()
         	printf "\n[*] Instalando o Wine"
             printf "\n[*] Instalando o Wine" >> $arquivo_log
 
-            if [[ $distro = "Ubuntu" ]]; then
-                # adicionado o repositorio
-                add-apt-repository ppa:ubuntu-wine/ppa -y
-
-                # chamando funcao já criada
-                update                
-
-                # instalando wine
-                apt install wine -y
-            elif [[ $distro = "Debian" ]]; then
+            if [[ $distro = "Debian" ]]; then
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
 		
@@ -682,14 +628,6 @@ func_help()
     {
         printf "\n[*] Instalando o Libreoffice"
         printf "\n[*] Instalando o Libreoffice" >> $arquivo_log
-
-        if [[ $distro = "Ubuntu" ]]; then
-            #adicionando ppa
-            add-apt-repository ppa:libreoffice/ppa -y
-
-            #chamando funcao já definida
-            update
-        fi
 
         #Instalando libreoffice
         apt-get install libreoffice libreoffice-style-breeze -y
@@ -749,18 +687,6 @@ func_help()
         local var_stellarium=$(type stellarium > /dev/null)
 
         if [[ $var_stellarium = "1" ]]; then
-            # verificando distribuição
-            if [[ $distro = "Ubuntu" ]]; then
-                printf "\n[*] Instalando o Stellarium"
-                printf "\n[*] Instalando o Stellarium" >> $arquivo_log
-
-                #adicinando ppa
-                add-apt-repository ppa:stellarium/stellarium-releases -y
-
-                #Atualizando sistema
-                update
-            fi
-
             #Instalando o stellarium
             apt install stellarium* -y
         else
@@ -1654,18 +1580,12 @@ func_corrige()
 
     atualiza_db   
 
-	if [[ $v_hostname = 'notebook' ]]; then               
-        if [[ $distro = "Ubuntu" ]]; then        
-            apt_update_local
-            apt_auto            
-        elif [[ $distro = "Debian" ]]; then              
+	if [[ $v_hostname = 'notebook' ]]; then                        
+        if [[ $distro = "Debian" ]]; then              
             printf ""   
         fi
     elif [[ $v_hostname = 'desktop' ]]; then        
-        if [[ $distro = "Ubuntu" ]]; then           
-            apt_update_local
-            apt_auto
-        elif [[ $distro = "Debian" ]]; then      
+        if [[ $distro = "Debian" ]]; then      
             printf ""   
         fi
     else
@@ -1779,9 +1699,7 @@ func_instala()
 	    install_reaver  
         install_cpupower 
 
-		if [[ $distro = "Ubuntu" ]]; then					
-			echo 	# nenhuma acao, por enquanto
-		elif [[ $distro = "Debian" ]]; then				
+		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
 		fi
 	elif [[ $v_hostname = 'desktop' ]]; then     
