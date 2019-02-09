@@ -1727,8 +1727,7 @@ func_instala()
     install_neofetch
     install_lm-sensors    
     install_tlp	   
-    install_mega
-    install_pulseeffects
+    install_mega    
 
     install_zsh          
     install_ibus
@@ -1790,6 +1789,7 @@ func_instala()
         install_wine
         install_playonlinux  
         install_sweethome3d
+        install_pulseeffects
 
 		install_audacity
         install_nvidia      
