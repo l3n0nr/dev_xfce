@@ -1,0 +1,5 @@
+## SNAP
+- Spotity
+- Sublime Text
+
+## FLATPAK
