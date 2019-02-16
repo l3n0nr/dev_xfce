@@ -171,3 +171,6 @@ alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
 
 ## alias pulseeffects
 alias pulseeffects="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=pulseeffects com.github.wwmm.pulseeffects --gapplication-service &"
+
+## alias podcasts pendentes
+alias podcast="cd /home/lenonr/Música/Podcast && ls"
