@@ -1292,6 +1292,14 @@ func_help()
         apt install links links2 -y
     }
 
+    install_googleearth()
+    {
+        printf "\n[*] Instalando o Google Earth"
+        printf "\n[*] Instalando o Google Earth" >> $log_instala
+
+         dpkg -i base/packages/google_earth/google-earth-pro-stable_current_amd64.deb
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1693,7 +1701,8 @@ func_instala()
 		install_audacity
         install_nvidia      
                 
-        install_transmission    
+        install_transmission   
+        install_googleearth 
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $arquivo_log
