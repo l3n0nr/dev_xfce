@@ -1555,9 +1555,6 @@ func_corrige()
 {
     notify-send -u normal "Corrigindo sistema" -t 10000
 
-    apt_check
-    apt_install
-    apt_remove
     apt_clean        
     
     pacotes_quebrados      
@@ -2305,6 +2302,13 @@ func_verifica_internet()
   	[[ ! $? -eq 0 ]] && clear && notify-send -u normal "Sem internet, saindo do script." -t 10000 && exit 1
 }
 
+func_manutencao()
+{
+    func_corrige
+    func_limpa
+    func_remove
+}
+
 main()
 {    
     clear
@@ -2353,6 +2357,7 @@ main()
     		versao) version;;
             vetor) func_vetor;;
     		interface) func_interface_dialog;;
+            manutencao) func_manutencao;;
             *) clear && echo $mensagem_erro && exit 1
         esac            
     done
