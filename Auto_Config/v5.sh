@@ -113,7 +113,12 @@ func_help()
         printf "\n[*] Corrigindo pacotes quebrados"
         printf "\n[*] Corrigindo pacotes quebrados" >> $log_corrige
 
-        #corrige possiveis erros na instalação de softwares
+        # removendo arquivos conflitantes
+        rm -r /var/lib/apt/lists
+        rm -rf /var/lib/dpkg/info/*.*
+        mkdir -p /var/lib/apt/lists/partial
+
+        # corrigindo possiveis erros na instalação de softwares
         dpkg --configure -a
 
         # corrigindo problema nos pacotes
@@ -122,11 +127,7 @@ func_help()
         apt-get --fix-broken install
 
         # Atualizando versao dos pacotes instalados
-        apt list --upgradable
-
-        #VERIFICAR AÇÕES
-        rm -r /var/lib/apt/lists
-        mkdir -p /var/lib/apt/lists/partial
+        apt list --upgradable        
     }    
 
     atualiza_db()
