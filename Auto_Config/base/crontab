@@ -1,5 +1,10 @@
-## Atualiza o sistema as 22:00, segunda, quarta e sexta.
-00 22 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt ; apt list --upgradable >> /tmp/crontab.txt ; date >> /tmp/crontab.txt
-
-## Reinicia swap 'automagicamente'
+### HORAS
+# Reiniciando memoria
 */30 * * * * su root /home/lenonr/Github/dev_sysadmin/others/reboot_swap.sh
+
+## Verifica atualizacoes do sistema a cada 30 minutos
+*/30 * * * * date > /tmp/checa_atualizacao && apt list --upgradable >> /tmp/checa_atualizacao
+
+### DIAS
+## Atualiza o sistema, segunda, quarta e sexta as 21:00
+00 21 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt ; apt list --upgradable >> /tmp/crontab.txt ; date >> /tmp/crontab.txt
