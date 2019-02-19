@@ -878,44 +878,37 @@ func_help()
     {
         # variavel de verificação
         local var_pulseeeffects=$(type pulseeffects > /dev/null)
-		local var_flatpak=$(type flatpak > /dev/null)
 
-        # criando verificação para instalar o pulseeffects
-        if [[ $var_flatpak = "1" ]]; then
-	        if [[ $var_pulseeeffects = "1" ]]; then
-	            printf "\n[*] Instalando o Pulse Effects"
-	            printf "\n[*] Instalando o Pulse Effects" >> $log_instala
+        if [[ $var_pulseeeffects = "1" ]]; then
+            printf "\n[*] Instalando o Pulse Effects"
+            printf "\n[*] Instalando o Pulse Effects" >> $log_instala
 
-	            # adicionando via flatpak
-	            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+            # adicionando via flatpak
+            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-	            # Instalando via flatpak
-	            flatpak install flathub com.github.wwmm.pulseeffects -y                
+            # Instalando via flatpak
+            flatpak install flathub com.github.wwmm.pulseeffects -y                
 
-                if [[ $distro = "Debian" ]]; then                  
-                    local pulse_audio="/etc/pulse/daemon.conf"
-                    local flat_volume="flat-volumes = no"
-                    local verifica_pulse=$(grep $flat_volume $pulse_audio)        
+            if [[ $distro = "Debian" ]]; then                  
+                local pulse_audio="/etc/pulse/daemon.conf"
+                local flat_volume="flat-volumes = no"
+                local verifica_pulse=$(grep $flat_volume $pulse_audio)        
 
-                    # executando caso nao encontre $flat_volume
-                    [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
-                                                  printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
-                                                  printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
+                # executando caso nao encontre $flat_volume
+                [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
+                                              printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
+                                              printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
 
-                    ######## COMENTARIO                        
-                    ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-                    # apt install --reinstall pulseaudio
-                fi
-	        else                
-	            printf "\n[*] Atualizando pulseeffects"
-	            printf "\n[*] Atualizando pulseeffects" >> $log_instala
+                ######## COMENTARIO                        
+                ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
+                # apt install --reinstall pulseaudio
+            fi
+        else                
+            printf "\n[*] Atualizando o pulseeffects\n"
+            printf "\n[*] Atualizando o pulseeffects\n" >> $log_instala
 
-                flatpak update com.github.wwmm.pulseeffects -y                
-	        fi            
-	    else
-			printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!"
-            printf "\n[-] O Pulse Effects, precisa do flatpak para ser instalado!" >> $log_instala
-	    fi
+            flatpak update com.github.wwmm.pulseeffects -y                
+        fi            
     }
     
     install_terminator()
@@ -1099,8 +1092,8 @@ func_help()
 
     install_youtubedl()
     {
-        printf "\n[*] Instalando o Youtube-DL" 
-        printf "\n[*] Instalando o Youtube-DL" >> $log_instala
+        printf "\n[*] Instalando o Youtube-DL\n" 
+        printf "\n[*] Instalando o Youtube-DL\n" >> $log_instala
 
         pip install youtube-dl 
 
@@ -1229,7 +1222,7 @@ func_help()
 	        printf "\n[*] Instalando o Notify-send" >> $log_instala
 
 	        apt install notify-osd -y
-	        apt --reinstall install libnotify-bin notify-osd -y
+	        # apt --reinstall install libnotify-bin notify-osd -y
         else    
         	printf "\n[-] Notify-send ja esta instalado"
 	        printf "\n[-] Notify-send ja esta instalado" >> $log_instala
@@ -1298,7 +1291,33 @@ func_help()
         printf "\n[*] Instalando o Google Earth"
         printf "\n[*] Instalando o Google Earth" >> $log_instala
 
-         dpkg -i base/packages/google_earth/google-earth-pro-stable_current_amd64.deb
+        if [[ -e "/opt/google/earth" ]]; then
+            printf "\n[-] Google Earth ja esta instalado!"
+            printf "\n[-] Google Earth ja esta instalado!" >> $log_instala            
+        else
+            dpkg -i base/packages/google_earth/google-earth-pro-stable_current_amd64.deb  
+        fi        
+    }
+
+    install_gwe()
+    {    
+        local var_gwe=$(type gwe > /dev/null)
+        
+        if [[ $var_gwe == "1" ]]; then
+            printf "\n[*] Instalando o GreenWithEnvy\n"
+            printf "\n[*] Instalando o GreenWithEnvy\n" >> $log_instala           
+
+            # adicionando via flatpak
+            flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+            # Instalando via flatpak
+            flatpak --user install flathub com.leinardi.gwe
+        else                
+            printf "\n[*] Atualizando o GWE\n"
+            printf "\n[*] Atualizando o GWE\n" >> $log_instala
+
+            flatpak update com.leinardi.gwe -y                
+        fi            
     }
 
     ## LAST_INSTALL
@@ -1704,6 +1723,7 @@ func_instala()
                 
         install_transmission   
         install_googleearth 
+        install_gwe
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $arquivo_log
