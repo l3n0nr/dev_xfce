@@ -155,7 +155,7 @@ func_help()
         [[ $background = "" ]] && echo vm.dirty_background_ratio=$dirty_background_ratio >> /etc/sysctl.conf && \
         [[ $ratio = "" ]] && echo vm.dirty_ratio=$dirty_ratio >> /etc/sysctl.conf && \
                 printf "\n[+] Swap otimizada \n" && printf "\n[+] Swap otimizada \n" >> $log_config || \
-                printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> $arquivo_log        
+                printf "\n[-] Não há nada para ser otimizado - Swap \n" && printf "\n[-] Não há nada para ser otimizado - Swap \n" >> $log_config
     }
 
     prelink_preload_deborphan()
@@ -368,8 +368,8 @@ func_help()
 
     funcao_chkrootkit()
     {
-        printf "\n[*] Verificando Chkrootkit"
-        printf "\n[*] Verificando Chkrootkit\n" >> $log_limpa
+        printf "\n[*] Verificando Chkrootkit\n"
+        printf "\n[*] Verificando Chkrootkit" >> $log_limpa
 
         chkrootkit
     }
@@ -401,11 +401,11 @@ func_help()
 
     install_tor()
     {
-        local var_tor=$(type tor > /dev/null)
+        local var_tor="/opt/tor/tor-browser_en-US"
 
-        if [[ $var_tor = "1" ]]; then
-            printf "\n[*] Instalando o Tor"
-            printf "\n[*] Instalando o Tor" >> $log_instala
+        if [[ -e $var_tor ]]; then
+            printf "\n[*] Instalando o Tor\n"
+            printf "\n[*] Instalando o Tor\n" >> $log_instala
 
             # verificando distribuição
             if [[ $distro = "Debian" ]]; then                
@@ -458,7 +458,7 @@ func_help()
 
             snap refresh spotify
         else
-            printf "\n[*] Instalando Spotify"
+            printf "\n[*] Instalando Spotify\n"
             printf "\n[*] Instalando Spotify" >> $log_instala
 
             snap install spotify
@@ -470,18 +470,16 @@ func_help()
         printf "\n[*] Instalando Pacotes Multimidias (Codecs)"
         printf "\n[*] Instalando Pacotes Multimidias (Codecs)" >> $log_instala
 
-        apt install faac faad ffmpeg gstreamer0.10-ffmpeg lame \
-                    flac icedax id3v2 lame libflac++6 libjpeg-progs \
-                    libmpeg3-1 mencoder mjpegtools mp3gain mpeg2dec \
-                    mpeg3-utils mpegdemux mpg123 mpg321 regionset sox \
+        apt install faac faad ffmpeg lame flac icedax \
+                    id3v2 lame libflac++6v5 libjpeg-turbo-progs \
+                    mencoder mjpegtools mpeg2dec \
+                    mpeg3-utils mpegdemux regionset sox \
                     uudeview vorbis-tools x264 arj p7zip p7zip-full \
                     unace-nonfree sharutils uudeview libav-tools \
-                    mpack cabextract libdvdread4 libav-tools libavcodec-extra-54 \
-                    libavformat-extra-54 easytag gnome-icon-theme-full gxine id3tool \
-                    libmozjs185-1.0 libopusfile0 libxine1 libxine1-bin libxine1-ffmpeg \
-                    libxine1-misc-plugins libxine1-plugins libxine1-x \
-                    tagtool libavcodec-extra ffmpeg libavcodec-extra \
-                    oracle-java7-installer -y --force-yes    
+                    mpack cabextract libdvdread4 libav-tools  \
+                    easytag gxine id3tool libmozjs185-1.0 \
+                    libopusfile0 tagtool libavcodec-extra \
+                    libavcodec-extra -y --force-yes    
     }
 
     install_gimp()
@@ -496,7 +494,7 @@ func_help()
             apt install gimp -y
         else
             printf "\n[-] GIMP já está instalado na sua máquina!"
-            printf "\n[-] GIMP já está instalado na sua máquina!" >> $arquivo_log
+            printf "\n[-] GIMP já está instalado na sua máquina!" >> $log_instala
         fi
     }
 
@@ -1599,7 +1597,7 @@ func_corrige()
         fi
     else
         printf "\n[-] ERRO corrige!"
-        printf "\n[-] ERRO corrige!" >> $arquivo_log
+        printf "\n[-] ERRO corrige!" >> $log_corrige
     fi
 
     update
@@ -1641,7 +1639,6 @@ func_instala()
 	install_vlc
 	install_clementine
 	install_spotify	   
-	install_gimp	
 	install_simple_screen_recorder   
 	
     install_stellarium
@@ -1712,6 +1709,7 @@ func_instala()
 	    	echo    # nenhuma acao, por enquanto
 		fi
 	elif [[ $v_hostname = 'desktop' ]]; then     
+        install_gimp    
         install_tuxguitar  
         install_wine
         install_playonlinux  
@@ -1726,7 +1724,7 @@ func_instala()
         install_gwe
 	else
 		printf "\n[-] ERRO instala!"
-		printf "\n[-] ERRO instala!" >> $arquivo_log
+		printf "\n[-] ERRO instala!" >> $log_instala
 	fi
 }
 
