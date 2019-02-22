@@ -1,10 +1,15 @@
+### ROOT
 ### HORAS
 # Reiniciando memoria
 */30 * * * * su root /home/lenonr/Github/dev_sysadmin/others/reboot_swap.sh
 
-## Verifica atualizacoes do sistema a cada 30 minutos
-*/30 * * * * date > /tmp/checa_atualizacao && apt list --upgradable >> /tmp/checa_atualizacao
-
 ### DIAS
 ## Atualiza o sistema, segunda, quarta e sexta as 21:00
 00 21 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt ; apt list --upgradable >> /tmp/crontab.txt ; date >> /tmp/crontab.txt
+
+### NON-ROOT
+## CHECA MEMORIA: A cada 15 minutos
+*/15 * * * * /home/lenonr/Github/dev_sysadmin/others/check_mem.sh
+
+## ATUALIZACOES: A cada 30 minutos
+*/30 * * * * apt list --upgradable > /tmp/checa_atualizacao
