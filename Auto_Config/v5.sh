@@ -477,7 +477,7 @@ func_help()
                     uudeview vorbis-tools x264 arj p7zip p7zip-full \
                     unace-nonfree sharutils uudeview libav-tools \
                     mpack cabextract libdvdread4 libav-tools  \
-                    easytag gxine id3tool libmozjs185-1.0 \
+                    easytag id3tool libmozjs185-1.0 \
                     libopusfile0 tagtool libavcodec-extra \
                     libavcodec-extra -y --force-yes    
     }
@@ -1538,6 +1538,22 @@ func_help()
         apt purge simple-scan -y
     }
 
+    remove_gxine()
+    {
+        printf "\n[*] Removendo o GXine"
+        printf "\n[*] Removendo o GXine\n" >> $log_remove
+
+        apt purge gxine -y
+    }
+
+    remove_easytag()
+    {
+        printf "\n[*] Removendo o EasyTag"
+        printf "\n[*] Removendo o EasyTag" >> $log_remove
+
+        apt purge easytag* -y
+    }
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1772,6 +1788,8 @@ func_remove()
     remove_synaptic
     remove_youtubedl
     remove_simplescan
+    remove_gxine
+    remove_easytag
 }
 
 func_formatado()
