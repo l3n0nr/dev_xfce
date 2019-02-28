@@ -170,7 +170,7 @@ alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_
 alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
 
 ## alias pulseeffects
-alias pulseeffects="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=pulseeffects com.github.wwmm.pulseeffects --gapplication-service &"
+alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
 
 ## alias podcasts pendentes
 alias podcast="cd /home/lenonr/Música/Podcast && ls"
