@@ -1318,6 +1318,14 @@ func_help()
         fi            
     }
 
+    install_ibam()
+    {
+        printf "\n[*] Instalando o IBam\n"
+        printf "\n[*] Instalando o IBam\n" >> $log_instala
+
+        apt install ibam -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1720,6 +1728,7 @@ func_instala()
         install_wavemon	
 	    install_reaver  
         install_cpupower 
+        install_ibam
 
 		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
