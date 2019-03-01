@@ -119,7 +119,7 @@ alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
 
 ## chama sublime via alias
 alias subl="/snap/bin/sublime-text.subl"
