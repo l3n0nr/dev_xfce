@@ -174,3 +174,6 @@ alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
 
 ## alias podcasts pendentes
 alias podcast="cd /home/lenonr/Música/Podcast && ls"
+
+## alias verifica bateria
+alias check_baterry="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
