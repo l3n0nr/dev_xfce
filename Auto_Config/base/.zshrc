@@ -119,7 +119,7 @@ alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
 
 ## chama sublime via alias
 alias subl="/snap/bin/sublime-text.subl"
@@ -175,5 +175,5 @@ alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
 ## alias podcasts pendentes
 alias podcast="cd /home/lenonr/Música/Podcast && ls"
 
-## alias verifica bateria
-alias check_baterry="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
+## alias gerencia mega_dropbox
+alias mega_dropbox="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/mega_dropbox.sh"
