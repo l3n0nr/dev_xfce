@@ -172,7 +172,10 @@ alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
 alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
 
 ## alias podcasts pendentes
-alias podcast="cd /home/lenonr/Música/Podcast && ls"
+alias podcast="/home/lenonr/Github/dev_sysadmin/others/podcast.sh"
 
 ## alias gerencia mega_dropbox
-alias mega_dropbox="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/mega_dropbox.sh"
+alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
+
+## mata processo
+alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
