@@ -133,11 +133,10 @@ alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
 ## chama telnet roteador
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 
-## verificando maiores arquivos do disco
+## alias autointitulados
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
-
-## checa servicos iniciados no sistema
 alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
+alias check_baterry="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
 
 ## executa arquivo pomodo
 alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
