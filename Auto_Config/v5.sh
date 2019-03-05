@@ -1668,8 +1668,7 @@ func_instala()
     install_stellarium
     install_libreoffice 
 
-	install_xfce4
-    install_lm-sensors    
+	install_xfce4  
     install_nautilus
     install_openssh    
     install_redshift
