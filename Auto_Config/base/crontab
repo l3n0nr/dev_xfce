@@ -13,3 +13,6 @@
 
 ## ATUALIZACOES: A cada 30 minutos
 */30 * * * * apt list --upgradable > /tmp/checa_atualizacao
+
+## POSTA TWIT's AUTOMATICAMENTE
+*/60 * * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot && bash main.sh
