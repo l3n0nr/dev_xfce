@@ -119,7 +119,7 @@ alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
 alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
 
 ## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_sysadmin/others/lancamento.sh'
+alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
 
 ## chama sublime via alias
 alias subl="/snap/bin/sublime-text.subl"
@@ -179,3 +179,6 @@ alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
 
 ## mata processo
 alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
+
+## twitt via parametro
+alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
