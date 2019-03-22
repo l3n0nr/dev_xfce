@@ -181,4 +181,5 @@ alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
 alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
 
 ## twitt via parametro
-alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
+# alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
+alias twitt="/home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/zenity.sh"
