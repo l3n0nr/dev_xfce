@@ -1326,6 +1326,14 @@ func_help()
         apt install ibam -y
     }
 
+    install_xdotool()
+    {
+        printf "\n[*] Instalando o Xdotool"
+        printf "\n[*] Instalando o Xdotool" >> $log_instala
+
+        apt install xdotool -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1720,6 +1728,7 @@ func_instala()
     install_ntfs 
     install_mpg123
     install_links
+    install_xdotool
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
