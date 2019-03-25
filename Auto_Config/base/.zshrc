@@ -182,4 +182,6 @@ alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
 
 ## twitt via parametro
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
-# alias twitt="/home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/zenity.sh"
+
+## exporta editor - crontab error
+export EDITOR=$(which nano)
