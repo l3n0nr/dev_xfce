@@ -14,5 +14,19 @@
 ## ATUALIZACOES: A cada 30 minutos
 */30 * * * * apt list --upgradable > /tmp/checa_atualizacao
 
+####### BOT TWITTER ###########
+## VERIFICA SE LISTA DE POSTAGENS DO TWITTER ESTA VAZIA
+## Cada 10 minutos
+*/10 * * * * /home/lenonr/Github/dev_scripts/Scripts/Python/leitor_url/check.sh
+
 ## POSTA TWIT's AUTOMATICAMENTE
-*/60 * * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot && bash main.sh
+## Cada 10 minutos
+*/10 * * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot && bash main.sh
+
+## POSTA LANCAMENTOS DE FOGUETES
+## Cada 02 horas
+00 */2 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
+
+## CONVERTE AUDIO AUTOMATICAMENTE
+## Cada 06 horas
+00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
