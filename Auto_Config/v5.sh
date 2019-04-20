@@ -591,7 +591,7 @@ func_help()
         else
             printf "\n[-] Wine já está instalado na sua máquina!"
             printf "\n[-] Wine já está instalado na sua máquina!" >> $log_instala
-        fi
+        filsef
     }
 
     install_playonlinux()
@@ -604,8 +604,8 @@ func_help()
 
             apt install playonlinux -y
         else
-            printf "\n[*] PlayonLinux ja esta instalado"
-            printf "\n[*] PlayonLinux ja esta instalado" >> $log_instala
+            printf "\n[-] PlayonLinux ja esta instalado"
+            printf "\n[-pu] PlayonLinux ja esta instalado" >> $log_instala
         fi        
     }
 
