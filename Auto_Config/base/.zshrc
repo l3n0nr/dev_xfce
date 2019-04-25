@@ -17,7 +17,7 @@ ZSH_THEME="robbyrussell"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -27,7 +27,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=5
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -103,84 +103,38 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# git
-alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
-# alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
-# alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
-alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
-alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
-
 #################
 ## ALIAS DIVERSOS
 #################
-## backup do arquivo zshrc
-alias backup_zsh='/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh'
+## GIT
+alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
+alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
+alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 
-## reinicia dropbox
-alias reboot_dropbox='/home/lenonr/Github/dev_sysadmin/others/dropbox.sh'
-
-## calcula lancamento do foguetes
-alias lancamento='/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/lancamento.sh'
-
-## chama sublime via alias
-alias subl="/snap/bin/sublime-text.subl"
-
-## mostra informacoes do sistema
-alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
-
-## realiza backup via dispositivo externo
-alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
-
-## chama telnet roteador
-alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
-
-## alias autointitulados
-alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
-alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
-alias check_baterry="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
-
-## executa arquivo pomodo
-alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
-
-## zoeira da DC
+## DIVERSOS
 alias dc="echo 'Prefiro a Marvel...'"
-
-## reinicia interface xfce
-alias reboot_interface="xfce4-panel -r &"
-
-## missioes ksp
-alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
-
-## packages install
-alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
-
-## verifica ip externo
-alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
-
-## chamando o home
-alias home="cd ~ && clear && ls"
-
-## tocando radiozinhos personalizadas
 alias radio="/home/lenonr/Github/dev_sysadmin/others/radio/main.sh"
-
-## procura imagem area de trabalho
+alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
+alias podcast="source /home/lenonr/Github/dev_sysadmin/others/podcast.sh"
+alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
+alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
+alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
+alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
+alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_wallhaven/procuraimagem2.sh"
 
-## alias rotina
-alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
-
-## alias pulseeffects
-alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
-
-## alias podcasts pendentes
-alias podcast="source /home/lenonr/Github/dev_sysadmin/others/podcast.sh"
-
-## alias gerencia mega_dropbox
-alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
-
-## mata processo
+## SISTEMA
+alias home="cd ~ && clear && ls"
+alias subl="/snap/bin/sublime-text.subl"
+alias reboot_interface="xfce4-panel -r &"
+alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
+alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
 alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
-
-## twitt via parametro
-alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
-# alias twitt="/home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/zenity.sh"
+alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
+alias backup_zsh="/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh"
+alias reboot_dropbox="/home/lenonr/Github/dev_sysadmin/others/dropbox.sh"
+alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
+alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
+alias check_baterry="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
+alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
+alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
