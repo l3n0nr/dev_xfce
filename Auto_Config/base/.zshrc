@@ -105,8 +105,9 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # git
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
-alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
-alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
+# alias push_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
+# alias pull_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/pull_git.sh"
+alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
 
 #################
@@ -182,6 +183,4 @@ alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
 
 ## twitt via parametro
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
-
-## exporta editor - crontab error
-export EDITOR=$(which nano)
+# alias twitt="/home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/zenity.sh"
