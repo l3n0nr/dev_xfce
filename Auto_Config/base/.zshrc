@@ -75,12 +75,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   # export EDITOR='nano'
    export EDITOR=$(which nano)
 else
-   # export EDITOR='vim'
    export EDITOR=$(which vim)
 fi
+
+## Export editor default
+export EDITOR=$(which nano)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
