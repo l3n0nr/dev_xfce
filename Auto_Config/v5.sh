@@ -1334,6 +1334,14 @@ func_help()
         apt install xdotool -y
     }
 
+    install_realtek()
+    {
+        printf "\n[*] Instalando o Realtek"
+        printf "\n[*] Instalando o Realtek" >> $log_instala
+
+        apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free 
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1729,6 +1737,7 @@ func_instala()
     install_mpg123
     install_links
     install_xdotool
+    install_realtek
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
