@@ -1339,7 +1339,7 @@ func_help()
         printf "\n[*] Instalando o Realtek"
         printf "\n[*] Instalando o Realtek" >> $log_instala
 
-        apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free 
+        apt-get install firmware-realtek -y
     }
 
     ## LAST_INSTALL
