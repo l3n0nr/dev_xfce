@@ -122,7 +122,7 @@ alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
 alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
-# alias procuraimagem="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/search_wallhaven/procuraimagem2.sh"
+alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
