@@ -570,14 +570,14 @@ func_help()
             	# adicionando sistema multi-arch
             	dpkg --add-architecture i386
 		
-					# baixando chave
-					wget -nc https://dl.winehq.org/wine-builds/Release.key
+				# baixando chave
+				wget -nc https://dl.winehq.org/wine-builds/Release.key
 
-					# instalando chave
-					apt-key add Release.key
+				# instalando chave
+				apt-key add Release.key
 
-					# removendo chave
-					rm Release.key
+				# removendo chave
+				rm Release.key
 
 				# atualizando sistema
 				update
