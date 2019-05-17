@@ -27,7 +27,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=5
+export UPDATE_ZSH_DAYS=3
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -108,7 +108,7 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ## ALIAS DIVERSOS
 #################
 ## GIT
-alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh && sistema"
+alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
 alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
 alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 
