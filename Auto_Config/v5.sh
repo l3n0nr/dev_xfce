@@ -1339,7 +1339,15 @@ func_help()
         printf "\n[*] Instalando o Realtek"
         printf "\n[*] Instalando o Realtek" >> $log_instala
 
-        apt-get install firmware-realtek -y
+        apt install firmware-realtek -y
+    }
+
+    install_desmune()
+    {
+        printf "\n Install o Desmune"
+        printf "\n Install o Desmune" >> $log_instala
+
+        apt install desmune -y
     }
 
     ## LAST_INSTALL
@@ -1746,6 +1754,8 @@ func_instala()
 	    install_reaver  
         install_cpupower 
         install_ibam
+
+        install_desmune
 
 		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
