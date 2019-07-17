@@ -475,11 +475,10 @@ func_help()
                     mencoder mjpegtools mpeg2dec \
                     mpeg3-utils mpegdemux regionset sox \
                     uudeview vorbis-tools x264 arj p7zip p7zip-full \
-                    unace-nonfree sharutils uudeview libav-tools \
-                    mpack cabextract libdvdread4 libav-tools  \
-                    easytag id3tool libmozjs185-1.0 \
-                    libopusfile0 tagtool libavcodec-extra \
-                    libavcodec-extra -y --force-yes    
+                    unace-nonfree sharutils uudeview \
+                    mpack cabextract libdvdread4 \
+                    easytag id3tool libopusfile0 \
+                    libavcodec-extra -y
     }
 
     install_gimp()
