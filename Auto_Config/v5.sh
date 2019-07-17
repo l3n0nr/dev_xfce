@@ -1083,7 +1083,7 @@ func_help()
 
         apt install python3.5 python-pip -y
 
-    	if [[ $distro = "Debian" ]]; then
+    	if [[ $v_hostname = 'desktop' ]]; then
             pip install krpc
         fi           
     }
@@ -1339,7 +1339,7 @@ func_help()
         printf "\n[*] Instalando o Realtek"
         printf "\n[*] Instalando o Realtek" >> $log_instala
 
-        apt install firmware-realtek -y
+        apt install firmware-brcm80211 -y
     }
 
     install_desmune()
@@ -1347,7 +1347,7 @@ func_help()
         printf "\n Install o Desmune"
         printf "\n Install o Desmune" >> $log_instala
 
-        apt install desmune -y
+        apt install desmume -y
     }
 
     ## LAST_INSTALL
