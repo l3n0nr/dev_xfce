@@ -1745,6 +1745,7 @@ func_instala()
     install_links
     install_xdotool
     install_realtek
+    install_pulseeffects
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
@@ -1765,14 +1766,13 @@ func_instala()
         install_wine
         install_playonlinux  
         install_sweethome3d
-        install_pulseeffects
-
 		install_audacity
+
         install_nvidia      
+        install_gwe
                 
         install_transmission   
-        install_googleearth 
-        install_gwe
+        install_googleearth         
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
