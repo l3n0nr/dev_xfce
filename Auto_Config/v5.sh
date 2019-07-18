@@ -234,24 +234,6 @@ func_help()
         fi    
     }
 
-    arquivo_hosts()
-    {
-        printf "\n[*] Alterando arquivo Hosts"
-        printf "\n[*] Alterando arquivo Hosts" >> $log_config
-        echo; echo
-
-        ## gerando arquivo
-        echo "127.0.0.1   $(hostname)" > base/hosts/hosts
-        cat base/hosts/base >> base/hosts/hosts
-        cat base/hosts/spotify >> base/hosts/hosts
-
-        ## copiando arquivo para /etc/hosts
-        cat base/hosts/hosts > /etc/hosts               
-
-        ## removendo hosts apos configuracao
-        rm base/hosts/hosts
-    }
-
     autologin()
     {       
         if [[ $boolean_autologin = "1" ]]; then
@@ -1660,7 +1642,6 @@ func_config()
     prelink_preload_deborphan
 
     autologin
-    arquivo_hosts
 
     icones_temas
 }
