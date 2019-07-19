@@ -1325,10 +1325,18 @@ func_help()
 
     install_desmune()
     {
-        printf "\n Install o Desmune"
-        printf "\n Install o Desmune" >> $log_instala
+        printf "\n[*] Instalando o Desmune"
+        printf "\n[*] Instalando o Desmune" >> $log_instala
 
         apt install desmume -y
+    }
+
+    install_curl()
+    {
+        printf "\n[*] Instalando o Curl"
+        printf "\n[*] Instalando o Curl" >> $log_instala
+
+        apt install curl -y
     }
 
     ## LAST_INSTALL
@@ -1725,18 +1733,20 @@ func_instala()
     install_mpg123
     install_links
     install_xdotool
-    install_realtek
     install_pulseeffects
+    install_curl
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
         install_aircrack  
-        install_wavemon	
+        install_wavemon
+
 	    install_reaver  
         install_cpupower 
         install_ibam
-
+        
         install_desmune
+        install_realtek
 
 		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
