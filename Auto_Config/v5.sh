@@ -84,14 +84,9 @@ func_help()
         printf "\n[*] Atualizando lista de programas do sistema \n" >> $log_atualiza
             ## atualizacao segura
 	        apt upgrade -y
-            
-            if [[ $agressive_mode == "1" ]]; then
-                ## atualizacoes completas                
-                # MODE VIDA LOKA ON 
-                # Os usuarios do ~Debian Stable~, podem pirar na batatinha... 
-                apt dist-upgrade -y && \
-                apt full-upgrade -y	
-            fi
+
+            ## atualizacao da distribuicao | caso exista
+            apt dist-upgrade -y
     }
 
 # # # # # # # # # #
