@@ -1570,6 +1570,14 @@ func_help()
         apt purge easytag* -y
     }
 
+    remove_nextcloud()
+    {
+        printf "\n[*] Removendo o Nextcloud"
+        printf "\n[*] Removendo o Nextcloud" >> $log_remove
+
+        apt purge nextcloud-desktop* -y
+    }
+
     ## LAST_REMOVE
 
 # # CRIANDO FUNCÕES PARA OTIMIZAR PŔOCESSOS
@@ -1811,6 +1819,7 @@ func_remove()
     remove_simplescan
     remove_gxine
     remove_easytag
+    remove_nextcloud
 }
 
 func_formatado()
