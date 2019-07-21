@@ -1716,10 +1716,10 @@ func_instala()
 	install_python    
 	install_sublime
     install_terminator
-    install_youtubedl
+    install_youtubedl    
     install_yad       
 	install_ntp      
-    install_flatpak
+    install_flatpak    
     install_notify
     install_evince
     install_rar
@@ -1735,8 +1735,7 @@ func_instala()
     install_ntfs 
     install_mpg123
     install_links
-    install_xdotool
-    install_pulseeffects
+    install_xdotool    
     install_curl
 
 	if [[ $v_hostname = 'notebook' ]]; then		
@@ -1749,7 +1748,8 @@ func_instala()
         install_ibam
         
         install_desmune
-        install_realtek
+        install_realtek  
+        install_pulseeffects      
 
 		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
