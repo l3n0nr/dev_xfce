@@ -1057,7 +1057,7 @@ func_help()
         printf "\n[*] Instalando o Pip" 
         printf "\n[*] Instalando o Pip" >> $log_instala
 
-        apt install python3.5 python-pip -y
+        apt install python3 python-pip -y
 
     	if [[ $v_hostname = 'desktop' ]]; then
             pip install krpc
