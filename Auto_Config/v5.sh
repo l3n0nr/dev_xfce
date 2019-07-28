@@ -1676,8 +1676,7 @@ func_instala()
 
 	install_codecs
 	install_vlc
-	install_clementine
-	install_spotify	   
+	install_clementine	  
 	install_simple_screen_recorder   
 	
     install_stellarium
@@ -1766,7 +1765,8 @@ func_instala()
         install_gwe
                 
         install_transmission   
-        install_googleearth         
+        install_googleearth 
+        install_spotify          
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
