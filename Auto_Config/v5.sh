@@ -1228,7 +1228,7 @@ func_help()
         	printf "\n[*] Instalando o Nautilus"
 	        printf "\n[*] Instalando o Nautilus" >> $log_instala
 
-	        apt install nautilus* -y
+	        apt install nautilus -y
         else    
         	printf "\n[-] Nautilus ja esta instalado"
 	        printf "\n[-] Nautilus ja esta instalado" >> $log_instala
