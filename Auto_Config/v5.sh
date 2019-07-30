@@ -321,7 +321,16 @@ func_help()
 
             cp -r ../Config/Interface/themes/* /usr/share/themes
         fi
-    }        
+    }   
+
+     arquivo_hosts()
+    {
+        printf "\n[*] Alterando arquivo Hosts"
+        printf "\n[*] Alterando arquivo Hosts" >> $log_config
+
+        ## copiando arquivo para /etc/hosts
+        cat base/hosts/hosts > /etc/hosts               
+    }     
 
     ## LAST_CONFIG
 
@@ -1655,6 +1664,7 @@ func_config()
     autologin
 
     icones_temas
+    arquivo_hosts
 }
 
 func_limpa()
