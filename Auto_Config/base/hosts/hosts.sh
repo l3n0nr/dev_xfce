@@ -7,11 +7,8 @@
 #
 ########################
 #
-## iniciando arquivo
-cat base > hosts
-
 ## gerando arquivo hosts
-wget -O - http://www.mvps.org/winhelp2002/hosts.txt >> hosts
+wget -O - http://www.mvps.org/winhelp2002/hosts.txt > hosts
 
 ## adicionado spotify
 cat spotify >> hosts
