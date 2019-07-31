@@ -311,26 +311,16 @@ func_help()
 
             cp -r ../Config/Interface/icons/Papirus_Light /usr/share/icons
         fi
-
-        if [[ -e $var_icones_macos ]]; then 
-            printf "\n[-] Voce ja possui os arquivos MacOS X!"
-            printf "\n[-] Voce ja possui os arquivos MacOS X!" >> $log_config
-        else    
-            printf "\n[*] Copiando icones MacOS X"
-            printf "\n[*] Copiando icones MacOS X" >> $log_config
-
-            cp -r ../Config/Interface/themes/* /usr/share/themes
-        fi
     }   
 
-     arquivo_hosts()
+    arquivo_hosts()
     {
         printf "\n[*] Alterando arquivo Hosts"
         printf "\n[*] Alterando arquivo Hosts" >> $log_config
 
         ## copiando arquivo para /etc/hosts
         cat base/hosts/hosts > /etc/hosts               
-    }     
+    }  
 
     ## LAST_CONFIG
 
