@@ -1,13 +1,4 @@
 /*
-
-Busca por "about:support",
-criar o arquivo "userChrome.css",
-na pasta "chrome",
-com o seguinte codigo:
-
-*/
-
-/*
  * Auto-hide the URL-bar and bookmarks bar, show on hover or focus
  *
  * Contributor(s): Alex Vallat
@@ -142,3 +133,8 @@ com o seguinte codigo:
 
 /*center align */
 #urlbar {text-align: center;}
+
+/*hide scroll bar*/
+.hidevscroll-scrollbar {
+  display: none !important;
+}
