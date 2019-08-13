@@ -1425,14 +1425,6 @@ func_help()
 		apt purge gtkhash* -y	
 	}
 
-	remove_imagemagick()
-	{
-		printf "\n[*] Removendo o Imagemagick"
-        printf "\n[*] Removendo o Imagemagick" >> $log_remove
-		
-		apt purge imagemagick* -y
-	}
-
 	remove_chromium-bsu()
 	{
 		printf "\n[*] Removendo o Chromium-BSU"
@@ -1808,7 +1800,6 @@ func_remove()
 	remove_meld
 	remove_gtkhash
 	remove_xsane
-	remove_imagemagick
 	remove_chromium-bsu
 	remove_owncloud   
     remove_mpv   
