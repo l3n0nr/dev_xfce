@@ -1,7 +1,7 @@
 ## SNAP
-- Spotity
-- Sublime Text
+- Spotity			[DESKTOP]
+- Sublime Text		[DESKTOP/NOTEBOOK]
 
 ## FLATPAK
-- Pulseeffects
-- GreenWithEnvy
+- Pulseeffects		[DESKTOP]
+- GreenWithEnvy		[NOTEBOOK]
