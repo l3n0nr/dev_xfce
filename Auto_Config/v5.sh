@@ -1333,6 +1333,25 @@ func_help()
         apt install curl -y
     }
 
+    install_cpufrequtils()
+    {
+        printf "\n[*] Instalando o CPUfreqUtils"
+        printf "\n[*] Instalando o CPUfreqUtils" >> $log_instala
+
+        apt install cpufrequtils -y
+
+        if [[ $v_hostname = 'notebook' ]]; then                        
+            ## uso CONSERVADOR para economizar energia
+            cpufreq-set -g conservative
+        elif [[ $v_hostname = 'desktop' ]]; then      
+            ## uso ESCALAR
+            cpufreq-set -g ondemand
+        else
+            printf "\n[-] ERRO corrige!"
+            printf "\n[-] ERRO corrige!" >> $log_corrige
+        fi
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1728,14 +1747,14 @@ func_instala()
     install_links
     install_xdotool    
     install_curl
+    install_cpufrequtils 
 
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
         install_aircrack  
         install_wavemon
 
-	    install_reaver  
-        install_cpupower 
+	    install_reaver          
         install_ibam
         
         install_desmune
