@@ -1037,7 +1037,7 @@ func_help()
         printf "\n[*] Instalando os firmware's non-free"        
         printf "\n[*] Instalando os firmware's non-free" >> $log_instala
 
-        if [ $distro = "Debian" ]; then
+        if [[ $distro = "Debian" ]]; then
             if [[ $v_hostname = 'notebook' ]]; then   
                 apt install xserver-xorg-input-synaptics \
                     blueman  firmware-brcm80211 -y      
