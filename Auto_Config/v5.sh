@@ -493,7 +493,7 @@ func_help()
                     xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin \
                     xfce4-mailwatch-plugin xfce4-xkb-plugin xfce4-fsguard-plugin \
                     xfce4-genmon-plugin xfce4-fsguard-plugin \
-                    xfce4-mount-plugin smartmontools -fyq
+                    xfce4-mount-plugin smartmontools menulibre -fyq
 
         # adicionais para serem utilizados
         apt install hddtemp -y     
@@ -558,7 +558,13 @@ func_help()
 				update
 
 				# instalando wine
-				apt install --install-recommends winehq-stable -y
+                apt install wine -y
+
+                # instalando fontes
+                apt install ttf-mscorefonts-installer -y
+
+                # instalando componentes
+                apt install mono-complete -y
             else
             	printf "\n[-] Erro ao instalar Wine"
             	printf "\n[-] Erro ao instalar Wine" >> $log_instala
