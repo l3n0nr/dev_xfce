@@ -827,7 +827,7 @@ func_help()
                 apt install dkms build-essential linux-headers-$(uname -r)
 
                 # instalando virtualbox
-                apt install virtualbox-5.2 -y    
+                apt install virtualbox-5.1 -y    
 
                 # adicionando usuario
                 gpasswd -a $autor vboxusers                    
