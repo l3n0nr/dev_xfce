@@ -202,7 +202,7 @@ func_help()
 
         #parando o serviço NTP para realizar as configuraçoes necessarias
         printf "\n[*] Parando serviço NTP para realizaçao das configuraçoes necessarias"           
-            service ntp stop
+        service ntp stop
 
         #Configurando script base - NTP
         printf "\n[*] Realizando alteraçao no arquivo base "
@@ -210,7 +210,7 @@ func_help()
 
         #ativando servico novamente
         printf "\n[*] Ativando serviço NTP"        
-            service ntp start
+        service ntp start
 
         #realizando atualizacao hora/data
         printf "\n[*] Atualizando hora do servidor"
@@ -218,7 +218,7 @@ func_help()
 
         printf "\n[*] Atualizando servidores, aguarde..."
         printf "\n[*] NIC.BR\n"
-            ntpdate -q $ntp_server
+        ntpdate -q $ntp_server
 
         if [[ $? = "0" ]]; then
             printf "\n[+] Hora do computador sincronizada!\n"
@@ -488,7 +488,7 @@ func_help()
                     xfce4-diskperf-plugin xfce4-linelight-plugin xfce4-battery-plugin \
                     xfce4-clipman-plugin xfce4-indicator-plugin xfce4-notes-plugin \
                     xfce4-places-plugin xfce4-netload-plugin xfce4-quicklauncher-plugin \
-                    xfce4-screenshooter-plugin xfce4-whiskermenu-plugin xfce4-smartbookmark-plugin \
+                    xfce4-screenshooter xfce4-whiskermenu-plugin xfce4-smartbookmark-plugin \
                     xfce4-weather-plugin xfce4-wavelan-plugin xfce4-sensors-plugin \
                     xfce4-systemload-plugin xfce4-timer-plugin xfce4-verve-plugin \
                     xfce4-mailwatch-plugin xfce4-xkb-plugin xfce4-fsguard-plugin \
@@ -1031,7 +1031,6 @@ func_help()
             printf "\n[*] Instalando o Sublime"
             printf "\n[*] Instalando o Sublime" >> $log_instala
 
-            # snap
             snap install sublime-text --classic
         else
             snap refresh sublime-text --classic
@@ -1046,7 +1045,7 @@ func_help()
         if [[ $distro = "Debian" ]]; then
             if [[ $v_hostname = 'notebook' ]]; then   
                 apt install xserver-xorg-input-synaptics \
-                    blueman  firmware-brcm80211 -y      
+                    blueman firmware-brcm80211 -y      
             fi
 
             apt install firmware-linux \
@@ -1074,8 +1073,10 @@ func_help()
         printf "\n[*] Instalando o Youtube-DL\n" 
         printf "\n[*] Instalando o Youtube-DL\n" >> $log_instala
 
+        ## instalando 
         pip install youtube-dl 
 
+        ## atualizando
         pip install --upgrade youtube-dl 
     }
 
@@ -1770,6 +1771,7 @@ func_instala()
 		if [[ $distro = "Debian" ]]; then				
 	    	echo    # nenhuma acao, por enquanto
 		fi
+
 	elif [[ $v_hostname = 'desktop' ]]; then     
         install_gimp    
         install_tuxguitar  
@@ -2109,68 +2111,92 @@ func_vetor_ajuda()
 
 func_vetor()
 {
-	func_vetor_atualiza
-	func_vetor_corrige
-	func_vetor_config
-	func_vetor_limpa  
-	func_vetor_instala
-	func_vetor_instala_outros   
-	func_vetor_remove          
 
-    # mostrando ajuda para o usuario - vetores individuais
-    if [[ $@ = "ajuda" ]]; then
-        if [[ $@ = "atualiza" ]]; then
-            func_vetor_atualiza_ajuda
+    if [[ $vetor_leitura = "atualiza" ]]; then
+        for (( i = 0; i <= ${#atualiza[@]}; i++ )); do
+            if [[ $leitura_subacao = ${atualiza[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
 
-			sleep $aguarda
-            exit 0                    
-        elif [[ $@ = "corrige" ]]; then
-            func_vetor_corrige_ajuda
+        func_vetor_atualiza_ajuda        
+        exit 0
 
-            sleep $aguarda
-            exit 0
-        elif [[ $@ = "config" ]]; then
-            func_vetor_config_ajuda
+    elif [[ $vetor_leitura = "corrige" ]]; then
+        for (( i = 0; i <= ${#corrige[@]}; i++ )); do
+            if [[ $leitura_subacao = ${corrige[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
 
-			sleep $aguarda
-            exit 0
-        elif [[ $@ = "limpa" ]]; then
-            func_vetor_limpa_ajuda            
+        func_vetor_corrige_ajuda
+        exit 0
 
-            sleep $aguarda
-            exit 0
-        elif [[ $@ = "instala" ]]; then
-            func_vetor_instala_ajuda
+    elif [[ $vetor_leitura = "config" ]]; then
+        for (( i = 0; i <= ${#config[@]}; i++ )); do
+            if [[ $leitura_subacao = ${config[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
 
-            sleep $aguarda
-            exit 0
-        elif [[ $@ = "instala_outros" ]]; then
-            func_vetor_instala_outros_ajuda
+        func_vetor_config_ajuda
+        exit 0
 
-            sleep $aguarda
-            exit 0
-        elif [[ $@ = "remove" ]]; then
-            func_vetor_remove_ajuda
+    elif [[ $vetor_leitura = "limpa" ]]; then
+        for (( i = 0; i <= ${#limpa[@]}; i++ )); do
+            if [[ $leitura_subacao = ${limpa[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
 
-            sleep $aguarda
-            exit 0
-        elif [[ $@ = "ajuda" ]]; then
-            func_vetor_instala_ajuda
-            func_vetor_corrige_ajuda
-            func_vetor_config_ajuda
-            func_vetor_limpa_ajuda
-            func_vetor_instala_ajuda
-            func_vetor_instala_outros_ajuda
-            func_vetor_remove_ajuda
-            # exit 0
-        fi
+        func_vetor_limpa_ajuda            
+        exit 0
+
+    elif [[ $vetor_leitura = "instala" ]]; then
+        for (( i = 0; i <= ${#instala[@]}; i++ )); do
+            if [[ $leitura_subacao = ${instala[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
+
+        func_vetor_instala_ajuda
+        exit 0
+
+    elif [[ $vetor_leitura = "instala_outros" ]]; then
+        for (( i = 0; i <= ${#instala_outros[@]}; i++ )); do
+            if [[ $leitura_subacao = ${instala_outros[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
+
+        func_vetor_instala_outros_ajuda
+        exit 0
+
+    elif [[ $vetor_leitura = "remove" ]]; then
+        for (( i = 0; i <= ${#remove[@]}; i++ )); do
+            if [[ $leitura_subacao = ${remove[i]} ]]; then
+                $leitura_subacao            
+            fi            
+        done
+
+        func_vetor_remove_ajuda
+        exit 0
+
+    elif [[ $@ = "ajuda" ]]; then
+        func_vetor_instala_ajuda
+        func_vetor_corrige_ajuda
+        func_vetor_config_ajuda
+        func_vetor_limpa_ajuda
+        func_vetor_instala_ajuda
+        func_vetor_instala_outros_ajuda
+        func_vetor_remove_ajuda
     fi
 }
 
 version()
 {
-	echo "versao do script: $versao"
-    echo "Autor do script: $autor"
+	echo "Versão: $versao"
+    echo "Autor: $autor"
     echo "Contato: Email: '$email'; Twitter: '$twitter'"
 }
 
@@ -2274,23 +2300,23 @@ func_interface_zenity()
                 elif [[ $escolha = "corrige" ]]; then
                     acao=$(zenity --entry \
                                    --title "Vetor $escolha" \
-                                   --text "Escolha:" " ${corrige[@]}") ; f_verifica
+                                   --text "Escolha:" " ${corrige[@]}")  ; f_verifica
                 elif [[ $escolha = "config" ]]; then
                     acao=$(zenity --entry \
                                    --title "Vetor $escolha" \
-                                   --text "Escolha:" " ${config[@]}") ; f_verifica
+                                   --text "Escolha:" " ${config[@]}")   ; f_verifica
                 elif [[ $escolha = "limpa" ]]; then
                 	acao=$(zenity --entry \
                                    --title "Vetor $escolha" \
-                                   --text "Escolha:" " ${limpa[@]}") ; f_verifica
+                                   --text "Escolha:" " ${limpa[@]}")    ; f_verifica
                 elif [[ $escolha = "instala" ]]; then
                 	acao=$(zenity --entry \
                                    --title "Vetor $escolha" \
-                                   --text "Escolha:" " ${instala[@]}") ; f_verifica
+                                   --text "Escolha:" " ${instala[@]}")  ; f_verifica
             	elif [[ $escolha = "remove" ]]; then
                 	acao=$(zenity --entry \
                                    --title "Vetor $escolha" \
-                                   --text "Escolha:" " ${remove[@]}") ; f_verifica
+                                   --text "Escolha:" " ${remove[@]}")   ; f_verifica
             	else
                 	echo "ERRO"
                 fi        
@@ -2325,8 +2351,10 @@ main()
     
     func_keycheck
 
-    escolha_vetor=$1 # vetor
-    help_vetor=$2    # ajuda
+    escolha_vetor=$1        # vetor
+    help_vetor=$2           # ajuda
+    vetor_leitura=$3        # acao
+    leitura_subacao=$4      # sub_acao
 
 	echo "Iniciando script, aguarde..."
 	[[ $verifica_internet = "1" ]] && func_verifica_internet
@@ -2366,10 +2394,10 @@ main()
             nvidia) nvidia;;
     		versao) version;;
             vetor) func_vetor;;
-    		interface) func_interface_dialog;;
+    		interface_d) func_interface_dialog;;
             interface_z) func_interface_zenity;;
             manutencao) func_manutencao;;
-            *) clear && echo $mensagem_erro && exit 1
+            *) echo $mensagem_erro && exit 1
         esac            
     done
 
