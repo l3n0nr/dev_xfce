@@ -590,7 +590,6 @@ func_help()
         printf "\n[*] Instalando o Libreoffice"
         printf "\n[*] Instalando o Libreoffice" >> $log_instala
 
-        #Instalando libreoffice
         apt install libreoffice libreoffice-style-breeze -y
     }
 
@@ -648,7 +647,6 @@ func_help()
         local var_stellarium=$(type stellarium > /dev/null)
 
         if [[ $var_stellarium = "1" ]]; then
-            #Instalando o stellarium
             apt install stellarium -y
         else
             printf "\n[-] Stellarium já está instalado!"
@@ -1883,9 +1881,6 @@ func_geral()
 
     # realiza uma limpeza no sistema, removendo coisas desnecessárias
     func_limpa
-
-    # Configurando o sistema
-    # func_config
 
     # Atualizando o sistema novamente | com o objetivo de atualizar os programas instalados
     func_atualiza
