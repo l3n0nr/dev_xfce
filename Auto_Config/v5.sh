@@ -234,14 +234,9 @@ func_help()
         if [[ $boolean_autologin = "1" ]]; then
             local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
 
-            # verificando se existe "autologin-user=$usuario" no arquivo '/etc/lightdm/lightdm.conf'
-            # var_autologin=$(cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario")        
-            # cat /etc/lightdm/lightdm.conf | grep "autologin-user=$usuario" > /dev/null        
-
             cat $var_autologin | grep "autologin-user=$autor" > /dev/null
 
             # se saida do echo $? for 1, entao realiza modificacao
-            # if [[ $var_autologin = "1" ]]; then
             if [[ $? = "1" ]]; then    
                 if [[ $distro = "Debian" ]]; then             
                     printf "\n[*] Habilitando login automatico" 
@@ -402,19 +397,16 @@ func_help()
 	        printf "\n[*] Instalando Steam"
 	        printf "\n[*] Instalando Steam" >> $log_instala
 
-			# Instalando dependencias steam - DEBIAN 9
-			if [[ $distro = "Debian" ]]; then 
-				# adicionando arquitetura/dependencia      	
-				dpkg --add-architecture i386		
+			# adicionando arquitetura/dependencia      	
+			dpkg --add-architecture i386		
 
-				# Atualizando sistema			
-				update
+			# Atualizando sistema			
+			update
 
-				# Instalando nvidia - dependencias debian
-				apt install libgl1-mesa-dev libxtst6:i386 libxrandr2:i386 \
-							libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 \
-							libgdk-pixbuf2.0-0:i386 steam-launcher -y		                        
-			fi		
+			# Instalando nvidia - dependencias debian
+			apt install libgl1-mesa-dev libxtst6:i386 libxrandr2:i386 \
+						libglib2.0-0:i386 libgtk2.0-0:i386 libpulse0:i386 \
+						libgdk-pixbuf2.0-0:i386 steam-launcher -y
 
 	        apt install steam -y
 	    else
@@ -541,34 +533,29 @@ func_help()
         	printf "\n[*] Instalando o Wine"
             printf "\n[*] Instalando o Wine" >> $log_instala
 
-            if [[ $distro = "Debian" ]]; then
-            	# adicionando sistema multi-arch
-            	dpkg --add-architecture i386
-		
-				# baixando chave
-				wget -nc https://dl.winehq.org/wine-builds/Release.key
+        	# adicionando sistema multi-arch
+        	dpkg --add-architecture i386
+	
+			# baixando chave
+			wget -nc https://dl.winehq.org/wine-builds/Release.key
 
-				# instalando chave
-				apt-key add Release.key
+			# instalando chave
+			apt-key add Release.key
 
-				# removendo chave
-				rm Release.key
+			# removendo chave
+			rm Release.key
 
-				# atualizando sistema
-				update
+			# atualizando sistema
+			update
 
-				# instalando wine
-                apt install wine -y
+			# instalando wine
+            apt install wine -y
 
-                # instalando fontes
-                apt install ttf-mscorefonts-installer -y
+            # instalando fontes
+            apt install ttf-mscorefonts-installer -y
 
-                # instalando componentes
-                apt install mono-complete -y
-            else
-            	printf "\n[-] Erro ao instalar Wine"
-            	printf "\n[-] Erro ao instalar Wine" >> $log_instala
-            fi            
+            # instalando componentes
+            apt install mono-complete -y                    
         else
             printf "\n[-] Wine já está instalado na sua máquina!"
             printf "\n[-] Wine já está instalado na sua máquina!" >> $log_instala
@@ -867,21 +854,19 @@ func_help()
 
             # Instalando via flatpak
             flatpak install flathub com.github.wwmm.pulseeffects -y                
+                
+            local pulse_audio="/etc/pulse/daemon.conf"
+            local flat_volume="flat-volumes = no"
+            local verifica_pulse=$(grep $flat_volume $pulse_audio)        
 
-            if [[ $distro = "Debian" ]]; then                  
-                local pulse_audio="/etc/pulse/daemon.conf"
-                local flat_volume="flat-volumes = no"
-                local verifica_pulse=$(grep $flat_volume $pulse_audio)        
+            # executando caso nao encontre $flat_volume
+            [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
+                                          printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
+                                          printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
 
-                # executando caso nao encontre $flat_volume
-                [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
-                                              printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
-                                              printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
-
-                ######## COMENTARIO                        
-                ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-                # apt install --reinstall pulseaudio
-            fi
+            ######## COMENTARIO                        
+            ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
+            # apt install --reinstall pulseaudio
         else                
             printf "\n[*] Atualizando o pulseeffects\n"
             printf "\n[*] Atualizando o pulseeffects\n" >> $log_instala
@@ -1042,18 +1027,13 @@ func_help()
         printf "\n[*] Instalando os firmware's non-free"        
         printf "\n[*] Instalando os firmware's non-free" >> $log_instala
 
-        if [[ $distro = "Debian" ]]; then
-            if [[ $v_hostname = 'notebook' ]]; then   
-                apt install xserver-xorg-input-synaptics \
-                    blueman firmware-brcm80211 -y      
-            fi
+        if [[ $v_hostname = 'notebook' ]]; then   
+            apt install xserver-xorg-input-synaptics \
+                firmware-brcm80211 -y      
+        fi
 
-            apt install firmware-linux \
-                        firmware-linux-nonfree -y
-        else
-            printf "\n[-] ERRO - firmware"
-            printf "\n[-] ERRO - firmware" >> $log_instala
-        fi        
+        apt install firmware-linux \
+                    firmware-linux-nonfree -y
     }     
 
     install_python()
@@ -1359,6 +1339,17 @@ func_help()
         fi
     }
 
+    install_bluetooth()
+    {
+        printf "\n[*] Instalando o Bluetooth"
+        printf "\n[*] Instalando o Bluetooth"
+
+        apt install pulseaudio pulseaudio-module-bluetooth \
+                    pavucontrol bluez-firmware \
+                    bluetooth blueman bluez \
+                    bluez-tools rfkill -y
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1644,19 +1635,6 @@ func_corrige()
 
     atualiza_db   
 
-	if [[ $v_hostname = 'notebook' ]]; then                        
-        if [[ $distro = "Debian" ]]; then              
-            printf ""   
-        fi
-    elif [[ $v_hostname = 'desktop' ]]; then        
-        if [[ $distro = "Debian" ]]; then      
-            printf ""   
-        fi
-    else
-        printf "\n[-] ERRO corrige!"
-        printf "\n[-] ERRO corrige!" >> $log_corrige
-    fi
-
     update
 }
 
@@ -1766,11 +1744,9 @@ func_instala()
         
         install_desmune
         install_realtek  
-        install_pulseeffects      
+        install_pulseeffects  
 
-		if [[ $distro = "Debian" ]]; then				
-	    	echo    # nenhuma acao, por enquanto
-		fi
+        install_bluetooth
 
 	elif [[ $v_hostname = 'desktop' ]]; then     
         install_gimp    
