@@ -97,7 +97,7 @@ func_help()
         printf "\n[*] Limpando arquivos sobressalentes"
         printf "\n[*] Limpando arquivos sobressalentes" >> $log_corrige
 
-        apt-get clean
+        apt clean
 
         update
     }
@@ -119,7 +119,7 @@ func_help()
         # corrigindo problema nos pacotes
         apt install -f 
         apt update --fix-missing 
-        apt-get --fix-broken install
+        apt --fix-broken install
 
         # Atualizando versao dos pacotes instalados
         apt list --upgradable        
@@ -162,8 +162,8 @@ func_help()
 		echo "[*] Configurando Deborphan... "
         echo "[*] Configurando Deborphan... " >> $log_config
 
-        deborphan | xargs apt-get -y remove --purge &&
-        deborphan --guess-data | xargs apt-get -y remove --purge
+        deborphan | xargs apt -y remove --purge &&
+        deborphan --guess-data | xargs apt -y remove --purge
 
         #Configurando o prelink e o preload
         echo "[*] Configurando Prelink e Preload... "
@@ -334,7 +334,7 @@ func_help()
         printf "\n[*] Removendo Pacotes Órfãos"
         printf "\n[*] Removendo Pacotes Órfãos" >> $log_limpa
 
-        apt-get remove $(deborphan) -y 
+        apt remove $(deborphan) -y 
     }
 
     funcao_chkrootkit()
@@ -591,7 +591,7 @@ func_help()
         printf "\n[*] Instalando o Libreoffice" >> $log_instala
 
         #Instalando libreoffice
-        apt-get install libreoffice libreoffice-style-breeze -y
+        apt install libreoffice libreoffice-style-breeze -y
     }
 
     install_vlc()
@@ -726,7 +726,7 @@ func_help()
         local var_simplescreenrecorder=$(type simplescreenrecorder > /dev/null)
 
         if [[ $var_simplescreenrecorder = "1" ]]; then
-            apt-get install simplescreenrecorder -y
+            apt install simplescreenrecorder -y
         else
             printf "\n[-] Simple Screen Recorder já está instalado!"
             printf "\n[-] Simple Screen Recorder já está instalado!" >> $log_instala
@@ -1126,7 +1126,7 @@ func_help()
         printf "\n[*] Instalando Deborphan"
         printf "\n[*] Instalando Deborphan" >> $log_instala
 
-        apt-get install deborphan -y
+        apt install deborphan -y
     }
 
     install_locate()
