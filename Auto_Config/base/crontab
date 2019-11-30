@@ -8,25 +8,26 @@
 00 21 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt ; apt list --upgradable >> /tmp/crontab.txt ; date >> /tmp/crontab.txt
 
 ### NON-ROOT
-## CHECA MEMORIA: A cada 15 minutos
+
+######## SISTEMA
+## verifica memoria - 15 minutos
 */15 * * * * /home/lenonr/Github/dev_sysadmin/others/check_mem.sh
 
-## ATUALIZACOES: A cada 30 minutos
+## checa atualizacoes - 30 minutos
 */30 * * * * apt list --upgradable > /tmp/checa_atualizacao
 
-####### BOT TWITTER ###########
-## VERIFICA SE LISTA DE POSTAGENS DO TWITTER ESTA VAZIA
-## Cada 10 minutos
-*/10 * * * * /home/lenonr/Github/dev_scripts/Scripts/Python/leitor_url/check.sh
+######## OUTROS
+## update images goes-16
+*/15 * * * * /usr/local/bin/goes16-background
 
-## POSTA TWIT's AUTOMATICAMENTE
-## Cada 10 minutos
-*/10 * * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot && bash main.sh
+## verifica se lista postagens twitter esta vazia - 30 minutos
+*/30 * * * * /home/lenonr/Github/dev_scripts/Scripts/Python/leitor_url/check.sh
 
-## POSTA LANCAMENTOS DE FOGUETES
-## Cada 02 horas
-00 */2 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
+## posta twit automaticamente - cada 30 minutos
+*/30 * * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot && bash main.sh
 
-## CONVERTE AUDIO AUTOMATICAMENTE
-## Cada 06 horas
+## lancamento de foguetes - cada 3 horas
+00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
+
+## converte audio - cada 06 horas 	# DESKTOP ONLY #
 00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
