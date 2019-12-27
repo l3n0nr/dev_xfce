@@ -123,6 +123,7 @@ alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomod
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
+alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && ./main.sh && cd ~"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
