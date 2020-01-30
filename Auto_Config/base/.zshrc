@@ -123,11 +123,12 @@ alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomod
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
-alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && ./main.sh && cd ~"
+alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && ./main.sh notify && cd ~"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
 alias subl="/snap/bin/sublime-text.subl"
+alias vscode="/snap/bin/code.url-handler"
 alias reboot_interface="xfce4-panel -r &"
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 alias session="/home/lenonr/Github/dev_sysadmin/others/session.sh"
