@@ -36,7 +36,7 @@ export UPDATE_ZSH_DAYS=3
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-#ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -132,14 +132,14 @@ alias vscode="/snap/bin/code.url-handler"
 alias reboot_interface="xfce4-panel -r &"
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 alias session="/home/lenonr/Github/dev_sysadmin/others/session.sh"
-alias sistema="/home/lenonr/Github/dev_sysadmin/others/sistema.sh"
+alias sistema="cd /home/lenonr/Github/dev_sysadmin/others/sistema && bash main.sh && cd ~ > /dev/null"
 alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
 alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
 alias backup_zsh="/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh"
 alias reboot_dropbox="/home/lenonr/Github/dev_sysadmin/others/dropbox.sh"
 alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
 alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
-alias check_battery="/home/lenonr/Github/dev_sysadmin/others/check_battery.sh"
+alias check_battery="cd /home/lenonr/Github/dev_sysadmin/others/battery && bash main.sh"
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
 alias change_brightness="su root /home/lenonr/Github/dev_sysadmin/others/change_brightness.sh"
