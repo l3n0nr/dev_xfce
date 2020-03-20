@@ -123,7 +123,7 @@ alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomod
 alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
-alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && ./main.sh notify && cd ~"
+alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
@@ -139,7 +139,7 @@ alias backup_zsh="/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh"
 alias reboot_dropbox="/home/lenonr/Github/dev_sysadmin/others/dropbox.sh"
 alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
 alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
-alias check_battery="cd /home/lenonr/Github/dev_sysadmin/others/battery && bash main.sh"
+alias check_battery="/home/lenonr/Github/dev_sysadmin/others/battery/main.sh"
 alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
 alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
 alias change_brightness="su root /home/lenonr/Github/dev_sysadmin/others/change_brightness.sh"
