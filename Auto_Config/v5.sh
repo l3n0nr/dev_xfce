@@ -413,24 +413,6 @@ func_help()
 			printf "\n[-] Steam já está instalado!" 
             printf "\n[-] Steam já está instalado!" >> $log_instala
 	    fi
-    }
-
-    install_spotify()
-    {
-        # variavel de verificação
-        local var_spotify=$(snap list | grep spotify)
-
-        if [[ $var_spotify = "0" ]]; then            
-            printf "\n[+] Atualizando o Spofity! \n"
-            printf "\n[+] Atualizando o Spofity! \n" >> $log_instala
-
-            snap refresh spotify
-        else
-            printf "\n[*] Instalando Spotify\n"
-            printf "\n[*] Instalando Spotify" >> $log_instala
-
-            snap install spotify
-        fi
     }   
 
     install_codecs()
@@ -1742,7 +1724,6 @@ func_instala()
         
         install_desmune
         install_realtek  
-        install_pulseeffects  
 
         install_bluetooth
 
@@ -1756,10 +1737,11 @@ func_instala()
 
         install_nvidia      
         install_gwe
+        
+        install_pulseeffects
                 
         install_transmission   
-        install_googleearth 
-        install_spotify          
+        install_googleearth          
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
