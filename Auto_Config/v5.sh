@@ -349,27 +349,6 @@ func_help()
 
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
-    install_chromium()
-    {              
-        local var_chromium=$(type chromium > /dev/null)        
-
-        if [[ $distro = "Debian" ]]; then 
-            if [[ $var_chromium = "1" ]]; then
-                printf "\n[*] Instalando o Chromium"
-                printf "\n[*] Instalando o Chromium" >> $log_instala
-
-                # navegador + pacotes de idiomas
-                apt install chromium chromium-l10n -y
-            else
-                printf "\n[*] Chromium ja esta instalado"
-                printf "\n[*] Chromium ja esta instalado" >> $log_instala
-            fi  
-        else
-            printf "\n[-] Erro instalação Chromium"
-            printf "\n[-] Erro instalação Chromium" >> $log_instala
-        fi 
-    }
-
     install_tor()
     {
         local var_tor="/opt/tor/tor-browser_en-US"
@@ -1647,7 +1626,6 @@ func_instala()
 {
     notify-send -u normal "Instalando programas no sistema" -t 10000	
 
-	install_chromium	
 	install_tor
 
 	install_codecs
