@@ -23,5 +23,5 @@ deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
 deb https://dl.winehq.org/wine-builds/debian/ stretch main
 
 # NVIDIA
-deb http://httpredir.debian.org/debian/ stretch main contrib non-free
+deb http://httpredir.debian.org/debian/ buster-backports main contrib non-free
 #------------------------------------------------------------------------------#
