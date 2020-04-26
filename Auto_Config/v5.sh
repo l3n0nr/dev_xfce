@@ -13,21 +13,13 @@
 # por lenonr(Lenon Ricardo)
 #       contato: <lenonrmsouza@gmail.com>
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#									      									  #
-#	If I have seen further it is by standing on the shoulders of Giants.      #
-#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)	          #
-#							~Isaac Newton	      							  #
-#									      									  #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#
 # # ARQUIVOS EXTERNOS
 # resources used
 # Read file config/references.conf
 #
 # script compatibility
 # Read file /config/compatibility.conf
-
+#
 # variaveis de ambiente
 source config/variables.conf
 #
@@ -388,7 +380,7 @@ func_help()
 			printf "\n[-] Steam já está instalado!" 
             printf "\n[-] Steam já está instalado!" >> $log_instala
 	    fi
-    }
+	}
 
     install_codecs()
     {
@@ -1521,7 +1513,6 @@ func_instala()
 {
     notify-send -u normal "Instalando programas no sistema" -t 10000	
 
-	install_chromium	
 	install_tor
 
 	install_codecs
@@ -1598,7 +1589,6 @@ func_instala()
         
         install_desmune
         install_realtek  
-        install_pulseeffects  
 
         install_bluetooth
 
@@ -1612,10 +1602,11 @@ func_instala()
 
         install_nvidia      
         install_gwe
+        
+        install_pulseeffects
                 
         install_transmission   
-        install_googleearth 
-        install_spotify          
+        install_googleearth          
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
