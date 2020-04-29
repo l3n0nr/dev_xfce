@@ -1579,10 +1579,11 @@ func_instala()
     install_curl
     install_cpufrequtils 
 
+    install_aircrack  
+    install_wavemon
+
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
-        install_aircrack  
-        install_wavemon
 
 	    install_reaver          
         install_ibam
