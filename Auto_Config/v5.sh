@@ -13,21 +13,13 @@
 # por lenonr(Lenon Ricardo)
 #       contato: <lenonrmsouza@gmail.com>
 #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#									      									  #
-#	If I have seen further it is by standing on the shoulders of Giants.      #
-#	(Se vi mais longe foi por estar de pé sobre ombros de gigantes)	          #
-#							~Isaac Newton	      							  #
-#									      									  #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-#
 # # ARQUIVOS EXTERNOS
 # resources used
 # Read file config/references.conf
 #
 # script compatibility
 # Read file /config/compatibility.conf
-
+#
 # variaveis de ambiente
 source config/variables.conf
 #
@@ -245,9 +237,6 @@ func_help()
                     echo "autologin-user=$autor" >> $var_autologin
                     echo "autologin-user-timeout=0" >> $var_autologin
 
-                    printf "\n[*] Reconfigurando lightdm, aguarde!" 
-                    # dpkg-reconfigure lightdm 
-
                     if [[ $? = "0" ]]; then
                     	printf "\n[*] Configuracao atualizada com sucesso" 
                         printf "\n[*] Configuracao atualizada com sucesso" >> $log_config
@@ -349,23 +338,22 @@ func_help()
 
 # # # # # # # # # #
 # # INSTALA PROGRAMAS
+    install_chromium()
+    {                  
+        printf "\n[*] Instalando o Chromium"
+        printf "\n[*] Instalando o Chromium" >> $log_instala
+
+        # navegador + pacotes de idiomas
+        apt install chromium chromium-l10n -y
+    }
+
     install_tor()
     {
-        local var_tor="/opt/tor/tor-browser_en-US"
+        printf "\n[*] Instalando o Tor\n"
+        printf "\n[*] Instalando o Tor\n" >> $log_instala
 
-        if [[ -e $var_tor ]]; then
-            printf "\n[*] Instalando o Tor\n"
-            printf "\n[*] Instalando o Tor\n" >> $log_instala
-
-            # verificando distribuição
-            if [[ $distro = "Debian" ]]; then                
-                echo "Verificar: 'repo sysadmin/others/install_tor.sh'"
-            fi
-
-        else
-            printf "\n[-] Tor já está instalado!" 
-            printf "\n[-] Tor já está instalado! \n" >> $log_instala
-        fi           
+        printf "\n [+] CHECK: repo sysadmin/others/install_tor.sh"
+        printf "\n [+] CHECK: repo sysadmin/others/install_tor.sh" >> $log_instala
     }
 
     install_steam()
@@ -392,7 +380,7 @@ func_help()
 			printf "\n[-] Steam já está instalado!" 
             printf "\n[-] Steam já está instalado!" >> $log_instala
 	    fi
-    }   
+	}
 
     install_codecs()
     {
@@ -412,18 +400,10 @@ func_help()
 
     install_gimp()
     {
-     	# variavel de verificação
-        local var_gimp=$(type gimp > /dev/null)
+        printf "\n[*] Instalando o Gimp"
+        printf "\n[*] Instalando o Gimp" >> $log_instala
 
-        if [[ $var_gimp = "1" ]]; then
-            printf "\n[*] Instalando o Gimp"
-            printf "\n[*] Instalando o Gimp" >> $log_instala
-
-            apt install gimp -y
-        else
-            printf "\n[-] GIMP já está instalado na sua máquina!"
-            printf "\n[-] GIMP já está instalado na sua máquina!" >> $log_instala
-        fi
+        apt install gimp -y
     }
 
     install_xfce4()
@@ -487,55 +467,40 @@ func_help()
 
     install_wine()
     {
-    	# variavel de verificação
-        local var_wine=$(type wine > /dev/null)
+    	printf "\n[*] Instalando o Wine"
+        printf "\n[*] Instalando o Wine" >> $log_instala
 
-        if [[ $var_wine = "1" ]]; then
-        	printf "\n[*] Instalando o Wine"
-            printf "\n[*] Instalando o Wine" >> $log_instala
+    	# adicionando sistema multi-arch
+    	dpkg --add-architecture i386
 
-        	# adicionando sistema multi-arch
-        	dpkg --add-architecture i386
-	
-			# baixando chave
-			wget -nc https://dl.winehq.org/wine-builds/Release.key
+		# baixando chave
+		wget -nc https://dl.winehq.org/wine-builds/Release.key
 
-			# instalando chave
-			apt-key add Release.key
+		# instalando chave
+		apt-key add Release.key
 
-			# removendo chave
-			rm Release.key
+		# removendo chave
+		rm Release.key
 
-			# atualizando sistema
-			update
+		# atualizando sistema
+		update
 
-			# instalando wine
-            apt install wine -y
+		# instalando wine
+        apt install wine -y
 
-            # instalando fontes
-            apt install ttf-mscorefonts-installer -y
+        # instalando fontes
+        apt install ttf-mscorefonts-installer -y
 
-            # instalando componentes
-            apt install mono-complete -y                    
-        else
-            printf "\n[-] Wine já está instalado na sua máquina!"
-            printf "\n[-] Wine já está instalado na sua máquina!" >> $log_instala
-        fi
+        # instalando componentes
+        apt install mono-complete -y                    
     }
 
     install_playonlinux()
     {
-        local var_playonlinux=$(type playonlinux > /dev/null)
+        printf "\n[*] Instalando o PlayonLinux"
+        printf "\n[*] Instalando o PlayonLinux" >> $log_instala
 
-        if [[ $var_playonlinux = "1" ]]; then
-            printf "\n[*] Instalando o PlayonLinux"
-            printf "\n[*] Instalando o PlayonLinux" >> $log_instala
-
-            apt install playonlinux -y
-        else
-            printf "\n[-] PlayonLinux ja esta instalado"
-            printf "\n[-pu] PlayonLinux ja esta instalado" >> $log_instala
-        fi        
+        apt install playonlinux -y
     }
 
     install_redshift()
@@ -604,15 +569,10 @@ func_help()
 
     install_stellarium()
     {
-        # variavel de verificação
-        local var_stellarium=$(type stellarium > /dev/null)
+        printf "\n[+] Instalando o Stellarium!"
+        printf "\n[+] Instalando o Stellarium!" >> $log_instala
 
-        if [[ $var_stellarium = "1" ]]; then
-            apt install stellarium -y
-        else
-            printf "\n[-] Stellarium já está instalado!"
-            printf "\n[-] Stellarium já está instalado!" >> $log_instala
-        fi
+        apt install stellarium -y
     }
 
     install_reaver()
@@ -681,31 +641,20 @@ func_help()
 
     install_simple_screen_recorder()
     {
-        # variavel de verificação
-        local var_simplescreenrecorder=$(type simplescreenrecorder > /dev/null)
+        printf "\n[+] Instalando  Simplescreenrecorder"
+        printf "\n[+] Instalando  Simplescreenrecorder" >> $log_instala
 
-        if [[ $var_simplescreenrecorder = "1" ]]; then
-            apt install simplescreenrecorder -y
-        else
-            printf "\n[-] Simple Screen Recorder já está instalado!"
-            printf "\n[-] Simple Screen Recorder já está instalado!" >> $log_instala
-        fi
+        apt install simplescreenrecorder -y
     }
 
     install_mega()
     {       
-        # variavel de verificação
-        local var_mega=$(type megasync > /dev/null)
-
-        if [[ $var_mega = "1" ]]; then        
-            printf "\n[*] Instalando o MEGA"
-            printf "\n[*] Instalando o MEGA" >> $log_instala
-            
-			apt install megasync -y
-        else
-            printf "\n[-] MEGA Sync já está instalado!"
-            printf "\n[-] MEGA Sync já está instalado!" >> $log_instala
-        fi
+        printf "\n[*] Instalando o MEGA"
+        printf "\n[*] Instalando o MEGA" >> $log_instala
+        
+		dpkg -i base/packages/mega/*.deb
+        apt --fix-broken install -y
+        dpkg -i base/packages/mega/*.deb
     }
 
     install_openssh()
@@ -742,15 +691,19 @@ func_help()
 
     install_nvidia()
     {
-        # variavel de verificação
-        local var_nvidia=$(type nvidia-settings > /dev/null)
+        # # variavel de verificação
+        # local var_nvidia=$(type nvidia-settings > /dev/null)
 
-        if [[ $var_nvidia = "1" ]]; then
-        	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
-        else
-            printf "\n[-] Nvidia já está instalado no sistema!"
-            printf "\n[-] Nvidia já está instalado no sistema!" >> $log_instala
-        fi
+        # if [[ $var_nvidia = "1" ]]; then
+        # 	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
+        # else
+        #     printf "\n[-] Nvidia já está instalado no sistema!"
+        #     printf "\n[-] Nvidia já está instalado no sistema!" >> $log_instala
+        # fi
+
+        # apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') \
+        # nvidia-driver nvidia-xconfig nvidia-settings nvidia-smi -y
+        echo
     }
 
     install_virtualbox()
@@ -801,37 +754,27 @@ func_help()
 
     install_pulseeffects()
     {
-        # variavel de verificação
-        local var_pulseeeffects=$(type pulseeffects > /dev/null)
+        printf "\n[*] Instalando o Pulse Effects"
+        printf "\n[*] Instalando o Pulse Effects" >> $log_instala
 
-        if [[ $var_pulseeeffects = "1" ]]; then
-            printf "\n[*] Instalando o Pulse Effects"
-            printf "\n[*] Instalando o Pulse Effects" >> $log_instala
+        # adicionando via flatpak
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-            # adicionando via flatpak
-            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        # Instalando via flatpak
+        flatpak install flathub com.github.wwmm.pulseeffects -y                
+            
+        local pulse_audio="/etc/pulse/daemon.conf"
+        local flat_volume="flat-volumes = no"
+        local verifica_pulse=$(grep $flat_volume $pulse_audio)        
 
-            # Instalando via flatpak
-            flatpak install flathub com.github.wwmm.pulseeffects -y                
-                
-            local pulse_audio="/etc/pulse/daemon.conf"
-            local flat_volume="flat-volumes = no"
-            local verifica_pulse=$(grep $flat_volume $pulse_audio)        
+        # executando caso nao encontre $flat_volume
+        [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
+                                      printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
+                                      printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
 
-            # executando caso nao encontre $flat_volume
-            [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
-                                          printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
-                                          printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
-
-            ######## COMENTARIO                        
-            ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-            # apt install --reinstall pulseaudio
-        else                
-            printf "\n[*] Atualizando o pulseeffects\n"
-            printf "\n[*] Atualizando o pulseeffects\n" >> $log_instala
-
-            flatpak update com.github.wwmm.pulseeffects -y                
-        fi            
+        ######## COMENTARIO                        
+        ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
+        # apt install --reinstall pulseaudio
     }
     
     install_terminator()
@@ -916,69 +859,38 @@ func_help()
 
     install_tuxguitar()
     {
-        # variavel de verificação
-        local var_tuxguitar=$(type tuxguitar > /dev/null)
+        printf "\n[*] Instalando Tux Guitar"
+        printf "\n[*] Instalando Tux Guitar" >> $log_instala
 
-        # criando verificação para instalar o tuxguitar
-        if [[ $var_tuxguitar = "1" ]]; then
-            printf "\n[*] Instalando Tux Guitar"
-            printf "\n[*] Instalando Tux Guitar" >> $log_instala
-
-            apt install tuxguitar timidity -y
-        else
-            printf "\n[-] TuxGuitar já está instalado"
-            printf "\n[-] TuxGuitar já está instalado" >> $log_instala
-        fi
+        apt install tuxguitar timidity -y
     }
 
     install_zsh()
     {
-        # variavel de verificação
-        local var_zsh=$(type zsh > /dev/null)        
+        printf "\n[*] Instalando o ZSH"
+        printf "\n[*] Instalando o ZSH" >> $log_instala
 
-		# criando verificação para instalar zsh
-        if [[ $var_zsh = "1" ]]; then
-            printf "\n[*] Instalando o ZSH"
-            printf "\n[*] Instalando o ZSH" >> $log_instala
-
-	        apt install zsh zsh-common -y
-	    else
-	    	printf "\n[-] O ZSH ja esta instalado no seu sistema"
-	    	printf "\n[-] O ZSH ja esta instalado no seu sistema" >> $log_instala
-	    fi
+        apt install zsh zsh-common -y
     }
 
     install_docker()
     {
-        # variavel de verificação
-        local var_docker=$(type docker > /dev/null)
+    	printf "\n[*] Instalando o Docker"
+        printf "\n[*] Instalando o Docker" >> $log_instala
 
-        # criando verificação para instalar o docker
-        if [[ $var_docker = "1" ]]; then
-        	printf "\n[*] Instalando o Docker"
-            printf "\n[*] Instalando o Docker" >> $log_instala
-    
-            curl -fsSL https://get.docker.com/ | sh            
-        else
-            printf "\n[-] O Docker já está instalado no seu sistema."
-            printf "\n[-] O Docker já está instalado no seu sistema." >> $log_instala
-        fi
+        curl -fsSL https://get.docker.com/ | sh            
     }
 
     install_sublime()
     {
-         # variavel de verificação
-        local var_sublime="/opt/sublime_text"
+        printf "\n[*] Instalando o Sublime"
+        printf "\n[*] Instalando o Sublime" >> $log_instala
 
-        # criando verificação para instalar o sublime
-        if [[ -e $var_sublime ]]; then
-            printf "\n[*] Instalando o Sublime"
-            printf "\n[*] Instalando o Sublime" >> $log_instala
+        # instalando
+        snap install sublime-text --classic
 
-            snap install sublime-text --classic
-        else
-            snap refresh sublime-text --classic
-        fi
+        # atualizando
+        snap refresh sublime-text --classic
     }
 
     install_firmware()
@@ -1037,15 +949,10 @@ func_help()
 
     install_transmission()
     {
-        local var_transmission=$(type transmission-gtk > /dev/null)
+        printf "\n[*] Instalando o Transmission"
+        printf "\n[*] Instalando o Transmission" >> $log_instala
 
-        # verificando se transmission está instalado
-        if [[ $var_transmission = "1" ]]; then
-            printf "\n[*] Instalando o Transmission"
-            printf "\n[*] Instalando o Transmission" >> $log_instala
-
-            apt install transmission-gtk -y
-        fi
+        apt install transmission-gtk -y
     }
 
     install_xfburn()
@@ -1090,18 +997,10 @@ func_help()
 
     install_locate()
     {
-    	# variavel de verificação
-        local var_locate=$(type locate > /dev/null)
+        printf "\n[*] Instalando Locate"
+        printf "\n[*] Instalando Locate" >> $log_instala
 
-        if [[ $var_locate = "1" ]]; then
-            printf "\n[*] Instalando Locate"
-            printf "\n[*] Instalando Locate" >> $log_instala
-
-        	apt install locate -y
-        else
-            printf "\n[-] Locate ja esta instalado!"
-            printf "\n[-] Locate ja esta instalado!" >> $log_instala
-        fi
+    	apt install locate -y
     }
 
     install_arpscan()
@@ -1133,19 +1032,11 @@ func_help()
 
     install_notify()
     {
-		# variavel de verificação
-        local var_notify=$(type notify-osd > /dev/null)
+    	printf "\n[*] Instalando o Notify-send"
+        printf "\n[*] Instalando o Notify-send" >> $log_instala
 
-        if [[ $var_notify = "1" ]]; then
-        	printf "\n[*] Instalando o Notify-send"
-	        printf "\n[*] Instalando o Notify-send" >> $log_instala
-
-	        apt install notify-osd -y
-	        # apt --reinstall install libnotify-bin notify-osd -y
-        else    
-        	printf "\n[-] Notify-send ja esta instalado"
-	        printf "\n[-] Notify-send ja esta instalado" >> $log_instala
-	    fi
+        apt install notify-osd -y
+        # apt --reinstall install libnotify-bin notify-osd -y
     }
 
     install_evince()
@@ -1166,19 +1057,10 @@ func_help()
 
     install_nautilus()
     {
-    	# variavel de verificação
-        local var_nautilus=$(type nautilus > /dev/null)
+    	printf "\n[*] Instalando o Nautilus"
+        printf "\n[*] Instalando o Nautilus" >> $log_instala
 
-        if [[ $var_nautilus = "1" ]]; then
-        	printf "\n[*] Instalando o Nautilus"
-	        printf "\n[*] Instalando o Nautilus" >> $log_instala
-
-	        apt install nautilus -y
-        else    
-        	printf "\n[-] Nautilus ja esta instalado"
-	        printf "\n[-] Nautilus ja esta instalado" >> $log_instala
-	    fi
-
+        apt install nautilus -y
     }
 
     install_ntfs()
@@ -1214,7 +1096,12 @@ func_help()
             printf "\n[-] Google Earth ja esta instalado!"
             printf "\n[-] Google Earth ja esta instalado!" >> $log_instala            
         else
-            dpkg -i base/packages/google_earth/google-earth-pro-stable_current_amd64.deb  
+            dpkg -i base/packages/google_earth/*.deb  
+
+            # corrigindo problemas de dependencias
+            apt --fix-broken install -ydpkg -i base/packages/mega/*.deb
+
+            dpkg -i base/packages/google_earth/*.deb  
         fi        
     }
 
@@ -1692,10 +1579,11 @@ func_instala()
     install_curl
     install_cpufrequtils 
 
+    install_aircrack  
+    install_wavemon
+
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
-        install_aircrack  
-        install_wavemon
 
 	    install_reaver          
         install_ibam
@@ -2322,7 +2210,7 @@ main()
             limpa) func_limpa;;
             instala) func_instala;;
             remove) func_remove;;
-            nvidia) nvidia;;
+            nvidia) install_nvidia;;
     		versao) version;;
             vetor) func_vetor;;
     		interface_d) func_interface_dialog;;

@@ -16,9 +16,6 @@ deb http://deb.debian.org/debian-security stable/updates main
 # STEAM
 deb [arch=i386,amd64] http://repo.steampowered.com/steam/ precise steam
 
-# MEGA
-deb http://mega.nz/linux/MEGAsync/Debian_9.0/ ./
-
 # WINE
 deb https://dl.winehq.org/wine-builds/debian/ stretch main
 
