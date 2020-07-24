@@ -124,6 +124,7 @@ alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
 alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
+alias mpsyt="rm ~/.config/mps-youtube/cache_py_* ; /home/lenonr/.local/bin/mpsyt"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
