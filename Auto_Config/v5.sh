@@ -1188,12 +1188,21 @@ func_help()
     install_bluetooth()
     {
         printf "\n[*] Instalando o Bluetooth"
-        printf "\n[*] Instalando o Bluetooth"
+        printf "\n[*] Instalando o Bluetooth" >> $log_instala
 
         apt install pulseaudio pulseaudio-module-bluetooth \
                     pavucontrol bluez-firmware \
                     bluetooth blueman bluez \
                     bluez-tools rfkill -y
+    }
+
+    install_mpsyoutube()
+    {
+
+    	printf "\n[*] Instalando o MPS-Youtube"
+    	printf "\n[*] Instalando o MPS-Youtube" >> $log_instala
+
+    	pip3 install mps-youtube --upgrade
     }
 
     ## LAST_INSTALL
@@ -1582,6 +1591,9 @@ func_instala()
     install_aircrack  
     install_wavemon
 
+    install_mpsyoutube
+   	install_wine
+
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
 
@@ -1596,7 +1608,6 @@ func_instala()
 	elif [[ $v_hostname = 'desktop' ]]; then     
         install_gimp    
         install_tuxguitar  
-        install_wine
         install_playonlinux  
         install_sweethome3d
 		install_audacity
