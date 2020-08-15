@@ -1,9 +1,12 @@
 # Control media keys 
 Volume 
 	Up: Ctrl + PageDown
-		Command: amixer set Master 6%+
+		Command: amixer set Master 3%+
 	Down: Ctrl + Delete
-		Command: amixer set Master 6%-
+		Command: amixer set Master 3%-
+		
+	Mute/Unmute: Ctrl + End
+		Command: amixer set Master toggle
 
 Player music
 	Play/Pause: Ctrl + Home
