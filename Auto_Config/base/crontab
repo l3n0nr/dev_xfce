@@ -37,7 +37,7 @@
 
 ## ISS
 # report - segunda a sexta, as 10 horas
-00 22 * * 1-5 /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
+00 22 * * 1-5 cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
 
 ## converte audio - cada 06 horas 	# DESKTOP ONLY #
 #00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
