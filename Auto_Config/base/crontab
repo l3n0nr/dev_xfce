@@ -8,7 +8,6 @@
 00 21 * * 01,03,05 apt update > /tmp/crontab.txt ; apt upgrade -y >> /tmp/crontab.txt ; apt list --upgradable >> /tmp/crontab.txt ; date >> /tmp/crontab.txt
 
 ### NON-ROOT
-
 ######## SISTEMA
 ## verifica memoria - 15 minutos
 */15 * * * * /home/lenonr/Github/dev_sysadmin/others/check_mem.sh
@@ -18,7 +17,7 @@
 
 ######## OUTROS
 ## update images goes-16
-*/15 * * * * /usr/local/bin/goes16-background
+# */15 * * * * /usr/local/bin/goes16-background
 
 ## verifica se lista postagens twitter esta vazia - 30 minutos
 */30 * * * * /home/lenonr/Github/dev_scripts/Scripts/Python/leitor_url/check.sh
@@ -29,5 +28,19 @@
 ## lancamento de foguetes - cada 3 horas
 00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
 
+## SPACEX
+# boosters - cada 03 horas
+00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/spacex && bash main.sh boosters
+
+## dragon - cada 03 horas
+00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/spacex && bash main.sh dragon
+
+## ISS
+# report - segunda a sexta, as 10 horas
+00 22 * * 1-5 /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
+
 ## converte audio - cada 06 horas 	# DESKTOP ONLY #
-00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
+#00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
+
+## atualizando info GIT - script SISTEMA
+*/1 * * * * cd /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git && bash status_git.sh
