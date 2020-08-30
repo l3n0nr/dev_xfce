@@ -28,6 +28,9 @@
 ## lancamento de foguetes - cada 3 horas
 00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
 
+## lancamento de foguetes TOP5 - cada 3 horas
+00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh top5
+
 ## SPACEX
 # boosters - cada 03 horas
 00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/spacex && bash main.sh boosters
@@ -36,11 +39,8 @@
 00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/spacex && bash main.sh dragon
 
 ## ISS
-# report - segunda a sexta, as 10 horas
-00 22 * * 1-5 cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
+# report - segunda a sexta, as 09 horas
+00 21 * * 1-5 cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
 
-## converte audio - cada 06 horas 	# DESKTOP ONLY #
-#00 */6 * * * /home/lenonr/Github/dev_sysadmin/others/convert_audio.sh
-
-## atualizando info GIT - script SISTEMA
+## atualizando info GIT - SISTEMA
 */1 * * * * cd /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git && bash status_git.sh
