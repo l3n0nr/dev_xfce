@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME//bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/lenonr/.oh-my-zsh
+  export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -60,6 +60,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,45 +103,45 @@ export EDITOR=$(which nano)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #################
 ## ALIAS DIVERSOS
 #################
 ## GIT
-alias check_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
-alias status_git="/home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
-alias repo="source /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
+alias check_git="$HOME/Github/dev_sysadmin/rotine_scripts/arquivos_git/push_git.sh"
+alias status_git="$HOME/Github/dev_sysadmin/rotine_scripts/arquivos_git/status_git.sh"
+alias repo="source $HOME/Github/dev_sysadmin/rotine_scripts/arquivos_git/auto_alias.sh"
 
 ## DIVERSOS
 alias dc="echo 'Prefiro a Marvel...'"
-alias radio="/home/lenonr/Github/dev_sysadmin/others/radio/main.sh"
-alias ksp_stats="subl /home/lenonr/Dropbox/Arquivos/Jogos/KSP/missions"
-alias podcast="source /home/lenonr/Github/dev_sysadmin/others/podcast.sh"
-alias rotina="libreoffice /home/lenonr/MEGA/LifeStyle/Outros/rotina.odt &"
-alias pulseeffects="/home/lenonr/Github/dev_sysadmin/others/pulseeffects.sh"
-alias pomodoro="/home/lenonr/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
-alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
+alias radio="$HOME/Github/dev_sysadmin/others/radio/main.sh"
+alias ksp_stats="subl $HOME/Dropbox/Arquivos/Jogos/KSP/missions"
+alias podcast="source $HOME/Github/dev_sysadmin/others/podcast.sh"
+alias rotina="libreoffice $HOME/MEGA/LifeStyle/Outros/rotina.odt &"
+alias pulseeffects="$HOME/Github/dev_sysadmin/others/pulseeffects.sh"
+alias pomodoro="$HOME/Github/dev_scripts/Scripts/ShellScript/others/pomodoro.sh"
+alias twitt="python $HOME/Github/dev_scripts/Scripts/Python/twitter_bot/v1.py -t"
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
-alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
-alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
-alias mpsyt="rm ~/.config/mps-youtube/cache_py_* ; /home/lenonr/.local/bin/mpsyt"
+alias internet="$HOME/Github/dev_sysadmin/others/internet.sh"
+alias launch_rocket="cd $HOME/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
+alias mpsyt="rm ~/.config/mps-youtube/cache_py_* ; $HOME//.local/bin/mpsyt"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
-alias subl="/snap/bin/sublime-text.subl"
+alias subl="/snap/sublime-text/current/opt/sublime_text/sublime_text"
 alias vscode="/snap/bin/code.url-handler"
 alias reboot_interface="xfce4-panel -r &"
-alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
-alias session="/home/lenonr/Github/dev_sysadmin/others/session.sh"
-alias sistema="cd /home/lenonr/Github/dev_sysadmin/others/sistema && bash main.sh && cd ~ > /dev/null"
-alias mata="/home/lenonr/Github/dev_sysadmin/others/mata_processo.sh"
-alias ip_externo="/home/lenonr/Github/dev_sysadmin/others/ip_externo.sh"
-alias backup_zsh="/home/lenonr/Github/dev_sysadmin/others/backup_zsh.sh"
-alias reboot_dropbox="/home/lenonr/Github/dev_sysadmin/others/dropbox.sh"
-alias mega_dropbox="/home/lenonr/Github/dev_sysadmin/others/mega_dropbox.sh"
-alias verificahd="/home/lenonr/Github/dev_sysadmin/others/verifica_midia.sh"
-alias check_battery="/home/lenonr/Github/dev_sysadmin/others/battery/main.sh"
-alias check_sizefile="/home/lenonr/Github/dev_sysadmin/others/check_sizefile.sh"
-alias check_services="/home/lenonr/Github/dev_sysadmin/others/check_services.sh"
-alias change_brightness="su root /home/lenonr/Github/dev_sysadmin/others/change_brightness.sh"
+alias wrt="$HOME/Github/dev_sysadmin/others/wrt.sh"
+alias session="$HOME/Github/dev_sysadmin/others/session.sh"
+alias sistema="cd $HOME/Github/dev_sysadmin/others/sistema && bash main.sh && cd ~ > /dev/null"
+alias mata="$HOME/Github/dev_sysadmin/others/mata_processo.sh"
+alias ip_externo="$HOME/Github/dev_sysadmin/others/ip_externo.sh"
+alias backup_zsh="$HOME/Github/dev_sysadmin/others/backup_zsh.sh"
+alias reboot_dropbox="$HOME/Github/dev_sysadmin/others/dropbox.sh"
+alias mega_dropbox="$HOME/Github/dev_sysadmin/others/mega_dropbox.sh"
+alias verificahd="$HOME/Github/dev_sysadmin/others/verifica_midia.sh"
+alias check_battery="$HOME/Github/dev_sysadmin/others/battery/main.sh"
+alias check_sizefile="$HOME/Github/dev_sysadmin/others/check_sizefile.sh"
+alias check_services="$HOME/Github/dev_sysadmin/others/check_services.sh"
+alias change_brightness="su root $HOME/Github/dev_sysadmin/others/change_brightness.sh"
