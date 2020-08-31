@@ -224,7 +224,7 @@ func_help()
     autologin()
     {       
         if [[ $boolean_autologin = "1" ]]; then
-            local var_autologin="/usr/share/lightdm/lightdm.conf.d/01_debian.conf"
+            local var_autologin="/etc/lightdm/lightdm.conf"
 
             cat $var_autologin | grep "autologin-user=$autor" > /dev/null
 
