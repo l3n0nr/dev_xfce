@@ -29,7 +29,7 @@
 00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh
 
 ## lancamento de foguetes TOP5 - cada 3 horas
-00 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh top5
+01 */3 * * * cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh top5
 
 ## SPACEX
 # boosters - cada 03 horas
