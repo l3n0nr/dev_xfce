@@ -1036,7 +1036,6 @@ func_help()
         printf "\n[*] Instalando o Notify-send" >> $log_instala
 
         apt install notify-osd -y
-        # apt --reinstall install libnotify-bin notify-osd -y
     }
 
     install_evince()
@@ -1450,8 +1449,6 @@ func_keycheck()
     	# verificando se arquivo existe
     	check_arq=$(cat $file_check >> /dev/null)
 
-    	# echo $checa_arq
-
     	if [[ $check_arq != "0" ]]; then
     		touch $file_check
     	fi
@@ -1474,9 +1471,8 @@ func_atualiza()
 {    
     notify-send -u normal "Atualizando sistema" -t 10000
 
-    clear
-
     update
+    # --- #
     upgrade
 }
 
@@ -1485,11 +1481,11 @@ func_corrige()
     notify-send -u normal "Corrigindo sistema" -t 10000
 
     apt_clean        
-    
+    # --- #
     pacotes_quebrados      
-
+    # --- #
     atualiza_db   
-
+    # --- #
     update
 }
 
@@ -1498,13 +1494,15 @@ func_config()
     notify-send -u normal "Configurando o sistema" -t 10000	
 
     config_ntp  
-
+    # --- #
     swap
+    # --- #
     prelink_preload_deborphan
-
+    # --- #
     autologin
-
+    # --- #
     icones_temas
+    # --- #
     arquivo_hosts
 }
 
@@ -1512,9 +1510,8 @@ func_limpa()
 {
     notify-send -u normal "Limpando sistema" -t 10000
 
-    clear   
-
     pacotes_orfaos
+    # --- #
     funcao_chkrootkit
 }
 
