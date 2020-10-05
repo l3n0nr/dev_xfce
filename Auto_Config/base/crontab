@@ -43,4 +43,4 @@
 00 21 * * 1-5 cd /home/lenonr/Github/dev_scripts/Scripts/ShellScript/iss && bash main.sh report
 
 ## atualizando info GIT - SISTEMA
-*/1 * * * * cd /home/lenonr/Github/dev_sysadmin/rotine_scripts/arquivos_git && bash status_git.sh
+*/1 * * * * cd /home/lenonr/Github/dev_sysadmin/others/sistema && bash main.sh
