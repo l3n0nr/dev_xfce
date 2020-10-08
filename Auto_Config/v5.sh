@@ -32,6 +32,7 @@ source config/variables.conf
 ## testando usuario
 if [[ `id -u` -ne 0 ]]; then
     clear
+
     printf "############################################################################\n"
     printf "\n"
     $logo
@@ -48,6 +49,7 @@ fi
 func_help()
 {
     clear
+
     printf "############################################################################\n"
     printf "\n"
 	$logo
@@ -66,7 +68,8 @@ func_help()
         #Atualizando lista de repositorios
         printf "\n[*] Atualizando lista de repositorios do sistema"
         printf "\n[*] Atualizando lista de repositorios do sistema" >> $log_atualiza
-        	apt update
+        
+        apt update
     }
 
     upgrade()
@@ -74,11 +77,12 @@ func_help()
     	#Atualizando lista de programas do sistem
     	printf "\n[*] Atualizando lista de programas do sistema \n"
         printf "\n[*] Atualizando lista de programas do sistema \n" >> $log_atualiza
-            ## atualizacao segura
-	        apt upgrade -y
+        
+        ## atualizacao segura
+        apt upgrade -y
 
-            ## atualizacao da distribuicao | caso exista
-            apt dist-upgrade -y
+        ## atualizacao da distribuicao | caso exista
+        apt dist-upgrade -y
     }
 
 # # # # # # # # # #
@@ -160,10 +164,10 @@ func_help()
         #Configurando o prelink e o preload
         echo "[*] Configurando Prelink e Preload... "
         echo "[*] Configurando Prelink e Preload... " >> $log_config
-                memfree=$(grep "memfree = 50" /etc/preload.conf)
-                memcached=$(grep "memcached = 0" /etc/preload.conf)
-                processes=$(grep "processes = 30" /etc/preload.conf)
-                prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
+        memfree=$(grep "memfree = 50" /etc/preload.conf)
+        memcached=$(grep "memcached = 0" /etc/preload.conf)
+        processes=$(grep "processes = 30" /etc/preload.conf)
+        prelink=$(grep "PRELINKING=unknown" /etc/default/prelink)
 
 		printf "[*] Ativando o PRELINK"
         printf "[*] Ativando o PRELINK" >> $log_config
@@ -903,8 +907,7 @@ func_help()
                 firmware-brcm80211 -y      
         fi
 
-        apt install firmware-linux \
-                    firmware-linux-nonfree -y
+        apt install firmware-linux firmware-linux-nonfree -y
     }     
 
     install_python()
@@ -1472,7 +1475,6 @@ func_atualiza()
     notify-send -u normal "Atualizando sistema" -t 10000
 
     update
-    # --- #
     upgrade
 }
 
@@ -1480,12 +1482,10 @@ func_corrige()
 {
     notify-send -u normal "Corrigindo sistema" -t 10000
 
+    # nao trocar ordem das funcoes
     apt_clean        
-    # --- #
     pacotes_quebrados      
-    # --- #
     atualiza_db   
-    # --- #
     update
 }
 
@@ -1493,17 +1493,12 @@ func_config()
 {
     notify-send -u normal "Configurando o sistema" -t 10000	
 
-    config_ntp  
-    # --- #
     swap
-    # --- #
-    prelink_preload_deborphan
-    # --- #
     autologin
-    # --- #
+    config_ntp  
     icones_temas
-    # --- #
     arquivo_hosts
+    prelink_preload_deborphan
 }
 
 func_limpa()
@@ -1511,7 +1506,6 @@ func_limpa()
     notify-send -u normal "Limpando sistema" -t 10000
 
     pacotes_orfaos
-    # --- #
     funcao_chkrootkit
 }
 
