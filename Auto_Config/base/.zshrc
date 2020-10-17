@@ -124,11 +124,11 @@ alias twitt="python /home/lenonr/Github/dev_scripts/Scripts/Python/twitter_bot/v
 alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packages.txt &"
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
 alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
+alias nfs="cd /home/lenonr/.wine/drive_c/Program\ Files\ \(x86\)/NFS\ Most\ Wanted/ && bash main.sh && cd - >/dev/null"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
 alias subl="/snap/bin/sublime-text.subl"
-alias vscode="/snap/bin/code.url-handler"
 alias reboot_interface="xfce4-panel -r &"
 alias wrt="/home/lenonr/Github/dev_sysadmin/others/wrt.sh"
 alias session="/home/lenonr/Github/dev_sysadmin/others/session.sh"
