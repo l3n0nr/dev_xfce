@@ -1363,14 +1363,6 @@ func_help()
 		apt purge gitg -y
 	}
 
-    remove_mpv()
-    {
-        printf "\n[*] Removendo o Mpv"
-        printf "\n[*] Removendo o Mpv" >> $log_remove
-
-        apt purge mpv -y
-    }
-
     remove_clamav()
     {
         printf "\n[*] Removendo o clamAV"
@@ -1652,8 +1644,7 @@ func_remove()
 	remove_gtkhash
 	remove_xsane
 	remove_chromium-bsu
-	remove_owncloud   
-    remove_mpv   
+	remove_owncloud      
     remove_keyring
     remove_zathura
     remove_synaptic
