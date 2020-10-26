@@ -1395,14 +1395,6 @@ func_help()
         apt purge synaptic -y
     }
 
-    remove_youtubedl()
-    {
-        printf "\n[*] Removendo youtube-dl"
-        printf "\n[*] Removendo youtube-dl" >> $log_remove
-
-        apt purge youtube-dl -y
-    }
-
     remove_simplescan()
     {
         printf "\n[*] Removendo o Simple-scan"
