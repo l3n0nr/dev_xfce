@@ -181,7 +181,6 @@ func_help()
         fi
     }
 
-
     install_fonts()
     {
         #corrigindo erros fontes
@@ -691,23 +690,6 @@ func_help()
         printf "\n[*] Instalando o Hardinfo" >> $log_instala
 
         apt install hardinfo -y
-    }
-
-    install_nvidia()
-    {
-        # # variavel de verificação
-        # local var_nvidia=$(type nvidia-settings > /dev/null)
-
-        # if [[ $var_nvidia = "1" ]]; then
-        # 	    apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') nvidia-driver nvidia-xconfig -y
-        # else
-        #     printf "\n[-] Nvidia já está instalado no sistema!"
-        #     printf "\n[-] Nvidia já está instalado no sistema!" >> $log_instala
-        # fi
-
-        # apt install linux-headers-$(uname -r|sed 's/[^-]*-[^-]*-//') \
-        # nvidia-driver nvidia-xconfig nvidia-settings nvidia-smi -y
-        echo
     }
 
     install_virtualbox()
@@ -1446,10 +1428,8 @@ func_keycheck()
             echo "AUTOCONFIG:"$key >> $file_check   
         else
             printf "Esta com TOC amigo, voce ja rodou o script agora a pouco!! $check_func \n"
-
+            
             sleep $aguarda
-
-            exit 1
         fi
     fi
 }
