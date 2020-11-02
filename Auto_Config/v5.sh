@@ -1485,7 +1485,8 @@ func_instala()
 	install_simple_screen_recorder   
 	
     install_stellarium
-    install_libreoffice 
+    install_libreoffice
+    install_transmission   
 
 	install_xfce4  
     install_nautilus
@@ -1495,7 +1496,6 @@ func_instala()
     install_neofetch
     install_lm-sensors    
     install_tlp	   
-    install_mega    
 
     install_zsh          
     install_ibus
@@ -1549,6 +1549,11 @@ func_instala()
     install_mpsyoutube
    	install_wine
 
+    if [[ $distro = "Debian" ]]; then 
+        install_mega
+        install_dropbox    
+    fi
+
 	if [[ $v_hostname = 'notebook' ]]; then		
         install_cheese
 
@@ -1571,8 +1576,7 @@ func_instala()
         install_gwe
         
         install_pulseeffects
-                
-        install_transmission   
+                        
         install_googleearth          
 	else
 		printf "\n[-] ERRO instala!"
