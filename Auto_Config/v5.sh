@@ -530,12 +530,12 @@ func_help()
         apt install vlc -y
     }
 
-    install_clementine()
+    install_audacious()
     {
-        printf "\n[*] Instalando o Clementine"
-        printf "\n[*] Instalando o Clementine" >> $log_instala
+        printf "\n[*] Instalando o Audacious"
+        printf "\n[*] Instalando o Audacious" >> $log_instala
 
-        apt install clementine -y
+        apt install audacious -y
     }
 
     install_gparted()
@@ -1481,7 +1481,7 @@ func_instala()
 
 	install_codecs
 	install_vlc
-	install_clementine	  
+	install_audacious 
 	install_simple_screen_recorder   
 	
     install_stellarium
