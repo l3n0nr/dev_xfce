@@ -737,31 +737,6 @@ func_help()
 
         apt install tree -y
     }
-
-    install_pulseeffects()
-    {
-        printf "\n[*] Instalando o Pulse Effects"
-        printf "\n[*] Instalando o Pulse Effects" >> $log_instala
-
-        # adicionando via flatpak
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-        # Instalando via flatpak
-        flatpak install flathub com.github.wwmm.pulseeffects -y                
-            
-        local pulse_audio="/etc/pulse/daemon.conf"
-        local flat_volume="flat-volumes = no"
-        local verifica_pulse=$(grep $flat_volume $pulse_audio)        
-
-        # executando caso nao encontre $flat_volume
-        [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
-                                      printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
-                                      printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
-
-        ######## COMENTARIO                        
-        ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-        # apt install --reinstall pulseaudio
-    }
     
     install_terminator()
     {
@@ -1548,6 +1523,9 @@ func_instala()
 
     install_mpsyoutube
    	install_wine
+    install_playonlinux
+
+    install_googleearth 
 
     if [[ $distro = "Debian" ]]; then 
         install_mega
@@ -1564,20 +1542,14 @@ func_instala()
         install_realtek  
 
         install_bluetooth
-
 	elif [[ $v_hostname = 'desktop' ]]; then     
         install_gimp    
-        install_tuxguitar  
-        install_playonlinux  
+        install_tuxguitar            
         install_sweethome3d
 		install_audacity
 
         install_nvidia      
-        install_gwe
-        
-        install_pulseeffects
-                        
-        install_googleearth          
+        install_gwe                     
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
