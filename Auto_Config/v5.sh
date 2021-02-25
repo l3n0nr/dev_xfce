@@ -530,12 +530,12 @@ func_help()
         apt install vlc -y
     }
 
-    install_clementine()
+    install_audacious()
     {
-        printf "\n[*] Instalando o Clementine"
-        printf "\n[*] Instalando o Clementine" >> $log_instala
+        printf "\n[*] Instalando o Audacious"
+        printf "\n[*] Instalando o Audacious" >> $log_instala
 
-        apt install clementine -y
+        apt install audacious -y
     }
 
     install_gparted()
@@ -736,31 +736,6 @@ func_help()
         printf "\n[*] Instalando o Tree" >> $log_instala
 
         apt install tree -y
-    }
-
-    install_pulseeffects()
-    {
-        printf "\n[*] Instalando o Pulse Effects"
-        printf "\n[*] Instalando o Pulse Effects" >> $log_instala
-
-        # adicionando via flatpak
-        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-        # Instalando via flatpak
-        flatpak install flathub com.github.wwmm.pulseeffects -y                
-            
-        local pulse_audio="/etc/pulse/daemon.conf"
-        local flat_volume="flat-volumes = no"
-        local verifica_pulse=$(grep $flat_volume $pulse_audio)        
-
-        # executando caso nao encontre $flat_volume
-        [[ $verifica_pulse = "" ]] && echo $flat_volume >> $pulse_audio && \
-                                      printf "\n[+] Arquivo $pulse_audio modificado!" && printf "\n[+] Arquivo $pulse_audio modificado!" >> $log_instala || \
-                                      printf "\n[-] Arquivo $pulse_audio nao foi modificado!" && printf "\n[-] Arquivo $pulse_audio nao foi modificado!" >> $log_instala
-
-        ######## COMENTARIO                        
-        ## Se houve erro no servidor do pulseaudio, basta reinstalo com o comando:
-        # apt install --reinstall pulseaudio
     }
     
     install_terminator()
@@ -1481,7 +1456,7 @@ func_instala()
 
 	install_codecs
 	install_vlc
-	install_clementine	  
+	install_audacious 
 	install_simple_screen_recorder   
 	
     install_stellarium
@@ -1548,11 +1523,17 @@ func_instala()
 
     install_mpsyoutube
    	install_wine
+<<<<<<< HEAD
     install_playonlinux  
     install_gimp    
 
     install_pulseeffects                
     install_googleearth          
+=======
+    install_playonlinux
+
+    install_googleearth 
+>>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
 
     if [[ $distro = "Debian" ]]; then 
         install_mega
@@ -1569,14 +1550,24 @@ func_instala()
         install_realtek  
 
         install_bluetooth
+<<<<<<< HEAD
 
 	elif [[ $v_hostname = 'desktop' ]]; then             
         install_tuxguitar  
+=======
+	elif [[ $v_hostname = 'desktop' ]]; then     
+        install_gimp    
+        install_tuxguitar            
+>>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
         install_sweethome3d
 		install_audacity
 
         install_nvidia      
+<<<<<<< HEAD
         install_gwe        
+=======
+        install_gwe                     
+>>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala

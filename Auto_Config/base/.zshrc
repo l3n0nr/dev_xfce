@@ -125,6 +125,7 @@ alias packages="dpkg --get-selections > /tmp/packages.txt && mousepad /tmp/packa
 alias internet="/home/lenonr/Github/dev_sysadmin/others/internet.sh"
 alias launch_rocket="cd /home/lenonr/Github/dev_scripts/Scripts/Python/launch_bot && bash main.sh notify && cd - >/dev/null"
 alias nfs="cd /home/lenonr/.wine/drive_c/Program\ Files\ \(x86\)/NFS\ Most\ Wanted/ && bash main.sh && cd - >/dev/null"
+alias sound51="speaker-test -c 6"
 
 ## SISTEMA
 alias home="cd ~ && clear && ls"
