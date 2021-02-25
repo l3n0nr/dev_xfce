@@ -1523,17 +1523,11 @@ func_instala()
 
     install_mpsyoutube
    	install_wine
-<<<<<<< HEAD
     install_playonlinux  
     install_gimp    
 
     install_pulseeffects                
     install_googleearth          
-=======
-    install_playonlinux
-
-    install_googleearth 
->>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
 
     if [[ $distro = "Debian" ]]; then 
         install_mega
@@ -1550,24 +1544,14 @@ func_instala()
         install_realtek  
 
         install_bluetooth
-<<<<<<< HEAD
-
-	elif [[ $v_hostname = 'desktop' ]]; then             
-        install_tuxguitar  
-=======
 	elif [[ $v_hostname = 'desktop' ]]; then     
         install_gimp    
         install_tuxguitar            
->>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
         install_sweethome3d
 		install_audacity
 
         install_nvidia      
-<<<<<<< HEAD
         install_gwe        
-=======
-        install_gwe                     
->>>>>>> b3607deb371a32a675af4c91dd58238875cebff1
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
