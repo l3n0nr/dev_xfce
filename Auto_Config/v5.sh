@@ -1548,6 +1548,11 @@ func_instala()
 
     install_mpsyoutube
    	install_wine
+    install_playonlinux  
+    install_gimp    
+
+    install_pulseeffects                
+    install_googleearth          
 
     if [[ $distro = "Debian" ]]; then 
         install_mega
@@ -1565,19 +1570,13 @@ func_instala()
 
         install_bluetooth
 
-	elif [[ $v_hostname = 'desktop' ]]; then     
-        install_gimp    
+	elif [[ $v_hostname = 'desktop' ]]; then             
         install_tuxguitar  
-        install_playonlinux  
         install_sweethome3d
 		install_audacity
 
         install_nvidia      
-        install_gwe
-        
-        install_pulseeffects
-                        
-        install_googleearth          
+        install_gwe        
 	else
 		printf "\n[-] ERRO instala!"
 		printf "\n[-] ERRO instala!" >> $log_instala
