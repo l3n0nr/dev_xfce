@@ -337,6 +337,24 @@ func_help()
         chkrootkit
     }
 
+    funcao_lynis()
+    {
+        echo "Realizando analise, aguarde..."
+        echo "Realizando analise, aguarde..." >> $log_limpa
+
+        lynis audit system --quick --reverse-colors --skip-plugins
+
+        if [[ $? == "0" ]]; then
+            echo "Analise finalizada!"
+            echo "Analise finalizada!" >> $log_limpa
+
+            echo "Mais detalhes em /var/log/lynis.log"
+        else
+            echo "Erro ao analisar!"
+            echo "Erro ao analisar!" >> $log_limpa
+        fi
+    }
+
     ## LAST_LIMPA
 
 # # # # # # # # # #
@@ -1164,6 +1182,14 @@ func_help()
     	pip3 install mps-youtube --upgrade
     }
 
+    install_lynis()
+    {
+        printf "\n[*] Instalando o Lynis"
+        printf "\n[*] Instalando o Lynis" >> $log_instala
+
+        apt-get install lynis
+    }
+
     ## LAST_INSTALL
 
 # # # # # # # # # #
@@ -1446,6 +1472,7 @@ func_limpa()
 
     pacotes_orfaos
     funcao_chkrootkit
+    funcao_lynis
 }
 
 func_instala()
@@ -1520,6 +1547,7 @@ func_instala()
 
     install_aircrack  
     install_wavemon
+    install_lynis
 
     install_mpsyoutube
    	install_wine
